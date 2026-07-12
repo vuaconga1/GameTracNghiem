@@ -47,47 +47,48 @@ export function LoginForm({ next }: LoginFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <label className="block">
-        <span className="mb-1 block text-sm font-bold text-[var(--primary)]">
-          Tên đăng nhập
-        </span>
-        <input
-          value={username}
-          onChange={(event) => setUsername(event.target.value)}
-          autoComplete="username"
-          required
-          className="w-full rounded-2xl border border-[var(--border)] bg-[var(--white)] px-4 py-3 text-[var(--text-dark)] outline-none transition focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--primary-light)]"
-        />
-      </label>
-
-      <label className="block">
-        <span className="mb-1 block text-sm font-bold text-[var(--primary)]">
-          Mật khẩu
-        </span>
-        <input
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          autoComplete="current-password"
-          required
-          className="w-full rounded-2xl border border-[var(--border)] bg-[var(--white)] px-4 py-3 text-[var(--text-dark)] outline-none transition focus:border-[var(--primary)] focus:ring-4 focus:ring-[var(--primary-light)]"
-        />
-      </label>
-
-      {error ? (
-        <div className="data-loading-state min-h-0 justify-start py-1 text-left text-red-700">
-          {error}
-        </div>
-      ) : null}
-
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full rounded-2xl bg-[var(--primary)] px-5 py-3 font-black text-[var(--white)] transition hover:bg-[var(--primary-dark)] disabled:cursor-not-allowed disabled:opacity-70"
+    <>
+      <div
+        id="loginError"
+        className={error ? 'login-error show' : 'login-error'}
+        role="alert"
       >
-        {isSubmitting ? 'Đang đăng nhập...' : 'Đăng nhập'}
-      </button>
-    </form>
+        {error}
+      </div>
+      <form id="loginForm" onSubmit={handleSubmit}>
+        <div className="login-field">
+          <label htmlFor="loginUsername">Username</label>
+          <input
+            type="text"
+            id="loginUsername"
+            placeholder="Nhập username"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+            autoComplete="username"
+            required
+          />
+        </div>
+        <div className="login-field">
+          <label htmlFor="loginPassword">Password</label>
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="Nhập password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            autoComplete="current-password"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          className="login-submit"
+          id="loginSubmit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Đang đăng nhập...' : 'Đăng nhập'}
+        </button>
+      </form>
+    </>
   );
 }

@@ -19,20 +19,21 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   const next = safeNext(params?.next);
 
   return (
-    <main className="flex min-h-screen items-center justify-center px-4 py-10">
-      <section className="w-full max-w-md rounded-[2rem] border border-[var(--border)] bg-[var(--white)] p-8 shadow-[0_24px_80px_rgba(13,43,110,0.12)]">
-        <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[var(--primary)] text-3xl font-black text-[var(--white)]">
-            W
-          </div>
-          <h1 className="text-3xl font-black text-[var(--primary)]">WeWIN</h1>
-          <p className="mt-2 font-bold text-[var(--text-muted)]">
-            Đăng nhập để tiếp tục luyện tập
-          </p>
+    <div className="login-overlay" id="loginOverlay" style={{ display: 'flex' }}>
+      <div
+        className="login-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="loginTitle"
+      >
+        <div className="login-modal-header">
+          <img id="modalLogo" src="/wewinlogo.png" alt="WeWIN" />
         </div>
-
-        <LoginForm next={next} />
-      </section>
-    </main>
+        <div className="login-modal-body">
+          <h2 id="loginTitle">Đăng nhập</h2>
+          <LoginForm next={next} />
+        </div>
+      </div>
+    </div>
   );
 }
