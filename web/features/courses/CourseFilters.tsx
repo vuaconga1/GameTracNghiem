@@ -19,41 +19,39 @@ export function CourseFilters({
   onClassNameChange,
   onLevelNameChange,
 }: CourseFiltersProps) {
-  return (
-    <div className="grid gap-4 rounded-[1.5rem] border border-[var(--border)] bg-[var(--white)] p-4 shadow-[0_14px_40px_rgba(13,43,110,0.06)] sm:grid-cols-2">
-      <label className="grid gap-2 text-sm font-black text-[var(--primary)]">
-        Lớp
-        <select
-          value={className}
-          onChange={(event) => onClassNameChange(event.target.value)}
-          disabled={disabled}
-          className="rounded-2xl border border-[var(--border)] bg-[var(--white)] px-4 py-3 font-bold text-[var(--text-dark)] outline-none transition focus:border-[var(--primary)] disabled:cursor-not-allowed disabled:opacity-60"
-        >
-          <option value="">Tất cả lớp</option>
-          {classes.map((item) => (
-            <option key={item} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
-      </label>
+  const classOptions = ['', ...classes];
+  const levelOptions = ['', ...levels];
 
-      <label className="grid gap-2 text-sm font-black text-[var(--primary)]">
-        Cấp độ
-        <select
-          value={levelName}
-          onChange={(event) => onLevelNameChange(event.target.value)}
+  return (
+    <div className="filter-grid" id="filterGrid">
+      {classOptions.map((value) => (
+        <button
+          key={`class-${value || 'all'}`}
+          type="button"
+          className={`filter-item${className === value ? ' active' : ''}`}
+          data-filter-type="class"
+          data-class={value}
           disabled={disabled}
-          className="rounded-2xl border border-[var(--border)] bg-[var(--white)] px-4 py-3 font-bold text-[var(--text-dark)] outline-none transition focus:border-[var(--primary)] disabled:cursor-not-allowed disabled:opacity-60"
+          onClick={() => onClassNameChange(value)}
         >
-          <option value="">Tất cả cấp độ</option>
-          {levels.map((item) => (
-            <option key={item} value={item}>
-              {item}
-            </option>
-          ))}
-        </select>
-      </label>
+          {value || 'Tất cả'}
+        </button>
+      ))}
+
+      {levelOptions.map((value) => (
+        <button
+          key={`level-${value || 'all'}`}
+          type="button"
+          className={`filter-item${levelName === value ? ' active' : ''}`}
+          data-filter-type="level"
+          data-class={className}
+          data-level={value}
+          disabled={disabled}
+          onClick={() => onLevelNameChange(value)}
+        >
+          {value || 'Tất cả'}
+        </button>
+      ))}
     </div>
   );
 }
