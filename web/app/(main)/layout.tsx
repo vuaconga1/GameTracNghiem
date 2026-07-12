@@ -1,4 +1,5 @@
-import { Header } from '@/components/Header';
+import { MainShell } from '@/components/shell/MainShell';
+import { SidebarProvider } from '@/components/shell/SidebarContext';
 import { requireSession } from '@/lib/auth';
 
 export default async function MainLayout({
@@ -9,9 +10,8 @@ export default async function MainLayout({
   const session = await requireSession();
 
   return (
-    <div className="min-h-screen bg-[var(--bg-page)]">
-      <Header displayName={session.displayName} />
-      <main className="mx-auto max-w-6xl px-4 py-8">{children}</main>
-    </div>
+    <SidebarProvider>
+      <MainShell displayName={session.displayName}>{children}</MainShell>
+    </SidebarProvider>
   );
 }
