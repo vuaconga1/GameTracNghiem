@@ -72,6 +72,10 @@ type GrammarGameContentProps = {
   onBackToList: () => void;
   onOpenQuestion: (index: number) => void;
   onStartContinue: () => void;
+  onRetry: () => void;
+  onRetryFromStart: () => void;
+  onViewResult: () => void;
+  isResetting: boolean;
   onInputChange: (value: string) => void;
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   onNext: () => void;
@@ -140,13 +144,18 @@ export function GrammarGameContent({
   onBackToList,
   onOpenQuestion,
   onStartContinue,
+  onRetry,
+  onRetryFromStart,
+  onViewResult,
+  isResetting,
   onInputChange,
   onSubmit,
   onNext,
 }: GrammarGameContentProps) {
   const currentQuestion = questions[currentIndex];
   const firstPending = statuses.findIndex((status) => status === 'empty');
-  const startLabel = firstPending >= 0 ? 'Bắt đầu làm bài' : 'Xem kết quả';
+  const allAnswered = firstPending === -1;
+  const startLabel = allAnswered ? 'Làm lại từ đầu' : 'Bắt đầu làm bài';
   const subtitle = `${course.name}${course.levelName ? ` · ${course.levelName}` : ''}`;
 
   return (
@@ -221,9 +230,19 @@ export function GrammarGameContent({
             })}
           </div>
           <div className="game-actions">
-            <button type="button" className="btn btn-primary" onClick={onStartContinue}>
-              {startLabel}
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={allAnswered ? onRetryFromStart : onStartContinue}
+              disabled={isResetting}
+            >
+              {isResetting ? 'Đang làm lại...' : startLabel}
             </button>
+            {allAnswered ? (
+              <button type="button" className="btn btn-secondary" onClick={onViewResult}>
+                Xem kết quả
+              </button>
+            ) : null}
           </div>
         </div>
       ) : null}
@@ -324,8 +343,13 @@ export function GrammarGameContent({
               })}
             </div>
             <div className="game-actions">
-              <button type="button" className="btn btn-primary" onClick={onBackToList}>
-                Về danh sách
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={onRetry}
+                disabled={isResetting}
+              >
+                {isResetting ? 'Đang làm lại...' : 'Làm lại'}
               </button>
               <Link href={`/courses/${courseId}`} className="btn btn-secondary">
                 Quay lại khóa học
@@ -348,6 +372,7 @@ export function GrammarGame({ courseId }: Props) {
   const [sessionPoints, setSessionPoints] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [submitMessage, setSubmitMessage] = useState('');
   const questionStartTime = useRef(Date.now());
@@ -420,7 +445,7 @@ export function GrammarGame({ courseId }: Props) {
     }
   }, [currentIndex, panel]);
 
-  async function persistProgress(nextStatuses: ProgressStatus[]) {
+  async function persistProgress(nextStatuses: ProgressStatus[], reset = false) {
     if (!course) return;
 
     const res = await fetch('/api/progress', {
@@ -430,6 +455,7 @@ export function GrammarGame({ courseId }: Props) {
         courseKey: progressCourseKey(course.name, course.levelName),
         game: 'grammar',
         statuses: nextStatuses,
+        reset,
       }),
     });
     const json = (await res.json()) as { success: boolean; statuses?: ProgressStatus[]; message?: string };
@@ -501,11 +527,30 @@ export function GrammarGame({ courseId }: Props) {
 
   function startOrContinue() {
     const firstEmptyIndex = nextEmptyIndex(statuses);
-    if (firstEmptyIndex === -1) {
-      setPanel('result');
-      return;
-    }
+    if (firstEmptyIndex === -1) return;
     openQuestion(firstEmptyIndex);
+  }
+
+  async function resetProgress(openFirstQuestion: boolean) {
+    if (!course || isResetting) return;
+
+    const emptyStatuses = Array.from({ length: questions.length }, () => 'empty' as ProgressStatus);
+
+    setIsResetting(true);
+    setSubmitMessage('');
+
+    try {
+      setStatuses(emptyStatuses);
+      setSessionPoints(0);
+      setAnswerResult(null);
+      setCurrentIndex(0);
+      await persistProgress(emptyStatuses, true);
+      setPanel(openFirstQuestion ? 'question' : 'list');
+    } catch (err) {
+      setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
+    } finally {
+      setIsResetting(false);
+    }
   }
 
   if (isLoading) {
@@ -554,6 +599,14 @@ export function GrammarGame({ courseId }: Props) {
       onBackToList={() => setPanel('list')}
       onOpenQuestion={openQuestion}
       onStartContinue={startOrContinue}
+      onRetry={() => {
+        void resetProgress(false);
+      }}
+      onRetryFromStart={() => {
+        void resetProgress(true);
+      }}
+      onViewResult={() => setPanel('result')}
+      isResetting={isResetting}
       onInputChange={setInput}
       onSubmit={handleSubmit}
       onNext={goNext}
