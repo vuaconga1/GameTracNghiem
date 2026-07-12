@@ -39,7 +39,11 @@ export function MainShell({ displayName, children }: MainShellProps) {
   );
 
   return (
-    <AppShell sidebar={sidebar} header={<AppHeader displayName={displayName} />}>
+    <AppShell
+      layout={isGrammarGame ? 'game' : 'index'}
+      sidebar={sidebar}
+      header={<AppHeader displayName={displayName} />}
+    >
       {children}
     </AppShell>
   );

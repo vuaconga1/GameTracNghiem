@@ -5,3 +5,14 @@ html,
 body {
   max-width: 100%;
 }
+
+/* game-styles .main { align-items: center } shrinks home content — stretch for index layout */
+.main.layout-index {
+  align-items: stretch;
+}
+
+.main.layout-index > .header,
+.main.layout-index > .content {
+  width: 100%;
+  align-self: stretch;
+}
