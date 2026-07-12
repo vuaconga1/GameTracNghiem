@@ -7,6 +7,10 @@ describe('gradeGrammarAnswer', () => {
     expect(gradeGrammarAnswer('  GOES  ', ['goes'])).toBe(true);
   });
 
+  it('collapses multiple spaces in input before comparing', () => {
+    expect(gradeGrammarAnswer('has   been', ['has been'])).toBe(true);
+  });
+
   it('rejects an answer that does not match any accepted answer', () => {
     expect(gradeGrammarAnswer('go', ['goes', 'went'])).toBe(false);
   });
