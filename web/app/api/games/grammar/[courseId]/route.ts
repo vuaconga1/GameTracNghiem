@@ -7,6 +7,7 @@ import { prisma } from '@/lib/db';
 type ProgressStatus = 'empty' | 'correct' | 'wrong';
 
 type GrammarPayload = {
+  source?: unknown;
   prefix?: unknown;
   suffix?: unknown;
   hint?: unknown;
@@ -101,6 +102,7 @@ export async function GET(
         return {
           id: question.id,
           index,
+          source: String(payload.source || ''),
           prefix: String(payload.prefix || ''),
           suffix: String(payload.suffix || ''),
           hint: String(payload.hint || ''),

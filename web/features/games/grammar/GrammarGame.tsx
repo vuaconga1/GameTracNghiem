@@ -14,6 +14,7 @@ type ProgressStatus = 'empty' | 'correct' | 'wrong';
 type GrammarQuestion = {
   id: string;
   index: number;
+  source: string;
   prefix: string;
   suffix: string;
   hint: string;
@@ -41,6 +42,41 @@ type Props = {
   courseId: string;
 };
 
+type Panel = 'list' | 'question' | 'result';
+
+type GrammarCourse = NonNullable<GrammarGameResponse['course']>;
+
+type GrammarStats = {
+  total: number;
+  correct: number;
+  wrong: number;
+  pending: number;
+};
+
+type GrammarGameContentProps = {
+  courseId: string;
+  course: GrammarCourse;
+  questions: GrammarQuestion[];
+  statuses: readonly ProgressStatus[];
+  panel: Panel;
+  currentIndex: number;
+  input: string;
+  answerResult: AnswerResult | null;
+  submitMessage: string;
+  sessionPoints: number;
+  isSubmitting: boolean;
+  completedCount: number;
+  progressPercent: number;
+  stats: GrammarStats;
+  onBackHome: () => void;
+  onBackToList: () => void;
+  onOpenQuestion: (index: number) => void;
+  onStartContinue: () => void;
+  onInputChange: (value: string) => void;
+  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  onNext: () => void;
+};
+
 function normalizeStatuses(statuses: ProgressStatus[] | undefined, questionCount: number): ProgressStatus[] {
   return Array.from({ length: questionCount }, (_, index) => statuses?.[index] || 'empty');
 }
@@ -49,9 +85,263 @@ function nextEmptyIndex(statuses: ProgressStatus[]): number {
   return statuses.findIndex((status) => status === 'empty');
 }
 
+function formatPoints(points: number): string {
+  const sign = points >= 0 ? '+' : '';
+  return `${sign}${points.toLocaleString('vi-VN')} điểm`;
+}
+
+function statusClass(status: ProgressStatus): string {
+  if (status === 'correct') return 'status-correct';
+  if (status === 'wrong') return 'status-wrong';
+  return 'status-pending';
+}
+
+function statusIcon(status: ProgressStatus) {
+  if (status === 'correct') {
+    return <i className="fas fa-check" aria-hidden="true" />;
+  }
+  if (status === 'wrong') {
+    return <i className="fas fa-times" aria-hidden="true" />;
+  }
+  return <i className="far fa-circle" aria-hidden="true" />;
+}
+
+function statusText(status: ProgressStatus): string {
+  if (status === 'correct') return 'Đúng';
+  if (status === 'wrong') return 'Sai';
+  return 'Chưa làm';
+}
+
+function questionPreview(question: GrammarQuestion): string {
+  const preview = question.source || `${question.prefix} ${question.suffix}`.trim();
+  return preview.length > 50 ? `${preview.slice(0, 50)}...` : preview;
+}
+
+function answerSample(question: GrammarQuestion): string {
+  return `${question.prefix} ${question.answers[0] || ''} ${question.suffix}`.replace(/\s+/g, ' ').trim();
+}
+
+export function GrammarGameContent({
+  courseId,
+  course,
+  questions,
+  statuses,
+  panel,
+  currentIndex,
+  input,
+  answerResult,
+  submitMessage,
+  sessionPoints,
+  isSubmitting,
+  completedCount,
+  progressPercent,
+  stats,
+  onBackHome,
+  onBackToList,
+  onOpenQuestion,
+  onStartContinue,
+  onInputChange,
+  onSubmit,
+  onNext,
+}: GrammarGameContentProps) {
+  const currentQuestion = questions[currentIndex];
+  const firstPending = statuses.findIndex((status) => status === 'empty');
+  const startLabel = firstPending >= 0 ? 'Bắt đầu làm bài' : 'Xem kết quả';
+  const subtitle = `${course.name}${course.levelName ? ` · ${course.levelName}` : ''}`;
+
+  return (
+    <div className="game-page">
+      <div className="game-top">
+        <button
+          type="button"
+          className="game-back"
+          title={panel === 'question' ? 'Về danh sách' : 'Quay lại khóa học'}
+          aria-label={panel === 'question' ? 'Về danh sách' : 'Quay lại khóa học'}
+          onClick={panel === 'question' ? onBackToList : onBackHome}
+        >
+          <i className="fas fa-arrow-left" aria-hidden="true" />
+        </button>
+        <div className="game-title-wrap">
+          <h1>Viết lại câu</h1>
+          <p className="game-subtitle">{subtitle}</p>
+        </div>
+      </div>
+
+      {panel === 'question' ? (
+        <div className="game-meta">
+          <span className="meta-pill">{course.name || 'Khóa học'}</span>
+          <span className="meta-pill meta-score-pill">
+            {formatPoints(sessionPoints)}
+          </span>
+          <div
+            className="progress-bar-wrap"
+            aria-label={`Đã hoàn thành ${completedCount}/${questions.length} câu`}
+          >
+            <div className="progress-bar-fill" style={{ width: `${progressPercent}%` }} />
+          </div>
+        </div>
+      ) : null}
+
+      {panel === 'list' ? (
+        <div className="game-card" id="listPanel">
+          <div className="list-title">Danh sách câu hỏi</div>
+          <div className="list-stats">
+            <div className="stat-item">
+              <span className="stat-num">{stats.total}</span>
+              <span className="stat-label">Tổng câu</span>
+            </div>
+            <div className="stat-item correct">
+              <span className="stat-num">{stats.correct}</span>
+              <span className="stat-label">Đúng</span>
+            </div>
+            <div className="stat-item wrong">
+              <span className="stat-num">{stats.wrong}</span>
+              <span className="stat-label">Sai</span>
+            </div>
+            <div className="stat-item pending">
+              <span className="stat-num">{stats.pending}</span>
+              <span className="stat-label">Chưa làm</span>
+            </div>
+          </div>
+          <div className="question-list">
+            {questions.map((question, index) => {
+              const status = statuses[index] || 'empty';
+              return (
+                <button
+                  type="button"
+                  key={question.id}
+                  className={`q-list-item ${statusClass(status)}`}
+                  onClick={() => onOpenQuestion(index)}
+                >
+                  <span className="q-num">{index + 1}</span>
+                  <span className="q-preview">{questionPreview(question)}</span>
+                  <span className="q-status">{statusIcon(status)}</span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="game-actions">
+            <button type="button" className="btn btn-primary" onClick={onStartContinue}>
+              {startLabel}
+            </button>
+          </div>
+        </div>
+      ) : null}
+
+      {panel === 'question' && currentQuestion ? (
+        <div className="game-card" id="questionPanel">
+          <span className="question-counter-pill">
+            Câu {currentIndex + 1}/{questions.length}
+          </span>
+          <div className="question-label">Câu mẫu</div>
+          <div className="source-sentence">
+            {currentQuestion.source || answerSample(currentQuestion)}
+          </div>
+
+          <div className="rewrite-label">Viết lại câu theo mẫu:</div>
+          <form onSubmit={onSubmit}>
+            <div className="rewrite-row">
+              <span className="rewrite-prefix">{currentQuestion.prefix}</span>
+              <input
+                type="text"
+                className="rewrite-input"
+                value={input}
+                onChange={(event) => onInputChange(event.target.value)}
+                disabled={isSubmitting || Boolean(answerResult)}
+                autoComplete="off"
+                spellCheck={false}
+              />
+              <span className="rewrite-suffix">{currentQuestion.suffix}</span>
+            </div>
+
+            {currentQuestion.hint ? (
+              <div className="hint-box">
+                <i className="fas fa-lightbulb" aria-hidden="true" />
+                <span>{currentQuestion.hint}</span>
+              </div>
+            ) : null}
+
+            {submitMessage ? (
+              <div className="feedback show wrong">{submitMessage}</div>
+            ) : null}
+
+            {answerResult ? (
+              <div className={`feedback show ${answerResult.isCorrect ? 'correct' : 'wrong'}`}>
+                <i
+                  className={answerResult.isCorrect ? 'fas fa-check-circle' : 'fas fa-times-circle'}
+                  aria-hidden="true"
+                />{' '}
+                {answerResult.isCorrect ? (
+                  'Chính xác!'
+                ) : (
+                  <>
+                    Chưa đúng. Gợi ý: <strong>{answerSample(currentQuestion)}</strong>
+                  </>
+                )}
+                {typeof answerResult.points === 'number' ? (
+                  <div className="score-line">{formatPoints(answerResult.points)}</div>
+                ) : null}
+              </div>
+            ) : null}
+
+            <div className="game-actions">
+              {!answerResult ? (
+                <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                  <i className="fas fa-check" aria-hidden="true" />{' '}
+                  {isSubmitting ? 'Đang nộp...' : 'Kiểm tra đáp án'}
+                </button>
+              ) : (
+                <button type="button" className="btn btn-secondary" onClick={onNext}>
+                  {currentIndex + 1 >= questions.length ? 'Xem kết quả' : 'Câu tiếp theo'}
+                </button>
+              )}
+              <button type="button" className="btn btn-secondary" onClick={onBackToList}>
+                Về danh sách
+              </button>
+            </div>
+          </form>
+        </div>
+      ) : null}
+
+      {panel === 'result' ? (
+        <div className="game-card" id="resultPanel">
+          <div className="result-panel">
+            <h2>Hoàn thành!</h2>
+            <p>
+              Bạn đã trả lời đúng {stats.correct}/{questions.length} câu. Tổng điểm phiên:{' '}
+              {formatPoints(sessionPoints)}.
+            </p>
+            <div className="question-list">
+              {questions.map((question, index) => {
+                const status = statuses[index] || 'empty';
+                return (
+                  <div key={question.id} className={`q-list-item ${statusClass(status)}`}>
+                    <span className="q-num">{index + 1}</span>
+                    <span className="q-preview">{questionPreview(question)}</span>
+                    <span className="q-status">{statusText(status)}</span>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="game-actions">
+              <button type="button" className="btn btn-primary" onClick={onBackToList}>
+                Về danh sách
+              </button>
+              <Link href={`/courses/${courseId}`} className="btn btn-secondary">
+                Quay lại khóa học
+              </Link>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 export function GrammarGame({ courseId }: Props) {
   const [data, setData] = useState<GrammarGameResponse | null>(null);
   const [statuses, setStatuses] = useState<ProgressStatus[]>([]);
+  const [panel, setPanel] = useState<Panel>('list');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [input, setInput] = useState('');
   const [answerResult, setAnswerResult] = useState<AnswerResult | null>(null);
@@ -84,7 +374,8 @@ export function GrammarGame({ courseId }: Props) {
 
         setData(json);
         setStatuses(nextStatuses);
-        setCurrentIndex(firstEmptyIndex === -1 ? questions.length : firstEmptyIndex);
+        setCurrentIndex(firstEmptyIndex === -1 ? 0 : firstEmptyIndex);
+        setPanel('list');
         setSessionPoints(0);
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
@@ -107,15 +398,27 @@ export function GrammarGame({ courseId }: Props) {
   const questions = useMemo(() => data?.questions || [], [data?.questions]);
   const course = data?.course;
   const currentQuestion = questions[currentIndex];
-  const isFinished = questions.length > 0 && currentIndex >= questions.length;
   const completedCount = statuses.filter((status) => status !== 'empty').length;
+  const stats = useMemo<GrammarStats>(() => {
+    const correct = statuses.filter((status) => status === 'correct').length;
+    const wrong = statuses.filter((status) => status === 'wrong').length;
+    return {
+      total: questions.length,
+      correct,
+      wrong,
+      pending: Math.max(questions.length - correct - wrong, 0),
+    };
+  }, [questions.length, statuses]);
+  const progressPercent = questions.length ? Math.round((completedCount / questions.length) * 100) : 0;
 
   useEffect(() => {
-    questionStartTime.current = Date.now();
-    setInput('');
-    setAnswerResult(null);
-    setSubmitMessage('');
-  }, [currentIndex, questions.length]);
+    if (panel === 'question') {
+      questionStartTime.current = Date.now();
+      setInput('');
+      setAnswerResult(null);
+      setSubmitMessage('');
+    }
+  }, [currentIndex, panel]);
 
   async function persistProgress(nextStatuses: ProgressStatus[]) {
     if (!course) return;
@@ -185,130 +488,75 @@ export function GrammarGame({ courseId }: Props) {
   function goNext() {
     const nextIndex = currentIndex + 1;
     if (nextIndex >= questions.length) {
-      setCurrentIndex(questions.length);
+      setPanel('result');
       return;
     }
     setCurrentIndex(nextIndex);
   }
 
+  function openQuestion(index: number) {
+    setCurrentIndex(index);
+    setPanel('question');
+  }
+
+  function startOrContinue() {
+    const firstEmptyIndex = nextEmptyIndex(statuses);
+    if (firstEmptyIndex === -1) {
+      setPanel('result');
+      return;
+    }
+    openQuestion(firstEmptyIndex);
+  }
+
   if (isLoading) {
-    return <DataLoading />;
+    return (
+      <div className="game-page">
+        <DataLoading />
+      </div>
+    );
   }
 
   if (errorMessage || !course) {
-    return <DataLoading variant="message" message={errorMessage || 'Không tìm thấy trò chơi'} />;
+    return (
+      <div className="game-page">
+        <DataLoading variant="message" message={errorMessage || 'Không tìm thấy trò chơi'} />
+      </div>
+    );
   }
 
   if (questions.length === 0) {
-    return <DataLoading variant="message" message="Chưa có câu hỏi Grammar cho khóa học này" />;
+    return (
+      <div className="game-page">
+        <DataLoading variant="message" message="Chưa có câu hỏi Grammar cho khóa học này" />
+      </div>
+    );
   }
 
   return (
-    <section className="space-y-6">
-      <Link
-        href={`/courses/${course.id}`}
-        className="inline-flex rounded-full bg-[var(--primary-light)] px-4 py-2 text-sm font-black text-[var(--primary)] transition hover:bg-[var(--primary-hover)]"
-      >
-        Quay lại khóa học
-      </Link>
-
-      <div className="rounded-[2rem] border border-[var(--border)] bg-[var(--white)] p-6 shadow-[0_20px_60px_rgba(13,43,110,0.08)] sm:p-8">
-        <p className="text-sm font-black uppercase tracking-[0.2em] text-[var(--accent-gold)]">
-          Grammar · {course.levelName}
-        </p>
-        <h1 className="mt-3 text-3xl font-black text-[var(--primary)] sm:text-5xl">
-          {course.name}
-        </h1>
-        <p className="mt-4 font-bold text-[var(--text-muted)]">
-          Đã làm {completedCount}/{questions.length} câu · điểm phiên {sessionPoints}
-        </p>
-      </div>
-
-      {isFinished ? (
-        <div className="rounded-[2rem] border border-[var(--border)] bg-[var(--white)] p-8 text-center shadow-[0_20px_60px_rgba(13,43,110,0.08)]">
-          <p className="text-sm font-black uppercase tracking-[0.2em] text-[var(--accent-gold)]">
-            Hoàn thành
-          </p>
-          <h2 className="mt-3 text-3xl font-black text-[var(--primary)]">Tổng kết Grammar</h2>
-          <p className="mt-4 text-lg font-bold text-[var(--text-muted)]">
-            Bạn đã hoàn thành {completedCount}/{questions.length} câu. Điểm phiên: {sessionPoints}
-          </p>
-        </div>
-      ) : (
-        <div className="rounded-[2rem] border border-[var(--border)] bg-[var(--white)] p-6 shadow-[0_20px_60px_rgba(13,43,110,0.08)] sm:p-8">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <p className="font-black text-[var(--primary)]">
-              Câu {currentIndex + 1}/{questions.length}
-            </p>
-            <p className="rounded-full bg-[var(--primary-light)] px-4 py-2 text-sm font-black text-[var(--primary)]">
-              {statuses[currentIndex] === 'empty' ? 'Chưa làm' : 'Đã làm'}
-            </p>
-          </div>
-
-          <div className="mt-8 rounded-[1.5rem] bg-[var(--primary-light)] p-6 text-center text-2xl font-black text-[var(--primary)] sm:text-4xl">
-            {currentQuestion.prefix} <span className="text-[var(--accent-gold)]">____</span>{' '}
-            {currentQuestion.suffix}
-          </div>
-
-          {currentQuestion.hint ? (
-            <p className="mt-4 text-center font-bold text-[var(--text-muted)]">
-              Gợi ý: {currentQuestion.hint}
-            </p>
-          ) : null}
-
-          <form className="mt-8 space-y-4" onSubmit={handleSubmit}>
-            <label className="block">
-              <span className="text-sm font-black uppercase tracking-[0.16em] text-[var(--primary)]">
-                Câu trả lời
-              </span>
-              <input
-                value={input}
-                onChange={(event) => setInput(event.target.value)}
-                disabled={isSubmitting || Boolean(answerResult)}
-                className="mt-2 w-full rounded-2xl border border-[var(--border)] bg-[var(--white)] px-5 py-4 text-lg font-bold outline-none transition focus:border-[var(--primary)]"
-                placeholder="Nhập đáp án..."
-              />
-            </label>
-
-            {submitMessage ? (
-              <DataLoading variant="message" message={submitMessage} />
-            ) : null}
-
-            {answerResult ? (
-              <div className="rounded-2xl border border-[var(--border)] p-5 text-center font-black">
-                <p className={answerResult.isCorrect ? 'text-green-700' : 'text-red-700'}>
-                  {answerResult.isCorrect ? 'Chính xác!' : 'Chưa đúng.'}
-                </p>
-                {typeof answerResult.points === 'number' ? (
-                  <p className="mt-2 text-[var(--text-muted)]">
-                    Điểm câu này: {answerResult.points}
-                  </p>
-                ) : null}
-              </div>
-            ) : null}
-
-            <div className="flex flex-wrap gap-3">
-              {!answerResult ? (
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="rounded-full bg-[var(--primary)] px-6 py-3 font-black text-[var(--white)] transition hover:bg-[var(--primary-dark)] disabled:opacity-60"
-                >
-                  {isSubmitting ? 'Đang nộp...' : 'Nộp bài'}
-                </button>
-              ) : (
-                <button
-                  type="button"
-                  onClick={goNext}
-                  className="rounded-full bg-[var(--primary)] px-6 py-3 font-black text-[var(--white)] transition hover:bg-[var(--primary-dark)]"
-                >
-                  {currentIndex + 1 >= questions.length ? 'Xem tổng kết' : 'Câu tiếp theo'}
-                </button>
-              )}
-            </div>
-          </form>
-        </div>
-      )}
-    </section>
+    <GrammarGameContent
+      courseId={course.id}
+      course={course}
+      questions={questions}
+      statuses={statuses}
+      panel={panel}
+      currentIndex={currentIndex}
+      input={input}
+      answerResult={answerResult}
+      submitMessage={submitMessage}
+      sessionPoints={sessionPoints}
+      isSubmitting={isSubmitting}
+      completedCount={completedCount}
+      progressPercent={progressPercent}
+      stats={stats}
+      onBackHome={() => {
+        window.location.href = `/courses/${course.id}`;
+      }}
+      onBackToList={() => setPanel('list')}
+      onOpenQuestion={openQuestion}
+      onStartContinue={startOrContinue}
+      onInputChange={setInput}
+      onSubmit={handleSubmit}
+      onNext={goNext}
+    />
   );
 }
