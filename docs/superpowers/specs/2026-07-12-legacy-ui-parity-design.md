@@ -1,7 +1,7 @@
 # Design: Legacy HTML UI Parity on Next.js (Scope A)
 
 **Date:** 2026-07-12  
-**Status:** Approved — implementation plan: `docs/superpowers/plans/2026-07-12-legacy-ui-parity.md`  
+**Status:** Implemented — verified by Scope A gate (`npm test`, `npm run lint`, `npm run build`, structural UI markers)  
 **Branch / worktree:** `feature/nextjs-migration` → `.worktrees/nextjs-migration`  
 **Depends on:** Next.js MVP (phases 0–3) already implemented
 
