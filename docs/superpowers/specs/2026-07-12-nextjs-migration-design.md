@@ -1,7 +1,7 @@
 # Design: Migrate WeWIN Game Trắc Nghiệm → Next.js + PostgreSQL
 
 **Date:** 2026-07-12  
-**Status:** Approved — implementation plan: `docs/superpowers/plans/2026-07-12-nextjs-migration-mvp.md`  
+**Status:** Implemented MVP (phases 0–3) on branch `feature/nextjs-migration` — verification gate run 2026-07-12  
 **Approach:** Monorepo-style Next.js app (Approach 1)
 
 ## 1. Goal
