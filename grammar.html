@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ngữ pháp - WeWIN</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style type="text/css">
+    <?!= include('GameStyles'); ?>
+  </style>
+</head>
+
+<body>
+  <div class="page-shell">
+    <div class="app" id="appShell">
+      <div class="sidebar-backdrop hidden" id="sidebarBackdrop"></div>
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+          <img id="sidebarLogo" src="wewinlogo.png" alt="WeWIN">
+        </div>
+        <nav class="sidebar-nav">
+          <a class="nav-item" href="#" id="navHome"><i class="fas fa-home"></i> Trang chủ</a>
+          <a class="nav-item active" href="#"><i class="fas fa-book-open"></i> Ngữ pháp</a>
+        </nav>
+        <div class="sidebar-version">Version: 2.3.219</div>
+      </aside>
+
+      <main class="main">
+        <div class="game-page">
+          <div class="game-top">
+            <button type="button" class="mobile-menu-btn" id="btnMobileMenu" aria-label="Mở menu"><i
+                class="fas fa-bars"></i></button>
+            <button type="button" class="game-back" id="btnBack" title="Quay lại"><i
+                class="fas fa-arrow-left"></i></button>
+            <div class="game-title-wrap">
+              <h1>Viết lại câu</h1>
+              <p class="game-subtitle" id="gameSubtitle">Ngữ pháp</p>
+            </div>
+          </div>
+
+          <div class="game-meta" id="game-meta">
+            <span class="meta-pill" id="metaCourse">Khóa học</span>
+            <span class="meta-pill meta-score-pill" id="metaScore">—/— điểm</span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+          </div>
+
+          <div class="game-card" id="listPanel">
+            <div class="list-title">Danh sách câu hỏi</div>
+            <div class="list-stats">
+              <div class="stat-item">
+                <span class="stat-num" id="statTotal">—</span>
+                <span class="stat-label">Tổng câu</span>
+              </div>
+              <div class="stat-item correct">
+                <span class="stat-num" id="statCorrect">—</span>
+                <span class="stat-label">Đúng</span>
+              </div>
+              <div class="stat-item wrong">
+                <span class="stat-num" id="statWrong">—</span>
+                <span class="stat-label">Sai</span>
+              </div>
+              <div class="stat-item pending">
+                <span class="stat-num" id="statPending">—</span>
+                <span class="stat-label">Chưa làm</span>
+              </div>
+            </div>
+            <div class="question-list" id="questionList">
+              <div class="data-loading-state"><i class="fas fa-gear fa-spin" aria-hidden="true"></i> đang tải dữ liệu</div>
+            </div>
+            <div class="game-actions">
+              <button type="button" class="btn btn-primary" id="btnStartFirst" disabled>Bắt đầu làm bài</button>
+            </div>
+          </div>
+
+          <div class="game-card hidden" id="questionPanel">
+            <span class="question-counter-pill" id="metaProgress">Câu —/—</span>
+            <div class="question-label">Câu mẫu</div>
+            <div class="source-sentence" id="sourceSentence"></div>
+
+            <div class="rewrite-label">Viết lại câu theo mẫu:</div>
+            <div class="rewrite-row">
+              <span class="rewrite-prefix" id="rewritePrefix"></span>
+              <input type="text" class="rewrite-input" id="answerInput" autocomplete="off" spellcheck="false">
+              <span class="rewrite-suffix" id="rewriteSuffix"></span>
+            </div>
+
+            <div class="hint-box" id="hintBox"><i class="fas fa-lightbulb"></i><span id="hintText"></span></div>
+
+            <div class="feedback" id="feedback"></div>
+
+            <div class="game-actions">
+              <button type="button" class="btn btn-primary" id="btnCheck"><i class="fas fa-check"></i> Kiểm tra đáp án</button>
+              <button type="button" class="btn btn-secondary hidden" id="btnNext">Câu tiếp theo</button>
+              <button type="button" class="btn btn-secondary hidden" id="btnToList">Về danh sách</button>
+            </div>
+          </div>
+
+          <div class="game-card hidden" id="resultPanel">
+            <div class="result-panel">
+              <h2>Hoàn thành!</h2>
+              <p id="resultText">Bạn đã trả lời đúng 0/0 câu.</p>
+              <button type="button" class="btn btn-primary" id="btnRetry">Làm lại</button>
+              <button type="button" class="btn btn-secondary" id="btnBackResult">Quay lại khóa học</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <p class="footer-copy">© 2026 <strong>WeWIN Education</strong>. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script type="application/json" id="wewin-url-params"><?!= urlParamsJson ?></script>
+  <?!= include('GameCommon'); ?>
+  <script>
+    var GRAMMAR_QUESTIONS = [];
+    var gameScores = { questionTotal: 0, maxScore: 0 };
+
+    var GAME_KEY = 'grammar';
+    var questionStartTime = 0;
+    var sessionScore = 0;
+
+    function readWewinUrlParamsFromDom() {
+      var el = document.getElementById('wewin-url-params');
+      if (!el || !el.textContent) return {};
+      try {
+        var parsed = JSON.parse(el.textContent.trim());
+        return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+      } catch (ignore) {
+        return {};
+      }
+    }
+
+    function readUrlParam(name) {
+      var urlParams = readWewinUrlParamsFromDom();
+      var v = String((urlParams && urlParams[name]) || '').trim();
+      if (v) return v;
+      try {
+        v = (new URLSearchParams(window.location.search).get(name) || '').trim();
+        if (v) return v;
+      } catch (ignore2) { }
+      try {
+        if (window.top && window.top !== window && window.top.location.search) {
+          v = (new URLSearchParams(window.top.location.search).get(name) || '').trim();
+        }
+      } catch (ignore3) { }
+      return v || '';
+    }
+
+    function readUrlCourseParam() {
+      return readUrlParam('course');
+    }
+
+    var course = readUrlCourseParam();
+    var level = readUrlParam('level');
+
+    var currentIndex = 0;
+    var correctCount = 0;
+    var answered = false;
+    var statuses = [];
+
+    var LOADING_HTML = WewinGameUI.LOADING_HTML;
+
+    function setGameLoading(isLoading) {
+      if (isLoading) {
+        document.getElementById('questionList').innerHTML = LOADING_HTML;
+        document.getElementById('statTotal').textContent = '—';
+        document.getElementById('statCorrect').textContent = '—';
+        document.getElementById('statWrong').textContent = '—';
+        document.getElementById('statPending').textContent = '—';
+        document.getElementById('btnStartFirst').disabled = true;
+      }
+    }
+
+    function showEmptyQuestions(message) {
+      document.getElementById('questionList').innerHTML =
+        '<div class="data-loading-state">' + (message || (
+          'Chưa có câu hỏi trong sheet <strong>Questions_Grammar</strong>' +
+          (course ? ' cho khóa <strong>' + escapeHtml(course) + '</strong>' : '') +
+          (level ? ' (level <strong>' + escapeHtml(level) + '</strong>)' : '') +
+          (!course ? ' — <strong>thiếu tham số course</strong> trên URL.' : '') +
+          '. Kiểm tra Google Sheet (cột <strong>course</strong>, <strong>level</strong>, <strong>answers</strong>, <strong>active=TRUE</strong>).'
+        )) + '</div>';
+      document.getElementById('btnStartFirst').disabled = true;
+    }
+
+    function escapeHtml(str) {
+      var d = document.createElement('div');
+      d.textContent = str;
+      return d.innerHTML;
+    }
+
+    function loadGameData(callback) {
+      setGameLoading(true);
+
+      function applyProgress(data) {
+        refreshProgressUser(data && data.username);
+        var total = getQuestionTotal();
+        var local = readLocalStatuses();
+        if (data && data.loggedIn && data.statuses) {
+          statuses = local
+            ? mergeStatuses(data.statuses, local, total)
+            : data.statuses.slice();
+          saveProgressLocal();
+          if (local && countDoneStatuses(statuses) > countDoneStatuses(data.statuses)) {
+            google.script.run.saveGameProgress(course, GAME_KEY, statuses, false, level);
+          }
+        } else {
+          loadProgressLocal();
+        }
+      }
+
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run
+          .withSuccessHandler(function (data) {
+            var list = data && data.questions ? data.questions : [];
+            GRAMMAR_QUESTIONS = list;
+            WewinGameUI.applyGameDataScores(gameScores, data);
+            sessionScore = WewinGameUI.applySessionScore(sessionScore, data);
+            if (!GRAMMAR_QUESTIONS.length) showEmptyQuestions();
+            applyProgress(data);
+            if (callback) callback();
+          })
+          .withFailureHandler(function (err) {
+            GRAMMAR_QUESTIONS = [];
+            gameScores = { questionTotal: 0, maxScore: 0 };
+            showEmptyQuestions('Không tải được dữ liệu: ' + (err && err.message ? err.message : 'lỗi kết nối Apps Script'));
+            if (callback) callback();
+          })
+          .getGrammarGameData(course, level);
+      } else {
+        GRAMMAR_QUESTIONS = [];
+        showEmptyQuestions();
+        if (callback) callback();
+      }
+    }
+
+    var progressUser = 'guest';
+
+    function refreshProgressUser(serverUsername) {
+      if (serverUsername) {
+        progressUser = serverUsername;
+        return;
+      }
+      try {
+        var cached = sessionStorage.getItem('wewinUser');
+        if (cached) {
+          var u = JSON.parse(cached);
+          if (u && u.username) {
+            progressUser = u.username;
+            return;
+          }
+        }
+      } catch (err) { /* ignore */ }
+      progressUser = 'guest';
+    }
+
+    function getProgressKey() {
+      return 'wewin_progress_' + GAME_KEY + '_' + course +
+        (level ? '__' + level : '') + '_' + progressUser;
+    }
+
+    function getQuestionTotal() {
+      return WewinGameUI.resolveQuestionTotal(gameScores, GRAMMAR_QUESTIONS.length);
+    }
+
+    function pickStatus(a, b) {
+      if (a === 'correct' || b === 'correct') return 'correct';
+      if (a === 'wrong' || b === 'wrong') return 'wrong';
+      return null;
+    }
+
+    function mergeStatuses(existing, incoming, total) {
+      total = total || Math.max(
+        (existing && existing.length) || 0,
+        (incoming && incoming.length) || 0
+      );
+      var merged = new Array(total);
+      for (var i = 0; i < total; i++) {
+        var e = existing && i < existing.length ? existing[i] : null;
+        var n = incoming && i < incoming.length ? incoming[i] : null;
+        merged[i] = pickStatus(e, n);
+      }
+      return merged;
+    }
+
+    function readLocalStatuses() {
+      try {
+        var saved = JSON.parse(localStorage.getItem(getProgressKey()));
+        if (saved && saved.statuses && saved.statuses.length) return saved.statuses;
+      } catch (err) { /* ignore */ }
+      return null;
+    }
+
+    function loadProgressLocal() {
+      var local = readLocalStatuses();
+      var total = getQuestionTotal();
+      if (local) {
+        statuses = mergeStatuses(local, new Array(total).fill(null), total);
+        return;
+      }
+      statuses = new Array(total).fill(null);
+    }
+
+    function saveProgressLocal() {
+      localStorage.setItem(getProgressKey(), JSON.stringify({ statuses: statuses }));
+    }
+
+    function countDoneStatuses(list) {
+      return list.filter(function (s) { return s === 'correct' || s === 'wrong'; }).length;
+    }
+
+    function saveProgress(reset) {
+      saveProgressLocal();
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run
+          .withSuccessHandler(function (data) {
+            if (data && data.statuses) {
+              statuses = data.statuses;
+              saveProgressLocal();
+            }
+          })
+          .saveGameProgress(course, GAME_KEY, statuses, !!reset, level);
+      }
+    }
+
+    function formatPoints(n) {
+      var sign = n >= 0 ? '+' : '';
+      return sign + Number(n).toLocaleString('vi-VN') + ' điểm';
+    }
+
+    function getMaxScore() {
+      return WewinGameUI.resolveMaxScore(gameScores, getQuestionTotal());
+    }
+
+    function refreshScoreBar() {
+      WewinGameUI.updateScoreBar({
+        sessionScore: sessionScore,
+        maxScore: getMaxScore(),
+        fillEl: document.getElementById('progressFill'),
+        scoreEl: document.getElementById('metaScore')
+      });
+    }
+
+    function advanceAfterAnswer() {
+      WewinGameUI.autoAdvanceSafe(function () {
+        if (currentIndex < getQuestionTotal() - 1) {
+          currentIndex++;
+          renderQuestion();
+        } else {
+          showResult();
+        }
+      });
+    }
+
+    function submitScore(isCorrect) {
+      if (typeof google === 'undefined' || !google.script || !google.script.run) {
+        refreshScoreBar();
+        return;
+      }
+      var elapsed = Date.now() - questionStartTime;
+      google.script.run
+        .withSuccessHandler(function (data) {
+          if (data && data.success && typeof data.points === 'number') {
+            sessionScore += data.points;
+            var fb = document.getElementById('feedback');
+            var scoreLine = '<div class="score-line">' + formatPoints(data.points) + '</div>';
+            fb.innerHTML = fb.innerHTML + scoreLine;
+          }
+          refreshScoreBar();
+        })
+        .submitAnswerScore(course, GAME_KEY, currentIndex, isCorrect, elapsed);
+    }
+
+    function countStats() {
+      var correct = 0;
+      var wrong = 0;
+      var pending = 0;
+      statuses.forEach(function (s) {
+        if (s === 'correct') correct++;
+        else if (s === 'wrong') wrong++;
+        else pending++;
+      });
+      return { correct: correct, wrong: wrong, pending: pending };
+    }
+
+    function getPreview(q) {
+      return q.source.length > 50 ? q.source.substring(0, 50) + '...' : q.source;
+    }
+
+    function renderList() {
+      document.getElementById('listPanel').classList.remove('hidden');
+      document.getElementById('questionPanel').classList.add('hidden');
+      document.getElementById('resultPanel').classList.add('hidden');
+      document.getElementById('game-meta').classList.add('hidden');
+
+      var stats = countStats();
+      document.getElementById('statTotal').textContent = getQuestionTotal();
+      document.getElementById('statCorrect').textContent = stats.correct;
+      document.getElementById('statWrong').textContent = stats.wrong;
+      document.getElementById('statPending').textContent = stats.pending;
+
+      var html = '';
+      GRAMMAR_QUESTIONS.forEach(function (q, i) {
+        var st = statuses[i] || 'pending';
+        var statusClass = st === 'correct' ? 'status-correct' : st === 'wrong' ? 'status-wrong' : 'status-pending';
+        var icon = st === 'correct' ? '<i class="fas fa-check"></i>' :
+          st === 'wrong' ? '<i class="fas fa-times"></i>' : '<i class="far fa-circle"></i>';
+        html += '<div class="q-list-item ' + statusClass + '" data-index="' + i + '">' +
+          '<span class="q-num">' + (i + 1) + '</span>' +
+          '<span class="q-preview">' + getPreview(q) + '</span>' +
+          '<span class="q-status">' + icon + '</span></div>';
+      });
+      document.getElementById('questionList').innerHTML = html;
+
+      document.querySelectorAll('.q-list-item').forEach(function (item) {
+        item.addEventListener('click', function () {
+          openQuestion(parseInt(this.getAttribute('data-index'), 10));
+        });
+      });
+
+      var firstPending = statuses.indexOf(null);
+      document.getElementById('btnStartFirst').textContent =
+        firstPending >= 0 ? 'Bắt đầu làm bài' : 'Làm lại từ đầu';
+      document.getElementById('btnStartFirst').disabled = false;
+    }
+
+    function openQuestion(index) {
+      currentIndex = index;
+      correctCount = statuses.filter(function (s) { return s === 'correct'; }).length;
+      document.getElementById('listPanel').classList.add('hidden');
+      document.getElementById('questionPanel').classList.remove('hidden');
+      document.getElementById('game-meta').classList.remove('hidden');
+      renderQuestion();
+    }
+
+    function backToList() {
+      renderList();
+    }
+
+    function normalizeAnswer(str) {
+      return String(str || '').trim().toLowerCase().replace(/\s+/g, ' ');
+    }
+
+    function checkAnswer(userInput, question) {
+      var normalized = normalizeAnswer(userInput);
+      if (!normalized) return false;
+      return question.answers.some(function (ans) {
+        return normalizeAnswer(ans) === normalized;
+      });
+    }
+
+    function updateMeta() {
+      var total = getQuestionTotal();
+      document.getElementById('metaCourse').textContent = course || 'Khóa học';
+      if (total > 0) {
+        WewinGameUI.updateQuestionCounter(
+          document.getElementById('metaProgress'),
+          currentIndex + 1,
+          total,
+          'Câu'
+        );
+      } else {
+        document.getElementById('metaProgress').textContent = 'Câu —/—';
+      }
+      refreshScoreBar();
+      if (course) {
+        document.getElementById('gameSubtitle').textContent =
+          course + (level ? ' · ' + level : '');
+      }
+    }
+
+    function renderQuestion() {
+      answered = false;
+      questionStartTime = Date.now();
+      var q = GRAMMAR_QUESTIONS[currentIndex];
+      document.getElementById('sourceSentence').textContent = q.source;
+      document.getElementById('rewritePrefix').textContent = q.prefix;
+      document.getElementById('rewriteSuffix').textContent = q.suffix;
+      document.getElementById('hintText').textContent = q.hint;
+      document.getElementById('answerInput').value = '';
+      document.getElementById('answerInput').disabled = false;
+      document.getElementById('feedback').className = 'feedback';
+      document.getElementById('btnNext').classList.add('hidden');
+      document.getElementById('btnToList').classList.add('hidden');
+      WewinGameUI.showCheckButton();
+      document.getElementById('answerInput').focus();
+      updateMeta();
+    }
+
+    function showResult() {
+      document.getElementById('questionPanel').classList.add('hidden');
+      document.getElementById('game-meta').classList.add('hidden');
+      document.getElementById('resultPanel').classList.remove('hidden');
+      correctCount = statuses.filter(function (s) { return s === 'correct'; }).length;
+      document.getElementById('resultText').textContent =
+        'Bạn đã trả lời đúng ' + correctCount + '/' + getQuestionTotal() + ' câu.' +
+        (sessionScore ? ' Tổng điểm phiên: ' + formatPoints(sessionScore) + '.' : '');
+      refreshScoreBar();
+    }
+
+    function goBack() {
+      saveProgressLocal();
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run.saveGameProgress(course, GAME_KEY, statuses, false, level);
+        google.script.run.withSuccessHandler(function (url) {
+          window.top.location.href = url;
+        }).getAppUrl();
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+
+    function finishAnswer() {
+      if (answered) return;
+      var q = GRAMMAR_QUESTIONS[currentIndex];
+      var input = document.getElementById('answerInput').value;
+      if (!String(input || '').trim()) return;
+      var feedback = document.getElementById('feedback');
+      var isCorrect = checkAnswer(input, q);
+      var prevStatus = statuses[currentIndex];
+
+      answered = true;
+      WewinGameUI.hideCheckButton();
+      feedback.classList.add('show');
+
+      if (isCorrect) {
+        statuses[currentIndex] = 'correct';
+        feedback.classList.add('correct');
+        feedback.innerHTML = '<i class="fas fa-check-circle"></i> Chính xác!';
+      } else {
+        statuses[currentIndex] = 'wrong';
+        feedback.classList.add('wrong');
+        var sample = q.prefix + ' ' + q.answers[0] + q.suffix;
+        feedback.innerHTML = '<i class="fas fa-times-circle"></i> Chưa đúng. Gợi ý: <strong>' + sample + '</strong>';
+      }
+
+      if (prevStatus === null) {
+        submitScore(isCorrect);
+      } else {
+        refreshScoreBar();
+      }
+
+      saveProgress();
+      correctCount = statuses.filter(function (s) { return s === 'correct'; }).length;
+      document.getElementById('answerInput').disabled = true;
+      advanceAfterAnswer();
+    }
+
+    document.getElementById('btnCheck').addEventListener('click', finishAnswer);
+
+    document.getElementById('btnToList').addEventListener('click', backToList);
+
+    document.getElementById('btnStartFirst').addEventListener('click', function () {
+      var firstPending = statuses.indexOf(null);
+      if (firstPending >= 0) openQuestion(firstPending);
+      else openQuestion(0);
+    });
+
+    document.getElementById('answerInput').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') finishAnswer();
+    });
+
+    document.getElementById('btnNext').addEventListener('click', function () {
+      if (currentIndex < getQuestionTotal() - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    });
+
+    document.getElementById('btnRetry').addEventListener('click', function () {
+      statuses = new Array(getQuestionTotal()).fill(null);
+      sessionScore = 0;
+      gameScores.maxScore = WewinGameUI.getMaxScore(getQuestionTotal());
+      saveProgress(true);
+      currentIndex = 0;
+      correctCount = 0;
+      document.getElementById('resultPanel').classList.add('hidden');
+      renderList();
+    });
+
+    document.getElementById('btnBack').addEventListener('click', goBack);
+    document.getElementById('btnBackResult').addEventListener('click', goBack);
+
+    if (typeof google !== 'undefined' && google.script && google.script.run) {
+      google.script.run.withSuccessHandler(function (boot) {
+        if (boot && boot.appUrl) document.getElementById('navHome').href = boot.appUrl;
+        if (boot && boot.logoSrc) document.getElementById('sidebarLogo').src = boot.logoSrc;
+      }).getPageBootstrap();
+    } else {
+      document.getElementById('navHome').href = 'index.html';
+    }
+
+    if (course) {
+      document.getElementById('gameSubtitle').textContent =
+        course + (level ? ' · ' + level : '');
+    }
+
+    (function initMobileNav() {
+      var app = document.getElementById('appShell');
+      var btn = document.getElementById('btnMobileMenu');
+      var backdrop = document.getElementById('sidebarBackdrop');
+      if (!app || !btn) return;
+
+      function closeSidebar() {
+        app.classList.remove('sidebar-open');
+        if (backdrop) backdrop.classList.add('hidden');
+      }
+
+      function openSidebar() {
+        app.classList.add('sidebar-open');
+        if (backdrop) backdrop.classList.remove('hidden');
+      }
+
+      btn.addEventListener('click', function () {
+        if (app.classList.contains('sidebar-open')) closeSidebar();
+        else openSidebar();
+      });
+
+      if (backdrop) backdrop.addEventListener('click', closeSidebar);
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 900) closeSidebar();
+      });
+    })();
+
+    loadGameData(renderList);
+  </script>
+</body>
+
+</html>

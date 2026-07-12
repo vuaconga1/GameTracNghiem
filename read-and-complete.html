@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đọc và hoàn thành - WeWIN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style type="text/css"><?!= include('GameStyles'); ?>
+    .rc-meta-row { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; }
+    .rc-worksheet { background: #fffef8; border-radius: 20px; border: 2px solid #e8e0c8; padding: 24px 20px; position: relative; }
+    .rc-bank { background: #d4edda; border: 2px solid #a8d5b5; border-radius: 14px; padding: 14px; margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .rc-chip { padding: 8px 16px; background: #fff; border: 2px solid #a8d5b5; border-radius: 999px; font-weight: 800; cursor: grab; user-select: none; }
+    .rc-chip.is-selected { border-color: var(--primary); background: var(--primary-light); }
+    .rc-row { display: flex; align-items: center; gap: 14px; padding: 14px; border: 2px solid #e8e0c8; border-radius: 12px; margin-bottom: 12px; background: #fffef8; flex-wrap: wrap; }
+    .rc-row img { width: 56px; height: 56px; object-fit: contain; }
+    .rc-sentence { font-size: 17px; font-weight: 700; flex: 1; min-width: 200px; }
+    .rc-blank { display: inline-block; min-width: 90px; border-bottom: 3px solid var(--primary); padding: 4px 8px; text-align: center; font-weight: 900; color: var(--primary); cursor: pointer; }
+    .rc-blank.is-correct { border-color: #2e7d32; color: #2e7d32; }
+    .rc-blank.is-wrong { border-color: #c62828; color: #c62828; }
+    @media (max-width: 600px) { .rc-worksheet { padding: 18px 14px; border-radius: 16px; } .rc-sentence { font-size: 15px; min-width: 100%; } .rc-row { gap: 10px; } }
+    .sample-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #b45309; background: #fef3c7; padding: 6px 12px; border-radius: 999px; margin-bottom: 12px; }
+    .sample-badge.hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <div class="app" id="appShell">
+      <div class="sidebar-backdrop hidden" id="sidebarBackdrop"></div>
+      <aside class="sidebar">
+        <div class="sidebar-logo"><img id="sidebarLogo" src="wewinlogo.png" alt="WeWIN"></div>
+        <nav class="sidebar-nav">
+          <a class="nav-item" href="#" id="navHome"><i class="fas fa-home"></i> Trang chủ</a>
+          <a class="nav-item active" href="#"><i class="fas fa-pen-fancy"></i> Đọc và hoàn thành</a>
+        </nav>
+        <div class="sidebar-version">Version: 2.3.219</div>
+      </aside>
+      <main class="main">
+        <div class="game-page">
+          <div class="game-top">
+            <button type="button" class="mobile-menu-btn" id="btnMobileMenu"><i class="fas fa-bars"></i></button>
+            <button type="button" class="game-back" id="btnBack"><i class="fas fa-arrow-left"></i></button>
+            <div class="game-title-wrap">
+              <h1>Đọc và hoàn thành</h1>
+              <p class="game-subtitle" id="gameSubtitle">Read and complete</p>
+            </div>
+          </div>
+          <div class="sample-badge hidden" id="sampleDataBadge"><i class="fas fa-flask"></i> Dữ liệu mẫu (chưa kết nối Sheet)</div>
+
+          <div class="game-meta hidden" id="game-meta">
+            <span class="meta-pill" id="metaCourse">Khóa học</span>
+            <span class="meta-pill meta-score-pill" id="metaScore">—/— điểm</span>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill"></div></div>
+          </div>
+
+          <div class="game-card" id="listPanel">
+            <div class="list-title">Danh sách bài tập</div>
+            <div class="list-stats">
+              <div class="stat-item"><span class="stat-num" id="statTotal">—</span><span class="stat-label">Tổng bài</span></div>
+              <div class="stat-item correct"><span class="stat-num" id="statCorrect">—</span><span class="stat-label">Đúng</span></div>
+              <div class="stat-item wrong"><span class="stat-num" id="statWrong">—</span><span class="stat-label">Sai</span></div>
+              <div class="stat-item pending"><span class="stat-num" id="statPending">—</span><span class="stat-label">Chưa làm</span></div>
+            </div>
+            <div class="question-list" id="exerciseList"></div>
+          </div>
+          <div class="game-card hidden" id="gamePanel">
+            <div class="rc-meta-row">
+              <button type="button" class="btn btn-secondary" id="btnToList"><i class="fas fa-list"></i> Danh sách</button>
+            </div>
+            <div class="rc-worksheet">
+              <span class="question-counter-pill" id="metaProgress">Bài —/—</span>
+              <h2 id="wsTitle" style="text-align:center;color:var(--primary);margin-bottom:6px"></h2>
+              <p id="wsInstruction" style="text-align:center;font-weight:700;margin-bottom:16px"></p>
+              <div class="rc-bank" id="wordBank"></div>
+              <div id="sentenceList"></div>
+            </div>
+            <div class="feedback" id="feedback"></div>
+            <div class="game-actions">
+              <button type="button" class="btn btn-primary" id="btnCheck"><i class="fas fa-check"></i> Kiểm tra đáp án</button>
+              <button type="button" class="btn btn-secondary hidden" id="btnNext">Bài tiếp theo</button>
+              <button type="button" class="btn btn-secondary hidden" id="btnRetry">Làm lại</button>
+            </div>
+          </div>
+          <div class="game-card hidden" id="resultPanel">
+            <div class="result-panel"><h2>Hoàn thành!</h2><p id="resultText"></p>
+              <button type="button" class="btn btn-primary" id="btnBackResult">Quay lại danh sách</button></div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <footer class="site-footer"><p class="footer-copy">© 2026 <strong>WeWIN Education</strong>. All rights reserved.</p></footer>
+  </div>
+  <script type="application/json" id="wewin-url-params"><?!= urlParamsJson ?></script>
+  <?!= include('GameCommon'); ?>
+  <?!= include('starters-sample-data'); ?>
+  <?!= include('starters-common'); ?>
+  <script>
+    var GAME_KEY = 'read_and_complete';
+    var EXERCISES = [], statuses = [], currentIndex = 0, placements = {}, selectedWord = null, answered = false;
+    var sessionScore = 0;
+    var scoreState = WewinStarters.createScoreState();
+    var course = WewinStarters.readUrlCourseParam();
+    var progress = WewinStarters.createProgress(GAME_KEY, course);
+
+    function refreshScoreBar() {
+      WewinStarters.refreshScoreMeta(
+        sessionScore,
+        WewinStarters.getExerciseMaxScore(EXERCISES, scoreState),
+        'progressFill',
+        'metaScore'
+      );
+    }
+
+    function maybeAutoCheck() {
+      if (answered) return;
+      var ex = EXERCISES[currentIndex];
+      if (!ex || ex.items.some(function (_, i) { return !placements[i]; })) return;
+      checkAnswers();
+    }
+
+    function advanceAfterExercise() {
+      WewinStarters.autoAdvanceExercise(function () {
+        if (currentIndex < EXERCISES.length - 1) openExercise(currentIndex + 1);
+        else renderList();
+      });
+    }
+
+    function renderList() {
+      ['listPanel','gamePanel','resultPanel'].forEach(function(id,i){ document.getElementById(id).classList.toggle('hidden', i>0); });
+      document.getElementById('game-meta').classList.add('hidden');
+      WewinStarters.updateListStats(progress.countStats(statuses), EXERCISES.length);
+      WewinStarters.renderExerciseList('exerciseList', EXERCISES, statuses, openExercise);
+    }
+
+    function renderBank(ex) {
+      var bank = document.getElementById('wordBank');
+      bank.innerHTML = '';
+      var used = Object.keys(placements).map(function(k){ return placements[k]; });
+      ex.word_bank.filter(function(w){ return used.indexOf(w)<0; }).forEach(function(word){
+        var chip = document.createElement('span');
+        chip.className = 'rc-chip';
+        chip.textContent = word;
+        if (selectedWord === word) chip.classList.add('is-selected');
+        chip.addEventListener('click', function(){
+          if (answered) return;
+          selectedWord = selectedWord === word ? null : word;
+          renderBank(ex);
+        });
+        bank.appendChild(chip);
+      });
+    }
+
+    function renderSentences(ex) {
+      var list = document.getElementById('sentenceList');
+      list.innerHTML = '';
+      ex.items.forEach(function(item, idx){
+        var row = document.createElement('div');
+        row.className = 'rc-row';
+        if (item.hint_image) {
+          var img = document.createElement('img');
+          img.src = item.hint_image;
+          img.alt = 'hint';
+          row.appendChild(img);
+        }
+        var sent = document.createElement('div');
+        sent.className = 'rc-sentence';
+        var parts = item.sentence.split('___');
+        sent.appendChild(document.createTextNode(parts[0] || ''));
+        var blank = document.createElement('span');
+        blank.className = 'rc-blank';
+        blank.id = 'blank-'+idx;
+        blank.textContent = placements[idx] || '…';
+        blank.addEventListener('click', function(){
+          if (answered) return;
+          if (selectedWord) {
+            Object.keys(placements).forEach(function(k){ if (placements[k] === selectedWord) delete placements[k]; });
+            placements[idx] = selectedWord;
+            selectedWord = null;
+            renderBank(ex);
+            renderSentences(ex);
+            maybeAutoCheck();
+          } else if (placements[idx]) {
+            delete placements[idx];
+            renderBank(ex);
+            renderSentences(ex);
+          }
+        });
+        sent.appendChild(blank);
+        if (parts[1]) sent.appendChild(document.createTextNode(parts[1]));
+        row.appendChild(sent);
+        list.appendChild(row);
+      });
+    }
+
+    function openExercise(index) {
+      currentIndex = index; placements = {}; selectedWord = null; answered = false;
+      document.getElementById('listPanel').classList.add('hidden');
+      document.getElementById('gamePanel').classList.remove('hidden');
+      document.getElementById('resultPanel').classList.add('hidden');
+      document.getElementById('game-meta').classList.remove('hidden');
+      if (course) document.getElementById('metaCourse').textContent = course;
+      var ex = EXERCISES[currentIndex];
+      document.getElementById('wsTitle').textContent = ex.title || ex.id;
+      document.getElementById('wsInstruction').textContent = ex.instruction || '';
+      WewinStarters.updateExerciseCounter(
+        document.getElementById('metaProgress'),
+        currentIndex + 1,
+        WewinStarters.resolveExerciseTotal(scoreState, EXERCISES),
+        'Bài'
+      );
+      refreshScoreBar();
+      document.getElementById('feedback').className = 'feedback';
+      document.getElementById('feedback').textContent = '';
+      document.getElementById('btnNext').classList.add('hidden');
+      document.getElementById('btnRetry').classList.add('hidden');
+      WewinGameUI.showCheckButton();
+      renderBank(ex);
+      renderSentences(ex);
+    }
+
+    function checkAnswers() {
+      var ex = EXERCISES[currentIndex];
+      if (ex.items.some(function(_,i){ return !placements[i]; })) {
+        document.getElementById('feedback').className = 'feedback show wrong';
+        document.getElementById('feedback').textContent = 'Hãy điền tất cả chỗ trống.';
+        return;
+      }
+      answered = true;
+      WewinGameUI.hideCheckButton();
+      var correctCount = 0;
+      ex.items.forEach(function(item, idx){
+        var ok = WewinStarters.normalizeWord(placements[idx]) === WewinStarters.normalizeWord(item.answer);
+        if (ok) correctCount++;
+        var blank = document.getElementById('blank-'+idx);
+        blank.classList.add(ok ? 'is-correct' : 'is-wrong');
+        if (!ok) blank.textContent = item.answer;
+      });
+      statuses[currentIndex] = correctCount === ex.items.length ? 'correct' : 'wrong';
+      progress.save(statuses);
+      var fb = document.getElementById('feedback');
+      fb.className = 'feedback show ' + (correctCount === ex.items.length ? 'correct' : 'wrong');
+      fb.textContent = 'Đúng ' + correctCount + '/' + ex.items.length + ' câu.';
+      advanceAfterExercise();
+    }
+
+    document.getElementById('btnBack').addEventListener('click', function(){ WewinStarters.navigateHome(course); });
+    document.getElementById('btnToList').addEventListener('click', renderList);
+    document.getElementById('btnBackResult').addEventListener('click', renderList);
+    document.getElementById('btnCheck').addEventListener('click', checkAnswers);
+    document.getElementById('btnRetry').addEventListener('click', function(){ openExercise(currentIndex); });
+    document.getElementById('btnNext').addEventListener('click', function(){ openExercise(currentIndex+1); });
+    if (course) document.getElementById('gameSubtitle').textContent = course;
+    WewinStarters.initSidebar();
+    document.getElementById('exerciseList').innerHTML = WewinStarters.LOADING_HTML;
+    WewinStarters.loadExercises(GAME_KEY, course, {
+      onDone: function(exercises, data, sample) {
+        EXERCISES = exercises; WewinStarters.showSampleBadge(sample);
+        sessionScore = WewinStarters.applyServerScore(data, scoreState);
+        statuses = progress.applyFromServer(data, EXERCISES.length); renderList();
+      },
+      onEmpty: function(){ document.getElementById('exerciseList').innerHTML = '<div class="data-loading-state">Chưa có bài tập.</div>'; }
+    });
+  </script>
+</body>
+</html>

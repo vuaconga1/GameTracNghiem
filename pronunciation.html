@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phát âm - WeWIN</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style type="text/css">
+    <?!= include('GameStyles'); ?>
+    body {
+      font-family: 'Nunito', sans-serif;
+    }
+    .scrollbar-hide {
+      scrollbar-width: none;
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+    @keyframes animate-in {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-in {
+      animation: animate-in 0.3s ease-out forwards;
+    }
+    .pronunciation-page {
+      --pron-primary: #0d2b6e;
+      --pron-primary-dark: #0a224f;
+      --pron-primary-light: #e8eef8;
+      --pron-accent-gold: #e4c28e;
+      padding: 20px 24px 32px;
+    }
+    .pronunciation-page .text-pron-primary { color: var(--pron-primary); }
+    .pronunciation-page .bg-pron-light { background: var(--pron-primary-light); }
+    .pronunciation-page .border-pron { border-color: rgba(13, 43, 110, 0.2); }
+
+    .pron-page-header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pron-hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      padding: 18px 22px;
+      background: linear-gradient(135deg, #ffffff 0%, #f0f4fc 55%, #e8eef8 100%);
+      border: 1px solid rgba(13, 43, 110, 0.1);
+      box-shadow: 0 4px 20px rgba(13, 43, 110, 0.08);
+    }
+
+    .pron-hero::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      right: -20px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(30, 91, 184, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .pron-hero-label {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #1e5bb8;
+      margin-bottom: 4px;
+    }
+
+    .pron-hero-title {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: #0d2b6e;
+      line-height: 1.25;
+      position: relative;
+    }
+
+    .pron-game-meta {
+      margin-bottom: 0 !important;
+    }
+
+    .pron-main-card {
+      box-shadow:
+        0 8px 32px rgba(13, 43, 110, 0.1),
+        0 2px 8px rgba(13, 43, 110, 0.05) !important;
+    }
+
+    .pron-word-card {
+      border-radius: 20px;
+      padding: 20px 16px;
+      text-align: center;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      box-shadow: 0 4px 16px rgba(13, 43, 110, 0.06);
+    }
+
+    .pron-btn-audio {
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 800;
+      transition: all 0.2s ease;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .pron-btn-audio-primary {
+      color: #fff;
+      background: linear-gradient(135deg, #1e5bb8 0%, #0d2b6e 100%);
+      box-shadow: 0 4px 14px rgba(13, 43, 110, 0.3);
+    }
+
+    .pron-btn-audio-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(13, 43, 110, 0.35);
+    }
+
+    .pron-btn-audio-secondary {
+      color: #0d2b6e;
+      background: linear-gradient(135deg, #ffffff 0%, #eef2fa 100%);
+      border: 2px solid rgba(13, 43, 110, 0.15);
+    }
+
+    .pron-btn-audio-secondary:hover {
+      background: #e8eef8;
+      border-color: rgba(13, 43, 110, 0.28);
+    }
+
+    .pron-mic-panel {
+      border-radius: 20px;
+      padding: 20px 16px;
+      border: 2px solid rgba(13, 43, 110, 0.08);
+      background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
+    }
+
+    .pron-btn-next {
+      background: linear-gradient(135deg, #1e5bb8 0%, #0d2b6e 55%, #0a224f 100%) !important;
+      box-shadow: 0 4px 18px rgba(13, 43, 110, 0.35) !important;
+    }
+
+    .pron-btn-next:hover {
+      box-shadow: 0 6px 22px rgba(13, 43, 110, 0.45) !important;
+    }
+
+    @media (max-width: 900px) {
+      .pronunciation-page {
+        padding: 12px 12px 16px;
+      }
+
+      .pronunciation-page.pron-page-stack > * + * {
+        margin-top: 0.65rem !important;
+      }
+
+      .pron-page-header {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 8px;
+      }
+
+      .pron-hero {
+        flex: 1;
+        min-width: 0;
+        padding: 10px 14px;
+        border-radius: 14px;
+      }
+
+      .pron-hero-label {
+        font-size: 9px;
+        margin-bottom: 2px;
+      }
+
+      .pron-hero-title {
+        font-size: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .pron-game-meta {
+        flex: 0 0 auto;
+        width: auto;
+        min-width: 108px;
+        margin-bottom: 0 !important;
+        padding: 8px 10px;
+        gap: 6px;
+        border-radius: 12px;
+      }
+
+      .pron-game-meta .meta-score-pill {
+        font-size: 11px;
+        padding: 5px 10px;
+        white-space: nowrap;
+      }
+
+      .pron-game-meta .progress-bar-wrap {
+        height: 10px;
+        min-width: 0;
+      }
+
+      .pron-main-inner {
+        padding: 1rem !important;
+      }
+
+      .pron-main-inner.pron-main-stack > * + * {
+        margin-top: 0.75rem !important;
+      }
+
+      #gameContent {
+        padding-top: 0.35rem !important;
+        padding-bottom: 0.35rem !important;
+      }
+
+      #gameContent .space-y-4 > * + * {
+        margin-top: 0.6rem !important;
+      }
+
+      .pron-word-card .py-3 {
+        padding-top: 0.35rem !important;
+        padding-bottom: 0.35rem !important;
+      }
+
+      #btnBack {
+        font-size: 13px;
+        margin-bottom: 0;
+      }
+
+      .pron-word-card {
+        padding: 12px 10px;
+        border-radius: 14px;
+      }
+
+      .pron-mic-panel {
+        padding: 12px 10px;
+        border-radius: 14px;
+      }
+
+      .pron-mic-panel .w-14 {
+        width: 3rem;
+        height: 3rem;
+      }
+
+      .pron-btn-audio {
+        padding: 9px 10px;
+        font-size: 12px;
+        border-radius: 12px;
+      }
+
+      .mode-btn {
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+      }
+
+      #evaluationResult .flex.gap-8 {
+        gap: 0.75rem;
+      }
+
+      #evaluationResult svg {
+        width: 58px;
+        height: 58px;
+      }
+
+      #evaluationResult .border.rounded-2xl.p-4 {
+        padding: 0.75rem;
+      }
+
+      .pron-word-card .text-5xl {
+        font-size: 1.85rem !important;
+        line-height: 1.1;
+      }
+
+      .pron-word-card .text-3xl {
+        font-size: 1.2rem !important;
+      }
+
+      .pron-word-card .text-2xl {
+        font-size: 1.35rem !important;
+      }
+
+      #actionContainer {
+        padding-top: 0.5rem !important;
+      }
+
+      #actionContainer button {
+        padding-top: 0.65rem;
+        padding-bottom: 0.65rem;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .pronunciation-page {
+        padding: 10px 10px 14px;
+      }
+
+      .pron-page-header {
+        gap: 6px;
+      }
+
+      .pron-hero-label {
+        display: none;
+      }
+
+      .pron-mic-panel {
+        padding: 10px 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-shell">
+    <div class="app" id="appShell">
+      <div class="sidebar-backdrop hidden" id="sidebarBackdrop"></div>
+      <aside class="sidebar">
+        <div class="sidebar-logo">
+          <img id="sidebarLogo" src="wewinlogo.png" alt="WeWIN">
+        </div>
+        <nav class="sidebar-nav">
+          <a class="nav-item" href="#" id="navHome"><i class="fas fa-home"></i> Trang chủ</a>
+          <a class="nav-item active" href="#"><i class="fas fa-microphone"></i> Phát âm</a>
+        </nav>
+        <div class="sidebar-version">Version: 2.3.219</div>
+      </aside>
+
+      <main class="main layout-index">
+        <header class="header">
+          <div class="header-left">
+            <button type="button" class="mobile-menu-btn" id="btnMobileMenu" aria-label="Mở menu"><i
+                class="fas fa-bars"></i></button>
+            <button type="button" id="btnLogin" class="btn-login">Đăng nhập</button>
+            <span id="userDisplay" class="header-title hidden">WeWIN - <span id="userName"></span></span>
+            <span class="badge-rank hidden" id="badgeRank">
+              <i class="fas fa-shield-alt"></i>
+              <span id="badgeRankText"></span>
+            </span>
+          </div>
+          <div class="header-actions">
+            <a class="action-item" href="#" id="linkLeaderboard">
+              <i class="fas fa-chart-bar"></i>
+              <span>Xếp hạng</span>
+            </a>
+            <span class="action-divider hidden" id="logoutDivider" aria-hidden="true"></span>
+            <button type="button" class="action-item action-item-logout hidden" id="btnLogout" title="Đăng xuất">
+              <i class="fas fa-right-from-bracket"></i>
+              <span>Đăng xuất</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="pronunciation-page pron-page-stack space-y-5" style="background: linear-gradient(160deg, #e8eef8 0%, #f0f4fa 40%, #f3f4f6 100%);">
+      <!-- ── Back Button ── -->
+      <button id="btnBack" type="button" class="flex items-center gap-1 text-sm font-bold text-pron-primary hover:opacity-80 transition-colors">
+        <i class="fa-solid fa-chevron-left w-4 h-4"></i> Quay lại
+      </button>
+
+      <!-- ── Course & Score ── -->
+      <div class="pron-page-header">
+        <div class="pron-hero">
+          <p class="pron-hero-label">Khóa học hiện tại</p>
+          <h1 class="pron-hero-title" id="bannerCourse">Luyện phát âm &amp; nghe chép</h1>
+        </div>
+
+        <div class="game-meta pron-game-meta">
+          <span class="meta-pill meta-score-pill" id="metaProgressPct">—/— điểm</span>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="metaProgressBar"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Main Practice Card ── -->
+      <div>
+        <div class="bg-white rounded-3xl shadow-lg border border-pron overflow-hidden flex flex-col justify-between relative pron-main-card">
+          <span class="question-counter-pill" id="metaProgress" style="top:12px;right:12px">Câu —/—</span>
+          <!-- Card top stripe -->
+          <div id="cardStripe" class="h-2 w-full" style="background: linear-gradient(90deg, #3b82f6, #0d2b6e, #c9a227);"></div>
+
+          <div class="pron-main-inner p-6 sm:p-8 pron-main-stack space-y-6 flex-1 flex flex-col">
+            <!-- Mode tabs (center-top) & Reset -->
+            <div class="relative flex items-center justify-center min-h-[44px]">
+              <div class="flex gap-2 sm:gap-3 overflow-x-auto pb-1 scrollbar-hide justify-center max-w-full px-10" id="modeTabs">
+                <!-- Built dynamically -->
+              </div>
+              <button id="btnReset" type="button" class="absolute right-0 p-1.5 rounded-lg text-slate-300 hover:text-slate-500 hover:bg-slate-50 transition-colors" title="Làm lại">
+                <i class="fa-solid fa-rotate-left w-4 h-4"></i>
+              </button>
+            </div>
+
+            <!-- Game content (Word, IPA, Audio, Mic, Feedback) -->
+            <div id="gameContent" class="flex-1 flex flex-col justify-center py-4">
+              <!-- Rendered by renderQuestion() -->
+            </div>
+
+            <!-- Bottom Action buttons -->
+            <div id="actionContainer" class="flex gap-3 pt-4 hidden">
+              <button id="btnRetry" type="button" class="flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl border-2 border-slate-200 text-sm font-bold text-slate-500 hover:bg-slate-50 transition-colors">
+                <i class="fa-solid fa-rotate-left w-4 h-4"></i> Thử lại
+              </button>
+              <button id="btnNextAction" type="button" class="pron-btn-next flex-1 flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-bold text-white transition-all hover:opacity-90">
+                Tiếp theo <i class="fa-solid fa-chevron-right w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <p class="footer-copy">© 2026 <strong>WeWIN Education</strong>. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <div id="loginOverlay" class="login-overlay hidden">
+    <div class="login-modal">
+      <div class="login-modal-header">
+        <button type="button" class="login-modal-close" id="btnCloseLogin" aria-label="Đóng">
+          <i class="fas fa-times"></i>
+        </button>
+        <img id="modalLogo" src="wewinlogo.png" alt="WeWIN">
+      </div>
+      <div class="login-modal-body">
+        <h2>Đăng nhập</h2>
+        <div id="loginError" class="login-error"></div>
+        <form id="loginForm">
+          <div class="login-field">
+            <label for="loginUsername">Username</label>
+            <input type="text" id="loginUsername" placeholder="Nhập username" autocomplete="username" required>
+          </div>
+          <div class="login-field">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Nhập password" autocomplete="current-password"
+              required>
+          </div>
+          <button type="submit" class="login-submit" id="loginSubmit">Đăng nhập</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hidden inputs to maintain 100% compatibility with original JS code references -->
+  <input type="checkbox" id="selfPass" class="hidden">
+  <button type="button" id="btnSubmit" class="hidden"></button>
+  <button type="button" id="btnNext" class="hidden"></button>
+
+  <script type="application/json" id="wewin-url-params"><?!= urlParamsJson ?></script>
+  <?!= include('GameCommon'); ?>
+  <script>
+    var GAME_KEY = 'pronunciation';
+    var QUESTIONS = [];
+    var gameScores = { questionTotal: 0, maxScore: 0 };
+    var currentIndex = 0;
+    var statuses = [];
+    var currentMode = 'phoneme';
+    var recording = false;
+    var hasRecorded = false;
+    var questionStartTime = 0;
+    var sessionScore = 0;
+    var progressUser = 'guest';
+    var course = '';
+    
+    var recordState = 'idle'; // 'idle' | 'recording' | 'done'
+    var activeAudio = null;
+
+    var MODE_MAP = {
+      phoneme: 'Luyện âm',
+      sentence: 'Luyện câu',
+      stress: 'Trọng âm'
+    };
+
+    var PRON_PRIMARY = '#0d2b6e';
+    var PRON_PRIMARY_LIGHT = '#e8eef8';
+
+    var MODES = {
+      phoneme: { label: 'Luyện âm', icon: 'fa-solid fa-bolt', color: '#1e5bb8', bg: '#e8f0fe' },
+      sentence: { label: 'Luyện câu', icon: 'fa-solid fa-book-open', color: '#7c3aed', bg: '#f3e8ff' },
+      stress: { label: 'Trọng âm', icon: 'fa-solid fa-chart-simple', color: '#d97706', bg: '#fff7ed' }
+    };
+
+    var DEFAULT_QUESTIONS = [
+      {
+        id: 1,
+        mode: 'phoneme',
+        modeLabel: 'Luyện âm',
+        prompt: 'Chú ý âm /l/ cuối từ',
+        targetText: 'world',
+        targetIpa: '/wɜːrld/',
+        referenceAudioUrl: 'https://www.oxfordlearnersdictionaries.com/media/english/us_pron/w/wor/world/world__us_1.mp3'
+      },
+      {
+        id: 2,
+        mode: 'sentence',
+        modeLabel: 'Luyện câu',
+        prompt: 'Đọc to, rõ ràng và tự nhiên',
+        targetText: 'Nice to meet you',
+        targetIpa: '',
+        referenceAudioUrl: 'https://www.oxfordlearnersdictionaries.com/media/english/us_pron/n/nic/nice_/nice__us_1.mp3'
+      },
+      {
+        id: 3,
+        mode: 'stress',
+        modeLabel: 'Trọng âm',
+        prompt: 'Nhấn mạnh đúng âm tiết được đánh dấu',
+        targetText: 'computer',
+        targetIpa: '/kəmˈpjuːtər/',
+        referenceAudioUrl: 'https://www.oxfordlearnersdictionaries.com/media/english/us_pron/c/com/compu/computer__us_1.mp3'
+      }
+    ];
+
+    function readWewinUrlParamsFromDom() {
+      var el = document.getElementById('wewin-url-params');
+      if (!el || !el.textContent) return {};
+      try {
+        var parsed = JSON.parse(el.textContent.trim());
+        return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+      } catch (ignore) {
+        return {};
+      }
+    }
+
+    function readUrlCourseParam() {
+      var urlParams = readWewinUrlParamsFromDom();
+      var c = String((urlParams && urlParams.course) || '').trim();
+      if (c) return c;
+      try { c = (new URLSearchParams(window.location.search).get('course') || '').trim(); } catch (ignore2) {}
+      return c || '';
+    }
+
+    function escapeHtml(str) {
+      var d = document.createElement('div');
+      d.textContent = str == null ? '' : String(str);
+      return d.innerHTML;
+    }
+
+    function getProgressKey() {
+      return 'wewin_progress_' + GAME_KEY + '_' + course + '_' + progressUser;
+    }
+
+    function pickStatus(a, b) {
+      if (a === 'correct' || b === 'correct') return 'correct';
+      if (a === 'wrong' || b === 'wrong') return 'wrong';
+      return null;
+    }
+
+    function mergeStatuses(existing, incoming, total) {
+      total = total || Math.max((existing && existing.length) || 0, (incoming && incoming.length) || 0);
+      var merged = new Array(total);
+      for (var i = 0; i < total; i++) {
+        var e = existing && i < existing.length ? existing[i] : null;
+        var n = incoming && i < incoming.length ? incoming[i] : null;
+        merged[i] = pickStatus(e, n);
+      }
+      return merged;
+    }
+
+    function readLocalStatuses() {
+      try {
+        var saved = JSON.parse(localStorage.getItem(getProgressKey()));
+        if (saved && saved.statuses && saved.statuses.length) return saved.statuses;
+      } catch (err) {}
+      return null;
+    }
+
+    function saveProgressLocal() {
+      localStorage.setItem(getProgressKey(), JSON.stringify({ statuses: statuses }));
+    }
+
+    function countDoneStatuses(list) {
+      return list.filter(function (s) { return s === 'correct' || s === 'wrong'; }).length;
+    }
+
+    function refreshProgressUser(serverUsername) {
+      if (serverUsername) { progressUser = serverUsername; return; }
+      try {
+        var cached = sessionStorage.getItem('wewinUser');
+        if (cached) {
+          var u = JSON.parse(cached);
+          if (u && u.username) { progressUser = u.username; return; }
+        }
+      } catch (err) {}
+      progressUser = 'guest';
+    }
+
+    function getQuestionTotal() {
+      return WewinGameUI.resolveQuestionTotal(gameScores, QUESTIONS.length);
+    }
+
+    function getMaxScore() {
+      return WewinGameUI.resolveMaxScore(gameScores, getQuestionTotal());
+    }
+
+    function setStats() {
+      var total = getQuestionTotal();
+      var maxScore = getMaxScore();
+      var pctEl = document.getElementById('metaProgressPct');
+      var barEl = document.getElementById('metaProgressBar');
+      var counterEl = document.getElementById('metaProgress');
+
+      WewinGameUI.updateScoreBar({
+        sessionScore: sessionScore,
+        maxScore: maxScore,
+        fillEl: barEl,
+        scoreEl: pctEl,
+        pctEl: pctEl
+      });
+      WewinGameUI.updateQuestionCounter(counterEl, currentIndex + 1, total, 'Câu');
+    }
+
+    function buildModeTabs() {
+      var tabs = document.getElementById('modeTabs');
+      var seen = {};
+      var html = '';
+      QUESTIONS.forEach(function (q) {
+        if (!q.mode || seen[q.mode]) return;
+        seen[q.mode] = true;
+        
+        var modeConfig = MODES[q.mode] || MODES.phoneme;
+        html += '<button type="button" class="mode-btn flex items-center gap-2 px-4 py-2.5 rounded-2xl text-sm font-bold whitespace-nowrap transition-all duration-200 shrink-0 border-2 bg-white text-slate-500 border-transparent hover:border-slate-200 hover:text-slate-700" data-mode="' + q.mode + '">' +
+                '<i class="' + modeConfig.icon + ' w-4 h-4 shrink-0"></i>' +
+                (q.modeLabel || MODE_MAP[q.mode] || 'Luyện âm') +
+                '</button>';
+      });
+      tabs.innerHTML = html;
+      tabs.querySelectorAll('.mode-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          currentMode = this.getAttribute('data-mode');
+          currentIndex = findFirstQuestionByMode(currentMode);
+          renderQuestion();
+        });
+      });
+    }
+
+    function findFirstQuestionByMode(mode) {
+      for (var i = 0; i < QUESTIONS.length; i++) {
+        if (QUESTIONS[i].mode === mode) return i;
+      }
+      return 0;
+    }
+
+    function markModeActive(mode) {
+      document.querySelectorAll('.mode-btn').forEach(function (btn) {
+        var m = btn.getAttribute('data-mode');
+        var isActive = (m === mode);
+        var modeConfig = MODES[m] || MODES.phoneme;
+        
+        if (isActive) {
+          btn.className = "mode-btn flex items-center gap-2 px-4 py-2.5 rounded-2xl text-sm font-bold whitespace-nowrap transition-all duration-200 shrink-0 border-2 text-white shadow-lg scale-105";
+          btn.style.background = modeConfig.color;
+          btn.style.borderColor = modeConfig.color;
+          btn.style.boxShadow = '0 4px 20px ' + modeConfig.color + '40';
+        } else {
+          btn.className = "mode-btn flex items-center gap-2 px-4 py-2.5 rounded-2xl text-sm font-bold whitespace-nowrap transition-all duration-200 shrink-0 border-2 bg-white text-slate-500 border-transparent hover:border-slate-200 hover:text-slate-700";
+          btn.style.background = '';
+          btn.style.borderColor = '';
+          btn.style.boxShadow = '';
+        }
+      });
+    }
+
+    function getModeWordCardStyle(mode) {
+      var cfg = MODES[mode] || MODES.phoneme;
+      return 'background: linear-gradient(135deg, ' + cfg.bg + ' 0%, #ffffff 100%); border: 2px solid ' + cfg.color + '28;';
+    }
+
+    /* ── Mode rendering content generators ── */
+    function getGameContentHtml(q, mode) {
+      var safePrompt = escapeHtml((q && q.prompt) || 'Nghe và đọc lại mẫu bên dưới');
+      var safeTarget = escapeHtml((q && q.targetText) || '');
+      var safeIpa = escapeHtml((q && q.targetIpa) || '');
+      var hint = escapeHtml((q && q.hint) || '');
+      var modeCfg = MODES[mode] || MODES.phoneme;
+      var cardStyle = getModeWordCardStyle(mode);
+
+      var html = '' +
+        '<div class="space-y-4">' +
+          '<div class="text-center">' +
+            '<p class="text-xs font-bold uppercase tracking-wider" style="color:' + modeCfg.color + '">Nội dung luyện</p>' +
+            '<p class="text-sm text-slate-500 mt-1">' + safePrompt + '</p>' +
+          '</div>';
+
+      if (mode === 'phoneme') {
+        html += '' +
+          '<div class="pron-word-card" style="' + cardStyle + '">' +
+            '<p class="text-2xl font-black text-slate-800 tracking-wide">' + safeTarget + '</p>' +
+            (safeIpa ? '<p class="text-sm font-semibold mt-1" style="color:' + modeCfg.color + '">' + safeIpa + '</p>' : '') +
+            (hint ? '<p class="text-xs text-slate-500 mt-2">' + hint + '</p>' : '') +
+          '</div>';
+      } else if (mode === 'sentence') {
+        html += '' +
+          '<div class="pron-word-card" style="' + cardStyle + '">' +
+            '<p class="text-xl font-black text-slate-800 leading-relaxed">' + safeTarget + '</p>' +
+            (hint ? '<p class="text-xs text-slate-500 mt-2">' + hint + '</p>' : '') +
+          '</div>';
+      } else if (mode === 'stress') {
+        html += '' +
+          '<div class="pron-word-card" style="' + cardStyle + '">' +
+            '<p class="text-xs font-bold uppercase tracking-wider" style="color:' + modeCfg.color + '">Nhìn điểm nhấn âm tiết</p>' +
+            getStressSyllablesHtml((q && q.targetText) || '', modeCfg.color) +
+            '<p class="text-xl font-black text-slate-800 mt-1">' + safeTarget + '</p>' +
+            (safeIpa ? '<p class="text-sm font-semibold mt-1" style="color:' + modeCfg.color + '">' + safeIpa + '</p>' : '') +
+          '</div>';
+      } else {
+        html += '' +
+          '<div class="pron-word-card" style="' + cardStyle + '">' +
+            '<p class="text-xl font-black text-slate-800">' + safeTarget + '</p>' +
+          '</div>';
+      }
+
+      html += '' +
+          '<div class="grid grid-cols-2 gap-2">' +
+            '<button id="btnAudioRef" type="button" class="pron-btn-audio pron-btn-audio-primary">Nghe mẫu</button>' +
+            '<button id="btnAudioSlow" type="button" class="pron-btn-audio pron-btn-audio-secondary">Nghe chậm</button>' +
+          '</div>' +
+          '<div class="pron-mic-panel">' +
+            '<div class="flex justify-center mb-3">' +
+              '<button id="btnMicIcon" type="button" class="relative w-14 h-14 rounded-full text-white shadow-lg transition-all" style="background:' + ((MODES[mode] && MODES[mode].color) || PRON_PRIMARY) + ';">' +
+                '<span id="micPing1" class="hidden absolute inset-0 rounded-full bg-red-400 opacity-40 animate-ping"></span>' +
+                '<span id="micPing2" class="hidden absolute inset-1 rounded-full bg-red-300 opacity-30 animate-ping"></span>' +
+                '<i class="fa-solid fa-microphone relative z-10"></i>' +
+              '</button>' +
+            '</div>' +
+            '<p id="micStatusText" class="text-sm text-center text-slate-500">Nhấn micro để bắt đầu ghi âm</p>' +
+          '</div>' +
+          '<div id="selfEvalPanel" class="hidden grid grid-cols-2 gap-2">' +
+            '<button type="button" onclick="submitSelfResult(true)" class="py-2.5 rounded-xl bg-green-500 text-white text-sm font-bold hover:bg-green-600 transition">Đúng</button>' +
+            '<button type="button" onclick="submitSelfResult(false)" class="py-2.5 rounded-xl bg-red-500 text-white text-sm font-bold hover:bg-red-600 transition">Sai</button>' +
+          '</div>' +
+          '<input id="selfPass" type="checkbox" class="hidden">' +
+          '<div id="evaluationResult" class="hidden"></div>' +
+        '</div>';
+
+      return html;
+    }
+
+    function getWordPhonemeBreakdown(word, isCorrect) {
+      word = word.toLowerCase().replace(/[^a-z]/g, '');
+      var letters = word.split('');
+      var weakIndex = letters.indexOf('l');
+      if (weakIndex === -1 && letters.length > 0) {
+        weakIndex = Math.floor(letters.length / 2);
+      }
+      
+      return letters.map(function(char, idx) {
+        var score;
+        var weak = false;
+        if (isCorrect) {
+          score = Math.floor(Math.random() * 15) + 85;
+        } else {
+          if (idx === weakIndex) {
+            score = Math.floor(Math.random() * 20) + 10;
+            weak = true;
+          } else {
+            score = Math.floor(Math.random() * 20) + 60;
+          }
+        }
+        return { char: char, score: score, weak: weak };
+      });
+    }
+
+    function getScoreRingHtml(value, label, color) {
+      var r = 28;
+      var circ = 2 * Math.PI * r;
+      var dash = (value / 100) * circ;
+      return '<div class="flex flex-col items-center gap-1.5">' +
+        '<svg width="72" height="72" viewBox="0 0 64 64">' +
+          '<circle cx="32" cy="32" r="' + r + '" fill="none" stroke="#e2e8f0" stroke-width="5" />' +
+          '<circle cx="32" cy="32" r="' + r + '" fill="none" stroke="' + color + '" stroke-width="5" ' +
+            'stroke-dasharray="' + dash + ' ' + circ + '" stroke-linecap="round" transform="rotate(-90 32 32)" />' +
+          '<text x="32" y="38" text-anchor="middle" font-size="14" font-weight="800" fill="' + color + '">' + value + '</text>' +
+        '</svg>' +
+        '<span class="text-xs text-slate-500 font-semibold text-center leading-tight max-w-[72px]">' + label + '</span>' +
+      '</div>';
+    }
+
+    function getWordChipHtml(char, score, weak) {
+      var borderColor = weak ? 'border-red-300 bg-red-50' : 'border-pron bg-pron-light';
+      var textColor = weak ? 'text-red-500' : 'text-pron-primary';
+      var scoreColor = weak ? 'text-red-400' : 'text-slate-400';
+      return '<div class="flex flex-col items-center px-3 py-2 rounded-xl border-2 transition-all ' + borderColor + '">' +
+        '<span class="text-base font-bold ' + textColor + '">' + char + '</span>' +
+        '<span class="text-xs font-semibold ' + scoreColor + '">' + score + '</span>' +
+      '</div>';
+    }
+
+    function getSentenceBreakdownHtml(sentence, isCorrect) {
+      var words = sentence.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?]/g,"").split(/\s+/);
+      var html = '<div class="bg-pron-light border border-pron rounded-2xl p-4 animate-in">' +
+        '<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-3 text-center">Từng từ một</p>' +
+        '<div class="flex gap-2 flex-wrap justify-center">';
+        
+      words.forEach(function(word) {
+        if (!word) return;
+        var score;
+        if (isCorrect) {
+          score = Math.floor(Math.random() * 15) + 85;
+        } else {
+          score = Math.random() > 0.4 ? Math.floor(Math.random() * 20) + 75 : Math.floor(Math.random() * 30) + 30;
+        }
+        var scoreColor = score >= 80 ? 'text-green-500' : (score >= 60 ? 'text-amber-500' : 'text-red-500');
+        
+        html += '<div class="flex flex-col items-center bg-white border border-pron rounded-xl px-3 py-2 min-w-[60px]">' +
+          '<span class="text-sm font-bold text-slate-700">' + word + '</span>' +
+          '<span class="text-xs font-bold ' + scoreColor + '">' + score + '</span>' +
+        '</div>';
+      });
+      
+      html += '</div></div>';
+      return html;
+    }
+
+    function getWordSyllables(word) {
+      word = word.toLowerCase().trim();
+      if (word === 'computer') {
+        return [
+          { text: 'com', stressed: false },
+          { text: 'pu', stressed: true },
+          { text: 'ter', stressed: false }
+        ];
+      }
+      if (word === 'banana') {
+        return [
+          { text: 'ba', stressed: false },
+          { text: 'na', stressed: true },
+          { text: 'na', stressed: false }
+        ];
+      }
+      if (word === 'teacher') {
+        return [
+          { text: 'tea', stressed: true },
+          { text: 'cher', stressed: false }
+        ];
+      }
+      
+      if (word.indexOf('-') !== -1) {
+        return word.split('-').map(function(s, idx) {
+          return { text: s.replace("'", ""), stressed: s.indexOf("'") !== -1 || idx === 0 };
+        });
+      }
+      
+      if (word.length <= 5) {
+        return [{ text: word, stressed: true }];
+      } else {
+        var mid = Math.floor(word.length / 2);
+        return [
+          { text: word.substring(0, mid), stressed: true },
+          { text: word.substring(mid), stressed: false }
+        ];
+      }
+    }
+
+    function getStressSyllablesHtml(word, accentColor) {
+      accentColor = accentColor || '#0d2b6e';
+      var syllables = getWordSyllables(word);
+      var html = '<div class="flex items-center justify-center gap-3 py-3">';
+      syllables.forEach(function(s, idx) {
+        var dotClass = s.stressed
+          ? 'w-2.5 h-2.5 rounded-full shadow-lg mb-1'
+          : 'w-2.5 h-2.5 mb-1';
+        var dotStyle = s.stressed ? 'background:' + accentColor + ';box-shadow:0 2px 10px ' + accentColor + '50' : '';
+        var textClass = s.stressed ? 'text-5xl font-black text-slate-800' : 'text-3xl font-black text-slate-300';
+        var dispText = s.stressed ? s.text.toUpperCase() : s.text.toLowerCase();
+        
+        html += '<div class="flex flex-col items-center">' +
+          '<div class="' + dotClass + '" style="' + dotStyle + '"></div>' +
+          '<span class="' + textClass + ' tracking-tight">' + dispText + '</span>' +
+        '</div>';
+        
+        if (idx < syllables.length - 1) {
+          html += '<span class="text-slate-200 text-2xl font-light">·</span>';
+        }
+      });
+      html += '</div>';
+      return html;
+    }
+
+    function getPitchCurveSvg(isCorrect) {
+      var strokeColor = isCorrect ? '#22c55e' : '#ef4444';
+      var labelText = 'giọng của bạn';
+      var points = isCorrect 
+        ? '0,24 40,24 80,8 120,24 160,24 200,24'
+        : '0,18 40,16 80,26 100,6 160,28 200,22';
+        
+      return '<div class="h-10 bg-white rounded-xl border border-slate-100 relative overflow-hidden flex items-center px-3 mt-3">' +
+        '<svg viewBox="0 0 200 36" class="w-full h-7 text-slate-300" style="color: ' + strokeColor + '50">' +
+          '<polyline points="' + points + '" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />' +
+        '</svg>' +
+        '<span class="absolute right-3 text-[10px] text-slate-400 font-semibold">' + labelText + '</span>' +
+      '</div>';
+    }
+
+    /* ── Speech Synthesis Audio Fallback ── */
+    function speakText(text, rate) {
+      if ('speechSynthesis' in window) {
+        var utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = rate || 1.0;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function playAudioReference() {
+      if (!QUESTIONS.length) return;
+      var q = QUESTIONS[currentIndex];
+      if (!q.referenceAudioUrl) {
+        speakText(q.targetText, 1.0);
+        return;
+      }
+      
+      if (activeAudio) activeAudio.pause();
+      activeAudio = new Audio(q.referenceAudioUrl);
+      activeAudio.playbackRate = 1.0;
+      activeAudio.play().catch(function() {
+        speakText(q.targetText, 1.0);
+      });
+    }
+
+    function playAudioSlow() {
+      if (!QUESTIONS.length) return;
+      var q = QUESTIONS[currentIndex];
+      if (!q.referenceAudioUrl) {
+        speakText(q.targetText, 0.7);
+        return;
+      }
+      
+      if (activeAudio) activeAudio.pause();
+      activeAudio = new Audio(q.referenceAudioUrl);
+      activeAudio.playbackRate = 0.7;
+      activeAudio.play().catch(function() {
+        speakText(q.targetText, 0.7);
+      });
+    }
+
+    /* ── Mic Recording Handlers ── */
+    function toggleMicRecording() {
+      if (recordState === 'recording') return;
+      
+      var btn = document.getElementById('btnMicIcon');
+      var ping1 = document.getElementById('micPing1');
+      var ping2 = document.getElementById('micPing2');
+      var statusText = document.getElementById('micStatusText');
+      var evalPanel = document.getElementById('selfEvalPanel');
+      var evalResult = document.getElementById('evaluationResult');
+      var actionContainer = document.getElementById('actionContainer');
+      
+      if (evalPanel) evalPanel.classList.add('hidden');
+      if (evalResult) evalResult.classList.add('hidden');
+      if (actionContainer) actionContainer.classList.add('hidden');
+      
+      recordState = 'recording';
+      recording = true;
+      
+      var modeConfig = MODES[currentMode] || MODES.phoneme;
+      if (btn) {
+        btn.style.background = '#ef4444';
+        btn.style.boxShadow = '0 0 0 0px #ef444440, 0 8px 32px #ef444460';
+      }
+      if (ping1) ping1.classList.remove('hidden');
+      if (ping2) ping2.classList.remove('hidden');
+      if (statusText) statusText.textContent = 'Đang ghi âm — đọc to và rõ…';
+      
+      setTimeout(function() {
+        recordState = 'done';
+        recording = false;
+        
+        if (btn) {
+          btn.style.background = modeConfig.color;
+          btn.style.boxShadow = '0 0 0 0px ' + modeConfig.color + '30, 0 8px 32px ' + modeConfig.color + '50';
+        }
+        if (ping1) ping1.classList.add('hidden');
+        if (ping2) ping2.classList.add('hidden');
+        
+        if (statusText) statusText.textContent = 'Đã ghi xong. Chọn kết quả tự đánh giá bên dưới:';
+        if (evalPanel) evalPanel.classList.remove('hidden');
+        
+        hasRecorded = true;
+      }, 2000);
+    }
+
+    function submitSelfResult(isCorrect) {
+      var selfPass = document.getElementById('selfPass');
+      if (selfPass) {
+        selfPass.checked = isCorrect;
+      }
+      hasRecorded = true;
+      checkResult();
+    }
+
+    function showResultUi(isCorrect) {
+      var q = QUESTIONS[currentIndex];
+      var mode = q.mode || 'phoneme';
+      var evalResult = document.getElementById('evaluationResult');
+      if (!evalResult) return;
+      
+      var html = '';
+      
+      if (mode === 'phoneme') {
+        var scorePhoneme = isCorrect ? Math.floor(Math.random() * 10) + 90 : Math.floor(Math.random() * 20) + 15;
+        var scoreAccuracy = isCorrect ? Math.floor(Math.random() * 10) + 88 : Math.floor(Math.random() * 20) + 50;
+        
+        var ipaVal = '/l/';
+        if (q.targetIpa) {
+          var matched = q.targetIpa.match(/\/([^\/]+)\//);
+          ipaVal = matched ? matched[0] : q.targetIpa;
+        }
+        
+        html += '<div class="flex items-center justify-center gap-8">' +
+          getScoreRingHtml(scorePhoneme, 'Âm ' + ipaVal, isCorrect ? '#22c55e' : '#ef4444') +
+          getScoreRingHtml(scoreAccuracy, 'Độ chính xác', '#22c55e') +
+        '</div>';
+        
+        var feedbackClass = isCorrect ? 'bg-green-50 border-green-200 text-green-700' : 'bg-red-50 border-red-200 text-red-700';
+        var feedbackIcon = isCorrect ? '<i class="fa-solid fa-circle-check text-green-500 shrink-0 mt-0.5"></i>' : '<i class="fa-solid fa-circle-xmark text-red-500 shrink-0 mt-0.5"></i>';
+        var feedbackMsg = isCorrect ? 'Phát âm rất chuẩn! Hãy tiếp tục luyện tập.' : 'Chưa chuẩn — tập trung vào âm cần chú ý.';
+        
+        html += '<div class="' + feedbackClass + ' border rounded-2xl p-4 space-y-3">' +
+          '<p class="text-sm font-bold flex items-start gap-2">' +
+            feedbackIcon +
+            '<span>' + feedbackMsg + '</span>' +
+          '</p>' +
+          '<div>' +
+            '<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 text-left">Phân tích từng âm</p>' +
+            '<div class="flex gap-2 flex-wrap justify-start">';
+            
+        var chips = getWordPhonemeBreakdown(q.targetText, isCorrect);
+        chips.forEach(function(c) {
+          html += getWordChipHtml(c.char, c.score, c.weak);
+        });
+        
+        html += '</div></div></div>';
+      }
+      
+      else if (mode === 'sentence') {
+        var scoreAccuracy = isCorrect ? Math.floor(Math.random() * 8) + 90 : Math.floor(Math.random() * 20) + 45;
+        var scoreFluency = isCorrect ? Math.floor(Math.random() * 8) + 88 : Math.floor(Math.random() * 25) + 40;
+        
+        html += '<div class="flex items-center justify-center gap-8">' +
+          getScoreRingHtml(scoreAccuracy, 'Độ chính xác', '#22c55e') +
+          getScoreRingHtml(scoreFluency, 'Trôi chảy', PRON_PRIMARY) +
+        '</div>';
+        
+        html += getSentenceBreakdownHtml(q.targetText, isCorrect);
+      }
+      
+      else if (mode === 'stress') {
+        var feedbackClass = isCorrect ? 'bg-green-50 border-green-200 text-green-700' : 'bg-red-50 border-red-200 text-red-700';
+        var feedbackIcon = isCorrect ? '<i class="fa-solid fa-circle-check text-green-500 shrink-0 mt-0.5"></i>' : '<i class="fa-solid fa-circle-xmark text-red-500 shrink-0 mt-0.5"></i>';
+        
+        var syllables = getWordSyllables(q.targetText);
+        var stressedSyllable = syllables.find(function(s) { return s.stressed; });
+        var stressedText = stressedSyllable ? stressedSyllable.text.toUpperCase() : 'trọng âm chính';
+        var unstressedSyllable = syllables.find(function(s) { return !s.stressed; });
+        var unstressedText = unstressedSyllable ? unstressedSyllable.text : 'âm tiết phụ';
+        
+        var feedbackTitle = isCorrect ? 'Nhấn đúng trọng âm!' : 'Chưa đúng trọng âm';
+        var feedbackBody = isCorrect 
+          ? 'Giọng của bạn nhấn mạnh đúng vào ' + stressedText + '. Xuất sắc!' 
+          : 'Giọng bạn mạnh nhất ở ' + unstressedText + '. Mục tiêu: ' + stressedText + '. Thử lại nhé.';
+          
+        html += '<div class="' + feedbackClass + ' border rounded-2xl p-4 animate-in">' +
+          '<div class="flex items-start gap-3 mb-3 text-left">' +
+            feedbackIcon +
+            '<div>' +
+              '<p class="text-sm font-bold">' + feedbackTitle + '</p>' +
+              '<p class="text-sm text-slate-500 mt-0.5">' + feedbackBody + '</p>' +
+            '</div>' +
+          '</div>' +
+          getPitchCurveSvg(isCorrect) +
+        '</div>';
+      }
+      
+      evalResult.innerHTML = html;
+      evalResult.classList.remove('hidden');
+    }
+
+    function renderQuestion() {
+      if (!QUESTIONS.length) {
+        QUESTIONS = DEFAULT_QUESTIONS;
+      }
+      var q = QUESTIONS[currentIndex];
+      if (!q) {
+        currentIndex = 0;
+        q = QUESTIONS[currentIndex] || DEFAULT_QUESTIONS[0];
+      }
+      if (!q) return;
+      currentMode = q.mode || 'phoneme';
+      
+      markModeActive(currentMode);
+      
+      var cardStripe = document.getElementById('cardStripe');
+      
+      var modeConfig = MODES[currentMode] || MODES.phoneme;
+      if (cardStripe) cardStripe.style.background = modeConfig.color;
+      
+      var gameContent = document.getElementById('gameContent');
+      if (gameContent) {
+        try {
+          gameContent.innerHTML = getGameContentHtml(q, currentMode);
+        } catch (err) {
+          gameContent.innerHTML =
+            '<div class="text-sm text-red-500 bg-red-50 border border-red-200 rounded-xl p-3">Lỗi render: ' +
+            escapeHtml(err && err.message ? err.message : 'Không xác định') +
+            '</div>';
+        }
+      }
+
+      var btnAudioRef = document.getElementById('btnAudioRef');
+      if (btnAudioRef) btnAudioRef.onclick = playAudioReference;
+      var btnAudioSlow = document.getElementById('btnAudioSlow');
+      if (btnAudioSlow) btnAudioSlow.onclick = playAudioSlow;
+      var btnMicIcon = document.getElementById('btnMicIcon');
+      if (btnMicIcon) btnMicIcon.onclick = toggleMicRecording;
+      
+      var actionContainer = document.getElementById('actionContainer');
+      if (actionContainer) actionContainer.classList.add('hidden');
+      
+      recordState = 'idle';
+      recording = false;
+      hasRecorded = false;
+      questionStartTime = Date.now();
+      
+      var prevStatus = statuses[currentIndex];
+      if (prevStatus === 'correct' || prevStatus === 'wrong') {
+        recordState = 'done';
+        hasRecorded = true;
+        
+        var micStatusText = document.getElementById('micStatusText');
+        if (micStatusText) micStatusText.textContent = 'Đã hoàn thành câu này';
+        
+        showResultUi(prevStatus === 'correct');
+        
+        if (actionContainer) actionContainer.classList.remove('hidden');
+      }
+      
+      setStats();
+    }
+
+    function loadGameData() {
+      var gameContent = document.getElementById('gameContent');
+      if (gameContent) gameContent.innerHTML = WewinGameUI.LOADING_HTML;
+
+      function showEmpty() {
+        QUESTIONS = DEFAULT_QUESTIONS;
+        gameScores.questionTotal = QUESTIONS.length;
+        gameScores.maxScore = WewinGameUI.getMaxScore(QUESTIONS.length);
+        currentMode = QUESTIONS[0].mode || 'phoneme';
+        currentIndex = findFirstQuestionByMode(currentMode);
+        buildModeTabs();
+        renderQuestion();
+      }
+
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run
+          .withSuccessHandler(function (data) {
+            QUESTIONS = data && data.questions && data.questions.length ? data.questions : DEFAULT_QUESTIONS;
+            WewinGameUI.applyGameDataScores(gameScores, data);
+            sessionScore = WewinGameUI.applySessionScore(sessionScore, data);
+            if (!gameScores.questionTotal) {
+              gameScores.questionTotal = QUESTIONS.length;
+            }
+            if (!gameScores.maxScore) {
+              gameScores.maxScore = WewinGameUI.getMaxScore(QUESTIONS.length);
+            }
+            refreshProgressUser(data && data.username);
+            var local = readLocalStatuses();
+            if (data && data.loggedIn && data.statuses) {
+              statuses = local ? mergeStatuses(data.statuses, local, QUESTIONS.length) : data.statuses.slice();
+              saveProgressLocal();
+            } else {
+              statuses = local ? mergeStatuses(local, new Array(QUESTIONS.length).fill(null), QUESTIONS.length) : new Array(QUESTIONS.length).fill(null);
+            }
+
+            currentMode = QUESTIONS[0].mode || 'phoneme';
+            currentIndex = findFirstQuestionByMode(currentMode);
+            buildModeTabs();
+            renderQuestion();
+          })
+          .withFailureHandler(function () {
+            showEmpty();
+          })
+          .getPronunciationGameData(course);
+      } else {
+        showEmpty();
+      }
+    }
+
+    function saveProgress(reset) {
+      saveProgressLocal();
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run.saveGameProgress(course, GAME_KEY, statuses, !!reset);
+      }
+    }
+
+    function formatPoints(n) {
+      var sign = n >= 0 ? '+' : '';
+      return sign + Number(n).toLocaleString('vi-VN') + ' điểm';
+    }
+
+    function submitScore(isCorrect) {
+      if (typeof google === 'undefined' || !google.script || !google.script.run) return;
+      var elapsed = Date.now() - questionStartTime;
+      google.script.run
+        .withSuccessHandler(function (data) {
+          if (data && data.success && typeof data.points === 'number') {
+            sessionScore += data.points;
+            setStats();
+            var evalResult = document.getElementById('evaluationResult');
+            if (evalResult) {
+              evalResult.innerHTML += '<div class="text-center font-black text-amber-600 text-sm mt-3 animate-in">' + formatPoints(data.points) + '</div>';
+            }
+          }
+        })
+        .submitAnswerScore(course, GAME_KEY, currentIndex, isCorrect, elapsed);
+    }
+
+    function checkResult() {
+      if (!hasRecorded) return;
+      var prevStatus = statuses[currentIndex];
+      var isCorrect = !!document.getElementById('selfPass').checked;
+      
+      statuses[currentIndex] = isCorrect ? 'correct' : 'wrong';
+      
+      showResultUi(isCorrect);
+      
+      var evalPanel = document.getElementById('selfEvalPanel');
+      if (evalPanel) evalPanel.classList.add('hidden');
+      
+      var actionContainer = document.getElementById('actionContainer');
+      if (actionContainer) actionContainer.classList.remove('hidden');
+
+      if (prevStatus === null) submitScore(isCorrect);
+      saveProgress(false);
+      setStats();
+      WewinGameUI.autoAdvanceSafe(goNext);
+    }
+
+    function goNext() {
+      if (!QUESTIONS.length) return;
+      var i;
+      for (i = currentIndex + 1; i < QUESTIONS.length; i++) {
+        if (QUESTIONS[i].mode === currentMode) {
+          currentIndex = i;
+          renderQuestion();
+          return;
+        }
+      }
+      for (i = 0; i < QUESTIONS.length; i++) {
+        if (QUESTIONS[i].mode === currentMode) {
+          currentIndex = i;
+          renderQuestion();
+          return;
+        }
+      }
+    }
+
+    function goBack() {
+      saveProgressLocal();
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run.saveGameProgress(course, GAME_KEY, statuses, false);
+        google.script.run.withSuccessHandler(function (url) {
+          window.top.location.href = url;
+        }).getAppUrl();
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
+
+    // Connect global static action handlers
+    document.getElementById('btnReset').addEventListener('click', function() {
+      renderQuestion();
+    });
+    
+    document.getElementById('btnRetry').addEventListener('click', function() {
+      renderQuestion();
+    });
+    
+    document.getElementById('btnNextAction').addEventListener('click', goNext);
+    document.getElementById('btnBack').addEventListener('click', goBack);
+
+    // Header auth + navigation (chung với index)
+    var btnLogin = document.getElementById('btnLogin');
+    var btnLogout = document.getElementById('btnLogout');
+    var logoutDivider = document.getElementById('logoutDivider');
+    var userDisplay = document.getElementById('userDisplay');
+    var userNameEl = document.getElementById('userName');
+    var loginOverlay = document.getElementById('loginOverlay');
+    var loginForm = document.getElementById('loginForm');
+    var loginError = document.getElementById('loginError');
+    var loginSubmit = document.getElementById('loginSubmit');
+    var appUrl = '';
+
+    function applyLogoSrc(src) {
+      if (!src) return;
+      var sidebarLogo = document.getElementById('sidebarLogo');
+      var modalLogo = document.getElementById('modalLogo');
+      if (sidebarLogo) sidebarLogo.src = src;
+      if (modalLogo) modalLogo.src = src;
+    }
+
+    function showLoggedInUser(name, username) {
+      if (btnLogin) btnLogin.classList.add('hidden');
+      if (btnLogout) btnLogout.classList.remove('hidden');
+      if (logoutDivider) logoutDivider.classList.remove('hidden');
+      if (userNameEl) userNameEl.textContent = name;
+      if (userDisplay) userDisplay.classList.remove('hidden');
+      sessionStorage.setItem('wewinUser', JSON.stringify({ name: name, username: username || '' }));
+      refreshProgressUser(username);
+    }
+
+    function showLoginButton() {
+      if (btnLogin) btnLogin.classList.remove('hidden');
+      if (btnLogout) btnLogout.classList.add('hidden');
+      if (logoutDivider) logoutDivider.classList.add('hidden');
+      if (userDisplay) userDisplay.classList.add('hidden');
+      sessionStorage.removeItem('wewinUser');
+    }
+
+    function logout() {
+      showLoginButton();
+      if (typeof google !== 'undefined' && google.script && google.script.run) {
+        google.script.run.logoutUser();
+      }
+    }
+
+    function openLoginModal() {
+      if (!loginOverlay) return;
+      if (loginError) loginError.classList.remove('show');
+      if (loginForm) loginForm.reset();
+      loginOverlay.classList.remove('hidden');
+    }
+
+    function closeLoginModal() {
+      if (loginOverlay) loginOverlay.classList.add('hidden');
+    }
+
+    function showLoginError(msg) {
+      if (!loginError) return;
+      loginError.textContent = msg;
+      loginError.classList.add('show');
+    }
+
+    if (btnLogin) btnLogin.addEventListener('click', openLoginModal);
+    if (btnLogout) btnLogout.addEventListener('click', logout);
+    var btnCloseLogin = document.getElementById('btnCloseLogin');
+    if (btnCloseLogin) btnCloseLogin.addEventListener('click', closeLoginModal);
+    if (loginOverlay) {
+      loginOverlay.addEventListener('click', function (e) {
+        if (e.target === loginOverlay) closeLoginModal();
+      });
+    }
+
+    if (loginForm) {
+      loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (loginError) loginError.classList.remove('show');
+
+        var username = document.getElementById('loginUsername').value.trim();
+        var password = document.getElementById('loginPassword').value.trim();
+
+        if (!username || !password) {
+          showLoginError('Vui lòng nhập username và password');
+          return;
+        }
+
+        if (typeof google === 'undefined' || !google.script || !google.script.run) {
+          showLoginError('Vui lòng mở trang qua Google Apps Script Web App');
+          return;
+        }
+
+        loginSubmit.disabled = true;
+        loginSubmit.textContent = 'Đang đăng nhập...';
+
+        google.script.run
+          .withSuccessHandler(function (result) {
+            loginSubmit.disabled = false;
+            loginSubmit.textContent = 'Đăng nhập';
+            if (result.success) {
+              closeLoginModal();
+              showLoggedInUser(result.name, result.username);
+            } else {
+              showLoginError(result.message || 'Đăng nhập thất bại');
+            }
+          })
+          .withFailureHandler(function (err) {
+            loginSubmit.disabled = false;
+            loginSubmit.textContent = 'Đăng nhập';
+            showLoginError('Lỗi: ' + err.message);
+          })
+          .loginUser(username, password);
+      });
+    }
+
+    var linkLeaderboard = document.getElementById('linkLeaderboard');
+    if (linkLeaderboard) {
+      linkLeaderboard.addEventListener('click', function (e) {
+        e.preventDefault();
+        var target = (appUrl || 'index.html') + '?page=leaderboard';
+        if (typeof google !== 'undefined' && google.script && google.script.run) {
+          window.top.location.href = target;
+        } else {
+          window.location.href = 'index.html?page=leaderboard';
+        }
+      });
+    }
+
+    var cachedUser = sessionStorage.getItem('wewinUser');
+    if (cachedUser) {
+      try {
+        var parsedUser = JSON.parse(cachedUser);
+        if (parsedUser && parsedUser.name) showLoggedInUser(parsedUser.name, parsedUser.username);
+      } catch (ignoreUser) {}
+    }
+
+    // App bootstrapping
+    if (typeof google !== 'undefined' && google.script && google.script.run) {
+      google.script.run.withSuccessHandler(function (boot) {
+        if (boot && boot.appUrl) {
+          appUrl = boot.appUrl;
+          var navHome = document.getElementById('navHome');
+          if (navHome) navHome.href = boot.appUrl;
+        }
+        if (boot && boot.logoSrc) applyLogoSrc(boot.logoSrc);
+        if (boot && boot.session && boot.session.loggedIn && boot.session.name) {
+          showLoggedInUser(boot.session.name, boot.session.username);
+        }
+      }).getPageBootstrap();
+    } else {
+      var navHomeFallback = document.getElementById('navHome');
+      if (navHomeFallback) navHomeFallback.href = 'index.html';
+    }
+
+    (function initMobileNav() {
+      var app = document.getElementById('appShell');
+      var btn = document.getElementById('btnMobileMenu');
+      var backdrop = document.getElementById('sidebarBackdrop');
+      if (!app || !btn) return;
+
+      function closeSidebar() {
+        app.classList.remove('sidebar-open');
+        if (backdrop) backdrop.classList.add('hidden');
+      }
+
+      function openSidebar() {
+        app.classList.add('sidebar-open');
+        if (backdrop) backdrop.classList.remove('hidden');
+      }
+
+      btn.addEventListener('click', function () {
+        if (app.classList.contains('sidebar-open')) closeSidebar();
+        else openSidebar();
+      });
+
+      if (backdrop) backdrop.addEventListener('click', closeSidebar);
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 900) closeSidebar();
+      });
+    })();
+
+    course = readUrlCourseParam();
+    if (course) {
+      document.getElementById('bannerCourse').textContent = course;
+    }
+
+    loadGameData();
+  </script>
+</body>
+
+</html>

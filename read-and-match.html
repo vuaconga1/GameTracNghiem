@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đọc và nối - WeWIN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style type="text/css"><?!= include('GameStyles'); ?>
+    .rm-meta-row { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; }
+    .rm-worksheet { background: #fffef8; border-radius: 20px; border: 2px solid #e8e0c8; padding: 24px 20px; position: relative; }
+    .rm-board { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 768px) { .rm-board { grid-template-columns: 1fr; } .rm-worksheet { padding: 18px 14px; border-radius: 16px; } }
+    .rm-col h3 { font-size: 14px; font-weight: 900; color: var(--primary); margin-bottom: 12px; text-transform: uppercase; }
+    .rm-sentence, .rm-image-card { padding: 12px 14px; border: 2px solid #e8e0c8; border-radius: 12px; margin-bottom: 10px; cursor: pointer; background: #fff; font-weight: 700; transition: all 0.18s; }
+    .rm-sentence.is-selected, .rm-image-card.is-selected { border-color: var(--primary); background: var(--primary-light); }
+    .rm-sentence.is-matched, .rm-image-card.is-matched { border-color: #2e7d32; background: #d4edda; opacity: 0.85; pointer-events: none; }
+    .rm-image-card { display: flex; align-items: center; gap: 12px; }
+    .rm-image-card img { width: 64px; height: 64px; object-fit: contain; }
+    .rm-label { font-weight: 900; color: var(--primary); min-width: 24px; }
+    .sample-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 800; color: #b45309; background: #fef3c7; padding: 6px 12px; border-radius: 999px; margin-bottom: 12px; }
+    .sample-badge.hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <div class="app" id="appShell">
+      <div class="sidebar-backdrop hidden" id="sidebarBackdrop"></div>
+      <aside class="sidebar">
+        <div class="sidebar-logo"><img id="sidebarLogo" src="wewinlogo.png" alt="WeWIN"></div>
+        <nav class="sidebar-nav">
+          <a class="nav-item" href="#" id="navHome"><i class="fas fa-home"></i> Trang chủ</a>
+          <a class="nav-item active" href="#"><i class="fas fa-link"></i> Đọc và nối</a>
+        </nav>
+        <div class="sidebar-version">Version: 2.3.219</div>
+      </aside>
+      <main class="main">
+        <div class="game-page">
+          <div class="game-top">
+            <button type="button" class="mobile-menu-btn" id="btnMobileMenu"><i class="fas fa-bars"></i></button>
+            <button type="button" class="game-back" id="btnBack"><i class="fas fa-arrow-left"></i></button>
+            <div class="game-title-wrap">
+              <h1>Đọc và nối</h1>
+              <p class="game-subtitle" id="gameSubtitle">Read and match</p>
+            </div>
+          </div>
+          <div class="sample-badge hidden" id="sampleDataBadge"><i class="fas fa-flask"></i> Dữ liệu mẫu (chưa kết nối Sheet)</div>
+
+          <div class="game-meta hidden" id="game-meta">
+            <span class="meta-pill" id="metaCourse">Khóa học</span>
+            <span class="meta-pill meta-score-pill" id="metaScore">—/— điểm</span>
+            <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill"></div></div>
+          </div>
+
+          <div class="game-card" id="listPanel">
+            <div class="list-title">Danh sách bài tập</div>
+            <div class="list-stats">
+              <div class="stat-item"><span class="stat-num" id="statTotal">—</span><span class="stat-label">Tổng bài</span></div>
+              <div class="stat-item correct"><span class="stat-num" id="statCorrect">—</span><span class="stat-label">Đúng</span></div>
+              <div class="stat-item wrong"><span class="stat-num" id="statWrong">—</span><span class="stat-label">Sai</span></div>
+              <div class="stat-item pending"><span class="stat-num" id="statPending">—</span><span class="stat-label">Chưa làm</span></div>
+            </div>
+            <div class="question-list" id="exerciseList"></div>
+          </div>
+          <div class="game-card hidden" id="gamePanel">
+            <div class="rm-meta-row">
+              <button type="button" class="btn btn-secondary" id="btnToList"><i class="fas fa-list"></i> Danh sách</button>
+            </div>
+            <div class="rm-worksheet">
+              <span class="question-counter-pill" id="metaProgress">Bài —/—</span>
+              <h2 id="wsTitle" style="text-align:center;color:var(--primary);margin-bottom:6px"></h2>
+              <p id="wsInstruction" style="text-align:center;font-weight:700;margin-bottom:16px"></p>
+              <p style="text-align:center;font-size:13px;color:#666;margin-bottom:12px"><i class="fas fa-hand-pointer"></i> Chọn câu bên trái, rồi chọn hình tương ứng bên phải</p>
+              <div class="rm-board">
+                <div class="rm-col" id="sentCol"><h3>Câu</h3></div>
+                <div class="rm-col" id="imgCol"><h3>Hình</h3></div>
+              </div>
+            </div>
+            <div class="feedback" id="feedback"></div>
+            <div class="game-actions">
+              <button type="button" class="btn btn-primary" id="btnCheck"><i class="fas fa-check"></i> Kiểm tra đáp án</button>
+              <button type="button" class="btn btn-secondary hidden" id="btnNext">Bài tiếp theo</button>
+              <button type="button" class="btn btn-secondary hidden" id="btnRetry">Làm lại</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <footer class="site-footer"><p class="footer-copy">© 2026 <strong>WeWIN Education</strong>. All rights reserved.</p></footer>
+  </div>
+  <script type="application/json" id="wewin-url-params"><?!= urlParamsJson ?></script>
+  <?!= include('GameCommon'); ?>
+  <?!= include('starters-sample-data'); ?>
+  <?!= include('starters-common'); ?>
+  <script>
+    var GAME_KEY = 'read_and_match';
+    var EXERCISES = [], statuses = [], currentIndex = 0;
+    var selectedSent = null, matches = {}, shuffledImages = [], answered = false;
+    var sessionScore = 0;
+    var scoreState = WewinStarters.createScoreState();
+    var course = WewinStarters.readUrlCourseParam();
+    var progress = WewinStarters.createProgress(GAME_KEY, course);
+
+    function refreshScoreBar() {
+      WewinStarters.refreshScoreMeta(
+        sessionScore,
+        WewinStarters.getExerciseMaxScore(EXERCISES, scoreState),
+        'progressFill',
+        'metaScore'
+      );
+    }
+
+    function maybeAutoCheck() {
+      if (answered) return;
+      var ex = EXERCISES[currentIndex];
+      if (!ex || Object.keys(matches).length < ex.items.length) return;
+      checkAnswers();
+    }
+
+    function advanceAfterExercise() {
+      WewinStarters.autoAdvanceExercise(function () {
+        if (currentIndex < EXERCISES.length - 1) openExercise(currentIndex + 1);
+        else renderList();
+      });
+    }
+
+    function renderList() {
+      document.getElementById('listPanel').classList.remove('hidden');
+      document.getElementById('gamePanel').classList.add('hidden');
+      document.getElementById('game-meta').classList.add('hidden');
+      WewinStarters.updateListStats(progress.countStats(statuses), EXERCISES.length);
+      WewinStarters.renderExerciseList('exerciseList', EXERCISES, statuses, openExercise);
+    }
+
+    function openExercise(index) {
+      currentIndex = index; selectedSent = null; matches = {}; answered = false;
+      document.getElementById('listPanel').classList.add('hidden');
+      document.getElementById('gamePanel').classList.remove('hidden');
+      document.getElementById('game-meta').classList.remove('hidden');
+      if (course) document.getElementById('metaCourse').textContent = course;
+      var ex = EXERCISES[currentIndex];
+      document.getElementById('wsTitle').textContent = ex.title || ex.id;
+      document.getElementById('wsInstruction').textContent = ex.instruction || '';
+      WewinStarters.updateExerciseCounter(
+        document.getElementById('metaProgress'),
+        currentIndex + 1,
+        WewinStarters.resolveExerciseTotal(scoreState, EXERCISES),
+        'Bài'
+      );
+      refreshScoreBar();
+      document.getElementById('feedback').className = 'feedback';
+      document.getElementById('feedback').textContent = '';
+      document.getElementById('btnNext').classList.add('hidden');
+      document.getElementById('btnRetry').classList.add('hidden');
+      WewinGameUI.showCheckButton();
+      shuffledImages = WewinStarters.shuffleArray(ex.items.map(function(it, i){ return { idx: i, item: it }; }));
+      var sentCol = document.getElementById('sentCol');
+      sentCol.innerHTML = '<h3>Câu</h3>';
+      ex.items.forEach(function(item, idx){
+        var el = document.createElement('div');
+        el.className = 'rm-sentence';
+        el.textContent = (idx+1) + '. ' + item.sentence;
+        el.addEventListener('click', function(){
+          if (answered || matches[idx]) return;
+          selectedSent = idx;
+          sentCol.querySelectorAll('.rm-sentence').forEach(function(s){ s.classList.remove('is-selected'); });
+          el.classList.add('is-selected');
+        });
+        sentCol.appendChild(el);
+      });
+      var imgCol = document.getElementById('imgCol');
+      imgCol.innerHTML = '<h3>Hình</h3>';
+      shuffledImages.forEach(function(entry){
+        var it = entry.item;
+        var el = document.createElement('div');
+        el.className = 'rm-image-card';
+        el.innerHTML = '<span class="rm-label">' + (it.label || '') + '</span>';
+        var img = document.createElement('img');
+        img.src = it.image; img.alt = it.label;
+        el.appendChild(img);
+        el.addEventListener('click', function(){
+          if (answered) return;
+          var sentIdx = selectedSent;
+          if (sentIdx === null || matches[sentIdx]) return;
+          var correct = String(it.label) === String(ex.items[sentIdx].answer);
+          matches[sentIdx] = { label: it.label, correct: correct, imgIdx: entry.idx };
+          selectedSent = null;
+          sentCol.querySelectorAll('.rm-sentence').forEach(function(s){ s.classList.remove('is-selected'); });
+          sentCol.children[sentIdx+1].classList.add('is-matched');
+          el.classList.add('is-matched');
+          maybeAutoCheck();
+        });
+        imgCol.appendChild(el);
+      });
+    }
+
+    function checkAnswers() {
+      var ex = EXERCISES[currentIndex];
+      if (Object.keys(matches).length < ex.items.length) {
+        document.getElementById('feedback').className = 'feedback show wrong';
+        document.getElementById('feedback').textContent = 'Hãy nối tất cả các cặp.';
+        return;
+      }
+      answered = true;
+      WewinGameUI.hideCheckButton();
+      var correctCount = 0;
+      ex.items.forEach(function(item, idx){
+        if (matches[idx] && matches[idx].correct) correctCount++;
+      });
+      var allCorrect = correctCount === ex.items.length;
+      statuses[currentIndex] = allCorrect ? 'correct' : 'wrong';
+      progress.save(statuses);
+      var fb = document.getElementById('feedback');
+      fb.className = 'feedback show ' + (allCorrect ? 'correct' : 'wrong');
+      fb.innerHTML = allCorrect ? 'Tuyệt vời! Nối đúng tất cả!' : 'Đúng ' + correctCount + '/' + ex.items.length + ' cặp.';
+      advanceAfterExercise();
+    }
+
+    document.getElementById('btnBack').addEventListener('click', function(){ WewinStarters.navigateHome(course); });
+    document.getElementById('btnToList').addEventListener('click', renderList);
+    document.getElementById('btnCheck').addEventListener('click', checkAnswers);
+    document.getElementById('btnRetry').addEventListener('click', function(){ openExercise(currentIndex); });
+    document.getElementById('btnNext').addEventListener('click', function(){ openExercise(currentIndex+1); });
+    if (course) document.getElementById('gameSubtitle').textContent = course;
+    WewinStarters.initSidebar();
+    document.getElementById('exerciseList').innerHTML = WewinStarters.LOADING_HTML;
+    WewinStarters.loadExercises(GAME_KEY, course, {
+      onDone: function(exercises, data, sample) {
+        EXERCISES = exercises; WewinStarters.showSampleBadge(sample);
+        sessionScore = WewinStarters.applyServerScore(data, scoreState);
+        statuses = progress.applyFromServer(data, EXERCISES.length); renderList();
+      },
+      onEmpty: function(){ document.getElementById('exerciseList').innerHTML = '<div class="data-loading-state">Chưa có bài tập.</div>'; }
+    });
+  </script>
+</body>
+</html>

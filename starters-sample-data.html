@@ -1,0 +1,51 @@
+<script>
+/**
+ * Metadata game Starters (không còn dữ liệu mẫu).
+ * File này đã có thẻ <script> — include bằng <?!= include('starters-sample-data'); ?> (KHÔNG bọc thêm <script>).
+ */
+var STARTERS_SAMPLE = (function () {
+  var GAMES_META = [
+    { key: 'look_and_write', page: 'look_and_write', label: 'Nhìn và viết', icon: 'fa-images', iconClass: 'look-write' },
+    { key: 'choose_and_circle', page: 'choose_and_circle', label: 'Chọn và khoanh', icon: 'fa-circle-dot', iconClass: 'choose-circle' },
+    { key: 'read_and_complete', page: 'read_and_complete', label: 'Đọc và hoàn thành', icon: 'fa-pen-fancy', iconClass: 'read-complete' },
+    { key: 'read_and_match', page: 'read_and_match', label: 'Đọc và nối', icon: 'fa-link', iconClass: 'read-match' },
+    { key: 'vocabulary_test', page: 'vocabulary_test', label: 'Kiểm tra từ vựng', icon: 'fa-table-cells', iconClass: 'vocab-test' },
+    { key: 'vocabulary_check', page: 'vocabulary_check', label: 'Kiểm tra đúng sai', icon: 'fa-check-double', iconClass: 'vocab-check' }
+  ];
+
+  function getExercises() {
+    return [];
+  }
+
+  function getExerciseCount() {
+    return 0;
+  }
+
+  function getTotals() {
+    var totals = {};
+    GAMES_META.forEach(function (g) {
+      totals[g.key] = 0;
+    });
+    return totals;
+  }
+
+  function isSampleCourse() {
+    return false;
+  }
+
+  function getDemoCourses() {
+    return [];
+  }
+
+  return {
+    course: '',
+    gamesMeta: GAMES_META,
+    getExercises: getExercises,
+    getExerciseCount: getExerciseCount,
+    getTotals: getTotals,
+    isSampleCourse: isSampleCourse,
+    normalizeCourseName: function (course) { return String(course || '').trim(); },
+    getDemoCourses: getDemoCourses
+  };
+})();
+</script>
