@@ -10,5 +10,6 @@ export async function GET() {
     loggedIn: true,
     username: session.username,
     name: session.displayName,
+    role: session.role,
   });
 }

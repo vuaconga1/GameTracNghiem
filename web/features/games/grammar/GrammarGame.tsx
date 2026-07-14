@@ -64,8 +64,8 @@ type GrammarGameContentProps = {
   answerResult: AnswerResult | null;
   submitMessage: string;
   sessionPoints: number;
+  maxScore: number;
   isSubmitting: boolean;
-  completedCount: number;
   progressPercent: number;
   stats: GrammarStats;
   onBackHome: () => void;
@@ -110,12 +110,6 @@ function statusIcon(status: ProgressStatus) {
   return <i className="far fa-circle" aria-hidden="true" />;
 }
 
-function statusText(status: ProgressStatus): string {
-  if (status === 'correct') return 'Đúng';
-  if (status === 'wrong') return 'Sai';
-  return 'Chưa làm';
-}
-
 function questionPreview(question: GrammarQuestion): string {
   const preview = question.source || `${question.prefix} ${question.suffix}`.trim();
   return preview.length > 50 ? `${preview.slice(0, 50)}...` : preview;
@@ -136,8 +130,8 @@ export function GrammarGameContent({
   answerResult,
   submitMessage,
   sessionPoints,
+  maxScore,
   isSubmitting,
-  completedCount,
   progressPercent,
   stats,
   onBackHome,
@@ -159,7 +153,7 @@ export function GrammarGameContent({
   const subtitle = `${course.name}${course.levelName ? ` · ${course.levelName}` : ''}`;
 
   return (
-    <div className="game-page">
+    <div className="game-page grammar-page">
       <div className="game-top">
         <button
           type="button"
@@ -180,11 +174,11 @@ export function GrammarGameContent({
         <div className="game-meta">
           <span className="meta-pill">{course.name || 'Khóa học'}</span>
           <span className="meta-pill meta-score-pill">
-            {formatPoints(sessionPoints)}
+            {sessionPoints.toLocaleString('vi-VN')}/{maxScore.toLocaleString('vi-VN')} điểm
           </span>
           <div
             className="progress-bar-wrap"
-            aria-label={`Đã hoàn thành ${completedCount}/${questions.length} câu`}
+            aria-label={`Điểm phiên ${sessionPoints}/${maxScore}`}
           >
             <div className="progress-bar-fill" style={{ width: `${progressPercent}%` }} />
           </div>
@@ -216,16 +210,23 @@ export function GrammarGameContent({
             {questions.map((question, index) => {
               const status = statuses[index] || 'empty';
               return (
-                <button
-                  type="button"
+                <div
                   key={question.id}
+                  role="button"
+                  tabIndex={0}
                   className={`q-list-item ${statusClass(status)}`}
                   onClick={() => onOpenQuestion(index)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault();
+                      onOpenQuestion(index);
+                    }
+                  }}
                 >
                   <span className="q-num">{index + 1}</span>
                   <span className="q-preview">{questionPreview(question)}</span>
                   <span className="q-status">{statusIcon(status)}</span>
-                </button>
+                </div>
               );
             })}
           </div>
@@ -327,21 +328,11 @@ export function GrammarGameContent({
           <div className="result-panel">
             <h2>Hoàn thành!</h2>
             <p>
-              Bạn đã trả lời đúng {stats.correct}/{questions.length} câu. Tổng điểm phiên:{' '}
-              {formatPoints(sessionPoints)}.
+              Bạn đã trả lời đúng {stats.correct}/{questions.length} câu.
+              {sessionPoints
+                ? ` Tổng điểm phiên: ${formatPoints(sessionPoints)}.`
+                : ''}
             </p>
-            <div className="question-list">
-              {questions.map((question, index) => {
-                const status = statuses[index] || 'empty';
-                return (
-                  <div key={question.id} className={`q-list-item ${statusClass(status)}`}>
-                    <span className="q-num">{index + 1}</span>
-                    <span className="q-preview">{questionPreview(question)}</span>
-                    <span className="q-status">{statusText(status)}</span>
-                  </div>
-                );
-              })}
-            </div>
             <div className="game-actions">
               <button
                 type="button"
@@ -423,7 +414,7 @@ export function GrammarGame({ courseId }: Props) {
   const questions = useMemo(() => data?.questions || [], [data?.questions]);
   const course = data?.course;
   const currentQuestion = questions[currentIndex];
-  const completedCount = statuses.filter((status) => status !== 'empty').length;
+  const maxScore = questions.length * 200;
   const stats = useMemo<GrammarStats>(() => {
     const correct = statuses.filter((status) => status === 'correct').length;
     const wrong = statuses.filter((status) => status === 'wrong').length;
@@ -434,7 +425,7 @@ export function GrammarGame({ courseId }: Props) {
       pending: Math.max(questions.length - correct - wrong, 0),
     };
   }, [questions.length, statuses]);
-  const progressPercent = questions.length ? Math.round((completedCount / questions.length) * 100) : 0;
+  const progressPercent = maxScore ? Math.min(100, Math.round((sessionPoints / maxScore) * 100)) : 0;
 
   useEffect(() => {
     if (panel === 'question') {
@@ -483,7 +474,7 @@ export function GrammarGame({ courseId }: Props) {
       const isCorrect = gradeGrammarAnswer(input, currentQuestion.answers);
       const elapsedMs = Date.now() - questionStartTime.current;
       const score = await submitAnswerScore(
-        course.name,
+        progressCourseKey(course.name, course.levelName),
         'grammar',
         currentQuestion.index,
         isCorrect,
@@ -555,7 +546,7 @@ export function GrammarGame({ courseId }: Props) {
 
   if (isLoading) {
     return (
-      <div className="game-page">
+      <div className="game-page grammar-page">
         <DataLoading />
       </div>
     );
@@ -563,7 +554,7 @@ export function GrammarGame({ courseId }: Props) {
 
   if (errorMessage || !course) {
     return (
-      <div className="game-page">
+      <div className="game-page grammar-page">
         <DataLoading variant="message" message={errorMessage || 'Không tìm thấy trò chơi'} />
       </div>
     );
@@ -571,7 +562,7 @@ export function GrammarGame({ courseId }: Props) {
 
   if (questions.length === 0) {
     return (
-      <div className="game-page">
+      <div className="game-page grammar-page">
         <DataLoading variant="message" message="Chưa có câu hỏi Grammar cho khóa học này" />
       </div>
     );
@@ -589,8 +580,8 @@ export function GrammarGame({ courseId }: Props) {
       answerResult={answerResult}
       submitMessage={submitMessage}
       sessionPoints={sessionPoints}
+      maxScore={maxScore}
       isSubmitting={isSubmitting}
-      completedCount={completedCount}
       progressPercent={progressPercent}
       stats={stats}
       onBackHome={() => {

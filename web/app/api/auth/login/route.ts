@@ -16,23 +16,31 @@ export async function POST(req: Request) {
     }
 
     const user = await prisma.user.findUnique({ where: { username } });
-    if (!user || !(await verifyPassword(password, user.passwordHash))) {
+    if (
+      !user ||
+      user.archivedAt ||
+      !(await verifyPassword(password, user.passwordHash))
+    ) {
       return NextResponse.json(
         { success: false, message: 'Sai username hoặc password' },
         { status: 401 }
       );
     }
 
+    const role = user.role === 'admin' ? 'admin' : 'student';
+
     await setSessionCookie({
       userId: user.id,
       username: user.username,
       displayName: user.displayName,
+      role,
     });
 
     return NextResponse.json({
       success: true,
       username: user.username,
       name: user.displayName,
+      role,
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Lỗi hệ thống';

@@ -8,9 +8,15 @@ import { useSidebar } from './SidebarContext';
 
 type AppHeaderProps = {
   displayName: string;
+  isAdmin?: boolean;
+  showMenu?: boolean;
 };
 
-export function AppHeader({ displayName }: AppHeaderProps) {
+export function AppHeader({
+  displayName,
+  isAdmin = false,
+  showMenu = true,
+}: AppHeaderProps) {
   const router = useRouter();
   const { open, toggle } = useSidebar();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -30,15 +36,17 @@ export function AppHeader({ displayName }: AppHeaderProps) {
   return (
     <header className="header">
       <div className="header-left">
-        <button
-          type="button"
-          className="mobile-menu-btn"
-          aria-label="Mở menu"
-          aria-expanded={open}
-          onClick={toggle}
-        >
-          <i className="fas fa-bars" />
-        </button>
+        {showMenu ? (
+          <button
+            type="button"
+            className="mobile-menu-btn"
+            aria-label="Mở menu"
+            aria-expanded={open}
+            onClick={toggle}
+          >
+            <i className="fas fa-bars" />
+          </button>
+        ) : null}
         <span className="header-title">
           WeWIN - <span>{displayName}</span>
         </span>
@@ -49,6 +57,12 @@ export function AppHeader({ displayName }: AppHeaderProps) {
       </div>
 
       <div className="header-actions">
+        {isAdmin ? (
+          <Link className="action-item" href="/admin">
+            <i className="fas fa-screwdriver-wrench" />
+            <span>Quản trị</span>
+          </Link>
+        ) : null}
         <Link className="action-item" href="/leaderboard">
           <i className="fas fa-chart-bar" />
           <span>Xếp hạng</span>

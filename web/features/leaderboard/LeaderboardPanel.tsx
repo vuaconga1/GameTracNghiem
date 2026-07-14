@@ -1,6 +1,7 @@
 'use client';
 
 import type { CSSProperties } from 'react';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
@@ -194,6 +195,10 @@ export function LeaderboardContent({
       <div className="lb-page">
         <div className="lb-top">
           <div className="lb-title-row">
+            <Link href="/" className="lb-back" title="Quay lại">
+              <i className="fas fa-arrow-left" aria-hidden="true" />
+              Quay lại
+            </Link>
             <h1 className="lb-title">Bảng xếp hạng</h1>
           </div>
           <div className="period-toggle">

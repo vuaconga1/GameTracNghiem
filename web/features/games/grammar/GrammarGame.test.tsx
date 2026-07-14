@@ -37,10 +37,10 @@ describe('GrammarGameContent', () => {
     answerResult: null,
     submitMessage: '',
     sessionPoints: 120,
+    maxScore: 400,
     isSubmitting: false,
     isResetting: false,
-    completedCount: 1,
-    progressPercent: 50,
+    progressPercent: 30,
     stats: { total: 2, correct: 1, wrong: 0, pending: 1 },
     onBackHome: vi.fn(),
     onBackToList: vi.fn(),
@@ -62,7 +62,7 @@ describe('GrammarGameContent', () => {
         panel: 'list',
       })
     );
-    expect(listHtml).toContain('class="game-page"');
+    expect(listHtml).toContain('class="game-page grammar-page"');
     expect(listHtml).toContain('id="listPanel"');
     expect(listHtml).toContain('class="list-stats"');
     expect(listHtml).toContain('class="q-list-item status-correct"');
@@ -79,8 +79,9 @@ describe('GrammarGameContent', () => {
     expect(questionHtml).toContain('class="game-meta"');
     expect(questionHtml).toContain('class="question-counter-pill"');
     expect(questionHtml).toContain('class="meta-pill meta-score-pill"');
+    expect(questionHtml).toContain('120/400 điểm');
     expect(questionHtml).toContain('class="progress-bar-wrap"');
-    expect(questionHtml).toContain('style="width:50%"');
+    expect(questionHtml).toContain('style="width:30%"');
     expect(questionHtml).toContain('class="rewrite-row"');
     expect(questionHtml).toContain('class="hint-box"');
 
@@ -94,9 +95,8 @@ describe('GrammarGameContent', () => {
     expect(resultHtml).toContain('id="resultPanel"');
     expect(resultHtml).toContain('class="result-panel"');
     expect(resultHtml).toContain('Tổng điểm phiên: +120 điểm');
-    expect(resultHtml).toContain('Đúng');
-    expect(resultHtml).toContain('Chưa làm');
     expect(resultHtml).toContain('Làm lại');
+    expect(resultHtml).toContain('Quay lại khóa học');
   });
 
   it('shows retry-from-start primary CTA when all questions are answered', () => {
@@ -105,7 +105,6 @@ describe('GrammarGameContent', () => {
         ...baseProps,
         statuses: ['correct', 'wrong'],
         stats: { total: 2, correct: 1, wrong: 1, pending: 0 },
-        completedCount: 2,
         progressPercent: 100,
         panel: 'list',
       })

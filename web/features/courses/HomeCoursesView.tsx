@@ -8,7 +8,6 @@ import { CourseFilters } from '@/features/courses/CourseFilters';
 import { CourseList, type CourseListItem } from '@/features/courses/CourseList';
 
 type CourseFiltersData = {
-  classes: string[];
   levels: string[];
 };
 
@@ -20,17 +19,16 @@ type CoursesResponse = {
 };
 
 const EMPTY_FILTERS: CourseFiltersData = {
-  classes: [],
   levels: [],
 };
 
-function coursesUrl(className: string, levelName: string) {
-  const params = new URLSearchParams({ className, levelName });
+function coursesUrl(levelName: string) {
+  const params = new URLSearchParams();
+  if (levelName) params.set('levelName', levelName);
   return `/api/courses?${params.toString()}`;
 }
 
 export function HomeCoursesView() {
-  const [className, setClassName] = useState('');
   const [levelName, setLevelName] = useState('');
   const [courses, setCourses] = useState<CourseListItem[]>([]);
   const [filters, setFilters] = useState<CourseFiltersData>(EMPTY_FILTERS);
@@ -50,7 +48,7 @@ export function HomeCoursesView() {
       setErrorMessage('');
 
       try {
-        const res = await fetch(coursesUrl(className, levelName), {
+        const res = await fetch(coursesUrl(levelName), {
           signal: controller.signal,
         });
         const data = (await res.json()) as CoursesResponse;
@@ -74,19 +72,13 @@ export function HomeCoursesView() {
     loadCourses();
 
     return () => controller.abort();
-  }, [className, levelName]);
+  }, [levelName]);
 
   const filtersNode = (
     <CourseFilters
-      classes={filters.classes}
       levels={filters.levels}
-      className={className}
       levelName={levelName}
       disabled={isLoading}
-      onClassNameChange={(value) => {
-        setClassName(value);
-        setLevelName('');
-      }}
       onLevelNameChange={setLevelName}
     />
   );

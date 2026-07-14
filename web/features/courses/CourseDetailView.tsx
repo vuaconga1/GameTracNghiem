@@ -4,39 +4,48 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
+import { EbookViewer } from '@/features/courses/EbookViewer';
+import { ALL_GAME_KEYS, GAME_CATALOG, type ProgressStatus } from '@/lib/gameCatalog';
 
 export type CourseDetail = {
   id: string;
   name: string;
-  className: string;
   levelName: string;
   courseKey: string;
+  enabledGames?: string[];
+  ebook?: {
+    id: string;
+    title: string;
+    pageStart: number;
+    pageEnd: number;
+  } | null;
 };
 
-type GrammarGameDetail = {
+export type GameDetail = {
   questionCount: number;
   statuses: string[];
 };
 
-type CourseGames = {
-  grammar?: GrammarGameDetail;
-};
+export type CourseGames = Record<string, GameDetail | undefined>;
 
 export type CourseDetailData = {
   success: true;
   course: CourseDetail;
   games?: CourseGames;
+  totalScore?: number;
 };
 
 type CourseDetailResponse = {
   success: boolean;
   course?: CourseDetail;
   games?: CourseGames;
+  totalScore?: number;
   message?: string;
 };
 
 type CourseDetailContentProps = {
   data: CourseDetailData;
+  initialTab?: DetailTab;
 };
 
 type CourseDetailViewProps = {
@@ -45,89 +54,44 @@ type CourseDetailViewProps = {
 
 type DetailTab = 'lesson' | 'exercises';
 
-type Activity = {
-  key: string;
-  label: string;
-  iconClass: string;
-  icon: string;
-};
-
-const COMING_SOON_ACTIVITIES: Activity[] = [
-  {
-    key: 'quiz',
-    label: 'Trắc nghiệm',
-    iconClass: 'quiz',
-    icon: 'fas fa-file-alt',
-  },
-  {
-    key: 'pronunciation',
-    label: 'Phát âm',
-    iconClass: 'pronunciation',
-    icon: 'fas fa-microphone',
-  },
-  {
-    key: 'scramble',
-    label: 'Sắp xếp từ',
-    iconClass: 'scramble',
-    icon: 'fas fa-shuffle',
-  },
-  {
-    key: 'word_match',
-    label: 'Nối từ với hình',
-    iconClass: 'word-match',
-    icon: 'fas fa-image',
-  },
-  {
-    key: 'look_and_write',
-    label: 'Nhìn và viết',
-    iconClass: 'look-write',
-    icon: 'fas fa-images',
-  },
-  {
-    key: 'choose_and_circle',
-    label: 'Chọn và khoanh',
-    iconClass: 'choose-circle',
-    icon: 'fas fa-circle-dot',
-  },
-  {
-    key: 'read_and_complete',
-    label: 'Đọc và hoàn thành',
-    iconClass: 'read-complete',
-    icon: 'fas fa-pen-fancy',
-  },
-  {
-    key: 'read_and_match',
-    label: 'Đọc và nối',
-    iconClass: 'read-match',
-    icon: 'fas fa-link',
-  },
-  {
-    key: 'vocabulary_test',
-    label: 'Kiểm tra từ vựng',
-    iconClass: 'vocab-test',
-    icon: 'fas fa-table-cells',
-  },
-  {
-    key: 'vocabulary_check',
-    label: 'Kiểm tra đúng sai',
-    iconClass: 'vocab-check',
-    icon: 'fas fa-check-double',
-  },
-];
-
 function completedStatusCount(statuses: string[] | undefined) {
   return (statuses || []).filter((status) => status !== 'empty').length;
 }
 
-function grammarProgress(grammar: GrammarGameDetail | undefined) {
-  if (!grammar) return '—';
-
-  return `${completedStatusCount(grammar.statuses)}/${grammar.questionCount}`;
+function activityProgress(detail: GameDetail | undefined, live: boolean) {
+  if (!live) return 'Sắp có';
+  if (!detail) return '—';
+  return `${completedStatusCount(detail.statuses)}/${detail.questionCount}`;
 }
 
-export function CourseDetailContent({ data }: CourseDetailContentProps) {
-  const [activeTab, setActiveTab] = useState<DetailTab>('lesson');
-  const grammar = data.games?.grammar;
+function aggregateActivityStats(games: CourseGames | undefined, gameKeys: string[]) {
+  let totalQuestions = 0;
+  let completedQuestions = 0;
+
+  for (const key of gameKeys) {
+    const detail = games?.[key];
+    if (!detail) continue;
+    totalQuestions += detail.questionCount;
+    completedQuestions += completedStatusCount(detail.statuses);
+  }
+
+  return { totalQuestions, completedQuestions };
+}
+
+function formatCourseScore(points: number) {
+  return Number(points).toLocaleString('vi-VN');
+}
+
+export function CourseDetailContent({ data, initialTab = 'lesson' }: CourseDetailContentProps) {
+  const [activeTab, setActiveTab] = useState<DetailTab>(initialTab);
+  const enabledKeys = new Set(
+    data.course.enabledGames?.length ? data.course.enabledGames : ALL_GAME_KEYS
+  );
+  const activities = GAME_CATALOG.filter((activity) => enabledKeys.has(activity.key));
+  const liveActivityKeys = activities.filter((activity) => activity.live).map((activity) => activity.key);
+  const { totalQuestions, completedQuestions } = aggregateActivityStats(data.games, liveActivityKeys);
+  const totalScore = data.totalScore ?? 0;
+  const showBookCard = activeTab === 'exercises';
 
   return (
     <section id="view-detail" className="view-detail">
@@ -136,32 +100,34 @@ export function CourseDetailContent({ data }: CourseDetailContentProps) {
         Quay lại
       </Link>
 
-      <div className="detail-body">
-        <div className="book-card">
-          <div className="book-card-top">
-            <div className="book-thumb">
-              <i className="fas fa-book" aria-hidden="true" />
+      <div className={activeTab === 'lesson' ? 'detail-body detail-body--lesson-full' : 'detail-body'}>
+        {showBookCard ? (
+          <div className="book-card">
+            <div className="book-card-top">
+              <div className="book-thumb">
+                <i className="fas fa-book" aria-hidden="true" />
+              </div>
+              <div className="book-info">
+                <h2>{data.course.name}</h2>
+                <p>{data.course.levelName}</p>
+              </div>
             </div>
-            <div className="book-info">
-              <h2>{data.course.name}</h2>
-              <p>
-                {data.course.className} · {data.course.levelName}
-              </p>
-            </div>
+            {totalQuestions > 0 ? (
+              <div className="book-stats">
+                <div className="book-stat">
+                  <div className="book-stat-value">
+                    {completedQuestions}/{totalQuestions}
+                  </div>
+                  <div className="book-stat-label">câu đã làm</div>
+                </div>
+                <div className="book-stat">
+                  <div className="book-stat-value">{formatCourseScore(totalScore)}</div>
+                  <div className="book-stat-label">tổng điểm</div>
+                </div>
+              </div>
+            ) : null}
           </div>
-          {grammar ? (
-            <div className="book-stats">
-              <div className="book-stat">
-                <div className="book-stat-value">{grammar.questionCount}</div>
-                <div className="book-stat-label">câu ngữ pháp</div>
-              </div>
-              <div className="book-stat">
-                <div className="book-stat-value">{completedStatusCount(grammar.statuses)}</div>
-                <div className="book-stat-label">đã làm</div>
-              </div>
-            </div>
-          ) : null}
-        </div>
+        ) : null}
 
         <div className="detail-main-panel">
           <div className="detail-tabs tabs-secondary">
@@ -184,63 +150,69 @@ export function CourseDetailContent({ data }: CourseDetailContentProps) {
           </div>
 
           <div className={activeTab === 'lesson' ? 'detail-panel' : 'detail-panel is-hidden'}>
-            <div className="ebook-viewer">
-              <div className="ebook-toolbar">
-                <div className="ebook-toolbar-group">
-                  <button type="button" className="ebook-btn" title="Trang trước" disabled>
-                    <i className="fas fa-chevron-left" aria-hidden="true" />
-                  </button>
-                  <span className="ebook-page-info">Trang —</span>
-                  <button type="button" className="ebook-btn" title="Trang sau" disabled>
-                    <i className="fas fa-chevron-right" aria-hidden="true" />
-                  </button>
-                </div>
-                <div className="ebook-toolbar-group">
-                  <button type="button" className="ebook-btn" title="Thu nhỏ" disabled>
-                    <i className="fas fa-minus" aria-hidden="true" />
-                  </button>
-                  <button type="button" className="ebook-btn" title="Phóng to" disabled>
-                    <i className="fas fa-plus" aria-hidden="true" />
-                  </button>
+            {data.course.ebook ? (
+              <EbookViewer
+                ebookId={data.course.ebook.id}
+                pageStart={data.course.ebook.pageStart}
+                pageEnd={data.course.ebook.pageEnd}
+              />
+            ) : (
+              <div className="ebook-viewer">
+                <div className="ebook-empty">
+                  Chưa gắn sách bài học cho unit này. Admin hãy chọn PDF và khoảng trang trong chi
+                  tiết khóa học.
                 </div>
               </div>
-              <div className="ebook-empty">Sách điện tử sẽ được kết nối sau.</div>
-            </div>
+            )}
           </div>
 
           <div className={activeTab === 'exercises' ? 'detail-panel' : 'detail-panel is-hidden'}>
             <div className="activity-area">
               <div className="activity-grid">
-                <Link
-                  href={`/games/grammar/${data.course.id}`}
-                  className="activity-card"
-                  data-activity="grammar"
-                >
-                  <div className="activity-left">
-                    <div className="activity-icon grammar">
-                      <i className="fas fa-book-open" aria-hidden="true" />
-                    </div>
-                    <span className="activity-label">Ngữ pháp</span>
-                  </div>
-                  <span className="activity-progress">{grammarProgress(grammar)}</span>
-                </Link>
-
-                {COMING_SOON_ACTIVITIES.map((activity) => (
-                  <div
-                    key={activity.key}
-                    className="activity-card"
-                    data-activity={activity.key}
-                    aria-disabled="true"
-                  >
-                    <div className="activity-left">
-                      <div className={`activity-icon ${activity.iconClass}`}>
-                        <i className={activity.icon} aria-hidden="true" />
+                {activities.length === 0 ? (
+                  <div className="ebook-empty">Chưa có bài tập nào được mở trong khóa này.</div>
+                ) : (
+                  activities.map((activity) => {
+                  const detail = data.games?.[activity.key];
+                  const progress = activityProgress(detail, activity.live);
+                  const className = 'activity-card';
+                  const inner = (
+                    <>
+                      <div className="activity-left">
+                        <div className={`activity-icon ${activity.iconClass}`}>
+                          <i className={activity.icon} aria-hidden="true" />
+                        </div>
+                        <span className="activity-label">{activity.label}</span>
                       </div>
-                      <span className="activity-label">{activity.label}</span>
+                      <span className="activity-progress">{progress}</span>
+                    </>
+                  );
+
+                  if (activity.live) {
+                    return (
+                      <Link
+                        key={activity.key}
+                        href={`/games/${activity.slug}/${data.course.id}`}
+                        className={className}
+                        data-activity={activity.key}
+                      >
+                        {inner}
+                      </Link>
+                    );
+                  }
+
+                  return (
+                    <div
+                      key={activity.key}
+                      className={className}
+                      data-activity={activity.key}
+                      aria-disabled="true"
+                    >
+                      {inner}
                     </div>
-                    <span className="activity-progress">Sắp có</span>
-                  </div>
-                ))}
+                  );
+                })
+                )}
               </div>
             </div>
           </div>
@@ -274,6 +246,7 @@ export function CourseDetailView({ courseId }: CourseDetailViewProps) {
           success: true,
           course: json.course,
           games: json.games,
+          totalScore: json.totalScore ?? 0,
         });
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
@@ -307,3 +280,6 @@ export function CourseDetailView({ courseId }: CourseDetailViewProps) {
 
   return <CourseDetailContent data={data} />;
 }
+
+// Re-export for tests that may reference ProgressStatus
+export type { ProgressStatus };

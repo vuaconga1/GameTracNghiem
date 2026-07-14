@@ -4,9 +4,13 @@ import { requireSession } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 
 function uniqueSorted(values: Array<string | null | undefined>): string[] {
-  return [...new Set(values.map((value) => String(value || '').trim()).filter(Boolean))].sort(
-    (a, b) => a.localeCompare(b, 'vi')
-  );
+  return [
+    ...new Set(
+      values
+        .map((value) => String(value || '').trim())
+        .filter((value) => value && value !== 'Tất cả')
+    ),
+  ].sort((a, b) => a.localeCompare(b, 'vi'));
 }
 
 function errorResponse(err: unknown) {
@@ -23,18 +27,12 @@ export async function GET(req: Request) {
     await requireSession();
 
     const { searchParams } = new URL(req.url);
-    const className = String(searchParams.get('className') || '').trim();
     const levelName = String(searchParams.get('levelName') || '').trim();
 
     const courseWhere = {
       active: true,
-      ...(className ? { className } : {}),
+      archivedAt: null,
       ...(levelName ? { levelName } : {}),
-    };
-
-    const levelWhere = {
-      active: true,
-      ...(className ? { className } : {}),
     };
 
     const [courses, classLevels, activeCoursesForFilters] = await Promise.all([
@@ -43,28 +41,18 @@ export async function GET(req: Request) {
         select: {
           id: true,
           name: true,
-          className: true,
           levelName: true,
         },
-        orderBy: [{ className: 'asc' }, { levelName: 'asc' }, { name: 'asc' }],
+        orderBy: [{ levelName: 'asc' }, { name: 'asc' }],
       }),
       prisma.classLevel.findMany({
-        where: levelWhere,
-        select: {
-          className: true,
-          levelName: true,
-        },
-        orderBy: [{ className: 'asc' }, { levelName: 'asc' }],
+        where: { active: true, archivedAt: null },
+        select: { levelName: true },
+        orderBy: [{ levelName: 'asc' }],
       }),
       prisma.course.findMany({
-        where: {
-          active: true,
-          ...(className ? { className } : {}),
-        },
-        select: {
-          className: true,
-          levelName: true,
-        },
+        where: { active: true, archivedAt: null },
+        select: { levelName: true },
       }),
     ]);
 
@@ -72,10 +60,6 @@ export async function GET(req: Request) {
       success: true,
       courses,
       filters: {
-        classes: uniqueSorted([
-          ...classLevels.map((item) => item.className),
-          ...activeCoursesForFilters.map((item) => item.className),
-        ]),
         levels: uniqueSorted([
           ...classLevels.map((item) => item.levelName),
           ...activeCoursesForFilters.map((item) => item.levelName),

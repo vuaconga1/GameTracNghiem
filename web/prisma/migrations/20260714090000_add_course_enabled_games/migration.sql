@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Course" ADD COLUMN IF NOT EXISTS "enabledGames" TEXT[] DEFAULT ARRAY[]::TEXT[];

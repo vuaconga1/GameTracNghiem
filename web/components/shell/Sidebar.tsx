@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
+import Link from 'next/link';
+
 type SidebarProps = {
   mode: 'home' | 'game';
   filtersSlot?: React.ReactNode;
@@ -9,9 +11,9 @@ type SidebarProps = {
 export function Sidebar({ mode, filtersSlot, gameNav }: SidebarProps) {
   return (
     <aside className="sidebar">
-      <div className="sidebar-logo">
+      <Link href="/" className="sidebar-logo" aria-label="Về trang chủ WeWIN">
         <img src="/wewinlogo.png" alt="WeWIN Logo" />
-      </div>
+      </Link>
 
       {mode === 'game' ? (
         <nav className="sidebar-nav">{gameNav}</nav>

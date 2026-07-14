@@ -1,57 +1,55 @@
 'use client';
 
 type CourseFiltersProps = {
-  classes: string[];
   levels: string[];
-  className: string;
   levelName: string;
   disabled?: boolean;
-  onClassNameChange: (value: string) => void;
   onLevelNameChange: (value: string) => void;
 };
 
+function isAllLabel(value: string) {
+  return !String(value || '').trim() || String(value).trim() === 'Tất cả';
+}
+
+function cleanOptions(values: string[]) {
+  return values.filter((value) => !isAllLabel(value));
+}
+
 export function CourseFilters({
-  classes,
   levels,
-  className,
   levelName,
   disabled = false,
-  onClassNameChange,
   onLevelNameChange,
 }: CourseFiltersProps) {
-  const classOptions = ['', ...classes];
-  const levelOptions = ['', ...levels];
+  const levelOptions = cleanOptions(levels);
+  const allActive = !levelName;
 
   return (
     <div className="filter-section">
-      <h3 className="filter-title">Lớp/Cấp độ</h3>
+      <h3 className="filter-title">Cấp độ</h3>
       <div className="filter-grid" id="filterGrid">
-        {classOptions.map((value) => (
-          <button
-            key={`class-${value || 'all'}`}
-            type="button"
-            className={`filter-item${className === value ? ' active' : ''}${value === '' ? ' filter-item--solo' : ''}`}
-            data-filter-type="class"
-            data-class={value}
-            disabled={disabled}
-            onClick={() => onClassNameChange(value)}
-          >
-            {value || 'Tất cả'}
-          </button>
-        ))}
+        <button
+          type="button"
+          className={`filter-item filter-item--solo${allActive ? ' active' : ''}`}
+          data-filter-type="level"
+          data-level=""
+          disabled={disabled}
+          onClick={() => onLevelNameChange('')}
+        >
+          Tất cả
+        </button>
 
         {levelOptions.map((value) => (
           <button
-            key={`level-${value || 'all'}`}
+            key={`level-${value}`}
             type="button"
-            className={`filter-item${levelName === value ? ' active' : ''}${value === '' ? ' filter-item--solo' : ''}`}
+            className={`filter-item${levelName === value ? ' active' : ''}`}
             data-filter-type="level"
-            data-class={className}
             data-level={value}
             disabled={disabled}
             onClick={() => onLevelNameChange(value)}
           >
-            {value || 'Tất cả'}
+            {value}
           </button>
         ))}
       </div>

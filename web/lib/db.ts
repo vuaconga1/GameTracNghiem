@@ -1,7 +1,9 @@
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@prisma/client';
 
-const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
+const globalForPrisma = globalThis as unknown as {
+  prisma?: PrismaClient;
+};
 
 function createPrismaClient(): PrismaClient {
   const connectionString = process.env.DATABASE_URL;
@@ -17,6 +19,33 @@ function createPrismaClient(): PrismaClient {
   });
 }
 
-export const prisma = globalForPrisma.prisma ?? createPrismaClient();
+function hasCourseField(client: PrismaClient, field: string): boolean {
+  const models = (
+    client as unknown as {
+      _runtimeDataModel?: { models?: Record<string, { fields?: Record<string, unknown> }> };
+    }
+  )._runtimeDataModel?.models;
+  const fields = models?.Course?.fields;
+  return Boolean(fields && field in fields);
+}
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+function getPrismaClient(): PrismaClient {
+  const existing = globalForPrisma.prisma;
+  if (existing) {
+    // After `prisma generate`, Next HMR can keep a stale global client.
+    if (process.env.NODE_ENV !== 'production' && !hasCourseField(existing, 'enabledGames')) {
+      void existing.$disconnect().catch(() => undefined);
+      globalForPrisma.prisma = undefined;
+    } else {
+      return existing;
+    }
+  }
+
+  const client = createPrismaClient();
+  if (process.env.NODE_ENV !== 'production') {
+    globalForPrisma.prisma = client;
+  }
+  return client;
+}
+
+export const prisma = getPrismaClient();

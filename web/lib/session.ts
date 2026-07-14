@@ -3,10 +3,13 @@ import { cookies } from 'next/headers';
 
 export const SESSION_COOKIE = 'wewin_session';
 
+export type UserRole = 'student' | 'admin';
+
 export type SessionPayload = {
   userId: string;
   username: string;
   displayName: string;
+  role: UserRole;
 };
 
 function secretKey() {
@@ -17,8 +20,17 @@ function secretKey() {
   return new TextEncoder().encode(secret);
 }
 
+function normalizeRole(value: unknown): UserRole {
+  return value === 'admin' ? 'admin' : 'student';
+}
+
 export async function sealSession(payload: SessionPayload): Promise<string> {
-  return new SignJWT(payload as unknown as Record<string, unknown>)
+  return new SignJWT({
+    userId: payload.userId,
+    username: payload.username,
+    displayName: payload.displayName,
+    role: payload.role,
+  })
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
     .setExpirationTime('7d')
@@ -39,6 +51,7 @@ export async function unsealSession(token: string): Promise<SessionPayload | nul
       userId: payload.userId,
       username: payload.username,
       displayName: payload.displayName,
+      role: normalizeRole(payload.role),
     };
   } catch {
     return null;

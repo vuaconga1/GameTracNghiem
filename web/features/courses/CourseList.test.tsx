@@ -12,7 +12,6 @@ describe('CourseList', () => {
           {
             id: 'course-1',
             name: 'Starter A',
-            className: 'Lớp 1',
             levelName: 'A1',
           },
         ],

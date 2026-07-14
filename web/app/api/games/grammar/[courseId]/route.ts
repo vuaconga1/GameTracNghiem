@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import { requireSession } from '@/lib/auth';
 import { progressCourseKey } from '@/lib/courseKey';
 import { prisma } from '@/lib/db';
+import { findPlayableCourseGame } from '@/lib/findPlayableCourseGame';
 
 type ProgressStatus = 'empty' | 'correct' | 'wrong';
 
@@ -50,14 +51,7 @@ export async function GET(
     const session = await requireSession();
     const { courseId } = await params;
 
-    const course = await prisma.course.findFirst({
-      where: { id: courseId, active: true },
-      select: {
-        id: true,
-        name: true,
-        levelName: true,
-      },
-    });
+    const course = await findPlayableCourseGame(courseId, 'grammar');
 
     if (!course) {
       return NextResponse.json(
@@ -73,6 +67,7 @@ export async function GET(
           courseId: course.id,
           game: 'grammar',
           active: true,
+          archivedAt: null,
         },
         select: {
           id: true,

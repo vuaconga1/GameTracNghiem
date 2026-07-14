@@ -5,7 +5,6 @@ import { DataLoading } from '@/components/DataLoading';
 export type CourseListItem = {
   id: string;
   name: string;
-  className: string;
   levelName: string;
 };
 

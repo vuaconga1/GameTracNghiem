@@ -11,48 +11,68 @@ model User {
   username     String         @unique
   passwordHash String
   displayName  String
+  role         String         @default("student")
   createdAt    DateTime       @default(now())
+  archivedAt   DateTime?
   progress     GameProgress[]
   scoreLogs    ScoreLog[]
 }
 
 model ClassLevel {
-  id        String  @id @default(cuid())
-  className String
-  levelName String
-  active    Boolean @default(true)
+  id         String    @id @default(cuid())
+  levelName  String    @unique
+  active     Boolean   @default(true)
+  archivedAt DateTime?
+}
 
-  @@unique([className, levelName])
-  @@index([className])
+model Ebook {
+  id           String    @id @default(cuid())
+  title        String
+  originalName String
+  storageKey   String
+  pageCount    Int?
+  active       Boolean   @default(true)
+  archivedAt   DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([archivedAt])
 }
 
 model Course {
   id             String     @id @default(cuid())
   name           String
-  className      String
   levelName      String
   active         Boolean    @default(true)
+  archivedAt     DateTime?
+  /** Game keys visible to students. Empty = all catalog games enabled. */
+  enabledGames   String[]   @default([])
+  /** References Ebook.id when set. */
   ebookFileId    String?
   ebookPageStart Int?
   ebookPageEnd   Int?
   questions      Question[]
 
-  @@index([className, levelName])
+  @@index([levelName])
   @@index([name])
+  @@index([archivedAt])
+  @@index([ebookFileId])
 }
 
 model Question {
-  id         String  @id @default(cuid())
+  id         String    @id @default(cuid())
   courseId   String
-  course     Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course     Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
   game       String
   level      String?
   payload    Json
-  active     Boolean @default(true)
-  sortOrder  Int     @default(0)
+  active     Boolean   @default(true)
+  archivedAt DateTime?
+  sortOrder  Int       @default(0)
   externalId String?
 
   @@index([courseId, game, active])
+  @@index([archivedAt])
 }
 
 model GameProgress {

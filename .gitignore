@@ -1,34 +1,81 @@
-﻿# Dependencies
+﻿# ===== Dependencies =====
 node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# Next.js
+# ===== Next.js / build =====
 web/.next/
 web/out/
+web/build/
+web/coverage/
+web/.turbo/
+dist/
+build/
+*.tsbuildinfo
 
-# Env / secrets
+# ===== Env / secrets (giữ .env.example) =====
 .env
-.env*.local
+.env.*
+!.env.example
+!**/.env.example
 web/.env
-web/.env*.local
+web/.env.*
+!web/.env.example
 
-# Worktrees
-.worktrees/
+# ===== Vercel local =====
+.vercel
+web/.vercel
 
-# OS / IDE
-.DS_Store
-Thumbs.db
-.idea/
-.vscode/
+# ===== Uploads local (không push PDF/ảnh thật) =====
+web/storage/ebooks/*
+!web/storage/ebooks/.gitkeep
+web/storage/media/*
+!web/storage/media/.gitkeep
 
-# Logs / debug
-*.log
-npm-debug.log*
-
-# Prisma
+# ===== Database local =====
+*.db
+*.db-journal
 web/prisma/*.db
 web/prisma/*.db-journal
 
-# Large / local assets
+# ===== Large / local-only assets =====
 *.pdf
-.cursor/
+*.xlsx
+*.xls
+*.xlsm
+*.zip
+*.rar
+*.7z
 
+# Logo / script local (không cần để chạy app trên Vercel)
+setup-starters-excel.py
+wewinlogo.png
+
+# ===== OS / IDE =====
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ===== Logs / debug =====
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ===== Cursor / local tooling =====
+.cursor/
+.worktrees/
+
+# ===== Certificates =====
+*.pem
+*.key

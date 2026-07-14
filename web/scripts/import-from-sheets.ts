@@ -96,18 +96,17 @@ async function importCourses(rows: Record<string, string>[]) {
   let skipped = 0;
 
   for (const row of rows) {
-    const className = row.className?.trim();
-    const levelName = row.levelName?.trim();
-    const name = row.name?.trim();
+    const levelName = row.levelName?.trim() || row.level?.trim();
+    const name = row.name?.trim() || row.course?.trim();
     const active = parseBool(row.active ?? '', true);
 
-    if (!className || !levelName || !name) {
+    if (!levelName || !name) {
       skipped += 1;
       continue;
     }
 
     const existing = await prisma.course.findFirst({
-      where: { name, className, levelName },
+      where: { name, levelName },
     });
 
     if (existing) {
@@ -118,10 +117,16 @@ async function importCourses(rows: Record<string, string>[]) {
       updated += 1;
     } else {
       await prisma.course.create({
-        data: { name, className, levelName, active },
+        data: { name, levelName, active },
       });
       created += 1;
     }
+
+    await prisma.classLevel.upsert({
+      where: { levelName },
+      update: { active: true },
+      create: { levelName, active: true },
+    });
   }
 
   return { created, updated, skipped };

@@ -4,15 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "prisma generate && prisma migrate deploy && next build --turbopack",
     "start": "next start",
+    "postinstall": "prisma generate",
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
-    "db:seed": "tsx scripts/seed-dev.ts"
+    "db:seed": "tsx scripts/seed-dev.ts",
+    "db:import-excel": "tsx scripts/import-from-excel.ts"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",
@@ -21,6 +23,7 @@
     "dotenv": "^17.4.2",
     "jose": "^6.2.3",
     "next": "15.5.20",
+    "pdfjs-dist": "^4.10.38",
     "pg": "^8.22.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
@@ -40,6 +43,7 @@
     "tailwindcss": "^4",
     "tsx": "^4.23.0",
     "typescript": "^5",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "xlsx": "^0.18.5"
   }
 }

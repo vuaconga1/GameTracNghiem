@@ -11,7 +11,9 @@ export default async function MainLayout({
 
   return (
     <SidebarProvider>
-      <MainShell displayName={session.displayName}>{children}</MainShell>
+      <MainShell displayName={session.displayName} isAdmin={session.role === 'admin'}>
+        {children}
+      </MainShell>
     </SidebarProvider>
   );
 }

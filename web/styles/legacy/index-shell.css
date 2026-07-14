@@ -10,7 +10,7 @@
       --white: #ffffff;
       --sidebar-width: 240px;
       --bg-page: #f8fafc;
-      --content-max: 1280px;
+      --content-max: 1680px;
       --footer-height: auto;
       
       --radius-lg: 16px;
@@ -33,7 +33,7 @@
     }
 
     body {
-      font-family: 'Nunito', sans-serif;
+      font-family: var(--font-nunito), 'Nunito', sans-serif;
       background: var(--bg-page);
       color: var(--text-dark);
       min-height: 100vh;
@@ -74,6 +74,8 @@
       justify-content: center;
       min-height: 76px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      text-decoration: none;
     }
 
     .sidebar-logo img {
@@ -308,15 +310,20 @@
     /* ===== CONTENT ===== */
     .content {
       flex: 1;
-      padding: 0 clamp(16px, 3vw, 28px) clamp(20px, 3vw, 28px);
+      padding: 0 clamp(12px, 2vw, 24px) clamp(16px, 2.5vw, 24px);
       background: var(--bg-page);
       min-width: 0;
+      width: 100%;
     }
 
     .content-inner {
       max-width: var(--content-max);
       margin: 0 auto;
       width: 100%;
+    }
+
+    .app.no-sidebar .content-inner {
+      max-width: min(100%, var(--content-max));
     }
 
     /* Primary tabs */
@@ -724,8 +731,18 @@
 
     .detail-body {
       display: flex;
-      gap: 24px;
-      align-items: flex-start;
+      gap: clamp(16px, 2vw, 24px);
+      align-items: stretch;
+    }
+
+    .detail-body--lesson-full .detail-main-panel {
+      width: 100%;
+    }
+
+    .detail-body--lesson-full .ebook-viewer--natural {
+      height: auto;
+      min-height: 0;
+      overflow: visible;
     }
 
     .detail-body.is-starters {
@@ -759,9 +776,11 @@
     }
 
     .book-card {
-      width: 340px;
+      width: min(280px, 100%);
       flex-shrink: 0;
-      position: relative;
+      align-self: flex-start;
+      position: sticky;
+      top: 12px;
       background: #ffffff;
       border-radius: 20px;
       box-shadow:
@@ -911,7 +930,28 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      min-height: min(72vh, 820px);
+      height: min(calc(100vh - 168px), 920px);
+      min-height: 520px;
+    }
+
+    .ebook-viewer--natural {
+      height: auto;
+      min-height: 0;
+      overflow: visible;
+    }
+
+    .ebook-viewer--natural .ebook-stage {
+      flex: none;
+      height: auto;
+      min-height: 0;
+      align-items: flex-start;
+    }
+
+    .ebook-viewer--natural .ebook-canvas-wrap {
+      overflow: visible;
+      min-height: 0;
+      align-items: flex-start;
+      justify-content: center;
     }
 
     .ebook-toolbar {
@@ -920,15 +960,21 @@
       justify-content: space-between;
       gap: 12px;
       flex-wrap: wrap;
-      padding: 12px 16px;
+      padding: 10px 16px;
       border-bottom: 1px solid var(--border);
       background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      flex-shrink: 0;
     }
 
     .ebook-toolbar-group {
       display: flex;
       align-items: center;
       gap: 8px;
+    }
+
+    .ebook-toolbar-center {
+      flex: 1;
+      justify-content: center;
     }
 
     .ebook-btn {
@@ -962,31 +1008,73 @@
     }
 
     .ebook-page-info {
-      font-size: 14px;
-      font-weight: 700;
+      font-size: 15px;
+      font-weight: 800;
       color: var(--text-dark);
-      min-width: 120px;
+      min-width: 72px;
       text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ebook-stage {
+      flex: 1;
+      min-height: 0;
+      display: grid;
+      grid-template-columns: 52px minmax(0, 1fr) 52px;
+      align-items: stretch;
+      background: #e8edf5;
+    }
+
+    .ebook-side-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
+      color: #0d2b6e;
+      font-size: 22px;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+      padding: 0;
+    }
+
+    .ebook-side-nav:hover:not(:disabled) {
+      background: rgba(13, 43, 110, 0.08);
+      color: #1a449c;
+    }
+
+    .ebook-side-nav:disabled {
+      opacity: 0.28;
+      cursor: not-allowed;
     }
 
     .ebook-canvas-wrap {
-      flex: 1;
-      overflow: auto;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
       background: #e8edf5;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      padding: 20px;
-      min-height: 420px;
+      align-items: center;
+      padding: 8px;
+      position: relative;
     }
 
     .ebook-canvas-wrap canvas {
       display: block;
-      max-width: 100%;
+      width: auto;
       height: auto;
+      flex-shrink: 0;
       box-shadow: 0 8px 28px rgba(13, 43, 110, 0.14);
       border-radius: 4px;
       background: #ffffff;
+    }
+
+    .ebook-loading-overlay {
+      position: absolute;
+      inset: 0;
+      min-height: 0;
+      background: rgba(232, 237, 245, 0.72);
     }
 
     .ebook-empty,
@@ -1006,6 +1094,25 @@
 
     .ebook-empty strong {
       color: var(--primary);
+    }
+
+    @media (max-width: 700px) {
+      .ebook-viewer {
+        height: min(calc(100vh - 140px), 780px);
+      }
+
+      .detail-body--lesson-full .ebook-viewer--natural {
+        height: auto;
+        min-height: 0;
+      }
+
+      .ebook-stage {
+        grid-template-columns: 40px minmax(0, 1fr) 40px;
+      }
+
+      .ebook-side-nav {
+        font-size: 18px;
+      }
     }
 
     .detail-body.is-starters .detail-main-panel {
@@ -1034,6 +1141,8 @@
         width: 100%;
         max-width: 420px;
         margin: 0 auto;
+        position: relative;
+        top: auto;
       }
     }
 
@@ -1285,22 +1394,28 @@
     }
 
     .lb-back {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
-      background: var(--white);
-      color: var(--primary);
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 8px 14px;
+      border-radius: 12px;
+      border: 2px solid rgba(13, 43, 110, 0.14);
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--primary);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
       cursor: pointer;
-      transition: transform 0.22s ease, background 0.2s;
+      transition: transform 0.22s ease, background 0.2s, border-color 0.2s;
+      flex-shrink: 0;
     }
 
     .lb-back:hover {
-      transform: scale(1.08);
-      background: var(--primary-light);
+      transform: scale(1.04);
+      background: #ffffff;
+      border-color: rgba(13, 43, 110, 0.32);
     }
 
     .lb-title {

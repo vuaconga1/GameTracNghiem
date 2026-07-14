@@ -1,5 +1,7 @@
 @import "../styles/legacy/game-styles.css";
 @import "../styles/legacy/index-shell.css";
+@import "../styles/legacy/scramble.css";
+@import "../styles/legacy/admin.css";
 
 html,
 body {
@@ -15,4 +17,41 @@ body {
 .main.layout-index > .content {
   width: 100%;
   align-self: stretch;
+}
+
+/* Game pages: match GAS grammar shell (200px sidebar, no extra content padding) */
+body:has(.game-page),
+body:has(.pronunciation-page) {
+  --sidebar-width: 200px;
+}
+
+.main.layout-game > .content {
+  padding: 0;
+  width: 100%;
+}
+
+.main.layout-game > .content > .content-inner {
+  max-width: none;
+  margin: 0;
+  width: 100%;
+}
+
+.main.layout-game > .header {
+  width: 100%;
+  align-self: stretch;
+}
+
+/* Question list cards: reset <button> so they match GAS <div.q-list-item> */
+button.q-list-item {
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+a.activity-card {
+  text-decoration: none;
+  color: inherit;
 }
