@@ -3,12 +3,16 @@
 import "dotenv/config";
 import { defineConfig } from "prisma/config";
 
+// Migrate/CLI must use a direct (non-pooler) URL on Supabase.
+// Runtime Prisma Client still uses DATABASE_URL via @prisma/adapter-pg.
+const migrateUrl = process.env["DIRECT_URL"] || process.env["DATABASE_URL"];
+
 export default defineConfig({
   schema: "prisma/schema.prisma",
   migrations: {
     path: "prisma/migrations",
   },
   datasource: {
-    url: process.env["DATABASE_URL"],
+    url: migrateUrl,
   },
 });
