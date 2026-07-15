@@ -76,13 +76,14 @@ model Question {
 }
 
 model GameProgress {
-  id        String   @id @default(cuid())
-  userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  courseKey String
-  game      String
-  statuses  Json
-  updatedAt DateTime @updatedAt
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseKey     String
+  game          String
+  statuses      Json
+  playSessionId String?
+  updatedAt     DateTime @updatedAt
 
   @@unique([userId, courseKey, game])
 }
@@ -97,9 +98,11 @@ model ScoreLog {
   isCorrect     Boolean
   elapsedMs     Int
   points        Int
+  playSessionId String?
   answeredAt    DateTime @default(now())
 
   @@index([userId, course])
   @@index([answeredAt])
   @@index([game])
+  @@index([userId, course, game, playSessionId])
 }

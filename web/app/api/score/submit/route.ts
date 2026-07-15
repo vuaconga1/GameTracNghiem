@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import { publicApiErrorMessage } from '@/lib/apiErrors';
 import { requireSession } from '@/lib/auth';
 import { prisma } from '@/lib/db';
+import { getBestGameSessionScoreForCourseKey } from '@/lib/gameScore';
 import { calculatePoints } from '@/lib/scoring';
 
 function errorResponse(err: unknown) {
@@ -30,6 +31,7 @@ export async function POST(req: Request) {
     const questionIndex = Number(body.questionIndex);
     const isCorrect = parseIsCorrect(body.isCorrect);
     const elapsedMs = Number(body.elapsedMs) || 0;
+    const playSessionId = String(body.playSessionId || '').trim() || null;
 
     if (!course || !game || !Number.isInteger(questionIndex) || questionIndex < 0) {
       return NextResponse.json(
@@ -49,26 +51,30 @@ export async function POST(req: Request) {
         isCorrect,
         elapsedMs,
         points,
+        playSessionId,
       },
     });
 
-    const aggregate = await prisma.scoreLog.aggregate({
-      where: {
-        userId: session.userId,
-        course,
-      },
-      _sum: {
-        points: true,
-      },
-    });
-
-    const courseScore = aggregate._sum.points ?? 0;
+    const [courseAggregate, gameScore] = await Promise.all([
+      prisma.scoreLog.aggregate({
+        where: {
+          userId: session.userId,
+          course,
+        },
+        _sum: {
+          points: true,
+        },
+      }),
+      getBestGameSessionScoreForCourseKey(session.userId, course, game),
+    ]);
 
     return NextResponse.json({
       success: true,
       points,
       isCorrect,
-      courseScore,
+      courseScore: courseAggregate._sum.points ?? 0,
+      gameScore,
+      playSessionId,
     });
   } catch (err) {
     return errorResponse(err);

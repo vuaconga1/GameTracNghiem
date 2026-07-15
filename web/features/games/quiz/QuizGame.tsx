@@ -4,7 +4,14 @@ import Link from 'next/link';
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
+import { GameResultSummary, GameScoreHero } from '@/components/games/GameScoreHero';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
+import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
+import { gradedIsCorrect, isGradedStatus } from '@/features/games/gradedLock';
+import {
+  createPlaySessionId,
+  persistGameProgress,
+} from '@/features/games/persistProgress';
 import { progressCourseKey } from '@/lib/courseKey';
 import {
   type ProgressStatus,
@@ -35,6 +42,8 @@ type QuizGameResponse = {
   };
   questions?: QuizQuestion[];
   statuses?: ProgressStatus[];
+  playSessionId?: string | null;
+  gameScore?: number;
   message?: string;
 };
 
@@ -94,6 +103,8 @@ export function QuizGame({ courseId }: Props) {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [answerResult, setAnswerResult] = useState<AnswerResult | null>(null);
   const [sessionPoints, setSessionPoints] = useState(0);
+  const [gameScore, setGameScore] = useState(0);
+  const [playSessionId, setPlaySessionId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
@@ -127,6 +138,8 @@ export function QuizGame({ courseId }: Props) {
         setCurrentIndex(firstEmptyIndex === -1 ? 0 : firstEmptyIndex);
         setPanel('list');
         setSessionPoints(0);
+        setGameScore(json.gameScore || 0);
+        setPlaySessionId(json.playSessionId || null);
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
@@ -169,42 +182,52 @@ export function QuizGame({ courseId }: Props) {
       questionStartTime.current = Date.now();
       setInput('');
       setSelectedOption(null);
-      setAnswerResult(null);
       setSubmitMessage('');
-      if (advanceTimer.current) {
-        clearTimeout(advanceTimer.current);
-        advanceTimer.current = null;
+      clearAutoAdvance(advanceTimer);
+      if (isGradedStatus(statuses[currentIndex])) {
+        setAnswerResult({ isCorrect: gradedIsCorrect(statuses[currentIndex]) });
+      } else {
+        setAnswerResult(null);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- lock from status at navigation time
   }, [currentIndex, panel]);
 
-  async function persistProgress(nextStatuses: ProgressStatus[], reset = false) {
-    if (!course) return;
+  async function persistProgress(
+    nextStatuses: ProgressStatus[],
+    reset = false,
+    sessionId?: string | null
+  ) {
+    if (!course) return null;
 
-    const res = await fetch('/api/progress', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        courseKey: progressCourseKey(course.name, course.levelName),
-        game: 'quiz',
-        statuses: nextStatuses,
-        reset,
-      }),
+    const json = await persistGameProgress({
+      courseKey: progressCourseKey(course.name, course.levelName),
+      game: 'quiz',
+      statuses: nextStatuses,
+      reset,
+      playSessionId: sessionId === undefined ? playSessionId : sessionId,
     });
-    const json = (await res.json()) as {
-      success: boolean;
-      statuses?: ProgressStatus[];
-      message?: string;
-    };
-    if (!res.ok || !json.success) {
+    if (!json.success) {
       throw new Error(json.message || 'Không lưu được tiến độ');
     }
     if (json.statuses) {
       setStatuses(normalizeStatuses(json.statuses, questions.length));
     }
+    if (json.playSessionId) {
+      setPlaySessionId(json.playSessionId);
+    }
+    return json.playSessionId || sessionId || playSessionId;
+  }
+
+  async function ensurePlaySession(): Promise<string> {
+    if (playSessionId) return playSessionId;
+    const nextId = createPlaySessionId();
+    const saved = await persistProgress(statuses, false, nextId);
+    return saved || nextId;
   }
 
   function goNext() {
+    clearAutoAdvance(advanceTimer);
     const nextIndex = currentIndex + 1;
     if (nextIndex >= questions.length) {
       setPanel('result');
@@ -214,14 +237,12 @@ export function QuizGame({ courseId }: Props) {
   }
 
   function scheduleAdvance() {
-    if (advanceTimer.current) clearTimeout(advanceTimer.current);
-    advanceTimer.current = setTimeout(() => {
-      goNext();
-    }, 900);
+    scheduleAutoAdvance(advanceTimer, goNext);
   }
 
   async function submitAnswer(isCorrect: boolean, alreadyAnswered: boolean) {
     if (!course || !currentQuestion) return;
+    if (isGradedStatus(statuses[currentQuestion.index]) || answerResult) return;
 
     setIsSubmitting(true);
     setSubmitMessage('');
@@ -230,13 +251,15 @@ export function QuizGame({ courseId }: Props) {
       let points: number | undefined;
 
       if (!alreadyAnswered) {
+        const sessionId = await ensurePlaySession();
         const elapsedMs = Date.now() - questionStartTime.current;
         const score = await submitAnswerScore(
           progressCourseKey(course.name, course.levelName),
           'quiz',
           currentQuestion.index,
           isCorrect,
-          elapsedMs
+          elapsedMs,
+          sessionId
         );
         if (!score.success) {
           throw new Error(score.message || 'Không ghi được điểm');
@@ -244,6 +267,9 @@ export function QuizGame({ courseId }: Props) {
         points = score.points;
         if (typeof points === 'number') {
           setSessionPoints((current) => current + points!);
+        }
+        if (typeof score.gameScore === 'number') {
+          setGameScore(score.gameScore);
         }
       }
 
@@ -287,20 +313,36 @@ export function QuizGame({ courseId }: Props) {
   }
 
   function openQuestion(index: number) {
-    setCurrentIndex(index);
-    setPanel('question');
+    void (async () => {
+      try {
+        await ensurePlaySession();
+        setCurrentIndex(index);
+        setPanel('question');
+      } catch (err) {
+        setSubmitMessage(err instanceof Error ? err.message : 'Không mở được câu hỏi');
+      }
+    })();
   }
 
   function startOrContinue() {
     const firstEmptyIndex = nextEmptyIndex(statuses);
     if (firstEmptyIndex === -1) return;
-    openQuestion(firstEmptyIndex);
+    void (async () => {
+      try {
+        await ensurePlaySession();
+        setCurrentIndex(firstEmptyIndex);
+        setPanel('question');
+      } catch (err) {
+        setSubmitMessage(err instanceof Error ? err.message : 'Không bắt đầu được bài');
+      }
+    })();
   }
 
   async function resetProgress(openFirstQuestion: boolean) {
     if (!course || isResetting) return;
 
     const emptyStatuses = Array.from({ length: questions.length }, () => 'empty' as ProgressStatus);
+    const nextSession = createPlaySessionId();
 
     setIsResetting(true);
     setSubmitMessage('');
@@ -310,7 +352,8 @@ export function QuizGame({ courseId }: Props) {
       setSessionPoints(0);
       setAnswerResult(null);
       setCurrentIndex(0);
-      await persistProgress(emptyStatuses, true);
+      setPlaySessionId(nextSession);
+      await persistProgress(emptyStatuses, true, nextSession);
       setPanel(openFirstQuestion ? 'question' : 'list');
     } catch (err) {
       setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
@@ -391,6 +434,7 @@ export function QuizGame({ courseId }: Props) {
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
           <div className="list-title">Danh sách câu hỏi</div>
+          <GameScoreHero gameScore={gameScore} />
           <div className="list-stats">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
@@ -582,26 +626,24 @@ export function QuizGame({ courseId }: Props) {
 
       {panel === 'result' ? (
         <div className="game-card" id="resultPanel">
-          <div className="result-panel">
-            <h2>Hoàn thành!</h2>
-            <p>
-              Bạn đã trả lời đúng {stats.correct}/{questions.length} câu.
-              {sessionPoints ? ` Tổng điểm phiên: ${formatPoints(sessionPoints)}.` : ''}
-            </p>
-            <div className="game-actions">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => void resetProgress(false)}
-                disabled={isResetting}
-              >
-                {isResetting ? 'Đang làm lại...' : 'Làm lại'}
-              </button>
-              <Link href={`/courses/${course.id}`} className="btn btn-secondary">
-                Quay lại khóa học
-              </Link>
-            </div>
-          </div>
+          <GameResultSummary
+            gameScore={gameScore}
+            correct={stats.correct}
+            total={stats.total}
+            wrong={stats.wrong}
+          >
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => void resetProgress(false)}
+              disabled={isResetting}
+            >
+              {isResetting ? 'Đang làm lại...' : 'Làm lại'}
+            </button>
+            <Link href={`/courses/${course.id}`} className="btn btn-secondary">
+              Quay lại khóa học
+            </Link>
+          </GameResultSummary>
         </div>
       ) : null}
     </div>

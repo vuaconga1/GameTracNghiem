@@ -4,7 +4,12 @@ import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
+import { GameResultSummary, GameScoreHero } from '@/components/games/GameScoreHero';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
+import {
+  createPlaySessionId,
+  persistGameProgress,
+} from '@/features/games/persistProgress';
 import { progressCourseKey } from '@/lib/courseKey';
 import {
   type ProgressStatus,
@@ -30,6 +35,8 @@ type WordMatchGameResponse = {
   };
   questions?: WordMatchQuestion[];
   statuses?: ProgressStatus[];
+  playSessionId?: string | null;
+  gameScore?: number;
   message?: string;
 };
 
@@ -91,6 +98,8 @@ export function WordMatchGame({ courseId }: Props) {
   const [hintText, setHintText] = useState('');
   const [feedback, setFeedback] = useState<FeedbackState | null>(null);
   const [sessionPoints, setSessionPoints] = useState(0);
+  const [gameScore, setGameScore] = useState(0);
+  const [playSessionId, setPlaySessionId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
@@ -130,6 +139,8 @@ export function WordMatchGame({ courseId }: Props) {
         setStatuses(nextStatuses);
         setPanel(allDone ? 'result' : 'board');
         setSessionPoints(0);
+        setGameScore(json.gameScore || 0);
+        setPlaySessionId(json.playSessionId || null);
         rebuildOrders(questions.length);
         questionStartTime.current = Date.now();
       } catch (err) {
@@ -162,30 +173,37 @@ export function WordMatchGame({ courseId }: Props) {
     setHintText('');
   }, []);
 
-  async function persistProgress(nextStatuses: ProgressStatus[], reset = false) {
-    if (!course) return;
+  async function persistProgress(
+    nextStatuses: ProgressStatus[],
+    reset = false,
+    sessionId?: string | null
+  ) {
+    if (!course) return null;
 
-    const res = await fetch('/api/progress', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        courseKey: progressCourseKey(course.name, course.levelName),
-        game: 'word_match',
-        statuses: nextStatuses,
-        reset,
-      }),
+    const json = await persistGameProgress({
+      courseKey: progressCourseKey(course.name, course.levelName),
+      game: 'word_match',
+      statuses: nextStatuses,
+      reset,
+      playSessionId: sessionId === undefined ? playSessionId : sessionId,
     });
-    const json = (await res.json()) as {
-      success: boolean;
-      statuses?: ProgressStatus[];
-      message?: string;
-    };
-    if (!res.ok || !json.success) {
+    if (!json.success) {
       throw new Error(json.message || 'Không lưu được tiến độ');
     }
     if (json.statuses) {
       setStatuses(normalizeStatuses(json.statuses, questions.length));
     }
+    if (json.playSessionId) {
+      setPlaySessionId(json.playSessionId);
+    }
+    return json.playSessionId || sessionId || playSessionId;
+  }
+
+  async function ensurePlaySession(): Promise<string> {
+    if (playSessionId) return playSessionId;
+    const nextId = createPlaySessionId();
+    const saved = await persistProgress(statuses, false, nextId);
+    return saved || nextId;
   }
 
   const maybeFinish = useCallback(
@@ -205,13 +223,15 @@ export function WordMatchGame({ courseId }: Props) {
       setSubmitMessage('');
 
       try {
+        const sessionId = await ensurePlaySession();
         const elapsedMs = Date.now() - questionStartTime.current;
         const score = await submitAnswerScore(
           progressCourseKey(course.name, course.levelName),
           'word_match',
           wordIndex,
           isCorrect,
-          elapsedMs
+          elapsedMs,
+          sessionId
         );
         if (!score.success) {
           throw new Error(score.message || 'Không ghi được điểm');
@@ -221,6 +241,9 @@ export function WordMatchGame({ courseId }: Props) {
         if (typeof score.points === 'number') {
           points = score.points;
           setSessionPoints((current) => current + points!);
+        }
+        if (typeof score.gameScore === 'number') {
+          setGameScore(score.gameScore);
         }
 
         if (isCorrect) {
@@ -261,6 +284,7 @@ export function WordMatchGame({ courseId }: Props) {
       course,
       isSubmitting,
       maybeFinish,
+      playSessionId,
       questions,
       statuses,
       wrongPair,
@@ -308,6 +332,7 @@ export function WordMatchGame({ courseId }: Props) {
     if (!course || isResetting) return;
 
     const emptyStatuses = Array.from({ length: questions.length }, () => 'empty' as ProgressStatus);
+    const nextSession = createPlaySessionId();
 
     setIsResetting(true);
     setSubmitMessage('');
@@ -320,7 +345,8 @@ export function WordMatchGame({ courseId }: Props) {
       clearSelection();
       questionStartTime.current = Date.now();
       rebuildOrders(questions.length);
-      await persistProgress(emptyStatuses, true);
+      setPlaySessionId(nextSession);
+      await persistProgress(emptyStatuses, true, nextSession);
       setPanel('board');
     } catch (err) {
       setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
@@ -394,6 +420,7 @@ export function WordMatchGame({ courseId }: Props) {
           </div>
 
           <div className="game-card" id="playPanel">
+            <GameScoreHero gameScore={gameScore} />
             <span className="question-counter-pill">
               Cặp {correctCount}/{questions.length}
             </span>
@@ -525,26 +552,23 @@ export function WordMatchGame({ courseId }: Props) {
 
       {panel === 'result' ? (
         <div className="game-card" id="resultPanel">
-          <div className="result-panel">
-            <h2>Hoàn thành!</h2>
-            <p>
-              Bạn đã nối đúng {correctCount}/{questions.length} cặp.
-              {sessionPoints ? ` Tổng điểm phiên: ${formatPoints(sessionPoints)}.` : ''}
-            </p>
-            <div className="game-actions">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => void resetGame()}
-                disabled={isResetting}
-              >
-                {isResetting ? 'Đang làm lại...' : 'Làm lại'}
-              </button>
-              <Link href={`/courses/${course.id}`} className="btn btn-secondary">
-                Quay lại khóa học
-              </Link>
-            </div>
-          </div>
+          <GameResultSummary
+            gameScore={gameScore}
+            correct={correctCount}
+            total={questions.length}
+          >
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => void resetGame()}
+              disabled={isResetting}
+            >
+              {isResetting ? 'Đang làm lại...' : 'Làm lại'}
+            </button>
+            <Link href={`/courses/${course.id}`} className="btn btn-secondary">
+              Quay lại khóa học
+            </Link>
+          </GameResultSummary>
         </div>
       ) : null}
     </div>

@@ -4,7 +4,14 @@ import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
+import { GameResultSummary, GameScoreHero } from '@/components/games/GameScoreHero';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
+import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
+import {
+  createPlaySessionId,
+  persistGameProgress,
+} from '@/features/games/persistProgress';
+import { gradedIsCorrect, isGradedStatus } from '@/features/games/gradedLock';
 import { progressCourseKey } from '@/lib/courseKey';
 import {
   type ProgressStatus,
@@ -40,6 +47,8 @@ type VocabularyCheckGameResponse = {
   exercises?: VocabularyCheckExercise[];
   unitTotal?: number;
   statuses?: ProgressStatus[];
+  gameScore?: number;
+  playSessionId?: string | null;
   message?: string;
 };
 
@@ -98,6 +107,8 @@ export function VocabularyCheckGame({ courseId }: Props) {
   const [answered, setAnswered] = useState(false);
   const [checkResult, setCheckResult] = useState<CheckResult | null>(null);
   const [sessionPoints, setSessionPoints] = useState(0);
+  const [gameScore, setGameScore] = useState(0);
+  const [playSessionId, setPlaySessionId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
@@ -131,6 +142,8 @@ export function VocabularyCheckGame({ courseId }: Props) {
         setCurrentIndex(firstEmptyIndex === -1 ? 0 : firstEmptyIndex);
         setPanel('list');
         setSessionPoints(0);
+        setGameScore(json.gameScore || 0);
+        setPlaySessionId(json.playSessionId || null);
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
@@ -185,34 +198,61 @@ export function VocabularyCheckGame({ courseId }: Props) {
 
   useEffect(() => {
     if (panel === 'game' && currentExercise) {
-      resetExerciseState();
+      if (isGradedStatus(statuses[currentIndex])) {
+        clearAutoAdvance(advanceTimer);
+        const nextPicks: Record<number, boolean> = {};
+        currentExercise.items.forEach((item, index) => {
+          nextPicks[index] = item.is_correct;
+        });
+        setPicks(nextPicks);
+        setAnswered(true);
+        setCheckResult({
+          isCorrect: gradedIsCorrect(statuses[currentIndex]),
+          correctCount: gradedIsCorrect(statuses[currentIndex])
+            ? currentExercise.items.length
+            : 0,
+          itemResults: currentExercise.items.map(() => gradedIsCorrect(statuses[currentIndex])),
+          pointsEarned: 0,
+        });
+        setSubmitMessage('');
+      } else {
+        resetExerciseState();
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- apply lock when entering exercise
   }, [currentIndex, currentExercise, panel, resetExerciseState]);
 
-  async function persistProgress(nextStatuses: ProgressStatus[], reset = false) {
-    if (!course) return;
+  async function persistProgress(
+    nextStatuses: ProgressStatus[],
+    reset = false,
+    sessionId?: string | null
+  ) {
+    if (!course) return null;
 
-    const res = await fetch('/api/progress', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        courseKey: progressCourseKey(course.name, course.levelName),
-        game: 'vocabulary_check',
-        statuses: nextStatuses,
-        reset,
-      }),
+    const json = await persistGameProgress({
+      courseKey: progressCourseKey(course.name, course.levelName),
+      game: 'vocabulary_check',
+      statuses: nextStatuses,
+      reset,
+      playSessionId: sessionId === undefined ? playSessionId : sessionId,
     });
-    const json = (await res.json()) as {
-      success: boolean;
-      statuses?: ProgressStatus[];
-      message?: string;
-    };
-    if (!res.ok || !json.success) {
+    if (!json.success) {
       throw new Error(json.message || 'Không lưu được tiến độ');
     }
     if (json.statuses) {
       setStatuses(normalizeStatuses(json.statuses, exercises.length));
     }
+    if (json.playSessionId) {
+      setPlaySessionId(json.playSessionId);
+    }
+    return json.playSessionId || sessionId || playSessionId;
+  }
+
+  async function ensurePlaySession(): Promise<string> {
+    if (playSessionId) return playSessionId;
+    const nextId = createPlaySessionId();
+    const saved = await persistProgress(statuses, false, nextId);
+    return saved || nextId;
   }
 
   function setPick(itemIndex: number, value: boolean) {
@@ -221,6 +261,7 @@ export function VocabularyCheckGame({ courseId }: Props) {
   }
 
   function goNextExercise(nextStatuses = statuses) {
+    clearAutoAdvance(advanceTimer);
     const nextIndex = currentIndex + 1;
     if (nextIndex >= exercises.length) {
       const pending = nextStatuses.filter((status) => status === 'empty').length;
@@ -235,10 +276,7 @@ export function VocabularyCheckGame({ courseId }: Props) {
   }
 
   function scheduleAdvance(nextStatuses: ProgressStatus[]) {
-    if (advanceTimer.current) clearTimeout(advanceTimer.current);
-    advanceTimer.current = setTimeout(() => {
-      goNextExercise(nextStatuses);
-    }, 900);
+    scheduleAutoAdvance(advanceTimer, () => goNextExercise(nextStatuses));
   }
 
   async function handleCheck() {
@@ -256,6 +294,7 @@ export function VocabularyCheckGame({ courseId }: Props) {
     try {
       const { isCorrect, itemResults } = gradeVocabularyCheckExercise(picks, currentExercise.items);
       const elapsedMs = Date.now() - questionStartTime.current;
+      const sessionId = await ensurePlaySession();
       let pointsEarned = 0;
 
       for (let itemIndex = 0; itemIndex < currentExercise.items.length; itemIndex += 1) {
@@ -264,13 +303,17 @@ export function VocabularyCheckGame({ courseId }: Props) {
           'vocabulary_check',
           currentExercise.index * 100 + itemIndex,
           itemResults[itemIndex],
-          elapsedMs
+          elapsedMs,
+          sessionId
         );
         if (!score.success) {
           throw new Error(score.message || 'Không ghi được điểm');
         }
         if (typeof score.points === 'number') {
           pointsEarned += score.points;
+        }
+        if (typeof score.gameScore === 'number') {
+          setGameScore(score.gameScore);
         }
       }
 
@@ -299,8 +342,15 @@ export function VocabularyCheckGame({ courseId }: Props) {
   }
 
   function openExercise(index: number) {
-    setCurrentIndex(index);
-    setPanel('game');
+    void (async () => {
+      try {
+        await ensurePlaySession();
+        setCurrentIndex(index);
+        setPanel('game');
+      } catch (err) {
+        setSubmitMessage(err instanceof Error ? err.message : 'Không mở được bài');
+      }
+    })();
   }
 
   function startOrContinue() {
@@ -313,6 +363,7 @@ export function VocabularyCheckGame({ courseId }: Props) {
     if (!course || isResetting) return;
 
     const emptyStatuses = Array.from({ length: exercises.length }, () => 'empty' as ProgressStatus);
+    const nextSession = createPlaySessionId();
 
     setIsResetting(true);
     setSubmitMessage('');
@@ -322,7 +373,8 @@ export function VocabularyCheckGame({ courseId }: Props) {
       setSessionPoints(0);
       setCheckResult(null);
       setCurrentIndex(0);
-      await persistProgress(emptyStatuses, true);
+      setPlaySessionId(nextSession);
+      await persistProgress(emptyStatuses, true, nextSession);
       setPanel(openFirstExercise ? 'game' : 'list');
     } catch (err) {
       setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
@@ -409,6 +461,7 @@ export function VocabularyCheckGame({ courseId }: Props) {
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
           <div className="list-title">Danh sách bài tập</div>
+          <GameScoreHero gameScore={gameScore} />
           <div className="list-stats">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
@@ -589,29 +642,27 @@ export function VocabularyCheckGame({ courseId }: Props) {
 
       {panel === 'result' ? (
         <div className="game-card" id="resultPanel">
-          <div className="result-panel">
-            <h2>Hoàn thành!</h2>
-            <p>
-              Bạn đã hoàn thành {exercises.length} bài — đúng {stats.correct}, sai {stats.wrong}.
-              {sessionPoints ? ` Tổng điểm phiên: ${formatPoints(sessionPoints)}.` : ''}
-            </p>
-            <div className="game-actions">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => void resetProgress(false)}
-                disabled={isResetting}
-              >
-                {isResetting ? 'Đang làm lại...' : 'Làm lại'}
-              </button>
-              <button type="button" className="btn btn-secondary" onClick={() => setPanel('list')}>
-                Quay lại danh sách
-              </button>
-              <Link href={`/courses/${course.id}`} className="btn btn-secondary">
-                Quay lại khóa học
-              </Link>
-            </div>
-          </div>
+          <GameResultSummary
+            gameScore={gameScore}
+            correct={stats.correct}
+            total={stats.total}
+            wrong={stats.wrong}
+          >
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => void resetProgress(false)}
+              disabled={isResetting}
+            >
+              {isResetting ? 'Đang làm lại...' : 'Làm lại'}
+            </button>
+            <button type="button" className="btn btn-secondary" onClick={() => setPanel('list')}>
+              Quay lại danh sách
+            </button>
+            <Link href={`/courses/${course.id}`} className="btn btn-secondary">
+              Quay lại khóa học
+            </Link>
+          </GameResultSummary>
         </div>
       ) : null}
     </div>

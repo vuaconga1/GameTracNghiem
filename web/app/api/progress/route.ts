@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { requireSession } from '@/lib/auth';
 import { prisma } from '@/lib/db';
+import { newPlaySessionId } from '@/lib/playSession';
 
 type ProgressStatus = 'empty' | 'correct' | 'wrong';
 
@@ -59,6 +60,7 @@ export async function POST(req: Request) {
     const game = String(body.game || '').trim();
     const reset = parseReset(body.reset);
     const incomingStatuses = normalizeStatuses(body.statuses);
+    const incomingSession = String(body.playSessionId || '').trim();
 
     if (!courseKey || !game || !incomingStatuses) {
       return NextResponse.json(
@@ -76,15 +78,25 @@ export async function POST(req: Request) {
     };
 
     let statuses = incomingStatuses;
+    let playSessionId = incomingSession || null;
+
+    const existing = await prisma.gameProgress.findUnique({
+      where,
+      select: { statuses: true, playSessionId: true },
+    });
 
     if (!reset) {
-      const existing = await prisma.gameProgress.findUnique({
-        where,
-        select: { statuses: true },
-      });
       if (existing) {
         statuses = mergeStatuses(parseStoredStatuses(existing.statuses), incomingStatuses);
+        if (!playSessionId) {
+          playSessionId = existing.playSessionId || null;
+        }
       }
+      if (!playSessionId) {
+        playSessionId = newPlaySessionId();
+      }
+    } else {
+      playSessionId = incomingSession || newPlaySessionId();
     }
 
     const progress = await prisma.gameProgress.upsert({
@@ -94,15 +106,18 @@ export async function POST(req: Request) {
         courseKey,
         game,
         statuses,
+        playSessionId,
       },
       update: {
         statuses,
+        playSessionId,
       },
     });
 
     return NextResponse.json({
       success: true,
       statuses: parseStoredStatuses(progress.statuses),
+      playSessionId: progress.playSessionId || playSessionId,
     });
   } catch (err) {
     return errorResponse(err);

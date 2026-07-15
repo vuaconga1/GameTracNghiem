@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 
 import {
   findFirstQuestionByMode,
+  nextEmptyPlayableIndex,
+  nextPlayableIndex,
   nextQuestionIndexInMode,
   playableModes,
   uniqueModes,
@@ -73,5 +75,16 @@ describe('findQuestion helpers', () => {
     expect(nextQuestionIndexInMode(sampleQuestions, 0, 'phoneme')).toBe(3);
     expect(nextQuestionIndexInMode(sampleQuestions, 3, 'phoneme')).toBe(0);
     expect(nextQuestionIndexInMode(sampleQuestions, 1, 'sentence')).toBe(1);
+  });
+
+  it('finds next empty playable index and skips stress', () => {
+    expect(nextEmptyPlayableIndex(sampleQuestions, ['correct', 'empty', 'empty', 'empty'])).toBe(1);
+    expect(nextEmptyPlayableIndex(sampleQuestions, ['correct', 'wrong', 'empty', 'correct'])).toBe(-1);
+  });
+
+  it('finds next playable index without wrapping', () => {
+    expect(nextPlayableIndex(sampleQuestions, 0)).toBe(1);
+    expect(nextPlayableIndex(sampleQuestions, 1)).toBe(3);
+    expect(nextPlayableIndex(sampleQuestions, 3)).toBe(-1);
   });
 });

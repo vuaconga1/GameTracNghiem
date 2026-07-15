@@ -4,7 +4,14 @@ import Link from 'next/link';
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
+import { GameResultSummary, GameScoreHero } from '@/components/games/GameScoreHero';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
+import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
+import { gradedIsCorrect, isGradedStatus } from '@/features/games/gradedLock';
+import {
+  createPlaySessionId,
+  persistGameProgress,
+} from '@/features/games/persistProgress';
 import { progressCourseKey } from '@/lib/courseKey';
 
 import { gradeGrammarAnswer } from './gradeAnswer';
@@ -30,6 +37,8 @@ type GrammarGameResponse = {
   };
   questions?: GrammarQuestion[];
   statuses?: ProgressStatus[];
+  playSessionId?: string | null;
+  gameScore?: number;
   message?: string;
 };
 
@@ -68,6 +77,7 @@ type GrammarGameContentProps = {
   isSubmitting: boolean;
   progressPercent: number;
   stats: GrammarStats;
+  gameScore: number;
   onBackHome: () => void;
   onBackToList: () => void;
   onOpenQuestion: (index: number) => void;
@@ -134,6 +144,7 @@ export function GrammarGameContent({
   isSubmitting,
   progressPercent,
   stats,
+  gameScore,
   onBackHome,
   onBackToList,
   onOpenQuestion,
@@ -188,6 +199,7 @@ export function GrammarGameContent({
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
           <div className="list-title">Danh sách câu hỏi</div>
+          <GameScoreHero gameScore={gameScore} />
           <div className="list-stats">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
@@ -325,28 +337,24 @@ export function GrammarGameContent({
 
       {panel === 'result' ? (
         <div className="game-card" id="resultPanel">
-          <div className="result-panel">
-            <h2>Hoàn thành!</h2>
-            <p>
-              Bạn đã trả lời đúng {stats.correct}/{questions.length} câu.
-              {sessionPoints
-                ? ` Tổng điểm phiên: ${formatPoints(sessionPoints)}.`
-                : ''}
-            </p>
-            <div className="game-actions">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={onRetry}
-                disabled={isResetting}
-              >
-                {isResetting ? 'Đang làm lại...' : 'Làm lại'}
-              </button>
-              <Link href={`/courses/${courseId}`} className="btn btn-secondary">
-                Quay lại khóa học
-              </Link>
-            </div>
-          </div>
+          <GameResultSummary
+            gameScore={gameScore}
+            correct={stats.correct}
+            total={stats.total}
+            wrong={stats.wrong}
+          >
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={onRetry}
+              disabled={isResetting}
+            >
+              {isResetting ? 'Đang làm lại...' : 'Làm lại'}
+            </button>
+            <Link href={`/courses/${courseId}`} className="btn btn-secondary">
+              Quay lại khóa học
+            </Link>
+          </GameResultSummary>
         </div>
       ) : null}
     </div>
@@ -361,12 +369,15 @@ export function GrammarGame({ courseId }: Props) {
   const [input, setInput] = useState('');
   const [answerResult, setAnswerResult] = useState<AnswerResult | null>(null);
   const [sessionPoints, setSessionPoints] = useState(0);
+  const [gameScore, setGameScore] = useState(0);
+  const [playSessionId, setPlaySessionId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [submitMessage, setSubmitMessage] = useState('');
   const questionStartTime = useRef(Date.now());
+  const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -393,6 +404,8 @@ export function GrammarGame({ courseId }: Props) {
         setCurrentIndex(firstEmptyIndex === -1 ? 0 : firstEmptyIndex);
         setPanel('list');
         setSessionPoints(0);
+        setGameScore(json.gameScore || 0);
+        setPlaySessionId(json.playSessionId || null);
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
@@ -408,7 +421,10 @@ export function GrammarGame({ courseId }: Props) {
       loadGame();
     }
 
-    return () => controller.abort();
+    return () => {
+      controller.abort();
+      clearAutoAdvance(advanceTimer);
+    };
   }, [courseId]);
 
   const questions = useMemo(() => data?.questions || [], [data?.questions]);
@@ -429,38 +445,56 @@ export function GrammarGame({ courseId }: Props) {
 
   useEffect(() => {
     if (panel === 'question') {
+      clearAutoAdvance(advanceTimer);
       questionStartTime.current = Date.now();
       setInput('');
-      setAnswerResult(null);
       setSubmitMessage('');
+      if (isGradedStatus(statuses[currentIndex])) {
+        setAnswerResult({ isCorrect: gradedIsCorrect(statuses[currentIndex]) });
+      } else {
+        setAnswerResult(null);
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- lock from status at navigation time
   }, [currentIndex, panel]);
 
-  async function persistProgress(nextStatuses: ProgressStatus[], reset = false) {
-    if (!course) return;
+  async function persistProgress(
+    nextStatuses: ProgressStatus[],
+    reset = false,
+    sessionId?: string | null
+  ) {
+    if (!course) return null;
 
-    const res = await fetch('/api/progress', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        courseKey: progressCourseKey(course.name, course.levelName),
-        game: 'grammar',
-        statuses: nextStatuses,
-        reset,
-      }),
+    const json = await persistGameProgress({
+      courseKey: progressCourseKey(course.name, course.levelName),
+      game: 'grammar',
+      statuses: nextStatuses,
+      reset,
+      playSessionId: sessionId === undefined ? playSessionId : sessionId,
     });
-    const json = (await res.json()) as { success: boolean; statuses?: ProgressStatus[]; message?: string };
-    if (!res.ok || !json.success) {
+    if (!json.success) {
       throw new Error(json.message || 'Không lưu được tiến độ');
     }
     if (json.statuses) {
       setStatuses(normalizeStatuses(json.statuses, questions.length));
     }
+    if (json.playSessionId) {
+      setPlaySessionId(json.playSessionId);
+    }
+    return json.playSessionId || sessionId || playSessionId;
+  }
+
+  async function ensurePlaySession(): Promise<string> {
+    if (playSessionId) return playSessionId;
+    const nextId = createPlaySessionId();
+    const saved = await persistProgress(statuses, false, nextId);
+    return saved || nextId;
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!course || !currentQuestion || isSubmitting || answerResult) return;
+    if (isGradedStatus(statuses[currentQuestion.index])) return;
 
     if (!input.trim()) {
       setSubmitMessage('Hãy nhập câu trả lời trước khi nộp.');
@@ -472,13 +506,15 @@ export function GrammarGame({ courseId }: Props) {
 
     try {
       const isCorrect = gradeGrammarAnswer(input, currentQuestion.answers);
+      const sessionId = await ensurePlaySession();
       const elapsedMs = Date.now() - questionStartTime.current;
       const score = await submitAnswerScore(
         progressCourseKey(course.name, course.levelName),
         'grammar',
         currentQuestion.index,
         isCorrect,
-        elapsedMs
+        elapsedMs,
+        sessionId
       );
 
       if (!score.success) {
@@ -494,7 +530,11 @@ export function GrammarGame({ courseId }: Props) {
       if (typeof points === 'number') {
         setSessionPoints((current) => current + points);
       }
+      if (typeof score.gameScore === 'number') {
+        setGameScore(score.gameScore);
+      }
       setAnswerResult({ isCorrect, points });
+      scheduleAutoAdvance(advanceTimer, goNext);
     } catch (err) {
       setSubmitMessage(err instanceof Error ? err.message : 'Không nộp được câu trả lời');
     } finally {
@@ -503,6 +543,7 @@ export function GrammarGame({ courseId }: Props) {
   }
 
   function goNext() {
+    clearAutoAdvance(advanceTimer);
     const nextIndex = currentIndex + 1;
     if (nextIndex >= questions.length) {
       setPanel('result');
@@ -512,20 +553,36 @@ export function GrammarGame({ courseId }: Props) {
   }
 
   function openQuestion(index: number) {
-    setCurrentIndex(index);
-    setPanel('question');
+    void (async () => {
+      try {
+        await ensurePlaySession();
+        setCurrentIndex(index);
+        setPanel('question');
+      } catch (err) {
+        setSubmitMessage(err instanceof Error ? err.message : 'Không mở được câu hỏi');
+      }
+    })();
   }
 
   function startOrContinue() {
     const firstEmptyIndex = nextEmptyIndex(statuses);
     if (firstEmptyIndex === -1) return;
-    openQuestion(firstEmptyIndex);
+    void (async () => {
+      try {
+        await ensurePlaySession();
+        setCurrentIndex(firstEmptyIndex);
+        setPanel('question');
+      } catch (err) {
+        setSubmitMessage(err instanceof Error ? err.message : 'Không bắt đầu được bài');
+      }
+    })();
   }
 
   async function resetProgress(openFirstQuestion: boolean) {
     if (!course || isResetting) return;
 
     const emptyStatuses = Array.from({ length: questions.length }, () => 'empty' as ProgressStatus);
+    const nextSession = createPlaySessionId();
 
     setIsResetting(true);
     setSubmitMessage('');
@@ -535,7 +592,8 @@ export function GrammarGame({ courseId }: Props) {
       setSessionPoints(0);
       setAnswerResult(null);
       setCurrentIndex(0);
-      await persistProgress(emptyStatuses, true);
+      setPlaySessionId(nextSession);
+      await persistProgress(emptyStatuses, true, nextSession);
       setPanel(openFirstQuestion ? 'question' : 'list');
     } catch (err) {
       setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
@@ -584,6 +642,7 @@ export function GrammarGame({ courseId }: Props) {
       isSubmitting={isSubmitting}
       progressPercent={progressPercent}
       stats={stats}
+      gameScore={gameScore}
       onBackHome={() => {
         window.location.href = `/courses/${course.id}`;
       }}

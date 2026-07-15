@@ -21,6 +21,8 @@ export type PronunciationGameResponse = {
   };
   questions?: PronunciationQuestion[];
   statuses?: import('@/lib/gameCatalog').ProgressStatus[];
+  playSessionId?: string | null;
+  gameScore?: number;
   message?: string;
 };
 

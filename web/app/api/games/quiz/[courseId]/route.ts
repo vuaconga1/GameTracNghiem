@@ -1,10 +1,9 @@
 import { NextResponse } from 'next/server';
 
 import { requireSession } from '@/lib/auth';
-import { progressCourseKey } from '@/lib/courseKey';
 import { prisma } from '@/lib/db';
 import { findPlayableCourseGame } from '@/lib/findPlayableCourseGame';
-import { progressStatuses } from '@/lib/gameCatalog';
+import { loadGamePlayerState } from '@/lib/loadGamePlayerState';
 
 type QuizPayload = {
   type?: unknown;
@@ -59,8 +58,7 @@ export async function GET(
       );
     }
 
-    const courseKey = progressCourseKey(course.name, course.levelName);
-    const [questions, progress] = await Promise.all([
+    const [questions, player] = await Promise.all([
       prisma.question.findMany({
         where: {
           courseId: course.id,
@@ -74,17 +72,11 @@ export async function GET(
         },
         orderBy: [{ sortOrder: 'asc' }, { id: 'asc' }],
       }),
-      prisma.gameProgress.findUnique({
-        where: {
-          userId_courseKey_game: {
-            userId: session.userId,
-            courseKey,
-            game: 'quiz',
-          },
-        },
-        select: {
-          statuses: true,
-        },
+      loadGamePlayerState({
+        userId: session.userId,
+        courseName: course.name,
+        levelName: course.levelName,
+        game: 'quiz',
       }),
     ]);
 
@@ -110,7 +102,9 @@ export async function GET(
           options: stringList(payload.options),
         };
       }),
-      statuses: progressStatuses(progress?.statuses),
+      statuses: player.statuses,
+      playSessionId: player.playSessionId,
+      gameScore: player.gameScore,
     });
   } catch (err) {
     return errorResponse(err);

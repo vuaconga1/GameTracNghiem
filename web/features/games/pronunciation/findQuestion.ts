@@ -43,3 +43,40 @@ export function nextQuestionIndexInMode(
   }
   return currentIndex;
 }
+
+function isPlayableQuestion(question: PronunciationQuestion, modes: PronunciationMode[]): boolean {
+  return modes.includes(question.mode || 'phoneme');
+}
+
+/** First unanswered playable question, or -1 when all playable are graded. */
+export function nextEmptyPlayableIndex(
+  questions: PronunciationQuestion[],
+  statuses: readonly string[]
+): number {
+  const modes = playableModes(questions);
+  for (let index = 0; index < questions.length; index += 1) {
+    if (isPlayableQuestion(questions[index], modes) && statuses[index] === 'empty') {
+      return index;
+    }
+  }
+  return -1;
+}
+
+/** Next playable question after currentIndex, or -1 at end of list. */
+export function nextPlayableIndex(
+  questions: PronunciationQuestion[],
+  currentIndex: number
+): number {
+  const modes = playableModes(questions);
+  for (let index = currentIndex + 1; index < questions.length; index += 1) {
+    if (isPlayableQuestion(questions[index], modes)) return index;
+  }
+  return -1;
+}
+
+export function playableQuestionEntries(questions: PronunciationQuestion[]) {
+  const modes = playableModes(questions);
+  return questions
+    .map((question, index) => ({ question, index }))
+    .filter(({ question }) => isPlayableQuestion(question, modes));
+}

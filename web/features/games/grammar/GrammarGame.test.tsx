@@ -42,6 +42,7 @@ describe('GrammarGameContent', () => {
     isResetting: false,
     progressPercent: 30,
     stats: { total: 2, correct: 1, wrong: 0, pending: 1 },
+    gameScore: 350,
     onBackHome: vi.fn(),
     onBackToList: vi.fn(),
     onOpenQuestion: vi.fn(),
@@ -65,6 +66,8 @@ describe('GrammarGameContent', () => {
     expect(listHtml).toContain('class="game-page grammar-page"');
     expect(listHtml).toContain('id="listPanel"');
     expect(listHtml).toContain('class="list-stats"');
+    expect(listHtml).toContain('class="game-score-hero"');
+    expect(listHtml).toContain('Tổng điểm cao nhất');
     expect(listHtml).toContain('class="q-list-item status-correct"');
     expect(listHtml).toContain('class="q-list-item status-pending"');
     expect(listHtml).toContain('Bắt đầu làm bài');
@@ -93,8 +96,9 @@ describe('GrammarGameContent', () => {
       })
     );
     expect(resultHtml).toContain('id="resultPanel"');
-    expect(resultHtml).toContain('class="result-panel"');
-    expect(resultHtml).toContain('Tổng điểm phiên: +120 điểm');
+    expect(resultHtml).toContain('class="game-score-hero"');
+    expect(resultHtml).toContain('Tổng điểm cao nhất');
+    expect(resultHtml).toContain('350');
     expect(resultHtml).toContain('Làm lại');
     expect(resultHtml).toContain('Quay lại khóa học');
   });

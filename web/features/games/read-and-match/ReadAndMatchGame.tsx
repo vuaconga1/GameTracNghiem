@@ -4,7 +4,14 @@ import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
+import { GameResultSummary, GameScoreHero } from '@/components/games/GameScoreHero';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
+import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
+import {
+  createPlaySessionId,
+  persistGameProgress,
+} from '@/features/games/persistProgress';
+import { gradedIsCorrect, isGradedStatus } from '@/features/games/gradedLock';
 import { progressCourseKey } from '@/lib/courseKey';
 import {
   type ProgressStatus,
@@ -40,6 +47,8 @@ type ReadAndMatchGameResponse = {
   exercises?: ReadAndMatchExercise[];
   unitTotal?: number;
   statuses?: ProgressStatus[];
+  gameScore?: number;
+  playSessionId?: string | null;
   message?: string;
 };
 
@@ -120,6 +129,8 @@ export function ReadAndMatchGame({ courseId }: Props) {
   const [answered, setAnswered] = useState(false);
   const [checkResult, setCheckResult] = useState<CheckResult | null>(null);
   const [sessionPoints, setSessionPoints] = useState(0);
+  const [gameScore, setGameScore] = useState(0);
+  const [playSessionId, setPlaySessionId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
@@ -154,6 +165,8 @@ export function ReadAndMatchGame({ courseId }: Props) {
         setCurrentIndex(firstEmptyIndex === -1 ? 0 : firstEmptyIndex);
         setPanel('list');
         setSessionPoints(0);
+        setGameScore(json.gameScore || 0);
+        setPlaySessionId(json.playSessionId || null);
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
@@ -221,37 +234,73 @@ export function ReadAndMatchGame({ courseId }: Props) {
 
   useEffect(() => {
     if (panel === 'game' && currentExercise) {
-      resetExerciseState(currentExercise);
+      if (isGradedStatus(statuses[currentIndex])) {
+        clearAutoAdvance(advanceTimer);
+        const nextMatches: Record<number, MatchRecord> = {};
+        currentExercise.items.forEach((item, itemIndex) => {
+          nextMatches[itemIndex] = {
+            imageIndex: itemIndex,
+            correct: true,
+            label: item.label || item.answer,
+          };
+        });
+        setMatches(nextMatches);
+        setSelectedSent(null);
+        setAnswered(true);
+        setCheckResult({
+          isCorrect: gradedIsCorrect(statuses[currentIndex]),
+          correctCount: gradedIsCorrect(statuses[currentIndex])
+            ? currentExercise.items.length
+            : 0,
+          itemResults: currentExercise.items.map(() => gradedIsCorrect(statuses[currentIndex])),
+          pointsEarned: 0,
+        });
+        setSubmitMessage('');
+        setShuffledImages(
+          currentExercise.items.map((item, itemIndex) => ({ itemIndex, item }))
+        );
+      } else {
+        resetExerciseState(currentExercise);
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- apply lock when entering exercise
   }, [currentIndex, currentExercise, panel, resetExerciseState]);
 
-  async function persistProgress(nextStatuses: ProgressStatus[], reset = false) {
-    if (!course) return;
+  async function persistProgress(
+    nextStatuses: ProgressStatus[],
+    reset = false,
+    sessionId?: string | null
+  ) {
+    if (!course) return null;
 
-    const res = await fetch('/api/progress', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        courseKey: progressCourseKey(course.name, course.levelName),
-        game: 'read_and_match',
-        statuses: nextStatuses,
-        reset,
-      }),
+    const json = await persistGameProgress({
+      courseKey: progressCourseKey(course.name, course.levelName),
+      game: 'read_and_match',
+      statuses: nextStatuses,
+      reset,
+      playSessionId: sessionId === undefined ? playSessionId : sessionId,
     });
-    const json = (await res.json()) as {
-      success: boolean;
-      statuses?: ProgressStatus[];
-      message?: string;
-    };
-    if (!res.ok || !json.success) {
+    if (!json.success) {
       throw new Error(json.message || 'Không lưu được tiến độ');
     }
     if (json.statuses) {
       setStatuses(normalizeStatuses(json.statuses, exercises.length));
     }
+    if (json.playSessionId) {
+      setPlaySessionId(json.playSessionId);
+    }
+    return json.playSessionId || sessionId || playSessionId;
+  }
+
+  async function ensurePlaySession(): Promise<string> {
+    if (playSessionId) return playSessionId;
+    const nextId = createPlaySessionId();
+    const saved = await persistProgress(statuses, false, nextId);
+    return saved || nextId;
   }
 
   function goNextExercise(nextStatuses = statuses) {
+    clearAutoAdvance(advanceTimer);
     const nextIndex = currentIndex + 1;
     if (nextIndex >= exercises.length) {
       const pending = nextStatuses.filter((status) => status === 'empty').length;
@@ -266,10 +315,7 @@ export function ReadAndMatchGame({ courseId }: Props) {
   }
 
   function scheduleAdvance(nextStatuses: ProgressStatus[]) {
-    if (advanceTimer.current) clearTimeout(advanceTimer.current);
-    advanceTimer.current = setTimeout(() => {
-      goNextExercise(nextStatuses);
-    }, 900);
+    scheduleAutoAdvance(advanceTimer, () => goNextExercise(nextStatuses));
   }
 
   const finalizeExercise = useCallback(
@@ -334,13 +380,15 @@ export function ReadAndMatchGame({ courseId }: Props) {
     setSelectedSent(null);
 
     try {
+      const sessionId = await ensurePlaySession();
       const elapsedMs = Date.now() - questionStartTime.current;
       const score = await submitAnswerScore(
         progressCourseKey(course.name, course.levelName),
         'read_and_match',
         currentExercise.index * 100 + sentenceIndex,
         isCorrect,
-        elapsedMs
+        elapsedMs,
+        sessionId
       );
       if (!score.success) {
         throw new Error(score.message || 'Không ghi được điểm');
@@ -348,6 +396,9 @@ export function ReadAndMatchGame({ courseId }: Props) {
       if (typeof score.points === 'number' && score.points) {
         const points = score.points;
         setSessionPoints((current) => current + points);
+      }
+      if (typeof score.gameScore === 'number') {
+        setGameScore(score.gameScore);
       }
     } catch (err) {
       setSubmitMessage(err instanceof Error ? err.message : 'Không ghi được điểm');
@@ -358,8 +409,15 @@ export function ReadAndMatchGame({ courseId }: Props) {
   }
 
   function openExercise(index: number) {
-    setCurrentIndex(index);
-    setPanel('game');
+    void (async () => {
+      try {
+        await ensurePlaySession();
+        setCurrentIndex(index);
+        setPanel('game');
+      } catch (err) {
+        setSubmitMessage(err instanceof Error ? err.message : 'Không mở được bài');
+      }
+    })();
   }
 
   function startOrContinue() {
@@ -372,6 +430,7 @@ export function ReadAndMatchGame({ courseId }: Props) {
     if (!course || isResetting) return;
 
     const emptyStatuses = Array.from({ length: exercises.length }, () => 'empty' as ProgressStatus);
+    const nextSession = createPlaySessionId();
 
     setIsResetting(true);
     setSubmitMessage('');
@@ -381,7 +440,8 @@ export function ReadAndMatchGame({ courseId }: Props) {
       setSessionPoints(0);
       setCheckResult(null);
       setCurrentIndex(0);
-      await persistProgress(emptyStatuses, true);
+      setPlaySessionId(nextSession);
+      await persistProgress(emptyStatuses, true, nextSession);
       setPanel(openFirstExercise ? 'game' : 'list');
     } catch (err) {
       setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
@@ -468,6 +528,7 @@ export function ReadAndMatchGame({ courseId }: Props) {
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
           <div className="list-title">Danh sách bài tập</div>
+          <GameScoreHero gameScore={gameScore} />
           <div className="list-stats">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
@@ -670,29 +731,27 @@ export function ReadAndMatchGame({ courseId }: Props) {
 
       {panel === 'result' ? (
         <div className="game-card" id="resultPanel">
-          <div className="result-panel">
-            <h2>Hoàn thành!</h2>
-            <p>
-              Bạn đã hoàn thành {exercises.length} bài — đúng {stats.correct}, sai {stats.wrong}.
-              {sessionPoints ? ` Tổng điểm phiên: ${formatPoints(sessionPoints)}.` : ''}
-            </p>
-            <div className="game-actions">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => void resetProgress(false)}
-                disabled={isResetting}
-              >
-                {isResetting ? 'Đang làm lại...' : 'Làm lại'}
-              </button>
-              <button type="button" className="btn btn-secondary" onClick={() => setPanel('list')}>
-                Quay lại danh sách
-              </button>
-              <Link href={`/courses/${course.id}`} className="btn btn-secondary">
-                Quay lại khóa học
-              </Link>
-            </div>
-          </div>
+          <GameResultSummary
+            gameScore={gameScore}
+            correct={stats.correct}
+            total={stats.total}
+            wrong={stats.wrong}
+          >
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => void resetProgress(false)}
+              disabled={isResetting}
+            >
+              {isResetting ? 'Đang làm lại...' : 'Làm lại'}
+            </button>
+            <button type="button" className="btn btn-secondary" onClick={() => setPanel('list')}>
+              Quay lại danh sách
+            </button>
+            <Link href={`/courses/${course.id}`} className="btn btn-secondary">
+              Quay lại khóa học
+            </Link>
+          </GameResultSummary>
         </div>
       ) : null}
     </div>

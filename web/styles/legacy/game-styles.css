@@ -941,14 +941,14 @@ a.btn-secondary:hover {
 
 .result-panel {
   text-align: center;
-  padding: 20px 0;
+  padding: 28px 12px 12px;
 }
 
 .result-panel h2 {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 800;
   color: var(--primary);
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
 
 .result-panel p {
@@ -956,6 +956,55 @@ a.btn-secondary:hover {
   color: var(--text-muted);
   font-weight: 600;
   margin-bottom: 20px;
+}
+
+.game-score-hero {
+  margin: 0 0 16px;
+  padding: 16px 20px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid rgba(13, 43, 110, 0.12);
+  box-shadow: 0 4px 14px rgba(13, 43, 110, 0.06);
+  max-width: 220px;
+  width: 100%;
+  text-align: left;
+}
+
+.game-score-hero-label {
+  margin: 6px 0 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #64748b !important;
+  opacity: 1;
+}
+
+.game-score-hero-value {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #0d2b6e !important;
+}
+
+.game-score-hero-unit {
+  margin-left: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #0d2b6e;
+  opacity: 0.75;
+}
+
+.result-panel .game-score-hero {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.game-result-summary-text {
+  margin-bottom: 22px !important;
+  color: #475569 !important;
 }
 
 .hidden {
@@ -973,37 +1022,52 @@ a.btn-secondary:hover {
   text-align: center;
   padding: 14px 8px;
   border-radius: 12px;
-  background: #f5f5f5;
+  background: #fff;
+  border: 1px solid rgba(13, 43, 110, 0.1);
+  box-shadow: 0 2px 8px rgba(13, 43, 110, 0.04);
 }
 
 .stat-item .stat-num {
   display: block;
   font-size: 22px;
   font-weight: 800;
-  color: var(--text-dark);
+  color: #0d2b6e;
 }
 
 .stat-item .stat-label {
   font-size: 11px;
   font-weight: 700;
-  color: var(--text-muted);
+  color: #64748b;
   margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
 .stat-item.correct {
-  background: #e8f5e9;
+  background: #f0f7f3;
+  border-color: rgba(15, 118, 70, 0.18);
 }
 
 .stat-item.correct .stat-num {
-  color: var(--success);
+  color: #0f7646;
 }
 
 .stat-item.wrong {
-  background: #ffebee;
+  background: #faf4f4;
+  border-color: rgba(185, 48, 48, 0.16);
 }
 
 .stat-item.wrong .stat-num {
-  color: var(--error);
+  color: #b93030;
+}
+
+.stat-item.pending {
+  background: #f5f7fb;
+  border-color: rgba(13, 43, 110, 0.1);
+}
+
+.stat-item.pending .stat-num {
+  color: #475569;
 }
 
 .question-list {
@@ -1039,18 +1103,18 @@ a.btn-secondary:hover {
 }
 
 .q-list-item.status-correct {
-  background: #e8f5e9;
-  border-color: #a5d6a7;
+  background: #f3faf6;
+  border-color: rgba(15, 118, 70, 0.28);
 }
 
 .q-list-item.status-wrong {
-  background: #ffebee;
-  border-color: #ef9a9a;
+  background: #fbf5f5;
+  border-color: rgba(185, 48, 48, 0.24);
 }
 
 .q-list-item.status-pending {
-  background: #f5f5f5;
-  border-color: #e0e0e0;
+  background: #f8fafc;
+  border-color: rgba(13, 43, 110, 0.12);
 }
 
 .q-num {
@@ -1068,12 +1132,12 @@ a.btn-secondary:hover {
 }
 
 .q-list-item.status-correct .q-num {
-  background: #2e7d32;
+  background: #0f7646;
   color: #fff;
 }
 
 .q-list-item.status-wrong .q-num {
-  background: #c62828;
+  background: #b93030;
   color: #fff;
 }
 

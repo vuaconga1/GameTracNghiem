@@ -47,8 +47,9 @@ describe('PronunciationGameContent', () => {
         hint: '',
       },
     ],
+    panel: 'question' as const,
     currentIndex: 0,
-    currentMode: 'phoneme',
+    currentMode: 'phoneme' as const,
     recordState: 'idle' as const,
     showActions: false,
     sessionPoints: 120,
@@ -57,15 +58,58 @@ describe('PronunciationGameContent', () => {
     answerResult: null,
     submitMessage: '',
     isSubmitting: false,
-    onBack: vi.fn(),
+    isResetting: false,
+    stats: { total: 2, correct: 0, wrong: 0, pending: 2 },
+    gameScore: 850,
+    onBackHome: vi.fn(),
+    onBackToList: vi.fn(),
+    onOpenQuestion: vi.fn(),
+    onStartContinue: vi.fn(),
+    onRetry: vi.fn(),
+    onRetryFromStart: vi.fn(),
+    onViewResult: vi.fn(),
     onModeChange: vi.fn(),
     onResetQuestion: vi.fn(),
     onPlayReference: vi.fn(),
     onPlaySlow: vi.fn(),
     onMicClick: vi.fn(),
-    onRetry: vi.fn(),
     onNext: vi.fn(),
   };
+
+  it('shows question list and start button on list panel', () => {
+    const html = renderToStaticMarkup(
+      createElement(PronunciationGameContent, {
+        ...baseProps,
+        panel: 'list',
+        statuses: ['correct', 'empty', 'empty'],
+        stats: { total: 2, correct: 1, wrong: 0, pending: 1 },
+      })
+    );
+
+    expect(html).toContain('id="listPanel"');
+    expect(html).toContain('Danh sách câu hỏi');
+    expect(html).toContain('Bắt đầu làm bài');
+    expect(html).toContain('Tổng điểm cao nhất');
+    expect(html).toContain('850');
+    expect(html).toContain('world');
+    expect(html).toContain('Nice to meet you');
+    expect(html).not.toContain('id="btnMicIcon"');
+    expect(html).not.toContain('computer');
+  });
+
+  it('shows redo from start when all playable questions are graded', () => {
+    const html = renderToStaticMarkup(
+      createElement(PronunciationGameContent, {
+        ...baseProps,
+        panel: 'list',
+        statuses: ['correct', 'wrong', 'empty'],
+        stats: { total: 2, correct: 1, wrong: 1, pending: 0 },
+      })
+    );
+
+    expect(html).toContain('Làm lại từ đầu');
+    expect(html).toContain('Xem kết quả');
+  });
 
   it('renders pronunciation chrome and hides stress tab', () => {
     const html = renderToStaticMarkup(
@@ -101,6 +145,8 @@ describe('PronunciationGameContent', () => {
     );
 
     expect(html).toContain('id="actionContainer"');
+    expect(html).toContain('id="btnNextAction"');
+    expect(html).not.toContain('id="btnRetry"');
     expect(html).toContain('Độ chính xác');
     expect(html).toContain('Phát âm rất chuẩn');
     expect(html).toContain('+150 điểm');
