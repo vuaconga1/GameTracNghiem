@@ -37,8 +37,8 @@ export async function PATCH(req: Request, { params }: Ctx) {
           return Response.json({ success: false, message: 'Chỉ chấp nhận file PDF' }, { status: 400 });
         }
         const bytes = Buffer.from(await file.arrayBuffer());
-        storageKey = makeEbookStorageKey(existing.id);
-        await saveEbookFile(storageKey, bytes);
+        const key = makeEbookStorageKey(existing.id);
+        storageKey = await saveEbookFile(key, bytes);
         originalName = file.name;
       }
 

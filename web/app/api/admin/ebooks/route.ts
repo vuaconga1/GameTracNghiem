@@ -49,10 +49,10 @@ export async function POST(req: Request) {
     });
 
     const storageKey = makeEbookStorageKey(item.id);
-    await saveEbookFile(storageKey, bytes);
+    const savedKey = await saveEbookFile(storageKey, bytes);
     const saved = await prisma.ebook.update({
       where: { id: item.id },
-      data: { storageKey },
+      data: { storageKey: savedKey },
     });
 
     return Response.json({ success: true, item: saved });

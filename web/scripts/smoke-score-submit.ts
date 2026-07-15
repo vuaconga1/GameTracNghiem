@@ -1,20 +1,10 @@
 /**
  * Smoke test: append ScoreLog via same logic as POST /api/score/submit and verify aggregate.
  */
-import 'dotenv/config';
-import { PrismaPg } from '@prisma/adapter-pg';
-import { PrismaClient } from '@prisma/client';
+import '../lib/loadEnv';
 
+import { prisma } from '../lib/db';
 import { calculatePoints, SCORING } from '../lib/scoring';
-
-const connectionString = process.env.DATABASE_URL;
-if (!connectionString) {
-  throw new Error('DATABASE_URL is not set');
-}
-
-const prisma = new PrismaClient({
-  adapter: new PrismaPg(connectionString),
-});
 
 async function main() {
   const user = await prisma.user.findUnique({ where: { username: 'demo' } });

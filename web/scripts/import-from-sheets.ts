@@ -2,24 +2,15 @@
  * CSV import stub for users and courses.
  * Reads local CSV files; Google Sheets API integration is optional later.
  */
-import 'dotenv/config';
+import '../lib/loadEnv';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-import { PrismaPg } from '@prisma/adapter-pg';
-import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 
+import { prisma } from '../lib/db';
+
 const DATA_DIR = join(process.cwd(), 'scripts/data');
-
-const connectionString = process.env.DATABASE_URL;
-if (!connectionString) {
-  throw new Error('DATABASE_URL is not set');
-}
-
-const prisma = new PrismaClient({
-  adapter: new PrismaPg(connectionString),
-});
 
 function parseCsv(content: string): Record<string, string>[] {
   const lines = content

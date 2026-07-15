@@ -1,11 +1,7 @@
-import { createReadStream } from 'fs';
-import { stat } from 'fs/promises';
-import { Readable } from 'stream';
-
 import { requireSession } from '@/lib/auth';
 import { notArchived } from '@/lib/admin/notArchived';
 import { prisma } from '@/lib/db';
-import { ebookAbsolutePath } from '@/lib/ebookStorage';
+import { openEbookFile } from '@/lib/ebookStorage';
 
 export const runtime = 'nodejs';
 
@@ -22,25 +18,27 @@ export async function GET(_req: Request, { params }: Ctx) {
       return Response.json({ success: false, message: 'Không tìm thấy sách' }, { status: 404 });
     }
 
-    const filePath = ebookAbsolutePath(ebook.storageKey);
-    let fileStat;
-    try {
-      fileStat = await stat(filePath);
-    } catch {
-      return Response.json({ success: false, message: 'File sách không tồn tại trên máy chủ' }, { status: 404 });
+    const file = await openEbookFile(ebook.storageKey);
+    if (!file) {
+      return Response.json(
+        { success: false, message: 'File sách không tồn tại trên máy chủ' },
+        { status: 404 },
+      );
     }
 
-    const stream = createReadStream(filePath);
-    const webStream = Readable.toWeb(stream) as unknown as ReadableStream;
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': `inline; filename="${encodeURIComponent(ebook.originalName)}"`,
+      'Cache-Control': 'private, max-age=300',
+    };
+    if (file.contentLength != null && Number.isFinite(file.contentLength)) {
+      headers['Content-Length'] = String(file.contentLength);
+    }
 
-    return new Response(webStream, {
-      headers: {
-        'Content-Type': 'application/pdf',
-        'Content-Length': String(fileStat.size),
-        'Content-Disposition': `inline; filename="${encodeURIComponent(ebook.originalName)}"`,
-        'Cache-Control': 'private, max-age=300',
-      },
-    });
+    const body =
+      Buffer.isBuffer(file.body) ? new Uint8Array(file.body) : file.body;
+
+    return new Response(body, { headers });
   } catch (err) {
     const status =
       typeof err === 'object' && err !== null && 'status' in err

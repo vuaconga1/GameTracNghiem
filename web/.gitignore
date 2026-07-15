@@ -51,3 +51,6 @@ yarn-error.log*
 *.pdf
 *.xlsx
 *.xls
+scripts/data/*.sql
+scripts/data/*.clean.sql
+scripts/data/local-to-neon*

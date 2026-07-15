@@ -7,25 +7,16 @@
  *   npx tsx scripts/import-from-excel.ts --keep-questions
  *   npx tsx scripts/import-from-excel.ts --replace-scores
  */
-import 'dotenv/config';
+import '../lib/loadEnv';
 import { existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-import { PrismaPg } from '@prisma/adapter-pg';
-import { Prisma, PrismaClient } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import * as XLSX from 'xlsx';
 
 import { progressCourseKey } from '../lib/courseKey';
-
-const connectionString = process.env.DATABASE_URL;
-if (!connectionString) {
-  throw new Error('DATABASE_URL is not set');
-}
-
-const prisma = new PrismaClient({
-  adapter: new PrismaPg(connectionString),
-});
+import { prisma } from '../lib/db';
 
 const DEFAULT_EXCEL = resolve(process.cwd(), '../Game Trắc Nghiệm.xlsx');
 

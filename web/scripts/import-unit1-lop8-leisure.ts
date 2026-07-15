@@ -2,20 +2,11 @@
  * Append 5 sample items for underfilled games on Unit 1 / Lớp 8 (Leisure).
  * Does not delete existing questions. Re-run is safe if you change EXTERNAL_PREFIX.
  */
-import 'dotenv/config';
-import { PrismaPg } from '@prisma/adapter-pg';
-import { PrismaClient, type Prisma } from '@prisma/client';
+import '../lib/loadEnv';
+import type { Prisma } from '@prisma/client';
 
 import { parseGamePayload } from '../lib/admin/payloadSchemas';
-
-const connectionString = process.env.DATABASE_URL;
-if (!connectionString) {
-  throw new Error('DATABASE_URL is not set');
-}
-
-const prisma = new PrismaClient({
-  adapter: new PrismaPg(connectionString),
-});
+import { prisma } from '../lib/db';
 
 const EXTERNAL_PREFIX = 'U1-L8-LEISURE';
 
