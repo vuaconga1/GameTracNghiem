@@ -1,5 +1,7 @@
 import type { PronunciationMode, PronunciationQuestion } from './types';
 
+const HIDDEN_MODES = new Set(['stress']);
+
 export function uniqueModes(questions: PronunciationQuestion[]): PronunciationMode[] {
   const seen = new Set<string>();
   const modes: PronunciationMode[] = [];
@@ -11,6 +13,11 @@ export function uniqueModes(questions: PronunciationQuestion[]): PronunciationMo
     }
   }
   return modes;
+}
+
+/** Modes shown in the player (stress hidden until auto-scoring exists). */
+export function playableModes(questions: PronunciationQuestion[]): PronunciationMode[] {
+  return uniqueModes(questions).filter((mode) => !HIDDEN_MODES.has(String(mode)));
 }
 
 export function findFirstQuestionByMode(

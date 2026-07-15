@@ -24,4 +24,4 @@ export type PronunciationGameResponse = {
   message?: string;
 };
 
-export type RecordState = 'idle' | 'recording' | 'done';
+export type RecordState = 'idle' | 'recording' | 'assessing' | 'done';

@@ -38,6 +38,21 @@ export function buildPgPoolConfig(connectionString: string): PoolConfig {
   };
 }
 
+function hasCourseField(client: unknown, field: string): boolean {
+  const models = (
+    client as {
+      _runtimeDataModel?: { models?: Record<string, { fields?: Record<string, unknown> }> };
+    }
+  )._runtimeDataModel?.models;
+  const fields = models?.Course?.fields;
+  return Boolean(fields && field in fields);
+}
+
+/** Dev-only: drop a stale HMR Prisma client without ending the shared pg pool. */
+export function shouldRecycleDevClient(client: unknown): boolean {
+  return !hasCourseField(client, 'enabledGames');
+}
+
 function createPrismaClient(): PrismaClient {
   const connectionString = process.env.DATABASE_URL;
   if (!connectionString) {
@@ -47,9 +62,8 @@ function createPrismaClient(): PrismaClient {
   const pool =
     globalForPrisma.pgPool ?? new Pool(buildPgPoolConfig(connectionString));
 
-  if (process.env.NODE_ENV !== 'production') {
-    globalForPrisma.pgPool = pool;
-  }
+  // Keep one pool for the whole Node process (dev HMR + serverless warm instances).
+  globalForPrisma.pgPool = pool;
 
   const adapter = new PrismaPg(pool);
 
@@ -59,35 +73,33 @@ function createPrismaClient(): PrismaClient {
   });
 }
 
-function hasCourseField(client: PrismaClient, field: string): boolean {
-  const models = (
-    client as unknown as {
-      _runtimeDataModel?: { models?: Record<string, { fields?: Record<string, unknown> }> };
-    }
-  )._runtimeDataModel?.models;
-  const fields = models?.Course?.fields;
-  return Boolean(fields && field in fields);
-}
-
 function getPrismaClient(): PrismaClient {
   const existing = globalForPrisma.prisma;
   if (existing) {
-    // After `prisma generate`, Next HMR can keep a stale global client.
-    if (process.env.NODE_ENV !== 'production' && !hasCourseField(existing, 'enabledGames')) {
-      void existing.$disconnect().catch(() => undefined);
-      void globalForPrisma.pgPool?.end().catch(() => undefined);
+    // After `prisma generate`, Next HMR can keep a stale Prisma client.
+    // Recycle the client only — never $disconnect()/pool.end(): with PrismaPg,
+    // $disconnect ends the underlying Pool and other hot-reloaded modules still
+    // holding a client throw "Cannot use a pool after calling end on the pool".
+    if (process.env.NODE_ENV !== 'production' && shouldRecycleDevClient(existing)) {
       globalForPrisma.prisma = undefined;
-      globalForPrisma.pgPool = undefined;
     } else {
       return existing;
     }
   }
 
   const client = createPrismaClient();
-  if (process.env.NODE_ENV !== 'production') {
-    globalForPrisma.prisma = client;
-  }
+  globalForPrisma.prisma = client;
   return client;
 }
 
-export const prisma = getPrismaClient();
+/**
+ * Lazy accessor so HMR always reads the current global client/pool instead of a
+ * closed-over module binding from a previous hot reload.
+ */
+export const prisma = new Proxy({} as PrismaClient, {
+  get(_target, prop, receiver) {
+    const client = getPrismaClient();
+    const value = Reflect.get(client, prop, receiver);
+    return typeof value === 'function' ? value.bind(client) : value;
+  },
+});

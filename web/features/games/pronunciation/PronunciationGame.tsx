@@ -12,31 +12,31 @@ import {
 
 import { playReferenceAudio } from './audio';
 import {
-  getSentenceWordScores,
-  getWordPhonemeBreakdown,
-  phonemeScoreRings,
-  pitchCurvePoints,
+  feedbackMessage,
   resolveFeedbackMode,
-  sentenceScoreRings,
-  stressFeedbackText,
+  sentenceScoreRingsFromResult,
   stressSyllablesForDisplay,
+  wordScoreRings,
 } from './feedback';
 import {
   findFirstQuestionByMode,
   nextQuestionIndexInMode,
-  uniqueModes,
+  playableModes,
 } from './findQuestion';
 import {
   getModeWordCardStyle,
   modeConfig,
   modeLabel,
 } from './modes';
+import { startMicRecording, type RecordedClip } from './recordAudio';
+import { scoreTranscript, type TranscriptScoreResult } from './scoreTranscript';
 import type {
   PronunciationGameResponse,
   PronunciationMode,
   PronunciationQuestion,
   RecordState,
 } from './types';
+import { isWebSpeechAvailable, recognizeWithWebSpeech } from './webSpeechFallback';
 
 type Props = {
   courseId: string;
@@ -45,6 +45,14 @@ type Props = {
 type AnswerResult = {
   isCorrect: boolean;
   points?: number;
+  score: TranscriptScoreResult;
+  engine: 'groq' | 'webspeech';
+};
+
+type MicSession = {
+  stop: () => void;
+  cancel: () => void;
+  done: Promise<RecordedClip>;
 };
 
 function formatPoints(points: number): string {
@@ -112,75 +120,43 @@ function StressSyllables({ word, accentColor }: { word: string; accentColor: str
 
 function EvaluationResult({
   question,
-  isCorrect,
-  points,
+  result,
 }: {
   question: PronunciationQuestion;
-  isCorrect: boolean;
-  points?: number;
+  result: AnswerResult;
 }) {
   const mode = resolveFeedbackMode(question.mode);
-  const cfg = modeConfig(mode);
-
-  if (mode === 'phoneme') {
-    const rings = phonemeScoreRings(isCorrect, question.targetIpa);
-    const chips = getWordPhonemeBreakdown(question.targetText, isCorrect);
-    return (
-      <div className="evaluation-result pron-content-stack">
-        <div className="eval-rings">
-          {rings.map((ring) => (
-            <ScoreRing key={ring.label} {...ring} />
-          ))}
-        </div>
-        <div className={`eval-feedback ${isCorrect ? 'correct' : 'wrong'}`}>
-          <p className="eval-feedback-title">
-            <i
-              className={`fa-solid ${isCorrect ? 'fa-circle-check text-green-500' : 'fa-circle-xmark text-red-500'}`}
-              aria-hidden="true"
-            />
-            <span>
-              {isCorrect
-                ? 'Phát âm rất chuẩn! Hãy tiếp tục luyện tập.'
-                : 'Chưa chuẩn — tập trung vào âm cần chú ý.'}
-            </span>
-          </p>
-          <div style={{ marginTop: '0.75rem' }}>
-            <p className="eval-word-breakdown-title" style={{ textAlign: 'left' }}>
-              Phân tích từng âm
-            </p>
-            <div className="eval-chip-row">
-              {chips.map((chip, index) => (
-                <div key={`${chip.char}-${index}`} className={`eval-letter-chip${chip.weak ? ' weak' : ''}`}>
-                  <span className={`eval-letter${chip.weak ? ' weak' : ''}`}>{chip.char}</span>
-                  <span className={`eval-letter-score${chip.weak ? ' weak' : ''}`}>{chip.score}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        {typeof points === 'number' ? <div className="eval-points">{formatPoints(points)}</div> : null}
-      </div>
-    );
-  }
+  const { score, points, engine } = result;
 
   if (mode === 'sentence') {
-    const rings = sentenceScoreRings(isCorrect);
-    const words = getSentenceWordScores(question.targetText, isCorrect);
+    const rings = sentenceScoreRingsFromResult(score);
+    const words = score.wordScores || [];
     return (
       <div className="evaluation-result pron-content-stack">
         <div className="eval-rings">
           {rings.map((ring) => (
             <ScoreRing key={ring.label} {...ring} />
           ))}
+        </div>
+        {engine === 'webspeech' ? (
+          <p className="pron-engine-badge">Chấm bằng nhận dạng trình duyệt</p>
+        ) : null}
+        <div className={`eval-feedback ${score.isCorrect ? 'correct' : 'wrong'}`}>
+          <p className="eval-feedback-title">
+            <i
+              className={`fa-solid ${score.isCorrect ? 'fa-circle-check text-green-500' : 'fa-circle-xmark text-red-500'}`}
+              aria-hidden="true"
+            />
+            <span>{feedbackMessage(score)}</span>
+          </p>
         </div>
         <div className="eval-word-breakdown">
           <p className="eval-word-breakdown-title">Từng từ một</p>
           <div className="eval-word-row">
             {words.map((item) => {
-              const colorClass =
-                item.score >= 80 ? 'good' : item.score >= 60 ? 'mid' : 'bad';
+              const colorClass = item.score >= 80 ? 'good' : item.score >= 60 ? 'mid' : 'bad';
               return (
-                <div key={item.word} className="eval-word-chip">
+                <div key={`${item.word}-${item.score}`} className="eval-word-chip">
                   <span className="eval-word-text">{item.word}</span>
                   <span className={`eval-word-score ${colorClass}`}>{item.score}</span>
                 </div>
@@ -193,39 +169,27 @@ function EvaluationResult({
     );
   }
 
-  const feedback = stressFeedbackText(question.targetText, isCorrect);
-  const strokeColor = isCorrect ? '#22c55e' : '#ef4444';
+  const rings = wordScoreRings(score);
   return (
     <div className="evaluation-result pron-content-stack">
-      <div className={`eval-feedback ${isCorrect ? 'correct' : 'wrong'}`}>
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.75rem' }}>
+      <div className="eval-rings">
+        {rings.map((ring) => (
+          <ScoreRing key={ring.label} {...ring} />
+        ))}
+      </div>
+      {engine === 'webspeech' ? (
+        <p className="pron-engine-badge">Chấm bằng nhận dạng trình duyệt</p>
+      ) : null}
+      <div className={`eval-feedback ${score.isCorrect ? 'correct' : 'wrong'}`}>
+        <p className="eval-feedback-title">
           <i
-            className={`fa-solid ${isCorrect ? 'fa-circle-check text-green-500' : 'fa-circle-xmark text-red-500'}`}
+            className={`fa-solid ${score.isCorrect ? 'fa-circle-check text-green-500' : 'fa-circle-xmark text-red-500'}`}
             aria-hidden="true"
           />
-          <div>
-            <p className="eval-feedback-title" style={{ margin: 0 }}>
-              {feedback.title}
-            </p>
-            <p style={{ fontSize: '0.875rem', color: '#64748b', marginTop: '0.125rem' }}>{feedback.body}</p>
-          </div>
-        </div>
-        <div className="eval-pitch-wrap">
-          <svg viewBox="0 0 200 36" style={{ width: '100%', height: '1.75rem', color: `${strokeColor}80` }}>
-            <polyline
-              points={pitchCurvePoints(isCorrect)}
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinejoin="round"
-              strokeLinecap="round"
-            />
-          </svg>
-          <span className="eval-pitch-label">giọng của bạn</span>
-        </div>
+          <span>{feedbackMessage(score)}</span>
+        </p>
       </div>
       {typeof points === 'number' ? <div className="eval-points">{formatPoints(points)}</div> : null}
-      <span className="hidden-panel">{cfg.color}</span>
     </div>
   );
 }
@@ -234,6 +198,7 @@ function WordCard({ question, mode }: { question: PronunciationQuestion; mode: P
   const cfg = modeConfig(mode);
   const cardStyle = getModeWordCardStyle(mode);
   const prompt = question.prompt || 'Nghe và đọc lại mẫu bên dưới';
+  const isWord = mode === 'phoneme' || mode === 'word';
 
   return (
     <div className="pron-content-stack">
@@ -244,7 +209,7 @@ function WordCard({ question, mode }: { question: PronunciationQuestion; mode: P
         <p className="pron-prompt-text">{prompt}</p>
       </div>
 
-      {mode === 'phoneme' ? (
+      {isWord ? (
         <div className="pron-word-card" style={cardStyle}>
           <p className="pron-target-lg">{question.targetText}</p>
           {question.targetIpa ? (
@@ -270,21 +235,27 @@ function WordCard({ question, mode }: { question: PronunciationQuestion; mode: P
           </p>
           <StressSyllables word={question.targetText} accentColor={cfg.color} />
           <p className="pron-target-md">{question.targetText}</p>
-          {question.targetIpa ? (
-            <p className="pron-ipa" style={{ color: cfg.color }}>
-              {question.targetIpa}
-            </p>
-          ) : null}
         </div>
       ) : null}
 
-      {!['phoneme', 'sentence', 'stress'].includes(mode) ? (
+      {!['phoneme', 'word', 'sentence', 'stress'].includes(String(mode)) ? (
         <div className="pron-word-card" style={cardStyle}>
           <p className="pron-target-xl">{question.targetText}</p>
         </div>
       ) : null}
     </div>
   );
+}
+
+function micStatusText(
+  recordState: RecordState,
+  hasAnswer: boolean,
+  alreadyDone: boolean
+): string {
+  if (recordState === 'recording') return 'Đang ghi — nhấn lại để dừng';
+  if (recordState === 'assessing') return 'đang tải dữ liệu';
+  if (recordState === 'done' && (hasAnswer || alreadyDone)) return 'Đã hoàn thành câu này';
+  return 'Nhấn micro để bắt đầu ghi âm';
 }
 
 export type PronunciationGameContentProps = {
@@ -294,7 +265,6 @@ export type PronunciationGameContentProps = {
   currentIndex: number;
   currentMode: PronunciationMode;
   recordState: RecordState;
-  showSelfEval: boolean;
   showActions: boolean;
   sessionPoints: number;
   maxScore: number;
@@ -308,7 +278,6 @@ export type PronunciationGameContentProps = {
   onPlayReference: () => void;
   onPlaySlow: () => void;
   onMicClick: () => void;
-  onSelfEval: (isCorrect: boolean) => void;
   onRetry: () => void;
   onNext: () => void;
 };
@@ -320,7 +289,6 @@ export function PronunciationGameContent({
   currentIndex,
   currentMode,
   recordState,
-  showSelfEval,
   showActions,
   sessionPoints,
   maxScore,
@@ -334,18 +302,24 @@ export function PronunciationGameContent({
   onPlayReference,
   onPlaySlow,
   onMicClick,
-  onSelfEval,
   onRetry,
   onNext,
 }: PronunciationGameContentProps) {
   const question = questions[currentIndex];
-  const modes = uniqueModes(questions);
+  const modes = playableModes(questions);
   const modeCfg = modeConfig(currentMode);
-  const total = questions.length;
-  const micColor =
-    recordState === 'recording' ? '#ef4444' : modeCfg.color;
+  const total = questions.filter((q) => modes.includes(q.mode) || q.mode === currentMode).length;
+  const micColor = recordState === 'recording' ? '#ef4444' : modeCfg.color;
 
   if (!question) return null;
+
+  const counterTotal = questions.filter((q) => playableModes(questions).includes(q.mode || 'phoneme')).length
+    || questions.length;
+  const playableIndexes = questions
+    .map((q, i) => ({ q, i }))
+    .filter(({ q }) => modes.includes(q.mode || 'phoneme'));
+  const displayOrdinal =
+    playableIndexes.findIndex(({ i }) => i === currentIndex) + 1 || currentIndex + 1;
 
   return (
     <div className="pronunciation-page pron-page-stack">
@@ -371,7 +345,7 @@ export function PronunciationGameContent({
 
       <div className="pron-main-shell pron-main-card">
         <span className="question-counter-pill" style={{ top: 12, right: 12 }}>
-          Câu {currentIndex + 1}/{total}
+          Câu {displayOrdinal}/{counterTotal || total}
         </span>
         <div className="pron-card-stripe" style={{ background: modeCfg.color }} />
 
@@ -401,7 +375,7 @@ export function PronunciationGameContent({
                     onClick={() => onModeChange(mode)}
                   >
                     <i className={`${cfg.icon} w-4 h-4 shrink-0`} aria-hidden="true" />
-                    {label}
+                    {label === 'Luyện âm' ? 'Luyện từ' : label}
                   </button>
                 );
               })}
@@ -453,7 +427,7 @@ export function PronunciationGameContent({
                           : `0 0 0 0px ${modeCfg.color}30, 0 8px 32px ${modeCfg.color}50`,
                     }}
                     onClick={onMicClick}
-                    disabled={recordState === 'recording' || isSubmitting}
+                    disabled={recordState === 'assessing' || isSubmitting}
                   >
                     {recordState === 'recording' ? (
                       <>
@@ -464,49 +438,23 @@ export function PronunciationGameContent({
                     <i className="fa-solid fa-microphone" style={{ position: 'relative', zIndex: 1 }} aria-hidden="true" />
                   </button>
                 </div>
-                <p id="micStatusText" className="pron-mic-status">
-                  {recordState === 'recording'
-                    ? 'Đang ghi âm — đọc to và rõ…'
-                    : recordState === 'done' && (statuses[currentIndex] !== 'empty' || showSelfEval)
-                      ? showSelfEval
-                        ? 'Đã ghi xong. Chọn kết quả tự đánh giá bên dưới:'
-                        : 'Đã hoàn thành câu này'
-                      : 'Nhấn micro để bắt đầu ghi âm'}
-                </p>
+                {recordState === 'assessing' ? (
+                  <div className="data-loading-state">
+                    <i className="fas fa-gear fa-spin" aria-hidden="true" /> đang tải dữ liệu
+                  </div>
+                ) : (
+                  <p id="micStatusText" className="pron-mic-status">
+                    {micStatusText(
+                      recordState,
+                      Boolean(answerResult),
+                      statuses[currentIndex] !== 'empty'
+                    )}
+                  </p>
+                )}
               </div>
 
-              {showSelfEval ? (
-                <div id="selfEvalPanel" className="self-eval">
-                  <button
-                    type="button"
-                    className="self-eval-correct"
-                    disabled={isSubmitting}
-                    onClick={() => onSelfEval(true)}
-                  >
-                    Đúng
-                  </button>
-                  <button
-                    type="button"
-                    className="self-eval-wrong"
-                    disabled={isSubmitting}
-                    onClick={() => onSelfEval(false)}
-                  >
-                    Sai
-                  </button>
-                </div>
-              ) : null}
-
               {answerResult ? (
-                <EvaluationResult
-                  question={question}
-                  isCorrect={answerResult.isCorrect}
-                  points={answerResult.points}
-                />
-              ) : statuses[currentIndex] !== 'empty' && recordState === 'done' ? (
-                <EvaluationResult
-                  question={question}
-                  isCorrect={statuses[currentIndex] === 'correct'}
-                />
+                <EvaluationResult question={question} result={answerResult} />
               ) : null}
 
               {submitMessage ? (
@@ -531,13 +479,56 @@ export function PronunciationGameContent({
   );
 }
 
+async function assessClip(
+  clip: RecordedClip,
+  question: PronunciationQuestion,
+  onFallback?: () => void
+): Promise<{ transcript: string; engine: 'groq' | 'webspeech' }> {
+  const form = new FormData();
+  form.append('audio', clip.blob, `recording.${clip.mimeType.includes('mp4') ? 'mp4' : 'webm'}`);
+  form.append('targetText', question.targetText);
+  form.append('mode', String(question.mode || 'phoneme'));
+
+  const res = await fetch('/api/games/pronunciation/assess', {
+    method: 'POST',
+    body: form,
+  });
+  const json = (await res.json()) as {
+    success?: boolean;
+    transcript?: string;
+    engine?: 'groq';
+    fallback?: 'webspeech';
+    message?: string;
+  };
+
+  if (!res.ok || !json.success) {
+    throw new Error(json.message || 'Không chấm được phát âm');
+  }
+
+  if (json.transcript && json.engine === 'groq') {
+    return { transcript: json.transcript, engine: 'groq' };
+  }
+
+  if (json.fallback === 'webspeech' || !json.transcript) {
+    if (!isWebSpeechAvailable()) {
+      throw new Error(
+        'Hết hạn mức chấm âm thanh và trình duyệt không hỗ trợ nhận dạng giọng nói. Thử Chrome hoặc thêm GROQ_API_KEY.'
+      );
+    }
+    onFallback?.();
+    const transcript = await recognizeWithWebSpeech();
+    return { transcript, engine: 'webspeech' };
+  }
+
+  return { transcript: json.transcript, engine: 'groq' };
+}
+
 export function PronunciationGame({ courseId }: Props) {
   const [data, setData] = useState<PronunciationGameResponse | null>(null);
   const [statuses, setStatuses] = useState<ProgressStatus[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentMode, setCurrentMode] = useState<PronunciationMode>('phoneme');
   const [recordState, setRecordState] = useState<RecordState>('idle');
-  const [showSelfEval, setShowSelfEval] = useState(false);
   const [showActions, setShowActions] = useState(false);
   const [answerResult, setAnswerResult] = useState<AnswerResult | null>(null);
   const [sessionPoints, setSessionPoints] = useState(0);
@@ -547,8 +538,8 @@ export function PronunciationGame({ courseId }: Props) {
   const [submitMessage, setSubmitMessage] = useState('');
   const questionStartTime = useRef(Date.now());
   const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const recordTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const activeAudio = useRef<HTMLAudioElement | null>(null);
+  const micSession = useRef<MicSession | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -566,9 +557,13 @@ export function PronunciationGame({ courseId }: Props) {
           throw new Error(json.message || 'Không tải được trò chơi');
         }
 
-        const questions = json.questions || [];
+        const questions = (json.questions || []).map((item) => ({
+          ...item,
+          mode: item.mode === 'word' ? 'phoneme' : item.mode || 'phoneme',
+        }));
         const nextStatuses = normalizeStatuses(json.statuses, questions.length);
-        const firstMode = questions[0]?.mode || 'phoneme';
+        const modes = playableModes(questions);
+        const firstMode = modes[0] || questions[0]?.mode || 'phoneme';
 
         setData(json);
         setStatuses(nextStatuses);
@@ -593,7 +588,8 @@ export function PronunciationGame({ courseId }: Props) {
     return () => {
       controller.abort();
       if (advanceTimer.current) clearTimeout(advanceTimer.current);
-      if (recordTimer.current) clearTimeout(recordTimer.current);
+      micSession.current?.cancel();
+      micSession.current = null;
       if (activeAudio.current) {
         activeAudio.current.pause();
         activeAudio.current = null;
@@ -603,17 +599,22 @@ export function PronunciationGame({ courseId }: Props) {
 
   const questions = useMemo(() => data?.questions || [], [data?.questions]);
   const course = data?.course;
-  const maxScore = questions.length * 200;
+  const playableCount = playableModes(questions).reduce(
+    (count, mode) => count + questions.filter((q) => q.mode === mode).length,
+    0
+  );
+  const maxScore = (playableCount || questions.length) * 200;
   const progressPercent = maxScore ? Math.min(100, Math.round((sessionPoints / maxScore) * 100)) : 0;
 
   const resetQuestionState = useCallback(
     (index: number, mode: PronunciationMode) => {
       questionStartTime.current = Date.now();
       setRecordState('idle');
-      setShowSelfEval(false);
       setShowActions(false);
       setAnswerResult(null);
       setSubmitMessage('');
+      micSession.current?.cancel();
+      micSession.current = null;
 
       const prevStatus = statuses[index];
       if (prevStatus === 'correct' || prevStatus === 'wrong') {
@@ -623,10 +624,6 @@ export function PronunciationGame({ courseId }: Props) {
 
       setCurrentIndex(index);
       setCurrentMode(mode);
-      if (recordTimer.current) {
-        clearTimeout(recordTimer.current);
-        recordTimer.current = null;
-      }
       if (advanceTimer.current) {
         clearTimeout(advanceTimer.current);
         advanceTimer.current = null;
@@ -641,7 +638,6 @@ export function PronunciationGame({ courseId }: Props) {
     if (!question) return;
     questionStartTime.current = Date.now();
     setRecordState('idle');
-    setShowSelfEval(false);
     setAnswerResult(null);
     setSubmitMessage('');
 
@@ -698,19 +694,114 @@ export function PronunciationGame({ courseId }: Props) {
     resetQuestionState(nextIndex, mode);
   }
 
-  function handleMicClick() {
-    if (recordState === 'recording' || isSubmitting) return;
+  async function finishWithScore(
+    score: TranscriptScoreResult,
+    engine: 'groq' | 'webspeech'
+  ) {
+    if (!course || !questions[currentIndex]) return;
 
-    setShowSelfEval(false);
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      const alreadyAnswered = statuses[currentIndex] !== 'empty';
+      let points: number | undefined;
+
+      if (!alreadyAnswered) {
+        const elapsedMs = Date.now() - questionStartTime.current;
+        const submit = await submitAnswerScore(
+          progressCourseKey(course.name, course.levelName),
+          'pronunciation',
+          currentIndex,
+          score.isCorrect,
+          elapsedMs
+        );
+        if (!submit.success) {
+          throw new Error(submit.message || 'Không ghi được điểm');
+        }
+        points = submit.points;
+        if (typeof points === 'number') {
+          setSessionPoints((current) => current + points!);
+        }
+      }
+
+      const nextStatuses = [...statuses];
+      nextStatuses[currentIndex] = score.isCorrect ? 'correct' : 'wrong';
+      setStatuses(nextStatuses);
+      await persistProgress(nextStatuses);
+
+      setAnswerResult({ isCorrect: score.isCorrect, points, score, engine });
+      setRecordState('done');
+      setShowActions(true);
+      scheduleAdvance();
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Không nộp được câu trả lời';
+      setSubmitMessage(message);
+      setRecordState('idle');
+      if (/đăng nhập/i.test(message)) {
+        window.setTimeout(() => {
+          window.location.href = `/login?next=${encodeURIComponent(window.location.pathname)}`;
+        }, 1200);
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  async function handleMicClick() {
+    if (isSubmitting || recordState === 'assessing') return;
+    const question = questions[currentIndex];
+    if (!question) return;
+
+    if (recordState === 'recording' && micSession.current) {
+      micSession.current.stop();
+      return;
+    }
+
     setShowActions(false);
     setAnswerResult(null);
+    setSubmitMessage('');
     setRecordState('recording');
 
-    if (recordTimer.current) clearTimeout(recordTimer.current);
-    recordTimer.current = setTimeout(() => {
-      setRecordState('done');
-      setShowSelfEval(true);
-    }, 2000);
+    try {
+      const session = await startMicRecording(8000);
+      micSession.current = session;
+
+      void (async () => {
+        try {
+          const clip = await session.done;
+          if (micSession.current !== session) return;
+          micSession.current = null;
+          setRecordState('assessing');
+          const { transcript, engine } = await assessClip(clip, question, () => {
+            setSubmitMessage('Đang dùng nhận dạng trình duyệt — hãy đọc lại rõ…');
+          });
+          setSubmitMessage('');
+          const score = scoreTranscript(
+            question.targetText,
+            transcript,
+            String(question.mode || 'phoneme')
+          );
+          await finishWithScore(score, engine);
+        } catch (err) {
+          if (micSession.current === session) micSession.current = null;
+          const message = err instanceof Error ? err.message : 'Không chấm được phát âm';
+          if (message === 'Đã hủy ghi âm') {
+            setRecordState('idle');
+            return;
+          }
+          setRecordState('idle');
+          setSubmitMessage(message);
+        }
+      })();
+    } catch (err) {
+      setRecordState('idle');
+      setSubmitMessage(
+        err instanceof Error
+          ? err.message
+          : 'Không mở được micro. Hãy cho phép quyền micro rồi thử lại.'
+      );
+    }
   }
 
   function handlePlay(rate: number) {
@@ -725,51 +816,6 @@ export function PronunciationGame({ courseId }: Props) {
         activeAudio.current = audio;
       }
     );
-  }
-
-  async function handleSelfEval(isCorrect: boolean) {
-    if (!course || !questions[currentIndex] || isSubmitting) return;
-
-    setIsSubmitting(true);
-    setSubmitMessage('');
-    setShowSelfEval(false);
-
-    try {
-      const alreadyAnswered = statuses[currentIndex] !== 'empty';
-      let points: number | undefined;
-
-      if (!alreadyAnswered) {
-        const elapsedMs = Date.now() - questionStartTime.current;
-        const score = await submitAnswerScore(
-          progressCourseKey(course.name, course.levelName),
-          'pronunciation',
-          currentIndex,
-          isCorrect,
-          elapsedMs
-        );
-        if (!score.success) {
-          throw new Error(score.message || 'Không ghi được điểm');
-        }
-        points = score.points;
-        if (typeof points === 'number') {
-          setSessionPoints((current) => current + points!);
-        }
-      }
-
-      const nextStatuses = [...statuses];
-      nextStatuses[currentIndex] = isCorrect ? 'correct' : 'wrong';
-      setStatuses(nextStatuses);
-      await persistProgress(nextStatuses);
-
-      setAnswerResult({ isCorrect, points });
-      setShowActions(true);
-      scheduleAdvance();
-    } catch (err) {
-      setSubmitMessage(err instanceof Error ? err.message : 'Không nộp được câu trả lời');
-      setShowSelfEval(true);
-    } finally {
-      setIsSubmitting(false);
-    }
   }
 
   if (isLoading) {
@@ -788,10 +834,13 @@ export function PronunciationGame({ courseId }: Props) {
     );
   }
 
-  if (questions.length === 0) {
+  if (questions.length === 0 || playableModes(questions).length === 0) {
     return (
       <div className="pronunciation-page">
-        <DataLoading variant="message" message="Chưa có câu hỏi Phát âm cho khóa học này" />
+        <DataLoading
+          variant="message"
+          message="Chưa có câu hỏi Phát âm (luyện từ/câu) cho khóa học này"
+        />
       </div>
     );
   }
@@ -804,7 +853,6 @@ export function PronunciationGame({ courseId }: Props) {
       currentIndex={currentIndex}
       currentMode={currentMode}
       recordState={recordState}
-      showSelfEval={showSelfEval}
       showActions={showActions}
       sessionPoints={sessionPoints}
       maxScore={maxScore}
@@ -819,8 +867,7 @@ export function PronunciationGame({ courseId }: Props) {
       onResetQuestion={() => resetQuestionState(currentIndex, currentMode)}
       onPlayReference={() => handlePlay(1.0)}
       onPlaySlow={() => handlePlay(0.7)}
-      onMicClick={handleMicClick}
-      onSelfEval={(isCorrect) => void handleSelfEval(isCorrect)}
+      onMicClick={() => void handleMicClick()}
       onRetry={() => resetQuestionState(currentIndex, currentMode)}
       onNext={goNext}
     />

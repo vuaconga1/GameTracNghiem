@@ -1,16 +1,6 @@
+import type { TranscriptScoreResult } from './scoreTranscript';
 import { getWordSyllables, stressedSyllableText, unstressedSyllableText } from './syllables';
 import type { PronunciationMode } from './types';
-
-export type PhonemeChip = {
-  char: string;
-  score: number;
-  weak: boolean;
-};
-
-export type WordScore = {
-  word: string;
-  score: number;
-};
 
 export type ScoreRing = {
   value: number;
@@ -19,58 +9,21 @@ export type ScoreRing = {
 };
 
 export function extractIpaHighlight(targetIpa: string): string {
-  if (!targetIpa) return '/l/';
+  if (!targetIpa) return '';
   const matched = targetIpa.match(/\/([^/]+)\//);
   return matched ? matched[0] : targetIpa;
 }
 
-export function getWordPhonemeBreakdown(word: string, isCorrect: boolean): PhonemeChip[] {
-  const letters = word.toLowerCase().replace(/[^a-z]/g, '').split('');
-  let weakIndex = letters.indexOf('l');
-  if (weakIndex === -1 && letters.length > 0) {
-    weakIndex = Math.floor(letters.length / 2);
-  }
-
-  return letters.map((char, index) => {
-    if (isCorrect) {
-      return { char, score: Math.floor(Math.random() * 15) + 85, weak: false };
-    }
-    if (index === weakIndex) {
-      return { char, score: Math.floor(Math.random() * 20) + 10, weak: true };
-    }
-    return { char, score: Math.floor(Math.random() * 20) + 60, weak: false };
-  });
+export function wordScoreRings(score: TranscriptScoreResult): ScoreRing[] {
+  const color = score.isCorrect ? '#22c55e' : '#ef4444';
+  return [{ value: score.accuracy, label: 'Độ chính xác', color }];
 }
 
-export function getSentenceWordScores(sentence: string, isCorrect: boolean): WordScore[] {
-  const words = sentence.replace(/[.,/#!$%^&*;:{}=\-_`~()?]/g, '').split(/\s+/).filter(Boolean);
-  return words.map((word) => {
-    if (isCorrect) {
-      return { word, score: Math.floor(Math.random() * 15) + 85 };
-    }
-    return {
-      word,
-      score: Math.random() > 0.4 ? Math.floor(Math.random() * 20) + 75 : Math.floor(Math.random() * 30) + 30,
-    };
-  });
-}
-
-export function phonemeScoreRings(isCorrect: boolean, targetIpa: string): ScoreRing[] {
-  const scorePhoneme = isCorrect ? Math.floor(Math.random() * 10) + 90 : Math.floor(Math.random() * 20) + 15;
-  const scoreAccuracy = isCorrect ? Math.floor(Math.random() * 10) + 88 : Math.floor(Math.random() * 20) + 50;
-  const ipaVal = extractIpaHighlight(targetIpa);
+export function sentenceScoreRingsFromResult(score: TranscriptScoreResult): ScoreRing[] {
+  const accuracyColor = score.isCorrect ? '#22c55e' : '#ef4444';
   return [
-    { value: scorePhoneme, label: `Âm ${ipaVal}`, color: isCorrect ? '#22c55e' : '#ef4444' },
-    { value: scoreAccuracy, label: 'Độ chính xác', color: '#22c55e' },
-  ];
-}
-
-export function sentenceScoreRings(isCorrect: boolean): ScoreRing[] {
-  const scoreAccuracy = isCorrect ? Math.floor(Math.random() * 8) + 90 : Math.floor(Math.random() * 20) + 45;
-  const scoreFluency = isCorrect ? Math.floor(Math.random() * 8) + 88 : Math.floor(Math.random() * 25) + 40;
-  return [
-    { value: scoreAccuracy, label: 'Độ chính xác', color: '#22c55e' },
-    { value: scoreFluency, label: 'Trôi chảy', color: '#0d2b6e' },
+    { value: score.accuracy, label: 'Độ chính xác', color: accuracyColor },
+    { value: score.fluency ?? score.accuracy, label: 'Trôi chảy', color: '#0d2b6e' },
   ];
 }
 
@@ -102,10 +55,22 @@ export function wordScoreColor(score: number): string {
 }
 
 export function resolveFeedbackMode(mode: PronunciationMode): PronunciationMode {
-  if (mode === 'phoneme' || mode === 'sentence' || mode === 'stress') return mode;
+  if (mode === 'sentence') return 'sentence';
+  if (mode === 'stress') return 'stress';
   return 'phoneme';
 }
 
 export function stressSyllablesForDisplay(word: string) {
   return getWordSyllables(word);
+}
+
+export function feedbackMessage(score: TranscriptScoreResult): string {
+  if (score.isCorrect) {
+    return score.mode === 'sentence'
+      ? 'Phát âm câu khá tốt! Hãy tiếp tục luyện tập.'
+      : 'Phát âm rất chuẩn! Hãy tiếp tục luyện tập.';
+  }
+  return score.mode === 'sentence'
+    ? 'Chưa khớp câu mẫu — đọc chậm và rõ từng từ.'
+    : 'Chưa chuẩn — nghe mẫu rồi thử lại nhé.';
 }

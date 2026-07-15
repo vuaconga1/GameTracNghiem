@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
+import { publicApiErrorMessage } from '@/lib/apiErrors';
 import { requireSession } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { calculatePoints } from '@/lib/scoring';
@@ -9,8 +10,10 @@ function errorResponse(err: unknown) {
     typeof err === 'object' && err !== null && 'status' in err && typeof err.status === 'number'
       ? err.status
       : 500;
-  const message = err instanceof Error ? err.message : 'Lỗi hệ thống';
-  return NextResponse.json({ success: false, message }, { status });
+  return NextResponse.json(
+    { success: false, message: publicApiErrorMessage(err) },
+    { status }
+  );
 }
 
 function parseIsCorrect(value: unknown): boolean {

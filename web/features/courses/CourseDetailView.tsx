@@ -82,7 +82,7 @@ function formatCourseScore(points: number) {
   return Number(points).toLocaleString('vi-VN');
 }
 
-export function CourseDetailContent({ data, initialTab = 'lesson' }: CourseDetailContentProps) {
+export function CourseDetailContent({ data, initialTab = 'exercises' }: CourseDetailContentProps) {
   const [activeTab, setActiveTab] = useState<DetailTab>(initialTab);
   const enabledKeys = new Set(
     data.course.enabledGames?.length ? data.course.enabledGames : ALL_GAME_KEYS
@@ -133,19 +133,19 @@ export function CourseDetailContent({ data, initialTab = 'lesson' }: CourseDetai
           <div className="detail-tabs tabs-secondary">
             <button
               type="button"
-              className={activeTab === 'lesson' ? 'tab-secondary active' : 'tab-secondary'}
-              data-detail-tab="lesson"
-              onClick={() => setActiveTab('lesson')}
-            >
-              <i className="fas fa-book-open" aria-hidden="true" /> Bài học
-            </button>
-            <button
-              type="button"
               className={activeTab === 'exercises' ? 'tab-secondary active' : 'tab-secondary'}
               data-detail-tab="exercises"
               onClick={() => setActiveTab('exercises')}
             >
               <i className="fas fa-gamepad" aria-hidden="true" /> Bài tập
+            </button>
+            <button
+              type="button"
+              className={activeTab === 'lesson' ? 'tab-secondary active' : 'tab-secondary'}
+              data-detail-tab="lesson"
+              onClick={() => setActiveTab('lesson')}
+            >
+              <i className="fas fa-book-open" aria-hidden="true" /> Bài học
             </button>
           </div>
 

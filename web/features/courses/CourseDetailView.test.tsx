@@ -27,7 +27,9 @@ const sampleData = {
 
 describe('CourseDetailContent', () => {
   it('renders lesson tab without book card and with ebook placeholder', () => {
-    const html = renderToStaticMarkup(createElement(CourseDetailContent, { data: sampleData }));
+    const html = renderToStaticMarkup(
+      createElement(CourseDetailContent, { data: sampleData, initialTab: 'lesson' }),
+    );
 
     expect(html).toContain('id="view-detail"');
     expect(html).toContain('class="view-detail"');
@@ -39,6 +41,7 @@ describe('CourseDetailContent', () => {
 
     expect(html).toContain('class="detail-tabs tabs-secondary"');
     expect(html).toContain('class="tab-secondary active"');
+    expect(html.indexOf('Bài tập')).toBeLessThan(html.indexOf('Bài học'));
     expect(html).toContain('Bài học');
     expect(html).toContain('Bài tập');
     expect(html).toContain('class="ebook-viewer"');
@@ -46,13 +49,8 @@ describe('CourseDetailContent', () => {
     expect(html).toContain('Chưa gắn sách bài học');
   });
 
-  it('renders exercises tab content with aggregated stats in book card', () => {
-    const html = renderToStaticMarkup(
-      createElement(CourseDetailContent, {
-        data: sampleData,
-        initialTab: 'exercises',
-      })
-    );
+  it('defaults to exercises tab with aggregated stats in book card', () => {
+    const html = renderToStaticMarkup(createElement(CourseDetailContent, { data: sampleData }));
 
     expect(html).toContain('class="book-card"');
     expect(html).toContain('EveryUp');
@@ -63,6 +61,7 @@ describe('CourseDetailContent', () => {
     expect(html).toContain('1.250');
     expect(html).toContain('tổng điểm');
     expect(html).not.toContain('câu ngữ pháp');
+    expect(html.indexOf('Bài tập')).toBeLessThan(html.indexOf('Bài học'));
 
     expect(html).toContain('class="activity-grid"');
     expect(html).toContain('href="/games/grammar/course-1"');

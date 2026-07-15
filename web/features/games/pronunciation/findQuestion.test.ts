@@ -1,6 +1,11 @@
 import { describe, expect, it } from 'vitest';
 
-import { findFirstQuestionByMode, nextQuestionIndexInMode, uniqueModes } from './findQuestion';
+import {
+  findFirstQuestionByMode,
+  nextQuestionIndexInMode,
+  playableModes,
+  uniqueModes,
+} from './findQuestion';
 import type { PronunciationQuestion } from './types';
 
 const sampleQuestions: PronunciationQuestion[] = [
@@ -53,6 +58,10 @@ const sampleQuestions: PronunciationQuestion[] = [
 describe('findQuestion helpers', () => {
   it('returns unique modes in first-seen order', () => {
     expect(uniqueModes(sampleQuestions)).toEqual(['phoneme', 'sentence', 'stress']);
+  });
+
+  it('hides stress mode from playable tabs', () => {
+    expect(playableModes(sampleQuestions)).toEqual(['phoneme', 'sentence']);
   });
 
   it('finds the first question for a mode', () => {

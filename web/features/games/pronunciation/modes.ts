@@ -8,13 +8,15 @@ export type ModeConfig = {
 };
 
 export const MODE_MAP: Record<string, string> = {
-  phoneme: 'Luyện âm',
+  phoneme: 'Luyện từ',
+  word: 'Luyện từ',
   sentence: 'Luyện câu',
   stress: 'Trọng âm',
 };
 
 export const MODES: Record<string, ModeConfig> = {
-  phoneme: { label: 'Luyện âm', icon: 'fa-solid fa-bolt', color: '#1e5bb8', bg: '#e8f0fe' },
+  phoneme: { label: 'Luyện từ', icon: 'fa-solid fa-bolt', color: '#1e5bb8', bg: '#e8f0fe' },
+  word: { label: 'Luyện từ', icon: 'fa-solid fa-bolt', color: '#1e5bb8', bg: '#e8f0fe' },
   sentence: { label: 'Luyện câu', icon: 'fa-solid fa-book-open', color: '#7c3aed', bg: '#f3e8ff' },
   stress: { label: 'Trọng âm', icon: 'fa-solid fa-chart-simple', color: '#d97706', bg: '#fff7ed' },
 };

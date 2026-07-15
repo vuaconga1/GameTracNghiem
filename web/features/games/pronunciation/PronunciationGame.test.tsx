@@ -3,6 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 
 import { PronunciationGameContent } from './PronunciationGame';
+import { scoreTranscript } from './scoreTranscript';
 
 describe('PronunciationGameContent', () => {
   const baseProps = {
@@ -16,7 +17,7 @@ describe('PronunciationGameContent', () => {
         id: 'q1',
         index: 0,
         mode: 'phoneme',
-        modeLabel: 'Luyện âm',
+        modeLabel: 'Luyện từ',
         prompt: 'Chú ý âm /l/ cuối từ',
         targetText: 'world',
         targetIpa: '/wɜːrld/',
@@ -49,7 +50,6 @@ describe('PronunciationGameContent', () => {
     currentIndex: 0,
     currentMode: 'phoneme',
     recordState: 'idle' as const,
-    showSelfEval: false,
     showActions: false,
     sessionPoints: 120,
     maxScore: 600,
@@ -63,12 +63,11 @@ describe('PronunciationGameContent', () => {
     onPlayReference: vi.fn(),
     onPlaySlow: vi.fn(),
     onMicClick: vi.fn(),
-    onSelfEval: vi.fn(),
     onRetry: vi.fn(),
     onNext: vi.fn(),
   };
 
-  it('renders legacy pronunciation chrome and mode tabs', () => {
+  it('renders pronunciation chrome and hides stress tab', () => {
     const html = renderToStaticMarkup(
       createElement(PronunciationGameContent, {
         ...baseProps,
@@ -77,49 +76,59 @@ describe('PronunciationGameContent', () => {
     );
 
     expect(html).toContain('class="pronunciation-page pron-page-stack"');
-    expect(html).toContain('class="pron-hero"');
-    expect(html).toContain('class="game-meta pron-game-meta"');
-    expect(html).toContain('class="mode-btn active"');
     expect(html).toContain('data-mode="phoneme"');
     expect(html).toContain('data-mode="sentence"');
-    expect(html).toContain('class="pron-mic-panel"');
-    expect(html).toContain('id="btnMicIcon"');
-    expect(html).toContain('Nghe mẫu');
+    expect(html).not.toContain('data-mode="stress"');
     expect(html).toContain('Nhấn micro để bắt đầu ghi âm');
+    expect(html).not.toContain('id="selfEvalPanel"');
   });
 
-  it('shows self-eval panel after fake recording completes', () => {
-    const html = renderToStaticMarkup(
-      createElement(PronunciationGameContent, {
-        ...baseProps,
-        statuses: ['empty', 'empty', 'empty'],
-        recordState: 'done',
-        showSelfEval: true,
-      })
-    );
-
-    expect(html).toContain('id="selfEvalPanel"');
-    expect(html).toContain('class="self-eval"');
-    expect(html).toContain('>Đúng<');
-    expect(html).toContain('>Sai<');
-    expect(html).toContain('Chọn kết quả tự đánh giá bên dưới');
-  });
-
-  it('shows action buttons and evaluation result for completed questions', () => {
+  it('shows auto-scored word result without phoneme chips or self-eval', () => {
+    const score = scoreTranscript('world', 'world', 'phoneme');
     const html = renderToStaticMarkup(
       createElement(PronunciationGameContent, {
         ...baseProps,
         statuses: ['correct', 'empty', 'empty'],
         recordState: 'done',
         showActions: true,
-        answerResult: { isCorrect: true, points: 150 },
+        answerResult: {
+          isCorrect: true,
+          points: 150,
+          score,
+          engine: 'groq',
+        },
       })
     );
 
     expect(html).toContain('id="actionContainer"');
-    expect(html).toContain('id="btnRetry"');
-    expect(html).toContain('id="btnNextAction"');
-    expect(html).toContain('class="evaluation-result');
+    expect(html).toContain('Độ chính xác');
+    expect(html).toContain('Phát âm rất chuẩn');
     expect(html).toContain('+150 điểm');
+    expect(html).not.toContain('Phân tích từng âm');
+    expect(html).not.toContain('id="selfEvalPanel"');
+  });
+
+  it('shows per-word scores for sentence mode', () => {
+    const score = scoreTranscript('Nice to meet you', 'Nice to meet you', 'sentence');
+    const html = renderToStaticMarkup(
+      createElement(PronunciationGameContent, {
+        ...baseProps,
+        currentIndex: 1,
+        currentMode: 'sentence',
+        statuses: ['empty', 'correct', 'empty'],
+        recordState: 'done',
+        showActions: true,
+        answerResult: {
+          isCorrect: true,
+          points: 120,
+          score,
+          engine: 'webspeech',
+        },
+      })
+    );
+
+    expect(html).toContain('Từng từ một');
+    expect(html).toContain('Chấm bằng nhận dạng trình duyệt');
+    expect(html).toContain('Nice');
   });
 });
