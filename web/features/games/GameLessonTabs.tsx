@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type KeyboardEvent, type ReactNode } from 'react';
+import { useEffect, useState, type KeyboardEvent, type ReactNode } from 'react';
 
 import { EbookViewer } from '@/features/courses/EbookViewer';
 import type { CourseGameLessonDescriptor } from '@/lib/loadCourseGameLesson';
@@ -34,11 +34,19 @@ export function GameLessonTabsContent({
   initialTab = 'exercise',
   onTabChange,
 }: GameLessonTabsContentProps) {
+  const selectedTab = activeTab ?? initialTab;
+  const [lessonMounted, setLessonMounted] = useState(selectedTab === 'lesson');
+
+  useEffect(() => {
+    if (selectedTab === 'lesson') {
+      setLessonMounted(true);
+    }
+  }, [selectedTab]);
+
   if (!lesson) return children;
 
-  const selectedTab = activeTab ?? initialTab;
-
   const selectTab = (tab: GameLessonTab) => {
+    if (tab === 'lesson') setLessonMounted(true);
     onTabChange?.(tab);
   };
 
@@ -118,11 +126,13 @@ export function GameLessonTabsContent({
         aria-labelledby={TAB_IDS.lesson}
         hidden={selectedTab !== 'lesson'}
       >
-        <EbookViewer
-          ebookId={lesson.ebookId}
-          pageStart={lesson.pageStart}
-          pageEnd={lesson.pageEnd}
-        />
+        {lessonMounted ? (
+          <EbookViewer
+            ebookId={lesson.ebookId}
+            pageStart={lesson.pageStart}
+            pageEnd={lesson.pageEnd}
+          />
+        ) : null}
       </div>
     </div>
   );

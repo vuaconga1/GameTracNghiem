@@ -41,6 +41,7 @@ describe('GameLessonTabsContent', () => {
     expect(html).toMatch(
       /id="game-lesson-panel-lesson"[^>]*hidden(?:="")?/,
     );
+    expect(html).not.toContain('class="ebook-flip-root"');
   });
 
   it('keeps the game mounted when the lesson tab is active', () => {
