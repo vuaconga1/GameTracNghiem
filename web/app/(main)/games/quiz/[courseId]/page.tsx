@@ -1,4 +1,6 @@
+import { GameLessonTabs } from '@/features/games/GameLessonTabs';
 import { QuizGame } from '@/features/games/quiz/QuizGame';
+import { loadCourseGameLesson } from '@/lib/loadCourseGameLesson';
 
 export default async function QuizGamePage({
   params,
@@ -6,5 +8,10 @@ export default async function QuizGamePage({
   params: Promise<{ courseId: string }>;
 }) {
   const { courseId } = await params;
-  return <QuizGame courseId={courseId} />;
+  const lesson = await loadCourseGameLesson(courseId, 'quiz');
+  return (
+    <GameLessonTabs lesson={lesson}>
+      <QuizGame courseId={courseId} />
+    </GameLessonTabs>
+  );
 }

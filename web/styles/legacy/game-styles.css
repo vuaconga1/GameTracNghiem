@@ -2856,3 +2856,67 @@ a.btn-secondary:hover {
   }
 }
 
+/* ===== Shared student game/lesson tabs ===== */
+.game-lesson-tabs,
+.game-lesson-panel,
+.game-lesson-panel--exercise {
+  width: 100%;
+  min-width: 0;
+}
+
+.game-lesson-tab-list {
+  width: min(100%, var(--game-max));
+  margin: 0 auto;
+  padding: 16px 24px 0;
+  display: flex;
+  gap: 8px;
+}
+
+.game-lesson-tab {
+  min-height: 42px;
+  padding: 9px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: var(--white);
+  color: var(--text-muted);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.game-lesson-tab:hover {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.game-lesson-tab.active {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--white);
+}
+
+.game-lesson-panel--lesson {
+  padding: 20px clamp(12px, 3vw, 40px) 32px;
+}
+
+.game-lesson-panel--lesson .ebook-flip-root {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .game-lesson-tab-list {
+    padding: 10px 12px 0;
+  }
+
+  .game-lesson-tab {
+    flex: 1;
+    padding-inline: 12px;
+  }
+
+  .game-lesson-panel--lesson {
+    padding: 12px 0 24px;
+  }
+}
+
