@@ -7,15 +7,17 @@ datasource db {
 }
 
 model User {
-  id           String         @id @default(cuid())
-  username     String         @unique
-  passwordHash String
-  displayName  String
-  role         String         @default("student")
-  createdAt    DateTime       @default(now())
-  archivedAt   DateTime?
-  progress     GameProgress[]
-  scoreLogs    ScoreLog[]
+  id               String            @id @default(cuid())
+  username         String            @unique
+  passwordHash     String
+  displayName      String
+  role             String            @default("student")
+  createdAt        DateTime          @default(now())
+  archivedAt       DateTime?
+  progress         GameProgress[]
+  scoreLogs        ScoreLog[]
+  experience       PlayerExperience?
+  experienceGrants ExperienceGrant[]
 }
 
 model ClassLevel {
@@ -40,14 +42,18 @@ model Ebook {
 }
 
 model Course {
-  id             String     @id @default(cuid())
+  id             String             @id @default(cuid())
   name           String
   levelName      String
-  active         Boolean    @default(true)
+  active         Boolean            @default(true)
   archivedAt     DateTime?
-  /** Game keys visible to students. Empty = all catalog games enabled. */
-  enabledGames   String[]   @default([])
-  /** References Ebook.id when set. */
+  /**
+   * Game keys visible to students. Empty = all catalog games enabled.
+   */
+  enabledGames   String[]           @default([])
+  /**
+   * References Ebook.id when set.
+   */
   ebookFileId    String?
   ebookPageStart Int?
   ebookPageEnd   Int?
@@ -120,4 +126,30 @@ model ScoreLog {
   @@index([answeredAt])
   @@index([game])
   @@index([userId, course, game, playSessionId])
+}
+
+model PlayerExperience {
+  userId    String   @id
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  totalExp  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ExperienceGrant {
+  id                  String   @id @default(cuid())
+  userId              String
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  playSessionId       String
+  course              String
+  game                String
+  exp                 Int
+  answeredCount       Int
+  correctCount        Int
+  averageCorrectSpeed Float
+  createdAt           DateTime @default(now())
+
+  @@unique([userId, playSessionId])
+  @@index([userId, createdAt])
+  @@index([playSessionId])
 }
