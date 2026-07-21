@@ -99,7 +99,7 @@ export function profileFromTotalExp(totalExp: number): ExperienceProfile {
   }
 
   const needed = experienceToNextLevel(level);
-  const progressPercent = clamp(Math.round((expInLevel / needed) * 100), 0, 100);
+  const progressPercent = clamp(Math.round((expInLevel / needed) * 100), 0, 99);
 
   return {
     totalExp: normalized,

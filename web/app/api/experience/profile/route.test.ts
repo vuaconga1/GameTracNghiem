@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import type { ExperienceProfile } from '@/lib/experience';
 
 const mocks = vi.hoisted(() => ({
   requireSession: vi.fn(),
@@ -29,13 +30,13 @@ describe('GET /api/experience/profile', () => {
   });
 
   it('calls auth then service with authenticated userId and returns profile', async () => {
-    const profile = {
+    const profile: ExperienceProfile = {
       totalExp: 80,
       level: 2,
-      title: 'Học viên',
-      currentLevelExp: 30,
-      nextLevelExp: 100,
-      progressRatio: 0.3,
+      tier: 1,
+      expInLevel: 30,
+      expToNextLevel: 100,
+      progressPercent: 30,
     };
     mocks.getExperienceProfile.mockResolvedValue(profile);
 

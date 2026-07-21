@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import type { ExperienceProfile } from '@/lib/experience';
 
 const mocks = vi.hoisted(() => ({
   requireSession: vi.fn(),
@@ -59,6 +60,14 @@ describe('POST /api/experience/sessions/complete', () => {
   });
 
   it('trims a valid ID, passes authenticated userId, and returns grant/profile result', async () => {
+    const profile: ExperienceProfile = {
+      totalExp: 40,
+      level: 1,
+      tier: 1,
+      expInLevel: 40,
+      expToNextLevel: 50,
+      progressPercent: 80,
+    };
     const result = {
       alreadyGranted: false,
       grant: {
@@ -67,14 +76,7 @@ describe('POST /api/experience/sessions/complete', () => {
         answeredCount: 5,
         correctCount: 4,
       },
-      profile: {
-        totalExp: 40,
-        level: 1,
-        title: 'Tân binh',
-        currentLevelExp: 40,
-        nextLevelExp: 50,
-        progressRatio: 0.8,
-      },
+      profile,
     };
     mocks.completeExperienceSession.mockResolvedValue(result);
 

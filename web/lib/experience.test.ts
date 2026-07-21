@@ -84,6 +84,12 @@ describe('profileFromTotalExp', () => {
     expect(profile.tier).toBe(2);
   });
 
+  it('stays at level 49 with 99% progress one EXP before the level-50 threshold', () => {
+    const profile = profileFromTotalExp(totalExperienceForLevel(50) - 1);
+    expect(profile.level).toBe(49);
+    expect(profile.progressPercent).toBe(99);
+  });
+
   it('caps very large EXP at level 50 / tier 10 with null next and 100% progress', () => {
     const profile = profileFromTotalExp(Number.MAX_SAFE_INTEGER);
     expect(profile).toMatchObject({
