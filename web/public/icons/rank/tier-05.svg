@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <title>Star rank shield</title>
+  <path d="M12 2 L4 5 V11 C4 16 7.4 20 12 22 Z" fill="#D89B20"/>
+  <path d="M12 2 L20 5 V11 C20 16 16.6 20 12 22 Z" fill="#FFE082"/>
+  <path d="M12 2 L20 5 V11 C20 16 16.6 20 12 22 C7.4 20 4 16 4 11 V5 Z" stroke="#E4C28E" stroke-width="1.2" stroke-linejoin="round"/>
+  <path d="M12 7.2 L13.1 10.1 L16.2 10.3 L13.8 12.3 L14.5 15.3 L12 13.7 L9.5 15.3 L10.2 12.3 L7.8 10.3 L10.9 10.1 Z" fill="#FFFFFF" stroke="#E4C28E" stroke-width="0.6" stroke-linejoin="round"/>
+</svg>
