@@ -6,6 +6,10 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { AdminShell } from '@/components/admin/AdminShell';
 import { DataLoading } from '@/components/DataLoading';
 import { parseCourseGameLessonRange } from '@/lib/courseGameLesson';
+import {
+  buildRemoveGameLessonRequest,
+  buildSaveGameLessonRequest,
+} from '@/lib/courseGameLessonRequest';
 import { ALL_GAME_KEYS, resolveEnabledGameKeys } from '@/lib/gameCatalog';
 
 import {
@@ -227,14 +231,8 @@ export function CourseDetailAdmin({
     setMessage('');
     setError('');
     try {
-      const res = await fetch(
-        `/api/admin/courses/${courseId}/game-lessons/${game.key}`,
-        {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(range.value),
-        }
-      );
+      const { url, init } = buildSaveGameLessonRequest(courseId, game.key, range.value);
+      const res = await fetch(url, init);
       const data = await res.json();
       if (!data.success) {
         setError(data.message || 'Không lưu được bài học PDF của game');
@@ -279,10 +277,8 @@ export function CourseDetailAdmin({
     setMessage('');
     setError('');
     try {
-      const res = await fetch(
-        `/api/admin/courses/${courseId}/game-lessons/${game.key}`,
-        { method: 'DELETE' }
-      );
+      const { url, init } = buildRemoveGameLessonRequest(courseId, game.key);
+      const res = await fetch(url, init);
       const data = await res.json();
       if (!data.success) {
         setError(data.message || 'Không gỡ được bài học PDF của game');

@@ -617,7 +617,15 @@
   min-width: 2.2rem;
 }
 
-@media (max-width: 860px) {
+/*
+ * Stack the per-game PDF editor early. The desktop row needs ~745px
+ * (665px min columns + 48px gaps + 32px padding); with the 48px admin-content
+ * padding and 2px panel border the main column must be ~795px. The 240px
+ * sidebar only collapses at <=900px, so between ~901px and ~1034px the main
+ * column is too narrow and the row would overflow. Stacking from 1040px keeps
+ * the widest desktop grid where the main column is still >= ~795px.
+ */
+@media (max-width: 1040px) {
   .course-game-list-head {
     display: none;
   }

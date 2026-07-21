@@ -47,6 +47,24 @@ describe('CourseGameLessonEditor', () => {
     expect(html.match(/disabled=""/g)).toHaveLength(3);
   });
 
+  it('disables all controls and shows saving state while the row is busy', () => {
+    const html = renderToStaticMarkup(
+      <CourseGameLessonEditor
+        game={game}
+        ebookAvailable
+        value={{ pageStart: '12', pageEnd: '18', saved: true }}
+        busy
+        onChange={vi.fn()}
+        onSave={vi.fn()}
+        onRemove={vi.fn()}
+      />,
+    );
+
+    expect(html).toContain('Đang lưu...');
+    expect(html).toContain('Gỡ');
+    expect(html.match(/disabled=""/g)).toHaveLength(4);
+  });
+
   it('does not render remove action without a saved mapping', () => {
     const html = renderToStaticMarkup(
       <CourseGameLessonEditor
