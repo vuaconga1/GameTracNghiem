@@ -1,6 +1,16 @@
 import { describe, expect, it } from 'vitest';
 
-import { parseCourseGameLessonRange } from './courseGameLesson';
+import { isCourseGameKey, parseCourseGameLessonRange } from './courseGameLesson';
+
+describe('isCourseGameKey', () => {
+  it('accepts a canonical game key', () => {
+    expect(isCourseGameKey('grammar')).toBe(true);
+  });
+
+  it('rejects an unknown game key', () => {
+    expect(isCourseGameKey('unknown-game')).toBe(false);
+  });
+});
 
 describe('parseCourseGameLessonRange', () => {
   it.each([

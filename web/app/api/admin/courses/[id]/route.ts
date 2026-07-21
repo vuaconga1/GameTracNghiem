@@ -10,7 +10,10 @@ export async function GET(_req: Request, { params }: Ctx) {
   try {
     await requireAdmin();
     const { id } = await params;
-    const course = await prisma.course.findFirst({ where: { id, ...notArchived } });
+    const course = await prisma.course.findFirst({
+      where: { id, ...notArchived },
+      include: { gameLessons: { orderBy: { gameKey: 'asc' } } },
+    });
     if (!course) {
       return Response.json({ success: false, message: 'Không tìm thấy khóa học' }, { status: 404 });
     }

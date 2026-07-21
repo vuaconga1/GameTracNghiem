@@ -1,3 +1,9 @@
+import { GAME_CATALOG } from './gameCatalog';
+
+export function isCourseGameKey(value: unknown): value is string {
+  return typeof value === 'string' && GAME_CATALOG.some((game) => game.key === value);
+}
+
 export type CourseGameLessonRange = {
   pageStart: number;
   pageEnd: number;
