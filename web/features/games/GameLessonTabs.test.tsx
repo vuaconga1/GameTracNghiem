@@ -30,21 +30,36 @@ describe('GameLessonTabsContent', () => {
     );
 
     expect(html).toContain('class="game-lesson-tabs"');
+    expect(html).toContain('id="game-lesson-tab-exercise"');
     expect(html).toContain('class="game-lesson-tab active"');
-    expect(html).toContain('aria-selected="true">Bài tập</button>');
+    expect(html).toContain('aria-selected="true"');
+    expect(html).toContain('Bài tập');
     expect(html).toContain('class="sample-game"');
-    expect(html).not.toContain('class="ebook-flip-root"');
+    expect(html).toContain('id="game-lesson-panel-exercise"');
+    expect(html).toContain('aria-controls="game-lesson-panel-exercise"');
+    expect(html).toContain('aria-labelledby="game-lesson-tab-exercise"');
+    expect(html).toMatch(
+      /id="game-lesson-panel-lesson"[^>]*hidden(?:="")?/,
+    );
   });
 
-  it('renders the ebook viewer with the lesson tab active', () => {
+  it('keeps the game mounted when the lesson tab is active', () => {
     const html = renderToStaticMarkup(
       <GameLessonTabsContent lesson={lesson} initialTab="lesson">
         <div className="sample-game">Game content</div>
       </GameLessonTabsContent>,
     );
 
-    expect(html).toContain('aria-selected="true">Bài học</button>');
+    expect(html).toContain('id="game-lesson-tab-lesson"');
+    expect(html).toContain('aria-selected="true"');
+    expect(html).toContain('Bài học');
     expect(html).toContain('class="ebook-flip-root"');
-    expect(html).not.toContain('class="sample-game"');
+    expect(html).toContain('class="sample-game"');
+    expect(html).toContain('id="game-lesson-panel-exercise"');
+    expect(html).toContain('id="game-lesson-panel-lesson"');
+    expect(html).toContain('aria-labelledby="game-lesson-tab-lesson"');
+    expect(html).toMatch(
+      /id="game-lesson-panel-exercise"[^>]*hidden(?:="")?/,
+    );
   });
 });

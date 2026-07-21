@@ -53,3 +53,28 @@ export function parseCourseGameLessonRange(
     value: { pageStart, pageEnd },
   };
 }
+
+export type CourseGameLessonDescriptor = {
+  ebookId: string;
+  pageStart: number;
+  pageEnd: number;
+};
+
+/** Validate a stored mapping against an active ebook's page count. */
+export function resolveCourseGameLessonDescriptor(input: {
+  ebookId: string;
+  pageStart: number;
+  pageEnd: number;
+  pageCount: number | null | undefined;
+}): CourseGameLessonDescriptor | null {
+  const parsed = parseCourseGameLessonRange(
+    { pageStart: input.pageStart, pageEnd: input.pageEnd },
+    input.pageCount,
+  );
+  if (!parsed.ok) return null;
+  return {
+    ebookId: input.ebookId,
+    pageStart: parsed.value.pageStart,
+    pageEnd: parsed.value.pageEnd,
+  };
+}
