@@ -1,0 +1,55 @@
+export type CourseGameLessonRange = {
+  pageStart: number;
+  pageEnd: number;
+};
+
+export type CourseGameLessonRangeResult =
+  | { ok: true; value: CourseGameLessonRange }
+  | { ok: false; message: string };
+
+function parsePositiveInteger(value: unknown): number | null {
+  if (typeof value === 'string' && !/^\d+$/.test(value.trim())) {
+    return null;
+  }
+
+  if (typeof value !== 'string' && typeof value !== 'number') {
+    return null;
+  }
+
+  const parsed = Number(value);
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : null;
+}
+
+export function parseCourseGameLessonRange(
+  value: { pageStart?: unknown; pageEnd?: unknown },
+  pageCount: number | null | undefined
+): CourseGameLessonRangeResult {
+  const pageStart = parsePositiveInteger(value?.pageStart);
+  const pageEnd = parsePositiveInteger(value?.pageEnd);
+
+  if (pageStart === null || pageEnd === null) {
+    return {
+      ok: false,
+      message: 'Trang bắt đầu và trang kết thúc phải là số nguyên dương.',
+    };
+  }
+
+  if (pageEnd < pageStart) {
+    return {
+      ok: false,
+      message: 'Trang kết thúc phải lớn hơn hoặc bằng trang bắt đầu.',
+    };
+  }
+
+  if (pageCount != null && pageEnd > pageCount) {
+    return {
+      ok: false,
+      message: `Phạm vi trang không được vượt quá ${pageCount} trang của tệp PDF.`,
+    };
+  }
+
+  return {
+    ok: true,
+    value: { pageStart, pageEnd },
+  };
+}

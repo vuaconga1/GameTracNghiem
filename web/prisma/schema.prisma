@@ -52,11 +52,26 @@ model Course {
   ebookPageStart Int?
   ebookPageEnd   Int?
   questions      Question[]
+  gameLessons    CourseGameLesson[]
 
   @@index([levelName])
   @@index([name])
   @@index([archivedAt])
   @@index([ebookFileId])
+}
+
+model CourseGameLesson {
+  id        String   @id @default(cuid())
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  gameKey   String
+  pageStart Int
+  pageEnd   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([courseId, gameKey])
+  @@index([courseId])
 }
 
 model Question {
