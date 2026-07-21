@@ -13,10 +13,18 @@ import { useSidebar } from './SidebarContext';
 type MainShellProps = {
   displayName: string;
   isAdmin?: boolean;
+  level?: number;
+  tier?: number;
   children: React.ReactNode;
 };
 
-export function MainShell({ displayName, isAdmin = false, children }: MainShellProps) {
+export function MainShell({
+  displayName,
+  isAdmin = false,
+  level,
+  tier,
+  children,
+}: MainShellProps) {
   const pathname = usePathname();
   const { setOpen } = useSidebar();
   const activeGame = findGameByPathname(pathname);
@@ -72,7 +80,13 @@ export function MainShell({ displayName, isAdmin = false, children }: MainShellP
       layout={isGamePage || isLeaderboard ? 'game' : 'index'}
       sidebar={sidebar}
       header={
-        <AppHeader displayName={displayName} isAdmin={isAdmin} showMenu={Boolean(sidebar)} />
+        <AppHeader
+          displayName={displayName}
+          isAdmin={isAdmin}
+          showMenu={Boolean(sidebar)}
+          level={level}
+          tier={tier}
+        />
       }
     >
       {children}

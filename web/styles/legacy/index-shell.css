@@ -249,6 +249,13 @@
       font-size: 11px;
     }
 
+    .badge-rank img {
+      width: 14px;
+      height: 14px;
+      display: block;
+      flex-shrink: 0;
+    }
+
     .header-actions {
       display: flex;
       align-items: center;
