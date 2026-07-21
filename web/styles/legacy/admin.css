@@ -438,7 +438,7 @@
 .course-game-list-head,
 .course-game-row {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) 110px 140px 140px;
+  grid-template-columns: minmax(0, 1.3fr) 90px 125px minmax(310px, 1.5fr) 140px;
   gap: 0.75rem;
   align-items: center;
   padding: 0.75rem 1rem;
@@ -515,6 +515,52 @@
   justify-content: flex-end;
 }
 
+.course-game-lesson-editor {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.course-game-lesson-inputs,
+.course-game-lesson-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.course-game-lesson-inputs input {
+  width: 6.5rem;
+  min-width: 0;
+  border: 1px solid var(--admin-border);
+  border-radius: 7px;
+  background: #fff;
+  padding: 0.45rem 0.5rem;
+  color: var(--admin-text);
+  font: inherit;
+}
+
+.course-game-lesson-inputs input:focus {
+  outline: none;
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+.course-game-lesson-inputs input:disabled {
+  background: #f1f5f9;
+  color: var(--admin-muted);
+  cursor: not-allowed;
+}
+
+.course-game-lesson-actions .admin-btn {
+  padding: 0.4rem 0.65rem;
+  font-size: 0.82rem;
+}
+
+.course-game-lesson-help {
+  color: var(--admin-muted);
+  font-size: 0.78rem;
+}
+
 .course-game-switch {
   display: inline-flex;
   align-items: center;
@@ -580,7 +626,8 @@
     grid-template-columns: 1fr auto;
     grid-template-areas:
       'main actions'
-      'visible visible';
+      'visible visible'
+      'lesson lesson';
     gap: 0.65rem 0.75rem;
     padding: 0.9rem 1rem;
   }
@@ -602,6 +649,20 @@
     grid-area: visible;
   }
 
+  .course-game-lesson {
+    grid-area: lesson;
+  }
+
+  .course-game-lesson-editor {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .course-game-lesson-inputs input {
+    flex: 1 1 7rem;
+    width: auto;
+  }
+
   .course-game-actions {
     grid-area: actions;
   }
@@ -618,7 +679,21 @@
     grid-template-areas:
       'main'
       'visible'
+      'lesson'
       'actions';
+  }
+
+  .course-game-lesson-editor {
+    grid-template-columns: 1fr;
+  }
+
+  .course-game-lesson-inputs input {
+    width: calc(50% - 0.75rem);
+  }
+
+  .course-game-lesson-actions .admin-btn {
+    flex: 1;
+    justify-content: center;
   }
 
   .course-game-actions {

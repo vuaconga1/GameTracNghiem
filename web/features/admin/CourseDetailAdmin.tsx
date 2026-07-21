@@ -5,7 +5,13 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { AdminShell } from '@/components/admin/AdminShell';
 import { DataLoading } from '@/components/DataLoading';
+import { parseCourseGameLessonRange } from '@/lib/courseGameLesson';
 import { ALL_GAME_KEYS, resolveEnabledGameKeys } from '@/lib/gameCatalog';
+
+import {
+  CourseGameLessonEditor,
+  type CourseGameLessonEditorValue,
+} from './CourseGameLessonEditor';
 
 type GameCard = {
   key: string;
@@ -13,6 +19,14 @@ type GameCard = {
   label: string;
   icon: string;
   questionCount: number;
+};
+
+type CourseGameLesson = {
+  id: string;
+  courseId: string;
+  gameKey: string;
+  pageStart: number;
+  pageEnd: number;
 };
 
 type Course = {
@@ -24,6 +38,7 @@ type Course = {
   ebookFileId?: string | null;
   ebookPageStart?: number | null;
   ebookPageEnd?: number | null;
+  gameLessons?: CourseGameLesson[];
 };
 
 type EbookOption = {
@@ -50,7 +65,11 @@ export function CourseDetailAdmin({
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [savingKey, setSavingKey] = useState<string | null>(null);
+  const [savingGameLessonKeys, setSavingGameLessonKeys] = useState<Set<string>>(new Set());
   const [savingLesson, setSavingLesson] = useState(false);
+  const [gameLessonDrafts, setGameLessonDrafts] = useState<
+    Record<string, Omit<CourseGameLessonEditorValue, 'saved'>>
+  >({});
 
   const load = useCallback(async () => {
     const [courseRes, ebooksRes] = await Promise.all([
@@ -72,6 +91,17 @@ export function CourseDetailAdmin({
       nextCourse.ebookPageStart != null ? String(nextCourse.ebookPageStart) : ''
     );
     setPageEnd(nextCourse.ebookPageEnd != null ? String(nextCourse.ebookPageEnd) : '');
+    setGameLessonDrafts(
+      Object.fromEntries(
+        (nextCourse.gameLessons || []).map((lesson) => [
+          lesson.gameKey,
+          {
+            pageStart: String(lesson.pageStart),
+            pageEnd: String(lesson.pageEnd),
+          },
+        ])
+      )
+    );
     if (ebooksData.success) {
       setEbooks(
         (ebooksData.items as EbookOption[]).filter((item) => item.active !== false)
@@ -182,6 +212,109 @@ export function CourseDetailAdmin({
     }
   }
 
+  async function saveGameLesson(game: GameCard) {
+    if (!course || savingGameLessonKeys.has(game.key)) return;
+
+    const draft = gameLessonDrafts[game.key] || { pageStart: '', pageEnd: '' };
+    const range = parseCourseGameLessonRange(draft, null);
+    if (!range.ok) {
+      setMessage('');
+      setError(range.message);
+      return;
+    }
+
+    setSavingGameLessonKeys((prev) => new Set(prev).add(game.key));
+    setMessage('');
+    setError('');
+    try {
+      const res = await fetch(
+        `/api/admin/courses/${courseId}/game-lessons/${game.key}`,
+        {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(range.value),
+        }
+      );
+      const data = await res.json();
+      if (!data.success) {
+        setError(data.message || 'Không lưu được bài học PDF của game');
+        return;
+      }
+
+      const saved = data.item as CourseGameLesson;
+      setCourse((prev) =>
+        prev
+          ? {
+              ...prev,
+              gameLessons: [
+                ...(prev.gameLessons || []).filter((item) => item.gameKey !== game.key),
+                saved,
+              ],
+            }
+          : prev
+      );
+      setGameLessonDrafts((prev) => ({
+        ...prev,
+        [game.key]: {
+          pageStart: String(saved.pageStart),
+          pageEnd: String(saved.pageEnd),
+        },
+      }));
+      setMessage(`Đã lưu bài học PDF cho “${game.label}”`);
+    } catch {
+      setError('Lỗi mạng khi lưu bài học PDF của game');
+    } finally {
+      setSavingGameLessonKeys((prev) => {
+        const next = new Set(prev);
+        next.delete(game.key);
+        return next;
+      });
+    }
+  }
+
+  async function removeGameLesson(game: GameCard) {
+    if (!course || savingGameLessonKeys.has(game.key)) return;
+
+    setSavingGameLessonKeys((prev) => new Set(prev).add(game.key));
+    setMessage('');
+    setError('');
+    try {
+      const res = await fetch(
+        `/api/admin/courses/${courseId}/game-lessons/${game.key}`,
+        { method: 'DELETE' }
+      );
+      const data = await res.json();
+      if (!data.success) {
+        setError(data.message || 'Không gỡ được bài học PDF của game');
+        return;
+      }
+
+      setCourse((prev) =>
+        prev
+          ? {
+              ...prev,
+              gameLessons: (prev.gameLessons || []).filter(
+                (item) => item.gameKey !== game.key
+              ),
+            }
+          : prev
+      );
+      setGameLessonDrafts((prev) => ({
+        ...prev,
+        [game.key]: { pageStart: '', pageEnd: '' },
+      }));
+      setMessage(`Đã gỡ bài học PDF khỏi “${game.label}”`);
+    } catch {
+      setError('Lỗi mạng khi gỡ bài học PDF của game');
+    } finally {
+      setSavingGameLessonKeys((prev) => {
+        const next = new Set(prev);
+        next.delete(game.key);
+        return next;
+      });
+    }
+  }
+
   return (
     <AdminShell
       displayName={displayName}
@@ -284,12 +417,20 @@ export function CourseDetailAdmin({
                 <span role="columnheader">Game</span>
                 <span role="columnheader">Số câu / bài</span>
                 <span role="columnheader">Hiện với HS</span>
+                <span role="columnheader">Bài học PDF</span>
                 <span role="columnheader">Thao tác</span>
               </div>
 
               {games.map((game) => {
                 const isOn = enabled.has(game.key);
                 const busy = savingKey === game.key;
+                const savedLesson = course.gameLessons?.find(
+                  (lesson) => lesson.gameKey === game.key
+                );
+                const lessonDraft = gameLessonDrafts[game.key] || {
+                  pageStart: '',
+                  pageEnd: '',
+                };
                 return (
                   <div
                     key={game.key}
@@ -324,6 +465,25 @@ export function CourseDetailAdmin({
                           {busy ? '…' : isOn ? 'Hiện' : 'Ẩn'}
                         </span>
                       </label>
+                    </div>
+                    <div className="course-game-lesson" role="cell">
+                      <CourseGameLessonEditor
+                        game={game}
+                        ebookAvailable={Boolean(course.ebookFileId)}
+                        value={{ ...lessonDraft, saved: Boolean(savedLesson) }}
+                        busy={savingGameLessonKeys.has(game.key)}
+                        onChange={({ pageStart: nextStart, pageEnd: nextEnd }) =>
+                          setGameLessonDrafts((prev) => ({
+                            ...prev,
+                            [game.key]: {
+                              pageStart: nextStart,
+                              pageEnd: nextEnd,
+                            },
+                          }))
+                        }
+                        onSave={() => void saveGameLesson(game)}
+                        onRemove={() => void removeGameLesson(game)}
+                      />
                     </div>
                     <div className="course-game-actions" role="cell">
                       <Link
