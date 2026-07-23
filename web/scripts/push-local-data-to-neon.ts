@@ -82,7 +82,11 @@ writeFileSync(
   `TRUNCATE TABLE
   "ScoreLog",
   "GameProgress",
+  "ExperienceGrant",
+  "PlayerExperience",
   "Question",
+  "CourseSkillLesson",
+  "CourseGameLesson",
   "Course",
   "ClassLevel",
   "Ebook",

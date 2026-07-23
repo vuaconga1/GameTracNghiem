@@ -1,0 +1,369 @@
+{
+  "docx": "E:\\Wewin\\Game Trắc Nghiệm\\PDF\\NguPhap_Lop8.docx",
+  "selectedCount": 12,
+  "skippedCount": 20,
+  "selected": [
+    {
+      "unit": 1,
+      "page": 1,
+      "outputImage": "unit-1-page-1.jpg",
+      "outputPdf": "unit-1-page-1.pdf",
+      "sourceMedia": "word/media/image1.jpg",
+      "sourceFileName": "image1.jpg",
+      "embedIndex": 1,
+      "rId": "rId7",
+      "bytes": 323416,
+      "width": 1019,
+      "height": 1441
+    },
+    {
+      "unit": 1,
+      "page": 2,
+      "outputImage": "unit-1-page-2.jpg",
+      "outputPdf": "unit-1-page-2.pdf",
+      "sourceMedia": "word/media/image3.jpg",
+      "sourceFileName": "image3.jpg",
+      "embedIndex": 2,
+      "rId": "rId9",
+      "bytes": 476785,
+      "width": 1029,
+      "height": 1455
+    },
+    {
+      "unit": 2,
+      "page": 1,
+      "outputImage": "unit-2-page-1.jpg",
+      "outputPdf": "unit-2-page-1.pdf",
+      "sourceMedia": "word/media/image12.jpg",
+      "sourceFileName": "image12.jpg",
+      "embedIndex": 7,
+      "rId": "rId18",
+      "bytes": 235077,
+      "width": 1009,
+      "height": 1412
+    },
+    {
+      "unit": 2,
+      "page": 2,
+      "outputImage": "unit-2-page-2.jpg",
+      "outputPdf": "unit-2-page-2.pdf",
+      "sourceMedia": "word/media/image14.jpg",
+      "sourceFileName": "image14.jpg",
+      "embedIndex": 8,
+      "rId": "rId20",
+      "bytes": 434786,
+      "width": 1035,
+      "height": 1442
+    },
+    {
+      "unit": 3,
+      "page": 1,
+      "outputImage": "unit-3-page-1.jpg",
+      "outputPdf": "unit-3-page-1.pdf",
+      "sourceMedia": "word/media/image17.jpg",
+      "sourceFileName": "image17.jpg",
+      "embedIndex": 13,
+      "rId": "rId23",
+      "bytes": 414788,
+      "width": 1729,
+      "height": 2423
+    },
+    {
+      "unit": 3,
+      "page": 2,
+      "outputImage": "unit-3-page-2.jpg",
+      "outputPdf": "unit-3-page-2.pdf",
+      "sourceMedia": "word/media/image19.jpg",
+      "sourceFileName": "image19.jpg",
+      "embedIndex": 14,
+      "rId": "rId25",
+      "bytes": 452193,
+      "width": 1023,
+      "height": 1443
+    },
+    {
+      "unit": 4,
+      "page": 1,
+      "outputImage": "unit-4-page-1.jpg",
+      "outputPdf": "unit-4-page-1.pdf",
+      "sourceMedia": "word/media/image24.jpg",
+      "sourceFileName": "image24.jpg",
+      "embedIndex": 19,
+      "rId": "rId30",
+      "bytes": 266740,
+      "width": 1003,
+      "height": 1420
+    },
+    {
+      "unit": 4,
+      "page": 2,
+      "outputImage": "unit-4-page-2.jpg",
+      "outputPdf": "unit-4-page-2.pdf",
+      "sourceMedia": "word/media/image26.jpg",
+      "sourceFileName": "image26.jpg",
+      "embedIndex": 20,
+      "rId": "rId32",
+      "bytes": 418624,
+      "width": 1019,
+      "height": 1424
+    },
+    {
+      "unit": 5,
+      "page": 1,
+      "outputImage": "unit-5-page-1.jpg",
+      "outputPdf": "unit-5-page-1.pdf",
+      "sourceMedia": "word/media/image31.jpg",
+      "sourceFileName": "image31.jpg",
+      "embedIndex": 25,
+      "rId": "rId37",
+      "bytes": 271597,
+      "width": 1010,
+      "height": 1420
+    },
+    {
+      "unit": 5,
+      "page": 2,
+      "outputImage": "unit-5-page-2.jpg",
+      "outputPdf": "unit-5-page-2.pdf",
+      "sourceMedia": "word/media/image33.jpg",
+      "sourceFileName": "image33.jpg",
+      "embedIndex": 26,
+      "rId": "rId39",
+      "bytes": 496766,
+      "width": 1025,
+      "height": 1453
+    },
+    {
+      "unit": 6,
+      "page": 1,
+      "outputImage": "unit-6-page-1.jpg",
+      "outputPdf": "unit-6-page-1.pdf",
+      "sourceMedia": "word/media/image36.jpg",
+      "sourceFileName": "image36.jpg",
+      "embedIndex": 31,
+      "rId": "rId42",
+      "bytes": 273202,
+      "width": 1007,
+      "height": 1404
+    },
+    {
+      "unit": 6,
+      "page": 2,
+      "outputImage": "unit-6-page-2.jpg",
+      "outputPdf": "unit-6-page-2.pdf",
+      "sourceMedia": "word/media/image38.jpg",
+      "sourceFileName": "image38.jpg",
+      "embedIndex": 32,
+      "rId": "rId44",
+      "bytes": 410991,
+      "width": 1001,
+      "height": 1480
+    }
+  ],
+  "skipped": [
+    {
+      "embedIndex": 3,
+      "rId": "rId10",
+      "media": "word/media/image4.png",
+      "fileName": "image4.png",
+      "bytes": 553,
+      "width": 975,
+      "height": 112,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 4,
+      "rId": "rId11",
+      "media": "word/media/image5.png",
+      "fileName": "image5.png",
+      "bytes": 198,
+      "width": 142,
+      "height": 123,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 5,
+      "rId": "rId12",
+      "media": "word/media/image6.png",
+      "fileName": "image6.png",
+      "bytes": 293,
+      "width": 811,
+      "height": 52,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 6,
+      "rId": "rId13",
+      "media": "word/media/image7.jpg",
+      "fileName": "image7.jpg",
+      "bytes": 12312,
+      "width": 471,
+      "height": 80,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 9,
+      "rId": "rId10",
+      "media": "word/media/image4.png",
+      "fileName": "image4.png",
+      "bytes": 553,
+      "width": 975,
+      "height": 112,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 10,
+      "rId": "rId11",
+      "media": "word/media/image5.png",
+      "fileName": "image5.png",
+      "bytes": 198,
+      "width": 142,
+      "height": 123,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 11,
+      "rId": "rId21",
+      "media": "word/media/image15.png",
+      "fileName": "image15.png",
+      "bytes": 350,
+      "width": 812,
+      "height": 70,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 12,
+      "rId": "rId13",
+      "media": "word/media/image7.jpg",
+      "fileName": "image7.jpg",
+      "bytes": 12312,
+      "width": 471,
+      "height": 80,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 15,
+      "rId": "rId10",
+      "media": "word/media/image4.png",
+      "fileName": "image4.png",
+      "bytes": 553,
+      "width": 975,
+      "height": 112,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 16,
+      "rId": "rId26",
+      "media": "word/media/image20.png",
+      "fileName": "image20.png",
+      "bytes": 198,
+      "width": 143,
+      "height": 123,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 17,
+      "rId": "rId27",
+      "media": "word/media/image21.png",
+      "fileName": "image21.png",
+      "bytes": 315,
+      "width": 810,
+      "height": 59,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 18,
+      "rId": "rId13",
+      "media": "word/media/image7.jpg",
+      "fileName": "image7.jpg",
+      "bytes": 12312,
+      "width": 471,
+      "height": 80,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 21,
+      "rId": "rId10",
+      "media": "word/media/image4.png",
+      "fileName": "image4.png",
+      "bytes": 553,
+      "width": 975,
+      "height": 112,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 22,
+      "rId": "rId33",
+      "media": "word/media/image27.png",
+      "fileName": "image27.png",
+      "bytes": 197,
+      "width": 143,
+      "height": 122,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 23,
+      "rId": "rId34",
+      "media": "word/media/image28.png",
+      "fileName": "image28.png",
+      "bytes": 327,
+      "width": 863,
+      "height": 59,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 24,
+      "rId": "rId13",
+      "media": "word/media/image7.jpg",
+      "fileName": "image7.jpg",
+      "bytes": 12312,
+      "width": 471,
+      "height": 80,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 27,
+      "rId": "rId10",
+      "media": "word/media/image4.png",
+      "fileName": "image4.png",
+      "bytes": 553,
+      "width": 975,
+      "height": 112,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 28,
+      "rId": "rId33",
+      "media": "word/media/image27.png",
+      "fileName": "image27.png",
+      "bytes": 197,
+      "width": 143,
+      "height": 122,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 29,
+      "rId": "rId40",
+      "media": "word/media/image34.png",
+      "fileName": "image34.png",
+      "bytes": 319,
+      "width": 828,
+      "height": 59,
+      "reason": "decorative/banner (not full theory page)"
+    },
+    {
+      "embedIndex": 30,
+      "rId": "rId13",
+      "media": "word/media/image7.jpg",
+      "fileName": "image7.jpg",
+      "bytes": 12312,
+      "width": 471,
+      "height": 80,
+      "reason": "decorative/banner (not full theory page)"
+    }
+  ],
+  "rule": {
+    "keep": "width>=900 AND height>=1200 AND bytes>=80000",
+    "skip": "PART I. THEORY coral banner pieces, UNIT decorations, icons, duplicates"
+  }
+}
