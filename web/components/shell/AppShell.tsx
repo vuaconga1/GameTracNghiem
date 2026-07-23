@@ -8,7 +8,7 @@ type AppShellProps = {
   header: React.ReactNode;
   children: React.ReactNode;
   /** Index pages must stretch; game-styles defaults .main to align-items:center (shrinks content). */
-  layout?: 'index' | 'game';
+  layout?: 'index' | 'course' | 'game';
 };
 
 export function AppShell({
@@ -26,7 +26,7 @@ export function AppShell({
   ]
     .filter(Boolean)
     .join(' ');
-  const mainClassName = layout === 'index' ? 'main layout-index' : 'main layout-game';
+  const mainClassName = `main layout-${layout}`;
 
   return (
     <div className="page-shell">

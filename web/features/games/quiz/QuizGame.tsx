@@ -1,10 +1,12 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
-import { GameResultSummary, GameScoreHero } from '@/components/games/GameScoreHero';
+import { PageBackButton } from '@/components/PageBackButton';
+import { GameResultSummary } from '@/components/games/GameScoreHero';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
 import { gradedIsCorrect, isGradedStatus } from '@/features/games/gradedLock';
@@ -15,17 +17,30 @@ import {
 import { progressCourseKey } from '@/lib/courseKey';
 import {
   type ProgressStatus,
-  nextEmptyIndex,
   normalizeStatuses,
 } from '@/lib/gameCatalog';
+import { parseSkillQuery, type SkillId } from '@/lib/skillCatalog';
 
 import { gradeQuizFillAnswer, gradeQuizOptionAnswer } from './gradeAnswer';
+import {
+  QUIZ_TYPE_LABELS,
+  buildQuizQuery,
+  filterQuizQuestions,
+  normalizeQuizExercise,
+  parseQuizTypeQuery,
+  quizExercisesForSkillType,
+  quizTypesForSkill,
+  type QuizType,
+} from './quizNav';
 
 type QuizQuestion = {
   id: string;
   index: number;
   type: string;
   typeLabel: string;
+  skill: string;
+  exercise: string;
+  exerciseLabel?: string;
   question: string;
   answer: string;
   fillMode: boolean;
@@ -56,7 +71,7 @@ type Props = {
   courseId: string;
 };
 
-type Panel = 'list' | 'question' | 'result';
+type Panel = 'types' | 'exercises' | 'list' | 'question' | 'result';
 
 type QuizStats = {
   total: number;
@@ -94,16 +109,53 @@ function questionPreview(question: QuizQuestion): string {
   return withType.length > 50 ? `${withType.slice(0, 50)}...` : withType;
 }
 
+function statsForQuestions(
+  questions: QuizQuestion[],
+  statuses: ProgressStatus[]
+): QuizStats {
+  let correct = 0;
+  let wrong = 0;
+  for (const question of questions) {
+    const status = statuses[question.index] || 'empty';
+    if (status === 'correct') correct += 1;
+    else if (status === 'wrong') wrong += 1;
+  }
+  return {
+    total: questions.length,
+    correct,
+    wrong,
+    pending: Math.max(questions.length - correct - wrong, 0),
+  };
+}
+
+function nextEmptyInSubset(
+  questions: QuizQuestion[],
+  statuses: ProgressStatus[]
+): number {
+  const idx = questions.findIndex((q) => (statuses[q.index] || 'empty') === 'empty');
+  return idx;
+}
+
 export function QuizGame({ courseId }: Props) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const skill = parseSkillQuery(searchParams.get('skill'));
+  const selectedType = parseQuizTypeQuery(searchParams.get('type'));
+  const exerciseParam = searchParams.get('exercise');
+  const selectedExercise =
+    exerciseParam != null && exerciseParam !== ''
+      ? normalizeQuizExercise(exerciseParam)
+      : null;
+
   const [data, setData] = useState<QuizGameResponse | null>(null);
   const [statuses, setStatuses] = useState<ProgressStatus[]>([]);
-  const [panel, setPanel] = useState<Panel>('list');
+  const [panel, setPanel] = useState<Panel>('types');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [input, setInput] = useState('');
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [answerResult, setAnswerResult] = useState<AnswerResult | null>(null);
   const [sessionPoints, setSessionPoints] = useState(0);
-  const [gameScore, setGameScore] = useState(0);
+  const [, setGameScore] = useState(0);
   const [playSessionId, setPlaySessionId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -131,12 +183,9 @@ export function QuizGame({ courseId }: Props) {
 
         const questions = json.questions || [];
         const nextStatuses = normalizeStatuses(json.statuses, questions.length);
-        const firstEmptyIndex = nextEmptyIndex(nextStatuses);
 
         setData(json);
         setStatuses(nextStatuses);
-        setCurrentIndex(firstEmptyIndex === -1 ? 0 : firstEmptyIndex);
-        setPanel('list');
         setSessionPoints(0);
         setGameScore(json.gameScore || 0);
         setPlaySessionId(json.playSessionId || null);
@@ -161,21 +210,62 @@ export function QuizGame({ courseId }: Props) {
     };
   }, [courseId]);
 
-  const questions = useMemo(() => data?.questions || [], [data?.questions]);
+  const allQuestions = useMemo(() => data?.questions || [], [data?.questions]);
   const course = data?.course;
-  const currentQuestion = questions[currentIndex];
-  const maxScore = questions.length * 200;
-  const stats = useMemo<QuizStats>(() => {
-    const correct = statuses.filter((status) => status === 'correct').length;
-    const wrong = statuses.filter((status) => status === 'wrong').length;
-    return {
-      total: questions.length,
-      correct,
-      wrong,
-      pending: Math.max(questions.length - correct - wrong, 0),
-    };
-  }, [questions.length, statuses]);
-  const progressPercent = maxScore ? Math.min(100, Math.round((sessionPoints / maxScore) * 100)) : 0;
+
+  useEffect(() => {
+    if (!courseId || isLoading) return;
+    if (!skill) {
+      router.replace(`/courses/${courseId}`);
+    }
+  }, [courseId, isLoading, router, skill]);
+
+  const typeCards = useMemo(
+    () => (skill ? quizTypesForSkill(allQuestions, skill) : []),
+    [allQuestions, skill]
+  );
+
+  const exerciseCards = useMemo(() => {
+    if (!skill || !selectedType) return [];
+    return quizExercisesForSkillType(allQuestions, skill, selectedType);
+  }, [allQuestions, selectedType, skill]);
+
+  const filteredQuestions = useMemo(() => {
+    if (!skill || !selectedType || !selectedExercise) return [];
+    return filterQuizQuestions(allQuestions, skill, selectedType, selectedExercise);
+  }, [allQuestions, selectedExercise, selectedType, skill]);
+
+  const navStep: 'types' | 'exercises' | 'list' | null = !skill
+    ? null
+    : selectedType && selectedExercise
+      ? 'list'
+      : selectedType
+        ? 'exercises'
+        : 'types';
+
+  useEffect(() => {
+    if (panel === 'question' || panel === 'result') return;
+    if (navStep === 'types' || navStep === 'exercises' || navStep === 'list') {
+      setPanel(navStep);
+    }
+  }, [navStep, panel]);
+
+  useEffect(() => {
+    if (panel !== 'list' || filteredQuestions.length === 0) return;
+    const firstEmpty = nextEmptyInSubset(filteredQuestions, statuses);
+    setCurrentIndex(firstEmpty === -1 ? 0 : firstEmpty);
+  }, [filteredQuestions, panel, statuses]);
+
+  const playQuestions = filteredQuestions;
+  const currentQuestion = playQuestions[currentIndex];
+  const maxScore = playQuestions.length * 200;
+  const stats = useMemo(
+    () => statsForQuestions(playQuestions, statuses),
+    [playQuestions, statuses]
+  );
+  const progressPercent = maxScore
+    ? Math.min(100, Math.round((sessionPoints / maxScore) * 100))
+    : 0;
 
   useEffect(() => {
     if (panel === 'question') {
@@ -184,14 +274,22 @@ export function QuizGame({ courseId }: Props) {
       setSelectedOption(null);
       setSubmitMessage('');
       clearAutoAdvance(advanceTimer);
-      if (isGradedStatus(statuses[currentIndex])) {
-        setAnswerResult({ isCorrect: gradedIsCorrect(statuses[currentIndex]) });
+      if (currentQuestion && isGradedStatus(statuses[currentQuestion.index])) {
+        setAnswerResult({ isCorrect: gradedIsCorrect(statuses[currentQuestion.index]) });
       } else {
         setAnswerResult(null);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps -- lock from status at navigation time
   }, [currentIndex, panel]);
+
+  function setQuizQuery(next: {
+    skill: SkillId;
+    type?: QuizType | null;
+    exercise?: string | null;
+  }) {
+    router.push(`/games/quiz/${courseId}${buildQuizQuery(next)}`);
+  }
 
   async function persistProgress(
     nextStatuses: ProgressStatus[],
@@ -211,7 +309,7 @@ export function QuizGame({ courseId }: Props) {
       throw new Error(json.message || 'Không lưu được tiến độ');
     }
     if (json.statuses) {
-      setStatuses(normalizeStatuses(json.statuses, questions.length));
+      setStatuses(normalizeStatuses(json.statuses, allQuestions.length));
     }
     if (json.playSessionId) {
       setPlaySessionId(json.playSessionId);
@@ -229,7 +327,7 @@ export function QuizGame({ courseId }: Props) {
   function goNext() {
     clearAutoAdvance(advanceTimer);
     const nextIndex = currentIndex + 1;
-    if (nextIndex >= questions.length) {
+    if (nextIndex >= playQuestions.length) {
       setPanel('result');
       return;
     }
@@ -312,11 +410,11 @@ export function QuizGame({ courseId }: Props) {
     await submitAnswer(isCorrect, alreadyAnswered);
   }
 
-  function openQuestion(index: number) {
+  function openQuestion(listIndex: number) {
     void (async () => {
       try {
         await ensurePlaySession();
-        setCurrentIndex(index);
+        setCurrentIndex(listIndex);
         setPanel('question');
       } catch (err) {
         setSubmitMessage(err instanceof Error ? err.message : 'Không mở được câu hỏi');
@@ -325,7 +423,7 @@ export function QuizGame({ courseId }: Props) {
   }
 
   function startOrContinue() {
-    const firstEmptyIndex = nextEmptyIndex(statuses);
+    const firstEmptyIndex = nextEmptyInSubset(playQuestions, statuses);
     if (firstEmptyIndex === -1) return;
     void (async () => {
       try {
@@ -339,21 +437,24 @@ export function QuizGame({ courseId }: Props) {
   }
 
   async function resetProgress(openFirstQuestion: boolean) {
-    if (!course || isResetting) return;
+    if (!course || isResetting || playQuestions.length === 0) return;
 
-    const emptyStatuses = Array.from({ length: questions.length }, () => 'empty' as ProgressStatus);
+    const nextStatuses = [...statuses];
+    for (const question of playQuestions) {
+      nextStatuses[question.index] = 'empty';
+    }
     const nextSession = createPlaySessionId();
 
     setIsResetting(true);
     setSubmitMessage('');
 
     try {
-      setStatuses(emptyStatuses);
+      setStatuses(nextStatuses);
       setSessionPoints(0);
       setAnswerResult(null);
       setCurrentIndex(0);
       setPlaySessionId(nextSession);
-      await persistProgress(emptyStatuses, true, nextSession);
+      await persistProgress(nextStatuses, false, nextSession);
       setPanel(openFirstQuestion ? 'question' : 'list');
     } catch (err) {
       setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
@@ -362,7 +463,45 @@ export function QuizGame({ courseId }: Props) {
     }
   }
 
+  function handleBack() {
+    if (!skill || !course) return;
+    if (panel === 'question') {
+      setPanel('list');
+      return;
+    }
+    if (panel === 'result') {
+      setPanel('list');
+      return;
+    }
+    if (panel === 'list' && selectedType) {
+      setQuizQuery({ skill, type: selectedType });
+      return;
+    }
+    if (panel === 'exercises') {
+      setQuizQuery({ skill });
+      return;
+    }
+    window.location.href = `/courses/${course.id}?skill=${skill}`;
+  }
+
+  const backTitle =
+    panel === 'question' || panel === 'result'
+      ? 'Về danh sách'
+      : panel === 'list'
+        ? 'Về bài tập'
+        : panel === 'exercises'
+          ? 'Về loại câu'
+          : 'Quay lại khóa học';
+
   if (isLoading) {
+    return (
+      <div className="game-page quiz-page">
+        <DataLoading />
+      </div>
+    );
+  }
+
+  if (!skill) {
     return (
       <div className="game-page quiz-page">
         <DataLoading />
@@ -378,7 +517,7 @@ export function QuizGame({ courseId }: Props) {
     );
   }
 
-  if (questions.length === 0) {
+  if (allQuestions.length === 0) {
     return (
       <div className="game-page quiz-page">
         <DataLoading variant="message" message="Chưa có câu hỏi Trắc nghiệm cho khóa học này" />
@@ -386,29 +525,23 @@ export function QuizGame({ courseId }: Props) {
     );
   }
 
-  const firstPending = statuses.findIndex((status) => status === 'empty');
-  const allAnswered = firstPending === -1;
+  const firstPending = nextEmptyInSubset(playQuestions, statuses);
+  const allAnswered = playQuestions.length > 0 && firstPending === -1;
   const startLabel = allAnswered ? 'Làm lại từ đầu' : 'Bắt đầu làm bài';
-  const subtitle = `${course.name}${course.levelName ? ` · ${course.levelName}` : ''}`;
+  const typeLabel = selectedType ? QUIZ_TYPE_LABELS[selectedType] : '';
+  const subtitle = [
+    course.name,
+    course.levelName,
+    typeLabel,
+    selectedExercise,
+  ]
+    .filter(Boolean)
+    .join(' · ');
 
   return (
     <div className="game-page quiz-page">
+      <PageBackButton title={backTitle} onClick={handleBack} />
       <div className="game-top">
-        <button
-          type="button"
-          className="game-back"
-          title={panel === 'question' ? 'Về danh sách' : 'Quay lại khóa học'}
-          aria-label={panel === 'question' ? 'Về danh sách' : 'Quay lại khóa học'}
-          onClick={() => {
-            if (panel === 'question') {
-              setPanel('list');
-            } else {
-              window.location.href = `/courses/${course.id}`;
-            }
-          }}
-        >
-          <i className="fas fa-arrow-left" aria-hidden="true" />
-        </button>
         <div className="game-title-wrap">
           <h1>Trắc nghiệm</h1>
           <p className="game-subtitle">{subtitle}</p>
@@ -431,74 +564,149 @@ export function QuizGame({ courseId }: Props) {
         </div>
       ) : null}
 
+      {panel === 'types' ? (
+        <div className="game-card" id="typePanel">
+          <div className="list-title">Chọn loại câu</div>
+          {typeCards.length === 0 ? (
+            <DataLoading
+              variant="message"
+              message="Chưa có câu hỏi Trắc nghiệm cho kỹ năng này"
+            />
+          ) : (
+            <div className="activity-grid" style={{ marginTop: 12 }}>
+              {typeCards.map((card) => (
+                <button
+                  key={card.type}
+                  type="button"
+                  className="activity-card"
+                  data-quiz-type={card.type}
+                  onClick={() => setQuizQuery({ skill, type: card.type })}
+                >
+                  <div className="activity-left">
+                    <div className="activity-icon quiz">
+                      <i className="fas fa-list-ul" aria-hidden="true" />
+                    </div>
+                    <span className="activity-label">{card.label}</span>
+                  </div>
+                  <span className="activity-progress">{card.count} câu</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : null}
+
+      {panel === 'exercises' && selectedType ? (
+        <div className="game-card" id="exercisePanel">
+          <div className="list-title">Chọn bài ({QUIZ_TYPE_LABELS[selectedType]})</div>
+          {exerciseCards.length === 0 ? (
+            <DataLoading variant="message" message="Chưa có bài tập cho loại câu này" />
+          ) : (
+            <div className="activity-grid" style={{ marginTop: 12 }}>
+              {exerciseCards.map((card) => (
+                <button
+                  key={card.exercise}
+                  type="button"
+                  className="activity-card"
+                  data-quiz-exercise={card.exercise}
+                  onClick={() =>
+                    setQuizQuery({ skill, type: selectedType, exercise: card.exercise })
+                  }
+                >
+                  <div className="activity-left">
+                    <div className="activity-icon quiz">
+                      <i className="fas fa-folder-open" aria-hidden="true" />
+                    </div>
+                    <span className="activity-label">{card.exercise}</span>
+                  </div>
+                  <span className="activity-progress">{card.count} câu</span>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      ) : null}
+
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
-          <div className="list-title">Danh sách câu hỏi</div>
-          <GameScoreHero gameScore={gameScore} />
-          <div className="list-stats">
-            <div className="stat-item">
-              <span className="stat-num">{stats.total}</span>
-              <span className="stat-label">Tổng câu</span>
-            </div>
-            <div className="stat-item correct">
-              <span className="stat-num">{stats.correct}</span>
-              <span className="stat-label">Đúng</span>
-            </div>
-            <div className="stat-item wrong">
-              <span className="stat-num">{stats.wrong}</span>
-              <span className="stat-label">Sai</span>
-            </div>
-            <div className="stat-item pending">
-              <span className="stat-num">{stats.pending}</span>
-              <span className="stat-label">Chưa làm</span>
-            </div>
+          <div className="list-title">
+            Danh sách câu hỏi
+            {selectedExercise ? ` · ${selectedExercise}` : ''}
           </div>
-          <div className="question-list">
-            {questions.map((question, index) => {
-              const status = statuses[index] || 'empty';
-              return (
-                <div
-                  key={question.id}
-                  role="button"
-                  tabIndex={0}
-                  className={`q-list-item ${statusClass(status)}`}
-                  onClick={() => openQuestion(index)}
-                  onKeyDown={(event) => {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                      event.preventDefault();
-                      openQuestion(index);
-                    }
-                  }}
-                >
-                  <span className="q-num">{index + 1}</span>
-                  <span className="q-preview">{questionPreview(question)}</span>
-                  <span className="q-status">{statusIcon(status)}</span>
+          {playQuestions.length === 0 ? (
+            <DataLoading variant="message" message="Không có câu hỏi trong bài này" />
+          ) : (
+            <>
+              <div className="list-stats">
+                <div className="stat-item">
+                  <span className="stat-num">{stats.total}</span>
+                  <span className="stat-label">Tổng câu</span>
                 </div>
-              );
-            })}
-          </div>
-          <div className="game-actions">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={allAnswered ? () => void resetProgress(true) : startOrContinue}
-              disabled={isResetting}
-            >
-              {isResetting ? 'Đang làm lại...' : startLabel}
-            </button>
-            {allAnswered ? (
-              <button type="button" className="btn btn-secondary" onClick={() => setPanel('result')}>
-                Xem kết quả
-              </button>
-            ) : null}
-          </div>
+                <div className="stat-item correct">
+                  <span className="stat-num">{stats.correct}</span>
+                  <span className="stat-label">Đúng</span>
+                </div>
+                <div className="stat-item wrong">
+                  <span className="stat-num">{stats.wrong}</span>
+                  <span className="stat-label">Sai</span>
+                </div>
+                <div className="stat-item pending">
+                  <span className="stat-num">{stats.pending}</span>
+                  <span className="stat-label">Chưa làm</span>
+                </div>
+              </div>
+              <div className="question-list">
+                {playQuestions.map((question, listIndex) => {
+                  const status = statuses[question.index] || 'empty';
+                  return (
+                    <div
+                      key={question.id}
+                      role="button"
+                      tabIndex={0}
+                      className={`q-list-item ${statusClass(status)}`}
+                      onClick={() => openQuestion(listIndex)}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault();
+                          openQuestion(listIndex);
+                        }
+                      }}
+                    >
+                      <span className="q-num">{listIndex + 1}</span>
+                      <span className="q-preview">{questionPreview(question)}</span>
+                      <span className="q-status">{statusIcon(status)}</span>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="game-actions">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={allAnswered ? () => void resetProgress(true) : startOrContinue}
+                  disabled={isResetting}
+                >
+                  {isResetting ? 'Đang làm lại...' : startLabel}
+                </button>
+                {allAnswered ? (
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => setPanel('result')}
+                  >
+                    Xem kết quả
+                  </button>
+                ) : null}
+              </div>
+            </>
+          )}
         </div>
       ) : null}
 
       {panel === 'question' && currentQuestion ? (
         <div className="game-card" id="questionPanel">
           <span className="question-counter-pill">
-            Câu {currentIndex + 1}/{questions.length}
+            Câu {currentIndex + 1}/{playQuestions.length}
           </span>
           <div
             className="question-text"
@@ -554,7 +762,7 @@ export function QuizGame({ courseId }: Props) {
                     </button>
                   ) : (
                     <button type="button" className="btn btn-secondary" onClick={goNext}>
-                      {currentIndex + 1 >= questions.length ? 'Xem kết quả' : 'Câu tiếp theo'}
+                      {currentIndex + 1 >= playQuestions.length ? 'Xem kết quả' : 'Câu tiếp theo'}
                     </button>
                   )}
                   <button type="button" className="btn btn-secondary" onClick={() => setPanel('list')}>
@@ -611,7 +819,7 @@ export function QuizGame({ courseId }: Props) {
                 <div className="game-actions">
                   {answerResult ? (
                     <button type="button" className="btn btn-secondary" onClick={goNext}>
-                      {currentIndex + 1 >= questions.length ? 'Xem kết quả' : 'Câu tiếp theo'}
+                      {currentIndex + 1 >= playQuestions.length ? 'Xem kết quả' : 'Câu tiếp theo'}
                     </button>
                   ) : null}
                   <button type="button" className="btn btn-secondary" onClick={() => setPanel('list')}>
@@ -627,7 +835,6 @@ export function QuizGame({ courseId }: Props) {
       {panel === 'result' ? (
         <div className="game-card" id="resultPanel">
           <GameResultSummary
-            gameScore={gameScore}
             correct={stats.correct}
             total={stats.total}
             wrong={stats.wrong}
@@ -640,7 +847,10 @@ export function QuizGame({ courseId }: Props) {
             >
               {isResetting ? 'Đang làm lại...' : 'Làm lại'}
             </button>
-            <Link href={`/courses/${course.id}`} className="btn btn-secondary">
+            <Link
+              href={`/courses/${course.id}?skill=${skill}`}
+              className="btn btn-secondary"
+            >
               Quay lại khóa học
             </Link>
           </GameResultSummary>

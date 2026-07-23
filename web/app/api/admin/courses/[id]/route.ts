@@ -3,14 +3,46 @@ import { adminErrorResponse } from '@/lib/admin/http';
 import { notArchived } from '@/lib/admin/notArchived';
 import { prisma } from '@/lib/db';
 import { GAME_CATALOG, normalizeEnabledGamesInput } from '@/lib/gameCatalog';
+import {
+  buildGameSkillsFromEnabledGames,
+  deriveEnabledGamesFromSkills,
+  normalizeEnabledSkillsInput,
+  normalizeGameSkillsInput,
+  resolveEnabledSkillIds,
+  resolveGameSkillsMap,
+  SKILL_IDS,
+  type GameSkillsMap,
+  type SkillId,
+} from '@/lib/skillCatalog';
 
 type Ctx = { params: Promise<{ id: string }> };
+
+function courseSkillFields(course: {
+  enabledGames: string[];
+  gameSkills: unknown;
+  enabledSkills: string[];
+}) {
+  const gameSkills = resolveGameSkillsMap(course.gameSkills, course.enabledGames);
+  const enabledSkills = resolveEnabledSkillIds(course.enabledSkills);
+  const enabledGames = deriveEnabledGamesFromSkills(
+    gameSkills,
+    enabledSkills,
+    course.enabledGames
+  );
+  return { gameSkills, enabledSkills, enabledGames };
+}
 
 export async function GET(_req: Request, { params }: Ctx) {
   try {
     await requireAdmin();
     const { id } = await params;
-    const course = await prisma.course.findFirst({ where: { id, ...notArchived } });
+    const course = await prisma.course.findFirst({
+      where: { id, ...notArchived },
+      include: {
+        gameLessons: { orderBy: { gameKey: 'asc' } },
+        skillLessons: { orderBy: { skillId: 'asc' } },
+      },
+    });
     if (!course) {
       return Response.json({ success: false, message: 'Không tìm thấy khóa học' }, { status: 404 });
     }
@@ -21,14 +53,19 @@ export async function GET(_req: Request, { params }: Ctx) {
       _count: { _all: true },
     });
     const countMap = Object.fromEntries(counts.map((row) => [row.game, row._count._all]));
+    const skillFields = courseSkillFields(course);
 
     return Response.json({
       success: true,
-      course,
+      course: {
+        ...course,
+        ...skillFields,
+      },
       games: GAME_CATALOG.map((game) => ({
         ...game,
         questionCount: countMap[game.key] || 0,
       })),
+      skills: SKILL_IDS,
     });
   } catch (err) {
     return adminErrorResponse(err);
@@ -45,8 +82,33 @@ export async function PATCH(req: Request, { params }: Ctx) {
       return Response.json({ success: false, message: 'Không tìm thấy khóa học' }, { status: 404 });
     }
 
-    let enabledGames: string[] | undefined;
-    if (body.enabledGames !== undefined) {
+    let nextGameSkills: GameSkillsMap | undefined;
+    let nextEnabledSkills: SkillId[] | undefined;
+
+    if (body.gameSkills !== undefined) {
+      const normalized = normalizeGameSkillsInput(body.gameSkills);
+      if (normalized === null) {
+        return Response.json(
+          { success: false, message: 'Bản đồ kỹ năng game không hợp lệ' },
+          { status: 400 }
+        );
+      }
+      nextGameSkills = normalized;
+    }
+
+    if (body.enabledSkills !== undefined) {
+      const normalized = normalizeEnabledSkillsInput(body.enabledSkills);
+      if (normalized === null) {
+        return Response.json(
+          { success: false, message: 'Danh sách kỹ năng không hợp lệ' },
+          { status: 400 }
+        );
+      }
+      nextEnabledSkills = normalized;
+    }
+
+    // Legacy enabledGames PATCH: convert to gameSkills via convention, then derive.
+    if (body.enabledGames !== undefined && nextGameSkills === undefined) {
       const normalized = normalizeEnabledGamesInput(body.enabledGames);
       if (normalized === null) {
         return Response.json(
@@ -54,8 +116,17 @@ export async function PATCH(req: Request, { params }: Ctx) {
           { status: 400 }
         );
       }
-      enabledGames = normalized;
+      nextGameSkills = buildGameSkillsFromEnabledGames(normalized);
     }
+
+    const resolvedSkills =
+      nextGameSkills ?? resolveGameSkillsMap(existing.gameSkills, existing.enabledGames);
+    const resolvedEnabled =
+      nextEnabledSkills ?? resolveEnabledSkillIds(existing.enabledSkills);
+    const derivedEnabledGames =
+      nextGameSkills !== undefined || nextEnabledSkills !== undefined
+        ? deriveEnabledGamesFromSkills(resolvedSkills, resolvedEnabled)
+        : undefined;
 
     const item = await prisma.course.update({
       where: { id },
@@ -63,7 +134,9 @@ export async function PATCH(req: Request, { params }: Ctx) {
         ...(body.name !== undefined ? { name: String(body.name).trim() } : {}),
         ...(body.levelName !== undefined ? { levelName: String(body.levelName).trim() } : {}),
         ...(body.active !== undefined ? { active: Boolean(body.active) } : {}),
-        ...(enabledGames !== undefined ? { enabledGames } : {}),
+        ...(nextGameSkills !== undefined ? { gameSkills: nextGameSkills } : {}),
+        ...(nextEnabledSkills !== undefined ? { enabledSkills: nextEnabledSkills } : {}),
+        ...(derivedEnabledGames !== undefined ? { enabledGames: derivedEnabledGames } : {}),
         ...(body.ebookFileId !== undefined
           ? { ebookFileId: String(body.ebookFileId || '').trim() || null }
           : {}),
@@ -86,7 +159,8 @@ export async function PATCH(req: Request, { params }: Ctx) {
       },
     });
 
-    return Response.json({ success: true, item });
+    const skillFields = courseSkillFields(item);
+    return Response.json({ success: true, item: { ...item, ...skillFields } });
   } catch (err) {
     return adminErrorResponse(err);
   }

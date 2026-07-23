@@ -1,10 +1,11 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
-import { GameResultSummary, GameScoreHero } from '@/components/games/GameScoreHero';
+import { PageBackButton } from '@/components/PageBackButton';
+import { GameResultSummary } from '@/components/games/GameScoreHero';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
 import { gradedIsCorrect, isGradedStatus } from '@/features/games/gradedLock';
@@ -138,7 +139,7 @@ export function ScrambleGame({ courseId }: Props) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answerResult, setAnswerResult] = useState<AnswerResult | null>(null);
   const [sessionPoints, setSessionPoints] = useState(0);
-  const [gameScore, setGameScore] = useState(0);
+  const [, setGameScore] = useState(0);
   const [playSessionId, setPlaySessionId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -490,22 +491,17 @@ export function ScrambleGame({ courseId }: Props) {
 
   return (
     <div className="game-page scramble-page">
+      <PageBackButton
+        title={panel === 'question' ? 'Về danh sách' : 'Quay lại khóa học'}
+        onClick={() => {
+          if (panel === 'question') {
+            setPanel('list');
+          } else {
+            window.location.href = `/courses/${course.id}`;
+          }
+        }}
+      />
       <div className="game-top">
-        <button
-          type="button"
-          className="game-back"
-          title={panel === 'question' ? 'Về danh sách' : 'Quay lại khóa học'}
-          aria-label={panel === 'question' ? 'Về danh sách' : 'Quay lại khóa học'}
-          onClick={() => {
-            if (panel === 'question') {
-              setPanel('list');
-            } else {
-              window.location.href = `/courses/${course.id}`;
-            }
-          }}
-        >
-          <i className="fas fa-arrow-left" aria-hidden="true" />
-        </button>
         <div className="game-title-wrap">
           <h1>Sắp xếp từ vựng</h1>
           <p className="game-subtitle">{subtitle}</p>
@@ -530,7 +526,6 @@ export function ScrambleGame({ courseId }: Props) {
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
           <div className="list-title">Danh sách từ</div>
-          <GameScoreHero gameScore={gameScore} />
           <div className="list-stats">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
@@ -706,7 +701,6 @@ export function ScrambleGame({ courseId }: Props) {
       {panel === 'result' ? (
         <div className="game-card" id="resultPanel">
           <GameResultSummary
-            gameScore={gameScore}
             correct={stats.correct}
             total={stats.total}
             wrong={stats.wrong}

@@ -1,9 +1,10 @@
-'use client';
+﻿'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
-import { GameResultSummary, GameScoreHero } from '@/components/games/GameScoreHero';
+import { PageBackButton } from '@/components/PageBackButton';
+import { GameResultSummary } from '@/components/games/GameScoreHero';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
 import { isGradedStatus } from '@/features/games/gradedLock';
@@ -316,7 +317,6 @@ export type PronunciationGameContentProps = {
   isSubmitting: boolean;
   isResetting: boolean;
   stats: PronunciationStats;
-  gameScore: number;
   onBackHome: () => void;
   onBackToList: () => void;
   onOpenQuestion: (index: number) => void;
@@ -349,7 +349,6 @@ export function PronunciationGameContent({
   isSubmitting,
   isResetting,
   stats,
-  gameScore,
   onBackHome,
   onBackToList,
   onOpenQuestion,
@@ -379,14 +378,10 @@ export function PronunciationGameContent({
 
   return (
     <div className="pronunciation-page pron-page-stack">
-      <button
-        type="button"
-        className="pron-back-btn"
+      <PageBackButton
+        title={panel === 'question' ? 'Về danh sách' : 'Quay lại khóa học'}
         onClick={panel === 'question' ? onBackToList : onBackHome}
-      >
-        <i className="fa-solid fa-chevron-left" aria-hidden="true" />{' '}
-        {panel === 'question' ? 'Về danh sách' : 'Quay lại'}
-      </button>
+      />
 
       <div className="pron-page-header">
         <div className="pron-hero">
@@ -409,7 +404,6 @@ export function PronunciationGameContent({
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
           <div className="list-title">Danh sách câu hỏi</div>
-          <GameScoreHero gameScore={gameScore} />
           <div className="list-stats">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
@@ -613,7 +607,6 @@ export function PronunciationGameContent({
       {panel === 'result' ? (
         <div className="game-card" id="resultPanel">
           <GameResultSummary
-            gameScore={gameScore}
             correct={stats.correct}
             total={stats.total}
             wrong={stats.wrong}
@@ -690,7 +683,7 @@ export function PronunciationGame({ courseId }: Props) {
   const [showActions, setShowActions] = useState(false);
   const [answerResult, setAnswerResult] = useState<AnswerResult | null>(null);
   const [sessionPoints, setSessionPoints] = useState(0);
-  const [gameScore, setGameScore] = useState(0);
+  const [, setGameScore] = useState(0);
   const [playSessionId, setPlaySessionId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -1118,7 +1111,6 @@ export function PronunciationGame({ courseId }: Props) {
       isSubmitting={isSubmitting}
       isResetting={isResetting}
       stats={stats}
-      gameScore={gameScore}
       onBackHome={() => {
         window.location.href = `/courses/${course.id}`;
       }}

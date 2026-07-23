@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import Link from 'next/link';
 
 import { DataLoading } from '@/components/DataLoading';
@@ -6,6 +8,8 @@ export type CourseListItem = {
   id: string;
   name: string;
   levelName: string;
+  completionPercent: number;
+  backgroundImageUrl?: string | null;
 };
 
 type CourseListProps = {
@@ -28,23 +32,45 @@ export function CourseList({ courses }: CourseListProps) {
 
   return (
     <div className="course-grid" id="courseGrid">
-      {courses.map((course, index) => (
-        <Link
-          key={course.id}
-          href={`/courses/${course.id}`}
-          className="course-card"
-          data-course={course.name}
-          data-level={course.levelName}
-        >
-          <div
-            className="course-thumb-placeholder"
-            style={{ background: FALLBACK_GRADIENTS[index % FALLBACK_GRADIENTS.length] }}
+      {courses.map((course, index) => {
+        const completionPercent = Math.min(
+          100,
+          Math.max(0, Math.round(course.completionPercent || 0))
+        );
+
+        return (
+          <Link
+            key={course.id}
+            href={`/courses/${course.id}`}
+            className="course-card"
+            data-course={course.name}
+            data-level={course.levelName}
           >
-            <i className="fas fa-book thumb-icon" aria-hidden="true" />
-          </div>
-          <div className="course-title">{course.name}</div>
-        </Link>
-      ))}
+            {course.backgroundImageUrl ? (
+              <img className="course-thumb" src={course.backgroundImageUrl} alt="" />
+            ) : (
+              <div
+                className="course-thumb-placeholder"
+                style={{ background: FALLBACK_GRADIENTS[index % FALLBACK_GRADIENTS.length] }}
+              >
+                <i className="fas fa-book thumb-icon" aria-hidden="true" />
+              </div>
+            )}
+            <div className="course-card-body">
+              <div className="course-title">{course.name}</div>
+              <div className="course-level">{course.levelName}</div>
+              <div className="course-progress-text">{completionPercent}% hoàn thành</div>
+              <span className="course-progress-track" aria-hidden="true">
+                <span
+                  className="course-progress-fill"
+                  style={{ width: `${completionPercent}%` }}
+                />
+              </span>
+              <span className="course-start-button">Bắt đầu học</span>
+            </div>
+          </Link>
+        );
+      })}
     </div>
   );
 }

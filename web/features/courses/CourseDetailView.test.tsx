@@ -1,16 +1,39 @@
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
+vi.mock('next/navigation', () => ({
+  useSearchParams: () => new URLSearchParams(),
+}));
+
+import type { CourseDetailData } from '@/lib/loadCourseDetail';
+import type { GameSkillsMap, SkillId } from '@/lib/skillCatalog';
 
 import { CourseDetailContent } from './CourseDetailView';
 
-const sampleData = {
-  success: true as const,
+const sampleGameSkills = {
+  grammar: 'writing',
+  quiz: 'vocabulary',
+  pronunciation: 'speaking',
+  scramble: 'vocabulary',
+  word_match: 'reading',
+  look_and_write: null,
+  choose_and_circle: 'reading',
+  read_and_complete: 'reading',
+  read_and_match: 'reading',
+  vocabulary_test: 'reading',
+  vocabulary_check: 'reading',
+} satisfies GameSkillsMap;
+
+const sampleData: CourseDetailData = {
+  success: true,
   course: {
     id: 'course-1',
     name: 'EveryUp',
     levelName: 'A2',
     courseKey: 'EveryUp::A2',
+    enabledSkills: ['listening', 'reading', 'speaking', 'writing', 'vocabulary'],
+    gameSkills: sampleGameSkills,
   },
   games: {
     grammar: {
@@ -34,7 +57,7 @@ describe('CourseDetailContent', () => {
     expect(html).toContain('id="view-detail"');
     expect(html).toContain('class="view-detail"');
     expect(html).toContain('href="/"');
-    expect(html).toContain('class="detail-back"');
+    expect(html).toContain('class="page-back"');
     expect(html).toContain('class="detail-body detail-body--lesson-full"');
     expect(html).not.toContain('class="book-card"');
     expect(html).not.toContain('câu ngữ pháp');
@@ -49,7 +72,87 @@ describe('CourseDetailContent', () => {
     expect(html).toContain('Chưa gắn sách bài học');
   });
 
-  it('defaults to exercises tab with aggregated stats in book card', () => {
+  it('shows the unit ebook range on lesson tab when no skill is selected', () => {
+    const data: CourseDetailData = {
+      ...sampleData,
+      course: {
+        ...sampleData.course,
+        ebook: {
+          id: 'ebook-1',
+          title: 'Unit 1',
+          pageStart: 1,
+          pageEnd: 5,
+        },
+        skillLessons: {
+          listening: { pageStart: 1, pageEnd: 1 },
+        },
+      },
+    };
+    const html = renderToStaticMarkup(
+      createElement(CourseDetailContent, { data, initialTab: 'lesson' }),
+    );
+
+    expect(html).toContain('class="ebook-flip-root"');
+    expect(html).not.toContain('Chưa gán trang bài học cho kỹ năng này');
+  });
+
+  it('restricts lesson pages to the selected skill range', () => {
+    const data: CourseDetailData = {
+      ...sampleData,
+      course: {
+        ...sampleData.course,
+        ebook: {
+          id: 'ebook-1',
+          title: 'Unit 1',
+          pageStart: 1,
+          pageEnd: 5,
+        },
+        skillLessons: {
+          listening: { pageStart: 2, pageEnd: 2 },
+        },
+      },
+    };
+    const html = renderToStaticMarkup(
+      createElement(CourseDetailContent, {
+        data,
+        initialTab: 'lesson',
+        initialSkill: 'listening',
+      }),
+    );
+
+    expect(html).toContain('class="ebook-flip-root"');
+    expect(html).not.toContain('Chưa gán trang bài học cho kỹ năng này');
+  });
+
+  it('shows an empty state when the selected skill has no lesson pages', () => {
+    const data: CourseDetailData = {
+      ...sampleData,
+      course: {
+        ...sampleData.course,
+        ebook: {
+          id: 'ebook-1',
+          title: 'Unit 1',
+          pageStart: 1,
+          pageEnd: 5,
+        },
+        skillLessons: {
+          listening: { pageStart: 1, pageEnd: 1 },
+        },
+      },
+    };
+    const html = renderToStaticMarkup(
+      createElement(CourseDetailContent, {
+        data,
+        initialTab: 'lesson',
+        initialSkill: 'reading',
+      }),
+    );
+
+    expect(html).toContain('Chưa gán trang bài học cho kỹ năng này');
+    expect(html).not.toContain('class="ebook-flip-root"');
+  });
+
+  it('defaults to exercises tab with five skill cards', () => {
     const html = renderToStaticMarkup(createElement(CourseDetailContent, { data: sampleData }));
 
     expect(html).toContain('class="book-card"');
@@ -60,25 +163,49 @@ describe('CourseDetailContent', () => {
     expect(html).toContain('câu đã làm');
     expect(html).toContain('1.250');
     expect(html).toContain('tổng điểm');
-    expect(html).not.toContain('câu ngữ pháp');
     expect(html.indexOf('Bài tập')).toBeLessThan(html.indexOf('Bài học'));
 
-    expect(html).toContain('class="activity-grid"');
-    expect(html).toContain('href="/games/grammar/course-1"');
-    expect(html).toContain('href="/games/quiz/course-1"');
-    expect(html).toContain('href="/games/pronunciation/course-1"');
+    expect(html).toContain('data-skill-step="skills"');
+    expect(html).toContain('Luyện kỹ năng nghe');
+    expect(html).toContain('Luyện kỹ năng đọc');
+    expect(html).toContain('Luyện kỹ năng nói');
+    expect(html).toContain('Luyện kỹ năng viết');
+    expect(html).toContain('Luyện từ vựng');
+    expect(html).toContain('href="/courses/course-1?skill=listening"');
+    expect(html).toContain('href="/courses/course-1?skill=reading"');
+    expect(html).toContain('href="/courses/course-1?skill=speaking"');
+    expect(html).toContain('href="/courses/course-1?skill=writing"');
+    expect(html).toContain('href="/courses/course-1?skill=vocabulary"');
+    expect(html).not.toContain('href="/games/grammar/course-1"');
+  });
+
+  it('shows quiz and scramble under vocabulary skill', () => {
+    const skill: SkillId = 'vocabulary';
+    const html = renderToStaticMarkup(
+      createElement(CourseDetailContent, { data: sampleData, initialSkill: skill }),
+    );
+
+    expect(html).toContain('href="/courses/course-1"');
+    expect(html).toContain('data-skill-step="games"');
+    expect(html).toContain('Luyện từ vựng');
+    expect(html).toContain('href="/games/quiz/course-1?skill=vocabulary"');
     expect(html).toContain('href="/games/scramble/course-1"');
-    expect(html).toContain('href="/games/word-match/course-1"');
-    expect(html).toContain('href="/games/look-and-write/course-1"');
-    expect(html).toContain('href="/games/choose-and-circle/course-1"');
-    expect(html).toContain('href="/games/vocabulary-check/course-1"');
-    expect(html).toContain('class="activity-icon grammar"');
-    expect(html).toContain('Ngữ pháp');
-    expect(html).toContain('class="activity-icon quiz"');
-    expect(html).toContain('class="activity-icon pronunciation"');
-    expect(html).toContain('class="activity-icon scramble"');
-    expect(html).toContain('class="activity-icon word-match"');
-    expect(html).toContain('class="activity-icon look-write"');
-    expect(html).not.toContain('Sắp có');
+    expect(html).not.toContain('href="/games/grammar/course-1"');
+  });
+
+  it('shows filtered games for writing and backs to the unit', () => {
+    const skill: SkillId = 'writing';
+    const html = renderToStaticMarkup(
+      createElement(CourseDetailContent, { data: sampleData, initialSkill: skill }),
+    );
+
+    expect(html).toContain('href="/courses/course-1"');
+    expect(html).toContain('data-skill-step="games"');
+    expect(html).toContain('Luyện kỹ năng viết');
+    expect(html).toContain('href="/games/grammar/course-1"');
+    expect(html).not.toContain('href="/games/scramble/course-1"');
+    expect(html).not.toContain('href="/games/look-and-write/course-1"');
+    expect(html).not.toContain('href="/games/quiz/course-1');
+    expect(html).not.toContain('href="/games/pronunciation/course-1"');
   });
 });

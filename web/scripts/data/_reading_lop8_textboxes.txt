@@ -1,0 +1,59 @@
+===== TEXTBOX 1 (1 lines) =====
+UNIT 1: LEISURE
+
+===== TEXTBOX 2 (1 lines) =====
+UNIT 1: LEISURE
+
+===== TEXTBOX 3 (1 lines) =====
+UNIT 2: LIFE IN THE
+
+===== TEXTBOX 4 (1 lines) =====
+UNIT 2: LIFE IN THE
+
+===== TEXTBOX 5 (1 lines) =====
+UNIT 3: TEENAGERS
+
+===== TEXTBOX 6 (1 lines) =====
+UNIT 3: TEENAGERS
+
+===== TEXTBOX 7 (1 lines) =====
+.
+
+===== TEXTBOX 8 (1 lines) =====
+UNIT 4: ETHNIC GROUPS OF
+
+===== TEXTBOX 9 (1 lines) =====
+VIET NAM
+
+===== TEXTBOX 10 (1 lines) =====
+.
+
+===== TEXTBOX 11 (1 lines) =====
+UNIT 4: ETHNIC GROUPS OF
+
+===== TEXTBOX 12 (1 lines) =====
+VIET NAM
+
+===== TEXTBOX 13 (1 lines) =====
+UNIT 5:
+
+===== TEXTBOX 14 (1 lines) =====
+OUR CUSTOMS AND TRADITIONS
+
+===== TEXTBOX 15 (1 lines) =====
+UNIT 5:
+
+===== TEXTBOX 16 (1 lines) =====
+OUR CUSTOMS AND TRADITIONS
+
+===== TEXTBOX 17 (1 lines) =====
+UNIT 6:
+
+===== TEXTBOX 18 (1 lines) =====
+LIFESTYLES
+
+===== TEXTBOX 19 (1 lines) =====
+UNIT 6:
+
+===== TEXTBOX 20 (1 lines) =====
+LIFESTYLES

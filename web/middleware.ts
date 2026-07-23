@@ -22,6 +22,8 @@ export async function middleware(req: NextRequest) {
   if (
     pathname.startsWith('/login') ||
     pathname.startsWith('/api/auth/login') ||
+    pathname.startsWith('/api/auth/logout') ||
+    pathname.startsWith('/api/auth/portal-sso') ||
     pathname.startsWith('/_next') ||
     pathname.startsWith('/favicon')
   ) {

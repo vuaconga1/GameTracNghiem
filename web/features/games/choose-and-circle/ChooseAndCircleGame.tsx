@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
 import {
@@ -11,7 +11,8 @@ import {
 } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
-import { GameResultSummary, GameScoreHero } from '@/components/games/GameScoreHero';
+import { PageBackButton } from '@/components/PageBackButton';
+import { GameResultSummary } from '@/components/games/GameScoreHero';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
 import {
@@ -31,6 +32,7 @@ import { gradeChooseAndCircleExercise, normalizeWord } from './gradeAnswer';
 type ChooseAndCircleItem = {
   order: number;
   image: string;
+  prompt: string;
   options: string[];
   answer: string;
 };
@@ -100,7 +102,9 @@ function statusIcon(status: ProgressStatus) {
 }
 
 function exercisePreview(exercise: ChooseAndCircleExercise): string {
-  const sub = `${exercise.items.length} tranh · ${exercise.instruction || 'Choose and circle.'}`;
+  const hasPrompt = exercise.items.some((item) => Boolean(item.prompt));
+  const unitLabel = hasPrompt ? 'câu' : 'tranh';
+  const sub = `${exercise.items.length} ${unitLabel} · ${exercise.instruction || 'Choose and circle.'}`;
   return sub.length > 60 ? `${sub.slice(0, 60)}...` : sub;
 }
 
@@ -129,7 +133,7 @@ export function ChooseAndCircleGame({ courseId }: Props) {
   const [answered, setAnswered] = useState(false);
   const [checkResult, setCheckResult] = useState<CheckResult | null>(null);
   const [sessionPoints, setSessionPoints] = useState(0);
-  const [gameScore, setGameScore] = useState(0);
+  const [, setGameScore] = useState(0);
   const [playSessionId, setPlaySessionId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -485,22 +489,17 @@ export function ChooseAndCircleGame({ courseId }: Props) {
 
   return (
     <div className="game-page cc-page">
+      <PageBackButton
+        title={panel === 'game' ? 'Về danh sách' : 'Quay lại khóa học'}
+        onClick={() => {
+          if (panel === 'game') {
+            setPanel('list');
+          } else {
+            window.location.href = `/courses/${course.id}`;
+          }
+        }}
+      />
       <div className="game-top">
-        <button
-          type="button"
-          className="game-back"
-          title={panel === 'game' ? 'Về danh sách' : 'Quay lại khóa học'}
-          aria-label={panel === 'game' ? 'Về danh sách' : 'Quay lại khóa học'}
-          onClick={() => {
-            if (panel === 'game') {
-              setPanel('list');
-            } else {
-              window.location.href = `/courses/${course.id}`;
-            }
-          }}
-        >
-          <i className="fas fa-arrow-left" aria-hidden="true" />
-        </button>
         <div className="game-title-wrap">
           <h1>Chọn và khoanh</h1>
           <p className="game-subtitle">{subtitle}</p>
@@ -509,7 +508,7 @@ export function ChooseAndCircleGame({ courseId }: Props) {
 
       {panel === 'list' ? (
         <div className="cc-banner">
-          <h2>Nhìn tranh — khoanh từ đúng</h2>
+          <h2>Chọn và khoanh đáp án đúng</h2>
           <p>{course.name}</p>
         </div>
       ) : null}
@@ -532,7 +531,6 @@ export function ChooseAndCircleGame({ courseId }: Props) {
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
           <div className="list-title">Danh sách bài tập</div>
-          <GameScoreHero gameScore={gameScore} />
           <div className="list-stats">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
@@ -641,22 +639,33 @@ export function ChooseAndCircleGame({ courseId }: Props) {
 
             <div className="cc-rows" id="itemGrid">
               {currentExercise.items.map((item, itemIndex) => (
-                <div key={`${currentExercise.id}-${itemIndex}`} className="cc-row" data-index={itemIndex}>
+                <div
+                  key={`${currentExercise.id}-${itemIndex}`}
+                  className={`cc-row${item.prompt ? ' has-prompt' : ''}`}
+                  data-index={itemIndex}
+                >
                   <span className="cc-row-num">{item.order || itemIndex + 1}</span>
-                  <div className="cc-picture">
+                  <div className={item.prompt ? 'cc-stem' : 'cc-picture'}>
                     {item.image ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={item.image}
-                        alt={`Picture ${item.order || itemIndex + 1}`}
+                        alt={
+                          item.prompt
+                            ? item.prompt
+                            : `Picture ${item.order || itemIndex + 1}`
+                        }
                         loading="lazy"
                         onError={(event: SyntheticEvent<HTMLImageElement>) => {
                           event.currentTarget.style.visibility = 'hidden';
                         }}
                       />
-                    ) : (
+                    ) : null}
+                    {item.prompt ? (
+                      <p className="cc-prompt">{item.prompt}</p>
+                    ) : !item.image ? (
                       <i className="fas fa-image" style={{ fontSize: 40, color: '#ccc' }} aria-hidden="true" />
-                    )}
+                    ) : null}
                   </div>
                   <div className="cc-options">
                     {item.options.map((word) => (
@@ -727,7 +736,6 @@ export function ChooseAndCircleGame({ courseId }: Props) {
       {panel === 'result' ? (
         <div className="game-card" id="resultPanel">
           <GameResultSummary
-            gameScore={gameScore}
             correct={stats.correct}
             total={stats.total}
             wrong={stats.wrong}

@@ -1,10 +1,11 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
-import { GameResultSummary, GameScoreHero } from '@/components/games/GameScoreHero';
+import { PageBackButton } from '@/components/PageBackButton';
+import { GameResultSummary } from '@/components/games/GameScoreHero';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import {
   createPlaySessionId,
@@ -15,16 +16,9 @@ import {
   type ProgressStatus,
   normalizeStatuses,
 } from '@/lib/gameCatalog';
+import type { WordMatchGameData, WordMatchQuestion } from '@/lib/loadWordMatchGame';
 
 import { gradeWordMatchPair } from './gradeAnswer';
-
-type WordMatchQuestion = {
-  id: string;
-  index: number;
-  word: string;
-  image: string;
-  hint: string;
-};
 
 type WordMatchGameResponse = {
   success: boolean;
@@ -48,6 +42,7 @@ type FeedbackState = {
 
 type Props = {
   courseId: string;
+  initialData?: WordMatchGameData | null;
 };
 
 type Panel = 'board' | 'result';
@@ -87,10 +82,23 @@ function WordMatchImage({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-export function WordMatchGame({ courseId }: Props) {
-  const [data, setData] = useState<WordMatchGameResponse | null>(null);
-  const [statuses, setStatuses] = useState<ProgressStatus[]>([]);
-  const [panel, setPanel] = useState<Panel>('board');
+function initialWordMatchState(initialData?: WordMatchGameData | null) {
+  const questions = initialData?.questions || [];
+  const statuses = normalizeStatuses(initialData?.statuses, questions.length);
+  const allDone = questions.length > 0 && doneCount(statuses) === questions.length;
+  return {
+    data: initialData || null,
+    statuses,
+    panel: allDone ? ('result' as const) : ('board' as const),
+    playSessionId: initialData?.playSessionId || null,
+  };
+}
+
+export function WordMatchGame({ courseId, initialData }: Props) {
+  const initialState = initialWordMatchState(initialData);
+  const [data, setData] = useState<WordMatchGameResponse | null>(initialState.data);
+  const [statuses, setStatuses] = useState<ProgressStatus[]>(initialState.statuses);
+  const [panel, setPanel] = useState<Panel>(initialState.panel);
   const [wordOrder, setWordOrder] = useState<number[]>([]);
   const [imageOrder, setImageOrder] = useState<number[]>([]);
   const [selectedWordIndex, setSelectedWordIndex] = useState(-1);
@@ -98,15 +106,16 @@ export function WordMatchGame({ courseId }: Props) {
   const [hintText, setHintText] = useState('');
   const [feedback, setFeedback] = useState<FeedbackState | null>(null);
   const [sessionPoints, setSessionPoints] = useState(0);
-  const [gameScore, setGameScore] = useState(0);
-  const [playSessionId, setPlaySessionId] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [, setGameScore] = useState(0);
+  const [playSessionId, setPlaySessionId] = useState<string | null>(initialState.playSessionId);
+  const [isLoading, setIsLoading] = useState(!initialData);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [submitMessage, setSubmitMessage] = useState('');
   const [wrongPair, setWrongPair] = useState<{ wordIndex: number; imageIndex: number } | null>(null);
   const questionStartTime = useRef(Date.now());
+  const didUseInitialData = useRef(Boolean(initialData));
 
   const rebuildOrders = useCallback((count: number) => {
     const indexes = Array.from({ length: count }, (_, index) => index);
@@ -115,6 +124,13 @@ export function WordMatchGame({ courseId }: Props) {
   }, []);
 
   useEffect(() => {
+    if (didUseInitialData.current && initialData?.course.id === courseId) {
+      didUseInitialData.current = false;
+      rebuildOrders(initialData.questions.length);
+      questionStartTime.current = Date.now();
+      return;
+    }
+
     const controller = new AbortController();
 
     async function loadGame() {
@@ -159,7 +175,7 @@ export function WordMatchGame({ courseId }: Props) {
     }
 
     return () => controller.abort();
-  }, [courseId, rebuildOrders]);
+  }, [courseId, initialData, rebuildOrders]);
 
   const questions = useMemo(() => data?.questions || [], [data?.questions]);
   const course = data?.course;
@@ -386,18 +402,8 @@ export function WordMatchGame({ courseId }: Props) {
 
   return (
     <div className="game-page wm-page">
+      <PageBackButton href={`/courses/${course.id}`} title="Quay lại khóa học" />
       <div className="game-top">
-        <button
-          type="button"
-          className="game-back"
-          title="Quay lại khóa học"
-          aria-label="Quay lại khóa học"
-          onClick={() => {
-            window.location.href = `/courses/${course.id}`;
-          }}
-        >
-          <i className="fas fa-arrow-left" aria-hidden="true" />
-        </button>
         <div className="game-title-wrap">
           <h1>Nối từ với hình ảnh</h1>
           <p className="game-subtitle">{subtitle}</p>
@@ -420,7 +426,6 @@ export function WordMatchGame({ courseId }: Props) {
           </div>
 
           <div className="game-card" id="playPanel">
-            <GameScoreHero gameScore={gameScore} />
             <span className="question-counter-pill">
               Cặp {correctCount}/{questions.length}
             </span>
@@ -553,7 +558,6 @@ export function WordMatchGame({ courseId }: Props) {
       {panel === 'result' ? (
         <div className="game-card" id="resultPanel">
           <GameResultSummary
-            gameScore={gameScore}
             correct={correctCount}
             total={questions.length}
           >

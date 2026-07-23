@@ -1,0 +1,4772 @@
+{
+  "units": {
+    "1": [
+      {
+        "game": "choose_and_circle",
+        "title": "G Exercise 5",
+        "instruction": "Circle the correct option in brackets.",
+        "items": [
+          {
+            "order": 1,
+            "image": "",
+            "prompt": "Mary enjoys (to listen / listening) to classical music.",
+            "options": [
+              "to listen",
+              "listening"
+            ],
+            "answer": "listening"
+          },
+          {
+            "order": 2,
+            "image": "",
+            "prompt": "My sister adores (to make / making) paper flowers.",
+            "options": [
+              "to make",
+              "making"
+            ],
+            "answer": "making"
+          },
+          {
+            "order": 3,
+            "image": "",
+            "prompt": "Does she fancy (messaging / to message) her friends?",
+            "options": [
+              "messaging",
+              "to message"
+            ],
+            "answer": "messaging"
+          },
+          {
+            "order": 4,
+            "image": "",
+            "prompt": "My dad dislikes travelling. He always (stays / staying) at home on holidays.",
+            "options": [
+              "stays",
+              "staying"
+            ],
+            "answer": "stays"
+          },
+          {
+            "order": 5,
+            "image": "",
+            "prompt": "Mrs. Nhung hates (to train / trains) dogs.",
+            "options": [
+              "to train",
+              "trains"
+            ],
+            "answer": "to train"
+          },
+          {
+            "order": 6,
+            "image": "",
+            "prompt": "Most adults don't like (watch / to watch) cartoons.",
+            "options": [
+              "watch",
+              "to watch"
+            ],
+            "answer": "to watch"
+          },
+          {
+            "order": 7,
+            "image": "",
+            "prompt": "I'm into playing sport, especially table tennis. I (play / to play) table tennis almost every afternoon.",
+            "options": [
+              "play",
+              "to play"
+            ],
+            "answer": "play"
+          },
+          {
+            "order": 8,
+            "image": "",
+            "prompt": "My sister loves origami. She often (folds / folding) paper into attractive shapes.",
+            "options": [
+              "folds",
+              "folding"
+            ],
+            "answer": "folds"
+          },
+          {
+            "order": 9,
+            "image": "",
+            "prompt": "Linda prefers (visit / visiting) the beautiful beaches in Vietnam.",
+            "options": [
+              "visit",
+              "visiting"
+            ],
+            "answer": "visiting"
+          },
+          {
+            "order": 10,
+            "image": "",
+            "prompt": "Do your parents love (go / to go) to the theater in their free time?",
+            "options": [
+              "go",
+              "to go"
+            ],
+            "answer": "to go"
+          }
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "Do you fancy _________________ football matches? (watch)",
+        "answer": "watching",
+        "options": [],
+        "accept": [
+          "watching"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "My parents enjoy _________________ meals together on weekends. (prepare)",
+        "answer": "preparing",
+        "options": [],
+        "accept": [
+          "preparing"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "Lan and her sister love _________________ in their free time. (shop)",
+        "answer": "shopping",
+        "options": [],
+        "accept": [
+          "shopping"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "He prefers _________________ the Internet after school. (surf)",
+        "answer": "surfing",
+        "options": [],
+        "accept": [
+          "surfing"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "My mother detests _________________ out at that restaurant. (eat)",
+        "answer": "eating",
+        "options": [],
+        "accept": [
+          "eating"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "I don't mind _________________ early every day, even on Sundays. (get up)",
+        "answer": "getting up",
+        "options": [],
+        "accept": [
+          "getting up",
+          "get up"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "Do you prefer _________________ books in your free time? (read)",
+        "answer": "reading",
+        "options": [],
+        "accept": [
+          "reading"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "My father loves _________________ golf with his friends. (play)",
+        "answer": "playing",
+        "options": [],
+        "accept": [
+          "playing"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "I prefer _________________ up too late. (not stay)",
+        "answer": "not staying",
+        "options": [],
+        "accept": [
+          "not staying",
+          "not to stay"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "I used to prefer _________________ with my friends at the weekend. (hang out)",
+        "answer": "hanging out",
+        "options": [],
+        "accept": [
+          "hanging out",
+          "hang out"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "I think not many people like _________________ to her music. (listen)",
+        "answer": "listening",
+        "options": [],
+        "accept": [
+          "listening"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "Teenagers love _________________ the web to while away their time. (surf)",
+        "answer": "surfing",
+        "options": [],
+        "accept": [
+          "surfing"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "Do you enjoy _________________ in your free time? (do DIY)",
+        "answer": "doing DIY",
+        "options": [],
+        "accept": [
+          "doing DIY",
+          "doing diy"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "I detest _________________ a conversation with John. (have)",
+        "answer": "having",
+        "options": [],
+        "accept": [
+          "having"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "Do you think Jane prefers _________________ with other students? (not socialize)",
+        "answer": "not socializing",
+        "options": [],
+        "accept": [
+          "not socializing",
+          "not to socialize"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "I don't mind _________________ the problem again. (explain)",
+        "answer": "explaining",
+        "options": [],
+        "accept": [
+          "explaining"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "Ann fancies _________________ to the songs of her favorite singer. (listen)",
+        "answer": "listening",
+        "options": [],
+        "accept": [
+          "listening"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "My friend adores _________________ time with her cats. (spend)",
+        "answer": "spending",
+        "options": [],
+        "accept": [
+          "spending"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "I always love _________________ new things when I go traveling. (try)",
+        "answer": "trying",
+        "options": [],
+        "accept": [
+          "trying"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "Mr. Smith hates _________________ his old car. (drive)",
+        "answer": "driving",
+        "options": [],
+        "accept": [
+          "driving"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "My boyfriend dislikes _________________. (wait)",
+        "answer": "waiting",
+        "options": [],
+        "accept": [
+          "waiting"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "My cat dislikes _________________ on the floor. (sleep)",
+        "answer": "sleeping",
+        "options": [],
+        "accept": [
+          "sleeping"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "My cousin doesn't like _________________ Math and Chemistry. (study)",
+        "answer": "studying",
+        "options": [],
+        "accept": [
+          "studying"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "She didn't want _________________ him about her plan. (tell)",
+        "answer": "to tell",
+        "options": [],
+        "accept": [
+          "to tell"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "I think your brother won't mind _________________ you a helping hand. (lend)",
+        "answer": "lending",
+        "options": [],
+        "accept": [
+          "lending"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "grammar",
+        "source": "I am interested in learning English.",
+        "prefix": "I like",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "learning English.",
+          "learning English"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "I am interested in going camping with my close friends.",
+        "prefix": "I fancy",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "going camping with my close friends.",
+          "going camping with my close friends"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Mr. Pike is a big fan of water polo.",
+        "prefix": "Mr. Pike is fond",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "of water polo.",
+          "of water polo"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "It is not a problem to me whether I have to pick her up to the cinema or not.",
+        "prefix": "I don't mind",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "picking her up to the cinema.",
+          "picking her up to the cinema",
+          "picking her up."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "John cannot bear listening to such kind of noisy music.",
+        "prefix": "John dislikes",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "listening to such kind of noisy music.",
+          "listening to such kind of noisy music"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Watching historical films is very interesting to my younger brother.",
+        "prefix": "My younger brother enjoys",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "watching historical films.",
+          "watching historical films"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "She cannot bear talking with him about what he likes.",
+        "prefix": "She hates",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "talking with him about what he likes.",
+          "talking with him about what he likes"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "The thing that I hate most is motor racing, and I will never do it in my life.",
+        "prefix": "I detest",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "motor racing.",
+          "motor racing"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "It is really interesting for him to talk with his music teacher about jazz.",
+        "prefix": "He fancies",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "talking with his music teacher about jazz.",
+          "talking with his music teacher about jazz"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "He uses all his free time to look after his garden.",
+        "prefix": "He spends",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "all his free time looking after his garden.",
+          "all his free time looking after his garden"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "We usually visit museums when we have leisure time.",
+        "prefix": "We enjoy",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "visiting museums when we have leisure time.",
+          "visiting museums in our leisure time.",
+          "visiting museums."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "I don't like to get up early and prepare breakfast in the cold winter days.",
+        "prefix": "I hate",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "getting up early and preparing breakfast in the cold winter days.",
+          "to get up early and prepare breakfast in the cold winter days."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "It took us 30 minutes to rehearse the song.",
+        "prefix": "We spent",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "30 minutes rehearsing the song.",
+          "30 minutes rehearsing the song"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "It took Tom one hour to travel to his hometown last week.",
+        "prefix": "Tom spent",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "one hour traveling to his hometown last week.",
+          "one hour travelling to his hometown last week.",
+          "an hour traveling to his hometown last week.",
+          "an hour travelling to his hometown last week."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "It took him 30 minutes to watch the play.",
+        "prefix": "He spent",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "30 minutes watching the play.",
+          "30 minutes watching the play"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "He likes swimming and sunbathing.",
+        "prefix": "He is interested",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "in swimming and sunbathing.",
+          "in swimming and sunbathing"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "It took her nearly an hour to do the crossword.",
+        "prefix": "She spent",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "nearly an hour doing the crossword.",
+          "nearly an hour doing the crossword"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "My teacher enjoys listening to folk songs in her free time as this helps her to reduce stress.",
+        "prefix": "My teacher likes",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "listening to folk songs in her free time as this helps her to reduce stress.",
+          "listening to folk songs in her free time."
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "Fill verb forms 37-46",
+        "question": "I don't mind (stay) _____________ at home to look after the children.",
+        "answer": "staying",
+        "options": [],
+        "accept": [
+          "staying"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "Fill verb forms 37-46",
+        "question": "Riding a bike is Lan's pleasure, but she detests (walk) _____________ in the rain.",
+        "answer": "walking",
+        "options": [],
+        "accept": [
+          "walking"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "Fill verb forms 37-46",
+        "question": "As a child, he hated (read) _____________ books, but now he finds it enjoyable.",
+        "answer": "reading",
+        "options": [],
+        "accept": [
+          "reading"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "Fill verb forms 37-46",
+        "question": "Minh is in good shape. He enjoys (take) _____________ up sport and exercise.",
+        "answer": "taking",
+        "options": [],
+        "accept": [
+          "taking"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "Fill verb forms 37-46",
+        "question": "Mr Long doesn't like (get) _____________ up early in the morning, especially at the weekend.",
+        "answer": "getting",
+        "options": [],
+        "accept": [
+          "getting"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "Fill verb forms 37-46",
+        "question": "I fancy (eat) _____________ out tonight because I'm too tired to cook.",
+        "answer": "eating",
+        "options": [],
+        "accept": [
+          "eating"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "Fill verb forms 37-46",
+        "question": "Nancy adores (hang) _____________ out with her best friend, Helen.",
+        "answer": "hanging",
+        "options": [],
+        "accept": [
+          "hanging"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "Fill verb forms 37-46",
+        "question": "My brother loves (watch) _____________ live football on TV.",
+        "answer": "watching",
+        "options": [],
+        "accept": [
+          "watching"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "Fill verb forms 37-46",
+        "question": "Do people in your country like (visit) _____________ abroad on vacation?",
+        "answer": "visiting",
+        "options": [],
+        "accept": [
+          "visiting"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Vietnamese people are very warm and ________________. (friend)",
+        "answer": "friendly",
+        "options": [],
+        "accept": [
+          "friendly"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "La Hill is a ______________ writer. (humor)",
+        "answer": "humorous",
+        "options": [],
+        "accept": [
+          "humorous",
+          "humourist",
+          "humorist"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "I'm ______________ sorry for coming late. (extreme)",
+        "answer": "extremely",
+        "options": [],
+        "accept": [
+          "extremely"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "I love the ____________ of the atmosphere in the countryside. (peaceful)",
+        "answer": "peacefulness",
+        "options": [],
+        "accept": [
+          "peacefulness",
+          "peace"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Bao is very _____________, kind and generous. (social)",
+        "answer": "sociable",
+        "options": [],
+        "accept": [
+          "sociable",
+          "social"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Each of my friend has a _________________ character. (difference)",
+        "answer": "different",
+        "options": [],
+        "accept": [
+          "different"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "We are good friends although each of us has a different ____________. (characteristic)",
+        "answer": "character",
+        "options": [],
+        "accept": [
+          "character",
+          "characteristic"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "He spends most of his time doing charity work. He's a ______________ man. (social)",
+        "answer": "sociable",
+        "options": [],
+        "accept": [
+          "sociable",
+          "social"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "He has a sense of _____________ because he often tells jokes. (humorous)",
+        "answer": "humour",
+        "options": [],
+        "accept": [
+          "humour",
+          "humor"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Nam makes friends very _____________ because he is very sociable. (ease)",
+        "answer": "easily",
+        "options": [],
+        "accept": [
+          "easily"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Hoa is very ____________. She doesn't talk to anybody in her class. (reservation)",
+        "answer": "reserved",
+        "options": [],
+        "accept": [
+          "reserved"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "A(n) ________ is a child who lost his parents. (orphanage)",
+        "answer": "orphan",
+        "options": [],
+        "accept": [
+          "orphan"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "They were very _________ to survive a fire. (luck)",
+        "answer": "lucky",
+        "options": [],
+        "accept": [
+          "lucky"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Nga often helps poor and homeless people. She is ________. (generosity)",
+        "answer": "generous",
+        "options": [],
+        "accept": [
+          "generous"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "grammar",
+        "source": "It takes Mr Long 30 minutes to drive to work everyday.",
+        "prefix": "Mr Long spends",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "30 minutes driving to work every day.",
+          "30 minutes driving to work everyday."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "He loves surfing the facebook in his leisure time.",
+        "prefix": "He is fond",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "of surfing the facebook in his leisure time.",
+          "of surfing Facebook in his leisure time.",
+          "of surfing Facebook."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Ms Lan hates going out at night.",
+        "prefix": "Ms Lan isn't keen",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "on going out at night.",
+          "on going out at night"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Do you like making dollhouses in your leisure time?",
+        "prefix": "Are you interested",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "in making dollhouses in your leisure time?",
+          "in making dollhouses in your leisure time"
+        ]
+      }
+    ],
+    "2": [
+      {
+        "game": "choose_and_circle",
+        "title": "G Exercise 5",
+        "instruction": "Circle the correct options to complete the sentences.",
+        "items": [
+          {
+            "order": 1,
+            "image": "",
+            "prompt": "City people seem to react quicklier / more quickly to changes than countryside people.",
+            "options": [
+              "quicklier",
+              "more quickly"
+            ],
+            "answer": "more quickly"
+          },
+          {
+            "order": 2,
+            "image": "",
+            "prompt": "She came to the party later / more lately than her friends.",
+            "options": [
+              "later",
+              "more lately"
+            ],
+            "answer": "later"
+          },
+          {
+            "order": 3,
+            "image": "",
+            "prompt": "Does a computer work at calculus more fast / faster than a human being?",
+            "options": [
+              "more fast",
+              "faster"
+            ],
+            "answer": "faster"
+          },
+          {
+            "order": 4,
+            "image": "",
+            "prompt": "Nga writes English essays better / more well than Mai.",
+            "options": [
+              "better",
+              "more well"
+            ],
+            "answer": "better"
+          },
+          {
+            "order": 5,
+            "image": "",
+            "prompt": "Nick can jump higher / more high than Mike.",
+            "options": [
+              "higher",
+              "more high"
+            ],
+            "answer": "higher"
+          },
+          {
+            "order": 6,
+            "image": "",
+            "prompt": "Today it's raining more heavily / heavilier than it was yesterday.",
+            "options": [
+              "more heavily",
+              "heavilier"
+            ],
+            "answer": "more heavily"
+          },
+          {
+            "order": 7,
+            "image": "",
+            "prompt": "Juice contains more / many vitamins than coke.",
+            "options": [
+              "more",
+              "many"
+            ],
+            "answer": "more"
+          },
+          {
+            "order": 8,
+            "image": "",
+            "prompt": "The farmers in my village work hard / harder than the ones here.",
+            "options": [
+              "hard",
+              "harder"
+            ],
+            "answer": "harder"
+          },
+          {
+            "order": 9,
+            "image": "",
+            "prompt": "People in rural areas talk optimistically / more optimistically than city people.",
+            "options": [
+              "optimistically",
+              "more optimistically"
+            ],
+            "answer": "more optimistically"
+          },
+          {
+            "order": 10,
+            "image": "",
+            "prompt": "Ms. Sarah dances more beautifully / beautifully than Ms. Susan.",
+            "options": [
+              "more beautifully",
+              "beautifully"
+            ],
+            "answer": "more beautifully"
+          }
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "It usually rains ___________________ in Central Viet Nam than in other region. (heavy)",
+        "answer": "more heavily",
+        "options": [],
+        "accept": [
+          "more heavily"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "I will have to try a bit ___________________ than this. (hard)",
+        "answer": "harder",
+        "options": [],
+        "accept": [
+          "harder"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "The hall was lighted ___________________ than the corridors. (bright)",
+        "answer": "more brightly",
+        "options": [],
+        "accept": [
+          "more brightly"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "Time goes by ___________________ when we are busy. (quick)",
+        "answer": "more quickly",
+        "options": [],
+        "accept": [
+          "more quickly",
+          "quicker"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "Our family has lived ___________________ in the country than in the town since last year. (happy)",
+        "answer": "more happily",
+        "options": [],
+        "accept": [
+          "more happily"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "The boys were playing the game ___________________ than the girls. (noisy)",
+        "answer": "more noisily",
+        "options": [],
+        "accept": [
+          "more noisily"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "This task can be completed ___________________ than that one. (easy)",
+        "answer": "more easily",
+        "options": [],
+        "accept": [
+          "more easily",
+          "easier"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "A tractor can plough ___________________ than a buffalo or a horse. (good)",
+        "answer": "better",
+        "options": [],
+        "accept": [
+          "better"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "My sister is ___________________ me. (tall)",
+        "answer": "taller than",
+        "options": [],
+        "accept": [
+          "taller than"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "Blue whales are ___________________ elephants. (heavy)",
+        "answer": "heavier than",
+        "options": [],
+        "accept": [
+          "heavier than"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "The Mekong River is ___________________ the Red River. (long)",
+        "answer": "longer than",
+        "options": [],
+        "accept": [
+          "longer than"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "Do you think English is ___________________ French in grammar? (easy)",
+        "answer": "easier than",
+        "options": [],
+        "accept": [
+          "easier than"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "My new bed is ___________________ my old bed. (comfortable)",
+        "answer": "more comfortable than",
+        "options": [],
+        "accept": [
+          "more comfortable than"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "The film about my village town is ___________________ the book. (interesting)",
+        "answer": "more interesting than",
+        "options": [],
+        "accept": [
+          "more interesting than"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "Tea is ___________________ coffee. (cheap)",
+        "answer": "cheaper than",
+        "options": [],
+        "accept": [
+          "cheaper than"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "The new harvest machine is ___________________ than the old one. (effective)",
+        "answer": "more effective",
+        "options": [],
+        "accept": [
+          "more effective"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "The countryside is ___________________ the town. (beautiful)",
+        "answer": "more beautiful than",
+        "options": [],
+        "accept": [
+          "more beautiful than"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "A tractor is ___________________ a buffalo. (powerful)",
+        "answer": "more powerful than",
+        "options": [],
+        "accept": [
+          "more powerful than"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "grammar",
+        "source": "Nick is a careful writer than Phuc. (carefully)",
+        "prefix": "Nick writes essays",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "more carefully than Phuc.",
+          "more carefully than Phuc"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "A snail is slower than a crab. (slowly)",
+        "prefix": "A snail moves",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "more slowly than a crab.",
+          "more slowly than a crab",
+          "slower than a crab."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "My father's explanation about the subject was clearer than my brother's. (clearly)",
+        "prefix": "My father explained the subject",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "more clearly than my brother.",
+          "more clearly than my brother",
+          "more clearly than my brother's."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "My cousin is a better singer than I am. (well)",
+        "prefix": "My cousin sings",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "better than I do.",
+          "better than I do",
+          "better than me.",
+          "better than me"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Phong is a faster swimmer than Phuc. (fast)",
+        "prefix": "Phong swims",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "faster than Phuc.",
+          "faster than Phuc"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Tim is older than Sarah.",
+        "prefix": "Sarah",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "is younger than Tim.",
+          "is younger than Tim"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Our house is larger than yours.",
+        "prefix": "Your house",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "is smaller than ours.",
+          "is smaller than ours",
+          "is not as large as ours."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Bill is not as tall as David.",
+        "prefix": "Bill",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "is shorter than David.",
+          "is shorter than David",
+          "is less tall than David."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Jack's marks are worse than mine.",
+        "prefix": "My marks",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "are better than Jack's.",
+          "are better than Jack's",
+          "are better than Jack's marks."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "This book is the same price as that one.",
+        "prefix": "That book is",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "the same price as this one.",
+          "the same price as this one",
+          "as expensive as this one."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Your bike is slower than mine.",
+        "prefix": "My bike is",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "faster than yours.",
+          "faster than yours"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "My house is bigger than your house.",
+        "prefix": "Your house",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "is smaller than mine.",
+          "is smaller than mine",
+          "is not as big as mine."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "The black car is cheaper than the red car.",
+        "prefix": "The red car",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "is more expensive than the black car.",
+          "is more expensive than the black one."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "This film is more interesting than that one.",
+        "prefix": "That film",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "is less interesting than this one.",
+          "is not as interesting as this one.",
+          "is less interesting than this film."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "My kitchen is smaller than yours.",
+        "prefix": "Your kitchen",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "is bigger than mine.",
+          "is larger than mine.",
+          "is bigger than mine"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "My mother cannot cook as well as me.",
+        "prefix": "I can",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "cook better than my mother.",
+          "cook better than my mother"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "She has a house which is not as modern as my house.",
+        "prefix": "My house",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "is more modern than hers.",
+          "is more modern than her house."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "He cannot play tennis as well as Jack.",
+        "prefix": "Jack can",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "play tennis better than him.",
+          "play tennis better than he can."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "I did not spend as much money as you.",
+        "prefix": "You spent",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "more money than me.",
+          "more money than I did.",
+          "more money than I."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "A city has more interesting activities than the countryside.",
+        "prefix": "The countryside",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "has fewer interesting activities than a city.",
+          "has less interesting activities than a city."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "A motorbike goes faster than a bike.",
+        "prefix": "A bike",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "goes more slowly than a motorbike.",
+          "goes slower than a motorbike."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Life in the city is busier than life in the countryside.",
+        "prefix": "Life in the countryside is",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "less busy than life in the city.",
+          "quieter than life in the city."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "His uncle works less responsibly than Mr. Nam.",
+        "prefix": "Mr. Nam",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "works more responsibly than his uncle.",
+          "works more responsibly than his uncle"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Jane makes crafts better than her sister.",
+        "prefix": "Jane's sister",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "makes crafts worse than Jane.",
+          "doesn't make crafts as well as Jane.",
+          "makes crafts less well than Jane."
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "Comparative forms 40-43",
+        "question": "Nam drives carefully, but his sister drives much ______________. (carefully)",
+        "answer": "more carefully",
+        "options": [],
+        "accept": [
+          "more carefully"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "Comparative forms 40-43",
+        "question": "I work hard, but my father works much ______________. (hard)",
+        "answer": "harder",
+        "options": [],
+        "accept": [
+          "harder"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "Comparative forms 40-43",
+        "question": "She writes English words more ______________ than her brother. (quickly)",
+        "answer": "quickly",
+        "options": [],
+        "accept": [
+          "quickly"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "Comparative forms 40-43",
+        "question": "I often get up ______________ than my sister. (early)",
+        "answer": "earlier",
+        "options": [],
+        "accept": [
+          "earlier"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "I'll make ________________ for the meeting tomorrow. (arrange)",
+        "answer": "arrangements",
+        "options": [],
+        "accept": [
+          "arrangements",
+          "arrangement"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "There was still no _______________ on what to do next. (agree)",
+        "answer": "agreement",
+        "options": [],
+        "accept": [
+          "agreement"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "HCM City is an important _________________ center. (commerce)",
+        "answer": "commercial",
+        "options": [],
+        "accept": [
+          "commercial"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Michael Faraday made a lot of ________________ in the field of electronic. (invent)",
+        "answer": "inventions",
+        "options": [],
+        "accept": [
+          "inventions",
+          "invention"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "There was an _________________ of painting at the Art gallery. (exhibit)",
+        "answer": "exhibition",
+        "options": [],
+        "accept": [
+          "exhibition"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Your order is ready for ________________. (deliver)",
+        "answer": "delivery",
+        "options": [],
+        "accept": [
+          "delivery"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Thomas Watson was Bell's ________________, wasn't he? (assist)",
+        "answer": "assistant",
+        "options": [],
+        "accept": [
+          "assistant"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "He was _______________ in demonstrating his inventions. (success)",
+        "answer": "successful",
+        "options": [],
+        "accept": [
+          "successful"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Bell demonstrated his ________________ at a lot of exhibitions. (invent)",
+        "answer": "invention",
+        "options": [],
+        "accept": [
+          "invention",
+          "inventions"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "He was asked to _______________ how to connect with the Internet. (demonstration)",
+        "answer": "demonstrate",
+        "options": [],
+        "accept": [
+          "demonstrate"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "We have to make careful ________________ for our trip to Malaysia. (arrange)",
+        "answer": "arrangements",
+        "options": [],
+        "accept": [
+          "arrangements",
+          "arrangement"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "What led to the _________________ of the telephone? (invent)",
+        "answer": "invention",
+        "options": [],
+        "accept": [
+          "invention"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Lan felt sad because she was _______________ in her job. (success)",
+        "answer": "unsuccessful",
+        "options": [],
+        "accept": [
+          "unsuccessful"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "He likes ________________ movies very much. (act)",
+        "answer": "action",
+        "options": [],
+        "accept": [
+          "action",
+          "acting"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Marconi was the ________________ of radio. (invent)",
+        "answer": "inventor",
+        "options": [],
+        "accept": [
+          "inventor"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "grammar",
+        "source": "Why don't we close all the windows?",
+        "prefix": "How about",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "closing all the windows?",
+          "closing all the windows"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Minh is a better typist than Hieu.",
+        "prefix": "Minh types",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "better than Hieu.",
+          "better than Hieu",
+          "faster than Hieu."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "It takes us an hour to run in the morning.",
+        "prefix": "We spend",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "an hour running in the morning.",
+          "an hour running in the morning"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Nam is a more wonderful tennis player than Mr Long.",
+        "prefix": "Nam plays",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "tennis more wonderfully than Mr Long.",
+          "tennis better than Mr Long."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Mono dances more beautifully than Son Tung.",
+        "prefix": "Mono is a",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "more beautiful dancer than Son Tung.",
+          "better dancer than Son Tung."
+        ]
+      }
+    ],
+    "3": [
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "exercise": "G Exercise 3 Conjunctions",
+        "question": "The police have sold the car in auction, ____ no one came to take it.",
+        "options": [
+          "but",
+          "so",
+          "for"
+        ],
+        "answer": "for",
+        "accept": [
+          "for"
+        ],
+        "fillMode": false,
+        "typeLabel": "Trắc nghiệm",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "exercise": "G Exercise 3 Conjunctions",
+        "question": "Whale Festival is the biggest festival of the fishermen, ____ it is common.",
+        "options": [
+          "and",
+          "but",
+          "or"
+        ],
+        "answer": "and",
+        "accept": [
+          "and"
+        ],
+        "fillMode": false,
+        "typeLabel": "Trắc nghiệm",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "exercise": "G Exercise 3 Conjunctions",
+        "question": "The discussion was not exciting, ____ was it informative.",
+        "options": [
+          "or",
+          "so",
+          "nor"
+        ],
+        "answer": "nor",
+        "accept": [
+          "nor"
+        ],
+        "fillMode": false,
+        "typeLabel": "Trắc nghiệm",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "exercise": "G Exercise 3 Conjunctions",
+        "question": "It may rain tomorrow, ____ we are going home in any case.",
+        "options": [
+          "but",
+          "nor",
+          "and"
+        ],
+        "answer": "but",
+        "accept": [
+          "but"
+        ],
+        "fillMode": false,
+        "typeLabel": "Trắc nghiệm",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "exercise": "G Exercise 3 Conjunctions",
+        "question": "The staff in our company can dine out, ____ they can order in.",
+        "options": [
+          "so",
+          "or",
+          "for"
+        ],
+        "answer": "or",
+        "accept": [
+          "or"
+        ],
+        "fillMode": false,
+        "typeLabel": "Trắc nghiệm",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "exercise": "G Exercise 3 Conjunctions",
+        "question": "Dorothy works ten hours a day, ____ he has time to volunteer at a charity.",
+        "options": [
+          "yet",
+          "and",
+          "nor"
+        ],
+        "answer": "yet",
+        "accept": [
+          "yet"
+        ],
+        "fillMode": false,
+        "typeLabel": "Trắc nghiệm",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "exercise": "G Exercise 3 Conjunctions",
+        "question": "The injured man was incapable of walking, ____ he had to be carried.",
+        "options": [
+          "but",
+          "and",
+          "so"
+        ],
+        "answer": "so",
+        "accept": [
+          "so"
+        ],
+        "fillMode": false,
+        "typeLabel": "Trắc nghiệm",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "exercise": "G Exercise 3 Conjunctions",
+        "question": "She looks shy and skinny, ____ she is a karate athlete.",
+        "options": [
+          "or",
+          "yet",
+          "and"
+        ],
+        "answer": "yet",
+        "accept": [
+          "yet"
+        ],
+        "fillMode": false,
+        "typeLabel": "Trắc nghiệm",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "exercise": "G Exercise 3 Conjunctions",
+        "question": "I made a suggestion, ____ they chose to ignore it.",
+        "options": [
+          "so",
+          "but",
+          "nor"
+        ],
+        "answer": "but",
+        "accept": [
+          "but"
+        ],
+        "fillMode": false,
+        "typeLabel": "Trắc nghiệm",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "exercise": "G Exercise 3 Conjunctions",
+        "question": "I bought these three shirts, ____ they gave me the another one for free.",
+        "options": [
+          "for",
+          "and",
+          "or"
+        ],
+        "answer": "and",
+        "accept": [
+          "and"
+        ],
+        "fillMode": false,
+        "typeLabel": "Trắc nghiệm",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Be careful to cover the ___________ sockets for the safety of the children. (electric)",
+        "answer": "electrical",
+        "options": [],
+        "accept": [
+          "electrical",
+          "electric"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Every _________________ in my neighborhood has at least a TV set. (house)",
+        "answer": "household",
+        "options": [],
+        "accept": [
+          "household"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Hard work always brings _______________. (succeed)",
+        "answer": "success",
+        "options": [],
+        "accept": [
+          "success"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "She is often worried about the _____________ of all electric appliances in her house. (safe)",
+        "answer": "safety",
+        "options": [],
+        "accept": [
+          "safety"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "In order to save ________, remember to turn off all the lights in the room before you leave. (electric)",
+        "answer": "electricity",
+        "options": [],
+        "accept": [
+          "electricity"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "You should obey the _________ regulations at the hospital. (safe)",
+        "answer": "safety",
+        "options": [],
+        "accept": [
+          "safety"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "The __________ victims were sent to the hospital yesterday. (injure)",
+        "answer": "injured",
+        "options": [],
+        "accept": [
+          "injured"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "You have to keep all __________ objects out of the children's reach. (danger)",
+        "answer": "dangerous",
+        "options": [],
+        "accept": [
+          "dangerous"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "A kitchen is not a ______________ place to play. (suitability)",
+        "answer": "suitable",
+        "options": [],
+        "accept": [
+          "suitable"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Heat gradually ______________ vitamin C. (destruction)",
+        "answer": "destroys",
+        "options": [],
+        "accept": [
+          "destroys",
+          "destroy"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "It's a ____________ idea for children to do some working at early age. (marvel)",
+        "answer": "marvelous",
+        "options": [],
+        "accept": [
+          "marvelous",
+          "marvellous"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Most teenagers like taking part in _____________ service. (communal)",
+        "answer": "community",
+        "options": [],
+        "accept": [
+          "community",
+          "communal"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Warm clothes are ______________ for hot weather. (suit)",
+        "answer": "unsuitable",
+        "options": [],
+        "accept": [
+          "unsuitable"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "The _______________ of atom bomb is very terrible. (destroy)",
+        "answer": "destruction",
+        "options": [],
+        "accept": [
+          "destruction"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "grammar",
+        "source": "Jack has a new laptop; however, he never logs on his account on the Facebook.",
+        "prefix": "Although",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "Jack has a new laptop, he never logs on his account on the Facebook.",
+          "Jack has a new laptop, he never logs on his Facebook account."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Lan wants to study better, so she turns off her mobile phone.",
+        "prefix": "Because",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "Lan wants to study better, she turns off her mobile phone.",
+          "she wants to study better, Lan turns off her mobile phone."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Tuan is hard-working, so he often gets good marks on exams.",
+        "prefix": "Because",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "Tuan is hard-working, he often gets good marks on exams.",
+          "he is hard-working, Tuan often gets good marks on exams."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Mono bought a lot of books, for he likes reading.",
+        "prefix": "Mono",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "bought a lot of books because he likes reading.",
+          "likes reading, so he bought a lot of books."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Quan is a club member; however, he never participates in any activities.",
+        "prefix": "Although",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "Quan is a club member, he never participates in any activities.",
+          "he is a club member, Quan never participates in any activities."
+        ]
+      }
+    ],
+    "4": [
+      {
+        "game": "choose_and_circle",
+        "title": "G Exercise 3",
+        "instruction": "Circle the correct words in brackets.",
+        "items": [
+          {
+            "order": 1,
+            "image": "",
+            "prompt": "There are lots of (school/ schools) for minority children nowadays.",
+            "options": [
+              "school",
+              "schools"
+            ],
+            "answer": "schools"
+          },
+          {
+            "order": 2,
+            "image": "",
+            "prompt": "She doesn't have any (money/moneys).",
+            "options": [
+              "money",
+              "moneys"
+            ],
+            "answer": "money"
+          },
+          {
+            "order": 3,
+            "image": "",
+            "prompt": "We will build a (boarding school/ boarding schools) next year.",
+            "options": [
+              "boarding school",
+              "boarding schools"
+            ],
+            "answer": "boarding school"
+          },
+          {
+            "order": 4,
+            "image": "",
+            "prompt": "(Person/ People) in the mountains live close to nature.",
+            "options": [
+              "Person",
+              "People"
+            ],
+            "answer": "People"
+          },
+          {
+            "order": 5,
+            "image": "",
+            "prompt": "There are many (service/ services) in the city.",
+            "options": [
+              "service",
+              "services"
+            ],
+            "answer": "services"
+          },
+          {
+            "order": 6,
+            "image": "",
+            "prompt": "The Kinh is the largest ethnic (group/ groups) in Viet Nam.",
+            "options": [
+              "group",
+              "groups"
+            ],
+            "answer": "group"
+          },
+          {
+            "order": 7,
+            "image": "",
+            "prompt": "What is (life/ lives) in your village like?",
+            "options": [
+              "life",
+              "lives"
+            ],
+            "answer": "life"
+          },
+          {
+            "order": 8,
+            "image": "",
+            "prompt": "Banh Chung is made from (sticky rice/ sticky rices)",
+            "options": [
+              "sticky rice",
+              "sticky rices"
+            ],
+            "answer": "sticky rice"
+          },
+          {
+            "order": 9,
+            "image": "",
+            "prompt": "He thinks doing puzzles takes much (time/ times).",
+            "options": [
+              "time",
+              "times"
+            ],
+            "answer": "time"
+          },
+          {
+            "order": 10,
+            "image": "",
+            "prompt": "Teens need eight to ten (hour/ hours) of sleep a day.",
+            "options": [
+              "hour",
+              "hours"
+            ],
+            "answer": "hours"
+          }
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "Are they minority people? – Yes, they __________________.",
+        "answer": "are",
+        "options": [],
+        "accept": [
+          "are"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "Can you go with us this afternoon? – Yes, I __________________.",
+        "answer": "can",
+        "options": [],
+        "accept": [
+          "can"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "Was Mai at home alone yesterday? – No, she __________________.",
+        "answer": "wasn't",
+        "options": [],
+        "accept": [
+          "wasn't",
+          "was not"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "Did they catch fish in the river? – No, they __________________.",
+        "answer": "didn't",
+        "options": [],
+        "accept": [
+          "didn't",
+          "did not"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "Does it have an open fire in the middle of the house? – Yes, it __________________.",
+        "answer": "does",
+        "options": [],
+        "accept": [
+          "does"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "Will you visit the village of the Ede? – No, we __________________.",
+        "answer": "won't",
+        "options": [],
+        "accept": [
+          "won't",
+          "will not"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "Were they weaving clothing at that time? – Yes, they __________________.",
+        "answer": "were",
+        "options": [],
+        "accept": [
+          "were"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "May I open the book? – No, you __________________.",
+        "answer": "may not",
+        "options": [],
+        "accept": [
+          "may not",
+          "mustn't",
+          "must not"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "Should I stay up too late? – No, you __________________.",
+        "answer": "shouldn't",
+        "options": [],
+        "accept": [
+          "shouldn't",
+          "should not"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "Do the farmers move to a new place when the soil become poor? – Yes, they __________________.",
+        "answer": "do",
+        "options": [],
+        "accept": [
+          "do"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 5",
+        "question": "Minority groups have their own musical __________________. (instrument)",
+        "answer": "instruments",
+        "options": [],
+        "accept": [
+          "instruments"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 5",
+        "question": "The King use sticky __________________. (rice)",
+        "answer": "rice",
+        "options": [],
+        "accept": [
+          "rice"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 5",
+        "question": "My grandmother used to teach me many folk __________________. (song)",
+        "answer": "songs",
+        "options": [],
+        "accept": [
+          "songs"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 5",
+        "question": "The staircase of a Muong's stilt house has an odd number of __________________. (step)",
+        "answer": "steps",
+        "options": [],
+        "accept": [
+          "steps"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 5",
+        "question": "A big stilt house stands on high __________________. (post)",
+        "answer": "posts",
+        "options": [],
+        "accept": [
+          "posts"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 5",
+        "question": "The number of minority __________________ going to school is going up. (child)",
+        "answer": "children",
+        "options": [],
+        "accept": [
+          "children"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 5",
+        "question": "People in the mountains live close to __________________. (nature)",
+        "answer": "nature",
+        "options": [],
+        "accept": [
+          "nature"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "grammar",
+        "source": "He is a farmer.",
+        "prefix": "Is he",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "a farmer?",
+          "a farmer"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "They use simple farming techniques.",
+        "prefix": "Do they",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "use simple farming techniques?",
+          "use simple farming techniques"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "I will read a documentary about ethnic groups of Viet Nam.",
+        "prefix": "Will I",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "read a documentary about ethnic groups of Viet Nam?",
+          "read a documentary about ethnic groups of Viet Nam"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Nga plays the piano very well.",
+        "prefix": "Does Nga",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "play the piano very well?",
+          "play the piano very well"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Women play an important role in a Jarai family.",
+        "prefix": "Do women",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "play an important role in a Jarai family?",
+          "play an important role in a Jarai family"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "She should do exercises regularly.",
+        "prefix": "Should she",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "do exercises regularly?",
+          "do exercises regularly"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "My father cooked noodles for me last night.",
+        "prefix": "Did my father",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "cook noodles for me last night?",
+          "cook noodles for me last night"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "You may go out with your friends tonight.",
+        "prefix": "May you",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "go out with your friends tonight?",
+          "go out with your friends tonight"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "We grow vegetables and raise livestocks.",
+        "prefix": "Do we",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "grow vegetables and raise livestocks?",
+          "grow vegetables and raise livestock?"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Nam and his friends were in a stilt house last week.",
+        "prefix": "Were Nam and his friends",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "in a stilt house last week?",
+          "in a stilt house last week"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "The local people walk to the market every day.",
+        "prefix": "Do the local people",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "walk to the market every day?",
+          "walk to the market every day"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Artists from the Central Highlands will give Cong performances in the festival.",
+        "prefix": "Will artists from the Central Highlands",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "give Cong performances in the festival?",
+          "give Cong performances in the festival"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "The Hoa Ban Festival takes place in Lai Chau.",
+        "prefix": "Does the Hoa Ban Festival",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "take place in Lai Chau?",
+          "take place in Lai Chau"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "It is three kilometres from the village to the nearest river.",
+        "prefix": "Is it",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "three kilometres from the village to the nearest river?",
+          "three kilometres from the village to the nearest river"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "I have been to Sapa several times.",
+        "prefix": "Have I",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "been to Sapa several times?",
+          "been to Sapa several times"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "The girls with a shawl on their heads are members of the Thai.",
+        "prefix": "Are the girls with a shawl on their heads",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "members of the Thai?",
+          "members of the Thai"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "We can find terraced fields in the northern mountainous regions.",
+        "prefix": "Can we",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "find terraced fields in the northern mountainous regions?",
+          "find terraced fields in the northern mountainous regions"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "They built their houses on stilts to prevent flooding from tides or storms.",
+        "prefix": "Did they",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "build their houses on stilts to prevent flooding from tides or storms?",
+          "build their houses on stilts to prevent flooding from tides or storms"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "The Tay are the earliest known minority in Viet Nam.",
+        "prefix": "Are the Tay",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "the earliest known minority in Viet Nam?",
+          "the earliest known minority in Viet Nam"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "The population of the Tay ethnic group is about 1.7 million.",
+        "prefix": "Is the population of the Tay ethnic group",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "about 1.7 million?",
+          "about 1.7 million"
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "All the singers wore _______________ costumes. (tradition)",
+        "answer": "traditional",
+        "options": [],
+        "accept": [
+          "traditional"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "______________, I lost my keys on the way home. (fortunate)",
+        "answer": "Unfortunately",
+        "options": [],
+        "accept": [
+          "Unfortunately",
+          "unfortunately"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "A fairy ______________ changed Little Pea's rags into beautiful clothes. (magic)",
+        "answer": "magically",
+        "options": [],
+        "accept": [
+          "magically"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Everyone was very ___________ after hearing that news. (excite)",
+        "answer": "excited",
+        "options": [],
+        "accept": [
+          "excited"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "You made a wise _____________ when you chose to study Spanish. (decide)",
+        "answer": "decision",
+        "options": [],
+        "accept": [
+          "decision"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "The boy fell off his bicycle and _______________ broke his arm. (fortunate)",
+        "answer": "unfortunately",
+        "options": [],
+        "accept": [
+          "unfortunately"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "The \"Lost Shoe\" is one of the _____________ stories I like best. (tradition)",
+        "answer": "traditional",
+        "options": [],
+        "accept": [
+          "traditional"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "His sudden _____________ surprised all of us. (appear)",
+        "answer": "appearance",
+        "options": [],
+        "accept": [
+          "appearance"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "The tiger wanted to see the farmer's _____________. (wise)",
+        "answer": "wisdom",
+        "options": [],
+        "accept": [
+          "wisdom"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "He is so proud of his _______________. (wise)",
+        "answer": "wisdom",
+        "options": [],
+        "accept": [
+          "wisdom"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "I can't stand people who are ____________ to animals. (cruelty)",
+        "answer": "cruel",
+        "options": [],
+        "accept": [
+          "cruel"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "The children were very _____________ to hear the fairy tale. (excite)",
+        "answer": "excited",
+        "options": [],
+        "accept": [
+          "excited"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "My grandfather often wears _____________ clothes on the Tet holiday. (tradition)",
+        "answer": "traditional",
+        "options": [],
+        "accept": [
+          "traditional"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Children were very happy with the _____________ of the fairy. (appear)",
+        "answer": "appearance",
+        "options": [],
+        "accept": [
+          "appearance"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      }
+    ],
+    "5": [
+      {
+        "game": "choose_and_circle",
+        "title": "G Exercise 3",
+        "instruction": "Circle the correct option in brackets.",
+        "items": [
+          {
+            "order": 1,
+            "image": "",
+            "prompt": "Nobody lives on (a / the) Moon.",
+            "options": [
+              "a",
+              "the"
+            ],
+            "answer": "the"
+          },
+          {
+            "order": 2,
+            "image": "",
+            "prompt": "We went to Tien Giang by (a / no article) coach.",
+            "options": [
+              "a",
+              "no article"
+            ],
+            "answer": "no article"
+          },
+          {
+            "order": 3,
+            "image": "",
+            "prompt": "It is (a / an) exciting trip.",
+            "options": [
+              "a",
+              "an"
+            ],
+            "answer": "an"
+          },
+          {
+            "order": 4,
+            "image": "",
+            "prompt": "He sometimes comes (the / no article) home late.",
+            "options": [
+              "the",
+              "no article"
+            ],
+            "answer": "no article"
+          },
+          {
+            "order": 5,
+            "image": "",
+            "prompt": "I will bring some food to (no article / the) party on Sunday.",
+            "options": [
+              "no article",
+              "the"
+            ],
+            "answer": "the"
+          },
+          {
+            "order": 6,
+            "image": "",
+            "prompt": "There is (an / a) ornamental tree in my living room.",
+            "options": [
+              "an",
+              "a"
+            ],
+            "answer": "an"
+          },
+          {
+            "order": 7,
+            "image": "",
+            "prompt": "The Ban Flower Festival takes place in (the / no article) March.",
+            "options": [
+              "the",
+              "no article"
+            ],
+            "answer": "no article"
+          },
+          {
+            "order": 8,
+            "image": "",
+            "prompt": "They have never been to (no article / the) U.K.",
+            "options": [
+              "no article",
+              "the"
+            ],
+            "answer": "the"
+          },
+          {
+            "order": 9,
+            "image": "",
+            "prompt": "Fansipan is (no article / the) highest mountain in Viet Nam.",
+            "options": [
+              "no article",
+              "the"
+            ],
+            "answer": "the"
+          },
+          {
+            "order": 10,
+            "image": "",
+            "prompt": "She gave me (no article / a) big birthday cake.",
+            "options": [
+              "no article",
+              "a"
+            ],
+            "answer": "a"
+          }
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "My daughter is ________________ architect.",
+        "answer": "an",
+        "options": [],
+        "accept": [
+          "an"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "She has ________________ interesting comic book.",
+        "answer": "an",
+        "options": [],
+        "accept": [
+          "an"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "I think he will be ________________ good student.",
+        "answer": "a",
+        "options": [],
+        "accept": [
+          "a"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "They have left for ________________ hour.",
+        "answer": "an",
+        "options": [],
+        "accept": [
+          "an"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "She wore ________________ pink dress at the party last night.",
+        "answer": "a",
+        "options": [],
+        "accept": [
+          "a"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "We will have ________________ party to wish our grandparents longevity.",
+        "answer": "a",
+        "options": [],
+        "accept": [
+          "a"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "You should take ________________ umbrella in case it rains.",
+        "answer": "an",
+        "options": [],
+        "accept": [
+          "an"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "My uncle has ________________ coffee plantation in Kon Tum.",
+        "answer": "a",
+        "options": [],
+        "accept": [
+          "a"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "Women also play ________________ important role in our society.",
+        "answer": "an",
+        "options": [],
+        "accept": [
+          "an"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 4",
+        "question": "Dragon-snake is ________________ folk game in Viet Nam.",
+        "answer": "a",
+        "options": [],
+        "accept": [
+          "a"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "grammar",
+        "source": "There's a tradition that English people drink a lot of tea. (follow)",
+        "prefix": "English people",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "follow the tradition of drinking a lot of tea.",
+          "follow a tradition of drinking a lot of tea."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Last year we went to Thailand on Tet holiday. (broke)",
+        "prefix": "Last year we",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "broke with tradition by going to Thailand on Tet holiday.",
+          "broke tradition by going to Thailand on Tet."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "The Vietnamese have the custom of worshipping ancestors. (there)",
+        "prefix": "There",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "is a custom of worshipping ancestors in Viet Nam.",
+          "is a Vietnamese custom of worshipping ancestors."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "It's the custom for Vietnamese parents to celebrate their baby's first month. (have)",
+        "prefix": "Vietnamese parents",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "have the custom of celebrating their baby's first month.",
+          "have a custom of celebrating their baby's first month."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "According to tradition, Vietnamese people celebrate the Mid-Autumn Festival every year. (There)",
+        "prefix": "There",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "is a tradition that Vietnamese people celebrate the Mid-Autumn Festival every year.",
+          "is a tradition of celebrating the Mid-Autumn Festival every year in Viet Nam."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "The Ok Om Bok Festival takes place in October. (organize)",
+        "prefix": "The Ok Om Bok Festival",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "is organized in October.",
+          "is organised in October."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "It's a good idea to hand bowls with both hands. (should)",
+        "prefix": "You should",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "hand bowls with both hands.",
+          "hand bowls with both hands"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "We should wait for the host to start eating. (better)",
+        "prefix": "We had better",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "wait for the host to start eating.",
+          "wait for the host to start eating"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Don't sweep the floor on the first three days of Tet. (shouldn't)",
+        "prefix": "You shouldn't",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "sweep the floor on the first three days of Tet.",
+          "sweep the floor on the first three days of Tet"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Never use bad words in conversations with others, especially with older people. (had)",
+        "prefix": "You had better",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "not use bad words in conversations with others, especially with older people.",
+          "never use bad words in conversations with others, especially with older people."
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Her disappearance has never been _______________ explained. (satisfy)",
+        "answer": "satisfactorily",
+        "options": [],
+        "accept": [
+          "satisfactorily"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Do you know the _______________ of that word? (pronounce)",
+        "answer": "pronunciation",
+        "options": [],
+        "accept": [
+          "pronunciation"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "I'm pleased to hear you had an _____________ summer vacation. (enjoy)",
+        "answer": "enjoyable",
+        "options": [],
+        "accept": [
+          "enjoyable"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Don't you know the ______________ of self-study? (important)",
+        "answer": "importance",
+        "options": [],
+        "accept": [
+          "importance"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Her parents are ________ with her good behavior. (please)",
+        "answer": "pleased",
+        "options": [],
+        "accept": [
+          "pleased"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Our project wouldn't be ______________ without your kind cooperation. (success)",
+        "answer": "successful",
+        "options": [],
+        "accept": [
+          "successful"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "You don't have to ______ the grammar rules to be able to do these exercises. (memory)",
+        "answer": "memorise",
+        "options": [],
+        "accept": [
+          "memorise",
+          "memorize"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "You have to _____________ those English vocabularies every day. (revision)",
+        "answer": "revise",
+        "options": [],
+        "accept": [
+          "revise"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "She actively ______________ in social work. (participation)",
+        "answer": "participates",
+        "options": [],
+        "accept": [
+          "participates"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "His ______________ towards her is becoming more and more aggressive. (behave)",
+        "answer": "behaviour",
+        "options": [],
+        "accept": [
+          "behaviour",
+          "behavior"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "We used to ______________ in many activities of communal center. (participation)",
+        "answer": "participate",
+        "options": [],
+        "accept": [
+          "participate"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "I can do all of these exercises ______________. (easy)",
+        "answer": "easily",
+        "options": [],
+        "accept": [
+          "easily"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "He was ___________ of his achievements in the field of politics. (pride)",
+        "answer": "proud",
+        "options": [],
+        "accept": [
+          "proud"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "His _________________ of some words is not correct. (pronounce)",
+        "answer": "pronunciation",
+        "options": [],
+        "accept": [
+          "pronunciation"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "exercise": "Word form",
+        "question": "Her ________ prevented her from success. (nervous)",
+        "answer": "nervousness",
+        "options": [],
+        "accept": [
+          "nervousness"
+        ],
+        "fillMode": true,
+        "typeLabel": "Từ loại",
+        "skill": "writing"
+      },
+      {
+        "game": "grammar",
+        "source": "Chu Dong Chu couldn't buy any special food. He was very poor. (because)",
+        "prefix": "Chu Dong Chu couldn't buy any special food",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "because he was very poor.",
+          "because he was very poor"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "During Tet, Vietnamese people buy all kinds of sweets. They make Chung cakes as well. (And)",
+        "prefix": "During Tet, Vietnamese people buy all kinds of sweets",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "and they make Chung cakes as well.",
+          "and make Chung cakes as well."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "No one in my class is as tall as Mono. (the)",
+        "prefix": "Mono is",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "the tallest in my class.",
+          "the tallest student in my class."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Nam didn't speak English as well as Huy. (than)",
+        "prefix": "Huy spoke English",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "better than Nam.",
+          "better than Nam"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "No one in my group is as beautiful as Jane. (the)",
+        "prefix": "Jane is",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "the most beautiful in my group.",
+          "the most beautiful girl in my group."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "It's good for us to keep our traditional customs. (should)",
+        "prefix": "We should",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "keep our traditional customs.",
+          "keep our traditional customs"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "He spent an hour walking to school last night. (took)",
+        "prefix": "It took",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "him an hour to walk to school last night.",
+          "him an hour to walk to school last night"
+        ]
+      }
+    ],
+    "6": [
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "We ______________________ an online talk tomorrow. (have)",
+        "answer": "will have",
+        "options": [],
+        "accept": [
+          "will have",
+          "'ll have"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "They ______________________ their first-term exams soon. (take)",
+        "answer": "will take",
+        "options": [],
+        "accept": [
+          "will take",
+          "'ll take"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "Her daughter ______________________ from the University of Architecture in 2024. (graduate)",
+        "answer": "will graduate",
+        "options": [],
+        "accept": [
+          "will graduate",
+          "'ll graduate"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "I think people ______________________ on the Moon in five years. (not, live)",
+        "answer": "won't live",
+        "options": [],
+        "accept": [
+          "won't live",
+          "will not live"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "My brother ______________________ me his old electric bike. (give)",
+        "answer": "will give",
+        "options": [],
+        "accept": [
+          "will give",
+          "'ll give"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "Mai ______________________ a doctor in the future. (be)",
+        "answer": "will be",
+        "options": [],
+        "accept": [
+          "will be",
+          "'ll be"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "My family ______________________ to Phu Quoc Island next week. (not, go)",
+        "answer": "won't go",
+        "options": [],
+        "accept": [
+          "won't go",
+          "will not go"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "This machine ______________________ on solar energy. (run)",
+        "answer": "will run",
+        "options": [],
+        "accept": [
+          "will run",
+          "'ll run"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "______________________ the piano at their wedding party? (Nga, play)",
+        "answer": "Will Nga play",
+        "options": [],
+        "accept": [
+          "Will Nga play",
+          "Will Nga play?"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 6",
+        "question": "______________________ his car to work? (he, drive)",
+        "answer": "Will he drive",
+        "options": [],
+        "accept": [
+          "Will he drive",
+          "Will he drive?"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "If we ______________________ more, we ______________________ the Earth. (recycle)/(help) (write: verb1 / verb2)",
+        "answer": "recycle / will help",
+        "options": [],
+        "accept": [
+          "recycle / will help",
+          "recycle/will help",
+          "recycle, will help"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "If you ______________________ exercise regularly, you ______________________ healthy. (do)/(stay) (write: verb1 / verb2)",
+        "answer": "do / will stay",
+        "options": [],
+        "accept": [
+          "do / will stay",
+          "do/will stay",
+          "do, will stay"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "If he ______________________ iced water, he ______________________ a cough. (drink)/(have) (write: verb1 / verb2)",
+        "answer": "drinks / will have",
+        "options": [],
+        "accept": [
+          "drinks / will have",
+          "drinks/will have",
+          "drinks, will have"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "If I ______________________ money, I ______________________ a laptop. (have)/(buy) (write: verb1 / verb2)",
+        "answer": "have / will buy",
+        "options": [],
+        "accept": [
+          "have / will buy",
+          "have/will buy",
+          "have, will buy"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "If people ______________________ by bicycle, there ______________________ less air pollution. (travel)/(be) (write: verb1 / verb2)",
+        "answer": "travel / will be",
+        "options": [],
+        "accept": [
+          "travel / will be",
+          "travel/will be",
+          "travel, will be"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "If she ______________________ at this time, she ______________________ a loser. (stop)/(be) (write: verb1 / verb2)",
+        "answer": "stops / will be",
+        "options": [],
+        "accept": [
+          "stops / will be",
+          "stops/will be",
+          "stops, will be"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "If he ______________________ harder, I ______________________ him more. (work)/(pay) (write: verb1 / verb2)",
+        "answer": "works / will pay",
+        "options": [],
+        "accept": [
+          "works / will pay",
+          "works/will pay",
+          "works, will pay"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "If Tom ______________________ time, he ______________________ his aunt in District 9. (have)/(visit) (write: verb1 / verb2)",
+        "answer": "has / will visit",
+        "options": [],
+        "accept": [
+          "has / will visit",
+          "has/will visit",
+          "has, will visit"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "If I ______________________ the poem by heart, my teacher ______________________ me. (not, learn)/(punish) (write: verb1 / verb2)",
+        "answer": "don't learn / will punish",
+        "options": [],
+        "accept": [
+          "don't learn / will punish",
+          "do not learn / will punish",
+          "don't learn/will punish"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "exercise": "G Exercise 7",
+        "question": "If Nam ______________________ to Thailand, he ______________________ their traditional dances. (go)/(watch) (write: verb1 / verb2)",
+        "answer": "goes / will watch",
+        "options": [],
+        "accept": [
+          "goes / will watch",
+          "goes/will watch",
+          "goes, will watch"
+        ],
+        "fillMode": true,
+        "typeLabel": "Điền từ",
+        "skill": "writing"
+      },
+      {
+        "game": "choose_and_circle",
+        "title": "G Exercise 8",
+        "instruction": "Circle the correct options in brackets.",
+        "items": [
+          {
+            "order": 1,
+            "image": "",
+            "prompt": "We will stay at home if it (will rain / rains) heavily.",
+            "options": [
+              "will rain",
+              "rains"
+            ],
+            "answer": "rains"
+          },
+          {
+            "order": 2,
+            "image": "",
+            "prompt": "You can (see / will see) more clearly if you use a flashlight.",
+            "options": [
+              "see",
+              "will see"
+            ],
+            "answer": "see"
+          },
+          {
+            "order": 3,
+            "image": "",
+            "prompt": "The game will start if you (put / will put) a coin in the slot.",
+            "options": [
+              "put",
+              "will put"
+            ],
+            "answer": "put"
+          },
+          {
+            "order": 4,
+            "image": "",
+            "prompt": "If he eats too much fried chicken, he (gains / will gain) weight.",
+            "options": [
+              "gains",
+              "will gain"
+            ],
+            "answer": "will gain"
+          },
+          {
+            "order": 5,
+            "image": "",
+            "prompt": "The sea level (rises / will rise) if the planet gets hotter.",
+            "options": [
+              "rises",
+              "will rise"
+            ],
+            "answer": "will rise"
+          },
+          {
+            "order": 6,
+            "image": "",
+            "prompt": "What (happens / will happen) if the policemen don't come?",
+            "options": [
+              "happens",
+              "will happen"
+            ],
+            "answer": "will happen"
+          },
+          {
+            "order": 7,
+            "image": "",
+            "prompt": "If she doesn't work hard, she (doesn't get / won't get) high salary.",
+            "options": [
+              "doesn't get",
+              "won't get"
+            ],
+            "answer": "won't get"
+          },
+          {
+            "order": 8,
+            "image": "",
+            "prompt": "Your car may be stolen if you (leave / will leave) it unlocked.",
+            "options": [
+              "leave",
+              "will leave"
+            ],
+            "answer": "leave"
+          },
+          {
+            "order": 9,
+            "image": "",
+            "prompt": "You can't study online if you (don't have / won't have) Internet.",
+            "options": [
+              "don't have",
+              "won't have"
+            ],
+            "answer": "don't have"
+          },
+          {
+            "order": 10,
+            "image": "",
+            "prompt": "There (won't be / aren't) any flowers if my sister doesn't take care of it every day.",
+            "options": [
+              "won't be",
+              "aren't"
+            ],
+            "answer": "won't be"
+          }
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "If they don't practise a lot, they will lose the game.",
+        "prefix": "Unless",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "they practise a lot, they will lose the game.",
+          "they practice a lot, they will lose the game."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "I'll miss the train if I don't go now.",
+        "prefix": "Unless",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "I go now, I'll miss the train.",
+          "I go now, I will miss the train."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "If she doesn't answer the phone, leave her a message.",
+        "prefix": "Unless",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "she answers the phone, leave her a message.",
+          "she answers the phone, leave her a message"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "If you don't pay the bill, I'll call the police.",
+        "prefix": "Unless",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "you pay the bill, I'll call the police.",
+          "you pay the bill, I will call the police."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "If he doesn't work hard, he won't pass the examination.",
+        "prefix": "Unless",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "he works hard, he won't pass the examination.",
+          "he works hard, he will not pass the examination."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Turn off all the lights and you will not pay more money.",
+        "prefix": "If",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "you turn off all the lights, you will not pay more money.",
+          "you turn off all the lights, you won't pay more money."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Unless she wears warm clothes, she will have a cold.",
+        "prefix": "If",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "she doesn't wear warm clothes, she will have a cold.",
+          "she does not wear warm clothes, she will have a cold."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Be careful or you may have an accident.",
+        "prefix": "If",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "you aren't careful, you may have an accident.",
+          "you are not careful, you may have an accident.",
+          "you don't be careful, you may have an accident."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Stay here and you will feel safe.",
+        "prefix": "If",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "you stay here, you will feel safe.",
+          "you stay here, you'll feel safe."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Pay the electricity bill today or your electricity will be cut off.",
+        "prefix": "If",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "you don't pay the electricity bill today, your electricity will be cut off.",
+          "you do not pay the electricity bill today, your electricity will be cut off."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Stop smoking otherwise your cough may be worse.",
+        "prefix": "If",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "you don't stop smoking, your cough may be worse.",
+          "you do not stop smoking, your cough may be worse."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Unless we use less fossil fuel, they will be run out soon.",
+        "prefix": "If",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "we don't use less fossil fuel, they will run out soon.",
+          "we do not use less fossil fuel, they will be run out soon."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Unless it stops raining today, we may be faced with a serious flood.",
+        "prefix": "If",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "it doesn't stop raining today, we may be faced with a serious flood.",
+          "it does not stop raining today, we may face a serious flood."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Do morning exercises regularly, your body will be fitter.",
+        "prefix": "If",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "you do morning exercises regularly, your body will be fitter.",
+          "you do morning exercise regularly, your body will be fitter."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Unless we use renewable energy, we will have nothing for the future generation.",
+        "prefix": "If",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "we don't use renewable energy, we will have nothing for the future generation.",
+          "we do not use renewable energy, we will have nothing for the future generation."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "The climate will change unless we reduce the use of non-renewable energy.",
+        "prefix": "If",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "we don't reduce the use of non-renewable energy, the climate will change.",
+          "we do not reduce the use of non-renewable energy, the climate will change."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Lock all the doors and no one can break into your house.",
+        "prefix": "If",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "you lock all the doors, no one can break into your house.",
+          "you lock all the doors, no one will break into your house."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "If you don't do this now, you will regret it.",
+        "prefix": "Unless",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "you do this now, you will regret it.",
+          "you do this now, you'll regret it."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "I will feel bored if my best friend doesn't come to the party with me.",
+        "prefix": "I",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "will feel bored unless my best friend comes to the party with me.",
+          "will feel bored unless my best friend comes to the party."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "We won't talk to her if she doesn't apologize.",
+        "prefix": "We",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "won't talk to her unless she apologizes.",
+          "will not talk to her unless she apologises."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "The baby will cry louder if they don't give him some toys.",
+        "prefix": "The baby",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "will cry louder unless they give him some toys.",
+          "will cry louder unless they give him some toys"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "If she doesn't promise to come back home early, her father won't let her go.",
+        "prefix": "Unless",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "she promises to come back home early, her father won't let her go.",
+          "she promises to come back home early, her father will not let her go."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "If we don't buy a good map, we will be lost.",
+        "prefix": "Unless",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "we buy a good map, we will be lost.",
+          "we buy a good map, we'll be lost."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "If Mary doesn't have enough money, she won't buy that car.",
+        "prefix": "Unless",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "Mary has enough money, she won't buy that car.",
+          "Mary has enough money, she will not buy that car."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "You can't have many job opportunities if you don't have an IELTS degree.",
+        "prefix": "You",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "can't have many job opportunities unless you have an IELTS degree.",
+          "cannot have many job opportunities unless you have an IELTS degree."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "If you don't eat less, you can't lose weight.",
+        "prefix": "Unless",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "you eat less, you can't lose weight.",
+          "you eat less, you cannot lose weight."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "If he doesn't speak English well, he can't take part in this English contest.",
+        "prefix": "Unless",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "he speaks English well, he can't take part in this English contest.",
+          "he speaks English well, he cannot take part in this English contest."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "If you eat an apple a day, you will stay healthy. (Unless)",
+        "prefix": "Unless",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "you eat an apple a day, you won't stay healthy.",
+          "you eat an apple a day, you will not stay healthy."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "You will run out of money if you don't stop wasting it. (Unless)",
+        "prefix": "Unless",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "you stop wasting money, you will run out of it.",
+          "you stop wasting it, you will run out of money."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "Don't call me unless it is an emergency. (IF)",
+        "prefix": "If",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "it isn't an emergency, don't call me.",
+          "it is not an emergency, don't call me.",
+          "it isn't an emergency, you shouldn't call me."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "James will not pass the test unless he studies harder. (IF)",
+        "prefix": "If",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "James doesn't study harder, he will not pass the test.",
+          "James does not study harder, he won't pass the test."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "If Jane finishes her work before 6 pm, she will dine out with her friends. (Unless)",
+        "prefix": "Unless",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "Jane finishes her work before 6 pm, she won't dine out with her friends.",
+          "Jane finishes her work before 6 pm, she will not dine out with her friends."
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "My brother won't go travelling this summer if he doesn't stay healthy. (Unless)",
+        "prefix": "Unless",
+        "suffix": "",
+        "hint": "",
+        "answers": [
+          "my brother stays healthy, he won't go travelling this summer.",
+          "he stays healthy, my brother won't go travelling this summer."
+        ]
+      }
+    ]
+  },
+  "skipped": [
+    {
+      "unit": 1,
+      "reason": "sentence word-order / rearrange",
+      "item": "W Exercise 1 Put words in correct order"
+    },
+    {
+      "unit": 1,
+      "reason": "open-ended / weak fixed answer",
+      "item": "W Ex2 item: Lan likes using the computer → Lan's favorite …"
+    },
+    {
+      "unit": 1,
+      "reason": "open-ended / weak fixed answer",
+      "item": "W Ex2 item: Making crafts… → It's very …"
+    },
+    {
+      "unit": 1,
+      "reason": "two blanks in one item",
+      "item": "Fill verb forms #42 Emily dislikes / enjoys"
+    },
+    {
+      "unit": 2,
+      "reason": "sentence word-order / rearrange",
+      "item": "W Exercise 1 Rearrange the words"
+    },
+    {
+      "unit": 2,
+      "reason": "low confidence / awkward stem",
+      "item": "W Ex3 #13 The movie was boring…"
+    },
+    {
+      "unit": 2,
+      "reason": "low confidence / awkward stem",
+      "item": "W Ex3 #16 I didn't think this book…"
+    },
+    {
+      "unit": 2,
+      "reason": "weak / incomplete stem",
+      "item": "W Ex3 #21 We fancy doing the housework."
+    },
+    {
+      "unit": 3,
+      "reason": "sentence word-order / rearrange",
+      "item": "W Exercise 1 Rearrange the words"
+    },
+    {
+      "unit": 3,
+      "reason": "compound free production / many valid answers",
+      "item": "W Exercise 2 Combine into compound sentence"
+    },
+    {
+      "unit": 3,
+      "reason": "compound free production / many valid answers",
+      "item": "W Exercise 3 Write compound with conjunctive adverb"
+    },
+    {
+      "unit": 4,
+      "reason": "two blanks in one item",
+      "item": "G Ex5 wood/leaf, woman/housework, land/crop"
+    },
+    {
+      "unit": 4,
+      "reason": "make sentences from prompts / med confidence",
+      "item": "W Exercise 2"
+    },
+    {
+      "unit": 4,
+      "reason": "Q&A pair items",
+      "item": "W Exercise 3 Write questions and answers"
+    },
+    {
+      "unit": 4,
+      "reason": "Wh-question from underlined words (underline not encoded)",
+      "item": "W Exercise 4 + 37-40"
+    },
+    {
+      "unit": 4,
+      "reason": "compound-ish free production",
+      "item": "Using words given to write meaningful sentences 55-58"
+    },
+    {
+      "unit": 5,
+      "reason": "sentence word-order / rearrange",
+      "item": "W Exercise 1 Reorder the words"
+    },
+    {
+      "unit": 5,
+      "reason": "labeled Rewrite but actually jumbled phrases",
+      "item": "W Exercise 2"
+    },
+    {
+      "unit": 5,
+      "reason": "write full sentences from prompts / med confidence",
+      "item": "W Exercise 3"
+    },
+    {
+      "unit": 6,
+      "reason": "if/unless fill ambiguous without answer key",
+      "item": "G Exercise 9 Write if or unless"
+    },
+    {
+      "unit": 6,
+      "reason": "sentence word-order / rearrange",
+      "item": "W Exercise 1 Reorder the words"
+    },
+    {
+      "unit": 6,
+      "reason": "awkward / low confidence rewrite",
+      "item": "G Ex11 #4 Phone your parents…"
+    },
+    {
+      "unit": 6,
+      "reason": "awkward / low confidence rewrite",
+      "item": "G Ex11 #5 Unless she whispers…"
+    },
+    {
+      "unit": 6,
+      "reason": "already type-1 / no transform needed",
+      "item": "G Ex11 #15 If we continue hunting…"
+    }
+  ]
+}

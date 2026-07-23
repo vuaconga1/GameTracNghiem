@@ -438,10 +438,15 @@
 .course-game-list-head,
 .course-game-row {
   display: grid;
-  grid-template-columns: minmax(0, 1.6fr) 110px 140px 140px;
+  grid-template-columns: minmax(0, 1.3fr) 90px 125px minmax(310px, 1.5fr) 140px;
   gap: 0.75rem;
   align-items: center;
   padding: 0.75rem 1rem;
+}
+
+.course-skill-lesson-list .course-game-list-head,
+.course-skill-lesson-list .course-game-row {
+  grid-template-columns: minmax(0, 1fr) minmax(310px, 1.5fr);
 }
 
 .course-game-list-head {
@@ -515,6 +520,52 @@
   justify-content: flex-end;
 }
 
+.course-game-lesson-editor {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.course-game-lesson-inputs,
+.course-game-lesson-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.course-game-lesson-inputs input {
+  width: 6.5rem;
+  min-width: 0;
+  border: 1px solid var(--admin-border);
+  border-radius: 7px;
+  background: #fff;
+  padding: 0.45rem 0.5rem;
+  color: var(--admin-text);
+  font: inherit;
+}
+
+.course-game-lesson-inputs input:focus {
+  outline: none;
+  border-color: #93c5fd;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}
+
+.course-game-lesson-inputs input:disabled {
+  background: #f1f5f9;
+  color: var(--admin-muted);
+  cursor: not-allowed;
+}
+
+.course-game-lesson-actions .admin-btn {
+  padding: 0.4rem 0.65rem;
+  font-size: 0.82rem;
+}
+
+.course-game-lesson-help {
+  color: var(--admin-muted);
+  font-size: 0.78rem;
+}
+
 .course-game-switch {
   display: inline-flex;
   align-items: center;
@@ -571,7 +622,15 @@
   min-width: 2.2rem;
 }
 
-@media (max-width: 860px) {
+/*
+ * Stack the per-game PDF editor early. The desktop row needs ~745px
+ * (665px min columns + 48px gaps + 32px padding); with the 48px admin-content
+ * padding and 2px panel border the main column must be ~795px. The 240px
+ * sidebar only collapses at <=900px, so between ~901px and ~1034px the main
+ * column is too narrow and the row would overflow. Stacking from 1040px keeps
+ * the widest desktop grid where the main column is still >= ~795px.
+ */
+@media (max-width: 1040px) {
   .course-game-list-head {
     display: none;
   }
@@ -580,9 +639,17 @@
     grid-template-columns: 1fr auto;
     grid-template-areas:
       'main actions'
-      'visible visible';
+      'visible visible'
+      'lesson lesson';
     gap: 0.65rem 0.75rem;
     padding: 0.9rem 1rem;
+  }
+
+  .course-skill-lesson-list .course-game-row {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'main'
+      'lesson';
   }
 
   .course-game-main {
@@ -602,6 +669,20 @@
     grid-area: visible;
   }
 
+  .course-game-lesson {
+    grid-area: lesson;
+  }
+
+  .course-game-lesson-editor {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
+
+  .course-game-lesson-inputs input {
+    flex: 1 1 7rem;
+    width: auto;
+  }
+
   .course-game-actions {
     grid-area: actions;
   }
@@ -618,7 +699,21 @@
     grid-template-areas:
       'main'
       'visible'
+      'lesson'
       'actions';
+  }
+
+  .course-game-lesson-editor {
+    grid-template-columns: 1fr;
+  }
+
+  .course-game-lesson-inputs input {
+    width: calc(50% - 0.75rem);
+  }
+
+  .course-game-lesson-actions .admin-btn {
+    flex: 1;
+    justify-content: center;
   }
 
   .course-game-actions {
@@ -799,6 +894,60 @@
   position: static;
 }
 
+.course-background-editor {
+  display: grid;
+  grid-template-columns: 92px minmax(210px, 1fr);
+  gap: 0.65rem;
+  align-items: start;
+  min-width: 310px;
+}
+
+.course-background-preview {
+  width: 92px;
+  aspect-ratio: 4 / 2.35;
+  overflow: hidden;
+  border: 1px solid var(--admin-border);
+  border-radius: 8px;
+  background: #eef2f7;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.course-background-preview img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.course-background-controls {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.course-background-url-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) auto;
+  gap: 0.4rem;
+}
+
+.course-background-loading {
+  padding: 0.2rem 0;
+  text-align: left;
+  font-size: 0.75rem;
+}
+
+.course-background-unsaved {
+  color: var(--admin-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
 @media (max-width: 900px) {
   .admin-shell {
     grid-template-columns: 1fr;
@@ -809,4 +958,15 @@
     top: 0;
     z-index: 20;
   }
+}
+
+
+.course-game-skill-select {
+  min-width: 7.5rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 7px;
+  background: #fff;
+  padding: 0.4rem 0.5rem;
+  color: var(--admin-text);
+  font: inherit;
 }

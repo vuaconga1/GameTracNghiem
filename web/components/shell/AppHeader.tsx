@@ -7,16 +7,11 @@ import { useState } from 'react';
 import { useSidebar } from './SidebarContext';
 
 type AppHeaderProps = {
-  displayName: string;
   isAdmin?: boolean;
   showMenu?: boolean;
 };
 
-export function AppHeader({
-  displayName,
-  isAdmin = false,
-  showMenu = true,
-}: AppHeaderProps) {
+export function AppHeader({ isAdmin = false, showMenu = true }: AppHeaderProps) {
   const router = useRouter();
   const { open, toggle } = useSidebar();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -47,13 +42,6 @@ export function AppHeader({
             <i className="fas fa-bars" />
           </button>
         ) : null}
-        <span className="header-title">
-          WeWIN - <span>{displayName}</span>
-        </span>
-        <span className="badge-rank">
-          <i className="fas fa-shield-alt" />
-          <span>—</span>
-        </span>
       </div>
 
       <div className="header-actions">

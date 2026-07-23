@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/db';
-import { isGameEnabledForCourse } from '@/lib/gameCatalog';
+import { isGameVisibleForCourse } from '@/lib/skillCatalog';
 
-/** Load active course and ensure the game is enabled for students. */
+/** Load active course and ensure the game is visible for students (skill-assigned). */
 export async function findPlayableCourseGame(courseId: string, gameKey: string) {
   const course = await prisma.course.findFirst({
     where: { id: courseId, active: true, archivedAt: null },
@@ -10,9 +10,20 @@ export async function findPlayableCourseGame(courseId: string, gameKey: string) 
       name: true,
       levelName: true,
       enabledGames: true,
+      gameSkills: true,
+      enabledSkills: true,
     },
   });
   if (!course) return null;
-  if (!isGameEnabledForCourse(course.enabledGames, gameKey)) return null;
+  if (
+    !isGameVisibleForCourse(
+      course.gameSkills,
+      course.enabledSkills,
+      gameKey,
+      course.enabledGames
+    )
+  ) {
+    return null;
+  }
   return course;
 }

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
 import {
@@ -11,7 +11,8 @@ import {
 } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
-import { GameResultSummary, GameScoreHero } from '@/components/games/GameScoreHero';
+import { PageBackButton } from '@/components/PageBackButton';
+import { GameResultSummary } from '@/components/games/GameScoreHero';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
 import {
@@ -25,23 +26,12 @@ import {
   nextEmptyIndex,
   normalizeStatuses,
 } from '@/lib/gameCatalog';
+import type {
+  VocabularyTestExercise,
+  VocabularyTestGameData,
+} from '@/lib/loadVocabularyTestGame';
 
 import { gradeVocabularyTestExercise } from './gradeAnswer';
-
-type VocabularyTestItem = {
-  order: number;
-  image: string;
-  answer: string;
-};
-
-type VocabularyTestExercise = {
-  id: string;
-  index: number;
-  title: string;
-  instruction: string;
-  word_bank: string[];
-  items: VocabularyTestItem[];
-};
 
 type VocabularyTestGameResponse = {
   success: boolean;
@@ -67,6 +57,7 @@ type CheckResult = {
 
 type Props = {
   courseId: string;
+  initialData?: VocabularyTestGameData | null;
 };
 
 type Panel = 'list' | 'game' | 'result';
@@ -113,20 +104,33 @@ function exercisePreview(exercise: VocabularyTestExercise): string {
   return sub.length > 60 ? `${sub.slice(0, 60)}...` : sub;
 }
 
-export function VocabularyTestGame({ courseId }: Props) {
-  const [data, setData] = useState<VocabularyTestGameResponse | null>(null);
-  const [statuses, setStatuses] = useState<ProgressStatus[]>([]);
+function initialVocabularyTestState(initialData?: VocabularyTestGameData | null) {
+  const exercises = initialData?.exercises || [];
+  const statuses = normalizeStatuses(initialData?.statuses, exercises.length);
+  const firstEmptyIndex = nextEmptyIndex(statuses);
+  return {
+    data: initialData || null,
+    statuses,
+    currentIndex: firstEmptyIndex === -1 ? 0 : firstEmptyIndex,
+    playSessionId: initialData?.playSessionId || null,
+  };
+}
+
+export function VocabularyTestGame({ courseId, initialData }: Props) {
+  const initialState = initialVocabularyTestState(initialData);
+  const [data, setData] = useState<VocabularyTestGameResponse | null>(initialState.data);
+  const [statuses, setStatuses] = useState<ProgressStatus[]>(initialState.statuses);
   const [panel, setPanel] = useState<Panel>('list');
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(initialState.currentIndex);
   const [placements, setPlacements] = useState<Record<number, string>>({});
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
   const [bankOrder, setBankOrder] = useState<string[]>([]);
   const [answered, setAnswered] = useState(false);
   const [checkResult, setCheckResult] = useState<CheckResult | null>(null);
   const [sessionPoints, setSessionPoints] = useState(0);
-  const [gameScore, setGameScore] = useState(0);
-  const [playSessionId, setPlaySessionId] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [, setGameScore] = useState(0);
+  const [playSessionId, setPlaySessionId] = useState<string | null>(initialState.playSessionId);
+  const [isLoading, setIsLoading] = useState(!initialData);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -136,8 +140,14 @@ export function VocabularyTestGame({ courseId }: Props) {
   const questionStartTime = useRef(Date.now());
   const dragWord = useRef<string | null>(null);
   const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const didUseInitialData = useRef(Boolean(initialData));
 
   useEffect(() => {
+    if (didUseInitialData.current && initialData?.course.id === courseId) {
+      didUseInitialData.current = false;
+      return;
+    }
+
     const controller = new AbortController();
 
     async function loadGame() {
@@ -183,7 +193,7 @@ export function VocabularyTestGame({ courseId }: Props) {
       controller.abort();
       if (advanceTimer.current) clearTimeout(advanceTimer.current);
     };
-  }, [courseId]);
+  }, [courseId, initialData]);
 
   const exercises = useMemo(() => data?.exercises || [], [data?.exercises]);
   const course = data?.course;
@@ -513,22 +523,17 @@ export function VocabularyTestGame({ courseId }: Props) {
 
   return (
     <div className="game-page vt-page">
+      <PageBackButton
+        title={panel === 'game' ? 'Về danh sách' : 'Quay lại khóa học'}
+        onClick={() => {
+          if (panel === 'game') {
+            setPanel('list');
+          } else {
+            window.location.href = `/courses/${course.id}`;
+          }
+        }}
+      />
       <div className="game-top">
-        <button
-          type="button"
-          className="game-back"
-          title={panel === 'game' ? 'Về danh sách' : 'Quay lại khóa học'}
-          aria-label={panel === 'game' ? 'Về danh sách' : 'Quay lại khóa học'}
-          onClick={() => {
-            if (panel === 'game') {
-              setPanel('list');
-            } else {
-              window.location.href = `/courses/${course.id}`;
-            }
-          }}
-        >
-          <i className="fas fa-arrow-left" aria-hidden="true" />
-        </button>
         <div className="game-title-wrap">
           <h1>Kiểm tra từ vựng</h1>
           <p className="game-subtitle">{subtitle}</p>
@@ -560,7 +565,6 @@ export function VocabularyTestGame({ courseId }: Props) {
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
           <div className="list-title">Danh sách bài tập</div>
-          <GameScoreHero gameScore={gameScore} />
           <div className="list-stats">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
@@ -828,7 +832,6 @@ export function VocabularyTestGame({ courseId }: Props) {
       {panel === 'result' ? (
         <div className="game-card" id="resultPanel">
           <GameResultSummary
-            gameScore={gameScore}
             correct={stats.correct}
             total={stats.total}
             wrong={stats.wrong}

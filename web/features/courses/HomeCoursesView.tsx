@@ -1,20 +1,29 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { createPortal } from 'react-dom';
 
 import { DataLoading } from '@/components/DataLoading';
 import { CourseFilters } from '@/features/courses/CourseFilters';
 import { CourseList, type CourseListItem } from '@/features/courses/CourseList';
+import {
+  buildHomeCoursesHref,
+  currentBrowserHref,
+  HOME_COURSES_LEVEL_STORAGE_KEY,
+  normalizeHomeCoursesLevelName,
+  readHomeCoursesLevelFromSearch,
+  resolveClientHomeCoursesLevel,
+} from '@/lib/homeCoursesFilterState';
+import type { HomeCoursesData } from '@/lib/loadHomeCourses';
 
-type CourseFiltersData = {
-  levels: string[];
-};
+type CourseFiltersData = HomeCoursesData['filters'];
 
 type CoursesResponse = {
   success: boolean;
   courses?: CourseListItem[];
   filters?: CourseFiltersData;
+  selectedLevelName?: string;
   message?: string;
 };
 
@@ -28,19 +37,95 @@ function coursesUrl(levelName: string) {
   return `/api/courses?${params.toString()}`;
 }
 
-export function HomeCoursesView() {
-  const [levelName, setLevelName] = useState('');
-  const [courses, setCourses] = useState<CourseListItem[]>([]);
-  const [filters, setFilters] = useState<CourseFiltersData>(EMPTY_FILTERS);
-  const [isLoading, setIsLoading] = useState(true);
+type HomeCoursesViewProps = {
+  initialData?: HomeCoursesData;
+};
+
+export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
+  const pathname = usePathname();
+  const initialSelectedLevelName = normalizeHomeCoursesLevelName(initialData?.selectedLevelName);
+  const [levelName, setLevelName] = useState(initialSelectedLevelName);
+  const [courses, setCourses] = useState<CourseListItem[]>(initialData?.courses || []);
+  const [filters, setFilters] = useState<CourseFiltersData>(initialData?.filters || EMPTY_FILTERS);
+  const [isLoading, setIsLoading] = useState(!initialData);
   const [errorMessage, setErrorMessage] = useState('');
   const [filtersRoot, setFiltersRoot] = useState<HTMLElement | null>(null);
+  const didUseInitialData = useRef(Boolean(initialData));
+  const didInitializeLevel = useRef(false);
 
   useEffect(() => {
     setFiltersRoot(document.getElementById('sidebar-filters-root'));
   }, []);
 
+  useLayoutEffect(() => {
+    if (didInitializeLevel.current) return;
+    didInitializeLevel.current = true;
+
+    const urlLevelName = readHomeCoursesLevelFromSearch(window.location.search);
+    const storedLevelName = normalizeHomeCoursesLevelName(
+      window.localStorage.getItem(HOME_COURSES_LEVEL_STORAGE_KEY)
+    );
+    const resolvedLevelName = resolveClientHomeCoursesLevel({
+      urlLevelName,
+      storedLevelName,
+      serverLevelName: initialSelectedLevelName,
+    });
+
+    if (urlLevelName) {
+      window.localStorage.setItem(HOME_COURSES_LEVEL_STORAGE_KEY, urlLevelName);
+    } else if (resolvedLevelName) {
+      window.localStorage.setItem(HOME_COURSES_LEVEL_STORAGE_KEY, resolvedLevelName);
+    }
+
+    if (resolvedLevelName !== initialSelectedLevelName) {
+      setLevelName(resolvedLevelName);
+    }
+
+    const nextHref = buildHomeCoursesHref(pathname, window.location.search, resolvedLevelName);
+    if (nextHref !== currentBrowserHref()) {
+      window.history.replaceState(null, '', nextHref);
+    }
+  }, [initialSelectedLevelName, pathname]);
+
   useEffect(() => {
+    if (!didInitializeLevel.current) return;
+
+    function handlePopState() {
+      const urlLevelName = readHomeCoursesLevelFromSearch(window.location.search);
+      if (urlLevelName) {
+        setLevelName(urlLevelName);
+      }
+    }
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  useEffect(() => {
+    if (!didInitializeLevel.current) return;
+
+    const normalizedLevelName = normalizeHomeCoursesLevelName(levelName);
+    if (normalizedLevelName) {
+      window.localStorage.setItem(HOME_COURSES_LEVEL_STORAGE_KEY, normalizedLevelName);
+    } else {
+      window.localStorage.removeItem(HOME_COURSES_LEVEL_STORAGE_KEY);
+    }
+  }, [levelName]);
+
+  useEffect(() => {
+    if (!didInitializeLevel.current) return;
+
+    const nextHref = buildHomeCoursesHref(pathname, window.location.search, levelName);
+    if (nextHref === currentBrowserHref()) return;
+    window.history.replaceState(null, '', nextHref);
+  }, [levelName, pathname]);
+
+  useEffect(() => {
+    if (didUseInitialData.current && levelName === initialSelectedLevelName) {
+      didUseInitialData.current = false;
+      return;
+    }
+
     const controller = new AbortController();
 
     async function loadCourses() {
@@ -58,6 +143,9 @@ export function HomeCoursesView() {
 
         setCourses(data.courses || []);
         setFilters(data.filters || EMPTY_FILTERS);
+        if (!levelName && data.selectedLevelName) {
+          setLevelName(data.selectedLevelName);
+        }
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setCourses([]);
@@ -72,7 +160,7 @@ export function HomeCoursesView() {
     loadCourses();
 
     return () => controller.abort();
-  }, [levelName]);
+  }, [initialSelectedLevelName, levelName]);
 
   const filtersNode = (
     <CourseFilters

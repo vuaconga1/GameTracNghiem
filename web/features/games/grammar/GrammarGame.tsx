@@ -1,10 +1,11 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
-import { GameResultSummary, GameScoreHero } from '@/components/games/GameScoreHero';
+import { PageBackButton } from '@/components/PageBackButton';
+import { GameResultSummary } from '@/components/games/GameScoreHero';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
 import { gradedIsCorrect, isGradedStatus } from '@/features/games/gradedLock';
@@ -77,7 +78,6 @@ type GrammarGameContentProps = {
   isSubmitting: boolean;
   progressPercent: number;
   stats: GrammarStats;
-  gameScore: number;
   onBackHome: () => void;
   onBackToList: () => void;
   onOpenQuestion: (index: number) => void;
@@ -144,7 +144,6 @@ export function GrammarGameContent({
   isSubmitting,
   progressPercent,
   stats,
-  gameScore,
   onBackHome,
   onBackToList,
   onOpenQuestion,
@@ -165,16 +164,11 @@ export function GrammarGameContent({
 
   return (
     <div className="game-page grammar-page">
+      <PageBackButton
+        title={panel === 'question' ? 'Về danh sách' : 'Quay lại khóa học'}
+        onClick={panel === 'question' ? onBackToList : onBackHome}
+      />
       <div className="game-top">
-        <button
-          type="button"
-          className="game-back"
-          title={panel === 'question' ? 'Về danh sách' : 'Quay lại khóa học'}
-          aria-label={panel === 'question' ? 'Về danh sách' : 'Quay lại khóa học'}
-          onClick={panel === 'question' ? onBackToList : onBackHome}
-        >
-          <i className="fas fa-arrow-left" aria-hidden="true" />
-        </button>
         <div className="game-title-wrap">
           <h1>Viết lại câu</h1>
           <p className="game-subtitle">{subtitle}</p>
@@ -199,7 +193,6 @@ export function GrammarGameContent({
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
           <div className="list-title">Danh sách câu hỏi</div>
-          <GameScoreHero gameScore={gameScore} />
           <div className="list-stats">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
@@ -338,7 +331,6 @@ export function GrammarGameContent({
       {panel === 'result' ? (
         <div className="game-card" id="resultPanel">
           <GameResultSummary
-            gameScore={gameScore}
             correct={stats.correct}
             total={stats.total}
             wrong={stats.wrong}
@@ -369,7 +361,7 @@ export function GrammarGame({ courseId }: Props) {
   const [input, setInput] = useState('');
   const [answerResult, setAnswerResult] = useState<AnswerResult | null>(null);
   const [sessionPoints, setSessionPoints] = useState(0);
-  const [gameScore, setGameScore] = useState(0);
+  const [, setGameScore] = useState(0);
   const [playSessionId, setPlaySessionId] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -642,7 +634,6 @@ export function GrammarGame({ courseId }: Props) {
       isSubmitting={isSubmitting}
       progressPercent={progressPercent}
       stats={stats}
-      gameScore={gameScore}
       onBackHome={() => {
         window.location.href = `/courses/${course.id}`;
       }}

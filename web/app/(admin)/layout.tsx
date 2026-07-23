@@ -1,23 +1,23 @@
+import '@/styles/legacy/admin.css';
+
 import { redirect } from 'next/navigation';
 
 import { AdminProviders } from '@/components/admin/AdminProviders';
-import { requireAdmin } from '@/lib/auth';
+import { lookupSessionForPage } from '@/lib/auth';
 
 export default async function AdminLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  try {
-    await requireAdmin();
-  } catch (err) {
-    const status =
-      typeof err === 'object' && err !== null && 'status' in err
-        ? Number((err as { status: number }).status)
-        : 500;
-    if (status === 401) {
-      redirect('/login?next=/admin');
+  const { session, stale } = await lookupSessionForPage();
+  if (!session) {
+    if (stale) {
+      redirect('/api/auth/logout?next=/login?next=%2Fadmin');
     }
+    redirect('/login?next=/admin');
+  }
+  if (session.role !== 'admin') {
     redirect('/?error=forbidden');
   }
 

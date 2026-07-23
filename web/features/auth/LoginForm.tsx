@@ -5,6 +5,7 @@ import { FormEvent, useState } from 'react';
 
 type LoginFormProps = {
   next?: string;
+  initialError?: string;
 };
 
 type LoginResponse = {
@@ -12,11 +13,11 @@ type LoginResponse = {
   message?: string;
 };
 
-export function LoginForm({ next }: LoginFormProps) {
+export function LoginForm({ next, initialError }: LoginFormProps) {
   const router = useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState(initialError || '');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {

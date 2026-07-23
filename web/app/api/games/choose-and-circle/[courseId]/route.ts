@@ -14,6 +14,7 @@ type ChooseAndCirclePayload = {
 type ChooseAndCircleItemPayload = {
   order?: unknown;
   image?: unknown;
+  prompt?: unknown;
   options?: unknown;
   answer?: unknown;
 };
@@ -49,13 +50,21 @@ function parseItems(value: unknown) {
       return {
         order: Number.isFinite(order) && order > 0 ? order : index + 1,
         image: String(payload.image || '').trim(),
+        prompt: String(payload.prompt || '').trim(),
         options: options.length >= 2 ? options : answer ? [answer, ...options].slice(0, 2) : options,
         answer,
       };
     })
     .filter(
-      (item): item is { order: number; image: string; options: string[]; answer: string } =>
-        item !== null && item.options.length >= 2 && Boolean(item.answer)
+      (
+        item
+      ): item is {
+        order: number;
+        image: string;
+        prompt: string;
+        options: string[];
+        answer: string;
+      } => item !== null && item.options.length >= 2 && Boolean(item.answer)
     )
     .sort((a, b) => a.order - b.order);
 }
@@ -122,7 +131,13 @@ export async function GET(
           index: number;
           title: string;
           instruction: string;
-          items: { order: number; image: string; options: string[]; answer: string }[];
+          items: {
+            order: number;
+            image: string;
+            prompt: string;
+            options: string[];
+            answer: string;
+          }[];
         } => exercise !== null
       );
 

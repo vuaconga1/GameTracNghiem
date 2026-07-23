@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 
 import { requireSession } from '@/lib/auth';
 import { prisma } from '@/lib/db';
+import { completeExperienceSession } from '@/lib/playerExperience';
 import { newPlaySessionId } from '@/lib/playSession';
 
 type ProgressStatus = 'empty' | 'correct' | 'wrong';
@@ -51,6 +52,25 @@ function parseStoredStatuses(value: unknown): ProgressStatus[] {
   return value.map(normalizeStatus);
 }
 
+async function safeCompleteExperience(
+  userId: string,
+  playSessionId: string | null | undefined,
+): Promise<void> {
+  const id = String(playSessionId || '').trim();
+  if (!id) return;
+  try {
+    await completeExperienceSession(userId, id);
+  } catch (err) {
+    const status =
+      typeof err === 'object' && err !== null && 'status' in err && typeof err.status === 'number'
+        ? err.status
+        : null;
+    if (status === 404) return;
+    // Non-fatal for progress: ignore other completion failures too so progress write remains primary.
+    return;
+  }
+}
+
 export async function POST(req: Request) {
   try {
     const session = await requireSession();
@@ -97,6 +117,10 @@ export async function POST(req: Request) {
       }
     } else {
       playSessionId = incomingSession || newPlaySessionId();
+      const previousSessionId = String(existing?.playSessionId || '').trim();
+      if (previousSessionId && previousSessionId !== playSessionId) {
+        await safeCompleteExperience(session.userId, previousSessionId);
+      }
     }
 
     const progress = await prisma.gameProgress.upsert({
@@ -113,6 +137,13 @@ export async function POST(req: Request) {
         playSessionId,
       },
     });
+
+    if (!reset) {
+      const savedStatuses = parseStoredStatuses(progress.statuses);
+      if (savedStatuses.length > 0 && savedStatuses.every((status) => status !== 'empty')) {
+        await safeCompleteExperience(session.userId, progress.playSessionId || playSessionId);
+      }
+    }
 
     return NextResponse.json({
       success: true,

@@ -60,7 +60,6 @@ describe('PronunciationGameContent', () => {
     isSubmitting: false,
     isResetting: false,
     stats: { total: 2, correct: 0, wrong: 0, pending: 2 },
-    gameScore: 850,
     onBackHome: vi.fn(),
     onBackToList: vi.fn(),
     onOpenQuestion: vi.fn(),
@@ -89,8 +88,7 @@ describe('PronunciationGameContent', () => {
     expect(html).toContain('id="listPanel"');
     expect(html).toContain('Danh sách câu hỏi');
     expect(html).toContain('Bắt đầu làm bài');
-    expect(html).toContain('Tổng điểm cao nhất');
-    expect(html).toContain('850');
+    expect(html).not.toContain('Tổng điểm cao nhất');
     expect(html).toContain('world');
     expect(html).toContain('Nice to meet you');
     expect(html).not.toContain('id="btnMicIcon"');

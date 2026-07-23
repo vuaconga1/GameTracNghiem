@@ -8,6 +8,7 @@ import { AdminShell } from '@/components/admin/AdminShell';
 import { DataLoading } from '@/components/DataLoading';
 import { EXERCISE_GAMES, type AdminGameKey, isAdminGameKey } from '@/lib/admin/payloadSchemas';
 import { GAME_CATALOG } from '@/lib/gameCatalog';
+import { SKILL_CATALOG } from '@/lib/skillCatalog';
 
 function splitLines(value: string): string[] {
   return value
@@ -267,13 +268,34 @@ export function QuestionEditor({
                     >
                       <option value="multiple_choice">Trắc nghiệm</option>
                       <option value="fill_blank">Điền từ</option>
-                      <option value="word_form">Word form</option>
+                      <option value="word_form">Từ loại</option>
                     </select>
                   </Field>
                   <Field label="Nhãn loại (tuỳ chọn)">
                     <input
                       value={String(payload.typeLabel || '')}
                       onChange={(e) => setField('typeLabel', e.target.value)}
+                    />
+                  </Field>
+                </div>
+                <div className="admin-form-row">
+                  <Field label="Kỹ năng">
+                    <select
+                      value={String(payload.skill || 'vocabulary')}
+                      onChange={(e) => setField('skill', e.target.value)}
+                    >
+                      {SKILL_CATALOG.map((skill) => (
+                        <option key={skill.id} value={skill.id}>
+                          {skill.shortLabel}
+                        </option>
+                      ))}
+                    </select>
+                  </Field>
+                  <Field label="Exercise" help='Ví dụ: "Exercise 2". Để trống → nhóm "Khác"'>
+                    <input
+                      value={String(payload.exercise || '')}
+                      onChange={(e) => setField('exercise', e.target.value)}
+                      placeholder="Exercise 2"
                     />
                   </Field>
                 </div>
@@ -467,51 +489,62 @@ export function QuestionEditor({
                       ) : null}
 
                       {game === 'choose_and_circle' ? (
-                        <div className="admin-form-row">
-                          <Field label="Link hình">
-                            <input
-                              value={String(item.image || '')}
-                              onChange={(e) => updateItem(index, { image: e.target.value })}
-                            />
-                          </Field>
-                          <Field label="Lựa chọn A">
-                            <input
-                              value={
-                                Array.isArray(item.options) ? String(item.options[0] || '') : ''
-                              }
-                              onChange={(e) => {
-                                const options = Array.isArray(item.options)
-                                  ? [...item.options]
-                                  : ['', ''];
-                                options[0] = e.target.value;
-                                updateItem(index, { options });
-                              }}
-                              required
-                            />
-                          </Field>
-                          <Field label="Lựa chọn B">
-                            <input
-                              value={
-                                Array.isArray(item.options) ? String(item.options[1] || '') : ''
-                              }
-                              onChange={(e) => {
-                                const options = Array.isArray(item.options)
-                                  ? [...item.options]
-                                  : ['', ''];
-                                options[1] = e.target.value;
-                                updateItem(index, { options });
-                              }}
-                              required
-                            />
-                          </Field>
-                          <Field label="Đáp án đúng">
-                            <input
-                              value={String(item.answer || '')}
-                              onChange={(e) => updateItem(index, { answer: e.target.value })}
-                              required
-                            />
-                          </Field>
-                        </div>
+                        <>
+                          <div className="admin-form-row">
+                            <Field label="Câu / đề (tuỳ chọn)">
+                              <input
+                                value={String(item.prompt || '')}
+                                onChange={(e) => updateItem(index, { prompt: e.target.value })}
+                                placeholder="My sister adores (to make / making)…"
+                              />
+                            </Field>
+                          </div>
+                          <div className="admin-form-row">
+                            <Field label="Link hình">
+                              <input
+                                value={String(item.image || '')}
+                                onChange={(e) => updateItem(index, { image: e.target.value })}
+                              />
+                            </Field>
+                            <Field label="Lựa chọn A">
+                              <input
+                                value={
+                                  Array.isArray(item.options) ? String(item.options[0] || '') : ''
+                                }
+                                onChange={(e) => {
+                                  const options = Array.isArray(item.options)
+                                    ? [...item.options]
+                                    : ['', ''];
+                                  options[0] = e.target.value;
+                                  updateItem(index, { options });
+                                }}
+                                required
+                              />
+                            </Field>
+                            <Field label="Lựa chọn B">
+                              <input
+                                value={
+                                  Array.isArray(item.options) ? String(item.options[1] || '') : ''
+                                }
+                                onChange={(e) => {
+                                  const options = Array.isArray(item.options)
+                                    ? [...item.options]
+                                    : ['', ''];
+                                  options[1] = e.target.value;
+                                  updateItem(index, { options });
+                                }}
+                                required
+                              />
+                            </Field>
+                            <Field label="Đáp án đúng">
+                              <input
+                                value={String(item.answer || '')}
+                                onChange={(e) => updateItem(index, { answer: e.target.value })}
+                                required
+                              />
+                            </Field>
+                          </div>
+                        </>
                       ) : null}
 
                       {game === 'read_and_complete' ? (
@@ -635,6 +668,8 @@ function defaultPayload(game: string): Record<string, unknown> {
     return {
       type: 'multiple_choice',
       typeLabel: '',
+      skill: 'vocabulary',
+      exercise: '',
       question: '',
       answer: '',
       options: [],
@@ -665,7 +700,7 @@ function defaultPayload(game: string): Record<string, unknown> {
 
 function defaultItem(game: string): Record<string, unknown> {
   if (game === 'choose_and_circle') {
-    return { order: 1, image: '', options: ['', ''], answer: '' };
+    return { order: 1, image: '', prompt: '', options: ['', ''], answer: '' };
   }
   if (game === 'read_and_complete') {
     return { order: 1, sentence: '', image: '', answer: '' };
@@ -685,6 +720,8 @@ function normalizePayload(game: string, payload: Record<string, unknown>) {
     return {
       ...payload,
       type,
+      skill: String(payload.skill || 'vocabulary'),
+      exercise: String(payload.exercise || '').trim(),
       fillMode: type === 'fill_blank' || type === 'word_form',
       accept:
         Array.isArray(payload.accept) && payload.accept.length

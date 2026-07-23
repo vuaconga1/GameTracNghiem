@@ -1,5 +1,7 @@
 'use client';
 
+import { useSidebar } from '@/components/shell/SidebarContext';
+
 type CourseFiltersProps = {
   levels: string[];
   levelName: string;
@@ -22,23 +24,17 @@ export function CourseFilters({
   onLevelNameChange,
 }: CourseFiltersProps) {
   const levelOptions = cleanOptions(levels);
-  const allActive = !levelName;
+  const { setOpen } = useSidebar();
+
+  const handleSelectLevel = (value: string) => {
+    onLevelNameChange(value);
+    setOpen(false);
+  };
 
   return (
     <div className="filter-section">
       <h3 className="filter-title">Cấp độ</h3>
       <div className="filter-grid" id="filterGrid">
-        <button
-          type="button"
-          className={`filter-item filter-item--solo${allActive ? ' active' : ''}`}
-          data-filter-type="level"
-          data-level=""
-          disabled={disabled}
-          onClick={() => onLevelNameChange('')}
-        >
-          Tất cả
-        </button>
-
         {levelOptions.map((value) => (
           <button
             key={`level-${value}`}
@@ -47,9 +43,10 @@ export function CourseFilters({
             data-filter-type="level"
             data-level={value}
             disabled={disabled}
-            onClick={() => onLevelNameChange(value)}
+            onClick={() => handleSelectLevel(value)}
           >
-            {value}
+            <i className="fas fa-graduation-cap" aria-hidden="true" />
+            <span>{value}</span>
           </button>
         ))}
       </div>

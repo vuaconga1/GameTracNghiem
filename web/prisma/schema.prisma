@@ -7,15 +7,17 @@ datasource db {
 }
 
 model User {
-  id           String         @id @default(cuid())
-  username     String         @unique
-  passwordHash String
-  displayName  String
-  role         String         @default("student")
-  createdAt    DateTime       @default(now())
-  archivedAt   DateTime?
-  progress     GameProgress[]
-  scoreLogs    ScoreLog[]
+  id               String            @id @default(cuid())
+  username         String            @unique
+  passwordHash     String
+  displayName      String
+  role             String            @default("student")
+  createdAt        DateTime          @default(now())
+  archivedAt       DateTime?
+  progress         GameProgress[]
+  scoreLogs        ScoreLog[]
+  experience       PlayerExperience?
+  experienceGrants ExperienceGrant[]
 }
 
 model ClassLevel {
@@ -40,23 +42,73 @@ model Ebook {
 }
 
 model Course {
-  id             String     @id @default(cuid())
-  name           String
-  levelName      String
-  active         Boolean    @default(true)
-  archivedAt     DateTime?
-  /** Game keys visible to students. Empty = all catalog games enabled. */
-  enabledGames   String[]   @default([])
-  /** References Ebook.id when set. */
-  ebookFileId    String?
-  ebookPageStart Int?
-  ebookPageEnd   Int?
-  questions      Question[]
+  id                 String             @id @default(cuid())
+  name               String
+  levelName          String
+  active             Boolean            @default(true)
+  archivedAt         DateTime?
+  /**
+   * Legacy: game keys visible to students. Empty = all catalog games enabled.
+   * Prefer gameSkills + enabledSkills; kept in sync on admin write.
+   */
+  enabledGames       String[]           @default([])
+  /**
+   * Per-unit map of gameKey → skill id (or null/omit = hidden).
+   * See lib/skillCatalog.ts and docs/superpowers/specs/2026-07-23-unit-skill-cards-design.md
+   */
+  gameSkills         Json?
+  /**
+   * Skill ids shown as student cards. Empty = all four skills enabled.
+   */
+  enabledSkills      String[]           @default([])
+  /**
+   * References Ebook.id when set.
+   */
+  ebookFileId        String?
+  ebookPageStart     Int?
+  ebookPageEnd       Int?
+  backgroundImageUrl String?
+  backgroundImageKey String?
+  questions          Question[]
+  gameLessons        CourseGameLesson[]
+  skillLessons       CourseSkillLesson[]
 
   @@index([levelName])
   @@index([name])
   @@index([archivedAt])
   @@index([ebookFileId])
+}
+
+model CourseGameLesson {
+  id        String   @id @default(cuid())
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  gameKey   String
+  pageStart Int
+  pageEnd   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([courseId, gameKey])
+  @@index([courseId])
+}
+
+/**
+ * Per-skill page range within the unit's ebook (same PDF file).
+ * skillId: listening | reading | speaking | writing | vocabulary
+ */
+model CourseSkillLesson {
+  id        String   @id @default(cuid())
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  skillId   String
+  pageStart Int
+  pageEnd   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([courseId, skillId])
+  @@index([courseId])
 }
 
 model Question {
@@ -105,4 +157,30 @@ model ScoreLog {
   @@index([answeredAt])
   @@index([game])
   @@index([userId, course, game, playSessionId])
+}
+
+model PlayerExperience {
+  userId    String   @id
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  totalExp  Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ExperienceGrant {
+  id                  String   @id @default(cuid())
+  userId              String
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  playSessionId       String
+  course              String
+  game                String
+  exp                 Int
+  answeredCount       Int
+  correctCount        Int
+  averageCorrectSpeed Float
+  createdAt           DateTime @default(now())
+
+  @@unique([userId, playSessionId])
+  @@index([userId, createdAt])
+  @@index([playSessionId])
 }

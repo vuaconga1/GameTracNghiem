@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 500" width="850" height="500" role="img" aria-label="Unit 12: Jobs">
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ECEFF1"/><stop offset="100%" stop-color="#CFD8DC"/></linearGradient></defs>
+  <rect width="850" height="500" fill="url(#sky)"/><rect y="370" width="850" height="130" fill="#7CB342"/>
+  <ellipse cx="120" cy="400" rx="90" ry="18" fill="#558B2F" opacity="0.5"/>
+  <ellipse cx="420" cy="390" rx="120" ry="22" fill="#558B2F" opacity="0.4"/>
+  <ellipse cx="720" cy="405" rx="100" ry="20" fill="#558B2F" opacity="0.5"/>
+    <g transform="translate(200,320) scale(0.9774999999999999)">
+    <line x1="-11" y1="52" x2="-11" y2="82" stroke="#455A64" stroke-width="13" stroke-linecap="round"/>
+    <line x1="11" y1="52" x2="11" y2="82" stroke="#455A64" stroke-width="13" stroke-linecap="round"/>
+    <ellipse cx="-11" cy="86" rx="11" ry="5" fill="#37474F" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="11" cy="86" rx="11" ry="5" fill="#37474F" stroke="#1A1A2E" stroke-width="1.5"/>
+    <path d="M-24 18 Q0 12 24 18 L26 55 Q0 62 -26 55 Z" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="2"/>
+    <path d="M-24 22 Q-42 35 -46 52" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
+    <path d="M24 22 Q42 35 46 52" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="0" cy="-8" r="30" fill="#FFCC80" stroke="#1A1A2E" stroke-width="2"/>
+    <ellipse cx="0" cy="5" rx="18" ry="8" fill="#F0A860" opacity="0.3"/>
+    <path d="M-28 5 Q-26 -25 0 -30 Q26 -25 28 5 Q15 -12 0 -15 Q-15 -12 -28 5" fill="#3E2723" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="-12" cy="-5" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="-13" cy="-3" r="5.5" fill="#1A1A2E"/>
+  <circle cx="-14" cy="-6" r="2" fill="#FFFFFF"/><ellipse cx="12" cy="-5" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="13" cy="-3" r="5.5" fill="#1A1A2E"/>
+  <circle cx="14" cy="-6" r="2" fill="#FFFFFF"/>
+    <path d="M-8 10 Q0 18 8 10" fill="none" stroke="#1A1A2E" stroke-width="2" stroke-linecap="round"/>
+  </g>
+    <rect x="175" y="250" width="50" height="8" rx="2" fill="#FFD54F" stroke="#1A1A2E" stroke-width="1"/>
+    <text x="200" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#1A1A2E">TEACHER</text>
+    <g transform="translate(400,320) scale(0.9)">
+    <line x1="-11" y1="52" x2="-11" y2="82" stroke="#1565C0" stroke-width="13" stroke-linecap="round"/>
+    <line x1="11" y1="52" x2="11" y2="82" stroke="#1565C0" stroke-width="13" stroke-linecap="round"/>
+    <ellipse cx="-11" cy="86" rx="11" ry="5" fill="#37474F" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="11" cy="86" rx="11" ry="5" fill="#37474F" stroke="#1A1A2E" stroke-width="1.5"/>
+    <path d="M-24 18 Q0 12 24 18 L26 55 Q0 62 -26 55 Z" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="2"/>
+    <path d="M-24 22 Q-42 35 -46 52" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
+    <path d="M24 22 Q42 35 46 52" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="0" cy="-8" r="30" fill="#FFCC80" stroke="#1A1A2E" stroke-width="2"/>
+    <ellipse cx="0" cy="5" rx="18" ry="8" fill="#F0A860" opacity="0.3"/>
+    <path d="M-28 0 Q-22 -38 0 -42 Q22 -38 28 0 Q18 -28 0 -32 Q-18 -28 -28 0" fill="#3E2723" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="-12" cy="-5" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="-13" cy="-3" r="5.5" fill="#1A1A2E"/>
+  <circle cx="-14" cy="-6" r="2" fill="#FFFFFF"/><ellipse cx="12" cy="-5" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="13" cy="-3" r="5.5" fill="#1A1A2E"/>
+  <circle cx="14" cy="-6" r="2" fill="#FFFFFF"/>
+    <path d="M-8 10 Q0 18 8 10" fill="none" stroke="#1A1A2E" stroke-width="2" stroke-linecap="round"/>
+  </g>
+    <rect x="370" y="260" width="60" height="50" rx="4" fill="#EF5350" stroke="#1A1A2E" stroke-width="1.5"/>
+    <circle cx="400" cy="275" r="8" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1"/>
+    <text x="400" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#1A1A2E">DOCTOR</text>
+    <g transform="translate(620,320) scale(0.9)">
+    <line x1="-11" y1="52" x2="-11" y2="82" stroke="#1565C0" stroke-width="13" stroke-linecap="round"/>
+    <line x1="11" y1="52" x2="11" y2="82" stroke="#1565C0" stroke-width="13" stroke-linecap="round"/>
+    <ellipse cx="-11" cy="86" rx="11" ry="5" fill="#37474F" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="11" cy="86" rx="11" ry="5" fill="#37474F" stroke="#1A1A2E" stroke-width="1.5"/>
+    <path d="M-24 18 Q0 12 24 18 L26 55 Q0 62 -26 55 Z" fill="#66BB6A" stroke="#1A1A2E" stroke-width="2"/>
+    <path d="M-24 22 Q-42 35 -46 52" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
+    <path d="M24 22 Q42 35 46 52" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="0" cy="-8" r="30" fill="#FFCC80" stroke="#1A1A2E" stroke-width="2"/>
+    <ellipse cx="0" cy="5" rx="18" ry="8" fill="#F0A860" opacity="0.3"/>
+    <path d="M-28 0 Q-22 -38 0 -42 Q22 -38 28 0 Q18 -28 0 -32 Q-18 -28 -28 0" fill="#3E2723" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="-12" cy="-5" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="-13" cy="-3" r="5.5" fill="#1A1A2E"/>
+  <circle cx="-14" cy="-6" r="2" fill="#FFFFFF"/><ellipse cx="12" cy="-5" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="13" cy="-3" r="5.5" fill="#1A1A2E"/>
+  <circle cx="14" cy="-6" r="2" fill="#FFFFFF"/>
+    <path d="M-8 10 Q0 18 8 10" fill="none" stroke="#1A1A2E" stroke-width="2" stroke-linecap="round"/>
+  </g>
+    <rect x="590" y="280" width="60" height="8" rx="2" fill="#8D6E63" stroke="#1A1A2E" stroke-width="1"/>
+    <text x="620" y="240" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#1A1A2E">FARMER</text>
+  <rect x="28" y="28" width="118" height="42" rx="21" fill="rgba(255,255,255,0.92)" stroke="#1A1A2E" stroke-width="1"/>
+  <text x="87" y="56" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#5D4037">Unit 12</text>
+</svg>
