@@ -185,7 +185,10 @@ describe('administrator course game lesson route', () => {
     });
     expect(mocks.courseFindFirst).toHaveBeenCalledWith({
       where: { id: 'course-1', archivedAt: null },
-      include: { gameLessons: { orderBy: { gameKey: 'asc' } } },
+      include: {
+        gameLessons: { orderBy: { gameKey: 'asc' } },
+        skillLessons: { orderBy: { skillId: 'asc' } },
+      },
     });
   });
 });

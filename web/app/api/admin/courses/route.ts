@@ -2,6 +2,8 @@ import { requireAdmin } from '@/lib/auth';
 import { adminErrorResponse } from '@/lib/admin/http';
 import { notArchived } from '@/lib/admin/notArchived';
 import { prisma } from '@/lib/db';
+import { buildGameSkillsFromEnabledGames, deriveEnabledGamesFromSkills, SKILL_IDS } from '@/lib/skillCatalog';
+import { sortCoursesByLevelAndName } from '@/lib/sortCourses';
 
 export async function GET(req: Request) {
   try {
@@ -24,7 +26,7 @@ export async function GET(req: Request) {
       orderBy: [{ levelName: 'asc' }, { name: 'asc' }],
     });
 
-    return Response.json({ success: true, items });
+    return Response.json({ success: true, items: sortCoursesByLevelAndName(items) });
   } catch (err) {
     return adminErrorResponse(err);
   }

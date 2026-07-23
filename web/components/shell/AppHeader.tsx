@@ -4,24 +4,14 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-import { RankBadge } from './RankBadge';
 import { useSidebar } from './SidebarContext';
 
 type AppHeaderProps = {
-  displayName: string;
   isAdmin?: boolean;
   showMenu?: boolean;
-  level?: number;
-  tier?: number;
 };
 
-export function AppHeader({
-  displayName,
-  isAdmin = false,
-  showMenu = true,
-  level,
-  tier,
-}: AppHeaderProps) {
+export function AppHeader({ isAdmin = false, showMenu = true }: AppHeaderProps) {
   const router = useRouter();
   const { open, toggle } = useSidebar();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -52,10 +42,6 @@ export function AppHeader({
             <i className="fas fa-bars" />
           </button>
         ) : null}
-        <span className="header-title">
-          WeWIN - <span>{displayName}</span>
-        </span>
-        <RankBadge level={level} tier={tier} />
       </div>
 
       <div className="header-actions">

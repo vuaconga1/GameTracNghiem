@@ -4,10 +4,20 @@ import { requireSession } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { findPlayableCourseGame } from '@/lib/findPlayableCourseGame';
 import { loadGamePlayerState } from '@/lib/loadGamePlayerState';
+import { isSkillId } from '@/lib/skillCatalog';
+
+import {
+  DEFAULT_QUIZ_SKILL,
+  QUIZ_TYPE_LABELS,
+  isQuizType,
+  normalizeQuizExercise,
+} from '@/features/games/quiz/quizNav';
 
 type QuizPayload = {
   type?: unknown;
   typeLabel?: unknown;
+  skill?: unknown;
+  exercise?: unknown;
   question?: unknown;
   answer?: unknown;
   fillMode?: unknown;
@@ -36,9 +46,14 @@ function stringList(value: unknown): string[] {
 
 function typeLabelFor(type: string, typeLabel: string): string {
   if (typeLabel) return typeLabel;
-  if (type === 'word_form') return 'Word form';
-  if (type === 'fill_blank') return 'Điền từ';
+  if (isQuizType(type)) return QUIZ_TYPE_LABELS[type];
   return 'Chọn đáp án';
+}
+
+function skillFor(value: unknown): string {
+  const raw = String(value || '').trim();
+  if (isSkillId(raw)) return raw;
+  return DEFAULT_QUIZ_SKILL;
 }
 
 export async function GET(
@@ -90,11 +105,15 @@ export async function GET(
           payload.fillMode === true || type === 'fill_blank' || type === 'word_form';
         const answer = String(payload.answer || '').trim();
         const accept = stringList(payload.accept);
+        const exerciseRaw = String(payload.exercise || '').trim();
         return {
           id: question.id,
           index,
           type,
           typeLabel: typeLabelFor(type, String(payload.typeLabel || '').trim()),
+          skill: skillFor(payload.skill),
+          exercise: exerciseRaw,
+          exerciseLabel: normalizeQuizExercise(exerciseRaw),
           question: String(payload.question || ''),
           answer,
           fillMode,

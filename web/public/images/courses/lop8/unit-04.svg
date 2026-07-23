@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 500" width="850" height="500" role="img" aria-label="Unit 4: Ethnic Groups Of Viet Nam">
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFCDD2"/><stop offset="100%" stop-color="#FFEBEE"/></linearGradient></defs>
+  <rect width="850" height="500" fill="url(#sky)"/><rect y="380" width="850" height="120" fill="#7CB342"/>
+  <ellipse cx="120" cy="410" rx="90" ry="18" fill="#558B2F" opacity="0.5"/>
+  <ellipse cx="420" cy="400" rx="120" ry="22" fill="#558B2F" opacity="0.4"/>
+  <ellipse cx="720" cy="415" rx="100" ry="20" fill="#558B2F" opacity="0.5"/>
+    <g transform="translate(200,320) scale(1)">
+    <line x1="-12" y1="58" x2="-12" y2="95" stroke="#37474F" stroke-width="12" stroke-linecap="round"/>
+    <line x1="12" y1="58" x2="12" y2="95" stroke="#37474F" stroke-width="12" stroke-linecap="round"/>
+    <ellipse cx="-12" cy="99" rx="12" ry="5" fill="#263238" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="12" cy="99" rx="12" ry="5" fill="#263238" stroke="#1A1A2E" stroke-width="1.5"/>
+    <path d="M-26 22 Q0 16 26 22 L28 62 Q0 70 -28 62 Z" fill="#D32F2F" stroke="#1A1A2E" stroke-width="2"/>
+    <path d="M-26 26 Q-44 42 -48 62" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
+    <path d="M26 26 Q44 42 48 62" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="0" cy="-12" r="32" fill="#FFCC80" stroke="#1A1A2E" stroke-width="2"/>
+    <path d="M-30 0 Q-24 -42 0 -46 Q24 -42 30 0 Q18 -30 0 -34 Q-18 -30 -30 0" fill="#212121" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="-13" cy="-8" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="-14" cy="-6" r="5.5" fill="#1A1A2E"/>
+  <circle cx="-15" cy="-9" r="2" fill="#FFFFFF"/><ellipse cx="13" cy="-8" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="14" cy="-6" r="5.5" fill="#1A1A2E"/>
+  <circle cx="15" cy="-9" r="2" fill="#FFFFFF"/>
+    <path d="M-8 8 Q0 16 8 8" fill="none" stroke="#1A1A2E" stroke-width="2" stroke-linecap="round"/>
+  </g>
+    <path d="M170 260 Q200 220 230 260 L220 310 Q200 320 180 310 Z" fill="#F9A825" stroke="#1A1A2E" stroke-width="1.5"/>
+    <g transform="translate(380,320) scale(1)">
+    <line x1="-12" y1="58" x2="-12" y2="95" stroke="#37474F" stroke-width="12" stroke-linecap="round"/>
+    <line x1="12" y1="58" x2="12" y2="95" stroke="#37474F" stroke-width="12" stroke-linecap="round"/>
+    <ellipse cx="-12" cy="99" rx="12" ry="5" fill="#263238" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="12" cy="99" rx="12" ry="5" fill="#263238" stroke="#1A1A2E" stroke-width="1.5"/>
+    <path d="M-26 22 Q0 16 26 22 L28 62 Q0 70 -28 62 Z" fill="#5D4037" stroke="#1A1A2E" stroke-width="2"/>
+    <path d="M-26 26 Q-44 42 -48 62" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
+    <path d="M26 26 Q44 42 48 62" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="0" cy="-12" r="32" fill="#FFCC80" stroke="#1A1A2E" stroke-width="2"/>
+    <path d="M-30 0 Q-24 -42 0 -46 Q24 -42 30 0 Q18 -30 0 -34 Q-18 -30 -30 0" fill="#212121" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="-13" cy="-8" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="-14" cy="-6" r="5.5" fill="#1A1A2E"/>
+  <circle cx="-15" cy="-9" r="2" fill="#FFFFFF"/><ellipse cx="13" cy="-8" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="14" cy="-6" r="5.5" fill="#1A1A2E"/>
+  <circle cx="15" cy="-9" r="2" fill="#FFFFFF"/>
+    <path d="M-8 8 Q0 16 8 8" fill="none" stroke="#1A1A2E" stroke-width="2" stroke-linecap="round"/>
+  </g>
+    <path d="M350 260 Q380 220 410 260 L400 310 Q380 320 360 310 Z" fill="#FFD54F" stroke="#1A1A2E" stroke-width="1.5"/>
+    <g transform="translate(560,320) scale(1)">
+    <line x1="-12" y1="58" x2="-12" y2="95" stroke="#37474F" stroke-width="12" stroke-linecap="round"/>
+    <line x1="12" y1="58" x2="12" y2="95" stroke="#37474F" stroke-width="12" stroke-linecap="round"/>
+    <ellipse cx="-12" cy="99" rx="12" ry="5" fill="#263238" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="12" cy="99" rx="12" ry="5" fill="#263238" stroke="#1A1A2E" stroke-width="1.5"/>
+    <path d="M-26 22 Q0 16 26 22 L28 62 Q0 70 -28 62 Z" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="2"/>
+    <path d="M-26 26 Q-44 42 -48 62" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
+    <path d="M26 26 Q44 42 48 62" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="0" cy="-12" r="32" fill="#FFCC80" stroke="#1A1A2E" stroke-width="2"/>
+    <path d="M-30 0 Q-24 -42 0 -46 Q24 -42 30 0 Q18 -30 0 -34 Q-18 -30 -30 0" fill="#212121" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="-13" cy="-8" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="-14" cy="-6" r="5.5" fill="#1A1A2E"/>
+  <circle cx="-15" cy="-9" r="2" fill="#FFFFFF"/><ellipse cx="13" cy="-8" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="14" cy="-6" r="5.5" fill="#1A1A2E"/>
+  <circle cx="15" cy="-9" r="2" fill="#FFFFFF"/>
+    <path d="M-8 8 Q0 16 8 8" fill="none" stroke="#1A1A2E" stroke-width="2" stroke-linecap="round"/>
+  </g>
+    <path d="M530 260 Q560 220 590 260 L580 310 Q560 320 540 310 Z" fill="#EF5350" stroke="#1A1A2E" stroke-width="1.5"/>
+    <g transform="translate(720,320) scale(0.95)">
+    <line x1="-12" y1="58" x2="-12" y2="95" stroke="#37474F" stroke-width="12" stroke-linecap="round"/>
+    <line x1="12" y1="58" x2="12" y2="95" stroke="#37474F" stroke-width="12" stroke-linecap="round"/>
+    <ellipse cx="-12" cy="99" rx="12" ry="5" fill="#263238" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="12" cy="99" rx="12" ry="5" fill="#263238" stroke="#1A1A2E" stroke-width="1.5"/>
+    <path d="M-26 22 Q0 16 26 22 L28 62 Q0 70 -28 62 Z" fill="#EC407A" stroke="#1A1A2E" stroke-width="2"/>
+    <path d="M-26 26 Q-44 42 -48 62" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
+    <path d="M26 26 Q44 42 48 62" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="0" cy="-12" r="32" fill="#FFCC80" stroke="#1A1A2E" stroke-width="2"/>
+    <path d="M-30 0 Q-24 -42 0 -46 Q24 -42 30 0 Q18 -30 0 -34 Q-18 -30 -30 0" fill="#212121" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="-13" cy="-8" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="-14" cy="-6" r="5.5" fill="#1A1A2E"/>
+  <circle cx="-15" cy="-9" r="2" fill="#FFFFFF"/><ellipse cx="13" cy="-8" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="14" cy="-6" r="5.5" fill="#1A1A2E"/>
+  <circle cx="15" cy="-9" r="2" fill="#FFFFFF"/>
+    <path d="M-8 8 Q0 16 8 8" fill="none" stroke="#1A1A2E" stroke-width="2" stroke-linecap="round"/>
+  </g>
+    <path d="M690 260 Q720 220 750 260 L740 310 Q720 320 700 310 Z" fill="#7E57C2" stroke="#1A1A2E" stroke-width="1.5"/>
+    <rect x="150" y="140" width="550" height="50" rx="8" fill="#C62828" stroke="#1A1A2E" stroke-width="2"/>
+    <text x="425" y="172" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#FFFFFF">ETHNIC GROUPS OF VIET NAM</text>
+  <rect x="28" y="28" width="118" height="42" rx="21" fill="rgba(255,255,255,0.92)" stroke="#1A1A2E" stroke-width="1"/>
+  <text x="87" y="56" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#C62828">Unit 4</text>
+</svg>

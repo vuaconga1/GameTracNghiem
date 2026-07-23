@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { AdminShell } from '@/components/admin/AdminShell';
 import { DataLoading } from '@/components/DataLoading';
+import { CourseBackgroundEditor } from '@/features/admin/CourseBackgroundEditor';
 import {
   SheetSelectCell,
   SheetSelectHeader,
@@ -14,12 +15,15 @@ import {
   SheetEditSaveButton,
   useSheetEditMode,
 } from '@/features/admin/useSheetEditMode';
+import { courseBackgroundSrc } from '@/lib/courseBackground';
 
 type Course = {
   id: string;
   name: string;
   levelName: string;
   active: boolean;
+  backgroundImageUrl?: string | null;
+  backgroundImageKey?: string | null;
   _count?: { questions: number };
 };
 
@@ -35,6 +39,9 @@ type SheetRow = {
   name: string;
   levelName: string;
   active: boolean;
+  backgroundImageUrl: string;
+  backgroundImageKey: string | null;
+  backgroundImageSrc: string | null;
   questionCount: number;
   dirty: boolean;
   saving: boolean;
@@ -48,6 +55,9 @@ function toRow(item: Course): SheetRow {
     name: item.name,
     levelName: item.levelName,
     active: item.active,
+    backgroundImageUrl: item.backgroundImageUrl || '',
+    backgroundImageKey: item.backgroundImageKey || null,
+    backgroundImageSrc: courseBackgroundSrc(item),
     questionCount: item._count?.questions ?? 0,
     dirty: false,
     saving: false,
@@ -62,6 +72,9 @@ function emptyRow(): SheetRow {
     name: '',
     levelName: '',
     active: true,
+    backgroundImageUrl: '',
+    backgroundImageKey: null,
+    backgroundImageSrc: null,
     questionCount: 0,
     dirty: true,
     saving: false,
@@ -88,7 +101,7 @@ export function CourseManager({ displayName }: { displayName: string }) {
     () =>
       [...new Set(levels.map((item) => item.levelName))]
         .filter(Boolean)
-        .sort((a, b) => a.localeCompare(b, 'vi')),
+        .sort((a, b) => a.localeCompare(b, 'vi', { numeric: true, sensitivity: 'base' })),
     [levels]
   );
 
@@ -121,6 +134,29 @@ export function CourseManager({ displayName }: { displayName: string }) {
       prev
         ? prev.map((row) =>
             row.key === key ? { ...row, [field]: value, dirty: true, error: '' } : row
+          )
+        : prev
+    );
+  }
+
+  function updateBackground(
+    key: string,
+    payload: {
+      item: { backgroundImageUrl?: string | null; backgroundImageKey?: string | null };
+      backgroundImageSrc: string | null;
+    }
+  ) {
+    setRows((prev) =>
+      prev
+        ? prev.map((row) =>
+            row.key === key
+              ? {
+                  ...row,
+                  backgroundImageUrl: payload.item.backgroundImageUrl || '',
+                  backgroundImageKey: payload.item.backgroundImageKey || null,
+                  backgroundImageSrc: payload.backgroundImageSrc,
+                }
+              : row
           )
         : prev
     );
@@ -353,6 +389,7 @@ export function CourseManager({ displayName }: { displayName: string }) {
                   />
                   <th>Tên khóa</th>
                   <th>Cấp</th>
+                  <th style={{ width: '340px' }}>Ảnh nền</th>
                   <th style={{ width: '88px' }}>Câu hỏi</th>
                   <th style={{ width: '72px' }}>Dùng</th>
                   <th style={{ width: '220px' }}>Thao tác</th>
@@ -361,7 +398,7 @@ export function CourseManager({ displayName }: { displayName: string }) {
               <tbody>
                 {rows.length === 0 ? (
                   <tr>
-                    <td colSpan={6}>
+                    <td colSpan={7}>
                       <div className="admin-empty">
                         Chưa có khóa học. Bấm <strong>Sửa nội dung</strong> rồi{' '}
                         <strong>Thêm dòng</strong>.
@@ -402,6 +439,15 @@ export function CourseManager({ displayName }: { displayName: string }) {
                           placeholder="Starters"
                           readOnly={!editMode.editing}
                           onChange={(e) => setField(row.key, 'levelName', e.target.value)}
+                        />
+                      </td>
+                      <td>
+                        <CourseBackgroundEditor
+                          courseId={row.id}
+                          imageSrc={row.backgroundImageSrc}
+                          externalUrl={row.backgroundImageUrl}
+                          disabled={!editMode.editing}
+                          onUpdated={(payload) => updateBackground(row.key, payload)}
                         />
                       </td>
                       <td>{row.questionCount}</td>

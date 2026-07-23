@@ -13,17 +13,26 @@ describe('buildPgPoolConfig', () => {
 });
 
 describe('shouldRecycleDevClient', () => {
-  it('does not recycle when Course.enabledGames is present', () => {
+  it('does not recycle when Course.gameSkills and enabledSkills are present', () => {
+    expect(
+      shouldRecycleDevClient({
+        _runtimeDataModel: {
+          models: {
+            Course: { fields: { gameSkills: {}, enabledSkills: {}, enabledGames: {} } },
+          },
+        },
+      })
+    ).toBe(false);
+  });
+
+  it('recycles when runtime model is missing skill fields', () => {
     expect(
       shouldRecycleDevClient({
         _runtimeDataModel: {
           models: { Course: { fields: { enabledGames: {} } } },
         },
       })
-    ).toBe(false);
-  });
-
-  it('recycles only when runtime model is missing the field', () => {
+    ).toBe(true);
     expect(shouldRecycleDevClient({ _runtimeDataModel: { models: {} } })).toBe(true);
     expect(shouldRecycleDevClient({})).toBe(true);
   });

@@ -15,23 +15,35 @@ describe('loadHeaderExperience', () => {
     mocks.getExperienceProfile.mockReset();
   });
 
-  it('returns the player level and tier', async () => {
+  it('returns the player level, tier, and level EXP progress', async () => {
     mocks.getExperienceProfile.mockResolvedValue({
       level: 7,
       tier: 2,
       totalExp: 850,
-      currentLevelExp: 50,
-      nextLevelExp: 200,
+      expInLevel: 50,
+      expToNextLevel: 200,
       progressPercent: 25,
     });
 
-    await expect(loadHeaderExperience('user-1')).resolves.toEqual({ level: 7, tier: 2 });
+    await expect(loadHeaderExperience('user-1')).resolves.toEqual({
+      level: 7,
+      tier: 2,
+      expInLevel: 50,
+      expToNextLevel: 200,
+      progressPercent: 25,
+    });
     expect(mocks.getExperienceProfile).toHaveBeenCalledWith('user-1');
   });
 
   it('falls back to level one when the profile cannot load', async () => {
     mocks.getExperienceProfile.mockRejectedValue(new Error('db unavailable'));
 
-    await expect(loadHeaderExperience('user-1')).resolves.toEqual({ level: 1, tier: 1 });
+    await expect(loadHeaderExperience('user-1')).resolves.toEqual({
+      level: 1,
+      tier: 1,
+      expInLevel: 0,
+      expToNextLevel: 80,
+      progressPercent: 0,
+    });
   });
 });

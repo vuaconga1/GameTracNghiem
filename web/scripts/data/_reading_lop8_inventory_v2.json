@@ -1,0 +1,830 @@
+{
+  "unitStarts": [
+    {
+      "unit": 1,
+      "title": "UNIT 1: LEISURE",
+      "i": 0
+    },
+    {
+      "unit": 2,
+      "title": "UNIT 2: LIFE IN THE COUNTRYSIDE (title truncated in extract)",
+      "i": 220
+    },
+    {
+      "unit": 3,
+      "title": "UNIT 3: TEENAGERS",
+      "i": 372
+    },
+    {
+      "unit": 4,
+      "title": "UNIT 4: ETHNIC GROUPS OF VIET NAM",
+      "i": 474
+    },
+    {
+      "unit": 5,
+      "title": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+      "i": 663
+    },
+    {
+      "unit": 6,
+      "title": "UNIT 6: LIFESTYLES",
+      "i": 918
+    }
+  ],
+  "sections": [
+    {
+      "unit": 1,
+      "line": 85,
+      "text": "VOCABULARY – GRAMMAR"
+    },
+    {
+      "unit": 1,
+      "line": 145,
+      "text": "reading B. read C. to read D. listening"
+    },
+    {
+      "unit": 1,
+      "line": 163,
+      "text": "A. making B. reading C. seeing"
+    },
+    {
+      "unit": 3,
+      "line": 387,
+      "text": "B. VOCABULARY – GRAMMAR"
+    },
+    {
+      "unit": 4,
+      "line": 504,
+      "text": "B. VOCABULARY – GRAMMAR"
+    },
+    {
+      "unit": 5,
+      "line": 690,
+      "text": "B. VOCABULARY – GRAMMAR"
+    },
+    {
+      "unit": 6,
+      "line": 945,
+      "text": "B. VOCABULARY – GRAMMAR"
+    }
+  ],
+  "byUnit": {
+    "1": {
+      "title": "UNIT 1: LEISURE",
+      "kinds": {
+        "phonetics_sound": 10,
+        "phonetics_stress": 10,
+        "vocab_grammar_mcq": 15,
+        "synonym_mcq": 3,
+        "antonym_mcq": 5
+      },
+      "exercises": [
+        {
+          "unit": 1,
+          "unitTitle": "UNIT 1: LEISURE",
+          "exercise": "Exercise 2",
+          "instruction": "Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+          "kind": "phonetics_sound",
+          "itemCount": 10,
+          "bodyLines": 41,
+          "startLine": 3,
+          "endLine": 43
+        },
+        {
+          "unit": 1,
+          "unitTitle": "UNIT 1: LEISURE",
+          "exercise": "Exercise 3",
+          "instruction": "Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+          "kind": "phonetics_stress",
+          "itemCount": 10,
+          "bodyLines": 42,
+          "startLine": 44,
+          "endLine": 85
+        },
+        {
+          "unit": 1,
+          "unitTitle": "UNIT 1: LEISURE",
+          "exercise": "Exercise 2",
+          "instruction": "Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+          "kind": "vocab_grammar_mcq",
+          "itemCount": 15,
+          "bodyLines": 99,
+          "startLine": 86,
+          "endLine": 184
+        },
+        {
+          "unit": 1,
+          "unitTitle": "UNIT 1: LEISURE",
+          "exercise": "Exercise 3",
+          "instruction": "Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following sentences: 1. She hates talking with him about what he",
+          "kind": "synonym_mcq",
+          "itemCount": 3,
+          "bodyLines": 15,
+          "startLine": 185,
+          "endLine": 199
+        },
+        {
+          "unit": 1,
+          "unitTitle": "UNIT 1: LEISURE",
+          "exercise": "Exercise 4",
+          "instruction": "Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following sentences:",
+          "kind": "antonym_mcq",
+          "itemCount": 5,
+          "bodyLines": 21,
+          "startLine": 200,
+          "endLine": 220
+        }
+      ]
+    },
+    "2": {
+      "title": "UNIT 2: LIFE IN THE COUNTRYSIDE (title truncated in extract)",
+      "kinds": {
+        "phonetics_sound": 10,
+        "phonetics_stress": 10,
+        "vocab_grammar_mcq": 19,
+        "synonym_mcq": 2,
+        "antonym_mcq": 5
+      },
+      "exercises": [
+        {
+          "unit": 2,
+          "unitTitle": "UNIT 2: LIFE IN THE COUNTRYSIDE (title truncated in extract)",
+          "exercise": "Exercise 2",
+          "instruction": "Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+          "kind": "phonetics_sound",
+          "itemCount": 10,
+          "bodyLines": 11,
+          "startLine": 223,
+          "endLine": 233
+        },
+        {
+          "unit": 2,
+          "unitTitle": "UNIT 2: LIFE IN THE COUNTRYSIDE (title truncated in extract)",
+          "exercise": "Exercise 3",
+          "instruction": "Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+          "kind": "phonetics_stress",
+          "itemCount": 10,
+          "bodyLines": 11,
+          "startLine": 234,
+          "endLine": 244
+        },
+        {
+          "unit": 2,
+          "unitTitle": "UNIT 2: LIFE IN THE COUNTRYSIDE (title truncated in extract)",
+          "exercise": "Exercise 2",
+          "instruction": "Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+          "kind": "vocab_grammar_mcq",
+          "itemCount": 19,
+          "bodyLines": 98,
+          "startLine": 245,
+          "endLine": 342
+        },
+        {
+          "unit": 2,
+          "unitTitle": "UNIT 2: LIFE IN THE COUNTRYSIDE (title truncated in extract)",
+          "exercise": "Exercise 3",
+          "instruction": "Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following sentences:",
+          "kind": "synonym_mcq",
+          "itemCount": 2,
+          "bodyLines": 14,
+          "startLine": 343,
+          "endLine": 356
+        },
+        {
+          "unit": 2,
+          "unitTitle": "UNIT 2: LIFE IN THE COUNTRYSIDE (title truncated in extract)",
+          "exercise": "Exercise 4",
+          "instruction": "Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following sentences:",
+          "kind": "antonym_mcq",
+          "itemCount": 5,
+          "bodyLines": 16,
+          "startLine": 357,
+          "endLine": 372
+        }
+      ]
+    },
+    "3": {
+      "title": "UNIT 3: TEENAGERS",
+      "kinds": {
+        "phonetics_sound": 5,
+        "phonetics_stress": 5,
+        "vocab_grammar_mcq": 10,
+        "synonym_mcq": 0,
+        "antonym_mcq": 0
+      },
+      "exercises": [
+        {
+          "unit": 3,
+          "unitTitle": "UNIT 3: TEENAGERS",
+          "exercise": "Exercise 2",
+          "instruction": "Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+          "kind": "phonetics_sound",
+          "itemCount": 5,
+          "bodyLines": 6,
+          "startLine": 375,
+          "endLine": 380
+        },
+        {
+          "unit": 3,
+          "unitTitle": "UNIT 3: TEENAGERS",
+          "exercise": "Exercise 3",
+          "instruction": "Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+          "kind": "phonetics_stress",
+          "itemCount": 5,
+          "bodyLines": 7,
+          "startLine": 381,
+          "endLine": 387
+        },
+        {
+          "unit": 3,
+          "unitTitle": "UNIT 3: TEENAGERS",
+          "exercise": "Exercise 2",
+          "instruction": "Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+          "kind": "vocab_grammar_mcq",
+          "itemCount": 10,
+          "bodyLines": 63,
+          "startLine": 388,
+          "endLine": 450
+        },
+        {
+          "unit": 3,
+          "unitTitle": "UNIT 3: TEENAGERS",
+          "exercise": "Exercise 5",
+          "instruction": "Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following sentences:",
+          "kind": "synonym_mcq",
+          "itemCount": 0,
+          "bodyLines": 11,
+          "startLine": 451,
+          "endLine": 461
+        },
+        {
+          "unit": 3,
+          "unitTitle": "UNIT 3: TEENAGERS",
+          "exercise": "Exercise 6",
+          "instruction": "Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following sentences:",
+          "kind": "antonym_mcq",
+          "itemCount": 0,
+          "bodyLines": 13,
+          "startLine": 462,
+          "endLine": 474
+        }
+      ]
+    },
+    "4": {
+      "title": "UNIT 4: ETHNIC GROUPS OF VIET NAM",
+      "kinds": {
+        "phonetics_sound": 10,
+        "phonetics_stress": 10,
+        "circle_options": 0,
+        "vocab_grammar_mcq": 41
+      },
+      "exercises": [
+        {
+          "unit": 4,
+          "unitTitle": "UNIT 4: ETHNIC GROUPS OF VIET NAM",
+          "exercise": "Exercise 3",
+          "instruction": "Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+          "kind": "phonetics_sound",
+          "itemCount": 10,
+          "bodyLines": 13,
+          "startLine": 480,
+          "endLine": 492
+        },
+        {
+          "unit": 4,
+          "unitTitle": "UNIT 4: ETHNIC GROUPS OF VIET NAM",
+          "exercise": "Exercise 4",
+          "instruction": "Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+          "kind": "phonetics_stress",
+          "itemCount": 10,
+          "bodyLines": 12,
+          "startLine": 493,
+          "endLine": 504
+        },
+        {
+          "unit": 4,
+          "unitTitle": "UNIT 4: ETHNIC GROUPS OF VIET NAM",
+          "exercise": "Exercise 1",
+          "instruction": "Circle the correct options to complete the sentences.",
+          "kind": "circle_options",
+          "itemCount": 0,
+          "bodyLines": 13,
+          "startLine": 505,
+          "endLine": 517
+        },
+        {
+          "unit": 4,
+          "unitTitle": "UNIT 4: ETHNIC GROUPS OF VIET NAM",
+          "exercise": "Exercise 2",
+          "instruction": "Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+          "kind": "vocab_grammar_mcq",
+          "itemCount": 41,
+          "bodyLines": 146,
+          "startLine": 518,
+          "endLine": 663
+        }
+      ]
+    },
+    "5": {
+      "title": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+      "kinds": {
+        "phonetics_sound": 10,
+        "phonetics_stress": 10,
+        "definition_mcq": 1,
+        "vocab_grammar_mcq": 44,
+        "synonym_mcq": 0,
+        "antonym_mcq": 0,
+        "article_correction": 2
+      },
+      "exercises": [
+        {
+          "unit": 5,
+          "unitTitle": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+          "exercise": "Exercise 2",
+          "instruction": "Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+          "kind": "phonetics_sound",
+          "itemCount": 10,
+          "bodyLines": 11,
+          "startLine": 668,
+          "endLine": 678
+        },
+        {
+          "unit": 5,
+          "unitTitle": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+          "exercise": "Exercise 3",
+          "instruction": "Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+          "kind": "phonetics_stress",
+          "itemCount": 10,
+          "bodyLines": 12,
+          "startLine": 679,
+          "endLine": 690
+        },
+        {
+          "unit": 5,
+          "unitTitle": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+          "exercise": "Exercise 1",
+          "instruction": "Choose the correct meaning of the following words and phrases.",
+          "kind": "definition_mcq",
+          "itemCount": 1,
+          "bodyLines": 23,
+          "startLine": 691,
+          "endLine": 713
+        },
+        {
+          "unit": 5,
+          "unitTitle": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+          "exercise": "Exercise 2",
+          "instruction": "Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+          "kind": "vocab_grammar_mcq",
+          "itemCount": 44,
+          "bodyLines": 178,
+          "startLine": 714,
+          "endLine": 891
+        },
+        {
+          "unit": 5,
+          "unitTitle": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+          "exercise": "Exercise 5",
+          "instruction": "Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following sentences:",
+          "kind": "synonym_mcq",
+          "itemCount": 0,
+          "bodyLines": 11,
+          "startLine": 892,
+          "endLine": 902
+        },
+        {
+          "unit": 5,
+          "unitTitle": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+          "exercise": "Exercise 6",
+          "instruction": "Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following sentences:",
+          "kind": "antonym_mcq",
+          "itemCount": 0,
+          "bodyLines": 11,
+          "startLine": 903,
+          "endLine": 913
+        },
+        {
+          "unit": 5,
+          "unitTitle": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+          "exercise": "Exercise 7",
+          "instruction": "Correct the mistaken articles in the following sentences.",
+          "kind": "article_correction",
+          "itemCount": 2,
+          "bodyLines": 5,
+          "startLine": 914,
+          "endLine": 918
+        }
+      ]
+    },
+    "6": {
+      "title": "UNIT 6: LIFESTYLES",
+      "kinds": {
+        "phonetics_sound": 10,
+        "phonetics_stress": 9,
+        "vocab_grammar_mcq": 40,
+        "synonym_mcq": 3,
+        "antonym_mcq": 0
+      },
+      "exercises": [
+        {
+          "unit": 6,
+          "unitTitle": "UNIT 6: LIFESTYLES",
+          "exercise": "Exercise 3",
+          "instruction": "Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+          "kind": "phonetics_sound",
+          "itemCount": 10,
+          "bodyLines": 11,
+          "startLine": 923,
+          "endLine": 933
+        },
+        {
+          "unit": 6,
+          "unitTitle": "UNIT 6: LIFESTYLES",
+          "exercise": "Exercise 4",
+          "instruction": "Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+          "kind": "phonetics_stress",
+          "itemCount": 9,
+          "bodyLines": 12,
+          "startLine": 934,
+          "endLine": 945
+        },
+        {
+          "unit": 6,
+          "unitTitle": "UNIT 6: LIFESTYLES",
+          "exercise": "Exercise 2",
+          "instruction": "Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+          "kind": "vocab_grammar_mcq",
+          "itemCount": 40,
+          "bodyLines": 166,
+          "startLine": 946,
+          "endLine": 1111
+        },
+        {
+          "unit": 6,
+          "unitTitle": "UNIT 6: LIFESTYLES",
+          "exercise": "Exercise 4",
+          "instruction": "Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following sentences:",
+          "kind": "synonym_mcq",
+          "itemCount": 3,
+          "bodyLines": 14,
+          "startLine": 1112,
+          "endLine": 1125
+        },
+        {
+          "unit": 6,
+          "unitTitle": "UNIT 6: LIFESTYLES",
+          "exercise": "Exercise 5",
+          "instruction": "Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following sentences:",
+          "kind": "antonym_mcq",
+          "itemCount": 0,
+          "bodyLines": 11,
+          "startLine": 1126,
+          "endLine": 1136
+        }
+      ]
+    }
+  },
+  "exercises": [
+    {
+      "unit": 1,
+      "unitTitle": "UNIT 1: LEISURE",
+      "exercise": "Exercise 2",
+      "instruction": "Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+      "kind": "phonetics_sound",
+      "itemCount": 10,
+      "bodyLines": 41,
+      "startLine": 3,
+      "endLine": 43
+    },
+    {
+      "unit": 1,
+      "unitTitle": "UNIT 1: LEISURE",
+      "exercise": "Exercise 3",
+      "instruction": "Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+      "kind": "phonetics_stress",
+      "itemCount": 10,
+      "bodyLines": 42,
+      "startLine": 44,
+      "endLine": 85
+    },
+    {
+      "unit": 1,
+      "unitTitle": "UNIT 1: LEISURE",
+      "exercise": "Exercise 2",
+      "instruction": "Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+      "kind": "vocab_grammar_mcq",
+      "itemCount": 15,
+      "bodyLines": 99,
+      "startLine": 86,
+      "endLine": 184
+    },
+    {
+      "unit": 1,
+      "unitTitle": "UNIT 1: LEISURE",
+      "exercise": "Exercise 3",
+      "instruction": "Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following sentences: 1. She hates talking with him about what he",
+      "kind": "synonym_mcq",
+      "itemCount": 3,
+      "bodyLines": 15,
+      "startLine": 185,
+      "endLine": 199
+    },
+    {
+      "unit": 1,
+      "unitTitle": "UNIT 1: LEISURE",
+      "exercise": "Exercise 4",
+      "instruction": "Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following sentences:",
+      "kind": "antonym_mcq",
+      "itemCount": 5,
+      "bodyLines": 21,
+      "startLine": 200,
+      "endLine": 220
+    },
+    {
+      "unit": 2,
+      "unitTitle": "UNIT 2: LIFE IN THE COUNTRYSIDE (title truncated in extract)",
+      "exercise": "Exercise 2",
+      "instruction": "Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+      "kind": "phonetics_sound",
+      "itemCount": 10,
+      "bodyLines": 11,
+      "startLine": 223,
+      "endLine": 233
+    },
+    {
+      "unit": 2,
+      "unitTitle": "UNIT 2: LIFE IN THE COUNTRYSIDE (title truncated in extract)",
+      "exercise": "Exercise 3",
+      "instruction": "Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+      "kind": "phonetics_stress",
+      "itemCount": 10,
+      "bodyLines": 11,
+      "startLine": 234,
+      "endLine": 244
+    },
+    {
+      "unit": 2,
+      "unitTitle": "UNIT 2: LIFE IN THE COUNTRYSIDE (title truncated in extract)",
+      "exercise": "Exercise 2",
+      "instruction": "Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+      "kind": "vocab_grammar_mcq",
+      "itemCount": 19,
+      "bodyLines": 98,
+      "startLine": 245,
+      "endLine": 342
+    },
+    {
+      "unit": 2,
+      "unitTitle": "UNIT 2: LIFE IN THE COUNTRYSIDE (title truncated in extract)",
+      "exercise": "Exercise 3",
+      "instruction": "Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following sentences:",
+      "kind": "synonym_mcq",
+      "itemCount": 2,
+      "bodyLines": 14,
+      "startLine": 343,
+      "endLine": 356
+    },
+    {
+      "unit": 2,
+      "unitTitle": "UNIT 2: LIFE IN THE COUNTRYSIDE (title truncated in extract)",
+      "exercise": "Exercise 4",
+      "instruction": "Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following sentences:",
+      "kind": "antonym_mcq",
+      "itemCount": 5,
+      "bodyLines": 16,
+      "startLine": 357,
+      "endLine": 372
+    },
+    {
+      "unit": 3,
+      "unitTitle": "UNIT 3: TEENAGERS",
+      "exercise": "Exercise 2",
+      "instruction": "Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+      "kind": "phonetics_sound",
+      "itemCount": 5,
+      "bodyLines": 6,
+      "startLine": 375,
+      "endLine": 380
+    },
+    {
+      "unit": 3,
+      "unitTitle": "UNIT 3: TEENAGERS",
+      "exercise": "Exercise 3",
+      "instruction": "Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+      "kind": "phonetics_stress",
+      "itemCount": 5,
+      "bodyLines": 7,
+      "startLine": 381,
+      "endLine": 387
+    },
+    {
+      "unit": 3,
+      "unitTitle": "UNIT 3: TEENAGERS",
+      "exercise": "Exercise 2",
+      "instruction": "Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+      "kind": "vocab_grammar_mcq",
+      "itemCount": 10,
+      "bodyLines": 63,
+      "startLine": 388,
+      "endLine": 450
+    },
+    {
+      "unit": 3,
+      "unitTitle": "UNIT 3: TEENAGERS",
+      "exercise": "Exercise 5",
+      "instruction": "Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following sentences:",
+      "kind": "synonym_mcq",
+      "itemCount": 0,
+      "bodyLines": 11,
+      "startLine": 451,
+      "endLine": 461
+    },
+    {
+      "unit": 3,
+      "unitTitle": "UNIT 3: TEENAGERS",
+      "exercise": "Exercise 6",
+      "instruction": "Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following sentences:",
+      "kind": "antonym_mcq",
+      "itemCount": 0,
+      "bodyLines": 13,
+      "startLine": 462,
+      "endLine": 474
+    },
+    {
+      "unit": 4,
+      "unitTitle": "UNIT 4: ETHNIC GROUPS OF VIET NAM",
+      "exercise": "Exercise 3",
+      "instruction": "Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+      "kind": "phonetics_sound",
+      "itemCount": 10,
+      "bodyLines": 13,
+      "startLine": 480,
+      "endLine": 492
+    },
+    {
+      "unit": 4,
+      "unitTitle": "UNIT 4: ETHNIC GROUPS OF VIET NAM",
+      "exercise": "Exercise 4",
+      "instruction": "Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+      "kind": "phonetics_stress",
+      "itemCount": 10,
+      "bodyLines": 12,
+      "startLine": 493,
+      "endLine": 504
+    },
+    {
+      "unit": 4,
+      "unitTitle": "UNIT 4: ETHNIC GROUPS OF VIET NAM",
+      "exercise": "Exercise 1",
+      "instruction": "Circle the correct options to complete the sentences.",
+      "kind": "circle_options",
+      "itemCount": 0,
+      "bodyLines": 13,
+      "startLine": 505,
+      "endLine": 517
+    },
+    {
+      "unit": 4,
+      "unitTitle": "UNIT 4: ETHNIC GROUPS OF VIET NAM",
+      "exercise": "Exercise 2",
+      "instruction": "Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+      "kind": "vocab_grammar_mcq",
+      "itemCount": 41,
+      "bodyLines": 146,
+      "startLine": 518,
+      "endLine": 663
+    },
+    {
+      "unit": 5,
+      "unitTitle": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+      "exercise": "Exercise 2",
+      "instruction": "Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+      "kind": "phonetics_sound",
+      "itemCount": 10,
+      "bodyLines": 11,
+      "startLine": 668,
+      "endLine": 678
+    },
+    {
+      "unit": 5,
+      "unitTitle": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+      "exercise": "Exercise 3",
+      "instruction": "Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+      "kind": "phonetics_stress",
+      "itemCount": 10,
+      "bodyLines": 12,
+      "startLine": 679,
+      "endLine": 690
+    },
+    {
+      "unit": 5,
+      "unitTitle": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+      "exercise": "Exercise 1",
+      "instruction": "Choose the correct meaning of the following words and phrases.",
+      "kind": "definition_mcq",
+      "itemCount": 1,
+      "bodyLines": 23,
+      "startLine": 691,
+      "endLine": 713
+    },
+    {
+      "unit": 5,
+      "unitTitle": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+      "exercise": "Exercise 2",
+      "instruction": "Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+      "kind": "vocab_grammar_mcq",
+      "itemCount": 44,
+      "bodyLines": 178,
+      "startLine": 714,
+      "endLine": 891
+    },
+    {
+      "unit": 5,
+      "unitTitle": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+      "exercise": "Exercise 5",
+      "instruction": "Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following sentences:",
+      "kind": "synonym_mcq",
+      "itemCount": 0,
+      "bodyLines": 11,
+      "startLine": 892,
+      "endLine": 902
+    },
+    {
+      "unit": 5,
+      "unitTitle": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+      "exercise": "Exercise 6",
+      "instruction": "Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following sentences:",
+      "kind": "antonym_mcq",
+      "itemCount": 0,
+      "bodyLines": 11,
+      "startLine": 903,
+      "endLine": 913
+    },
+    {
+      "unit": 5,
+      "unitTitle": "UNIT 5: OUR CUSTOMS AND TRADITIONS",
+      "exercise": "Exercise 7",
+      "instruction": "Correct the mistaken articles in the following sentences.",
+      "kind": "article_correction",
+      "itemCount": 2,
+      "bodyLines": 5,
+      "startLine": 914,
+      "endLine": 918
+    },
+    {
+      "unit": 6,
+      "unitTitle": "UNIT 6: LIFESTYLES",
+      "exercise": "Exercise 3",
+      "instruction": "Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+      "kind": "phonetics_sound",
+      "itemCount": 10,
+      "bodyLines": 11,
+      "startLine": 923,
+      "endLine": 933
+    },
+    {
+      "unit": 6,
+      "unitTitle": "UNIT 6: LIFESTYLES",
+      "exercise": "Exercise 4",
+      "instruction": "Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+      "kind": "phonetics_stress",
+      "itemCount": 9,
+      "bodyLines": 12,
+      "startLine": 934,
+      "endLine": 945
+    },
+    {
+      "unit": 6,
+      "unitTitle": "UNIT 6: LIFESTYLES",
+      "exercise": "Exercise 2",
+      "instruction": "Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+      "kind": "vocab_grammar_mcq",
+      "itemCount": 40,
+      "bodyLines": 166,
+      "startLine": 946,
+      "endLine": 1111
+    },
+    {
+      "unit": 6,
+      "unitTitle": "UNIT 6: LIFESTYLES",
+      "exercise": "Exercise 4",
+      "instruction": "Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following sentences:",
+      "kind": "synonym_mcq",
+      "itemCount": 3,
+      "bodyLines": 14,
+      "startLine": 1112,
+      "endLine": 1125
+    },
+    {
+      "unit": 6,
+      "unitTitle": "UNIT 6: LIFESTYLES",
+      "exercise": "Exercise 5",
+      "instruction": "Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following sentences:",
+      "kind": "antonym_mcq",
+      "itemCount": 0,
+      "bodyLines": 11,
+      "startLine": 1126,
+      "endLine": 1136
+    }
+  ]
+}

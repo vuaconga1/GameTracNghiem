@@ -1,15 +1,7 @@
 import { NextResponse } from 'next/server';
 
 import { requireSession } from '@/lib/auth';
-import { prisma } from '@/lib/db';
-import { findPlayableCourseGame } from '@/lib/findPlayableCourseGame';
-import { loadGamePlayerState } from '@/lib/loadGamePlayerState';
-
-type WordMatchPayload = {
-  word?: unknown;
-  image?: unknown;
-  hint?: unknown;
-};
+import { loadWordMatchGame } from '@/lib/loadWordMatchGame';
 
 function errorResponse(err: unknown) {
   const status =
@@ -20,11 +12,6 @@ function errorResponse(err: unknown) {
   return NextResponse.json({ success: false, message }, { status });
 }
 
-function asWordMatchPayload(value: unknown): WordMatchPayload {
-  if (typeof value !== 'object' || value === null || Array.isArray(value)) return {};
-  return value as WordMatchPayload;
-}
-
 export async function GET(
   _req: Request,
   { params }: { params: Promise<{ courseId: string }> }
@@ -32,55 +19,14 @@ export async function GET(
   try {
     const session = await requireSession();
     const { courseId } = await params;
-
-    const course = await findPlayableCourseGame(courseId, 'word_match');
-
-    if (!course) {
+    const data = await loadWordMatchGame(courseId, session.userId);
+    if (!data) {
       return NextResponse.json(
         { success: false, message: 'Không tìm thấy khóa học' },
         { status: 404 }
       );
     }
-
-    const [questions, player] = await Promise.all([
-      prisma.question.findMany({
-        where: {
-          courseId: course.id,
-          game: 'word_match',
-          active: true,
-          archivedAt: null,
-        },
-        select: {
-          id: true,
-          payload: true,
-        },
-        orderBy: [{ sortOrder: 'asc' }, { id: 'asc' }],
-      }),
-      loadGamePlayerState({
-        userId: session.userId,
-        courseName: course.name,
-        levelName: course.levelName,
-        game: 'word_match',
-      }),
-    ]);
-
-    return NextResponse.json({
-      success: true,
-      course,
-      questions: questions.map((question, index) => {
-        const payload = asWordMatchPayload(question.payload);
-        return {
-          id: question.id,
-          index,
-          word: String(payload.word || '').trim(),
-          image: String(payload.image || '').trim(),
-          hint: String(payload.hint || '').trim(),
-        };
-      }),
-      statuses: player.statuses,
-      playSessionId: player.playSessionId,
-      gameScore: player.gameScore,
-    });
+    return NextResponse.json(data);
   } catch (err) {
     return errorResponse(err);
   }

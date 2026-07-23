@@ -32,6 +32,9 @@ next-env.d.ts
 /storage/media/*
 !/storage/media/.gitkeep
 
+# ===== Uploaded course backgrounds (local only) =====
+/storage/course-backgrounds/*
+
 # ===== Vercel =====
 .vercel
 

@@ -16,5 +16,7 @@ describe('SiteFooter', () => {
     expect(html).toContain('href="https://wewin.edu.vn"');
     expect(html).toContain('officemanager@wewin.edu.vn');
     expect(html).toContain('© 2026');
+    expect(html).toContain('footer-contact-main');
+    expect(html).toContain('footer-contact-extra');
   });
 });

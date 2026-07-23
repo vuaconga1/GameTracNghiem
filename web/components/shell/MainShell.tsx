@@ -15,6 +15,9 @@ type MainShellProps = {
   isAdmin?: boolean;
   level?: number;
   tier?: number;
+  expInLevel?: number;
+  expToNextLevel?: number | null;
+  progressPercent?: number;
   children: React.ReactNode;
 };
 
@@ -23,6 +26,9 @@ export function MainShell({
   isAdmin = false,
   level,
   tier,
+  expInLevel,
+  expToNextLevel,
+  progressPercent,
   children,
 }: MainShellProps) {
   const pathname = usePathname();
@@ -30,15 +36,25 @@ export function MainShell({
   const activeGame = findGameByPathname(pathname);
   const isGamePage = Boolean(activeGame);
   const isHome = pathname === '/';
+  const isCoursePage = pathname === '/courses' || pathname.startsWith('/courses/');
   const isLeaderboard = pathname === '/leaderboard' || pathname.startsWith('/leaderboard/');
 
-  // Home: level filters. Games / leaderboard: compact nav with Trang chủ.
-  // Course detail (Bài học / Bài tập): full width — no sidebar.
+  const userProps = {
+    displayName,
+    level,
+    tier,
+    expInLevel,
+    expToNextLevel,
+    progressPercent,
+  };
+
+  // Home: level filters. Course / games / leaderboard: compact nav with Trang chủ.
   let sidebar: React.ReactNode = null;
   if (isGamePage && activeGame) {
     sidebar = (
       <Sidebar
         mode="game"
+        {...userProps}
         gameNav={
           <>
             <Link className="nav-item" href="/" onClick={() => setOpen(false)}>
@@ -54,11 +70,31 @@ export function MainShell({
       />
     );
   } else if (isHome) {
-    sidebar = <Sidebar mode="home" filtersSlot={<div id="sidebar-filters-root" />} />;
+    sidebar = <Sidebar mode="home" {...userProps} filtersSlot={<div id="sidebar-filters-root" />} />;
+  } else if (isCoursePage) {
+    sidebar = (
+      <Sidebar
+        mode="game"
+        {...userProps}
+        gameNav={
+          <>
+            <Link className="nav-item" href="/" onClick={() => setOpen(false)}>
+              <i className="fas fa-home" />
+              <span>Trang chủ</span>
+            </Link>
+            <Link className="nav-item active" href={pathname} onClick={() => setOpen(false)}>
+              <i className="fas fa-graduation-cap" />
+              <span>Khóa học</span>
+            </Link>
+          </>
+        }
+      />
+    );
   } else if (isLeaderboard) {
     sidebar = (
       <Sidebar
         mode="game"
+        {...userProps}
         gameNav={
           <>
             <Link className="nav-item" href="/" onClick={() => setOpen(false)}>
@@ -77,17 +113,9 @@ export function MainShell({
 
   return (
     <AppShell
-      layout={isGamePage || isLeaderboard ? 'game' : 'index'}
+      layout={isCoursePage ? 'course' : isGamePage || isLeaderboard ? 'game' : 'index'}
       sidebar={sidebar}
-      header={
-        <AppHeader
-          displayName={displayName}
-          isAdmin={isAdmin}
-          showMenu={Boolean(sidebar)}
-          level={level}
-          tier={tier}
-        />
-      }
+      header={<AppHeader isAdmin={isAdmin} showMenu={Boolean(sidebar)} />}
     >
       {children}
     </AppShell>

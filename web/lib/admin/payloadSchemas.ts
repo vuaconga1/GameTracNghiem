@@ -17,6 +17,11 @@ export const grammarPayloadSchema = z.object({
 export const quizPayloadSchema = z.object({
   type: z.enum(['multiple_choice', 'fill_blank', 'word_form']).default('multiple_choice'),
   typeLabel: z.string().optional().default(''),
+  skill: z
+    .enum(['listening', 'reading', 'speaking', 'writing', 'vocabulary'])
+    .optional()
+    .default('vocabulary'),
+  exercise: z.string().optional().default(''),
   question: nonEmpty,
   answer: nonEmpty,
   options: z.array(z.string()).default([]),
@@ -62,6 +67,8 @@ export const lookAndWritePayloadSchema = z.object({
 const chooseItemSchema = z.object({
   order: z.number().int().positive(),
   image: z.string().optional().default(''),
+  /** Sentence / stem for “đọc và khoanh” (optional when image carries the cue). */
+  prompt: z.string().optional().default(''),
   options: z.array(nonEmpty).min(2, 'Cần 2 lựa chọn'),
   answer: nonEmpty,
 });

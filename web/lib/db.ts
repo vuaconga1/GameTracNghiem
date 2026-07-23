@@ -50,7 +50,7 @@ function hasCourseField(client: unknown, field: string): boolean {
 
 /** Dev-only: drop a stale HMR Prisma client without ending the shared pg pool. */
 export function shouldRecycleDevClient(client: unknown): boolean {
-  return !hasCourseField(client, 'enabledGames');
+  return !hasCourseField(client, 'gameSkills') || !hasCourseField(client, 'enabledSkills');
 }
 
 function createPrismaClient(): PrismaClient {

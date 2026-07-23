@@ -1,0 +1,618 @@
+[
+  {
+    "unit": 1,
+    "title": "UNIT 1: LEISURE",
+    "sections": [
+      "VOCABULARY – GRAMMAR",
+      "reading B. read C. to read D. listening"
+    ],
+    "exerciseCount": 5,
+    "exercises": [
+      {
+        "label": "Exercise 2: Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+        "section": null,
+        "types": [
+          "phonetics",
+          "mcq"
+        ],
+        "approxItems": 10,
+        "lineCount": 41,
+        "longLineCount": 0,
+        "hasPassageCue": false,
+        "sample": [
+          "1. A. mouse",
+          "B. house",
+          "C. would",
+          "D. outdoors"
+        ]
+      },
+      {
+        "label": "Exercise 3: Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+        "section": null,
+        "types": [
+          "phonetics",
+          "mcq"
+        ],
+        "approxItems": 10,
+        "lineCount": 41,
+        "longLineCount": 0,
+        "hasPassageCue": false,
+        "sample": [
+          "1. A. relaxing",
+          "B. traveling",
+          "C. visiting",
+          "D. listening"
+        ]
+      },
+      {
+        "label": "Exercise 2: Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+        "section": "VOCABULARY – GRAMMAR",
+        "types": [
+          "mcq"
+        ],
+        "approxItems": 11,
+        "lineCount": 59,
+        "longLineCount": 1,
+        "hasPassageCue": false,
+        "sample": [
+          "I like to _______ Tik Tok to watch short clips whenever I have free time.",
+          "knit B. surf C. message D. relax",
+          "Alice spends a lot of time _______ her own; she always exercises regularly and does what she enjoys.",
+          "on B. in C. about D. for"
+        ]
+      },
+      {
+        "label": "Exercise 3: Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following sentences: 1. She hate",
+        "section": "reading B. read C. to read D. listening",
+        "types": [
+          "mcq"
+        ],
+        "approxItems": 3,
+        "lineCount": 15,
+        "longLineCount": 1,
+        "hasPassageCue": false,
+        "sample": [
+          "A. likes B. detests C. enjoys",
+          "2. You do leisure activities in your free time and they make you feel satisfied.",
+          "D. love",
+          "A. pleased B. dissatisfied C. tired"
+        ]
+      },
+      {
+        "label": "Exercise 4: Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following sentences:",
+        "section": "reading B. read C. to read D. listening",
+        "types": [
+          "mcq"
+        ],
+        "approxItems": 5,
+        "lineCount": 21,
+        "longLineCount": 1,
+        "hasPassageCue": false,
+        "sample": [
+          "1. My DIY project is to make some new bookshelves this summer.",
+          "A. old B. big",
+          "2. Too much texting can be harmful to our health.",
+          "C. small"
+        ]
+      }
+    ]
+  },
+  {
+    "unit": 2,
+    "title": "UNIT 2: LIFE IN THE",
+    "sections": [],
+    "exerciseCount": 5,
+    "exercises": [
+      {
+        "label": "Exercise 2: Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+        "section": null,
+        "types": [
+          "phonetics",
+          "mcq"
+        ],
+        "approxItems": 0,
+        "lineCount": 11,
+        "longLineCount": 0,
+        "hasPassageCue": false,
+        "sample": [
+          "A. normal B. visitors C. transport D. chore",
+          "A. basic B. major C. craft D. racing",
+          "A. ceremony B. cultural C. cattle D. costume",
+          "A. country B. cloud C. loudly D. mouse"
+        ]
+      },
+      {
+        "label": "Exercise 3: Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+        "section": null,
+        "types": [
+          "phonetics",
+          "mcq"
+        ],
+        "approxItems": 0,
+        "lineCount": 11,
+        "longLineCount": 0,
+        "hasPassageCue": false,
+        "sample": [
+          "A. charade B. transport C. expect D. paddy",
+          "A. popular B. calculus C. beehive D. disturb",
+          "A. harvest B. collect C. peaceful D. whisper",
+          "A. opportunity B. inconvenient C. facility D. optimistic"
+        ]
+      },
+      {
+        "label": "Exercise 2: Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+        "section": null,
+        "types": [
+          "mcq"
+        ],
+        "approxItems": 19,
+        "lineCount": 98,
+        "longLineCount": 2,
+        "hasPassageCue": false,
+        "sample": [
+          "1. Russia is a _______ country with a lot of natural resources.",
+          "A. vast B. envious C. cultivable",
+          "2. Farmers often leave the rice in the sun to _______.",
+          "D. far"
+        ]
+      },
+      {
+        "label": "Exercise 3: Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following sentences:",
+        "section": null,
+        "types": [
+          "mcq"
+        ],
+        "approxItems": 2,
+        "lineCount": 14,
+        "longLineCount": 1,
+        "hasPassageCue": false,
+        "sample": [
+          "Nomadic people live in a ger. It keeps them cool in summer and warm in winter.",
+          "house B. circular tent C. cave D. yatch",
+          "The nomads move two or three times a year to look for new pastures",
+          "food B. places C. grasslands D. lifestyles"
+        ]
+      },
+      {
+        "label": "Exercise 4: Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following sentences:",
+        "section": null,
+        "types": [
+          "mcq"
+        ],
+        "approxItems": 5,
+        "lineCount": 16,
+        "longLineCount": 1,
+        "hasPassageCue": false,
+        "sample": [
+          "1. The life in the countryside is very quiet and relaxing",
+          "A. noisy B. exciting C. modern",
+          "2. City people seem to react more quickly to changes than country people.",
+          "D. hard"
+        ]
+      }
+    ]
+  },
+  {
+    "unit": 3,
+    "title": "UNIT 3: TEENAGERS",
+    "sections": [],
+    "exerciseCount": 5,
+    "exercises": [
+      {
+        "label": "Exercise 2: Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+        "section": null,
+        "types": [
+          "phonetics",
+          "mcq"
+        ],
+        "approxItems": 0,
+        "lineCount": 6,
+        "longLineCount": 0,
+        "hasPassageCue": false,
+        "sample": [
+          "A. club B. upload C. discuss D. focus",
+          "A. media B. stressful C. pressure D. website",
+          "A. connect B. concentrate C. calm D. competition",
+          "A. paddy B. teenager C. camel D. cattle"
+        ]
+      },
+      {
+        "label": "Exercise 3: Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+        "section": null,
+        "types": [
+          "phonetics",
+          "mcq",
+          "grammar_form"
+        ],
+        "approxItems": 0,
+        "lineCount": 7,
+        "longLineCount": 0,
+        "hasPassageCue": false,
+        "sample": [
+          "A. teenager B. enjoyment C. concentrate D. countryside",
+          "A. connect B. advise C. focus D. discuss",
+          "A. stressful B. success C. pressure D. leader",
+          "A. pressure B. decision C. friendship D. guidance"
+        ]
+      },
+      {
+        "label": "Exercise 2: Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+        "section": null,
+        "types": [
+          "mcq",
+          "reading_comp"
+        ],
+        "approxItems": 10,
+        "lineCount": 63,
+        "longLineCount": 2,
+        "hasPassageCue": true,
+        "sample": [
+          "The teacher asks the whole class to _______ on studying to prepare well for the midterm exam.",
+          "advise B. focus C. connect D. coach",
+          "Most teenagers today have at least one social media _______ for entertainment and study.",
+          "account B. leader C. midterm D. teenager"
+        ]
+      },
+      {
+        "label": "Exercise 5: Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following sentences:",
+        "section": null,
+        "types": [
+          "mcq"
+        ],
+        "approxItems": 0,
+        "lineCount": 11,
+        "longLineCount": 3,
+        "hasPassageCue": false,
+        "sample": [
+          "When someone tries to log into some of your Tik Tok accounts, the system will send you a notification.",
+          "notice B. media C. midterm test D. stress",
+          "The pressure from my parents and friends makes me feel very stressed.",
+          "stress B. competition C. schoolwork D. leader"
+        ]
+      },
+      {
+        "label": "Exercise 6: Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following sentences:",
+        "section": null,
+        "types": [
+          "mcq"
+        ],
+        "approxItems": 0,
+        "lineCount": 13,
+        "longLineCount": 3,
+        "hasPassageCue": false,
+        "sample": [
+          "When I log on to my computer, the first thing I do is open my Facebook account to catch up on the latest updates from my friends and family.",
+          "log out B. cross over C. focus on D. keep up with",
+          "Instagram is enjoyable. I feel very happy when someone likes my photos that I uploaded.",
+          "bored B. happy C. peaceful D. quiet"
+        ]
+      }
+    ]
+  },
+  {
+    "unit": 4,
+    "title": "UNIT 4: ETHNIC GROUPS OF",
+    "sections": [],
+    "exerciseCount": 0,
+    "exercises": []
+  },
+  {
+    "unit": 4,
+    "title": "UNIT 4: ETHNIC GROUPS OF",
+    "sections": [],
+    "exerciseCount": 4,
+    "exercises": [
+      {
+        "label": "Exercise 3: Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+        "section": null,
+        "types": [
+          "phonetics",
+          "mcq"
+        ],
+        "approxItems": 0,
+        "lineCount": 13,
+        "longLineCount": 0,
+        "hasPassageCue": false,
+        "sample": [
+          "A. knock B. key C. pocket D. milk",
+          "A. queen B. square C. queue D. quick",
+          "A. carrot B. city C. cake D. class",
+          "A. chopstick B. chicken C. cheek D. character"
+        ]
+      },
+      {
+        "label": "Exercise 4: Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+        "section": null,
+        "types": [
+          "phonetics",
+          "mcq",
+          "grammar_form"
+        ],
+        "approxItems": 0,
+        "lineCount": 12,
+        "longLineCount": 0,
+        "hasPassageCue": false,
+        "sample": [
+          "A. costume B. diverse C. feature D. market",
+          "A. custom B. livestock C. highland D. bamboo",
+          "A. diversity B. pharmacy C. establish D. religious",
+          "A. overlook B. plantation C. religion D. minority"
+        ]
+      },
+      {
+        "label": "Exercise 1: Circle the correct options to complete the sentences.",
+        "section": null,
+        "types": [
+          "fill_blank"
+        ],
+        "approxItems": 0,
+        "lineCount": 13,
+        "longLineCount": 0,
+        "hasPassageCue": false,
+        "sample": [
+          "Bamboo dancing is a popular __________ of the Thai people.",
+          "communal house B. folk dance",
+          "The dan tinh is a __________ of Tay ethnic group.",
+          "a musical instrument. B. five-colour sticky rice."
+        ]
+      },
+      {
+        "label": "Exercise 2: Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+        "section": null,
+        "types": [
+          "mcq"
+        ],
+        "approxItems": 41,
+        "lineCount": 146,
+        "longLineCount": 2,
+        "hasPassageCue": false,
+        "sample": [
+          "My Son sanctuary has been recognized by UNESCO as a world _______.",
+          "A. ethnic minorities B. open-air market C. heritage site D. terraced field",
+          "If you go to Sapa, you can distinguish people from different ethnic groups by their _______.",
+          "A. costumes B. livestock C. highlands"
+        ]
+      }
+    ]
+  },
+  {
+    "unit": 5,
+    "title": "UNIT 5:",
+    "sections": [],
+    "exerciseCount": 8,
+    "exercises": [
+      {
+        "label": "Exercise 2: Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+        "section": null,
+        "types": [
+          "phonetics",
+          "mcq"
+        ],
+        "approxItems": 0,
+        "lineCount": 11,
+        "longLineCount": 0,
+        "hasPassageCue": false,
+        "sample": [
+          "A. carp B. article C. party D. tradition",
+          "A. connect B. cook C. dance D. control",
+          "A. pass B. palm C. sharp D. man",
+          "A. custom B. correct C. clockwise D. opinion"
+        ]
+      },
+      {
+        "label": "Exercise 3: Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+        "section": null,
+        "types": [
+          "phonetics",
+          "mcq",
+          "grammar_form"
+        ],
+        "approxItems": 0,
+        "lineCount": 12,
+        "longLineCount": 0,
+        "hasPassageCue": false,
+        "sample": [
+          "A. holiday B. decorate C. offering D. addition",
+          "A. laughter B. prepare C. chopstick D. heaven",
+          "A. resident B. cutlery C. ancestor D. permission",
+          "A. generation B. presentation C. necessity D. obligation"
+        ]
+      },
+      {
+        "label": "Exercise 1: Choose the correct meaning of the following words and phrases.",
+        "section": null,
+        "types": [
+          "unknown"
+        ],
+        "approxItems": 1,
+        "lineCount": 23,
+        "longLineCount": 1,
+        "hasPassageCue": false,
+        "sample": [
+          "custom",
+          "a way of behaving or a belief that has been established for a long time",
+          "a behaviour that is considered to be polite in a particular society C. a ceremony that includes a series of formal or traditional actions",
+          "luck"
+        ]
+      },
+      {
+        "label": "Exercise 2: Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+        "section": null,
+        "types": [
+          "mcq"
+        ],
+        "approxItems": 44,
+        "lineCount": 178,
+        "longLineCount": 1,
+        "hasPassageCue": false,
+        "sample": [
+          "1. People ______ bamboo poles with small bells and lanterns.",
+          "A. maintain B. cook C. decorate",
+          "2. We visit pagodas to bow to Buddha and ______ for a lucky new year.",
+          "D. hang"
+        ]
+      },
+      {
+        "label": "Exercise 5: Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following sentences:",
+        "section": null,
+        "types": [
+          "mcq"
+        ],
+        "approxItems": 0,
+        "lineCount": 11,
+        "longLineCount": 1,
+        "hasPassageCue": false,
+        "sample": [
+          "A custom is something that has become an accepted way of doing things.",
+          "agreed B. rejected C. denied D. refused",
+          "My grandparents always try their best to find ways to preserve our family unity.",
+          "consistency B. stickage C. union D. bond"
+        ]
+      },
+      {
+        "label": "Exercise 6: Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following sentences:",
+        "section": null,
+        "types": [
+          "mcq"
+        ],
+        "approxItems": 0,
+        "lineCount": 2,
+        "longLineCount": 1,
+        "hasPassageCue": false,
+        "sample": [
+          "He is the offspring of a chemist and a nurse. His intelligence is inherited from them."
+        ]
+      },
+      {
+        "label": "partner B. friend C. ancestor D. neighbor",
+        "section": null,
+        "types": [
+          "unknown"
+        ],
+        "approxItems": 0,
+        "lineCount": 9,
+        "longLineCount": 0,
+        "hasPassageCue": false,
+        "sample": [
+          "Anna broke with the family tradition and chose to be a singer instead of being a teacher.",
+          "united B. followed C. connected D. joined",
+          "People in some far-away mountainous regions still keep their traditional way of life.",
+          "modern B. usual C. established D. accepted"
+        ]
+      },
+      {
+        "label": "Exercise 7: Correct the mistaken articles in the following sentences.",
+        "section": null,
+        "types": [
+          "unknown"
+        ],
+        "approxItems": 2,
+        "lineCount": 5,
+        "longLineCount": 2,
+        "hasPassageCue": false,
+        "sample": [
+          "1. It is a important meeting to elect our manager. 2. I think the sugar is not good for your health. 3. We will go to Ho Chi Minh City by a plane. 4. It is a most beautiful beach in Viet Nam.",
+          "5. Most families in the Viet Nam prepare offerings at Tet. 6. She bought two kilos of meat and an half kilo of tomatoes. 7. It's an good idea to hand bowls with both hands. 8. We are travelling to Spain in a summer.",
+          "The boat race takes place in a morning.",
+          "Rich are always true."
+        ]
+      }
+    ]
+  },
+  {
+    "unit": 6,
+    "title": "UNIT 6:",
+    "sections": [],
+    "exerciseCount": 5,
+    "exercises": [
+      {
+        "label": "Exercise 3: Choose the word (A, B, C, or D) whose underlined part is pronounced differently from the others.",
+        "section": null,
+        "types": [
+          "phonetics",
+          "mcq"
+        ],
+        "approxItems": 0,
+        "lineCount": 11,
+        "longLineCount": 0,
+        "hasPassageCue": false,
+        "sample": [
+          "A. breakfast B. brief C. bright D. climb",
+          "A. practice B. cupboard C. pray D. plan",
+          "A. express B. precious C. present D. celebrate",
+          "A. greet B. weave C. each D. head"
+        ]
+      },
+      {
+        "label": "Exercise 4: Choose the word (A, B, C, or D) whose main stress is different from the others in the group.",
+        "section": null,
+        "types": [
+          "phonetics",
+          "mcq",
+          "grammar_form"
+        ],
+        "approxItems": 1,
+        "lineCount": 12,
+        "longLineCount": 0,
+        "hasPassageCue": false,
+        "sample": [
+          "1 A. famous B. common C. staple D. avoid",
+          "A. occasion B. disagree C. tradition D. expensive",
+          "A. harmful B. maintain C. lifestyle D. freedom",
+          "A. healthy B. hurry C. online D. modern"
+        ]
+      },
+      {
+        "label": "Exercise 2: Choose the word/ phrase/ sentence (A, B, C, or D) that best fits the space in each sentences or best answers the question.",
+        "section": null,
+        "types": [
+          "mcq"
+        ],
+        "approxItems": 40,
+        "lineCount": 166,
+        "longLineCount": 3,
+        "hasPassageCue": false,
+        "sample": [
+          "Another programme takes families for a _______ adventure in the surrounding woods.",
+          "dogsled B. diet C. habit D. street",
+          "We need to find some other _______ of transportation.",
+          "means B. styles C. cuisines D. leisure"
+        ]
+      },
+      {
+        "label": "Exercise 4: Choose the letter A, B, C, or D to indicate the word(s) CLOSEST in meaning to the underlined word(s) in each of the following sentences:",
+        "section": null,
+        "types": [
+          "mcq"
+        ],
+        "approxItems": 3,
+        "lineCount": 14,
+        "longLineCount": 1,
+        "hasPassageCue": false,
+        "sample": [
+          "1. Online learning has become increasingly popular due to the pandemic.",
+          "A. Officine B. Face-to-face C. Virtual",
+          "2. My boss was furious when I accidentally deleted the important files.",
+          "D. Good"
+        ]
+      },
+      {
+        "label": "Exercise 5: Choose the letter A, B, C, or D to indicate the word(s) OPPOSITE in meaning to the underlined word(s) in each of the following sentences:",
+        "section": null,
+        "types": [
+          "mcq"
+        ],
+        "approxItems": 0,
+        "lineCount": 11,
+        "longLineCount": 1,
+        "hasPassageCue": false,
+        "sample": [
+          "My grandmother is fond of gardening and spends most of her time tending to her plants.",
+          "keen on B. into C. bored with D. a fan of",
+          "Walking is a common form of exercise that many people enjoy.",
+          "unhealthy B. unpopular C. unable D. unusual"
+        ]
+      }
+    ]
+  }
+]

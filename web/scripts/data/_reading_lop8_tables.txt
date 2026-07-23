@@ -1,0 +1,770 @@
+===== TABLE 1 (40 lines) =====
+1. A. mouse
+B. house
+C. would
+D. outdoors
+2. A. ear
+B. clear
+C. hear
+D. bear
+3. A. leisure
+B. eight
+C. celebrate
+D. penalty
+4. A. worked
+B. watched
+C. needed
+D. walked
+5. A. beat
+B. heat
+C. cheat
+D. break
+6. A. pictures
+B. watches
+C. buses
+D. brushes
+7. A. bracelet
+B. cake
+C. make
+D. hat
+8. A. comedy
+B. letter
+C. princess
+D. cinema
+9. A. sure
+B. sort
+C. soy
+D. soon
+10. A. homework
+B. mother
+C. open
+D. judo
+
+===== TABLE 2 (40 lines) =====
+1. A. relaxing
+B. traveling
+C. visiting
+D. listening
+2. A. dislike
+B. detest
+C. fancy
+D. prefer
+3. A. library
+B. museum
+C. melody
+D. favourite
+4. A. protection
+B. addicted
+C. computer
+D. goldfish
+5. A. volleyball
+B. weather
+C. winter
+D. vacation
+6. A. climbing
+B. canoeing
+C. cricket
+D. cycling
+7. A. computer
+B. protection
+C. volunteer
+D. museum
+8. A. adore
+B. enjoy
+C. prefer
+D. listen
+9. A. especially
+B. community
+C. activity
+D. Absolutely
+10. A. skateboard
+B. sticker
+C. adore
+D. leisure
+
+===== TABLE 3 (29 lines) =====
+A. fold B. kit C. improve
+6. Origami is the timeless Japanese art of _______.
+D. relax
+A. paper folding B. car making C. train spotting
+7. These exercises build _______ and increase stamina.
+D. bird watching
+A. leisure B. muscle C. puzzle
+8. He wasn't interested _______ growing flowers in the garden.
+D. snowboarding
+A. at B. for C. with
+9. Many people are fond _______ French cheese.
+D. in
+A. without B. of C. at
+10. Most people now enjoy shorter working hours and more _______.
+D. in
+A. message friends B. paper folding C. leisure time
+11. Nam _______ the Internet a lot to find useful information for his studying.
+D. muscle strength
+A. surfs B. types C. checks
+12. That dress looks so _______. I want to buy it. Do you think it is nice?
+D. look ups
+A. fancy B. funny C. crazy
+13. About favorite leisure activities, she and I share many things in _______.
+D. noisy
+A. similarity B. general C. common
+14. Visiting _______ increases my knowledge about cultures in the past.
+D. the same
+A. museums B. cinemas C. hometown
+D. City
+
+===== TABLE 4 (8 lines) =====
+A. up B. on C. of
+17. What do you think is the best leisure activity _______ teenagers?
+D. in
+A. for B. with C. between
+18. She loves going out _______ her friends.
+D. in
+A. for B. with C. between
+D. in
+
+===== TABLE 5 (14 lines) =====
+A. making B. reading C. seeing
+33. Do you fancy ______ around the West Lake with me this Sunday morning?
+D. doing
+A. going B. having C. staying
+34. I don’t like ______ up early in the winter days. I love ______ in bed late.
+D. moving
+A. getting / stay B. get / stay C. getting / staying
+35. Mai’s dad likes ______ spring rolls when her family has parties.
+D. get / staying
+A. doing B. making C. cooking
+36. It is very ______ to watch these movies. I think you should watch them.
+D. trying
+A. entertaining B. entertained C. entertainment
+D. entertain
+
+===== TABLE 6 (14 lines) =====
+A. likes B. detests C. enjoys
+2. You do leisure activities in your free time and they make you feel satisfied.
+D. love
+A. pleased B. dissatisfied C. tired
+3. You can enjoy great Vietnamese seafood in Ha Long Bay.
+D. bored
+A. dislike B. like C. hate
+4. Nam enjoys going to the cinema in his free time.
+D. detest
+A. leisure time B. favorite activity C. summer holiday
+5.I am certain that he will be satisfied with my DIY project.
+D. this weekend
+A. uncertain B. sure C. unreliable
+D. unsure
+
+===== TABLE 7 (19 lines) =====
+A. old B. big
+2. Too much texting can be harmful to our health.
+C. small
+D. giant
+A. harmless B. dangerous
+3. I fancy hanging out with my friends.
+C. unsafe
+D. poisonous
+A. love B. hate
+4. I like hanging out with the girl next door.
+C. like
+D. adore
+A. dislike B. love
+5. Playing soccer is good for your health.
+C. adore
+D. enjoy
+A. excellent B. bad
+C. beneficial
+D. nice
+
+===== TABLE 8 (17 lines) =====
+A. vast B. envious C. cultivable
+2. Farmers often leave the rice in the sun to _______.
+D. far
+A. damp B. wet C. warm
+3. They _______ the buffalo-drawn cart with hay.
+D. dry
+A. built B. hugged C. loaded
+4. Farmers always need extra help with the _______.
+D. milked
+A. accident B. harvest C. explosion
+5. I am _______ on visiting my grandparents' on the weekend.
+D. cattle
+A. fond B. keen C. interested
+6. My uncle raises a herd of _______ on his farm.
+D. bored
+A. cattle B. fruit C. countryside
+D. village
+
+===== TABLE 9 (11 lines) =====
+A. facilities B. hays
+12. We are looking forward to a bumper _______.
+C. fields
+D. collections
+A. lighthouse B. village
+13. I used to go _______ buffaloes when I was small.
+C. countryside
+D. crop
+A. herding B. swimming
+C. hiking
+D. cooking
+
+===== TABLE 10 (56 lines) =====
+A. Tet holiday B. Harvest time C. Daylight
+16. It is _______ in the city than it is in the country.
+D. Travelling time
+A. noisily B. more noisier C. noisier 17. The English test was _______ than I thought it would be.
+D. noisy
+A. the easier B. more easy C. easiest 18. English is thought to be _______ than Math.
+D. easier
+A. harder B. the more hard C. hardest 19. Her office is _______ away than mine.
+D. the hardest
+A. father B. more far C. farther 20. The streets in cities are _______ than those in the countryside.
+D. farer
+A. crowded B. more crowded C. crowdeder
+21. City drivers have to drive _______ than country ones.
+D. less crowded
+A. more careful B. more careless
+22. My house is _______ hers.
+C. more carefully
+D. more carelessly
+A. cheap than B. cheaper
+23. Tom is _______ than David.
+C. more cheap than
+D. cheaper than
+A. handsome
+B. the more handsome
+C. more handsome
+24. He did the test _______ I did.
+D. the most handsome
+A. as bad as B. badder than
+25. My new sofa is _______ than the old one.
+C. more badly than
+D. worse than
+A. more comfortable
+B. comfortably
+C. more comfortabler
+26. A boat is _______ than a plane.
+D. comfortable
+A. slower B. slowest
+27. My sister dances _______ than me.
+C. more slow
+D. more slower
+A. gooder B. weller
+28. This road is _______ than that road.
+C. better
+D. more good
+A. narrower B. narrow
+29. He drives _______ his brother.
+C. the most narrow
+D. more narrower
+A. more careful than
+B. more carefully
+C. more carefully than
+30. Things in the city are _______ than in the country.
+D. as careful as
+A. moderner B. more moderner
+C. modern
+D. more modern
+
+===== TABLE 11 (8 lines) =====
+A. boring B. interesting C. convenient
+4. That village is very peaceful, so we like to live there.
+D. beautiful
+A. noisy B. quiet C. boring
+5. I don’t like living in the country.
+D. skillful
+A. dislike B. hate C. enjoy
+D. A and B are correct
+
+===== TABLE 12 (14 lines) =====
+A. noisy B. exciting C. modern
+2. City people seem to react more quickly to changes than country people.
+D. hard
+A. noisy B. slow C. slowly
+3. A buffalo ploughs better than a horse.
+D. fast
+A. well B. bad C. badly
+4. This exercise is more difficult than that one.
+D. worse
+A. easy B. boring C. good
+5. Life in the city is more convenient and exciting than life in the country.
+D. easily
+A. inconvenient B. more inconvenient C. slow
+D. A and B are correct
+
+===== TABLE 13 (8 lines) =====
+A. sharing B. doing C. making
+10. She wants to _______ the club to connect with new friends.
+D. discussing
+A. cook B. browse C. join
+11. We _______ the school website to find the school activities.
+D. log
+A. focus B. thank C. deny
+D. browse
+
+===== TABLE 14 (26 lines) =====
+A. and B. or C. but
+15. Would you like to drink milk tea_______ coffee?
+D. so
+A. or B. otherwise C. so
+16. I have never joined in a carnival, _______ I am very curious about it.
+D. therefore
+A. and B. or C. but
+17. My mother is occupied in her job, _______ she tries to make time for me.
+D. so
+A. and B. or C. but
+18. I am learning English _______ I want to get a good job after school.
+D. so
+A. but B. because C. so
+19. Do you want to join us _______ do you want to leave now?
+D. therefore
+A. and B. or C. but
+20. I love cats, _______ my mother doesn’t allow me to have one.
+D. so
+A. and B. or C. but
+21. Mary wants to go abroad, _______ she saves money from now.
+D. so
+A. and B. or C. but
+22. They used to be friends, _______ now they are not.
+D. so
+A. and B. or C. but
+D. so
+
+===== TABLE 15 (1 lines) =====
+A. and B. or C. but D.so
+
+===== TABLE 16 (34 lines) =====
+A. costumes B. livestock C. highlands
+3. Xoe and Sap are _____ of Thai ethnic minority people.
+D. staircases
+A. modern dances B. jazz dances C. lion dances
+4. We spent hours in _______ house to talk with local people.
+D. folk dances
+A. terraced B. close C. communal
+5. She wore a _______ costume of bright pink silk.
+D. awesome
+A. peaceful B. ethnic C. musical
+6. You can visit Gia Lai to enjoy the gong _______.
+D. traditional
+A. special B. different C. communal 7. Some _______ farmers keep ducks and geese in their farms.
+D. festival
+A. feature B. post C. soil
+8. We can _______ the sea from here.
+D. poultry
+A. raise B. overlook C. enrich
+9. Viet Nam has 54 ethnic _______.
+D. weave
+A. groups B. levels C. turkeys
+10. The Nung mostly live in _______ though they also live in earthen houses.
+D. fields
+A. bamboo flute B. wooden statue C. stilt houses
+11. The Lunar New Year festival is important _____ the Kinh.
+D. travel brochure
+A. to B. with C. for
+12. Sa Pa is famous for the _______ located in the mountainous area.
+D. of
+A. stilt houses B. heritage site C. terraced fields
+13. Lahu, Mang, and Brau are ________ minorities in Viet Nam.
+D. wooden statue
+A. traditional B. ethnic C. awesome
+D. natural
+
+===== TABLE 17 (32 lines) =====
+A. at B. for C. to
+16. The ethnic Khmer live in the _____ of Vietnam.
+D. on
+A. Lowlands B. Highlands C. Mekong Delta
+17. I’ve got ______ cakes to give away. Would you like one?
+D. Red River Delta
+A. a little B. a few C. much
+18. I’ll make a tuna _______ for you.
+D. many
+A. sandwiches B. sandwichs C. sandwiches
+19. Vietnamese people are used to using _______ when having meals.
+D. sandwich
+A. ehopstick B. chopsticks C. ehopstickes
+20. There's ______ milk left in the fridge. It should be enough for our coffee.
+D. chopstiekces
+A. a little B. little C. a few
+D. few
+21. How ______ ethnic groups in Viet Nam do you know?
+A. much B. often C. many
+22. You can get ______ information if you go to the museum with me.
+D. tall
+A. a lot of B. many C. a
+23. In our area, ______ not much land for growing crops.
+D. any
+A. there are B. it has C. it is
+24. How_______ milk is there in the carton?
+D. there is
+A. many B. much C. a lot of
+25. Do you have _______ about ethnic minority groups in Viet Nam?
+D. few
+A. a few books B. a lot of books C. any books
+D. any book
+
+===== TABLE 18 (26 lines) =====
+A. Do-music B. Do-musics C. Does – music
+28. ______ there 54 ethnic groups in Viet Nam?
+D. Is – music
+A. Are B. Is C. Do
+29. ______ stilt houses stand on wood, bamboo, and _________?
+D. Does
+A. Do-leaf B. Does - leaves C. Does – leaf
+30. ______ do you usually eat lunch? - At noon.
+D. Do – leaves
+A. Which B. When C. What
+31. ______ do you wash clothes? - Every week.
+D. How
+A. Which B. Who C. What
+32. ______ does your father work? - At City Hall.
+D. How often
+A. Where B. Who C. What
+33. ______ usually gets up the earliest in your family?
+D. How
+A. Which B. Who C. What
+34. ______ do you think of this hotel? - It's pretty good.
+D. How
+A. Which B. Why C. What
+35. ______ do you work at that company? - Because it’s near my house.
+D. How
+A. Which B. Who C. Why
+D. Which
+
+===== TABLE 19 (41 lines) =====
+A. How long B. How far C. How often
+38. ______ can I buy some milk? - At the supermarket.
+D. How much
+A. Which B. Who C. Where
+39. ______ much do you weigh?
+D. How
+A. Which B. Who C. What
+40. ______ hat is this? - It's my brother's.
+D. How
+A. Which B. Whose C. What
+41. ______ do you like your tea? - I like it with cream and sugar.
+D. How
+A. Which B. Who C. What
+42. ______ picture do you prefer, this one or that one?
+D. How
+A. Which B. Who C. What
+43. ______ is that woman? - I think she is a teacher.
+D. How
+A. Which B. Who C. When
+44. Do you know ______ language is spoken in Kenya?
+D. How
+A. which B. who C. what
+45. ______ is your blood type?
+D. how
+A. Which B. Who C. What
+46. ______ do you play tennis? - For exercise.
+D. How
+A. Which B. Who C. Why
+47. ______ can I park my car? - Over there.
+D. How
+A. Where B. Who C. What
+48. ______ tall are you?
+D. How
+A. Which B. Who C. What
+49. ______ do you expect me to do?
+D. How
+A. Which B. Who C. What
+50. ______ does it cost to visit this bamboo village?
+D. How
+A. How many B. How much C. How often
+D. How
+
+===== TABLE 20 (26 lines) =====
+A. maintain B. cook C. decorate
+2. We visit pagodas to bow to Buddha and ______ for a lucky new year.
+D. hang
+A. pray B. build C. place
+3. The Japanese perform ________ during New Year celebrations.
+D. dance
+A. lion dance B. bamboo dance C. flower village
+4. People in Hanoi ________ to give Ong Cong Ong Tao a ride to Heaven.
+D. festival goer
+A. release lanterns B. unicorn dance C. release carps
+5. Many people visit ________ to take pictures with the blooming flowers.
+D. bad spirit
+A. Buddhist temples B. flower villages C. ornamental tree
+6. Her acrobatics were greeted with loud ________.
+D. kumquat tree
+A. applause B. offering C. longevity
+7. The ________ opened with a fanfare of trumpets.
+D. festival
+A. monk B. lantern C. ceremony
+8. Thousands of ________ come here every year.
+D. decorative items
+A. flower village B. lion dance C. bamboo dance
+9. We have a ________ every New Year's Day.
+D. festival goer
+A. family reunion B. martial arts C. chase away
+D. table manners
+
+===== TABLE 21 (14 lines) =====
+A. take up B. take after C. take off
+20. They ________ presents under the Christmas trees on Christmas day.
+D. take place
+A. pray B. maintain C. place
+21. I put a bag of red beans under my pillow to ________ away bad luck.
+D. release
+A. give B. bring C. admire
+22. Organising the festivals is one way for us to ________ our traditions.
+D. chase
+A. break B. maintain C. Release
+23. Kung Fu and Karate are my favorite ________.
+D. pray
+A. table manners B. martial arts C. flower village
+D. lion dance
+
+===== TABLE 22 (5 lines) =====
+A. try B. follow C. obey
+31. You are under no _________ to buy any stuff here.
+D. take
+A. oblige B. obliged C. obligatory
+D. obligation
+
+===== TABLE 23 (53 lines) =====
+A. ways B. styles C. aspects
+36. Is there ________ boat race at the festival?
+D. manners
+A. an B. the C. a
+37. It takes more than ________ hour to drive to Can Gio.
+D. Ø
+A. the B. Ø C. a
+38. Mike and Thomas come from ________ Canada.
+D. an
+A. Ø B. a C. the
+39. There isn't ________ airport near where we live.
+D. an
+A. the B. Ø C. an
+40. ________ lion dance is called shishi-mai in Japan.
+D. a
+A. A B. The C. Ø
+41. Can you recommend me ________ good English teacher?
+D. An
+A. a B. an C. the
+42. Is he going on _______ business next week?
+D. Ø
+A. an B. a C. the
+43. We might be able to catch _______ last train if we hurried.
+D. Ø
+A. a B. an C. the
+44. _______ used razor blade is useless.
+D. x
+A. The B. A C. An
+45. We live at _______ third house from the church.
+D. X
+A. the B. a C. an
+46. My aunt has _______ interesting novel.
+D. x
+A. the B. a C. an
+47. It was _______ best film I had ever read.
+D. x
+A. the B. an C. a
+48. A video lab is _______ useful means for language learning.
+D. x
+A. the B. an C. a
+49. Today is ________ fine day. Let's go to ________ park.
+D. x
+A. Ø – Ø B. an – the C. a - the
+50. She lives in ________ village on ________ east coast.
+D. the - a
+A. a – an B. a – the C. the -an
+51. ________ man over there is ________ Australian.
+D. the – a
+A. The – a B. The – an C. A – an
+52. I would like to live by _______ sea
+D. A - Ø
+A. the B. a C. an
+D. x
+
+===== TABLE 24 (38 lines) =====
+A. a B. an C. the
+54. There are billions of stars in _______ space.
+D. x
+A. a B. an C. x
+55. He tried to park his car but _______ space wasn't big enough.
+D. the
+A. the B. a C. an
+56. We often watch _______ television
+D. x
+A. the B. a C. an
+57. Can you turn off _______ television, please?
+D. x
+A. the B. a C. an
+58. We had _______ dinner in a restaurant.
+D. x
+A. a B. an C. x
+59. We had _______ meal in a restaurant.
+D. the
+A. a B. an C. the
+60. Thank you. That was _______ very nice lunch.
+D. x
+A. a B. an C. the
+61. Where can _______ people buy everything they need?
+D. x
+A. the B. a C. an
+62. Her parents are now working in _______ Europe.
+D. x
+A. the B. a C. an
+63. He majors in _______ English.
+D. x
+A. a B. an C. the
+64. Mark Twain, _______ American writer, wrote “Life on the Mississippi River”.
+D. x
+A. an B. a C. the
+65. Paris is splendid by _______ night.
+D. x
+A. a B. an C. the
+D. x
+
+===== TABLE 25 (17 lines) =====
+A. tribes B. mushers C. waiters
+6. They share a(n) _______ interest in photography.
+D. cuisines
+A. common B. nomadic C. different
+7. We enjoyed a(n) _______ picnic lunch on the lawn.
+D. independent
+A. different B. alive C. leisurely
+8. I don’t eat much for lunch —just a(n) _______ snack.
+D. unique
+A. light B. nomadic C. best-known
+9. The Aborigines are the _______ inhabitants of Australia.
+D. balanced
+A. unusual B. unique C. traditional
+10. The city _______ seems to suit her — she's certainly looking very well.
+D. native
+A. practice B. hurry C. lifestyle
+D. title
+
+===== TABLE 26 (11 lines) =====
+A. title B. diet C. waiter
+12. What do you often do in your _______ time?
+D. leisure
+A. hurry B. title C. dogsled
+13. People should avoid the _______ of dumping waste into the sea.
+D. leisure
+A. cuisine B. craft C. practice
+14. They learned the _______ of weaving.
+D. mean
+A. waiter B. igloo C. craft
+D. tribe
+
+===== TABLE 27 (11 lines) =====
+A. alive B. leisurely C. nomadic
+16. I can recognize your handwriting anywhere — it's _______ .
+D. common
+A. alive B. traditional C. unique
+17. The novel was written by the _______ local writer.
+D. light
+A. balanced B. best-known C. leisurely
+18. A(n) _______ diet is essential for healthy growth.
+D. unique
+A. common B. balanced C. light
+D. different
+
+===== TABLE 28 (23 lines) =====
+A. Face-to-face B. Online C. Society
+23. Children are _______ on their parents for care and support.
+D. Sore
+A. dependent B. depend C. independence
+24. The children had fun _______ crafts at the art class.
+D. dependence
+A. making B. interacting C. serving
+25. The car pulled _______ the roadside.
+D. maintaining
+A. in B. to C. at
+26. They had no means _______ communication.
+D. on
+A. to B. of C. against
+27. He became internationally famous _______ his novels.
+D. at
+A. on B. for C. at
+28. Why don 't you come _______ to Nha Trang in the summer?
+D. up
+A. form B. to C. over
+29. Many of her pictures hang _______ the National Gallery.
+D. at
+A. in B. on C. of
+D. for
+
+===== TABLE 29 (20 lines) =====
+A. will need B. need C. would need
+31. The patient will not recover unless he _______ an operation.
+D. needed
+A. had undergone B. would undergo C. undergoes
+32. If it _______ convenient, let’s go out for dinner tonight.
+D. was undergoing
+A. be B. is C. was
+33. If we meet at 9:00, we ___________ plenty of time to talk.
+D. were
+A. have B. is having C. will have
+34. If you learn online, you will find it difficult ___________.
+D. had
+A. concentrated B. concentrating C. concentrate
+35. Linh and Quan have similar ___________ about online learning.
+D. to concentrate
+A. problem B. ideas C. idea
+36. What do people do to ___________ traditional lifestyles?
+D. ideal
+A. maintain B. stay C. carry
+D. serve
+
+===== TABLE 30 (20 lines) =====
+A. bowing B. saying C. practicing
+38. What is the ___________ food in your area? - It’s rice.
+D. telling
+A. core B. basic C. staple
+39. Many students like studying online because it’s ___________.
+D. key
+A. harmful B. dependent C. convenient
+40. India has a ___________ range of cuisines.
+D. time-consuming
+A. deep B. large C. big
+41. Sushi comes from ___________.
+D. vast
+A. The U.S. B. Japan C. Viet Nam
+42. The dogsled is still used as a ___________ of transport in Alaska today.
+D. Australia
+A. mean B. way C. means
+43. The traditional craft of the villagers is ___________ bamboo baskets.
+D. method
+A. weaving B. knitting C. carving
+D. moulding
+
+===== TABLE 31 (23 lines) =====
+A. Shook B. Shakes C. Shaking
+47. Buying street food is a common ___________ in our country.
+D. Shake
+A. kind B. practice C. mode
+48 Are there any ___________ of modem technology on lifestyles?
+D. type
+A. ways B. sides C. impact
+49. Will online learning ___________ our IT skills? - Yes, it will.
+D. impacts
+A. improve B. improves C. improving
+50. If I have enough money, I ____________ a new smartphone.
+D. improved
+A. will buy B. buy C. to buy
+51. I ____________ the patty tomorrow.
+D. buying
+A. attend B. attends C. will attend
+52. They ____________hiking next weekend.
+D. attending
+A. goes B. going C. went
+53. If it rains tomorrow, I ____________ indoors and read a book.
+D. won't go
+A. stay B. stays C. stayed
+D. will stay
+
+===== TABLE 32 (8 lines) =====
+A. Officine B. Face-to-face C. Virtual
+2. My boss was furious when I accidentally deleted the important files.
+D. Good
+A. extremely sad B. extremely happy C. extremely well
+3. Our actions can have a significant impact on the environment.
+D. extremely angry
+A. effect B. ignore C. weakness
+D. donation

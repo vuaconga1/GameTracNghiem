@@ -5,7 +5,7 @@ import {
   type CourseGameLessonDescriptor,
 } from '@/lib/courseGameLesson';
 import { prisma } from '@/lib/db';
-import { isGameEnabledForCourse } from '@/lib/gameCatalog';
+import { isGameVisibleForCourse } from '@/lib/skillCatalog';
 
 export type { CourseGameLessonDescriptor };
 
@@ -17,6 +17,8 @@ export async function loadCourseGameLesson(
     where: { id: courseId, active: true, archivedAt: null },
     select: {
       enabledGames: true,
+      gameSkills: true,
+      enabledSkills: true,
       ebookFileId: true,
       gameLessons: {
         where: { gameKey },
@@ -26,7 +28,17 @@ export async function loadCourseGameLesson(
     },
   });
 
-  if (!course || !isGameEnabledForCourse(course.enabledGames, gameKey)) return null;
+  if (
+    !course ||
+    !isGameVisibleForCourse(
+      course.gameSkills,
+      course.enabledSkills,
+      gameKey,
+      course.enabledGames
+    )
+  ) {
+    return null;
+  }
 
   const lesson = course.gameLessons[0];
   if (!course.ebookFileId || !lesson) return null;

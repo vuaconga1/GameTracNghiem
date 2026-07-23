@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 500" width="850" height="500" role="img" aria-label="Unit 2: Time And Daily Routines">
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFE082"/><stop offset="100%" stop-color="#FFF9C4"/></linearGradient></defs>
+    <rect width="850" height="500" fill="url(#sky)"/>
+    <rect x="0" y="280" width="850" height="220" fill="#D7CCC8"/>
+    <rect x="550" y="80" width="120" height="100" rx="4" fill="#81D4FA" stroke="#1A1A2E" stroke-width="2"/>
+    <rect x="560" y="90" width="100" height="80" fill="#B3E5FC"/>
+    <circle cx="610" cy="50" r="30" fill="#FFD54F" stroke="#1A1A2E" stroke-width="2"/>
+  <circle cx="610" cy="50" r="22" fill="#FFEB3B" opacity="0.6"/>
+    <g transform="translate(350,280)">
+    <rect x="-70" y="0" width="140" height="35" rx="6" fill="#8D6E63" stroke="#1A1A2E" stroke-width="2"/>
+    <rect x="-65" y="-25" width="130" height="30" rx="8" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+    <rect x="-60" y="-20" width="40" height="20" rx="4" fill="#BBDEFB" stroke="#1A1A2E" stroke-width="1"/>
+    <rect x="15" y="-20" width="50" height="20" rx="4" fill="#FFCDD2" stroke="#1A1A2E" stroke-width="1"/>
+  </g>
+    <g transform="translate(350,265)">
+      <circle cx="0" cy="-5" r="26" fill="#FFCC80" stroke="#1A1A2E" stroke-width="2"/>
+      <path d="M-24 0 Q-20 -30 0 -34 Q20 -30 24 0" fill="#3E2723" stroke="#1A1A2E" stroke-width="1.5"/>
+      <ellipse cx="-10" cy="-5" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="-11" cy="-3" r="5.5" fill="#1A1A2E"/>
+  <circle cx="-12" cy="-6" r="2" fill="#FFFFFF"/><ellipse cx="10" cy="-5" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="11" cy="-3" r="5.5" fill="#1A1A2E"/>
+  <circle cx="12" cy="-6" r="2" fill="#FFFFFF"/>
+      <ellipse cx="-18" cy="8" rx="8" ry="5" fill="#FFCDD2" opacity="0.5"/>
+      <path d="M-30 -15 Q-45 -35 -35 -50" fill="none" stroke="#FFCC80" stroke-width="10" stroke-linecap="round"/>
+      <path d="M30 -15 Q45 -35 35 -50" fill="none" stroke="#FFCC80" stroke-width="10" stroke-linecap="round"/>
+      <ellipse cx="0" cy="18" rx="14" ry="8" fill="#FFCDD2" stroke="#1A1A2E" stroke-width="1"/>
+    </g>
+    <g transform="translate(520,310)">
+    <circle cx="0" cy="0" r="22" fill="#42A5F5" stroke="#1A1A2E" stroke-width="2"/>
+    <circle cx="0" cy="0" r="16" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+    <line x1="0" y1="0" x2="0" y2="-10" stroke="#1A1A2E" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="0" x2="8" y2="4" stroke="#E53935" stroke-width="2" stroke-linecap="round"/>
+    <rect x="-4" y="-28" width="8" height="8" rx="2" fill="#FFD54F" stroke="#1A1A2E" stroke-width="1"/>
+    <rect x="-4" y="20" width="8" height="8" rx="2" fill="#FFD54F" stroke="#1A1A2E" stroke-width="1"/>
+  </g>
+  <rect x="28" y="28" width="118" height="42" rx="21" fill="rgba(255,255,255,0.92)" stroke="#1A1A2E" stroke-width="1"/>
+  <text x="87" y="56" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#1565C0">Unit 2</text>
+</svg>

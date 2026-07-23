@@ -28,6 +28,23 @@ describe('admin payloadSchemas', () => {
     ).toThrow();
   });
 
+  it('parses quiz skill and exercise fields', () => {
+    const payload = parseGamePayload('quiz', {
+      type: 'fill_blank',
+      skill: 'reading',
+      exercise: 'Exercise 2',
+      question: 'She ___ happy.',
+      answer: 'is',
+    });
+    expect(payload).toMatchObject({
+      type: 'fill_blank',
+      skill: 'reading',
+      exercise: 'Exercise 2',
+      question: 'She ___ happy.',
+      answer: 'is',
+    });
+  });
+
   it('parses look_and_write exercise', () => {
     const payload = lookAndWritePayloadSchema.parse({
       title: 'Animals',

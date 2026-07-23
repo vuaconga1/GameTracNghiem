@@ -69,9 +69,24 @@ export function sheetColumnsForGame(game: string): SheetColumn[] {
         options: [
           { value: 'multiple_choice', label: 'Trắc nghiệm' },
           { value: 'fill_blank', label: 'Điền từ' },
-          { value: 'word_form', label: 'Word form' },
+          { value: 'word_form', label: 'Từ loại' },
         ],
       },
+      {
+        key: 'skill',
+        label: 'Kỹ năng',
+        width: '120px',
+        kind: 'select',
+        source: 'payload',
+        options: [
+          { value: 'listening', label: 'Nghe' },
+          { value: 'reading', label: 'Đọc' },
+          { value: 'speaking', label: 'Nói' },
+          { value: 'writing', label: 'Viết' },
+          { value: 'vocabulary', label: 'Từ vựng' },
+        ],
+      },
+      { key: 'exercise', label: 'Exercise', width: '120px', source: 'payload', placeholder: 'Exercise 2' },
       { key: 'question', label: 'Câu hỏi', source: 'payload', kind: 'textarea' },
       {
         key: 'options',
@@ -217,6 +232,8 @@ export function valuesToPayload(
     return {
       type,
       typeLabel: '',
+      skill: String(values.skill || 'vocabulary'),
+      exercise: String(values.exercise || '').trim(),
       question: String(values.question || ''),
       answer,
       options: pipeSplit(String(values.options || '')),
@@ -262,7 +279,7 @@ export function valuesToPayload(
 
 export function defaultItemForGame(game: string): Record<string, string | boolean | number> {
   if (game === 'choose_and_circle') {
-    return { order: 1, image: '', optionA: '', optionB: '', answer: '' };
+    return { order: 1, image: '', prompt: '', optionA: '', optionB: '', answer: '' };
   }
   if (game === 'read_and_complete') {
     return { order: 1, sentence: '', image: '', answer: '' };
@@ -289,6 +306,7 @@ export function normalizeItemsFromPayload(
       return {
         order: index + 1,
         image: String(row.image || ''),
+        prompt: String(row.prompt || ''),
         optionA: String(options[0] || ''),
         optionB: String(options[1] || ''),
         answer: String(row.answer || ''),
@@ -323,6 +341,7 @@ export function serializeItemsForPayload(
       return {
         order: index + 1,
         image: String(item.image || ''),
+        prompt: String(item.prompt || ''),
         options: [String(item.optionA || ''), String(item.optionB || '')],
         answer: String(item.answer || ''),
       };
@@ -367,7 +386,10 @@ export function emptySheetRow(
   externalId = ''
 ): SheetRowState {
   const values = payloadToValues(game, {});
-  if (game === 'quiz') values.type = 'multiple_choice';
+  if (game === 'quiz') {
+    values.type = 'multiple_choice';
+    values.skill = 'vocabulary';
+  }
   if (game === 'pronunciation') values.mode = 'phoneme';
   return {
     key: `temp-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
@@ -431,6 +453,7 @@ export function questionToSheetRow(
 export function itemColumnsForGame(game: string): SheetColumn[] {
   if (game === 'choose_and_circle') {
     return [
+      { key: 'prompt', label: 'Câu / đề', source: 'payload' },
       { key: 'image', label: 'Link hình', source: 'payload' },
       { key: 'optionA', label: 'Lựa chọn A', source: 'payload' },
       { key: 'optionB', label: 'Lựa chọn B', source: 'payload' },

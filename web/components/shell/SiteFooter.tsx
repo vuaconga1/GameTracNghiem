@@ -51,43 +51,47 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="footer-contact">
+        <div className="footer-contact footer-contact-main">
           <h3>
             <i className="fas fa-map-marker-alt" /> Thông tin liên hệ
           </h3>
-          <div className="footer-contact-grid">
-            <div className="footer-contact-card">
-              <div className="card-label">
-                <i className="fas fa-map-marker-alt" /> Địa chỉ
-              </div>
-              <p>292B Nơ Trang Long, P.12, Bình Thạnh, TP.HCM</p>
+          <div className="footer-contact-card">
+            <div className="card-label">
+              <i className="fas fa-map-marker-alt" /> Địa chỉ
             </div>
-            <div className="footer-contact-card">
-              <div className="card-label">
-                <i className="fas fa-phone" /> Điện thoại
-              </div>
-              <p>
-                <a href="tel:0345969388">0345 969 388</a>
-              </p>
+            <p>292B Nơ Trang Long, P.12, Bình Thạnh, TP.HCM</p>
+          </div>
+          <div className="footer-contact-card">
+            <div className="card-label">
+              <i className="fas fa-envelope" /> Email
             </div>
-            <div className="footer-contact-card">
-              <div className="card-label">
-                <i className="fas fa-envelope" /> Email
-              </div>
-              <p>
-                <a href="mailto:officemanager@wewin.edu.vn">officemanager@wewin.edu.vn</a>
-              </p>
+            <p>
+              <a href="mailto:officemanager@wewin.edu.vn">officemanager@wewin.edu.vn</a>
+            </p>
+          </div>
+        </div>
+
+        <div className="footer-contact footer-contact-extra">
+          <h3 className="footer-contact-extra-title" aria-hidden="true">
+            &nbsp;
+          </h3>
+          <div className="footer-contact-card">
+            <div className="card-label">
+              <i className="fas fa-phone" /> Điện thoại
             </div>
-            <div className="footer-contact-card">
-              <div className="card-label">
-                <i className="fas fa-globe" /> Website
-              </div>
-              <p>
-                <a href="https://wewin.edu.vn" target="_blank" rel="noopener noreferrer">
-                  wewin.edu.vn
-                </a>
-              </p>
+            <p>
+              <a href="tel:0345969388">0345 969 388</a>
+            </p>
+          </div>
+          <div className="footer-contact-card">
+            <div className="card-label">
+              <i className="fas fa-globe" /> Website
             </div>
+            <p>
+              <a href="https://wewin.edu.vn" target="_blank" rel="noopener noreferrer">
+                wewin.edu.vn
+              </a>
+            </p>
           </div>
         </div>
       </div>
