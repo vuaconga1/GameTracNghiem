@@ -745,7 +745,10 @@ export function QuizGame({ courseId }: Props) {
                       'Chính xác!'
                     ) : (
                       <>
-                        Chưa đúng. Đáp án: <strong>{currentQuestion.answer}</strong>
+                        Chưa đúng. Đáp án:{' '}
+                        <strong
+                          dangerouslySetInnerHTML={{ __html: currentQuestion.answer }}
+                        />
                       </>
                     )}
                     {typeof answerResult.points === 'number' ? (
@@ -791,7 +794,7 @@ export function QuizGame({ courseId }: Props) {
                         onClick={() => void handleOptionClick(option)}
                       >
                         <span className="opt-letter">{OPT_LETTERS[optIndex] || optIndex + 1}</span>
-                        <span>{option}</span>
+                        <span dangerouslySetInnerHTML={{ __html: option }} />
                       </button>
                     );
                   })}

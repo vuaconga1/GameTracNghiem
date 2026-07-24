@@ -1,5 +1,9 @@
+function stripQuizHtml(value: string): string {
+  return String(value || '').replace(/<[^>]+>/g, '');
+}
+
 function normalizeAnswer(value: string): string {
-  return String(value || '')
+  return stripQuizHtml(value)
     .trim()
     .toLowerCase()
     .replace(/\s+/g, ' ');

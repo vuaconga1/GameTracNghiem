@@ -970,3 +970,177 @@
   color: var(--admin-text);
   font: inherit;
 }
+
+/* Speaking session detail — chat review */
+.admin-speaking-detail {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-speaking-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.admin-speaking-meta-grid .label {
+  color: var(--admin-muted);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.admin-speaking-meta-grid .value {
+  margin-top: 0.25rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.admin-speaking-meta-grid .muted {
+  color: var(--admin-muted);
+  font-weight: 600;
+}
+
+.admin-speaking-audio-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.admin-speaking-audio-head strong {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.admin-speaking-player {
+  display: block;
+  width: 100%;
+  max-width: 640px;
+}
+
+.admin-speaking-audio-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: 0.85rem;
+}
+
+.admin-speaking-chat-wrap {
+  padding: 0;
+  overflow: hidden;
+}
+
+.admin-speaking-chat-frame.speaking-chat-frame {
+  display: flex;
+  flex-direction: column;
+  min-height: 360px;
+  max-height: min(70vh, 720px);
+  border: none;
+  border-radius: var(--admin-radius);
+  background: linear-gradient(180deg, #fbfcff 0%, #f4f6fb 100%);
+}
+
+.admin-speaking-detail .speaking-chat-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #fff;
+  border-bottom: 1px solid var(--admin-border);
+  color: var(--admin-text);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.admin-speaking-detail .speaking-chat-toolbar i {
+  margin-right: 6px;
+  color: var(--admin-primary);
+}
+
+.admin-speaking-detail .speaking-chat-count {
+  font-weight: 600;
+  color: var(--admin-muted);
+  font-size: 0.85rem;
+}
+
+.admin-speaking-detail .speaking-chat {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-speaking-detail .speaking-chat-empty {
+  margin: auto;
+  text-align: center;
+  color: var(--admin-muted);
+  padding: 28px 16px;
+}
+
+.admin-speaking-detail .speaking-bubble {
+  max-width: min(88%, 560px);
+  padding: 10px 12px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-speaking-detail .speaking-bubble-role {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+
+.admin-speaking-detail .speaking-bubble-time {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  opacity: 0.75;
+}
+
+.admin-speaking-detail .speaking-bubble-text {
+  margin: 0;
+  white-space: pre-wrap;
+  line-height: 1.5;
+  word-break: break-word;
+  font-size: 0.98rem;
+}
+
+.admin-speaking-detail .speaking-bubble--ai {
+  align-self: flex-start;
+  background: #fff;
+  border: 1px solid #e2e7f2;
+  border-bottom-left-radius: 6px;
+  color: #1c2740;
+}
+
+.admin-speaking-detail .speaking-bubble--ai .speaking-bubble-role {
+  color: #3d4f8f;
+}
+
+.admin-speaking-detail .speaking-bubble--user {
+  align-self: flex-end;
+  background: #0f2744;
+  color: #fff;
+  border-bottom-right-radius: 6px;
+}
+
+.admin-speaking-detail .speaking-bubble--user .speaking-bubble-role {
+  color: #c8d4f0;
+}

@@ -13,6 +13,7 @@ const NAV = [
   { href: '/admin/class-levels', label: 'Cấp độ', icon: 'fas fa-layer-group' },
   { href: '/admin/courses', label: 'Khóa học', icon: 'fas fa-book' },
   { href: '/admin/ebooks', label: 'Sách bài tập', icon: 'fas fa-book-open' },
+  { href: '/admin/speaking', label: 'AI Speaking', icon: 'fas fa-microphone' },
   { href: '/admin/users', label: 'Tài khoản', icon: 'fas fa-users' },
 ];
 

@@ -245,7 +245,22 @@ export function CourseDetailContent({
                       {selectedSkillMeta.label}
                     </div>
                   ) : null}
-                  {activities.length === 0 ? (
+                  {selectedSkill === 'speaking' ? (
+                    <Link
+                      href={`/speaking/${data.course.id}`}
+                      className="activity-card"
+                      data-activity="ai-speaking"
+                    >
+                      <div className="activity-left">
+                        <div className="activity-icon skill-speaking">
+                          <i className="fas fa-comments" aria-hidden="true" />
+                        </div>
+                        <span className="activity-label">AI Speaking (1 lượt/ngày)</span>
+                      </div>
+                      <span className="activity-progress">Luyện nói</span>
+                    </Link>
+                  ) : null}
+                  {activities.length === 0 && selectedSkill !== 'speaking' ? (
                     <div className="ebook-empty" style={{ gridColumn: '1 / -1' }}>
                       Chưa có bài tập cho kỹ năng này.
                     </div>
