@@ -7,17 +7,21 @@ datasource db {
 }
 
 model User {
-  id               String            @id @default(cuid())
-  username         String            @unique
-  passwordHash     String
-  displayName      String
-  role             String            @default("student")
-  createdAt        DateTime          @default(now())
-  archivedAt       DateTime?
-  progress         GameProgress[]
-  scoreLogs        ScoreLog[]
-  experience       PlayerExperience?
-  experienceGrants ExperienceGrant[]
+  id                     String                      @id @default(cuid())
+  username               String                      @unique
+  passwordHash           String
+  displayName            String
+  role                   String                      @default("student")
+  createdAt              DateTime                    @default(now())
+  archivedAt             DateTime?
+  progress               GameProgress[]
+  scoreLogs              ScoreLog[]
+  experience             PlayerExperience?
+  experienceGrants       ExperienceGrant[]
+  speakingSessions       SpeakingSession[]
+  dailySpeakingUsages    DailySpeakingUsage[]
+  speakingUsageReleases  DailySpeakingUsageRelease[] @relation("SpeakingReleaseStudent")
+  speakingReleasesAdmin  DailySpeakingUsageRelease[] @relation("SpeakingReleaseAdmin")
 }
 
 model ClassLevel {
@@ -72,6 +76,7 @@ model Course {
   questions          Question[]
   gameLessons        CourseGameLesson[]
   skillLessons       CourseSkillLesson[]
+  speakingTopics     SpeakingTopic[]
 
   @@index([levelName])
   @@index([name])
@@ -183,4 +188,95 @@ model ExperienceGrant {
   @@unique([userId, playSessionId])
   @@index([userId, createdAt])
   @@index([playSessionId])
+}
+
+/**
+ * AI Speaking practice topic bound to a course.
+ * Pilot may seed lớp 8 only; schema applies to every course.
+ */
+model SpeakingTopic {
+  id              String            @id @default(cuid())
+  courseId        String
+  course          Course            @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title           String
+  instructions    String
+  durationSeconds Int               @default(300)
+  active          Boolean           @default(true)
+  archivedAt      DateTime?
+  sortOrder       Int               @default(0)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  sessions        SpeakingSession[]
+
+  @@index([courseId, active])
+  @@index([archivedAt])
+}
+
+/**
+ * kind: STUDENT_PRACTICE | ADMIN_PREVIEW
+ * status: RESERVED | CONNECTING | ACTIVE | FINISHING | UPLOADING | SUBMITTED | UPLOAD_FAILED | INTERRUPTED | FAILED
+ */
+model SpeakingSession {
+  id                String                     @id @default(cuid())
+  userId            String
+  user              User                       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topicId           String
+  topic             SpeakingTopic              @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  kind              String                     @default("STUDENT_PRACTICE")
+  status            String                     @default("RESERVED")
+  openaiCallId      String?
+  transcript        Json?
+  recordingUrl      String?
+  recordingKey      String?
+  recordingMimeType String?
+  recordingBytes    Int?
+  driveFileId       String?
+  driveFileName     String?
+  startedAt         DateTime?
+  endedAt           DateTime?
+  errorMessage      String?
+  createdAt         DateTime                   @default(now())
+  updatedAt         DateTime                   @updatedAt
+  dailyUsage        DailySpeakingUsage?
+  usageReleases     DailySpeakingUsageRelease[]
+
+  @@index([userId, createdAt])
+  @@index([topicId])
+  @@index([status])
+}
+
+/**
+ * status: AVAILABLE | RESERVED | CONSUMED
+ * usageDate is calendar date in Asia/Ho_Chi_Minh (stored as Date @db.Date).
+ */
+model DailySpeakingUsage {
+  id            String          @id @default(cuid())
+  userId        String
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  usageDate     DateTime        @db.Date
+  status        String          @default("AVAILABLE")
+  sessionId     String?         @unique
+  session       SpeakingSession? @relation(fields: [sessionId], references: [id], onDelete: SetNull)
+  reservedUntil DateTime?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  @@unique([userId, usageDate])
+  @@index([usageDate, status])
+}
+
+model DailySpeakingUsageRelease {
+  id        String           @id @default(cuid())
+  studentId String
+  student   User             @relation("SpeakingReleaseStudent", fields: [studentId], references: [id], onDelete: Cascade)
+  sessionId String
+  session   SpeakingSession  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  usageDate DateTime         @db.Date
+  adminId   String
+  admin     User             @relation("SpeakingReleaseAdmin", fields: [adminId], references: [id], onDelete: Cascade)
+  reason    String
+  createdAt DateTime         @default(now())
+
+  @@index([studentId, usageDate])
+  @@index([adminId, createdAt])
 }

@@ -20,4 +20,10 @@ describe('gradeQuizOptionAnswer', () => {
   it('rejects a wrong option', () => {
     expect(gradeQuizOptionAnswer('go', 'goes')).toBe(false);
   });
+
+  it('ignores underline markup when comparing phonetics options', () => {
+    expect(gradeQuizOptionAnswer('b<u>ea</u>r', 'b<u>ea</u>r')).toBe(true);
+    expect(gradeQuizOptionAnswer('b<u>ea</u>r', 'bear')).toBe(true);
+    expect(gradeQuizOptionAnswer('cl<u>ea</u>r', 'b<u>ea</u>r')).toBe(false);
+  });
 });
