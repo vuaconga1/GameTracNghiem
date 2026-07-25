@@ -6,6 +6,11 @@ import { useSearchParams } from 'next/navigation';
 
 import { DataLoading } from '@/components/DataLoading';
 import { PageBackButton } from '@/components/PageBackButton';
+import {
+  canSendAudioToWhisper,
+  openMicStream,
+  setAiSpeaking,
+} from '@/lib/audio/echoGate';
 
 type Topic = {
   id: string;
@@ -46,10 +51,15 @@ function formatClock(totalSeconds: number) {
 }
 
 function isAiAudioStartEvent(type: string) {
+  // Only buffer start — not every audio delta (those fire continuously).
+  return type === 'output_audio_buffer.started';
+}
+
+function isAiAudioStopEvent(type: string) {
   return (
-    type === 'output_audio_buffer.started' ||
-    type === 'response.output_audio.delta' ||
-    type === 'response.audio.delta'
+    type === 'output_audio_buffer.stopped' ||
+    type === 'response.output_audio.done' ||
+    type === 'response.audio.done'
   );
 }
 
@@ -103,6 +113,23 @@ export function SpeakingPracticeView({
   const finishingRef = useRef(false);
   const transcriptRef = useRef<TranscriptLine[]>([]);
   const chatRef = useRef<HTMLDivElement | null>(null);
+  const aiSpeakingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  /** Flag only — do NOT mute WebRTC mic tracks (MediaStream never "ends"). */
+  function applyAiSpeaking(speaking: boolean) {
+    if (aiSpeakingTimeoutRef.current) {
+      clearTimeout(aiSpeakingTimeoutRef.current);
+      aiSpeakingTimeoutRef.current = null;
+    }
+    setAiSpeaking(speaking);
+    // Safety: never leave STT blocked if stop event is missed.
+    if (speaking) {
+      aiSpeakingTimeoutRef.current = setTimeout(() => {
+        setAiSpeaking(false);
+        aiSpeakingTimeoutRef.current = null;
+      }, 12_000);
+    }
+  }
 
   const selectedTopic = topics.find((t) => t.id === selectedTopicId) || null;
   const isLive = phase === 'connecting' || phase === 'active' || phase === 'finishing';
@@ -188,11 +215,16 @@ export function SpeakingPracticeView({
     pcRef.current = null;
     localStreamRef.current?.getTracks().forEach((t) => t.stop());
     localStreamRef.current = null;
+    if (aiSpeakingTimeoutRef.current) {
+      clearTimeout(aiSpeakingTimeoutRef.current);
+      aiSpeakingTimeoutRef.current = null;
+    }
+    applyAiSpeaking(false);
   }
 
   async function checkMic() {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const stream = await openMicStream();
       stream.getTracks().forEach((t) => t.stop());
       setMicOk(true);
       setError('');
@@ -213,17 +245,35 @@ export function SpeakingPracticeView({
     }
   }
 
-  function appendTranscript(role: 'user' | 'assistant', text: string) {
+  function appendTranscript(
+    role: 'user' | 'assistant',
+    text: string,
+    mode: 'append' | 'replace' = 'append'
+  ) {
     const trimmed = text.trim();
     if (!trimmed) return;
     setTranscript((prev) => {
       const last = prev[prev.length - 1];
       let next: TranscriptLine[];
+
       if (last && last.role === role) {
-        next = [...prev.slice(0, -1), { ...last, text: `${last.text} ${trimmed}`.trim() }];
+        // Exact duplicate (e.g. completed twice) — keep one.
+        if (last.text === trimmed) {
+          return prev;
+        }
+        if (mode === 'replace') {
+          next = [...prev.slice(0, -1), { ...last, text: trimmed }];
+        } else if (trimmed.startsWith(last.text) || last.text.startsWith(trimmed)) {
+          // Streaming cumulative text — keep the longer form, don't concatenate.
+          const better = trimmed.length >= last.text.length ? trimmed : last.text;
+          next = [...prev.slice(0, -1), { ...last, text: better }];
+        } else {
+          next = [...prev.slice(0, -1), { ...last, text: `${last.text} ${trimmed}`.trim() }];
+        }
       } else {
         next = [...prev, { role, text: trimmed, at: Date.now() }];
       }
+
       transcriptRef.current = next;
       return next;
     });
@@ -238,7 +288,11 @@ export function SpeakingPracticeView({
     }
     const type = String(event.type || '');
     if (isAiAudioStartEvent(type)) {
+      applyAiSpeaking(true);
       void markStarted(id);
+    }
+    if (isAiAudioStopEvent(type)) {
+      applyAiSpeaking(false);
     }
     if (
       type === 'response.output_audio_transcript.delta' ||
@@ -246,14 +300,13 @@ export function SpeakingPracticeView({
     ) {
       appendTranscript('assistant', String(event.delta || ''));
     }
-    if (
-      type === 'conversation.item.input_audio_transcription.completed' ||
-      type === 'conversation.item.input_audio_transcription.delta'
-    ) {
-      const text = String(event.transcript || event.delta || '');
-      // Drop non-English-script filler when model mis-detects language.
+    // User STT: only finalize on `completed`. Handling `delta` + `completed`
+    // concatenates the same utterance twice in the chat frame.
+    if (type === 'conversation.item.input_audio_transcription.completed') {
+      if (!canSendAudioToWhisper()) return;
+      const text = String(event.transcript || '');
       if (text.trim() && !/[A-Za-z]/.test(text) && /[^\u0000-\u007F]/.test(text)) return;
-      appendTranscript('user', text);
+      appendTranscript('user', text, 'replace');
     }
   }
 
@@ -430,7 +483,7 @@ export function SpeakingPracticeView({
         durationRef.current = createJson.topic.durationSeconds || selectedTopic.durationSeconds;
       }
 
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const stream = await openMicStream();
       localStreamRef.current = stream;
 
       const pc = new RTCPeerConnection();
