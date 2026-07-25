@@ -2,7 +2,7 @@ import { parseGradeFromLevelName } from '@/lib/tts/getTtsSpeedByGrade';
 
 /** Opening turn when the Realtime data channel opens. */
 export const SPEAKING_OPENING_INSTRUCTIONS =
-  'Greet the student warmly in English, introduce the topic in one short sentence, and ask your first simple question to start our conversation. Follow the session voice and vocabulary rules for this student\'s grade.';
+  'Greet the student warmly in English. In your first turn you MUST briefly introduce yourself as the AI assistant of WeWIN Education (say it in simple English, e.g. "I am the AI assistant of WeWIN Education"). Then introduce the topic in one short sentence, and ask your first simple question to start our conversation. Follow the session voice and vocabulary rules for this student\'s grade.';
 
 const SHARED_LANGUAGE_LINES = [
   'The student practices spoken English only. Reply in clear, simple English.',
