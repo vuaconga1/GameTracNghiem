@@ -13,6 +13,7 @@ import {
   persistGameProgress,
 } from '@/features/games/persistProgress';
 import { progressCourseKey } from '@/lib/courseKey';
+import { canSendAudioToWhisper } from '@/lib/audio/echoGate';
 import {
   type ProgressStatus,
   normalizeStatuses,
@@ -634,6 +635,11 @@ async function assessClip(
   question: PronunciationQuestion,
   onFallback?: () => void
 ): Promise<{ transcript: string; engine: 'groq' | 'webspeech' }> {
+  // Echo-loop guard: never spend Whisper tokens while AI/reference audio is playing.
+  if (!canSendAudioToWhisper()) {
+    throw new Error('Đang phát audio mẫu — hãy đợi hết rồi ghi âm lại.');
+  }
+
   const form = new FormData();
   form.append('audio', clip.blob, `recording.${clip.mimeType.includes('mp4') ? 'mp4' : 'webm'}`);
   form.append('targetText', question.targetText);

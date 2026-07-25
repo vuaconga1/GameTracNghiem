@@ -29,6 +29,7 @@ export async function POST(_req: Request, { params }: Ctx) {
             durationSeconds: true,
             active: true,
             archivedAt: true,
+            course: { select: { levelName: true, name: true } },
           },
         },
       },
@@ -71,6 +72,8 @@ export async function POST(_req: Request, { params }: Ctx) {
       const secret = await createRealtimeClientSecret({
         instructions: session.topic.instructions,
         safetyIdentifier,
+        levelName: session.topic.course?.levelName,
+        topicTitle: session.topic.title,
       });
 
       return Response.json({

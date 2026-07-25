@@ -1,3 +1,5 @@
+import { MIC_AUDIO_CONSTRAINTS, openMicStream } from '@/lib/audio/echoGate';
+
 export type RecordedClip = {
   blob: Blob;
   mimeType: string;
@@ -11,17 +13,14 @@ function pickMimeType(): string {
 
 /**
  * Start mic capture. Await `done` for the clip (ends on `stop()` or maxMs).
+ * Always requests echoCancellation + noiseSuppression from the hardware stack.
  */
 export async function startMicRecording(maxMs = 8000): Promise<{
   stop: () => void;
   cancel: () => void;
   done: Promise<RecordedClip>;
 }> {
-  if (typeof navigator === 'undefined' || !navigator.mediaDevices?.getUserMedia) {
-    throw new Error('Trình duyệt không hỗ trợ ghi âm');
-  }
-
-  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  const stream = await openMicStream(MIC_AUDIO_CONSTRAINTS);
   const mimeType = pickMimeType();
   const recorder = mimeType
     ? new MediaRecorder(stream, { mimeType })
