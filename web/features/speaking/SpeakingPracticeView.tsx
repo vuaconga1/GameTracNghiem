@@ -7,10 +7,14 @@ import { useSearchParams } from 'next/navigation';
 import { DataLoading } from '@/components/DataLoading';
 import { PageBackButton } from '@/components/PageBackButton';
 import {
-  canSendAudioToWhisper,
   openMicStream,
   setAiSpeaking,
 } from '@/lib/audio/echoGate';
+import {
+  appendTranscriptLine,
+  type TranscriptLine,
+} from '@/lib/speaking/appendTranscriptLine';
+import { SPEAKING_OPENING_INSTRUCTIONS } from '@/lib/speaking/prompts';
 
 type Topic = {
   id: string;
@@ -33,12 +37,6 @@ type DailyUsage = {
     recordingUrl?: string | null;
     topic?: { id: string; title: string; durationSeconds: number } | null;
   } | null;
-};
-
-type TranscriptLine = {
-  role: 'user' | 'assistant';
-  text: string;
-  at: number;
 };
 
 type Phase = 'loading' | 'prepare' | 'connecting' | 'active' | 'finishing' | 'done' | 'blocked' | 'error';
@@ -112,6 +110,7 @@ export function SpeakingPracticeView({
   const durationRef = useRef(300);
   const finishingRef = useRef(false);
   const transcriptRef = useRef<TranscriptLine[]>([]);
+  const seenUserTranscriptItemIdsRef = useRef<Set<string>>(new Set());
   const chatRef = useRef<HTMLDivElement | null>(null);
   const aiSpeakingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -245,42 +244,22 @@ export function SpeakingPracticeView({
     }
   }
 
-  function appendTranscript(
-    role: 'user' | 'assistant',
-    text: string,
-    mode: 'append' | 'replace' = 'append'
-  ) {
-    const trimmed = text.trim();
-    if (!trimmed) return;
+  function appendTranscript(role: 'user' | 'assistant', text: string) {
     setTranscript((prev) => {
-      const last = prev[prev.length - 1];
-      let next: TranscriptLine[];
-
-      if (last && last.role === role) {
-        // Exact duplicate (e.g. completed twice) — keep one.
-        if (last.text === trimmed) {
-          return prev;
-        }
-        if (mode === 'replace') {
-          next = [...prev.slice(0, -1), { ...last, text: trimmed }];
-        } else if (trimmed.startsWith(last.text) || last.text.startsWith(trimmed)) {
-          // Streaming cumulative text — keep the longer form, don't concatenate.
-          const better = trimmed.length >= last.text.length ? trimmed : last.text;
-          next = [...prev.slice(0, -1), { ...last, text: better }];
-        } else {
-          next = [...prev.slice(0, -1), { ...last, text: `${last.text} ${trimmed}`.trim() }];
-        }
-      } else {
-        next = [...prev, { role, text: trimmed, at: Date.now() }];
-      }
-
+      const next = appendTranscriptLine(prev, role, text);
       transcriptRef.current = next;
       return next;
     });
   }
 
   function handleRealtimeEvent(raw: string, id: string) {
-    let event: { type?: string; transcript?: string; delta?: string; item?: { role?: string } };
+    let event: {
+      type?: string;
+      transcript?: string;
+      delta?: string;
+      item_id?: string;
+      item?: { role?: string };
+    };
     try {
       event = JSON.parse(raw);
     } catch {
@@ -300,13 +279,17 @@ export function SpeakingPracticeView({
     ) {
       appendTranscript('assistant', String(event.delta || ''));
     }
-    // User STT: only finalize on `completed`. Handling `delta` + `completed`
-    // concatenates the same utterance twice in the chat frame.
+    // User ASR finishes asynchronously and often AFTER the assistant already
+    // started. Only use .completed (ignore .delta) and dedupe by item_id + text.
     if (type === 'conversation.item.input_audio_transcription.completed') {
-      if (!canSendAudioToWhisper()) return;
+      const itemId = String(event.item_id || '').trim();
+      if (itemId) {
+        if (seenUserTranscriptItemIdsRef.current.has(itemId)) return;
+        seenUserTranscriptItemIdsRef.current.add(itemId);
+      }
       const text = String(event.transcript || '');
       if (text.trim() && !/[A-Za-z]/.test(text) && /[^\u0000-\u007F]/.test(text)) return;
-      appendTranscript('user', text, 'replace');
+      appendTranscript('user', text);
     }
   }
 
@@ -445,6 +428,7 @@ export function SpeakingPracticeView({
     finishingRef.current = false;
     setTranscript([]);
     transcriptRef.current = [];
+    seenUserTranscriptItemIdsRef.current = new Set();
 
     let createdId: string | null = null;
     try {
@@ -508,8 +492,7 @@ export function SpeakingPracticeView({
           JSON.stringify({
             type: 'response.create',
             response: {
-              instructions:
-                'Chào học sinh bằng tiếng Anh ngắn gọn, rồi dẫn dắt hội thoại theo hướng dẫn phiên.',
+              instructions: SPEAKING_OPENING_INSTRUCTIONS,
             },
           })
         );

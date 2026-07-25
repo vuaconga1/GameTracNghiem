@@ -1,6 +1,7 @@
 import 'server-only';
 
 import { OPENAI_REALTIME_MODEL } from '@/lib/speaking/config';
+import { buildSpeakingRealtimeInstructions } from '@/lib/speaking/prompts';
 
 export type RealtimeEphemeralResult = {
   clientSecret: string;
@@ -17,6 +18,9 @@ export async function createRealtimeClientSecret(input: {
   safetyIdentifier: string;
   model?: string;
   voice?: string;
+  grade?: number | null;
+  levelName?: string | null;
+  topicTitle?: string | null;
 }): Promise<RealtimeEphemeralResult> {
   const apiKey = process.env.OPENAI_API_KEY?.trim();
   if (!apiKey) {
@@ -29,12 +33,12 @@ export async function createRealtimeClientSecret(input: {
     session: {
       type: 'realtime',
       model,
-      instructions: [
-        input.instructions,
-        '',
-        'The student practices spoken English only. Reply in clear, simple English.',
-        'Ignore non-English filler noise; keep the conversation in English.',
-      ].join('\n'),
+      instructions: buildSpeakingRealtimeInstructions({
+        topicInstructions: input.instructions,
+        topicTitle: input.topicTitle,
+        grade: input.grade,
+        levelName: input.levelName,
+      }),
       audio: {
         input: {
           transcription: {
@@ -97,6 +101,9 @@ export async function createRealtimeCall(input: {
   safetyIdentifier: string;
   model?: string;
   voice?: string;
+  grade?: number | null;
+  levelName?: string | null;
+  topicTitle?: string | null;
 }): Promise<{ sdpAnswer: string; callId: string | null }> {
   const apiKey = process.env.OPENAI_API_KEY?.trim();
   if (!apiKey) {
@@ -107,11 +114,12 @@ export async function createRealtimeCall(input: {
   const sessionConfig = JSON.stringify({
     type: 'realtime',
     model,
-    instructions: [
-      input.instructions,
-      '',
-      'The student practices spoken English only. Reply in clear, simple English.',
-    ].join('\n'),
+    instructions: buildSpeakingRealtimeInstructions({
+      topicInstructions: input.instructions,
+      topicTitle: input.topicTitle,
+      grade: input.grade,
+      levelName: input.levelName,
+    }),
     audio: {
       input: {
         transcription: {
