@@ -62,8 +62,9 @@ describe('buildSpeakingRealtimeInstructions', () => {
 });
 
 describe('SPEAKING_OPENING_INSTRUCTIONS', () => {
-  it('asks for warm greeting and first question', () => {
+  it('asks for WeWIN intro, warm greeting, and first question', () => {
     expect(SPEAKING_OPENING_INSTRUCTIONS).toMatch(/Greet the student warmly/i);
+    expect(SPEAKING_OPENING_INSTRUCTIONS).toMatch(/AI assistant of WeWIN Education/i);
     expect(SPEAKING_OPENING_INSTRUCTIONS).toMatch(/first simple question/i);
   });
 });
