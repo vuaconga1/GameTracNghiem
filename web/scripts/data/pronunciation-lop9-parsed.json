@@ -1,0 +1,3177 @@
+{
+  "1": {
+    "title": "UNIT 1: LOCAL ENVIRONMENT",
+    "intro": [
+      "VOWEL REVISION: Sound /æ/; /ɑː/ and /e/",
+      "Đối với người học tiếng Anh thì âm /e/, âm /æ/ và âm /ɑː/ là một trong các cặp âm dễ gây nhầm lẫn nhất khi phát âm. Chúng ta hãy cùng nhau nghiên cứu cách phát âm và dấu hiệu nhận biết của các âm trên để không bị nhầm lẫn."
+    ],
+    "sounds": [
+      {
+        "index": 1,
+        "ipa": "æ",
+        "title": "Âm /æ/",
+        "heading": "1. SOUND /æ/",
+        "words": [
+          {
+            "word": "bat",
+            "pos": "n",
+            "ipa": "/bæt/",
+            "meaning": "con dơi"
+          },
+          {
+            "word": "calendar",
+            "pos": "n",
+            "ipa": "/ˈkælɪndə(r)/",
+            "meaning": "lịch"
+          },
+          {
+            "word": "disaster",
+            "pos": "n",
+            "ipa": "/dɪˈzɑːstə(r)/",
+            "meaning": "tai họa"
+          },
+          {
+            "word": "man",
+            "pos": "n",
+            "ipa": "/mæn/",
+            "meaning": "người đàn ông"
+          },
+          {
+            "word": "chat",
+            "pos": "v",
+            "ipa": "/tʃæt/",
+            "meaning": "nói chuyện"
+          },
+          {
+            "word": "hat",
+            "pos": "n",
+            "ipa": "/hæt/",
+            "meaning": "cái mũ"
+          },
+          {
+            "word": "cat",
+            "pos": "n",
+            "ipa": "/kæt/",
+            "meaning": "con mèo"
+          },
+          {
+            "word": "mat",
+            "pos": "n",
+            "ipa": "/mæt/",
+            "meaning": "cái chiếu"
+          },
+          {
+            "word": "rat",
+            "pos": "n",
+            "ipa": "/ræt/",
+            "meaning": "con chuột"
+          },
+          {
+            "word": "fat",
+            "pos": "adj",
+            "ipa": "/fæt/",
+            "meaning": "béo, mập"
+          },
+          {
+            "word": "gap",
+            "pos": "n",
+            "ipa": "/gæp/",
+            "meaning": "khe hở"
+          },
+          {
+            "word": "ban",
+            "pos": "v",
+            "ipa": "/bæn/",
+            "meaning": "cấm"
+          },
+          {
+            "word": "fan",
+            "pos": "n",
+            "ipa": "/fæn/",
+            "meaning": "cái quạt"
+          },
+          {
+            "word": "pan",
+            "pos": "n",
+            "ipa": "/pæn/",
+            "meaning": "chảo rán"
+          },
+          {
+            "word": "can",
+            "pos": "n",
+            "ipa": "/kæn/",
+            "meaning": "lon nước ngọt"
+          },
+          {
+            "word": "camera",
+            "pos": "n",
+            "ipa": "/ˈkæmrə/",
+            "meaning": "máy ảnh"
+          },
+          {
+            "word": "advantage",
+            "pos": "n",
+            "ipa": "/ədˈvæntɪdʒ/",
+            "meaning": "lợi thế"
+          },
+          {
+            "word": "algebra",
+            "pos": "n",
+            "ipa": "/ˈældʒɪbrə/",
+            "meaning": "đại số"
+          },
+          {
+            "word": "analyze",
+            "pos": "v",
+            "ipa": "/ˈænəlaɪz/",
+            "meaning": "phân tích"
+          },
+          {
+            "word": "animal",
+            "pos": "n",
+            "ipa": "/ˈænɪml/",
+            "meaning": "động vật"
+          },
+          {
+            "word": "challenge",
+            "pos": "n",
+            "ipa": "/ˈtʃælɪndʒ/",
+            "meaning": "thử thách"
+          },
+          {
+            "word": "command",
+            "pos": "v",
+            "ipa": "/kəˈmænd/",
+            "meaning": "ra lệnh"
+          },
+          {
+            "word": "demand",
+            "pos": "v",
+            "ipa": "/dɪˈmænd/",
+            "meaning": "yêu cầu"
+          },
+          {
+            "word": "masculine",
+            "pos": "n",
+            "ipa": "/ˈmæskjəlɪn/",
+            "meaning": "nam tính"
+          },
+          {
+            "word": "mandatory",
+            "pos": "adj",
+            "ipa": "/ˈmændətəri/",
+            "meaning": "bắt buộc"
+          },
+          {
+            "word": "navigate",
+            "pos": "v",
+            "ipa": "/ˈnævɪɡeɪt/",
+            "meaning": "định hướng"
+          },
+          {
+            "word": "fabricate",
+            "pos": "v",
+            "ipa": "/ˈfæbrɪkeɪt/",
+            "meaning": "chế tạo"
+          },
+          {
+            "word": "evaporate",
+            "pos": "v",
+            "ipa": "/ɪˈvæpəreɪt/",
+            "meaning": "bay hơi"
+          }
+        ],
+        "theory": [
+          "1.1. Cách phát âm âm /æ/ (e bẹt)",
+          "Bước 1: Miệng mở rộng về cả chiều ngang lẫn chiều dọc.",
+          "Bước 2: Lười và quai hàm hạ xuống thấp sao cho đầu lưỡi chạm nhẹ vào mặt trong răng cửa hàm dưới.",
+          "Bước 3: Giữ nguyên khẩu hình và phát âm gọn âm /æ/.",
+          "Dưới đây là hình ảnh minh họa khẩu hình miệng của người nói khi phát âm chuẩn âm /æ/ các em tham khảo nhé.",
+          "Các em luyện phát âm các ví dụ sau:",
+          "con dơi",
+          "calendar",
+          "n",
+          "/ˈkælɪndə(r)/",
+          "lịch",
+          "disaster",
+          "n",
+          "/dɪˈzɑːstə(r)/",
+          "tai họa",
+          "man",
+          "n",
+          "/mæn/",
+          "người đàn ông",
+          "1.2. Dấu hiệu nhận biết âm /æ/",
+          "1.2.1. Với từ có một âm tiết và chứa chữ “a” thì chữ “a” trong từ thường được phát âm thành âm /æ/.",
+          "nói chuyện",
+          "hat",
+          "n",
+          "/hæt/",
+          "cái mũ",
+          "cat",
+          "n",
+          "/kæt/",
+          "con mèo",
+          "bat",
+          "n",
+          "/bæt/",
+          "con dơi",
+          "mat",
+          "n",
+          "/mæt/",
+          "cái chiếu",
+          "rat",
+          "n",
+          "/ræt/",
+          "con chuột",
+          "fat",
+          "adj",
+          "/fæt/",
+          "béo, mập",
+          "gap",
+          "n",
+          "/gæp/",
+          "khe hở",
+          "ban",
+          "v",
+          "/bæn/",
+          "cấm",
+          "fan",
+          "n",
+          "/fæn/",
+          "cái quạt",
+          "man",
+          "n",
+          "/mæn/",
+          "người đàn ông",
+          "pan",
+          "n",
+          "/pæn/",
+          "chảo rán",
+          "can",
+          "n",
+          "/kæn/",
+          "lon nước ngọt",
+          "1.2.2. Với từ có từ hai âm tiết trở lên và trọng âm được đánh vào âm tiết chứa chữ “a” thì chữ “a” sẽ được phát âm thành âm /æ/.",
+          "máy ảnh",
+          "calendar",
+          "n",
+          "/ˈkælɪndə(r)/",
+          "lịch",
+          "advantage",
+          "n",
+          "/ədˈvæntɪdʒ/",
+          "lợi thế",
+          "algebra",
+          "n",
+          "/ˈældʒɪbrə/",
+          "đại số",
+          "analyze",
+          "v",
+          "/ˈænəlaɪz/",
+          "phân tích",
+          "animal",
+          "n",
+          "/ˈænɪml/",
+          "động vật",
+          "challenge",
+          "n",
+          "/ˈtʃælɪndʒ/",
+          "thử thách",
+          "command",
+          "v",
+          "/kəˈmænd/",
+          "ra lệnh",
+          "demand",
+          "v",
+          "/dɪˈmænd/",
+          "yêu cầu",
+          "masculine",
+          "n",
+          "/ˈmæskjəlɪn/",
+          "nam tính",
+          "mandatory",
+          "adj",
+          "ˈmændətəri/",
+          "bắt buộc",
+          "navigate",
+          "v",
+          "/ˈnævɪɡeɪt/",
+          "định hướng",
+          "fabricate",
+          "v",
+          "/ˈfæbrɪkeɪt",
+          "chế tạo",
+          "evaporate",
+          "v",
+          "/ɪˈvæpəreɪt/",
+          "bay hơi",
+          "disaster",
+          "n",
+          "/dɪˈzæstər/",
+          "tai họa"
+        ],
+        "slug": "AE"
+      },
+      {
+        "index": 2,
+        "ipa": "ɑː",
+        "title": "Âm /ɑː/",
+        "heading": "2. SOUND /ɑː/",
+        "words": [
+          {
+            "word": "ask",
+            "pos": "v",
+            "ipa": "/ɑːsk/",
+            "meaning": "hỏi"
+          },
+          {
+            "word": "large",
+            "pos": "adj",
+            "ipa": "/lɑːdʒ/",
+            "meaning": "to lớn, rộng"
+          },
+          {
+            "word": "card",
+            "pos": "n",
+            "ipa": "/kɑːd/",
+            "meaning": "thẻ, thiệp"
+          },
+          {
+            "word": "father",
+            "pos": "n",
+            "ipa": "/ˈfɑːðə(r)/",
+            "meaning": "bố"
+          },
+          {
+            "word": "answer",
+            "pos": "v",
+            "ipa": "/ˈɑːnsə(r)/",
+            "meaning": "trả lời"
+          },
+          {
+            "word": "faraway",
+            "pos": "adj",
+            "ipa": "/ˈfɑːrəweɪ/",
+            "meaning": "xa xăm"
+          },
+          {
+            "word": "chart",
+            "pos": "n",
+            "ipa": "/tʃɑːrt/",
+            "meaning": "biểu đồ"
+          },
+          {
+            "word": "star",
+            "pos": "n",
+            "ipa": "/stɑːr/",
+            "meaning": "ngôi sao"
+          },
+          {
+            "word": "dance",
+            "pos": "v",
+            "ipa": "/dɑːns/",
+            "meaning": "nhảy múa"
+          },
+          {
+            "word": "draft",
+            "pos": "n",
+            "ipa": "/drɑːft/",
+            "meaning": "bản thảo"
+          },
+          {
+            "word": "classroom",
+            "pos": "n",
+            "ipa": "/ˈklɑːsruːm/",
+            "meaning": "lớp học"
+          },
+          {
+            "word": "guard",
+            "pos": "n",
+            "ipa": "/gɑːd/",
+            "meaning": "bảo vệ"
+          },
+          {
+            "word": "aunt",
+            "pos": "n",
+            "ipa": "/ɑːnt/",
+            "meaning": "cô, dì"
+          },
+          {
+            "word": "laugh",
+            "pos": "v",
+            "ipa": "/lɑːf/",
+            "meaning": "cười"
+          }
+        ],
+        "theory": [
+          "Nguyên âm trên còn được biết với tên nguyên âm a dài, miệng mở, âm dài, tròn môi.",
+          "2.1. Cách phát âm âm /ɑː/",
+          "Bước 1: Phần miệng mở rộng một cách tự nhiên, cằm môi thả lỏng",
+          "Bước 2: Lưỡi được hạ thấp xuống",
+          "Bước 3: Phát âm /ɑː/",
+          "Dưới đây là hình ảnh minh họa khẩu hình miệng của người nói khi phát âm chuẩn âm /ɑː/:",
+          "Các em luyện phát âm các ví dụ sau:",
+          "hỏi",
+          "large",
+          "adj",
+          "/lɑːdʒ/",
+          "to lớn, rộng",
+          "card",
+          "n",
+          "/kɑːd/",
+          "thẻ, thiệp",
+          "father",
+          "n",
+          "/ˈfɑːðə(r)/",
+          "bố",
+          "2.2. Dấu hiệu nhận biết âm /a:/",
+          "2.2.1. Khi nguyên âm “a” đứng ở đầu một từ và theo sau là các phụ âm “n”, “f”, “s”",
+          "hỏi",
+          "after",
+          "pre",
+          "/ˈɑːftə(r)/",
+          "sau đó",
+          "answer",
+          "v",
+          "/ˈɑːnsə(r)/",
+          "trả lời",
+          "2.2.2. Từ có chứa chữ “a”, theo sau là chữ “r”",
+          "xa xăm",
+          "large",
+          "adj",
+          "/lɑːrdʒ/",
+          "rộng",
+          "chart",
+          "n",
+          "/tʃɑːrt/",
+          "biểu đồ",
+          "star",
+          "n",
+          "/stɑːr/",
+          "ngôi sao",
+          "2.2.3. Những tổ hợp “-an- ”, “-af- ”, “-as- ” đứng ở giữa từ cũng được phát âm /ɑː/",
+          "nhảy múa",
+          "draft",
+          "n",
+          "/drɑːft/",
+          "bản thảo",
+          "classroom",
+          "n",
+          "/ˈklɑːsruːm",
+          "lớp học",
+          "2.2.4. Những từ có chứa âm “ua\" và ăm “au”",
+          "bảo vệ",
+          "aunt",
+          "n",
+          "/ɑːnt/",
+          "cô, dì",
+          "laugh",
+          "v",
+          "/lɑːf/",
+          "cười"
+        ],
+        "slug": "AA"
+      },
+      {
+        "index": 3,
+        "ipa": "e",
+        "title": "Âm /e/",
+        "heading": "3. SOUND /e/",
+        "words": [
+          {
+            "word": "bread",
+            "pos": "n",
+            "ipa": "/bred/",
+            "meaning": "bánh mì"
+          },
+          {
+            "word": "red",
+            "pos": "adj",
+            "ipa": "/red/",
+            "meaning": "màu đò"
+          },
+          {
+            "word": "fair",
+            "pos": "n",
+            "ipa": "/fer/",
+            "meaning": "hội chợ"
+          },
+          {
+            "word": "bed",
+            "pos": "n",
+            "ipa": "/bed/",
+            "meaning": "giường"
+          },
+          {
+            "word": "head",
+            "pos": "n",
+            "ipa": "/hed/",
+            "meaning": "cái đầu"
+          },
+          {
+            "word": "thread",
+            "pos": "n",
+            "ipa": "/θred/",
+            "meaning": "sợi chỉ, sợi dây"
+          },
+          {
+            "word": "spread",
+            "pos": "v",
+            "ipa": "/spred/",
+            "meaning": "truyền bá, lan ra"
+          },
+          {
+            "word": "jealous",
+            "pos": "adj",
+            "ipa": "/ˈdʒeləs/",
+            "meaning": "ghen tỵ, đố kỵ"
+          },
+          {
+            "word": "ready",
+            "pos": "adj",
+            "ipa": "/'redi/",
+            "meaning": "sẵn sàng"
+          },
+          {
+            "word": "repair",
+            "pos": "v",
+            "ipa": "/rɪˈper/",
+            "meaning": "sửa chữa"
+          },
+          {
+            "word": "compare",
+            "pos": "v",
+            "ipa": "/kəm’per/",
+            "meaning": "so sánh"
+          },
+          {
+            "word": "care",
+            "pos": "v",
+            "ipa": "/ker/",
+            "meaning": "chăm sóc, quan tâm."
+          },
+          {
+            "word": "neck",
+            "pos": "n",
+            "ipa": "/nek/",
+            "meaning": "cái cổ"
+          },
+          {
+            "word": "bet",
+            "pos": "v",
+            "ipa": "/bet/",
+            "meaning": "đánh cược"
+          },
+          {
+            "word": "beg",
+            "pos": "v",
+            "ipa": "/beg/",
+            "meaning": "Cầu xin"
+          },
+          {
+            "word": "beil",
+            "pos": "n",
+            "ipa": "/bel/",
+            "meaning": "cái chuông"
+          },
+          {
+            "word": "hen",
+            "pos": "n",
+            "ipa": "/hen/",
+            "meaning": "con gà mái"
+          },
+          {
+            "word": "jet",
+            "pos": "n",
+            "ipa": "/dʒet/",
+            "meaning": "máy bay phản lực"
+          },
+          {
+            "word": "deck",
+            "pos": "n",
+            "ipa": "/dek/",
+            "meaning": "boong tàu"
+          }
+        ],
+        "theory": [
+          "Trong tiếng Anh, âm /e/ có cách phát âm tương đối giống với khi phát âm chữ e trong tiếng Việt. Khi phát âm âm này, người học thực hiện theo các bước như sau:",
+          "3.1. Cách phát âm âm /e/",
+          "Bước 1: Miệng mở rộng tự nhiên theo chiều ngang.",
+          "Bước 2: Lưỡi nâng lên một độ cao vừa phải và quai hàm hạ thấp xuống một chút.",
+          "Bước 3: Giữ nguyên khẩu hình ấy, phát âm âm /e/ và cảm nhận sự co lại của hai khóe môi.",
+          "Dưới đây là hình ảnh minh họa về khẩu hình miệng của người nói khi phát âm âm /e/ trong tiếng Anh:",
+          "Các em luyện phát âm các ví dụ sau:",
+          "bánh mì",
+          "red",
+          "adj",
+          "/red/",
+          "màu đò",
+          "fair",
+          "n",
+          "/fer/",
+          "hội chợ",
+          "bed",
+          "n",
+          "/bed/",
+          "giường",
+          "3.2. Dấu hiệu nhận biết âm /e/.",
+          "3.2.1. Từ có chứa “ea” được phát âm thành /e/.",
+          "cái đầu",
+          "bread",
+          "n",
+          "/bred/",
+          "bánh mì",
+          "thread",
+          "n",
+          "/θred/",
+          "sợi chỉ, sợi dây",
+          "spread",
+          "v",
+          "/spred/",
+          "truyền bá, lan ra",
+          "jealous",
+          "adj",
+          "/ˈdʒeləs/",
+          "ghen tỵ, đố kỵ",
+          "ready",
+          "adj",
+          "/'redi/",
+          "sẵn sàng",
+          "3.2.2. Khi một từ bất kỳ chứa cụm chữ “air” hoặc “are” thì thường có sự xuất hiện của âm /e/",
+          "sửa chữa",
+          "bare",
+          "a",
+          "/ber/",
+          "tràn truồng, trống không",
+          "compare",
+          "v",
+          "/kəm’per/",
+          "so sánh",
+          "aware",
+          "a",
+          "/ə'wer/",
+          "nhận thức",
+          "fair",
+          "n",
+          "/fer/",
+          "hội chọ",
+          "care",
+          "v",
+          "/ker/",
+          "chăm sóc, quan tâm.",
+          "3.2.3. Khi từ có một âm tiết chứa chữ “e” và kết thúc bằng một hay nhiều phụ âm thì chữ e thường được phát âm thành âm /e/.",
+          "màu đỏ",
+          "neck",
+          "n",
+          "/nek/",
+          "cái cổ",
+          "bet",
+          "v",
+          "/bet/",
+          "đánh cược",
+          "beg",
+          "v",
+          "/beg/",
+          "Cầu xin",
+          "beil",
+          "n",
+          "/bel/",
+          "cái chuông",
+          "hen",
+          "n",
+          "/hen/",
+          "con gà mái",
+          "jet",
+          "n",
+          "/dʒet/",
+          "máy bay phản lực",
+          "bed",
+          "n",
+          "/bed/",
+          "giường",
+          "deck",
+          "n",
+          "/dek/",
+          "boong tàu"
+        ],
+        "slug": "E"
+      }
+    ]
+  },
+  "2": {
+    "title": "UNIT 2: CITY LIFE",
+    "intro": [
+      "DIPTHONG REVISION: Sound /aʊ/; /əʊ/ and /eə/"
+    ],
+    "sounds": [
+      {
+        "index": 1,
+        "ipa": "aʊ",
+        "title": "Âm /aʊ/",
+        "heading": "1. SOUND /aʊ/",
+        "words": [
+          {
+            "word": "count",
+            "pos": "v",
+            "ipa": "/kaʊnt/",
+            "meaning": "đếm"
+          },
+          {
+            "word": "sound",
+            "pos": "n",
+            "ipa": "/saʊnt/",
+            "meaning": "âm thanh"
+          },
+          {
+            "word": "mountain",
+            "pos": "n",
+            "ipa": "/maʊtn/",
+            "meaning": "núi"
+          },
+          {
+            "word": "cloud",
+            "pos": "n",
+            "ipa": "/klaʊnd/",
+            "meaning": "đám mây"
+          },
+          {
+            "word": "mouth",
+            "pos": "n",
+            "ipa": "/maʊθ/",
+            "meaning": "miệng"
+          },
+          {
+            "word": "county",
+            "pos": "n",
+            "ipa": "/ˈkaʊnti/",
+            "meaning": "hạt, tỉnh"
+          },
+          {
+            "word": "plough",
+            "pos": "n",
+            "ipa": "/plaʊ/",
+            "meaning": "cái cày"
+          },
+          {
+            "word": "fountain",
+            "pos": "n",
+            "ipa": "/ˈfaʊntən/",
+            "meaning": "vòi phun nước"
+          },
+          {
+            "word": "south",
+            "pos": "n",
+            "ipa": "/saʊθ/",
+            "meaning": "hướng Nam, phương Nam"
+          },
+          {
+            "word": "doubt",
+            "pos": "n",
+            "ipa": "/daʊt/",
+            "meaning": "sự nghi ngờ"
+          },
+          {
+            "word": "loud",
+            "pos": "adj",
+            "ipa": "/laʊd/",
+            "meaning": "(âm thanh) to, ầm ĩ"
+          },
+          {
+            "word": "power",
+            "pos": "n",
+            "ipa": "/ˈpaʊə(r)/",
+            "meaning": "sức mạnh, quyền lực"
+          },
+          {
+            "word": "crawn",
+            "pos": "n",
+            "ipa": "/craʊn/",
+            "meaning": "vương miện"
+          },
+          {
+            "word": "powder",
+            "pos": "n",
+            "ipa": "/ˈpaʊdə(r)/",
+            "meaning": "bột"
+          },
+          {
+            "word": "plow",
+            "pos": "n",
+            "ipa": "/plaʊ/",
+            "meaning": "cái cày"
+          },
+          {
+            "word": "coward",
+            "pos": "adj",
+            "ipa": "/kaʊəd/",
+            "meaning": "hèn nhát"
+          },
+          {
+            "word": "tower",
+            "pos": "n",
+            "ipa": "/ˈtaʊə(r)/",
+            "meaning": "tòa tháp"
+          },
+          {
+            "word": "drown",
+            "pos": "v",
+            "ipa": "/draʊd/",
+            "meaning": "chết đuối, đuối nước"
+          },
+          {
+            "word": "fowl",
+            "pos": "n",
+            "ipa": "/faʊl/",
+            "meaning": "gà, thịt gà"
+          },
+          {
+            "word": "brow",
+            "pos": "n",
+            "ipa": "/braʊ/",
+            "meaning": "lông mày"
+          }
+        ],
+        "theory": [
+          "1.1. Cách phát âm /aʊ/",
+          "Âm /aʊ/ sẽ được tạo thành bởi âm /a/ và /ʊ/. Do đó, bạn chỉ cần “đọc nối từng nguyên âm lẻ lại với nhau, âm trước đọc dài hơn âm sau”:",
+          "Bước 1: Miệng mở rộng và to, lưỡi hạ thấp và phát âm âm /a/.",
+          "Bước 2: Miệng tròn dần, kéo lười về sau phát âm /ʊ/, phát âm /a/ dài, /ʊ/ ngắn và nhanh.",
+          "Dưới đây là hình ảnh minh hoạ:",
+          "Các em luyện phát âm các ví dụ sau:",
+          "về, khoảng",
+          "count",
+          "v",
+          "/kaʊnt/",
+          "đếm",
+          "sound",
+          "n",
+          "/saʊnt/",
+          "âm thanh",
+          "mountain",
+          "n",
+          "/maʊtn/",
+          "núi",
+          "1.2. Dấu hiệu nhận biết âm /aʊ/",
+          "1.2.1. Từ có chứa “ou” thường được phát là /aʊ/.",
+          "xung quanh",
+          "cloud",
+          "n",
+          "/klaʊnd/",
+          "đám mây",
+          "mouth",
+          "n",
+          "/maʊθ/",
+          "miệng",
+          "county",
+          "n",
+          "/ˈkaʊnti/",
+          "hạt, tỉnh",
+          "plough",
+          "n",
+          "/plaʊ/",
+          "cái cày",
+          "fountain",
+          "n",
+          "/ˈfaʊntən/",
+          "vòi phun nước",
+          "south",
+          "n",
+          "/saʊθ/",
+          "hướng Nam, phương Nam",
+          "doubt",
+          "n",
+          "/daʊt/",
+          "sự nghi ngờ",
+          "loud",
+          "adj",
+          "/laʊd/",
+          "(âm thanh) to, ầm ĩ",
+          "1.2.2. Từ có chứa “ow” thường được phát là /aʊ/",
+          "sức mạnh, quyền lực",
+          "crawn",
+          "n",
+          "/craʊn/",
+          "vương miện",
+          "powder",
+          "n",
+          "/ˈpaʊdə(r)",
+          "bột",
+          "plow",
+          "n",
+          "/plaʊ/",
+          "cái cày",
+          "coward",
+          "adj",
+          "/kaʊəd/",
+          "hèn nhát",
+          "tower",
+          "n",
+          "/ˈtaʊə(r)/",
+          "tòa tháp",
+          "drown",
+          "v",
+          "/draʊd/",
+          "chết đuối, đuối nước",
+          "fowl",
+          "n",
+          "/faʊl/",
+          "gà, thịt gà",
+          "brow",
+          "n",
+          "/braʊ/",
+          "lông mày"
+        ],
+        "slug": "AW"
+      },
+      {
+        "index": 2,
+        "ipa": "əʊ",
+        "title": "Âm /əʊ/",
+        "heading": "2. SOUND /əʊ/",
+        "words": [
+          {
+            "word": "shoulder",
+            "pos": "n",
+            "ipa": "/ˈʃəʊldər/",
+            "meaning": "vai"
+          },
+          {
+            "word": "road",
+            "pos": "n",
+            "ipa": "/rəʊd/",
+            "meaning": "con đường"
+          },
+          {
+            "word": "potato",
+            "pos": "n",
+            "ipa": "/pəˈteɪtəʊ/",
+            "meaning": "khoai tây"
+          },
+          {
+            "word": "slow",
+            "pos": "adj",
+            "ipa": "/sləʊ/",
+            "meaning": "chậm"
+          },
+          {
+            "word": "ago",
+            "pos": "adv",
+            "ipa": "/əˈɡəʊ/",
+            "meaning": "trước đây, về trước"
+          },
+          {
+            "word": "cargo",
+            "pos": "n",
+            "ipa": "/ˈkɑːɡəʊ/",
+            "meaning": "hàng hóa"
+          },
+          {
+            "word": "combo",
+            "pos": "n",
+            "ipa": "/ˈkɒmbəʊ/",
+            "meaning": "sự kết hợp"
+          },
+          {
+            "word": "piano",
+            "pos": "n",
+            "ipa": "/piˈænəʊ/",
+            "meaning": "đàn piano"
+          },
+          {
+            "word": "mango",
+            "pos": "n",
+            "ipa": "/ˈmæŋɡəʊ/",
+            "meaning": "xoài"
+          },
+          {
+            "word": "radio",
+            "pos": "n",
+            "ipa": "/ˈreɪdiəʊ/",
+            "meaning": "máy thu thanh"
+          },
+          {
+            "word": "echo",
+            "pos": "n",
+            "ipa": "/ˈekəʊ/",
+            "meaning": "tiếng vang, tiếng dội"
+          },
+          {
+            "word": "boat",
+            "pos": "n",
+            "ipa": "/bəʊt/",
+            "meaning": "thuyền"
+          },
+          {
+            "word": "coat",
+            "pos": "n",
+            "ipa": "/kəʊt/",
+            "meaning": "áo khoác"
+          },
+          {
+            "word": "coach",
+            "pos": "n",
+            "ipa": "/kəʊtʃ/",
+            "meaning": "huấn luyện viên"
+          },
+          {
+            "word": "goal",
+            "pos": "n",
+            "ipa": "/gəʊl/",
+            "meaning": "mục tiêu"
+          },
+          {
+            "word": "roast",
+            "pos": "n",
+            "ipa": "/rəʊst/",
+            "meaning": "thịt nướng"
+          },
+          {
+            "word": "loaf",
+            "pos": "n",
+            "ipa": "/ləʊʃ/",
+            "meaning": "bánh mì"
+          },
+          {
+            "word": "coal",
+            "pos": "n",
+            "ipa": "/kəʊl/",
+            "meaning": "than đá"
+          },
+          {
+            "word": "grow",
+            "pos": "v",
+            "ipa": "/ɡrəʊ/",
+            "meaning": "phát triển"
+          },
+          {
+            "word": "crow",
+            "pos": "n",
+            "ipa": "/crəʊ/",
+            "meaning": "con quạ"
+          },
+          {
+            "word": "row",
+            "pos": "n",
+            "ipa": "/rəʊ/",
+            "meaning": "dòng, hàng"
+          },
+          {
+            "word": "show",
+            "pos": "v",
+            "ipa": "/ʃəʊ/",
+            "meaning": "trình diễn"
+          },
+          {
+            "word": "snow",
+            "pos": "n",
+            "ipa": "/snəʊ/",
+            "meaning": "tuyết"
+          },
+          {
+            "word": "pillow",
+            "pos": "n",
+            "ipa": "/ˈpɪləʊ/",
+            "meaning": "cái gối"
+          },
+          {
+            "word": "rainbow",
+            "pos": "n",
+            "ipa": "/reɪnbəʊ/",
+            "meaning": "cầu vồng"
+          },
+          {
+            "word": "glow",
+            "pos": "v",
+            "ipa": "/ɡləʊ/",
+            "meaning": "ánh sáng rực rỡ"
+          },
+          {
+            "word": "mow",
+            "pos": "n",
+            "ipa": "/məʊ/",
+            "meaning": "cắt cỏ"
+          }
+        ],
+        "theory": [
+          "2.1. Cách phát âm âm /əʊ/",
+          "Nguyên âm đôi /əʊ/ là sự kết hợp của âm /ə/ và âm /ʊ/. Khi phát âm nguyên âm đôi này, chúng ta chuyển dần từ âm /ə/ sang âm /ʊ/ với một số lưu ý như sau:",
+          "Môi: chuyển khẩu hình môi từ hơi mở đến khi thành một hình tròn nhỏ.",
+          "Lưỡi: đưa lưỡi lên phía trên miệng rồi dần lùi về phía sau.",
+          "Độ dài hơi: phần âm /ə/ trong nguyên âm đôi được phát âm rõ, dài và mạnh so với phần âm /ʊ/.",
+          "Dưới đây là hình ảnh minh họa cách phát âm âm /əʊ/:",
+          "Các em luyện phát âm các ví dụ sau:",
+          "con đường",
+          "potato",
+          "n",
+          "/pəˈteɪtəʊ/",
+          "khoai tây",
+          "slow",
+          "adj",
+          "/sləʊ/",
+          "chậm",
+          "2.2. Dấu hiệu nhận biết âm /əʊ/",
+          "2.2.1. “o” đứng ở cuối một từ",
+          "trước đây, về trước",
+          "cargo",
+          "n",
+          "/ˈkɑːɡəʊ/",
+          "hàng hóa",
+          "combo",
+          "n",
+          "/ˈkɒmbəʊ/",
+          "sự kết hợp",
+          "piano",
+          "n",
+          "/piˈænəʊ/",
+          "đàn piano",
+          "mango",
+          "n",
+          "/ˈmæŋɡəʊ/",
+          "xoài",
+          "radio",
+          "n",
+          "/ˈreɪdiəʊ/",
+          "máy thu thanh",
+          "echo",
+          "n",
+          "/ˈekəʊ/",
+          "tiếng vang, tiếng dội",
+          "2.2.2. “oa” khi ở trong một từ có một âm tiết tận cùng bằng một hoặc hai phụ âm có thể được phát âm là /əʊ/",
+          "thuyền",
+          "coat",
+          "n",
+          "/kəʊt/",
+          "áo khoác",
+          "coach",
+          "n",
+          "/kəʊtʃ/",
+          "huấn luyện viên",
+          "goal",
+          "n",
+          "/gəʊl/",
+          "mục tiêu",
+          "roast",
+          "n",
+          "/rəʊst/",
+          "thịt nướng",
+          "loaf",
+          "n",
+          "/ləʊʃ/",
+          "bánh mì",
+          "coal",
+          "n",
+          "/kəʊl/",
+          "than đá",
+          "2.2.3. “ow ” được phát âm là /əʊ/",
+          "phát triển",
+          "crow",
+          "n",
+          "/crəʊ/",
+          "con quạ",
+          "row",
+          "n",
+          "/rəʊ/",
+          "dòng, hàng",
+          "show",
+          "v",
+          "/ʃəʊ/",
+          "trình diễn",
+          "snow",
+          "n",
+          "/snəʊ/",
+          "tuyết",
+          "pillow",
+          "n",
+          "/ˈpɪləʊ/",
+          "cái gối",
+          "rainbow",
+          "n",
+          "/reɪnbəʊ/",
+          "cầu vồng",
+          "glow",
+          "v",
+          "/ɡləʊ/",
+          "ánh sáng rực rỡ",
+          "mow",
+          "n",
+          "/məʊ/",
+          "cắt cỏ"
+        ],
+        "slug": "OW"
+      },
+      {
+        "index": 3,
+        "ipa": "eə",
+        "title": "Âm /eə/",
+        "heading": "3. SOUND /eə/",
+        "words": [
+          {
+            "word": "bear",
+            "pos": "n",
+            "ipa": "/beə(r)/",
+            "meaning": "con gấu"
+          },
+          {
+            "word": "stare",
+            "pos": "v",
+            "ipa": "/steə(r)/",
+            "meaning": "nhìn chằm chằm"
+          },
+          {
+            "word": "pear",
+            "pos": "n",
+            "ipa": "/peə(r)/",
+            "meaning": "quả lê"
+          },
+          {
+            "word": "rare",
+            "pos": "adj",
+            "ipa": "/reə(r)/",
+            "meaning": "hiếm"
+          },
+          {
+            "word": "care",
+            "pos": "n",
+            "ipa": "/keə(r)/",
+            "meaning": "sự quan tâm, chăm sóc"
+          },
+          {
+            "word": "share",
+            "pos": "n, v",
+            "ipa": "/ʃeə(r)/",
+            "meaning": "sự đóng góp, chia sẻ"
+          },
+          {
+            "word": "compare",
+            "pos": "v",
+            "ipa": "/kəmˈpeə(r)/",
+            "meaning": "so sánh, đối chiếu"
+          },
+          {
+            "word": "prepare",
+            "pos": "v",
+            "ipa": "/prɪˈpeə(r)/",
+            "meaning": "chuẩn bị, sửa soạn"
+          },
+          {
+            "word": "scare",
+            "pos": "v",
+            "ipa": "/skeə(r)/",
+            "meaning": "làm sợ, kinh hãi"
+          },
+          {
+            "word": "shareholder",
+            "pos": "n",
+            "ipa": "/ˈʃeəhəʊldə(r)/",
+            "meaning": "cổ đông"
+          },
+          {
+            "word": "careful",
+            "pos": "adj",
+            "ipa": "/ˈkeəfl/",
+            "meaning": "cẩn thận"
+          },
+          {
+            "word": "rarely",
+            "pos": "adv",
+            "ipa": "/ˈreəli/",
+            "meaning": "hiếm khi, ít khi"
+          },
+          {
+            "word": "snare",
+            "pos": "n",
+            "ipa": "/sneə(r)/",
+            "meaning": "bẫy, lưỡi câu"
+          },
+          {
+            "word": "stair",
+            "pos": "n",
+            "ipa": "/steə(r)/",
+            "meaning": "cầu thang"
+          },
+          {
+            "word": "hair",
+            "pos": "n",
+            "ipa": "/heə(r)/",
+            "meaning": "tóc"
+          },
+          {
+            "word": "chair",
+            "pos": "n",
+            "ipa": "/tʃeə(r)/",
+            "meaning": "ghế"
+          },
+          {
+            "word": "repair",
+            "pos": "v",
+            "ipa": "/rɪˈpeə(r)/",
+            "meaning": "sửa chữa"
+          },
+          {
+            "word": "airfare",
+            "pos": "n",
+            "ipa": "/ˈeəfeə(r)/",
+            "meaning": "giá vé máy bay"
+          },
+          {
+            "word": "staircase",
+            "pos": "n",
+            "ipa": "/ˈsteəkeɪs/",
+            "meaning": "cầu thang"
+          },
+          {
+            "word": "fairy",
+            "pos": "n",
+            "ipa": "/ˈfeəri/",
+            "meaning": "nàng tiên"
+          },
+          {
+            "word": "pairing",
+            "pos": "n",
+            "ipa": "/ˈpeərɪŋ/",
+            "meaning": "sự ghép đôi"
+          },
+          {
+            "word": "haircut",
+            "pos": "n",
+            "ipa": "/ˈheəkʌt/",
+            "meaning": "kiểu tóc, cắt tóc"
+          },
+          {
+            "word": "repairman",
+            "pos": "n",
+            "ipa": "/rɪˈpeəmæn/",
+            "meaning": "thợ sửa chữa"
+          },
+          {
+            "word": "swear",
+            "pos": "v",
+            "ipa": "/sweə(r)/",
+            "meaning": "thề, tuyên thệ"
+          },
+          {
+            "word": "tear",
+            "pos": "v",
+            "ipa": "/teə(r)/",
+            "meaning": "xé, rách"
+          },
+          {
+            "word": "wear",
+            "pos": "v",
+            "ipa": "/weə(r)/",
+            "meaning": "mặc, đeo"
+          },
+          {
+            "word": "heir",
+            "pos": "n",
+            "ipa": "/eə(r)/",
+            "meaning": "người thừa kế"
+          },
+          {
+            "word": "bearable",
+            "pos": "adj",
+            "ipa": "/beərəbəl/",
+            "meaning": "chịu được, có thể chịu đựng được"
+          }
+        ],
+        "theory": [
+          "3.1. Cách phát âm âm /eə/",
+          "Âm /eə/ là sự kết hợp giữa âm /e/ và âm /ə/. Để phát âm âm này ta làm như sau:",
+          "Bước 1: Hơi kéo hai khóe miệng sang hai bên, đặt lưỡi ở độ cao trung bình để phát âm âm /e/.",
+          "Bước 2: Sau đó thu hai khóe miệng về, kéo lưỡi về phía sau để phát âm âm /ə/.",
+          "Dưới đây là hình ảnh minh hoạ khẩu hình miệng khi phát âm âm /eə/",
+          "Các em luyện phát âm các ví dụ sau:",
+          "con gấu",
+          "stare",
+          "v",
+          "/steə(r)/",
+          "nhìn chằm chằm",
+          "pear",
+          "n",
+          "/peə(r)/",
+          "quả lê",
+          "rare",
+          "adj",
+          "/reə(r)/",
+          "hiếm",
+          "3.2. Dấu hiệu nhận biết âm /eə/.",
+          "3.2.1. Từ có chứa cụm “are” được phát âm thành /eə/.",
+          "sự quan tâm, chăm sóc",
+          "share",
+          "n, v",
+          "/ʃeə(r)/",
+          "sự đóng góp, chia sẻ",
+          "compare",
+          "v",
+          "/kəmˈpeə(r)/",
+          "so sánh, đối chiếu",
+          "prepare",
+          "v",
+          "/prɪˈpeə(r)",
+          "chuẩn bị, sửa soạn",
+          "stare",
+          "v",
+          "/steə(r)/",
+          "nhìn chằm chằm, đăm đăm nhìn",
+          "scare",
+          "v",
+          "/skeə(r)/",
+          "làm sợ, kinh hãi",
+          "shareholder",
+          "n",
+          "/ˈʃeəhəʊldə(r)/",
+          "cổ đông",
+          "careful",
+          "adj",
+          "/ˈkeəfl/",
+          "cẩn thận",
+          "rarely",
+          "adv",
+          "/ˈreəli/",
+          "hiếm khi, ít khi",
+          "snare",
+          "n",
+          "/sneə(r)/",
+          "bẫy, lưỡi câu",
+          "3.2.2. Từ có chứa “air” được phát âm là /eə/",
+          "cầu thang",
+          "hair",
+          "n",
+          "/heə(r)/",
+          "tóc",
+          "chair",
+          "n",
+          "/tʃeə(r)/",
+          "ghế",
+          "repair",
+          "v",
+          "/rɪˈpeə(r)",
+          "sửa chữa",
+          "airfare",
+          "n",
+          "/ˈeəfeə(r)/",
+          "giá vé máy bay",
+          "staircase",
+          "n",
+          "/ˈsteəkeɪs/",
+          "cầu thang",
+          "fairy",
+          "n",
+          "/ˈfeəri/",
+          "nàng tiên",
+          "pairing",
+          "n",
+          "/ˈpeərɪŋ/",
+          "sự ghép đôi",
+          "haircut",
+          "n",
+          "/ˈheəkʌt/",
+          "kiểu tóc, cắt tóc",
+          "repairman",
+          "n",
+          "/rɪˈpeəmæn/",
+          "thợ sửa chữa",
+          "3.2.3. Từ có chứa cụm “ear”, “ei” cũng được phát âm là /eə/ trong một vài trường hợp.",
+          "thề, tuyên thệ",
+          "pear",
+          "n",
+          "/peə(r)/",
+          "quả lê",
+          "tear",
+          "v",
+          "/teə(r)/",
+          "xé, rách",
+          "wear",
+          "v",
+          "/weə(r)/",
+          "mặc, đeo",
+          "heir",
+          "n",
+          "/eə(r)/",
+          "người thừa kế",
+          "bear",
+          "n",
+          "/beə(r)/",
+          "con gấu",
+          "bearable",
+          "adj",
+          "/beərəbəl/",
+          "chịu được, có thể chịu đựng được",
+          "their",
+          "pro",
+          "/ðeə(r)",
+          "của họ"
+        ],
+        "slug": "EA"
+      }
+    ]
+  },
+  "3": {
+    "title": "UNIT 3: HEALTHY LIVING FOR TEEN",
+    "intro": [
+      "SOUND /h/ and /r/"
+    ],
+    "sounds": [
+      {
+        "index": 1,
+        "ipa": "h",
+        "title": "Âm /h/",
+        "heading": "1. SOUND /h/",
+        "words": [
+          {
+            "word": "hand",
+            "pos": "(n)",
+            "ipa": "/hænd/",
+            "meaning": "bàn tay"
+          },
+          {
+            "word": "hill",
+            "pos": "(n)",
+            "ipa": "/hɪl/",
+            "meaning": "đồi"
+          },
+          {
+            "word": "help",
+            "pos": "(v)",
+            "ipa": "/help/",
+            "meaning": "giúp đỡ"
+          },
+          {
+            "word": "hear",
+            "pos": "(v)",
+            "ipa": "/hɪər/",
+            "meaning": "nghe"
+          },
+          {
+            "word": "how",
+            "pos": "(adv)",
+            "ipa": "/haʊ/",
+            "meaning": "như thế nào"
+          },
+          {
+            "word": "happy",
+            "pos": "(adj)",
+            "ipa": "/hæpɪ/",
+            "meaning": "hạnh phúc"
+          },
+          {
+            "word": "hospital",
+            "pos": "(n)",
+            "ipa": "/ˈhɒspɪtl/",
+            "meaning": "bệnh viện"
+          },
+          {
+            "word": "husband",
+            "pos": "(n)",
+            "ipa": "/ˈhʌzbənd/",
+            "meaning": "chồng"
+          },
+          {
+            "word": "perhaps",
+            "pos": "(adv)",
+            "ipa": "/pəˈhæps/",
+            "meaning": "có lẽ"
+          },
+          {
+            "word": "ahead",
+            "pos": "(adv)",
+            "ipa": "/əˈhed/",
+            "meaning": "phía trước"
+          },
+          {
+            "word": "who",
+            "pos": "pronoun",
+            "ipa": "/hu:/",
+            "meaning": "ai"
+          },
+          {
+            "word": "whole",
+            "pos": "pronoun",
+            "ipa": "/həʊl/",
+            "meaning": "đầy đủ, toàn bộ"
+          },
+          {
+            "word": "heel",
+            "pos": "n",
+            "ipa": "/hi:l/",
+            "meaning": "gót chân"
+          },
+          {
+            "word": "hold",
+            "pos": "v",
+            "ipa": "/həʊld/",
+            "meaning": "Cầm, nắm giữ"
+          },
+          {
+            "word": "high",
+            "pos": "adj",
+            "ipa": "/haɪ/",
+            "meaning": "cao"
+          },
+          {
+            "word": "happen",
+            "pos": "v",
+            "ipa": "/ˈhæpən/",
+            "meaning": "xảy ra, xảy đến"
+          },
+          {
+            "word": "horrible",
+            "pos": "adj",
+            "ipa": "/ˈhɒrəbl/",
+            "meaning": "tồi tệ"
+          },
+          {
+            "word": "honest",
+            "pos": "adj",
+            "ipa": "/ˈɒnɪst/",
+            "meaning": "trung thực"
+          },
+          {
+            "word": "hour",
+            "pos": "n",
+            "ipa": "/ˈaʊə(r)/",
+            "meaning": "giờ"
+          },
+          {
+            "word": "honor",
+            "pos": "n",
+            "ipa": "/ˈɒnə(r)/",
+            "meaning": "danh dự, danh giá"
+          },
+          {
+            "word": "rhubarb",
+            "pos": "n",
+            "ipa": "/ˈruːbɑːb/",
+            "meaning": "cây đại hoàng"
+          },
+          {
+            "word": "rhythm",
+            "pos": "n",
+            "ipa": "/ˈrɪðəm/",
+            "meaning": "nhịp điệu"
+          }
+        ],
+        "theory": [
+          "1.1. Cách phát âm âm /h/",
+          "- /h/ là phụ âm vô thanh nên khi phát âm cổ họng không rung.",
+          "- Để tạo ra âm thanh này, hãy há miệng thật rộng, nhanh chóng đẩy không khí ra ngoài và không sử dụng giọng nói. Phát âm /h/ …… /h/.",
+          "Dưới đây là khẩu hình miệng khi phát âm âm /h/:",
+          "Các em luyện phát âm các ví dụ sau:",
+          "bàn tay",
+          "hill",
+          "(n)",
+          "/hɪl/",
+          "đồi",
+          "help",
+          "(v)",
+          "/help/",
+          "giúp đỡ",
+          "hear",
+          "(v)",
+          "/hɪər/",
+          "nghe",
+          "how",
+          "(adv)",
+          "/haʊ/",
+          "như thế nào",
+          "happy",
+          "(adj)",
+          "/hæpɪ/",
+          "hạnh phúc",
+          "hospital",
+          "(n)",
+          "/ˈhɒspɪtl/",
+          "bệnh viện",
+          "husband",
+          "(n)",
+          "/ˈhʌzbənd",
+          "chồng",
+          "perhaps",
+          "(adv)",
+          "/pəˈhæps/",
+          "có lẽ",
+          "ahead",
+          "(adv)",
+          "/əˈhed/",
+          "phía trước",
+          "1.2. Dấu hiệu nhận biết âm /h/",
+          "- “Wh” và “h” thường được phát âm là /h/",
+          "đầy đủ, toàn bộ",
+          "ahead",
+          "adv",
+          "/əˈhed/",
+          "phía trước",
+          "hill",
+          "n",
+          "/hɪl/",
+          "ngọn đồi",
+          "heel",
+          "n",
+          "/hi:l/",
+          "gót chân",
+          "hand",
+          "n",
+          "/hænd/",
+          "bàn tay",
+          "hold",
+          "v",
+          "/həʊld/",
+          "Cầm, nắm giữ",
+          "hear",
+          "v",
+          "/hɪə(r)/",
+          "nghe",
+          "high",
+          "adj",
+          "/haɪ/",
+          "cao",
+          "husband",
+          "n",
+          "/ˈhʌzbənd/",
+          "người chồng",
+          "happen",
+          "v",
+          "/ˈhæpən/",
+          "xảy ra, xảy đến",
+          "hospital",
+          "n",
+          "/ˈhɒspɪtl/",
+          "bệnh viện",
+          "horrible",
+          "adj",
+          "/ˈhɒrəbl/",
+          "tồi tệ",
+          "* Lưu ý",
+          "Trong một số trường hợp “h” không được phát âm và nó được gọi là “phụ âm câm ”",
+          "trung thực",
+          "hour",
+          "n",
+          "/ˈaʊə(r)/",
+          "giờ",
+          "honor",
+          "n",
+          "/ˈɒnə(r)/",
+          "danh dự, danh giá",
+          "rhubarb",
+          "n",
+          "/ˈruːbɑːb/",
+          "cây đại hoàng",
+          "rhythm",
+          "n",
+          "/ˈrɪðəm/",
+          "nhịp điệu"
+        ],
+        "slug": "H"
+      },
+      {
+        "index": 2,
+        "ipa": "r",
+        "title": "Âm /r/",
+        "heading": "2. SOUND /r/",
+        "words": [
+          {
+            "word": "read",
+            "pos": "(v)",
+            "ipa": "/ri:d/",
+            "meaning": "đọc"
+          },
+          {
+            "word": "grass",
+            "pos": "(n)",
+            "ipa": "/ɡrɑːs/",
+            "meaning": "cỏ"
+          },
+          {
+            "word": "bright",
+            "pos": "(adj)",
+            "ipa": "/braɪt/",
+            "meaning": "sáng, tươi sáng"
+          },
+          {
+            "word": "reporter",
+            "pos": "(n)",
+            "ipa": "/rɪˈpɔːtə(r)/",
+            "meaning": "nhà báo"
+          },
+          {
+            "word": "arrest",
+            "pos": "(v)",
+            "ipa": "/əˈrest/",
+            "meaning": "bắt giữ"
+          },
+          {
+            "word": "rank",
+            "pos": "(n)",
+            "ipa": "/ræŋk/",
+            "meaning": "thứ hạng"
+          },
+          {
+            "word": "ring",
+            "pos": "(n)",
+            "ipa": "/rɪŋ/",
+            "meaning": "nhẫn"
+          },
+          {
+            "word": "bring",
+            "pos": "(v)",
+            "ipa": "/brɪŋ/",
+            "meaning": "mang theo"
+          },
+          {
+            "word": "right",
+            "pos": "adj",
+            "ipa": "/raɪt/",
+            "meaning": "đúng, bên phải"
+          },
+          {
+            "word": "wrong",
+            "pos": "adj",
+            "ipa": "/rɒŋ/",
+            "meaning": "sai"
+          },
+          {
+            "word": "sorry",
+            "pos": "adj",
+            "ipa": "/ˈsɒri/",
+            "meaning": "xin lỗi"
+          },
+          {
+            "word": "arrange",
+            "pos": "v",
+            "ipa": "/əˈreɪndʒ/",
+            "meaning": "sắp xếp"
+          },
+          {
+            "word": "road",
+            "pos": "n",
+            "ipa": "/rəʊd/",
+            "meaning": "con đường"
+          },
+          {
+            "word": "fry",
+            "pos": "v",
+            "ipa": "/fraɪ/",
+            "meaning": "rán, chiên"
+          },
+          {
+            "word": "raise",
+            "pos": "v",
+            "ipa": "/reɪz/",
+            "meaning": "nâng, giơ lên"
+          },
+          {
+            "word": "crack",
+            "pos": "v",
+            "ipa": "/kræk/",
+            "meaning": "bẻ khóa"
+          },
+          {
+            "word": "rich",
+            "pos": "adj",
+            "ipa": "/rɪtʃ/",
+            "meaning": "giàu có"
+          },
+          {
+            "word": "very",
+            "pos": "adv",
+            "ipa": "/'verɪ/",
+            "meaning": "rất"
+          },
+          {
+            "word": "pretty",
+            "pos": "adj",
+            "ipa": "/‘prɪtɪ/",
+            "meaning": "xinh đẹp"
+          },
+          {
+            "word": "proud",
+            "pos": "adj",
+            "ipa": "/praʊd/",
+            "meaning": "kiêu hãnh, tự hào"
+          },
+          {
+            "word": "parents",
+            "pos": "n",
+            "ipa": "/ˈpeərənts/",
+            "meaning": "cha mẹ"
+          },
+          {
+            "word": "depart",
+            "pos": "v",
+            "ipa": "/dɪˈpɑːt/",
+            "meaning": "ra đi, khởi hành"
+          },
+          {
+            "word": "afternoon",
+            "pos": "n",
+            "ipa": "/ˌɑːftəˈnuːn/",
+            "meaning": "buổi chiều"
+          },
+          {
+            "word": "forbidden",
+            "pos": "v",
+            "ipa": "/fəˈbɪdn/",
+            "meaning": "cấm"
+          },
+          {
+            "word": "wonderful",
+            "pos": "adj",
+            "ipa": "/ˈwʌndəfl/",
+            "meaning": "tuyệt vời, kỳ diệu"
+          },
+          {
+            "word": "storm",
+            "pos": "n",
+            "ipa": "/stɔːm/",
+            "meaning": "cơn bão"
+          },
+          {
+            "word": "airport",
+            "pos": "n",
+            "ipa": "/ˈeəpɔːt/",
+            "meaning": "sân bay"
+          },
+          {
+            "word": "quarter",
+            "pos": "n",
+            "ipa": "/ˈkwɔːtə(r)/",
+            "meaning": "một phần tư"
+          }
+        ],
+        "theory": [
+          "2.1. Cách phát âm âm /r/",
+          "- /r/ là một phụ âm hữu thanh (voiced sounds) khi phát ra sẽ có sự rung động của các dây thanh quản ở cuống họng. Khi chạm tay vào và phát âm, sẽ có thể cảm nhận được sự rung động.",
+          "Bước 1: Để đầu lưỡi tiếp xúc với vùng vòm miệng phía sau chân răng trên",
+          "Bước 2: Sau đó lưỡi sẽ được uốn và luồng hơi được đưa ra khỏi vòm miệng.",
+          "Dưới đây là hình ảnh minh họa cách phát âm âm /əʊ/:",
+          "Các em luyện phát âm các ví dụ sau:",
+          "đọc",
+          "grass",
+          "(n)",
+          "/ɡrɑːs/",
+          "cỏ",
+          "bright",
+          "(adj)",
+          "/braɪt/",
+          "sáng, tươi sáng",
+          "reporter",
+          "(n)",
+          "/rɪˈpɔːtə(r)/",
+          "nhà báo",
+          "arrest",
+          "(v)",
+          "/əˈrest/",
+          "bắt giữ",
+          "rank",
+          "(n)",
+          "/ræŋk/",
+          "thứ hạng",
+          "ring",
+          "(n)",
+          "/rɪŋ/",
+          "nhẫn",
+          "bring",
+          "(v)",
+          "/brɪŋ/",
+          "mang theo",
+          "2.2. Dấu hiệu nhận biết âm /r/",
+          "- Chỉ có “r” được phát âm là /r/",
+          "đúng, bên phải",
+          "wrong",
+          "adj",
+          "/rɒŋ/",
+          "sai",
+          "sorry",
+          "adj",
+          "/ˈsɒri/",
+          "xin lỗi",
+          "arrange",
+          "v",
+          "/əˈreɪndʒ/",
+          "sắp xếp",
+          "road",
+          "n",
+          "/rəʊd/",
+          "con đường",
+          "fry",
+          "v",
+          "/fraɪ/",
+          "rán, chiên",
+          "grass",
+          "n",
+          "/ɡrɑːs/",
+          "cỏ",
+          "raise",
+          "v",
+          "/reɪz/",
+          "nâng, giơ lên",
+          "crack",
+          "v",
+          "/kræk/",
+          "bẻ khóa",
+          "rich",
+          "adj",
+          "/rɪtʃ/",
+          "giàu có",
+          "very",
+          "adv",
+          "/'verɪ/",
+          "rất",
+          "pretty",
+          "adj",
+          "/‘prɪtɪ/",
+          "xinh đẹp",
+          "proud",
+          "adj",
+          "/praʊd/",
+          "kiêu hãnh, tự hào",
+          "parents",
+          "n",
+          "/ˈpeərənts/",
+          "cha mẹ",
+          "Lưu ý: Trong một số trường hợp “r” không được phát âm và nó được gọi là “phụ âm câm”",
+          "ra đi, khởi hành",
+          "afternoon",
+          "n",
+          "/ˌɑːftəˈnuːn/",
+          "buổi chiều",
+          "forbidden",
+          "v",
+          "/fəˈbɪdn/",
+          "cấm",
+          "wonderful",
+          "adj",
+          "/ˈwʌndəfl/",
+          "tuyệt vời, kỳ diệu",
+          "storm",
+          "n",
+          "/stɔːm/",
+          "cơn bão",
+          "airport",
+          "n",
+          "/ˈeəpɔːt/",
+          "sân bay",
+          "quarter",
+          "n",
+          "/ˈkwɔːtə(r)/",
+          "một phần tư"
+        ],
+        "slug": "R"
+      }
+    ]
+  },
+  "4": {
+    "title": "UNIT 4: REMEMBERING THE PAST",
+    "intro": [
+      "SOUND /l/ and /m/"
+    ],
+    "sounds": [
+      {
+        "index": 1,
+        "ipa": "l",
+        "title": "Âm /l/",
+        "heading": "1. SOUND /l/",
+        "words": [
+          {
+            "word": "language",
+            "ipa": "/ˈlæŋɡwɪdʒ/",
+            "meaning": "ngôn ngữ",
+            "pos": "(n)"
+          },
+          {
+            "word": "learn",
+            "ipa": "/lɜːn/",
+            "meaning": "học tập, trau dồi",
+            "pos": "(v)"
+          },
+          {
+            "word": "lack",
+            "ipa": "/læk/",
+            "meaning": "sự thiếu",
+            "pos": "(n)"
+          },
+          {
+            "word": "listen",
+            "ipa": "/lɪsn/",
+            "meaning": "nghe, lắng nghe",
+            "pos": "(v)"
+          },
+          {
+            "word": "library",
+            "ipa": "/ˈlaɪbrəri/",
+            "meaning": "thư viện",
+            "pos": "(n)"
+          },
+          {
+            "word": "school",
+            "ipa": "/sku:l/",
+            "meaning": "trường họ",
+            "pos": "(n)"
+          },
+          {
+            "word": "feel",
+            "ipa": "/fi:l/",
+            "meaning": "cảm thấy",
+            "pos": "(v)"
+          },
+          {
+            "word": "simple",
+            "ipa": "/sɪmpl/",
+            "meaning": "đơn giản",
+            "pos": "(adj)"
+          },
+          {
+            "word": "tell",
+            "ipa": "/tel/",
+            "meaning": "kể",
+            "pos": "(v)"
+          },
+          {
+            "word": "call",
+            "ipa": "/kɔːl/",
+            "meaning": "gọi điện",
+            "pos": "(v)"
+          }
+        ],
+        "theory": [
+          "1.1. Cách phát âm âm /l/",
+          "* Âm /l/ thuộc nhóm âm lợi (alveolar), nghĩa là khi phát âm, lưỡi của người đọc phải chạm vào phần lợi sau răng trên. Do sự chặn lại của lưỡi ở giữa, luồng hơi bên trong sẽ thoát ra qua 2 bên lười.",
+          "* Chú ý có 2 vị trí phát âm âm /l/ là light /l/ và dark /l/",
+          "- Light /l/ xuất hiện khi “l” đứng trước nguyên âm. E.g. holiday, level...",
+          "Khi phát âm, ta uốn phần đầu lười (tip of the tongue) chạm vào phần lợi sau ở răng trên, sau đó, bật lưỡi ra tạo thành âm. Ngoài ra, vì đây là âm hữu thanh nên sẽ có rung động ở cổ họng khi phát âm.",
+          "- Dark /l/ xuất hiện khi “l” đúng sau một nguyên âm hoặc ở cuối từ. E.g. milk, castle...",
+          "Khi phát âm, cuống lưỡi (back of the tongue) được nâng lên về phía sau họng, gần vị trí vòm mềm (soft palate). E.g. school - /sku:l/; ball - /bɔːl/",
+          "Dưới đây là hình ảnh minh hoạ cách phát âm:",
+          "Các em hãy cùng luyện tập phát âm các từ sau:",
+          "Light L",
+          "language",
+          "(n)",
+          "/ˈlæŋɡwɪdʒ/",
+          "ngôn ngữ",
+          "learn",
+          "(v)",
+          "/lɜːn/",
+          "học tập, trau dồi",
+          "lack",
+          "(n)",
+          "/læk/",
+          "sự thiếu",
+          "listen",
+          "(v)",
+          "/lɪsn/",
+          "nghe, lắng nghe",
+          "library",
+          "(n)",
+          "/ˈlaɪbrəri/",
+          "thư viện",
+          "Dark L",
+          "school",
+          "(n)",
+          "/sku:l/",
+          "trường họ",
+          "feel",
+          "(v)",
+          "/fi:l/",
+          "cảm thấy",
+          "simple",
+          "(adj)",
+          "/sɪmpl/",
+          "đơn giản",
+          "tell",
+          "(v)",
+          "/tel/",
+          "kể",
+          "call",
+          "(v)",
+          "/kɔːl/",
+          "gọi điện",
+          "1.2. Dấu hiệu nhận biết âm /l/",
+          "- Chỉ có âm l được phát âm là /l/"
+        ],
+        "slug": "L"
+      },
+      {
+        "index": 2,
+        "ipa": "m",
+        "title": "Âm /m/",
+        "heading": "2. SOUND /m/",
+        "words": [
+          {
+            "word": "music",
+            "pos": "(n)",
+            "ipa": "/ˈmjuːzɪk/",
+            "meaning": "âm nhạc"
+          },
+          {
+            "word": "map",
+            "pos": "(n)",
+            "ipa": "/mæp/",
+            "meaning": "bản đồ"
+          },
+          {
+            "word": "machine",
+            "pos": "(n)",
+            "ipa": "/məˈʃiːn/",
+            "meaning": "máy móc"
+          },
+          {
+            "word": "may",
+            "pos": "(n)",
+            "ipa": "/meɪ/",
+            "meaning": "tháng Năm"
+          },
+          {
+            "word": "moon",
+            "pos": "(n)",
+            "ipa": "/mu:n/",
+            "meaning": "mặt trăng"
+          },
+          {
+            "word": "mother",
+            "pos": "(n)",
+            "ipa": "/ˈmʌðər/",
+            "meaning": "mẹ"
+          },
+          {
+            "word": "mountain",
+            "pos": "(n)",
+            "ipa": "/ˈmaʊntən/",
+            "meaning": "núi"
+          },
+          {
+            "word": "dream",
+            "pos": "(n)",
+            "ipa": "/dri:m/",
+            "meaning": "giấc mơ"
+          },
+          {
+            "word": "problem",
+            "pos": "(n)",
+            "ipa": "/ˈprɒbləm/",
+            "meaning": "vấn đề"
+          },
+          {
+            "word": "exam",
+            "pos": "(n)",
+            "ipa": "/ɪɡˈzæm/",
+            "meaning": "kỳ thi"
+          },
+          {
+            "word": "program",
+            "pos": "(v, n)",
+            "ipa": "/ˈprəʊɡræm/",
+            "meaning": "chương trình"
+          },
+          {
+            "word": "freedom",
+            "pos": "(n)",
+            "ipa": "/'fri:dəm/",
+            "meaning": "sự tự do"
+          },
+          {
+            "word": "team",
+            "pos": "(n)",
+            "ipa": "/ti:m/",
+            "meaning": "đội, nhóm"
+          },
+          {
+            "word": "film",
+            "pos": "(n)",
+            "ipa": "/fɪlm/",
+            "meaning": "phim"
+          }
+        ],
+        "theory": [
+          "2.1. Cách phát âm âm /m/",
+          "- /m/ là một phụ âm hữu thanh. Khi phát âm âm này, chúng ta chú ý 2 vị trí khi m đứng ờ vị trí đầu và vị trí cuối.",
+          "2.1.1. Cách phát âm âm /m/ khi đứng vị trí đầu của từ",
+          "Bước 1: Mím hai môi lại",
+          "Bước 2: Mím môi chặt hơn rồi bật ra để phát hai nguyên âm liên tiếp",
+          "Các em luyện phát âm các ví dụ sau:",
+          "âm nhạc",
+          "map",
+          "(n)",
+          "/mæp/",
+          "bản đồ",
+          "machine",
+          "(n)",
+          "/məˈʃiːn",
+          "máy móc",
+          "may",
+          "(n)",
+          "/meɪ/",
+          "tháng Năm",
+          "moon",
+          "(n)",
+          "/mu:n/",
+          "mặt trăng",
+          "mother",
+          "(n)",
+          "/ˈmʌðər/",
+          "mẹ",
+          "mountain",
+          "(n)",
+          "/ˈmaʊntən/",
+          "núi",
+          "2.1.2. Cách phát âm /m/ khi đứng ở vị trí cuối của từ",
+          "Bước 1: Mím hai môi lại",
+          "Bước 2: Phát âm âm /m/. Ở bước này, không mở miệng, mím môi lại và phát âm âm /m/",
+          "Các em luyện phát âm các ví dụ sau:",
+          "giấc mơ",
+          "problem",
+          "(n)",
+          "/ˈprɒbləm/",
+          "vấn đề",
+          "exam",
+          "(n)",
+          "/ɪɡˈzæm/",
+          "kỳ thi",
+          "program",
+          "(v, n)",
+          "/ˈprəʊɡræm/",
+          "chương trình",
+          "freedom",
+          "(n)",
+          "/'fri:dəm/",
+          "sự tự do",
+          "team",
+          "(n)",
+          "/ti:m/",
+          "đội, nhóm",
+          "film",
+          "(n)",
+          "/fɪlm/",
+          "phim",
+          "2.2. Dấu hiệu nhận biết âm /m/",
+          "- Chỉ có âm “m” được phát âm là /m/"
+        ],
+        "slug": "M"
+      }
+    ]
+  },
+  "5": {
+    "title": "UNIT 5: OUR EXPERIENCES",
+    "intro": [
+      "SOUND /j/ and /w/"
+    ],
+    "sounds": [
+      {
+        "index": 1,
+        "ipa": "j",
+        "title": "Âm /j/",
+        "heading": "1. SOUND /j/",
+        "words": [
+          {
+            "word": "yam",
+            "pos": "n",
+            "ipa": "/jæm/",
+            "meaning": "củ từ, khoai mờ"
+          },
+          {
+            "word": "yes",
+            "pos": "n",
+            "ipa": "/jes/",
+            "meaning": "dạ, vâng"
+          },
+          {
+            "word": "year",
+            "pos": "n",
+            "ipa": "/jɪə(r)/",
+            "meaning": "năm"
+          },
+          {
+            "word": "yesterday",
+            "pos": "adv",
+            "ipa": "/ˈjestədeɪ/",
+            "meaning": "ngày hôm qua"
+          },
+          {
+            "word": "young",
+            "pos": "adj",
+            "ipa": "/jʌŋ/",
+            "meaning": "trẻ, tuổi trẻ"
+          },
+          {
+            "word": "yet",
+            "pos": "adv",
+            "ipa": "/jet/",
+            "meaning": "vẫn chưa"
+          },
+          {
+            "word": "yellow",
+            "pos": "adj",
+            "ipa": "/ˈjeləʊ/",
+            "meaning": "màu vàng"
+          },
+          {
+            "word": "yolk",
+            "pos": "n",
+            "ipa": "/jəʊk/",
+            "meaning": "lòng đỏ trứng"
+          },
+          {
+            "word": "yak",
+            "pos": "n",
+            "ipa": "/jæk/",
+            "meaning": "bò Tây Tạng"
+          },
+          {
+            "word": "humour",
+            "pos": "adj",
+            "ipa": "/ˈhjuːmə(r)/",
+            "meaning": "hài hước, hóm hỉnh"
+          },
+          {
+            "word": "museum",
+            "pos": "n",
+            "ipa": "/mjuˈziːəm/",
+            "meaning": "viện bảo tàng"
+          },
+          {
+            "word": "cucumber",
+            "pos": "n",
+            "ipa": "/ˈkjuːkʌmbə(r)/",
+            "meaning": "dưa chuột"
+          },
+          {
+            "word": "commune",
+            "pos": "n",
+            "ipa": "/ˈkɒmjuːn/",
+            "meaning": "xã, công xã"
+          },
+          {
+            "word": "cure",
+            "pos": "n/v",
+            "ipa": "/kjʊə(r)/",
+            "meaning": "chữa trị"
+          },
+          {
+            "word": "pure",
+            "pos": "adj",
+            "ipa": "/pjʊə(r)/",
+            "meaning": "trong sạch, tinh khiết"
+          },
+          {
+            "word": "curious",
+            "pos": "adj",
+            "ipa": "/ˈkjʊəriəs/",
+            "meaning": "tò mò, hiếu kỳ"
+          },
+          {
+            "word": "furious",
+            "pos": "adj",
+            "ipa": "/ˈfjʊəriəs/",
+            "meaning": "giận dữ, mãnh liệt"
+          },
+          {
+            "word": "suit",
+            "pos": "n",
+            "ipa": "/sju:t/",
+            "meaning": "bộ com-lê"
+          },
+          {
+            "word": "suitable",
+            "pos": "adj",
+            "ipa": "/’sju:tobl/",
+            "meaning": "phù hợp"
+          },
+          {
+            "word": "suitor",
+            "pos": "n",
+            "ipa": "/’ sju:to(r)/",
+            "meaning": "người cầu hôn, đương sự"
+          },
+          {
+            "word": "pursuit",
+            "pos": "n",
+            "ipa": "/pə‘sju:t/",
+            "meaning": "theo đuổi"
+          },
+          {
+            "word": "tuition",
+            "pos": "n",
+            "ipa": "/tuˈɪʃn/’/",
+            "meaning": "sự dạy học, học phí"
+          },
+          {
+            "word": "suicide",
+            "pos": "n",
+            "ipa": "/ˈsuːɪsaɪd/",
+            "meaning": "1.2.4. “ea” có thể được phát âm là /j/"
+          },
+          {
+            "word": "beauty",
+            "pos": "n",
+            "ipa": "/bju:ti/",
+            "meaning": "vẻ đẹp"
+          },
+          {
+            "word": "beautiful",
+            "pos": "adj",
+            "ipa": "/bju:tɪfl/",
+            "meaning": "đẹp đẽ"
+          }
+        ],
+        "theory": [
+          "1.1. Cách phát âm âm /j/",
+          "Loại âm",
+          "/j/ là một phụ âm hữu thanh",
+          "Cách phát âm",
+          "Bước 1: Để môi hở nhẹ và lưỡi ở vị trí thả lỏng tự nhiên.",
+          "Bước 2: Cong lưỡi và nâng thân lưỡi lên phía vòm lợi nhưng không chạm vào ngạc cứng đồng thời đặt đầu lưỡi phía sau răng cửa dưới và phát ra âm /j/.",
+          "* Lưu ý: Đây là một phụ âm hữu thanh nên thanh quản rung khi bạn phát âm âm này. Để kiểm tra xem mình phát âm có đúng không. Đặt bàn tay lên cổ họng và kiểm tra độ rung.",
+          "Hình minh hoạ",
+          "Ví dụ",
+          "use /ju:z/",
+          "sử dụng",
+          "new /nju:/",
+          "mới",
+          "year /jɪə(r)/",
+          "năm",
+          "yolk /jəʊk/",
+          "lòng đỏ trứng",
+          "yes /jes/",
+          "đúng, dạ, vâng",
+          "1.2. Dấu hiệu nhận biết âm /l/",
+          "1.2.1. “y” thường được phát âm là /j/",
+          "củ từ, khoai mờ",
+          "yes",
+          "n",
+          "/jes/",
+          "dạ, vâng",
+          "year",
+          "n",
+          "/jɪə(r)/",
+          "năm",
+          "yesterday",
+          "adv",
+          "/ˈjestədeɪ/",
+          "ngày hôm qua",
+          "young",
+          "adj",
+          "/jʌŋ/",
+          "trẻ, tuổi trẻ",
+          "yet",
+          "adv",
+          "/jet/",
+          "vẫn chưa",
+          "your",
+          "determiner",
+          "/jɔː(r)/",
+          "của bạn (từ sở hữu)",
+          "yellow",
+          "adj",
+          "/ˈjeləʊ/",
+          "màu vàng",
+          "yolk",
+          "n",
+          "/jəʊk/",
+          "lòng đỏ trứng",
+          "yak",
+          "n",
+          "/jæk/",
+          "bò Tây Tạng",
+          "1.2.2. “u” có thể được phát âm là /jʊ/ hay /ju:/",
+          "hài hước, hóm hỉnh",
+          "museum",
+          "n",
+          "/mjuˈziːəm/",
+          "viện bảo tàng",
+          "cucumber",
+          "n",
+          "/ˈkjuːkʌmbə(r)/",
+          "dưa chuột",
+          "commune",
+          "n",
+          "/ˈkɒmjuːn/",
+          "xã, công xã",
+          "cure",
+          "n/v",
+          "/kjʊə(r)/",
+          "chữa trị",
+          "pure",
+          "adj",
+          "/pjʊə(r)/",
+          "trong sạch, tinh khiết",
+          "during",
+          "pre",
+          "ˈdjʊərɪŋ/",
+          "trong suốt (quá trình)",
+          "curious",
+          "adj",
+          "/ˈkjʊəriəs/",
+          "tò mò, hiếu kỳ",
+          "furious",
+          "adj",
+          "/ˈfjʊəriəs/",
+          "giận dữ, mãnh liệt",
+          "1.2.3. “ui” có thể được phát âm là /ju:/",
+          "bộ com-lê",
+          "suitable",
+          "adj",
+          "/’sju:tobl/",
+          "phù hợp",
+          "suitor",
+          "n",
+          "/’ sju:to(r)/",
+          "người cầu hôn, đương sự",
+          "pursuit",
+          "n",
+          "/pə‘sju:t/",
+          "theo đuổi",
+          "Ngoại lệ:",
+          "sự dạy học, học phí",
+          "suicide",
+          "n",
+          "/ˈsuːɪsaɪd/",
+          "1.2.4. “ea” có thể được phát âm là /j/",
+          "vẻ đẹp",
+          "beautiful",
+          "adj",
+          "/bju:tɪfl/",
+          "đẹp đẽ"
+        ],
+        "slug": "J"
+      },
+      {
+        "index": 2,
+        "ipa": "w",
+        "title": "Âm /w/",
+        "heading": "2. SOUND /w/",
+        "words": [
+          {
+            "word": "way",
+            "pos": "(n)",
+            "ipa": "/weɪ/",
+            "meaning": "cách thức, con đường"
+          },
+          {
+            "word": "want",
+            "pos": "(v)",
+            "ipa": "/wɒnt/",
+            "meaning": "muốn"
+          },
+          {
+            "word": "win",
+            "pos": "(v)",
+            "ipa": "/wɪn/",
+            "meaning": "chiến thắng"
+          },
+          {
+            "word": "wing",
+            "pos": "(n)",
+            "ipa": "/wɪŋ/",
+            "meaning": "cánh"
+          },
+          {
+            "word": "awake",
+            "pos": "(adj)",
+            "ipa": "/əˈweɪk/",
+            "meaning": "tỉnh giấc"
+          },
+          {
+            "word": "award",
+            "pos": "(n)",
+            "ipa": "/əˈwɔːrd/",
+            "meaning": "giải thưởng"
+          },
+          {
+            "word": "aware",
+            "pos": "(adj)",
+            "ipa": "/əˈweə(r)/",
+            "meaning": "nhận thức được"
+          },
+          {
+            "word": "away",
+            "pos": "(adv)",
+            "ipa": "/əˈweɪ/",
+            "meaning": "ra phía xa"
+          },
+          {
+            "word": "swim",
+            "pos": "(v)",
+            "ipa": "/swɪm/",
+            "meaning": "bơi"
+          },
+          {
+            "word": "swan",
+            "pos": "(n)",
+            "ipa": "/swɒn/",
+            "meaning": "thiên nga"
+          },
+          {
+            "word": "two",
+            "pos": "(n)",
+            "ipa": "/tu:/",
+            "meaning": "số 2"
+          },
+          {
+            "word": "answer",
+            "pos": "(v,n)",
+            "ipa": "/ˈænsər/",
+            "meaning": "câu trả lời"
+          },
+          {
+            "word": "wrap",
+            "pos": "(v)",
+            "ipa": "/ræp/",
+            "meaning": "gói, bọc lại"
+          },
+          {
+            "word": "wreak",
+            "pos": "(v)",
+            "ipa": "/ri:k/",
+            "meaning": "tổn thương, làm hại ai"
+          },
+          {
+            "word": "wreath",
+            "pos": "(n)",
+            "ipa": "/riːθ/",
+            "meaning": "vòng hoa"
+          },
+          {
+            "word": "wreck",
+            "pos": "(v)",
+            "ipa": "/rek/",
+            "meaning": "sự phá hỏng"
+          },
+          {
+            "word": "write",
+            "pos": "(v)",
+            "ipa": "/raɪt/",
+            "meaning": "viết"
+          },
+          {
+            "word": "wring",
+            "pos": "(v)",
+            "ipa": "/rɪŋ/",
+            "meaning": "vắt nước"
+          },
+          {
+            "word": "one",
+            "pos": "(n)",
+            "ipa": "/wʌn/",
+            "meaning": "số 1"
+          },
+          {
+            "word": "once",
+            "pos": "(adv)",
+            "ipa": "/wʌns/",
+            "meaning": "1 lần"
+          },
+          {
+            "word": "question",
+            "pos": "(n)",
+            "ipa": "/ˈkwestʃən/",
+            "meaning": "câu hỏi"
+          },
+          {
+            "word": "quality",
+            "pos": "(n)",
+            "ipa": "/ˈkwɒləti/",
+            "meaning": "chất lượng"
+          },
+          {
+            "word": "qualification",
+            "pos": "(n)",
+            "ipa": "/ˌkwɒlɪfɪˈkeɪʃn/",
+            "meaning": "phẩm chất, bằng cấp, chứng chi"
+          },
+          {
+            "word": "quite",
+            "pos": "(adv)",
+            "ipa": "/kwaɪt/",
+            "meaning": "tương đối, khá là"
+          },
+          {
+            "word": "quiet",
+            "pos": "(adj)",
+            "ipa": "/ˈkwaɪət/",
+            "meaning": "lặng, yên tĩnh"
+          },
+          {
+            "word": "quarter",
+            "pos": "(n)",
+            "ipa": "/ˈkwɔːrtər/",
+            "meaning": "một phần tư"
+          },
+          {
+            "word": "squash",
+            "pos": "(v)",
+            "ipa": "/skwɒʃ/",
+            "meaning": "nghiền nát, giẫm nát"
+          }
+        ],
+        "theory": [
+          "2.1. Cách phát âm âm /w/",
+          "Loại âm",
+          "/w/ là một phụ âm hữu thanh",
+          "Cách phát âm",
+          "Bước 1: Mở tròn môi, hơi chu miệng ra ngoài",
+          "Bước 2: Hai môi tạo vòng tròn nhỏ",
+          "Bước 3: Nâng lưỡi lên và nhanh chóng dịch chuyển hai khóe môi hướng về hướng tai để phát ra âm /w/.",
+          "* Lưu ý: Đây là một phụ âm hữu thanh nên thanh quản rung khi bạn phát âm âm này. Để kiểm tra xem mình phát âm có đúng không. Đặt bàn tay lên cổ họng và kiểm tra độ rung.",
+          "Hình minh hoạ",
+          "Ví dụ",
+          "water /ˈwɔːtər/",
+          "nước",
+          "weight /weɪt/",
+          "cân nặng",
+          "wonder /ˈwʌndər/",
+          "thắc mắc",
+          "wave /weɪv/",
+          "sóng",
+          "2.2. Dấu hiệu nhận biết âm /w/",
+          "- w thường được đọc là /w /khi nó đứng đầu từ vụng hoặc đúng sau s, a.",
+          "cách thức, con đường",
+          "want",
+          "(v)",
+          "/wɒnt/",
+          "muốn",
+          "win",
+          "(v)",
+          "/wɪn/",
+          "chiến thắng",
+          "wing",
+          "(n)",
+          "/wɪŋ/",
+          "cánh",
+          "awake",
+          "(adj)",
+          "/əˈweɪk/",
+          "tỉnh giấc",
+          "award",
+          "(n)",
+          "/əˈwɔːrd/",
+          "giải thưởng",
+          "aware",
+          "(adj)",
+          "/əˈweə(r)/",
+          "nhận thức được",
+          "away",
+          "(adv)",
+          "/əˈweɪ/",
+          "ra phía xa",
+          "swim",
+          "(v)",
+          "/swɪm/",
+          "bơi",
+          "swan",
+          "(n)",
+          "/swɒn/",
+          "thiên nga",
+          "- Phát âm w trong cụm WH- question",
+          "WH luôn được phát âm /w/ khi nó không đứng trước O. Cụ thể như sau:",
+          "1. WH + U/E/A/I/...  WH đọc là /w/",
+          "2. WH + O + ...  WH đọc là /h/, w là ầm câm",
+          "E.g.",
+          "Từ vựng",
+          "Phiên âm",
+          "Ý nghĩa",
+          "what",
+          "/wɒt/",
+          "cái gì",
+          "where",
+          "/weə(r)/",
+          "ở đâu",
+          "why",
+          "/waɪ/",
+          "tại sao",
+          "when",
+          "/wen/",
+          "khi nào",
+          "which",
+          "/wɪtʃ/",
+          "cái nào (lựa chọn)",
+          "white",
+          "/waɪt/",
+          "màu trắng",
+          "whale",
+          "/weɪl/",
+          "cá voi",
+          "while",
+          "/waɪl/",
+          "trong khi",
+          "E.g. w là âm câm",
+          "Từ vựng",
+          "Phiên âm",
+          "Ý nghĩa",
+          "who",
+          "/hu:/",
+          "ai, người nào",
+          "whom",
+          "/hu:m/",
+          "ai, người nào",
+          "whose",
+          "/hu:z/",
+          "của ai",
+          "whole",
+          "/həʊl/",
+          "tất cả",
+          "Ngoài ra ta còn có w là âm câm trong các trường hợp sau:",
+          "số 2",
+          "answer",
+          "(v,n)",
+          "/ˈænsər/",
+          "câu trả lời",
+          "wrap",
+          "(v)",
+          "/ræp/",
+          "gói, bọc lại",
+          "wreak",
+          "(v)",
+          "/ri:k/",
+          "tổn thương, làm hại ai",
+          "wreath",
+          "(n)",
+          "/riːθ/",
+          "vòng hoa",
+          "wreck",
+          "(v)",
+          "/rek/",
+          "sự phá hỏng",
+          "write",
+          "(v)",
+          "/raɪt/",
+          "viết",
+          "wring",
+          "(v)",
+          "/rɪŋ/",
+          "vắt nước",
+          "- Một số từ có cách viết không chứa w nhưng có phát âm w",
+          "số 1",
+          "once",
+          "(adv)",
+          "/wʌns/",
+          "1 lần",
+          "question",
+          "(n)",
+          "/ˈkwestʃən/",
+          "câu hỏi",
+          "quality",
+          "(n)",
+          "ˈkwɒləti/",
+          "chất lượng",
+          "qualification",
+          "(n)",
+          "/ˌkwɒlɪfɪˈkeɪʃn/",
+          "phẩm chất, bằng cấp, chứng chi",
+          "quite",
+          "(adv)",
+          "/kwaɪt/",
+          "tương đối, khá là",
+          "quiet",
+          "(adj)",
+          "/ˈkwaɪət/",
+          "lặng, yên tĩnh",
+          "quarter",
+          "(n)",
+          "/ˈkwɔːrtər/",
+          "một phần tư",
+          "squash",
+          "(v)",
+          "/skwɒʃ/",
+          "nghiền nát, giẫm nát"
+        ],
+        "slug": "W"
+      }
+    ]
+  },
+  "6": {
+    "title": "UNIT 6: VIETNAMESE LIFESTYLES: THEN AND NOW",
+    "intro": [
+      "SOUND /fl/ and /fr/"
+    ],
+    "sounds": [
+      {
+        "index": 1,
+        "ipa": "fl",
+        "title": "Âm /fl/",
+        "heading": "1. SOUND /fl/",
+        "words": [
+          {
+            "word": "flee",
+            "pos": "v",
+            "ipa": "/fli:/",
+            "meaning": "chạy trốn, bỏ chạy"
+          },
+          {
+            "word": "flu",
+            "pos": "n",
+            "ipa": "/flu:/",
+            "meaning": "cúm"
+          },
+          {
+            "word": "flute",
+            "pos": "n",
+            "ipa": "/flu:t/",
+            "meaning": "ống sáo"
+          },
+          {
+            "word": "flight",
+            "pos": "n",
+            "ipa": "/flaɪt/",
+            "meaning": "chuyến bay"
+          },
+          {
+            "word": "flower",
+            "pos": "n",
+            "ipa": "/ˈflaʊə(r)/",
+            "meaning": "hoa"
+          },
+          {
+            "word": "overflow",
+            "pos": "v",
+            "ipa": "/ˌəʊvəˈfləʊ/",
+            "meaning": "làm tràn ngập"
+          },
+          {
+            "word": "flame",
+            "pos": "n",
+            "ipa": "/fleɪm/",
+            "meaning": "ngọn lửa"
+          },
+          {
+            "word": "flea",
+            "pos": "n",
+            "ipa": "/fli:/",
+            "meaning": "con bọ chét"
+          }
+        ],
+        "theory": [
+          "1.1. Cách phát âm /fl/",
+          "- Âm /fl/ là sự kết hợp giữa âm /f/ và âm /I/. Để phát âm âm “fl” trong tiếng Anh, ta làm theo các bước sau.",
+          "- Bắt đầu bằng việc phát âm tiếng “f”, tiếp đó, di chuyển đến âm “l” bằng cách đặt đầu lưỡi gần phía trên của miệng và chạm lưỡi vào phía sau của răng trên và phát âm /fl/",
+          "Các em tập phát âm các ví dụ sau:",
+          "chạy trốn, bỏ chạy",
+          "flu",
+          "n",
+          "/flu:/",
+          "cúm",
+          "flute",
+          "n",
+          "/flu:t/",
+          "ống sáo",
+          "flight",
+          "n",
+          "/flaɪt/",
+          "chuyến bay",
+          "flower",
+          "n",
+          "/ˈflaʊə(r)",
+          "hoa",
+          "overflow",
+          "v",
+          "/ˌəʊvəˈfləʊ/",
+          "làm tràn ngập",
+          "flame",
+          "n",
+          "/fleɪm/",
+          "ngọn lửa",
+          "flea",
+          "n",
+          "/fli:/",
+          "con bọ chét",
+          "1.2. Dấu hiệu nhận biết âm /l/",
+          "Các từ có chứa “fl” sẽ được phát àm là /fl/"
+        ],
+        "slug": "FL"
+      },
+      {
+        "index": 2,
+        "ipa": "fr",
+        "title": "Âm /fr/",
+        "heading": "2. SOUND /fr/",
+        "words": [
+          {
+            "word": "fruit",
+            "pos": "n",
+            "ipa": "/fru:t/",
+            "meaning": "trái cây"
+          },
+          {
+            "word": "frame",
+            "pos": "n",
+            "ipa": "/freɪm/",
+            "meaning": "hệ thống, cấu trúc"
+          },
+          {
+            "word": "free",
+            "pos": "adj",
+            "ipa": "/fri:/",
+            "meaning": "tự do"
+          },
+          {
+            "word": "fresh",
+            "pos": "adj",
+            "ipa": "/freʃ/",
+            "meaning": "tươi mới"
+          },
+          {
+            "word": "frog",
+            "pos": "n",
+            "ipa": "/frɒɡ/",
+            "meaning": "con ếch"
+          },
+          {
+            "word": "fright",
+            "pos": "n",
+            "ipa": "/fraɪt/",
+            "meaning": "sự hoảng sợ"
+          },
+          {
+            "word": "France",
+            "pos": "n",
+            "ipa": "/frɑːns/",
+            "meaning": "nước Pháp"
+          },
+          {
+            "word": "freedom",
+            "pos": "n",
+            "ipa": "/ˈfriːdəm/",
+            "meaning": "sự tự do"
+          }
+        ],
+        "theory": [
+          "2.1. Cách phát âm /fr/",
+          "- Âm /fr/ là sự kết hợp của âm /f/ và âm /r/.",
+          "- Để phát âm âm /fr/ trong tiếng Anh ta bắt đầu với âm “f”, mở miệng và đặt môi dưới răng trên, thổi ra âm “f”, tiếp theo, di chuyển ngay đến âm “r” bằng cách cuộn lưỡi lên phía trên của miệng, không tiếp xúc với răng hoặc phần lưỡi. Phát ra âm /fr/.",
+          "Các em luyện phát âm các ví dụ sau:",
+          "trái cây",
+          "frame",
+          "n",
+          "/freɪm/",
+          "hệ thống, cấu trúc",
+          "free",
+          "adj",
+          "/fri:/",
+          "tự do",
+          "fresh",
+          "adj",
+          "/freʃ/",
+          "tươi mới",
+          "frog",
+          "n",
+          "/frɒɡ/",
+          "con ếch",
+          "fright",
+          "n",
+          "/fraɪt/",
+          "sự hoảng sợ",
+          "France",
+          "n",
+          "/frɑːns/",
+          "nước Pháp",
+          "freedom",
+          "n",
+          "/ˈfriːdəm/",
+          "sự tự do",
+          "2.2. Dấu hiệu nhận biết âm /w/",
+          "Các từ có chứa “fr” sẽ được phát âm là /fr/"
+        ],
+        "slug": "FR"
+      }
+    ]
+  }
+}

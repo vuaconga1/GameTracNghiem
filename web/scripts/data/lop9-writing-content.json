@@ -1,0 +1,4098 @@
+{
+  "units": {
+    "1": [
+      {
+        "game": "grammar",
+        "source": "U1 Ex4",
+        "prefix": "The",
+        "suffix": "successfully collected evidence of the crime and solved the case.",
+        "hint": "police officer, delivery man, garbage collector, firefighter, electrician, artisan",
+        "answers": [
+          "police officer"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex4",
+        "prefix": "I tracked my order online and excitedly waited for the",
+        "suffix": "in front of my house.",
+        "hint": "police officer, delivery man, garbage collector, firefighter, electrician, artisan",
+        "answers": [
+          "delivery man"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex4",
+        "prefix": "Every afternoon, I leave our trash bags outside for the",
+        "suffix": "to collect.",
+        "hint": "police officer, delivery man, garbage collector, firefighter, electrician, artisan",
+        "answers": [
+          "garbage collector"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex4",
+        "prefix": "The",
+        "suffix": "bravely saved the family from the burning building.",
+        "hint": "police officer, delivery man, garbage collector, firefighter, electrician, artisan",
+        "answers": [
+          "firefighter"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex4",
+        "prefix": "My neighbor is a/an",
+        "suffix": "and he always helps me with different electrical issues.",
+        "hint": "police officer, delivery man, garbage collector, firefighter, electrician, artisan",
+        "answers": [
+          "electrician"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex4",
+        "prefix": "The",
+        "suffix": "carefully used traditional techniques to create a unique piece of art.",
+        "hint": "police officer, delivery man, garbage collector, firefighter, electrician, artisan",
+        "answers": [
+          "artisan"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex5",
+        "prefix": "A bouquet of blooming roses filled the room with a sweet comfortable",
+        "suffix": ".",
+        "hint": "handicrafts, original, shorten, speciality food, community, suburb, tourist attraction, preserve, fragrance, pottery",
+        "answers": [
+          "fragrance"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex5",
+        "prefix": "The village held an annual festival to",
+        "suffix": "the tradition of folk music and dances.",
+        "hint": "handicrafts, original, shorten, speciality food, community, suburb, tourist attraction, preserve, fragrance, pottery",
+        "answers": [
+          "preserve"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex5",
+        "prefix": "The region is famous for its",
+        "suffix": ", such as local cheeses and unique spices.",
+        "hint": "handicrafts, original, shorten, speciality food, community, suburb, tourist attraction, preserve, fragrance, pottery",
+        "answers": [
+          "speciality food"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex5",
+        "prefix": "I live in a quiet and peaceful",
+        "suffix": "just outside the busy city.",
+        "hint": "handicrafts, original, shorten, speciality food, community, suburb, tourist attraction, preserve, fragrance, pottery",
+        "answers": [
+          "suburb"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex5",
+        "prefix": "This historical village is a popular",
+        "suffix": "in Hanoi thanks to its rich cultural heritage.",
+        "hint": "handicrafts, original, shorten, speciality food, community, suburb, tourist attraction, preserve, fragrance, pottery",
+        "answers": [
+          "tourist attraction"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex5",
+        "prefix": "During hard times, neighbours in the",
+        "suffix": "come together to support those in need.",
+        "hint": "handicrafts, original, shorten, speciality food, community, suburb, tourist attraction, preserve, fragrance, pottery",
+        "answers": [
+          "community"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex5",
+        "prefix": "The",
+        "suffix": "shop offers tourists beautiful souvenirs such as jewelry and sculptures made by local artisans.",
+        "hint": "handicrafts, original, shorten, speciality food, community, suburb, tourist attraction, preserve, fragrance, pottery",
+        "answers": [
+          "handicrafts"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex5",
+        "prefix": "If you want to save time, try to find a way to",
+        "suffix": "the process.",
+        "hint": "handicrafts, original, shorten, speciality food, community, suburb, tourist attraction, preserve, fragrance, pottery",
+        "answers": [
+          "shorten"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex5",
+        "prefix": "She carefully shaped the clay on the",
+        "suffix": "wheel to create a beautiful vase.",
+        "hint": "handicrafts, original, shorten, speciality food, community, suburb, tourist attraction, preserve, fragrance, pottery",
+        "answers": [
+          "pottery"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex5",
+        "prefix": "The family always uses their",
+        "suffix": "techniques passed down through generations to create unique paintings.",
+        "hint": "handicrafts, original, shorten, speciality food, community, suburb, tourist attraction, preserve, fragrance, pottery",
+        "answers": [
+          "original"
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U1 Ex9",
+        "question": "Do you know where parking the car in this neighborhood?",
+        "answer": "where to park",
+        "options": [],
+        "accept": [
+          "where to park"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U1 Ex9",
+        "question": "I don't know who should I contact for information about the event.",
+        "answer": "who I should contact",
+        "options": [],
+        "accept": [
+          "who I should contact"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U1 Ex9",
+        "question": "Let's cut off on using plastic bags to protect our environment.",
+        "answer": "cut down",
+        "options": [],
+        "accept": [
+          "cut down"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U1 Ex9",
+        "question": "I'm not sure where to say in the job interview. Can you give me some tips?",
+        "answer": "what to say",
+        "options": [],
+        "accept": [
+          "what to say"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U1 Ex9",
+        "question": "The team gets to well with their coach; they respect and trust his guidance.",
+        "answer": "gets on",
+        "options": [],
+        "accept": [
+          "gets on"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U1 Ex9",
+        "question": "We should ask the locals where for finding the best local cuisine in this town.",
+        "answer": "where to find",
+        "options": [],
+        "accept": [
+          "where to find"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U1 Ex9",
+        "question": "He's wondering how can he impress his friends at the party tonight.",
+        "answer": "how he can",
+        "options": [],
+        "accept": [
+          "how he can"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U1 Ex9",
+        "question": "I'm not sure while to start exercising after recovering from an injury.",
+        "answer": "when",
+        "options": [],
+        "accept": [
+          "when"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex10",
+        "prefix": "They planned to",
+        "suffix": "and celebrate their anniversary at a fancy restaurant.",
+        "hint": "run out of, look around, cut down on, get on with, pass down, find out, set up, come back, go out, take care of",
+        "answers": [
+          "go out"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex10",
+        "prefix": "The children walked into the park and",
+        "suffix": ", trying to find a suitable spot to have a picnic.",
+        "hint": "run out of, look around, cut down on, get on with, pass down, find out, set up, come back, go out, take care of",
+        "answers": [
+          "looked around"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex10",
+        "prefix": "The doctor advised me to",
+        "suffix": "my caffeine intake to reduce my anxiety.",
+        "hint": "run out of, look around, cut down on, get on with, pass down, find out, set up, come back, go out, take care of",
+        "answers": [
+          "cut down on"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex10",
+        "prefix": "He",
+        "suffix": "the household chores while his wife was away on a business trip.",
+        "hint": "run out of, look around, cut down on, get on with, pass down, find out, set up, come back, go out, take care of",
+        "answers": [
+          "took care of"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex10",
+        "prefix": "The memories of that trip always",
+        "suffix": "to me when I see these old photographs.",
+        "hint": "run out of, look around, cut down on, get on with, pass down, find out, set up, come back, go out, take care of",
+        "answers": [
+          "come back"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex10",
+        "prefix": "We",
+        "suffix": "gas on our road trip, so we had to stop at a nearby gas station.",
+        "hint": "run out of, look around, cut down on, get on with, pass down, find out, set up, come back, go out, take care of",
+        "answers": [
+          "ran out of"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex10",
+        "prefix": "The scientist did several experiments to",
+        "suffix": "the effects of the new drug.",
+        "hint": "run out of, look around, cut down on, get on with, pass down, find out, set up, come back, go out, take care of",
+        "answers": [
+          "find out"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex10",
+        "prefix": "It is important to",
+        "suffix": "family traditions from one generation to the next.",
+        "hint": "run out of, look around, cut down on, get on with, pass down, find out, set up, come back, go out, take care of",
+        "answers": [
+          "pass down"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex10",
+        "prefix": "Last month, our team",
+        "suffix": "a charity event to support local businesses.",
+        "hint": "run out of, look around, cut down on, get on with, pass down, find out, set up, come back, go out, take care of",
+        "answers": [
+          "set up"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex10",
+        "prefix": "Despite their initial differences, the two roommates eventually",
+        "suffix": "each other and became good friends.",
+        "hint": "run out of, look around, cut down on, get on with, pass down, find out, set up, come back, go out, take care of",
+        "answers": [
+          "got on with"
+        ]
+      },
+      {
+        "game": "choose_and_circle",
+        "title": "U1 Exercise 11",
+        "instruction": "Circle the correct words or phrases to complete the sentences.",
+        "items": [
+          {
+            "order": 1,
+            "image": "",
+            "prompt": "By eliminating unnecessary steps, we can (shorten / preserve) the process and save valuable time.",
+            "options": [
+              "shorten",
+              "preserve"
+            ],
+            "answer": "shorten"
+          },
+          {
+            "order": 2,
+            "image": "",
+            "prompt": "A candle not only provides light but also creates a pleasant (fragrance / function) when it is burnt.",
+            "options": [
+              "fragrance",
+              "function"
+            ],
+            "answer": "fragrance"
+          },
+          {
+            "order": 3,
+            "image": "",
+            "prompt": "(Famous / Common) local festivals in the city attract millions of visitors from all around the world every year.",
+            "options": [
+              "Famous",
+              "Common"
+            ],
+            "answer": "Famous"
+          },
+          {
+            "order": 4,
+            "image": "",
+            "prompt": "Our new (neighbors / artisans) just moved in last week, and we invited them over for a welcome dinner.",
+            "options": [
+              "neighbors",
+              "artisans"
+            ],
+            "answer": "neighbors"
+          },
+          {
+            "order": 5,
+            "image": "",
+            "prompt": "One (tradition / origin) in our community is to bow when greeting someone as a sign of respect.",
+            "options": [
+              "tradition",
+              "origin"
+            ],
+            "answer": "tradition"
+          },
+          {
+            "order": 6,
+            "image": "",
+            "prompt": "The brave (firefighters / electricians) rushed into the burning building to rescue trapped residents.",
+            "options": [
+              "firefighters",
+              "electricians"
+            ],
+            "answer": "firefighters"
+          },
+          {
+            "order": 7,
+            "image": "",
+            "prompt": "She made a beautiful vase out of clay in her (pottery / weaving) class.",
+            "options": [
+              "pottery",
+              "weaving"
+            ],
+            "answer": "pottery"
+          },
+          {
+            "order": 8,
+            "image": "",
+            "prompt": "The artisans have impressive (skills / objects) in making those beautiful handicrafts.",
+            "options": [
+              "skills",
+              "objects"
+            ],
+            "answer": "skills"
+          },
+          {
+            "order": 9,
+            "image": "",
+            "prompt": "The local market is famous for its (speciality / facility) products, including handicrafts and tropical fruits.",
+            "options": [
+              "speciality",
+              "facility"
+            ],
+            "answer": "speciality"
+          },
+          {
+            "order": 10,
+            "image": "",
+            "prompt": "uring the peak season, this (tourist / tourism) attraction always gets crowded with visitors from all around the world.",
+            "options": [
+              "tourist",
+              "tourism"
+            ],
+            "answer": "tourist"
+          }
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex12",
+        "prefix": "Linda: Hey, have you heard about the new community (1)",
+        "suffix": "our town is starting?",
+        "hint": "artisans, positive, improve, traditional, project, recycling, volunteer, pass, plan, attract",
+        "answers": [
+          "project"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex12",
+        "prefix": "Linda: It's called \"Green Our Community\" and it aims to (2)",
+        "suffix": "our local environment.",
+        "hint": "artisans, positive, improve, traditional, project, recycling, volunteer, pass, plan, attract",
+        "answers": [
+          "improve"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex12",
+        "prefix": "Linda: They' re organising clean-up events and promoting (3)",
+        "suffix": "programs. Moreover, they (4)",
+        "hint": "artisans, positive, improve, traditional, project, recycling, volunteer, pass, plan, attract",
+        "answers": [
+          "recycling"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex12",
+        "prefix": "Moreover, they (4)",
+        "suffix": "to preserve our parks and green spaces.",
+        "hint": "artisans, positive, improve, traditional, project, recycling, volunteer, pass, plan, attract",
+        "answers": [
+          "plan"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex12",
+        "prefix": "Linda: True! And they're also trying to (5)",
+        "suffix": "more tourists by promoting our community's speciality - handcrafted items made by local (6)",
+        "hint": "artisans, positive, improve, traditional, project, recycling, volunteer, pass, plan, attract",
+        "answers": [
+          "attract"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex12",
+        "prefix": "handcrafted items made by local (6)",
+        "suffix": ".",
+        "hint": "artisans, positive, improve, traditional, project, recycling, volunteer, pass, plan, attract",
+        "answers": [
+          "artisans"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex12",
+        "prefix": "Mary: Right, I remember my grandmother used to make those (7)",
+        "suffix": "handicrafts.",
+        "hint": "artisans, positive, improve, traditional, project, recycling, volunteer, pass, plan, attract",
+        "answers": [
+          "traditional"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex12",
+        "prefix": "I hope this will help keep the tradition alive and even (8)",
+        "suffix": "it down to future generations.",
+        "hint": "artisans, positive, improve, traditional, project, recycling, volunteer, pass, plan, attract",
+        "answers": [
+          "pass"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex12",
+        "prefix": "Linda: That's amazing! I'm going to (9)",
+        "suffix": "for these events.",
+        "hint": "artisans, positive, improve, traditional, project, recycling, volunteer, pass, plan, attract",
+        "answers": [
+          "volunteer"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U1 Ex12",
+        "prefix": "Mary: Absolutely! Let's spread the word and get others involved too. Together we can make a (10)",
+        "suffix": "impact on our surroundings.",
+        "hint": "artisans, positive, improve, traditional, project, recycling, volunteer, pass, plan, attract",
+        "answers": [
+          "positive"
+        ]
+      }
+    ],
+    "2": [
+      {
+        "game": "grammar",
+        "source": "U2 Ex4",
+        "prefix": "I wear a mask to protect myself from breathing in the",
+        "suffix": "air in the city.",
+        "hint": "metro, concrete jungle, construction site, sky train, itchy eyes, congested road, entertainment centre, dusty",
+        "answers": [
+          "dusty"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex4",
+        "prefix": "Wearing contact lenses sometimes leads to",
+        "suffix": "by the end of the day.",
+        "hint": "metro, concrete jungle, construction site, sky train, itchy eyes, congested road, entertainment centre, dusty",
+        "answers": [
+          "itchy eyes"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex4",
+        "prefix": "The",
+        "suffix": "is an underground railway system in a city, often used for public transportation",
+        "hint": "metro, concrete jungle, construction site, sky train, itchy eyes, congested road, entertainment centre, dusty",
+        "answers": [
+          "metro"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex4",
+        "prefix": "The city is often called a",
+        "suffix": "because of all the tall buildings.",
+        "hint": "metro, concrete jungle, construction site, sky train, itchy eyes, congested road, entertainment centre, dusty",
+        "answers": [
+          "concrete jungle"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex4",
+        "prefix": "My dad is a construction worker, so he often visits the",
+        "suffix": ".",
+        "hint": "metro, concrete jungle, construction site, sky train, itchy eyes, congested road, entertainment centre, dusty",
+        "answers": [
+          "construction site"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex4",
+        "prefix": "The",
+        "suffix": "is a fun place to hang out with friends and family.",
+        "hint": "metro, concrete jungle, construction site, sky train, itchy eyes, congested road, entertainment centre, dusty",
+        "answers": [
+          "entertainment centre"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex4",
+        "prefix": "The",
+        "suffix": "is an elevated train system that runs above the city streets.",
+        "hint": "metro, concrete jungle, construction site, sky train, itchy eyes, congested road, entertainment centre, dusty",
+        "answers": [
+          "sky train"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex4",
+        "prefix": "Manh feels stressed when he has to drive on the",
+        "suffix": ".",
+        "hint": "metro, concrete jungle, construction site, sky train, itchy eyes, congested road, entertainment centre, dusty",
+        "answers": [
+          "congested road"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex6",
+        "prefix": "My friends ride their bikes to",
+        "suffix": "the city every weekend.",
+        "hint": "get around, hang out with, cut down on, carry out, come down with",
+        "answers": [
+          "get around"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex6",
+        "prefix": "We turn off lights when we leave a room to",
+        "suffix": "electricity.",
+        "hint": "get around, hang out with, cut down on, carry out, come down with",
+        "answers": [
+          "cut down on"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex6",
+        "prefix": "Linda and Anna are",
+        "suffix": "a project to plant trees in the park.",
+        "hint": "get around, hang out with, cut down on, carry out, come down with",
+        "answers": [
+          "carrying out"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex6",
+        "prefix": "Yesterday, I",
+        "suffix": "a stomach ache after eating too much candy.",
+        "hint": "get around, hang out with, cut down on, carry out, come down with",
+        "answers": [
+          "came down with"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex6",
+        "prefix": "Jane is excited to",
+        "suffix": "a plan to go camping with her family.",
+        "hint": "get around, hang out with, cut down on, carry out, come down with",
+        "answers": [
+          "carry out"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex6",
+        "prefix": "We enjoy",
+        "suffix": "our neighbours in the evening.",
+        "hint": "get around, hang out with, cut down on, carry out, come down with",
+        "answers": [
+          "hanging out with"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex6",
+        "prefix": "Oscar couldn't go to school last Monday because he",
+        "suffix": "a fever.",
+        "hint": "get around, hang out with, cut down on, carry out, come down with",
+        "answers": [
+          "came down with"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex6",
+        "prefix": "We should not throw trash in the river to",
+        "suffix": "water pollution.",
+        "hint": "get around, hang out with, cut down on, carry out, come down with",
+        "answers": [
+          "cut down on"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex6",
+        "prefix": "I can't",
+        "suffix": "my friends because I have to do my homework.",
+        "hint": "get around, hang out with, cut down on, carry out, come down with",
+        "answers": [
+          "hang out with"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex6",
+        "prefix": "If you want to",
+        "suffix": "London, you can take a bus.",
+        "hint": "get around, hang out with, cut down on, carry out, come down with",
+        "answers": [
+          "get around"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex8",
+        "prefix": "It's just a big (1)",
+        "suffix": "jungle.",
+        "hint": "congested roads, more crowded, suburbs, entertainment, packed, concrete, hang out, sky train",
+        "answers": [
+          "concrete"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex8",
+        "prefix": "You can go to the (2)",
+        "suffix": "centre to watch movies, play games, and have fun with friends.",
+        "hint": "congested roads, more crowded, suburbs, entertainment, packed, concrete, hang out, sky train",
+        "answers": [
+          "entertainment"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex8",
+        "prefix": "I hate driving on (3)",
+        "suffix": ".",
+        "hint": "congested roads, more crowded, suburbs, entertainment, packed, concrete, hang out, sky train",
+        "answers": [
+          "congested roads"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex8",
+        "prefix": "Well, have you tried taking the (4)",
+        "suffix": "? It's much faster.",
+        "hint": "congested roads, more crowded, suburbs, entertainment, packed, concrete, hang out, sky train",
+        "answers": [
+          "sky train"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex8",
+        "prefix": "But then it's so (5)",
+        "suffix": "with people!",
+        "hint": "congested roads, more crowded, suburbs, entertainment, packed, concrete, hang out, sky train",
+        "answers": [
+          "packed"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex8",
+        "prefix": "You sound like me before 1 moved here from the (6)",
+        "suffix": ".",
+        "hint": "congested roads, more crowded, suburbs, entertainment, packed, concrete, hang out, sky train",
+        "answers": [
+          "suburbs"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex8",
+        "prefix": "The (7)",
+        "suffix": "it gets, the more annoyed I feel.",
+        "hint": "congested roads, more crowded, suburbs, entertainment, packed, concrete, hang out, sky train",
+        "answers": [
+          "more crowded"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U2 Ex8",
+        "prefix": "just remember we can always (8)",
+        "suffix": "with our friends and relax.",
+        "hint": "congested roads, more crowded, suburbs, entertainment, packed, concrete, hang out, sky train",
+        "answers": [
+          "hang out"
+        ]
+      },
+      {
+        "game": "choose_and_circle",
+        "title": "U2 Exercise 11",
+        "instruction": "Circle the correct word or phrase to complete each sentence.",
+        "items": [
+          {
+            "order": 1,
+            "image": "",
+            "prompt": "The more (nervous / nervouser) she feels, the shakier her hands become.",
+            "options": [
+              "nervous",
+              "nervouser"
+            ],
+            "answer": "nervous"
+          },
+          {
+            "order": 2,
+            "image": "",
+            "prompt": "The bigger the crowd is, (the harder / the more hard) it is to find someone.",
+            "options": [
+              "the harder",
+              "the more hard"
+            ],
+            "answer": "the harder"
+          },
+          {
+            "order": 3,
+            "image": "",
+            "prompt": "The (more colourful / most colourful) the flowers in the garden are, the more attractive it becomes to visitors.",
+            "options": [
+              "more colourful",
+              "most colourful"
+            ],
+            "answer": "more colourful"
+          },
+          {
+            "order": 4,
+            "image": "",
+            "prompt": "The more complicated the recipe is, the (more satisfying / satisfying) the taste becomes.",
+            "options": [
+              "more satisfying",
+              "satisfying"
+            ],
+            "answer": "more satisfying"
+          },
+          {
+            "order": 5,
+            "image": "",
+            "prompt": "The sweeter the fruit tastes, the (juicier / more juicy) it is to bite into.",
+            "options": [
+              "juicier",
+              "more juicy"
+            ],
+            "answer": "juicier"
+          },
+          {
+            "order": 6,
+            "image": "",
+            "prompt": "The (more excited / excited) the children get, the louder their laughter becomes.",
+            "options": [
+              "more excited",
+              "excited"
+            ],
+            "answer": "more excited"
+          },
+          {
+            "order": 7,
+            "image": "",
+            "prompt": "The more colourful the sky becomes, the (prettier / prettiest) the sunset looks.",
+            "options": [
+              "prettier",
+              "prettiest"
+            ],
+            "answer": "prettier"
+          },
+          {
+            "order": 8,
+            "image": "",
+            "prompt": "The (more difficult / difficulter) the assignment is, the more hard-working Ben needs to be.",
+            "options": [
+              "more difficult",
+              "difficulter"
+            ],
+            "answer": "more difficult"
+          },
+          {
+            "order": 9,
+            "image": "",
+            "prompt": "The more unique the village is, (the greater / greater) the number of visitors it can attract.",
+            "options": [
+              "the greater",
+              "greater"
+            ],
+            "answer": "the greater"
+          },
+          {
+            "order": 10,
+            "image": "",
+            "prompt": "The (darker / more dark) the room gets, the more nervous I feel.",
+            "options": [
+              "darker",
+              "more dark"
+            ],
+            "answer": "darker"
+          },
+          {
+            "order": 11,
+            "image": "",
+            "prompt": "The dirtier the lake is, the less (attractive / more attractive) it becomes.",
+            "options": [
+              "attractive",
+              "more attractive"
+            ],
+            "answer": "attractive"
+          },
+          {
+            "order": 12,
+            "image": "",
+            "prompt": "The (more experienced / most experienced) the team is, the more successful the project tends to be.",
+            "options": [
+              "more experienced",
+              "most experienced"
+            ],
+            "answer": "more experienced"
+          },
+          {
+            "order": 13,
+            "image": "",
+            "prompt": "The more patient the teacher is, (the more engaged / more engaged) the students become in learning.",
+            "options": [
+              "the more engaged",
+              "more engaged"
+            ],
+            "answer": "the more engaged"
+          },
+          {
+            "order": 14,
+            "image": "",
+            "prompt": "The more enthusiastic the audience is, the (more energised / energised) the performer becomes.",
+            "options": [
+              "more energised",
+              "energised"
+            ],
+            "answer": "more energised"
+          },
+          {
+            "order": 15,
+            "image": "",
+            "prompt": "The more confident they become, the (better / gooder) their chances of success are.",
+            "options": [
+              "better",
+              "gooder"
+            ],
+            "answer": "better"
+          }
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U2 Ex14",
+        "question": "The more complicated the puzzle gets, the long it takes to solve.",
+        "answer": "longer",
+        "options": [],
+        "accept": [
+          "longer"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U2 Ex14",
+        "question": "The most polluted the air gets, the harder it is to breathe.",
+        "answer": "more",
+        "options": [],
+        "accept": [
+          "more"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U2 Ex14",
+        "question": "Despite the crowded streets, Tom decided to get up downtown by motorbike.",
+        "answer": "get around",
+        "options": [],
+        "accept": [
+          "get around"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U2 Ex14",
+        "question": "We had to cancel our trip because our dad came up with the flu.",
+        "answer": "came down with",
+        "options": [],
+        "accept": [
+          "came down with"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U2 Ex14",
+        "question": "The cleaner the kitchen is, more inviting it looks.",
+        "answer": "the more inviting",
+        "options": [],
+        "accept": [
+          "the more inviting"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U2 Ex14",
+        "question": "The crowdeder the bus is, the longer the journey takes.",
+        "answer": "more crowded",
+        "options": [],
+        "accept": [
+          "more crowded"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U2 Ex14",
+        "question": "My brother enjoys hanging up with his colleagues at the local pub after work.",
+        "answer": "hanging out",
+        "options": [],
+        "accept": [
+          "hanging out"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U2 Ex14",
+        "question": "The more expensive the hotel gets, the most luxurious the amenities become.",
+        "answer": "more",
+        "options": [],
+        "accept": [
+          "more"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U2 Ex14",
+        "question": "The committee is working together to carry in a project to organise a charity event.",
+        "answer": "carry out",
+        "options": [],
+        "accept": [
+          "carry out"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U2 Ex14",
+        "question": "We must cut down out water pollution to protect marine life and ecosystems.",
+        "answer": "cut down on",
+        "options": [],
+        "accept": [
+          "cut down on"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U2 Ex14",
+        "question": "More complicated the problem becomes, the more confused she feels.",
+        "answer": "The more complicated",
+        "options": [],
+        "accept": [
+          "The more complicated"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U2 Ex14",
+        "question": "They came down to food poisoning after eating at that restaurant.",
+        "answer": "came down with",
+        "options": [],
+        "accept": [
+          "came down with"
+        ],
+        "fillMode": true
+      }
+    ],
+    "3": [
+      {
+        "game": "grammar",
+        "source": "U3 Ex4",
+        "prefix": "Sharing both positive and negative feelings with friends can be a helpful way to improve your",
+        "suffix": "health.",
+        "hint": "physical, priority, counsellor, mental, additional, delay, accomplish, anxiety, well-balanced, fattening",
+        "answers": [
+          "mental"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex4",
+        "prefix": "When making financial decisions, it is important to give",
+        "suffix": "to essential expenses like food and clothes.",
+        "hint": "physical, priority, counsellor, mental, additional, delay, accomplish, anxiety, well-balanced, fattening",
+        "answers": [
+          "priority"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex4",
+        "prefix": "Eating too much",
+        "suffix": "food can make you gain weight fast.",
+        "hint": "physical, priority, counsellor, mental, additional, delay, accomplish, anxiety, well-balanced, fattening",
+        "answers": [
+          "fattening"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex4",
+        "prefix": "The team had to",
+        "suffix": "the meeting until next week due to an emergency.",
+        "hint": "physical, priority, counsellor, mental, additional, delay, accomplish, anxiety, well-balanced, fattening",
+        "answers": [
+          "delay"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex4",
+        "prefix": "They needed",
+        "suffix": "time to discuss the situation before making final decisions.",
+        "hint": "physical, priority, counsellor, mental, additional, delay, accomplish, anxiety, well-balanced, fattening",
+        "answers": [
+          "additional"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex4",
+        "prefix": "The therapist gave her some tips to reduce her",
+        "suffix": "levels.",
+        "hint": "physical, priority, counsellor, mental, additional, delay, accomplish, anxiety, well-balanced, fattening",
+        "answers": [
+          "anxiety"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex4",
+        "prefix": "Thanks to great planning and hard work, she was able to",
+        "suffix": "her goals.",
+        "hint": "physical, priority, counsellor, mental, additional, delay, accomplish, anxiety, well-balanced, fattening",
+        "answers": [
+          "accomplish"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex4",
+        "prefix": "The",
+        "suffix": "provides support and advice to students who are facing academic difficulties.",
+        "hint": "physical, priority, counsellor, mental, additional, delay, accomplish, anxiety, well-balanced, fattening",
+        "answers": [
+          "counsellor"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex4",
+        "prefix": "He enjoyed the",
+        "suffix": "challenge of climbing up the high mountain.",
+        "hint": "physical, priority, counsellor, mental, additional, delay, accomplish, anxiety, well-balanced, fattening",
+        "answers": [
+          "physical"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex4",
+        "prefix": "To maintain a healthy lifestyle, it's important to have a",
+        "suffix": "diet with a lot of vegetables and fruits.",
+        "hint": "physical, priority, counsellor, mental, additional, delay, accomplish, anxiety, well-balanced, fattening",
+        "answers": [
+          "well-balanced"
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U3 Ex8",
+        "question": "What I should do if I have to choose between two amazing offers?",
+        "answer": "What should I do",
+        "options": [],
+        "accept": [
+          "What should I do"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U3 Ex8",
+        "question": "If Laura gets enough sleep, she will might feel better tomorrow.",
+        "answer": "might",
+        "options": [],
+        "accept": [
+          "might"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U3 Ex8",
+        "question": "If you borrow someone's car, you shouldn't return it with a full tank of gas.",
+        "answer": "should",
+        "options": [],
+        "accept": [
+          "should"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U3 Ex8",
+        "question": "If we have exams coming, what can we do to avoid stressed?",
+        "answer": "stress",
+        "options": [],
+        "accept": [
+          "stress"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U3 Ex8",
+        "question": "If it rains tomorrow, the company must have to postpone the competition.",
+        "answer": "may have to",
+        "options": [],
+        "accept": [
+          "may have to"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U3 Ex8",
+        "question": "If my brother follow the instructions carefully, he may solve the puzzle successfully.",
+        "answer": "follows",
+        "options": [],
+        "accept": [
+          "follows"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U3 Ex8",
+        "question": "If Tom doesn't cut down on fattening food, he mustn't lose weight.",
+        "answer": "can't",
+        "options": [],
+        "accept": [
+          "can't"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U3 Ex8",
+        "question": "If you will update your computer, you might experience interesting new features.",
+        "answer": "update",
+        "options": [],
+        "accept": [
+          "update"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U3 Ex8",
+        "question": "If I come to Lisa's birthday party, what should I buying her as a present?",
+        "answer": "buy",
+        "options": [],
+        "accept": [
+          "buy"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U3 Ex8",
+        "question": "If John will try his best in the final match, he might become the next champion.",
+        "answer": "tries",
+        "options": [],
+        "accept": [
+          "tries"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex9",
+        "prefix": "Despite his physical disability, he",
+        "suffix": "his limitations and became a professional athlete.",
+        "hint": "concentrate, communicate, priority, routine, negative, appropriately, manage, productivity, overcome, accomplish",
+        "answers": [
+          "overcame"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex9",
+        "prefix": "If you",
+        "suffix": "on positive thoughts, you may experience a greater sense of joy in your daily life.",
+        "hint": "concentrate, communicate, priority, routine, negative, appropriately, manage, productivity, overcome, accomplish",
+        "answers": [
+          "concentrate"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex9",
+        "prefix": "Thanks to careful planning, the company",
+        "suffix": "to host a successful event last month.",
+        "hint": "concentrate, communicate, priority, routine, negative, appropriately, manage, productivity, overcome, accomplish",
+        "answers": [
+          "managed"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex9",
+        "prefix": "A regular exercise",
+        "suffix": "will keep your body strong and energized.",
+        "hint": "concentrate, communicate, priority, routine, negative, appropriately, manage, productivity, overcome, accomplish",
+        "answers": [
+          "routine"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex9",
+        "prefix": "By breaking down tasks into smaller steps, you can boost your",
+        "suffix": ".",
+        "hint": "concentrate, communicate, priority, routine, negative, appropriately, manage, productivity, overcome, accomplish",
+        "answers": [
+          "productivity"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex9",
+        "prefix": "___",
+        "suffix": "openly with your doctor can help create a great detailed plan for a healthier lifestyle.",
+        "hint": "concentrate, communicate, priority, routine, negative, appropriately, manage, productivity, overcome, accomplish",
+        "answers": [
+          "Communicating"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex9",
+        "prefix": "___",
+        "suffix": "your goals requires a lot of factors including determination, patience, and careful planning.",
+        "hint": "concentrate, communicate, priority, routine, negative, appropriately, manage, productivity, overcome, accomplish",
+        "answers": [
+          "Accomplishing"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex9",
+        "prefix": "Constantly comparing yourself to others can lead to",
+        "suffix": "feelings of self-doubt.",
+        "hint": "concentrate, communicate, priority, routine, negative, appropriately, manage, productivity, overcome, accomplish",
+        "answers": [
+          "negative"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex9",
+        "prefix": "Asa student, it's important to give",
+        "suffix": "to your academic responsibilities and arrange enough time for studying.",
+        "hint": "concentrate, communicate, priority, routine, negative, appropriately, manage, productivity, overcome, accomplish",
+        "answers": [
+          "priority"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex9",
+        "prefix": "If you dress",
+        "suffix": "for a job interview, you may make a good impression.",
+        "hint": "concentrate, communicate, priority, routine, negative, appropriately, manage, productivity, overcome, accomplish",
+        "answers": [
+          "appropriately"
+        ]
+      },
+      {
+        "game": "choose_and_circle",
+        "title": "U3 Exercise 10",
+        "instruction": "Circle the correct words or phrases to complete the sentences.",
+        "items": [
+          {
+            "order": 1,
+            "image": "",
+            "prompt": "Spending too much time sitting and not being physically active can lead to a/an (healthy / unhealthy) lifestyle.",
+            "options": [
+              "healthy",
+              "unhealthy"
+            ],
+            "answer": "unhealthy"
+          },
+          {
+            "order": 2,
+            "image": "",
+            "prompt": "It's important to stick to a (schedule / balance) to stay organized and meet deadlines.",
+            "options": [
+              "schedule",
+              "balance"
+            ],
+            "answer": "schedule"
+          },
+          {
+            "order": 3,
+            "image": "",
+            "prompt": "(Worrying / Managing) too much about what could go wrong can prevent you from accessing great opportunities.",
+            "options": [
+              "Worrying",
+              "Managing"
+            ],
+            "answer": "Worrying"
+          },
+          {
+            "order": 4,
+            "image": "",
+            "prompt": "Even in difficult times, she remains (optimistic / regular) and believes in the power of positive thinking.",
+            "options": [
+              "optimistic",
+              "regular"
+            ],
+            "answer": "optimistic"
+          },
+          {
+            "order": 5,
+            "image": "",
+            "prompt": "Consuming a lot of (fattening / nutritious) food can contribute to weight gain and poor health.",
+            "options": [
+              "fattening",
+              "nutritious"
+            ],
+            "answer": "fattening"
+          },
+          {
+            "order": 6,
+            "image": "",
+            "prompt": "Timmy was (nervous / relieved) about the upcoming job interview and couldn' t sleep the night before.",
+            "options": [
+              "nervous",
+              "relieved"
+            ],
+            "answer": "nervous"
+          },
+          {
+            "order": 7,
+            "image": "",
+            "prompt": "A quiet and organized workspace can help reduce (distractions / obstacles) and improve concentration.",
+            "options": [
+              "distractions",
+              "obstacles"
+            ],
+            "answer": "distractions"
+          },
+          {
+            "order": 8,
+            "image": "",
+            "prompt": "If you're experiencing persistent symptoms, it's advisable to (consult / function) a doctor for a proper diagnosis.",
+            "options": [
+              "consult",
+              "function"
+            ],
+            "answer": "consult"
+          },
+          {
+            "order": 9,
+            "image": "",
+            "prompt": "People who smoke cigarettes are more likely to (suffer / develop) from respiratory problems.",
+            "options": [
+              "suffer",
+              "develop"
+            ],
+            "answer": "suffer"
+          },
+          {
+            "order": 10,
+            "image": "",
+            "prompt": "Nowadays, more and more people struggle with (mental / physical) health issues such as anxiety, depression, or bipolar disorder.",
+            "options": [
+              "mental",
+              "physical"
+            ],
+            "answer": "mental"
+          }
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex11",
+        "prefix": "So, what's going on? Why haven't you been able to (1)",
+        "suffix": "up with your (2)",
+        "hint": "problems, start, keep, reduce, junk food, take, diet, vegetables, focus, exercise",
+        "answers": [
+          "keep"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex11",
+        "prefix": "up with your (2)",
+        "suffix": "routine lately?",
+        "hint": "problems, start, keep, reduce, junk food, take, diet, vegetables, focus, exercise",
+        "answers": [
+          "exercise"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex11",
+        "prefix": "they said I have some (3)",
+        "suffix": "with my spine",
+        "hint": "problems, start, keep, reduce, junk food, take, diet, vegetables, focus, exercise",
+        "answers": [
+          "problems"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex11",
+        "prefix": "maybe there are other ways to (4)",
+        "suffix": "care of your health",
+        "hint": "problems, start, keep, reduce, junk food, take, diet, vegetables, focus, exercise",
+        "answers": [
+          "take"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex11",
+        "prefix": "I think one of the factors affecting my back is my poor (5)",
+        "suffix": ". I've been eating too much (6)",
+        "hint": "problems, start, keep, reduce, junk food, take, diet, vegetables, focus, exercise",
+        "answers": [
+          "diet"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex11",
+        "prefix": "I've been eating too much (6)",
+        "suffix": ".",
+        "hint": "problems, start, keep, reduce, junk food, take, diet, vegetables, focus, exercise",
+        "answers": [
+          "junk food"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex11",
+        "prefix": "Try eating more nutritious foods like fruits and (7)",
+        "suffix": "in your meals.",
+        "hint": "problems, start, keep, reduce, junk food, take, diet, vegetables, focus, exercise",
+        "answers": [
+          "vegetables"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex11",
+        "prefix": "I'll have to (8)",
+        "suffix": "on making healthier choices from now on.",
+        "hint": "problems, start, keep, reduce, junk food, take, diet, vegetables, focus, exercise",
+        "answers": [
+          "focus"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex11",
+        "prefix": "don't forget to (9)",
+        "suffix": "stress in your life as well.",
+        "hint": "problems, start, keep, reduce, junk food, take, diet, vegetables, focus, exercise",
+        "answers": [
+          "reduce"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex11",
+        "prefix": "I should probably (10)",
+        "suffix": "doing yoga again.",
+        "hint": "problems, start, keep, reduce, junk food, take, diet, vegetables, focus, exercise",
+        "answers": [
+          "start"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex12",
+        "prefix": "If you don't revise carefully, you",
+        "suffix": "well on the coming exam. (negative)",
+        "hint": "may/should + verb",
+        "answers": [
+          "may not do"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex12",
+        "prefix": "If we recycle and reduce waste, we",
+        "suffix": "the amount of landfill space needed. (positive)",
+        "hint": "may/should + verb",
+        "answers": [
+          "may reduce"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex12",
+        "prefix": "If you're going on a long trip, you",
+        "suffix": "to pack essential items like a first aid kit and extra clothing. (negative)",
+        "hint": "may/should + verb",
+        "answers": [
+          "shouldn't forget"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex12",
+        "prefix": "If students explore extracurricular activities, they",
+        "suffix": "new talents and interests. (positive)",
+        "hint": "may/should + verb",
+        "answers": [
+          "may discover"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex12",
+        "prefix": "If you want to maintain a healthy relationship, you",
+        "suffix": "open communications. (negative)",
+        "hint": "may/should + verb",
+        "answers": [
+          "shouldn't avoid"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex12",
+        "prefix": "If you're installing new lights, you",
+        "suffix": "energy-efficient options to save electricity. (positive)",
+        "hint": "may/should + verb",
+        "answers": [
+          "should choose"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex12",
+        "prefix": "If you practise regularly, you",
+        "suffix": "a skilled musician in the future. (positive)",
+        "hint": "may/should + verb",
+        "answers": [
+          "may become"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex12",
+        "prefix": "If the team doesn't manage their time effectively, they",
+        "suffix": "the project on time. (negative)",
+        "hint": "may/should + verb",
+        "answers": [
+          "may not complete"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U3 Ex12",
+        "prefix": "If you're attending a job interview, you",
+        "suffix": "the company beforehand. (positive)",
+        "hint": "may/should + verb",
+        "answers": [
+          "should research"
+        ]
+      }
+    ],
+    "4": [
+      {
+        "game": "grammar",
+        "source": "U4 Ex4",
+        "prefix": "I forgot my lunch at home, so I'll get a",
+        "suffix": "from the nearest restaurant.",
+        "hint": "magnificent, heritage, thanks to, well preserved, occupied, generation, takeaway, structure, recognise, contribute",
+        "answers": [
+          "takeaway"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex4",
+        "prefix": "The ancient ruins are",
+        "suffix": ", so we can still see the old buildings clearly.",
+        "hint": "magnificent, heritage, thanks to, well preserved, occupied, generation, takeaway, structure, recognise, contribute",
+        "answers": [
+          "well preserved"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex4",
+        "prefix": "Emily didn't",
+        "suffix": "me because I changed my hair colour.",
+        "hint": "magnificent, heritage, thanks to, well preserved, occupied, generation, takeaway, structure, recognise, contribute",
+        "answers": [
+          "recognise"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex4",
+        "prefix": "The mountain view from the top is",
+        "suffix": ", with breathtaking scenery all around.",
+        "hint": "magnificent, heritage, thanks to, well preserved, occupied, generation, takeaway, structure, recognise, contribute",
+        "answers": [
+          "magnificent"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex4",
+        "prefix": "My teacher says we're the future",
+        "suffix": "and we need to study hard.",
+        "hint": "magnificent, heritage, thanks to, well preserved, occupied, generation, takeaway, structure, recognise, contribute",
+        "answers": [
+          "generation"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex4",
+        "prefix": "Volunteering at the local shelter is a great way to",
+        "suffix": "to the community.",
+        "hint": "magnificent, heritage, thanks to, well preserved, occupied, generation, takeaway, structure, recognise, contribute",
+        "answers": [
+          "contribute"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex4",
+        "prefix": "We can find information quickly",
+        "suffix": "the Internet.",
+        "hint": "magnificent, heritage, thanks to, well preserved, occupied, generation, takeaway, structure, recognise, contribute",
+        "answers": [
+          "thanks to"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex4",
+        "prefix": "The museum displays artefacts that represent our country's rich",
+        "suffix": ".",
+        "hint": "magnificent, heritage, thanks to, well preserved, occupied, generation, takeaway, structure, recognise, contribute",
+        "answers": [
+          "heritage"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex4",
+        "prefix": "The study room at the library was",
+        "suffix": "by students studying for exams.",
+        "hint": "magnificent, heritage, thanks to, well preserved, occupied, generation, takeaway, structure, recognise, contribute",
+        "answers": [
+          "occupied"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex4",
+        "prefix": "We found an old",
+        "suffix": "by the river that looked like a bridge.",
+        "hint": "magnificent, heritage, thanks to, well preserved, occupied, generation, takeaway, structure, recognise, contribute",
+        "answers": [
+          "structure"
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U4 Ex7",
+        "question": "People donate clothes to charity to (contribute) _________________ to helping those in need.",
+        "answer": "contribute",
+        "options": [],
+        "accept": [
+          "contribute"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U4 Ex7",
+        "question": "Planting trees is important for environmental (protect) _________________ because they clean the air.",
+        "answer": "protection",
+        "options": [],
+        "accept": [
+          "protection"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U4 Ex7",
+        "question": "Sharing stories and songs is a way to preserve our (culture) _________________ traditions.",
+        "answer": "cultural",
+        "options": [],
+        "accept": [
+          "cultural"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U4 Ex7",
+        "question": "It's easy to (recognise) _________________ my pet because of its unique markings.",
+        "answer": "recognise",
+        "options": [],
+        "accept": [
+          "recognise"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U4 Ex7",
+        "question": "During the trip to the zoo, I made an (observe) _________________ about how monkeys play.",
+        "answer": "observation",
+        "options": [],
+        "accept": [
+          "observation"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U4 Ex7",
+        "question": "I love exploring (history) _________________ sites to learn about different cultures and traditions.",
+        "answer": "historical",
+        "options": [],
+        "accept": [
+          "historical"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U4 Ex7",
+        "question": "Our community organises events to promote the (preserve) _________________ of local traditions.",
+        "answer": "preservation",
+        "options": [],
+        "accept": [
+          "preservation"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U4 Ex7",
+        "question": "The parking lot was fully (occupy) _________________ , so we had to park on the street.",
+        "answer": "occupied",
+        "options": [],
+        "accept": [
+          "occupied"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U4 Ex7",
+        "question": "We gather around the table to enjoy a (tradition) _________________ meal on Thanksgiving.",
+        "answer": "traditional",
+        "options": [],
+        "accept": [
+          "traditional"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U4 Ex7",
+        "question": "Our company is offering a (promote) _________________ to encourage people to buy our new product.",
+        "answer": "promotion",
+        "options": [],
+        "accept": [
+          "promotion"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U4 Ex9",
+        "question": "My sister wishes she has /had / is having a better phone with a good camera.",
+        "answer": "had",
+        "options": [
+          "has",
+          "had",
+          "is having"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U4 Ex9",
+        "question": "Oscar wishes he can learn / could learn / can learned more about different cultures.",
+        "answer": "could learn",
+        "options": [
+          "can learn",
+          "could learn",
+          "can learned"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U4 Ex9",
+        "question": "Tom wishes he has / had / was having a magic wand to make his wishes come true.",
+        "answer": "had",
+        "options": [
+          "has",
+          "had",
+          "was having"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U4 Ex9",
+        "question": "Maria wishes she visits / is visiting / visited all the famous landmarks in the world.",
+        "answer": "visited",
+        "options": [
+          "visits",
+          "is visiting",
+          "visited"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U4 Ex9",
+        "question": "I wish I know / knowed /knew how to make a chocolate cake.",
+        "answer": "knew",
+        "options": [
+          "know",
+          "knowed",
+          "knew"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U4 Ex9",
+        "question": "The kids wish they can have / can had / could have a treehouse in their backyard.",
+        "answer": "could have",
+        "options": [
+          "can have",
+          "can had",
+          "could have"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U4 Ex9",
+        "question": "Does Trung wish he has /have / had more time to spend with his family?",
+        "answer": "had",
+        "options": [
+          "has",
+          "have",
+          "had"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U4 Ex9",
+        "question": "Anna wishes she gets / got / gotten the chance to meet her favourite singer in person.",
+        "answer": "got",
+        "options": [
+          "gets",
+          "got",
+          "gotten"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U4 Ex9",
+        "question": "Do you wish you could travel / travelled / travelling around the world and explore different cultures?",
+        "answer": "could travel",
+        "options": [
+          "could travel",
+          "travelled",
+          "travelling"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U4 Ex9",
+        "question": "Mark wishes he becomes / has become / became a professional athlete and competes / competed / is competing in the Olympics.",
+        "answer": "became",
+        "options": [
+          "becomes",
+          "has become",
+          "became"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex11",
+        "prefix": "Did you go to any (1)",
+        "suffix": "sites while you were in Italy?",
+        "hint": "thanks to, heritage, visited, preserved, magnificent, generations, historic, protect",
+        "answers": [
+          "historic"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex11",
+        "prefix": "Was it well (2)",
+        "suffix": "?",
+        "hint": "thanks to, heritage, visited, preserved, magnificent, generations, historic, protect",
+        "answers": [
+          "preserved"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex11",
+        "prefix": "Yes, it's (3)",
+        "suffix": "the efforts of many people to protect these structures for future generations.",
+        "hint": "thanks to, heritage, visited, preserved, magnificent, generations, historic, protect",
+        "answers": [
+          "thanks to"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex11",
+        "prefix": "We need to preserve our cultural (4)",
+        "suffix": ".",
+        "hint": "thanks to, heritage, visited, preserved, magnificent, generations, historic, protect",
+        "answers": [
+          "heritage"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex11",
+        "prefix": "I recently (5)",
+        "suffix": "Egypt and saw the pyramids.",
+        "hint": "thanks to, heritage, visited, preserved, magnificent, generations, historic, protect",
+        "answers": [
+          "visited"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex11",
+        "prefix": "People must be working hard to (6)",
+        "suffix": "them too.",
+        "hint": "thanks to, heritage, visited, preserved, magnificent, generations, historic, protect",
+        "answers": [
+          "protect"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex11",
+        "prefix": "We re lucky to be able to experience and learn from such (7)",
+        "suffix": "places.",
+        "hint": "thanks to, heritage, visited, preserved, magnificent, generations, historic, protect",
+        "answers": [
+          "magnificent"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U4 Ex11",
+        "prefix": "we need to make sure they'll be there for future (8)",
+        "suffix": "to enjoy.",
+        "hint": "thanks to, heritage, visited, preserved, magnificent, generations, historic, protect",
+        "answers": [
+          "generations"
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U4 Ex14",
+        "question": "My father was drive to work when he saw an accident on the road.",
+        "answer": "driving",
+        "options": [],
+        "accept": [
+          "driving"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U4 Ex14",
+        "question": "Ngoc was dancing in her room while her brother were playing video games.",
+        "answer": "was",
+        "options": [],
+        "accept": [
+          "was"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U4 Ex14",
+        "question": "The volunteers made a meaningful contribute to the local orphanage.",
+        "answer": "contribution",
+        "options": [],
+        "accept": [
+          "contribution"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U4 Ex14",
+        "question": "Linda wishes she has a new smartphone and a new bike.",
+        "answer": "had",
+        "options": [],
+        "accept": [
+          "had"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U4 Ex14",
+        "question": "I want to observation the changing colours of the leaves in autumn.",
+        "answer": "observe",
+        "options": [],
+        "accept": [
+          "observe"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U4 Ex14",
+        "question": "I was waiting for the bus when I realise I had forgotten my umbrella.",
+        "answer": "realised",
+        "options": [],
+        "accept": [
+          "realised"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U4 Ex14",
+        "question": "We wish that our parents didn't had to work so hard.",
+        "answer": "didn't have",
+        "options": [],
+        "accept": [
+          "didn't have"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U4 Ex14",
+        "question": "Cultural preserve includes safeguarding intangible heritage like music and dance.",
+        "answer": "preservation",
+        "options": [],
+        "accept": [
+          "preservation"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U4 Ex14",
+        "question": "He fixing the car in the garage for weeks because it kept breaking down.",
+        "answer": "was fixing",
+        "options": [],
+        "accept": [
+          "was fixing"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U4 Ex14",
+        "question": "Minh and Quang are having a picnic in the garden at 3 p.m. last Saturday.",
+        "answer": "were having",
+        "options": [],
+        "accept": [
+          "were having"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U4 Ex14",
+        "question": "She wish she had a villa with a swimming pool and a beautiful garden.",
+        "answer": "wishes",
+        "options": [],
+        "accept": [
+          "wishes"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U4 Ex14",
+        "question": "We should protected valuable artefacts from being stolen or sold illegally.",
+        "answer": "protect",
+        "options": [],
+        "accept": [
+          "protect"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U4 Ex14",
+        "question": "I wish I could reading minds and know what people are thinking.",
+        "answer": "read",
+        "options": [],
+        "accept": [
+          "read"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U4 Ex14",
+        "question": "The baby was sleeping peacefully when the phone will ring loudly.",
+        "answer": "rang",
+        "options": [],
+        "accept": [
+          "rang"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U4 Ex14",
+        "question": "My sister attends a cooking class to learn how to make new recipes three months ago.",
+        "answer": "attended",
+        "options": [],
+        "accept": [
+          "attended"
+        ],
+        "fillMode": true
+      }
+    ],
+    "5": [
+      {
+        "game": "grammar",
+        "source": "U5 Ex5",
+        "prefix": "Our children decided to",
+        "suffix": "to get a better sense of the university's facilities.",
+        "hint": "tour the campus, ride a jeep, climb a mountain, see a gong show, go snorkeling, put up tents, dance with local people, take photos",
+        "answers": [
+          "tour the campus"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex5",
+        "prefix": "While in Africa, our team",
+        "suffix": "to get close to the wildlife and observed them in their natural habitat.",
+        "hint": "tour the campus, ride a jeep, climb a mountain, see a gong show, go snorkeling, put up tents, dance with local people, take photos",
+        "answers": [
+          "rode a jeep"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex5",
+        "prefix": "The group of friends got up early in the morning to",
+        "suffix": "and watch the sunrise from its top.",
+        "hint": "tour the campus, ride a jeep, climb a mountain, see a gong show, go snorkeling, put up tents, dance with local people, take photos",
+        "answers": [
+          "climb a mountain"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex5",
+        "prefix": "We were lucky to",
+        "suffix": "in Vietnam, where skilled performers excitedly played this unique instrument.",
+        "hint": "tour the campus, ride a jeep, climb a mountain, see a gong show, go snorkeling, put up tents, dance with local people, take photos",
+        "answers": [
+          "see a gong show"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex5",
+        "prefix": "Our classmates",
+        "suffix": "of the beautiful flora and fauna when visiting the national park last week.",
+        "hint": "tour the campus, ride a jeep, climb a mountain, see a gong show, go snorkeling, put up tents, dance with local people, take photos",
+        "answers": [
+          "took photos"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex5",
+        "prefix": "The tourists arrived at the campsite and immediately started",
+        "suffix": "to prepare for the night.",
+        "hint": "tour the campus, ride a jeep, climb a mountain, see a gong show, go snorkeling, put up tents, dance with local people, take photos",
+        "answers": [
+          "putting up tents"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex5",
+        "prefix": "While traveling in Brazil, we had a great opportunity to",
+        "suffix": "during a lively samba night.",
+        "hint": "tour the campus, ride a jeep, climb a mountain, see a gong show, go snorkeling, put up tents, dance with local people, take photos",
+        "answers": [
+          "dance with local people"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex5",
+        "prefix": "We enjoyed",
+        "suffix": "in Ha Long Bay and seeing many colorful fish and coral reefs.",
+        "hint": "tour the campus, ride a jeep, climb a mountain, see a gong show, go snorkeling, put up tents, dance with local people, take photos",
+        "answers": [
+          "going snorkeling"
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U5 Ex8",
+        "question": "We _________________ several field trips since the beginning of the school year. (attend)",
+        "answer": "have attended",
+        "options": [],
+        "accept": [
+          "have attended"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U5 Ex8",
+        "question": "They _________________ paper, plastic, and glass for many years to reduce waste. (recycle)",
+        "answer": "have recycled",
+        "options": [],
+        "accept": [
+          "have recycled"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U5 Ex8",
+        "question": "I _________________ a team leader once and it was definitely a memorable experience. (be)",
+        "answer": "have been",
+        "options": [],
+        "accept": [
+          "have been"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U5 Ex8",
+        "question": "I (never) _________________ dolphins swimming in the ocean before. (see)",
+        "answer": "have never seen",
+        "options": [],
+        "accept": [
+          "have never seen"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U5 Ex8",
+        "question": "I _________________ my research paper on environmental problems yet. (not complete)",
+        "answer": "have not completed",
+        "options": [],
+        "accept": [
+          "have not completed"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U5 Ex8",
+        "question": "What _________________ (you) at the time the accident happened? (do)",
+        "answer": "were you doing",
+        "options": [],
+        "accept": [
+          "were you doing"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U5 Ex8",
+        "question": "Since I _________________ the language club, I have studied various foreign languages. (join)",
+        "answer": "joined",
+        "options": [],
+        "accept": [
+          "joined"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U5 Ex8",
+        "question": "They _________________ astronomy for over a decade. (study)",
+        "answer": "have studied",
+        "options": [],
+        "accept": [
+          "have studied"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U5 Ex8",
+        "question": "I _________________ down the street when I came across my old friend. (walk)",
+        "answer": "was walking",
+        "options": [],
+        "accept": [
+          "was walking"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U5 Ex8",
+        "question": "Last year, the choir _________________ the golden award for their exceptional vocal performance. (win)",
+        "answer": "won",
+        "options": [],
+        "accept": [
+          "won"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U5 Ex9",
+        "question": "He has played soccer for ten years and has won several championship with his team.",
+        "answer": "championships",
+        "options": [],
+        "accept": [
+          "championships"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U5 Ex9",
+        "question": "The company has recently began implementing new strategies to improve its efficiency.",
+        "answer": "begun",
+        "options": [],
+        "accept": [
+          "begun"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U5 Ex9",
+        "question": "I has already drunk three cups of coffee this morning.",
+        "answer": "have",
+        "options": [],
+        "accept": [
+          "have"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U5 Ex9",
+        "question": "He has received many compliments on his new shoes since he has bought them.",
+        "answer": "bought",
+        "options": [],
+        "accept": [
+          "bought"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U5 Ex9",
+        "question": "The community has recently came together to support those in need after the disaster.",
+        "answer": "come",
+        "options": [],
+        "accept": [
+          "come"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U5 Ex9",
+        "question": "I just have finished a relaxing yoga session to reduce my stress level.",
+        "answer": "have just",
+        "options": [],
+        "accept": [
+          "have just"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U5 Ex9",
+        "question": "Have you already worked on this project since three years?",
+        "answer": "for",
+        "options": [],
+        "accept": [
+          "for"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U5 Ex9",
+        "question": "Robots have developed the ability to dream or imagine yet.",
+        "answer": "haven't developed",
+        "options": [],
+        "accept": [
+          "haven't developed"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U5 Ex9",
+        "question": "I hadn't heard from them since they changed their phone numbers.",
+        "answer": "haven't",
+        "options": [],
+        "accept": [
+          "haven't"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U5 Ex9",
+        "question": "Have ever they learned how to play a musical instrument before?",
+        "answer": "Have they ever",
+        "options": [],
+        "accept": [
+          "Have they ever"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex10",
+        "prefix": "The teacher encouraged her students to engage in active learning rather than learning",
+        "suffix": ".",
+        "hint": "helpless, on purpose, unpleasant, peers, exhilarating, pleased, experience, by rote, embarrassing, by chance",
+        "answers": [
+          "by rote"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex10",
+        "prefix": "During the bullying incident, I felt so",
+        "suffix": "and lonely, unable to defend myself.",
+        "hint": "helpless, on purpose, unpleasant, peers, exhilarating, pleased, experience, by rote, embarrassing, by chance",
+        "answers": [
+          "helpless"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex10",
+        "prefix": "I'm grateful that I always feel comfortable being myself around my",
+        "suffix": ".",
+        "hint": "helpless, on purpose, unpleasant, peers, exhilarating, pleased, experience, by rote, embarrassing, by chance",
+        "answers": [
+          "peers"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex10",
+        "prefix": "The company' s CEO was very",
+        "suffix": "with the team' s hard work and dedication.",
+        "hint": "helpless, on purpose, unpleasant, peers, exhilarating, pleased, experience, by rote, embarrassing, by chance",
+        "answers": [
+          "pleased"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex10",
+        "prefix": "They spread false rumors about Mr. Hung",
+        "suffix": "to damage his reputation.",
+        "hint": "helpless, on purpose, unpleasant, peers, exhilarating, pleased, experience, by rote, embarrassing, by chance",
+        "answers": [
+          "on purpose"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex10",
+        "prefix": "It was very",
+        "suffix": "when I mispronounced a word during a public speech, and everyone noticed.",
+        "hint": "helpless, on purpose, unpleasant, peers, exhilarating, pleased, experience, by rote, embarrassing, by chance",
+        "answers": [
+          "embarrassing"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex10",
+        "prefix": "My different part-time jobs during university provided me with valuable work",
+        "suffix": "and social skills.",
+        "hint": "helpless, on purpose, unpleasant, peers, exhilarating, pleased, experience, by rote, embarrassing, by chance",
+        "answers": [
+          "experience"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex10",
+        "prefix": "Luckily, I happened to find the perfect birthday gift for my sister",
+        "suffix": "while shopping online.",
+        "hint": "helpless, on purpose, unpleasant, peers, exhilarating, pleased, experience, by rote, embarrassing, by chance",
+        "answers": [
+          "by chance"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex10",
+        "prefix": "Lisa received a/an",
+        "suffix": "email filled with a lot of criticism and negativity.",
+        "hint": "helpless, on purpose, unpleasant, peers, exhilarating, pleased, experience, by rote, embarrassing, by chance",
+        "answers": [
+          "unpleasant"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex10",
+        "prefix": "After a challenging climb, the moment we reached the top of the mountain was",
+        "suffix": "and worthwhile.",
+        "hint": "helpless, on purpose, unpleasant, peers, exhilarating, pleased, experience, by rote, embarrassing, by chance",
+        "answers": [
+          "exhilarating"
+        ]
+      },
+      {
+        "game": "choose_and_circle",
+        "title": "U5 Exercise 11",
+        "instruction": "Circle the correct words or phrases to complete the sentences.",
+        "items": [
+          {
+            "order": 1,
+            "image": "",
+            "prompt": "The (exciting / touching) speech of the groom at the wedding brought tears to everyone's eyes.",
+            "options": [
+              "exciting",
+              "touching"
+            ],
+            "answer": "touching"
+          },
+          {
+            "order": 2,
+            "image": "",
+            "prompt": "The (amazing / terrible) public speaking experience I had at the conference made me anxious about future presentations.",
+            "options": [
+              "amazing",
+              "terrible"
+            ],
+            "answer": "terrible"
+          },
+          {
+            "order": 3,
+            "image": "",
+            "prompt": "We took a meaningful (eco-tour / performance) that highlighted the importance of protecting endangered species.",
+            "options": [
+              "eco-tour",
+              "performance"
+            ],
+            "answer": "eco-tour"
+          },
+          {
+            "order": 4,
+            "image": "",
+            "prompt": "As soon as the exam started, my mind went (blank / exhausted), and I couldn't remember anything I had studied.",
+            "options": [
+              "blank",
+              "exhausted"
+            ],
+            "answer": "blank"
+          },
+          {
+            "order": 5,
+            "image": "",
+            "prompt": "We used to (argue / agree) a lot, but we've learned to resolve conflicts without damaging our friendship.",
+            "options": [
+              "argue",
+              "agree"
+            ],
+            "answer": "argue"
+          },
+          {
+            "order": 6,
+            "image": "",
+            "prompt": "Skydiving for the first time was a (thrilling / awful) experience that filled me with excitement.",
+            "options": [
+              "thrilling",
+              "awful"
+            ],
+            "answer": "thrilling"
+          },
+          {
+            "order": 7,
+            "image": "",
+            "prompt": "Our company often organizes (team building / individual) activities to strengthen relationships among employees.",
+            "options": [
+              "team building",
+              "individual"
+            ],
+            "answer": "team building"
+          },
+          {
+            "order": 8,
+            "image": "",
+            "prompt": "Our school motivated students and taught us how to effectively (fight / run away from) the bullies.",
+            "options": [
+              "fight",
+              "run away from"
+            ],
+            "answer": "fight"
+          },
+          {
+            "order": 9,
+            "image": "",
+            "prompt": "My graduation day was a/an (embarrassing / memorable) event, filled with joy and proud moments.",
+            "options": [
+              "embarrassing",
+              "memorable"
+            ],
+            "answer": "memorable"
+          },
+          {
+            "order": 10,
+            "image": "",
+            "prompt": "Developing essential (soft / technical) skills, such as time management and teamwork, can greatly enhance your professional growth.",
+            "options": [
+              "soft",
+              "technical"
+            ],
+            "answer": "soft"
+          }
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex12",
+        "prefix": "Hi Mark, how's the summer (1)",
+        "suffix": "going?",
+        "hint": "participating, species, community, amazing, flora, sites, dancing, traditional, experience, course",
+        "answers": [
+          "course"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex12",
+        "prefix": "It's been (2)",
+        "suffix": "so far.",
+        "hint": "participating, species, community, amazing, flora, sites, dancing, traditional, experience, course",
+        "answers": [
+          "amazing"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex12",
+        "prefix": "we spent a lot of time exploring different (3)",
+        "suffix": "and learning about their history",
+        "hint": "participating, species, community, amazing, flora, sites, dancing, traditional, experience, course",
+        "answers": [
+          "sites"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex12",
+        "prefix": "Definitely the (4)",
+        "suffix": "and fauna.",
+        "hint": "participating, species, community, amazing, flora, sites, dancing, traditional, experience, course",
+        "answers": [
+          "flora"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex12",
+        "prefix": "unique plant and animal (5)",
+        "suffix": ".",
+        "hint": "participating, species, community, amazing, flora, sites, dancing, traditional, experience, course",
+        "answers": [
+          "species"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex12",
+        "prefix": "we've had some workshops on (6)",
+        "suffix": "crafts and music",
+        "hint": "participating, species, community, amazing, flora, sites, dancing, traditional, experience, course",
+        "answers": [
+          "traditional"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex12",
+        "prefix": "That's such a great way to understand the (7)",
+        "suffix": ".",
+        "hint": "participating, species, community, amazing, flora, sites, dancing, traditional, experience, course",
+        "answers": [
+          "community"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex12",
+        "prefix": "Have you been (8) in any activities too?",
+        "suffix": "",
+        "hint": "participating, species, community, amazing, flora, sites, dancing, traditional, experience, course",
+        "answers": [
+          "participating"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex12",
+        "prefix": "we've gone hiking, swimming, and even tried traditional (9)",
+        "suffix": ".",
+        "hint": "participating, species, community, amazing, flora, sites, dancing, traditional, experience, course",
+        "answers": [
+          "dancing"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U5 Ex12",
+        "prefix": "It sounds like an immersive (10)",
+        "suffix": ".",
+        "hint": "participating, species, community, amazing, flora, sites, dancing, traditional, experience, course",
+        "answers": [
+          "experience"
+        ]
+      }
+    ],
+    "6": [
+      {
+        "game": "grammar",
+        "source": "U6 Ex4",
+        "prefix": "Anna is very",
+        "suffix": ". She always puts her family' s needs before her own.",
+        "hint": "opportunity, freedom, memorise, replace, pursue, take notes, depend on, various, family-oriented, extended",
+        "answers": [
+          "family-oriented"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex4",
+        "prefix": "I need to",
+        "suffix": "my old phone with a new one because it doesn't work anymore.",
+        "hint": "opportunity, freedom, memorise, replace, pursue, take notes, depend on, various, family-oriented, extended",
+        "answers": [
+          "replace"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex4",
+        "prefix": "The farmers",
+        "suffix": "rain to water their crops and help them grow.",
+        "hint": "opportunity, freedom, memorise, replace, pursue, take notes, depend on, various, family-oriented, extended",
+        "answers": [
+          "depend on"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex4",
+        "prefix": "My",
+        "suffix": "family includes my grandparents, aunts, uncles, and cousins.",
+        "hint": "opportunity, freedom, memorise, replace, pursue, take notes, depend on, various, family-oriented, extended",
+        "answers": [
+          "extended"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex4",
+        "prefix": "Learning a new language gives me an",
+        "suffix": "to communicate with people from different countries.",
+        "hint": "opportunity, freedom, memorise, replace, pursue, take notes, depend on, various, family-oriented, extended",
+        "answers": [
+          "opportunity"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex4",
+        "prefix": "The library has",
+        "suffix": "books on different topics, like animals, history, and adventure.",
+        "hint": "opportunity, freedom, memorise, replace, pursue, take notes, depend on, various, family-oriented, extended",
+        "answers": [
+          "various"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex4",
+        "prefix": "During meetings, it's important to",
+        "suffix": "to remember what was discussed.",
+        "hint": "opportunity, freedom, memorise, replace, pursue, take notes, depend on, various, family-oriented, extended",
+        "answers": [
+          "take notes"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex4",
+        "prefix": "I want to",
+        "suffix": "my dream of becoming a veterinarian and helping animals.",
+        "hint": "opportunity, freedom, memorise, replace, pursue, take notes, depend on, various, family-oriented, extended",
+        "answers": [
+          "pursue"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex4",
+        "prefix": "Jimmy uses flashcards to help him",
+        "suffix": "important dates for the history exam.",
+        "hint": "opportunity, freedom, memorise, replace, pursue, take notes, depend on, various, family-oriented, extended",
+        "answers": [
+          "memorise"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex4",
+        "prefix": "My parents give me the",
+        "suffix": "to make my own decisions, but they also offer guidance when I need it.",
+        "hint": "opportunity, freedom, memorise, replace, pursue, take notes, depend on, various, family-oriented, extended",
+        "answers": [
+          "freedom"
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U6 Ex5",
+        "question": "I find it easier to _________________ language patterns by practising speaking with native speakers. (memory)",
+        "answer": "memorise",
+        "options": [],
+        "accept": [
+          "memorise"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U6 Ex5",
+        "question": "Loan prefers to use her _________________ email for communication. (person)",
+        "answer": "personal",
+        "options": [],
+        "accept": [
+          "personal"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U6 Ex5",
+        "question": "In the supermarket, you can find _________________ fruits such as apples, bananas, and oranges. (vary)",
+        "answer": "various",
+        "options": [],
+        "accept": [
+          "various"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U6 Ex5",
+        "question": "My sister stayed up late watching an _________________ version of her favourite movie. (extend)",
+        "answer": "extended",
+        "options": [],
+        "accept": [
+          "extended"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U6 Ex5",
+        "question": "We are fortunate to live in a _________________ nation where everyone's rights are protected. (democracy)",
+        "answer": "democratic",
+        "options": [],
+        "accept": [
+          "democratic"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U6 Ex5",
+        "question": "Elderly people may become _________________ on others for assistance with daily tasks. (depend)",
+        "answer": "dependent",
+        "options": [],
+        "accept": [
+          "dependent"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U6 Ex5",
+        "question": "Our company has a _________________ meeting room where important discussions take place. (privacy)",
+        "answer": "private",
+        "options": [],
+        "accept": [
+          "private"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U6 Ex5",
+        "question": "I feel happy when I have the _________________ to express myself through art. (free)",
+        "answer": "freedom",
+        "options": [],
+        "accept": [
+          "freedom"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U6 Ex5",
+        "question": "The _________________ between summer and winter is the temperature. (differ)",
+        "answer": "difference",
+        "options": [],
+        "accept": [
+          "difference"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Word form",
+        "skill": "writing",
+        "exercise": "U6 Ex5",
+        "question": "Playing video games is a popular form of _________________ among teenagers nowadays. (entertain)",
+        "answer": "entertainment",
+        "options": [],
+        "accept": [
+          "entertainment"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U6 Ex7",
+        "question": "The doctor suggests (eat / eating) more fruits and vegetables for a healthy diet.",
+        "answer": "eating",
+        "options": [
+          "eat",
+          "eating"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U6 Ex7",
+        "question": "Do your parents fancy (going / went) for a walk in the park?",
+        "answer": "going",
+        "options": [
+          "going",
+          "went"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U6 Ex7",
+        "question": "Oliver decided (studying / to study) for his exam instead of going out.",
+        "answer": "to study",
+        "options": [
+          "studying",
+          "to study"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U6 Ex7",
+        "question": "My classmates agreed (to going / to go) on a trip together during the summer.",
+        "answer": "to go",
+        "options": [
+          "to going",
+          "to go"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U6 Ex7",
+        "question": "He avoids (uses / using) his phone while driving to prevent accidents.",
+        "answer": "using",
+        "options": [
+          "uses",
+          "using"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U6 Ex7",
+        "question": "Mai promises (to return / returning) the borrowed money by the end of the week.",
+        "answer": "to return",
+        "options": [
+          "to return",
+          "returning"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U6 Ex7",
+        "question": "Kelly doesn't mind (waited / waiting) for her friends to arrive at the party.",
+        "answer": "waiting",
+        "options": [
+          "waited",
+          "waiting"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U6 Ex7",
+        "question": "We enjoy (playing / to playing) board games with our family on Sundays.",
+        "answer": "playing",
+        "options": [
+          "playing",
+          "to playing"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U6 Ex7",
+        "question": "My brother wants (adopt / to adopt) a puppy from the animal shelter.",
+        "answer": "to adopt",
+        "options": [
+          "adopt",
+          "to adopt"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U6 Ex7",
+        "question": "We learn (to bake / baking) cookies by following a simple recipe from a cookbook.",
+        "answer": "to bake",
+        "options": [
+          "to bake",
+          "baking"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U6 Ex7",
+        "question": "They plan (organised / to organise) a birthday party for their friend next week.",
+        "answer": "to organise",
+        "options": [
+          "organised",
+          "to organise"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U6 Ex7",
+        "question": "They finished (cooking / to cook) dinner together just in time for the guests to arrive.",
+        "answer": "cooking",
+        "options": [
+          "cooking",
+          "to cook"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U6 Ex7",
+        "question": "The tour guide recommends (trying / to try) the local cuisine when we travel.",
+        "answer": "trying",
+        "options": [
+          "trying",
+          "to try"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U6 Ex7",
+        "question": "Taylor hopes (attended / to attend) a famous university after finishing high school.",
+        "answer": "to attend",
+        "options": [
+          "attended",
+          "to attend"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Circle correct form",
+        "skill": "writing",
+        "exercise": "U6 Ex7",
+        "question": "People tend (to eat / eating) more junk food when they 're stressed.",
+        "answer": "to eat",
+        "options": [
+          "to eat",
+          "eating"
+        ],
+        "accept": [],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Verb form",
+        "skill": "writing",
+        "exercise": "U6 Ex8",
+        "question": "Do you mind (water) ___________________ the plants while I'm away on vacation?",
+        "answer": "watering",
+        "options": [],
+        "accept": [
+          "watering"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Verb form",
+        "skill": "writing",
+        "exercise": "U6 Ex8",
+        "question": "We plan (watch) ___________________ an action film at home this weekend.",
+        "answer": "to watch",
+        "options": [],
+        "accept": [
+          "to watch"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Verb form",
+        "skill": "writing",
+        "exercise": "U6 Ex8",
+        "question": "Tuan agreed (lend) ___________________ me his bicycle for the weekend.",
+        "answer": "to lend",
+        "options": [],
+        "accept": [
+          "to lend"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Verb form",
+        "skill": "writing",
+        "exercise": "U6 Ex8",
+        "question": "My teacher suggests (practise) ___________________ the piano every day to improve.",
+        "answer": "practising",
+        "options": [],
+        "accept": [
+          "practising"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Verb form",
+        "skill": "writing",
+        "exercise": "U6 Ex8",
+        "question": "Emily promises (study) ___________________ hard for her upcoming exam.",
+        "answer": "to study",
+        "options": [],
+        "accept": [
+          "to study"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Verb form",
+        "skill": "writing",
+        "exercise": "U6 Ex8",
+        "question": "Nancy and Tom fancy (explore) ___________________ the hiking trails in the mountains.",
+        "answer": "exploring",
+        "options": [],
+        "accept": [
+          "exploring"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Verb form",
+        "skill": "writing",
+        "exercise": "U6 Ex8",
+        "question": "We avoid (argue) ___________________ with each other to maintain harmony in the family.",
+        "answer": "arguing",
+        "options": [],
+        "accept": [
+          "arguing"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Verb form",
+        "skill": "writing",
+        "exercise": "U6 Ex8",
+        "question": "She decides (write) ___________________ a letter to her friend who lives abroad.",
+        "answer": "to write",
+        "options": [],
+        "accept": [
+          "to write"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Verb form",
+        "skill": "writing",
+        "exercise": "U6 Ex8",
+        "question": "The children finished (clean) ___________________ their rooms before going out.",
+        "answer": "cleaning",
+        "options": [],
+        "accept": [
+          "cleaning"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Verb form",
+        "skill": "writing",
+        "exercise": "U6 Ex8",
+        "question": "My sister wants (go) ___________________ to the shopping mall and buy a new dress.",
+        "answer": "to go",
+        "options": [],
+        "accept": [
+          "to go"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Verb form",
+        "skill": "writing",
+        "exercise": "U6 Ex8",
+        "question": "Ben enjoys (play) ___________________ volleyball and (paint) ___________________ pictures in his free time.",
+        "answer": "playing",
+        "options": [],
+        "accept": [
+          "playing"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "word_form",
+        "typeLabel": "Verb form",
+        "skill": "writing",
+        "exercise": "U6 Ex8",
+        "question": "Quang would like (learn) ___________________ how to play the guitar.",
+        "answer": "to learn",
+        "options": [],
+        "accept": [
+          "to learn"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex11",
+        "prefix": "My parents often tell me about how (1)",
+        "suffix": "life was when they were young.",
+        "hint": "face-to-face, depended, appreciation, technology, opportunities, compare, different, pursue",
+        "answers": [
+          "different"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex11",
+        "prefix": "they often mention how they didn't have access to all the (2)",
+        "suffix": "we have today.",
+        "hint": "face-to-face, depended, appreciation, technology, opportunities, compare, different, pursue",
+        "answers": [
+          "technology"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex11",
+        "prefix": "They say they spent more time outdoors and engaged in (3)",
+        "suffix": "interactions.",
+        "hint": "face-to-face, depended, appreciation, technology, opportunities, compare, different, pursue",
+        "answers": [
+          "face-to-face"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex11",
+        "prefix": "they talk about how limited their (4)",
+        "suffix": "were compared to now.",
+        "hint": "face-to-face, depended, appreciation, technology, opportunities, compare, different, pursue",
+        "answers": [
+          "opportunities"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex11",
+        "prefix": "They had to work really hard to (5)",
+        "suffix": ".",
+        "hint": "face-to-face, depended, appreciation, technology, opportunities, compare, different, pursue",
+        "answers": [
+          "pursue"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex11",
+        "prefix": "people (6)",
+        "suffix": "more on their families and neighbours for support.",
+        "hint": "face-to-face, depended, appreciation, technology, opportunities, compare, different, pursue",
+        "answers": [
+          "depended"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex11",
+        "prefix": "It's interesting to (7)",
+        "suffix": "their experiences to ours and see how much things have changed.",
+        "hint": "face-to-face, depended, appreciation, technology, opportunities, compare, different, pursue",
+        "answers": [
+          "compare"
+        ]
+      },
+      {
+        "game": "grammar",
+        "source": "U6 Ex11",
+        "prefix": "It gives US a better (8)",
+        "suffix": "for what we have now.",
+        "hint": "face-to-face, depended, appreciation, technology, opportunities, compare, different, pursue",
+        "answers": [
+          "appreciation"
+        ]
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U6 Ex14",
+        "question": "Sarah doesn't mind help her friends with their homework.",
+        "answer": "helping",
+        "options": [],
+        "accept": [
+          "helping"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U6 Ex14",
+        "question": "My parents want to travelling to different countries and explore new cultures.",
+        "answer": "travel",
+        "options": [],
+        "accept": [
+          "travel"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U6 Ex14",
+        "question": "The museum has vary exhibits showcasing different periods of history.",
+        "answer": "various",
+        "options": [],
+        "accept": [
+          "various"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U6 Ex14",
+        "question": "Family-orient people enjoy family meals and gatherings as opportunities to connect and bond.",
+        "answer": "oriented",
+        "options": [],
+        "accept": [
+          "oriented"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U6 Ex14",
+        "question": "I finished do my homework and now I can go outside to play.",
+        "answer": "doing",
+        "options": [],
+        "accept": [
+          "doing"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U6 Ex14",
+        "question": "Phuong promises to waters the plants while her parents are away.",
+        "answer": "water",
+        "options": [],
+        "accept": [
+          "water"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U6 Ex14",
+        "question": "In a democracy country, citizens have the right to express their opinions freely.",
+        "answer": "democratic",
+        "options": [],
+        "accept": [
+          "democratic"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U6 Ex14",
+        "question": "I suggest to try out the new restaurant downtown and then going shopping.",
+        "answer": "trying",
+        "options": [],
+        "accept": [
+          "trying"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U6 Ex14",
+        "question": "My brother avoids eating junk food and drink sugary drinks to stay healthy.",
+        "answer": "drinking",
+        "options": [],
+        "accept": [
+          "drinking"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U6 Ex14",
+        "question": "Lam wants to pursuing her dream of becoming a doctor and help people.",
+        "answer": "pursue",
+        "options": [],
+        "accept": [
+          "pursue"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U6 Ex14",
+        "question": "We often go notes while watching documentaries to remember interesting facts.",
+        "answer": "take",
+        "options": [],
+        "accept": [
+          "take"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U6 Ex14",
+        "question": "Quang is determined to learn to coding so he can build his own website.",
+        "answer": "to code",
+        "options": [],
+        "accept": [
+          "to code"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U6 Ex14",
+        "question": "They plan organise a charity event to raise money for a good cause.",
+        "answer": "to organise",
+        "options": [],
+        "accept": [
+          "to organise"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U6 Ex14",
+        "question": "The success of the restaurant depends at the quality of the food and service.",
+        "answer": "on",
+        "options": [],
+        "accept": [
+          "on"
+        ],
+        "fillMode": true
+      },
+      {
+        "game": "quiz",
+        "type": "fill_blank",
+        "typeLabel": "Find the mistake",
+        "skill": "writing",
+        "exercise": "U6 Ex14",
+        "question": "I like to write in my person journal to express my thoughts and feelings.",
+        "answer": "personal",
+        "options": [],
+        "accept": [
+          "personal"
+        ],
+        "fillMode": true
+      }
+    ]
+  },
+  "skipped": []
+}

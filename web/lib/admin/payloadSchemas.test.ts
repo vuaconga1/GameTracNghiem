@@ -54,6 +54,25 @@ describe('admin payloadSchemas', () => {
     expect(payload.items).toHaveLength(1);
   });
 
+  it('parses pronunciation exercise grouping fields', () => {
+    const payload = parseGamePayload('pronunciation', {
+      mode: 'phoneme',
+      exercise: 'Âm /æ/',
+      exerciseKey: 'AE',
+      theoryText: 'Cách phát âm âm /æ/',
+      targetText: 'bat',
+      targetIpa: '/bæt/',
+    });
+    expect(payload).toMatchObject({
+      mode: 'phoneme',
+      exercise: 'Âm /æ/',
+      exerciseKey: 'AE',
+      theoryText: 'Cách phát âm âm /æ/',
+      targetText: 'bat',
+      targetIpa: '/bæt/',
+    });
+  });
+
   it('builds previews', () => {
     expect(
       questionPreview('grammar', { prefix: 'She', suffix: 'school.', answers: ['goes'] })

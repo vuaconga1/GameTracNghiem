@@ -25,8 +25,8 @@ describe('MainShell course pages', () => {
             expInLevel: 1,
             expToNextLevel: 204,
             progressPercent: 1,
-          },
-          createElement('div', null, 'Course detail')
+            children: createElement('div', null, 'Course detail'),
+          }
         )
       )
     );

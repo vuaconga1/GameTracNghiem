@@ -1,0 +1,1714 @@
+{
+  "source": "PDF/Reading_Lop9.docx",
+  "units": {
+    "1": [
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phát âm khác",
+        "question": "Chọn từ có phần nguyên âm khác: garden / artist / candy / drama",
+        "options": [
+          "garden",
+          "artist",
+          "candy",
+          "drama"
+        ],
+        "answer": "candy",
+        "accept": [
+          "candy",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phát âm khác",
+        "question": "Chọn từ có phần nguyên âm khác: stamp / match / sand / start",
+        "options": [
+          "stamp",
+          "match",
+          "sand",
+          "start"
+        ],
+        "answer": "start",
+        "accept": [
+          "start",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phát âm khác",
+        "question": "Chọn từ có phần nguyên âm khác: lamp / many / angry / camp",
+        "options": [
+          "lamp",
+          "many",
+          "angry",
+          "camp"
+        ],
+        "answer": "many",
+        "accept": [
+          "many",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phát âm khác",
+        "question": "Chọn từ có phần nguyên âm khác: grammar / animal / access / harvest",
+        "options": [
+          "grammar",
+          "animal",
+          "access",
+          "harvest"
+        ],
+        "answer": "harvest",
+        "accept": [
+          "harvest",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phát âm khác",
+        "question": "Chọn từ có phần nguyên âm khác: carry / large / apart / park",
+        "options": [
+          "carry",
+          "large",
+          "apart",
+          "park"
+        ],
+        "answer": "carry",
+        "accept": [
+          "carry",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phát âm khác",
+        "question": "Chọn từ có phần nguyên âm khác: cashier / party / traffic / actress",
+        "options": [
+          "cashier",
+          "party",
+          "traffic",
+          "actress"
+        ],
+        "answer": "traffic",
+        "accept": [
+          "traffic",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phát âm khác",
+        "question": "Chọn từ có phần nguyên âm khác: matter / garage / fantastic / attractive",
+        "options": [
+          "matter",
+          "garage",
+          "fantastic",
+          "attractive"
+        ],
+        "answer": "garage",
+        "accept": [
+          "garage",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phát âm khác",
+        "question": "Chọn từ có phần nguyên âm khác: accident / travel / language / prepare",
+        "options": [
+          "accident",
+          "travel",
+          "language",
+          "prepare"
+        ],
+        "answer": "prepare",
+        "accept": [
+          "prepare",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phát âm khác",
+        "question": "Chọn từ có phần nguyên âm khác: pleasure / weather / speaker / feather",
+        "options": [
+          "pleasure",
+          "weather",
+          "speaker",
+          "feather"
+        ],
+        "answer": "speaker",
+        "accept": [
+          "speaker",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phát âm khác",
+        "question": "Chọn từ có phần nguyên âm khác: anybody / ancestor / natural / calendar",
+        "options": [
+          "anybody",
+          "ancestor",
+          "natural",
+          "calendar"
+        ],
+        "answer": "anybody",
+        "accept": [
+          "anybody",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Wh + to-V",
+        "question": "She watched a tutorial video on ______________ to take better photographs.",
+        "options": [
+          "how",
+          "when",
+          "what",
+          "who"
+        ],
+        "answer": "how",
+        "accept": [
+          "how",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Wh + to-V",
+        "question": "I asked him for recommendations on ______________ to eat the best pizza in town.",
+        "options": [
+          "when",
+          "where",
+          "what",
+          "who"
+        ],
+        "answer": "where",
+        "accept": [
+          "where",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Wh + to-V",
+        "question": "They wonder ______________ to wear for the formal event next week.",
+        "options": [
+          "what",
+          "how",
+          "when",
+          "where"
+        ],
+        "answer": "what",
+        "accept": [
+          "what",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Wh + to-V",
+        "question": "Tony still doesn't know ______________ to pack for his beach vacation this Sunday.",
+        "options": [
+          "how",
+          "where",
+          "when",
+          "what"
+        ],
+        "answer": "what",
+        "accept": [
+          "what",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Wh + to-V",
+        "question": "The website listed a lot of great information on ______________ to visit in Hanoi.",
+        "options": [
+          "when",
+          "where",
+          "how",
+          "who"
+        ],
+        "answer": "where",
+        "accept": [
+          "where",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Wh + to-V",
+        "question": "He still can't decide on ______________ to start the training program, whether in the spring or in the fall.",
+        "options": [
+          "where",
+          "what",
+          "when",
+          "how"
+        ],
+        "answer": "when",
+        "accept": [
+          "when",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Wh + to-V",
+        "question": "Mr. and Mrs. Smiths still don't know ______________ to invite to their wedding next month.",
+        "options": [
+          "where",
+          "who",
+          "when",
+          "how"
+        ],
+        "answer": "who",
+        "accept": [
+          "who",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Wh + to-V",
+        "question": "He searched the Internet to find out ______________ to catch the bus to the city center.",
+        "options": [
+          "where",
+          "when",
+          "who",
+          "what"
+        ],
+        "answer": "where",
+        "accept": [
+          "where",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Wh + to-V",
+        "question": "Our new neighbours wonder ______________ to do to improve the local community.",
+        "options": [
+          "how",
+          "what",
+          "where",
+          "when"
+        ],
+        "answer": "what",
+        "accept": [
+          "what",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Wh + to-V",
+        "question": "The team members still can't decide on ______________ to hold the meeting, whether at the conference room or at the training centre.",
+        "options": [
+          "when",
+          "how",
+          "what",
+          "where"
+        ],
+        "answer": "where",
+        "accept": [
+          "where",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Wh + to-V",
+        "question": "We're planning a trip to Ninh Binh next week. Any suggestions on ______________ to stay in that area?",
+        "options": [
+          "when",
+          "how",
+          "what",
+          "where"
+        ],
+        "answer": "where",
+        "accept": [
+          "where",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Wh + to-V",
+        "question": "I need some help with this problem, but I don't know ______________ to ask for assistance.",
+        "options": [
+          "when",
+          "who",
+          "what",
+          "where"
+        ],
+        "answer": "who",
+        "accept": [
+          "who",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Wh + to-V",
+        "question": "I've just finished my favourite series. Any recommendations on ______________ to watch next?",
+        "options": [
+          "who",
+          "how",
+          "what",
+          "where"
+        ],
+        "answer": "what",
+        "accept": [
+          "what",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Wh + to-V",
+        "question": "I have some new plants at home. Can you advise me on ______________ to water them, in the morning or in the evening?",
+        "options": [
+          "when",
+          "how",
+          "what",
+          "where"
+        ],
+        "answer": "when",
+        "accept": [
+          "when",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Wh + to-V",
+        "question": "I don't know ______________ to cook this dish. Can you share with me your recipe, please?",
+        "options": [
+          "when",
+          "how",
+          "what",
+          "where"
+        ],
+        "answer": "how",
+        "accept": [
+          "how",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phrasal prep",
+        "question": "This local restaurant had such delicious speciality food that we can't wait to come ______________ next time for another meal.",
+        "options": [
+          "back",
+          "to",
+          "in",
+          "onto"
+        ],
+        "answer": "back",
+        "accept": [
+          "back",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phrasal prep",
+        "question": "He asked the local organization to find ______________ how to help make the community cleaner and greener.",
+        "options": [
+          "on",
+          "out",
+          "with",
+          "up"
+        ],
+        "answer": "out",
+        "accept": [
+          "out",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phrasal prep",
+        "question": "We organized an event to take care ______________ the local park and keep it clean.",
+        "options": [
+          "with",
+          "for",
+          "to",
+          "of"
+        ],
+        "answer": "of",
+        "accept": [
+          "of",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phrasal prep",
+        "question": "The laughter of children playing reminds me ______________ happy summer days.",
+        "options": [
+          "for",
+          "to",
+          "of",
+          "with"
+        ],
+        "answer": "of",
+        "accept": [
+          "of",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phrasal prep",
+        "question": "In many small towns, people hand ______________ traditions from one generation to the next to preserve the local culture.",
+        "options": [
+          "through",
+          "down",
+          "for",
+          "back"
+        ],
+        "answer": "down",
+        "accept": [
+          "down",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phrasal prep",
+        "question": "He shares similar interests with his neighbors, so he really gets ______________ them.",
+        "options": [
+          "down to",
+          "on for",
+          "down of",
+          "on with"
+        ],
+        "answer": "on with",
+        "accept": [
+          "on with",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phrasal prep",
+        "question": "The local government encourages us to cut down ______________ single-use plastic and use reusable bags instead.",
+        "options": [
+          "on",
+          "to",
+          "about",
+          "of"
+        ],
+        "answer": "on",
+        "accept": [
+          "on",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Phrasal prep",
+        "question": "The tradition of handcrafted pottery has been passed ______________ through many generations in my family.",
+        "options": [
+          "for",
+          "onto",
+          "down",
+          "back"
+        ],
+        "answer": "down",
+        "accept": [
+          "down",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "My father is a police office, and he always works hard to keep the community safe.",
+        "options": [
+          "office",
+          "hard",
+          "keep",
+          "safe"
+        ],
+        "answer": "office",
+        "accept": [
+          "office",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "The local amusement park is a favourite tourist attract for families thanks to its entertaining shows.",
+        "options": [
+          "amusement",
+          "is",
+          "attract",
+          "to"
+        ],
+        "answer": "attract",
+        "accept": [
+          "attract",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "There is a community center in our neighbour that offers different classes and activities for all ages.",
+        "options": [
+          "There",
+          "in",
+          "neighbor",
+          "diffirent"
+        ],
+        "answer": "neighbor",
+        "accept": [
+          "neighbor",
+          "neighbour",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "The museum showcased a variety of origin artefacts from ancient civilizations.",
+        "options": [
+          "showcased",
+          "variety",
+          "origin",
+          "from"
+        ],
+        "answer": "origin",
+        "accept": [
+          "origin",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "The garbage collector shares interesting information about his work and the important of sorting rubbish.",
+        "options": [
+          "collector",
+          "about",
+          "work",
+          "important"
+        ],
+        "answer": "important",
+        "accept": [
+          "important",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "The deliver person called to keep me informed about the status of my delivery.",
+        "options": [
+          "deliver",
+          "keep",
+          "of",
+          "delivery"
+        ],
+        "answer": "deliver",
+        "accept": [
+          "deliver",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      }
+    ],
+    "2": [
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 2 — Exercise 12: Read the text and choose the correct options.",
+        "question": "Traffic jams and pollution are two big problems in the city. Traffic jams occur when there are too many cars on the roads, making it difficult for people to move around quickly. To solve this, cities can encourage people to use public transportation, like buses or trains, instead of driving their own cars. This would reduce the number of vehicles on the roads, easing traffic congestion. Pollution is another issue in cities because there is too much dirty air from vehicles and factories. One solution for this problem is to plant more trees and create more green spaces in the city. Trees provide oxygen and clean the air. By increasing the number of trees, cities can improve air quality and make the environment healthier for everyone. In conclusion, we all need to work together to solve the problems of traffic and pollution. By using public transportation and starting green projects like planting trees, we can make our city environment more sustainable and enjoyable.\n\nWhich is a big problem in the city?",
+        "options": [
+          "traffic jams",
+          "pollution",
+          "high buildings",
+          "Both A & B are correct"
+        ],
+        "answer": "Both A & B are correct",
+        "accept": [
+          "Both A & B are correct",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 2 — Exercise 12: Read the text and choose the correct options.",
+        "question": "Traffic jams and pollution are two big problems in the city. Traffic jams occur when there are too many cars on the roads, making it difficult for people to move around quickly. To solve this, cities can encourage people to use public transportation, like buses or trains, instead of driving their own cars. This would reduce the number of vehicles on the roads, easing traffic congestion. Pollution is another issue in cities because there is too much dirty air from vehicles and factories. One solution for this problem is to plant more trees and create more green spaces in the city. Trees provide oxygen and clean the air. By increasing the number of trees, cities can improve air quality and make the environment healthier for everyone. In conclusion, we all need to work together to solve the problems of traffic and pollution. By using public transportation and starting green projects like planting trees, we can make our city environment more sustainable and enjoyable.\n\nWhat causes traffic jams in the city?",
+        "options": [
+          "too many cars on the roads",
+          "too many modem machines",
+          "too many factories",
+          "too many trees"
+        ],
+        "answer": "too many cars on the roads",
+        "accept": [
+          "too many cars on the roads",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 2 — Exercise 12: Read the text and choose the correct options.",
+        "question": "Traffic jams and pollution are two big problems in the city. Traffic jams occur when there are too many cars on the roads, making it difficult for people to move around quickly. To solve this, cities can encourage people to use public transportation, like buses or trains, instead of driving their own cars. This would reduce the number of vehicles on the roads, easing traffic congestion. Pollution is another issue in cities because there is too much dirty air from vehicles and factories. One solution for this problem is to plant more trees and create more green spaces in the city. Trees provide oxygen and clean the air. By increasing the number of trees, cities can improve air quality and make the environment healthier for everyone. In conclusion, we all need to work together to solve the problems of traffic and pollution. By using public transportation and starting green projects like planting trees, we can make our city environment more sustainable and enjoyable.\n\nHow can cities reduce traffic congestion according to the passage?",
+        "options": [
+          "by encouraging more people to drive their own cars",
+          "by reducing the number of buses and trains",
+          "by promoting the use of public transportation",
+          "by building more roads for cars"
+        ],
+        "answer": "by promoting the use of public transportation",
+        "accept": [
+          "by promoting the use of public transportation",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 2 — Exercise 12: Read the text and choose the correct options.",
+        "question": "Traffic jams and pollution are two big problems in the city. Traffic jams occur when there are too many cars on the roads, making it difficult for people to move around quickly. To solve this, cities can encourage people to use public transportation, like buses or trains, instead of driving their own cars. This would reduce the number of vehicles on the roads, easing traffic congestion. Pollution is another issue in cities because there is too much dirty air from vehicles and factories. One solution for this problem is to plant more trees and create more green spaces in the city. Trees provide oxygen and clean the air. By increasing the number of trees, cities can improve air quality and make the environment healthier for everyone. In conclusion, we all need to work together to solve the problems of traffic and pollution. By using public transportation and starting green projects like planting trees, we can make our city environment more sustainable and enjoyable.\n\nWhat is suggested as a solution for pollution in cities?",
+        "options": [
+          "increasing the number of factories",
+          "planting more trees and creating green spaces",
+          "encouraging more people to drive cars",
+          "using more fossil fuels for energy"
+        ],
+        "answer": "planting more trees and creating green spaces",
+        "accept": [
+          "planting more trees and creating green spaces",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 2 — Exercise 12: Read the text and choose the correct options.",
+        "question": "Traffic jams and pollution are two big problems in the city. Traffic jams occur when there are too many cars on the roads, making it difficult for people to move around quickly. To solve this, cities can encourage people to use public transportation, like buses or trains, instead of driving their own cars. This would reduce the number of vehicles on the roads, easing traffic congestion. Pollution is another issue in cities because there is too much dirty air from vehicles and factories. One solution for this problem is to plant more trees and create more green spaces in the city. Trees provide oxygen and clean the air. By increasing the number of trees, cities can improve air quality and make the environment healthier for everyone. In conclusion, we all need to work together to solve the problems of traffic and pollution. By using public transportation and starting green projects like planting trees, we can make our city environment more sustainable and enjoyable.\n\nWhat do trees provide?",
+        "options": [
+          "noise pollution",
+          "traffic congestion",
+          "oxygen and clean air",
+          "water and dirty air"
+        ],
+        "answer": "oxygen and clean air",
+        "accept": [
+          "oxygen and clean air",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 2 — Exercise 12: Read the text and choose the correct options.",
+        "question": "Traffic jams and pollution are two big problems in the city. Traffic jams occur when there are too many cars on the roads, making it difficult for people to move around quickly. To solve this, cities can encourage people to use public transportation, like buses or trains, instead of driving their own cars. This would reduce the number of vehicles on the roads, easing traffic congestion. Pollution is another issue in cities because there is too much dirty air from vehicles and factories. One solution for this problem is to plant more trees and create more green spaces in the city. Trees provide oxygen and clean the air. By increasing the number of trees, cities can improve air quality and make the environment healthier for everyone. In conclusion, we all need to work together to solve the problems of traffic and pollution. By using public transportation and starting green projects like planting trees, we can make our city environment more sustainable and enjoyable.\n\nWhich sentence is TRUE according to the passage?",
+        "options": [
+          "Pollution is not a problem in cities",
+          "Planting more trees is harmful for the environment",
+          "We should work alone to solve the problems",
+          "To avoid traffic jams, people should use public transport"
+        ],
+        "answer": "To avoid traffic jams, people should use public transport",
+        "accept": [
+          "To avoid traffic jams, people should use public transport",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      }
+    ],
+    "3": [
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (1).",
+        "options": [
+          "limitation",
+          "period",
+          "management",
+          "awareness"
+        ],
+        "answer": "management",
+        "accept": [
+          "management",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (2).",
+        "options": [
+          "achieve",
+          "provide",
+          "collect",
+          "contain"
+        ],
+        "answer": "achieve",
+        "accept": [
+          "achieve",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (3).",
+        "options": [
+          "give",
+          "make",
+          "work",
+          "hold"
+        ],
+        "answer": "make",
+        "accept": [
+          "make",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (4).",
+        "options": [
+          "communication",
+          "relaxation",
+          "education",
+          "application"
+        ],
+        "answer": "relaxation",
+        "accept": [
+          "relaxation",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (5).",
+        "options": [
+          "create",
+          "finish",
+          "delay",
+          "complete"
+        ],
+        "answer": "delay",
+        "accept": [
+          "delay",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (6).",
+        "options": [
+          "advantage",
+          "action",
+          "responsibility",
+          "moment"
+        ],
+        "answer": "advantage",
+        "accept": [
+          "advantage",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (7).",
+        "options": [
+          "advise",
+          "advice",
+          "advising",
+          "advisable"
+        ],
+        "answer": "advisable",
+        "accept": [
+          "advisable",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (8).",
+        "options": [
+          "simple",
+          "hard",
+          "strong",
+          "wise"
+        ],
+        "answer": "hard",
+        "accept": [
+          "hard",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (9).",
+        "options": [
+          "stressed",
+          "nervous",
+          "anxious",
+          "negative"
+        ],
+        "answer": "stressed",
+        "accept": [
+          "stressed",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (10).",
+        "options": [
+          "manager",
+          "counsellor",
+          "collector",
+          "developer"
+        ],
+        "answer": "counsellor",
+        "accept": [
+          "counsellor",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      }
+    ],
+    "4": [
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nWhich countries have Vietnamese people fought against as mentioned in the text?",
+        "options": [
+          "Thailand and Cambodia",
+          "China and France",
+          "Japan and Korea",
+          "Laos and Myanmar"
+        ],
+        "answer": "China and France",
+        "accept": [
+          "China and France",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nWhen does the Lunar New Year usually take place?",
+        "options": [
+          "March or April",
+          "May or June",
+          "January or February",
+          "November or December"
+        ],
+        "answer": "January or February",
+        "accept": [
+          "January or February",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nWhy do Vietnamese people clean their houses during Tet?",
+        "options": [
+          "to get rid of bad luck from the old year",
+          "to impress their guests",
+          "to earn more money",
+          "to protect the houses"
+        ],
+        "answer": "to get rid of bad luck from the old year",
+        "accept": [
+          "to get rid of bad luck from the old year",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nWhat do people give each other during Tet?",
+        "options": [
+          "lucky money in red envelopes",
+          "clothes and shoes",
+          "letters in red envelopes",
+          "books and stationary"
+        ],
+        "answer": "lucky money in red envelopes",
+        "accept": [
+          "lucky money in red envelopes",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nWhat is “banh chung” mentioned in the text?",
+        "options": [
+          "sticky rice with pork inside",
+          "beef noodle soup",
+          "fried chicken",
+          "bread with sausage inside"
+        ],
+        "answer": "sticky rice with pork inside",
+        "accept": [
+          "sticky rice with pork inside",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nVietnamese people believe that when someone dies, their soul.",
+        "options": [
+          "disappears",
+          "dies",
+          "vanishes",
+          "lives on"
+        ],
+        "answer": "lives on",
+        "accept": [
+          "lives on",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nWhat do Vietnamese people offer to their ancestors daily?",
+        "options": [
+          "money",
+          "incense, food, anddrink",
+          "books",
+          "diamonds"
+        ],
+        "answer": "incense, food, anddrink",
+        "accept": [
+          "incense, food, anddrink",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nWhat do Vietnamese people bring to their ancestors' graves during Tet?",
+        "options": [
+          "food and flowers",
+          "clothes",
+          "toys",
+          "household appliances"
+        ],
+        "answer": "food and flowers",
+        "accept": [
+          "food and flowers",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      }
+    ],
+    "5": [
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (1).",
+        "options": [
+          "exciting",
+          "terrible",
+          "magical",
+          "joyful"
+        ],
+        "answer": "terrible",
+        "accept": [
+          "terrible",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (2).",
+        "options": [
+          "violence",
+          "exercise",
+          "strength",
+          "training"
+        ],
+        "answer": "violence",
+        "accept": [
+          "violence",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (3).",
+        "options": [
+          "hurt",
+          "ignored",
+          "rejected",
+          "upset"
+        ],
+        "answer": "hurt",
+        "accept": [
+          "hurt",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (4).",
+        "options": [
+          "anxious",
+          "guilty",
+          "exhausted",
+          "helpless"
+        ],
+        "answer": "helpless",
+        "accept": [
+          "helpless",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (5).",
+        "options": [
+          "success",
+          "connection",
+          "help",
+          "peace"
+        ],
+        "answer": "help",
+        "accept": [
+          "help",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (6).",
+        "options": [
+          "encourage",
+          "courage",
+          "encouragement",
+          "discourage"
+        ],
+        "answer": "courage",
+        "accept": [
+          "courage",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (7).",
+        "options": [
+          "action",
+          "act",
+          "acting",
+          "activity"
+        ],
+        "answer": "action",
+        "accept": [
+          "action",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (8).",
+        "options": [
+          "connecting",
+          "struggling",
+          "dealing",
+          "applying"
+        ],
+        "answer": "dealing",
+        "accept": [
+          "dealing",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      }
+    ],
+    "6": [
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nWhat were children's eating habits like in the past?",
+        "options": [
+          "simple and unhealthy",
+          "complex and unhealthy",
+          "simple and healthy",
+          "complex and healthy"
+        ],
+        "answer": "simple and healthy",
+        "accept": [
+          "simple and healthy",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nmeals were common in the past.",
+        "options": [
+          "Homemade",
+          "Restaurant",
+          "Frozen",
+          "Fast food"
+        ],
+        "answer": "Homemade",
+        "accept": [
+          "Homemade",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nWhy was meat not commonly eaten by children in the past?",
+        "options": [
+          "It was too expensive",
+          "It was unhealthy",
+          "It was not available",
+          "It was not tasty"
+        ],
+        "answer": "It was too expensive",
+        "accept": [
+          "It was too expensive",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nWhich fast food chain is mentioned in the passage?",
+        "options": [
+          "Lotteria",
+          "Pizza Hut",
+          "KFC",
+          "Burger King"
+        ],
+        "answer": "KFC",
+        "accept": [
+          "KFC",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nWhy are children drawn to fast food?",
+        "options": [
+          "because of its healthy ingredients",
+          "because of its catchy advertising",
+          "because it's expensive",
+          "because it's not convenient"
+        ],
+        "answer": "because of its catchy advertising",
+        "accept": [
+          "because of its catchy advertising",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nWhy might families not have time to cook at home nowadays?",
+        "options": [
+          "because they enjoy cooking at home",
+          "because they have busy schedules",
+          "because they don't like homemade meals",
+          "because they have a lot of free time"
+        ],
+        "answer": "because they have busy schedules",
+        "accept": [
+          "because they have busy schedules",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nWhich sentence is NOT true according to the passage?",
+        "options": [
+          "Children's eating habits in the past were simpler and healthier",
+          "Fast food chains like McDonald's and KFC have become popular",
+          "Children in the past mostly ate processed snacks like chips and candies",
+          "Families today might not have time to cook at home"
+        ],
+        "answer": "Children in the past mostly ate processed snacks like chips and candies",
+        "accept": [
+          "Children in the past mostly ate processed snacks like chips and candies",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nWhat is the best title for this passage?",
+        "options": [
+          "Changes in Children's Eating Habits",
+          "The Impact of Fast Food on Children",
+          "Children's Sleeping Habits in Modem Times",
+          "The Benefits of Healthy Eating Habit for Children"
+        ],
+        "answer": "Changes in Children's Eating Habits",
+        "accept": [
+          "Changes in Children's Eating Habits",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      }
+    ]
+  },
+  "skipped": [
+    {
+      "unit": 1,
+      "reason": "reading comprehension / T-F / matching — needs passage UI + answer key",
+      "item": "Exercise 13 cloze passage; Exercise 14 T/F + matching places"
+    },
+    {
+      "unit": 1,
+      "reason": "sound sorting columns — no dedicated game",
+      "item": "Exercise 2 put words in correct column (in Writing file for some units; U1 in Reading routing as phonetics drill)"
+    },
+    {
+      "unit": 2,
+      "reason": "photo, sound sorting, matching, T/F, or open-answer layout is unsupported by quiz payload",
+      "item": "all non-MC reading layouts deliberately skipped"
+    },
+    {
+      "unit": 3,
+      "reason": "photo, sound sorting, matching, T/F, or open-answer layout is unsupported by quiz payload",
+      "item": "all non-MC reading layouts deliberately skipped"
+    },
+    {
+      "unit": 4,
+      "reason": "photo, sound sorting, matching, T/F, or open-answer layout is unsupported by quiz payload",
+      "item": "all non-MC reading layouts deliberately skipped"
+    },
+    {
+      "unit": 5,
+      "reason": "photo, sound sorting, matching, T/F, or open-answer layout is unsupported by quiz payload",
+      "item": "all non-MC reading layouts deliberately skipped"
+    },
+    {
+      "unit": 6,
+      "reason": "photo, sound sorting, matching, T/F, or open-answer layout is unsupported by quiz payload",
+      "item": "all non-MC reading layouts deliberately skipped"
+    }
+  ]
+}

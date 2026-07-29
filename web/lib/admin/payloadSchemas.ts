@@ -157,6 +157,14 @@ export function isAdminGameKey(value: string): value is AdminGameKey {
   return value in schemaByGame;
 }
 
+export function parseGamePayload<K extends AdminGameKey>(
+  game: K,
+  payload: unknown,
+): z.output<(typeof schemaByGame)[K]>;
+export function parseGamePayload(
+  game: string,
+  payload: unknown,
+): z.output<(typeof schemaByGame)[AdminGameKey]>;
 export function parseGamePayload(game: string, payload: unknown) {
   if (!isAdminGameKey(game)) {
     throw new Error('Loại game không hợp lệ');

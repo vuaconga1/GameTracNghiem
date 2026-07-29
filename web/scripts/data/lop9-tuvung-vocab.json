@@ -1,0 +1,809 @@
+{
+  "source": "PDF/Tuvung_Lop9.docx",
+  "units": {
+    "1": [
+      {
+        "word": "artisan",
+        "hint": "thợ làm nghề thủ công"
+      },
+      {
+        "word": "attraction",
+        "hint": "điểm hấp dẫn"
+      },
+      {
+        "word": "community",
+        "hint": "cộng đồng"
+      },
+      {
+        "word": "community helper",
+        "hint": "người phục vụ cộng đồng"
+      },
+      {
+        "word": "craft",
+        "hint": "nghề thủ công"
+      },
+      {
+        "word": "craftsman",
+        "hint": "thợ làm đồ thủ công"
+      },
+      {
+        "word": "craft village",
+        "hint": "làng nghề thủ công"
+      },
+      {
+        "word": "cut down on",
+        "hint": "cắt giảm"
+      },
+      {
+        "word": "delivery person",
+        "hint": "nhân viên giao hàng"
+      },
+      {
+        "word": "electrician",
+        "hint": "thợ điện"
+      },
+      {
+        "word": "facility",
+        "hint": "cơ sở vật chất"
+      },
+      {
+        "word": "firefighter",
+        "hint": "lính cứu hoả"
+      },
+      {
+        "word": "fragrance",
+        "hint": "hương thơm"
+      },
+      {
+        "word": "function",
+        "hint": "chức năng"
+      },
+      {
+        "word": "garbage collector",
+        "hint": "người thu gom rác"
+      },
+      {
+        "word": "get on with",
+        "hint": "sống hoà hợp với"
+      },
+      {
+        "word": "hand down",
+        "hint": "truyền lại"
+      },
+      {
+        "word": "handicraft",
+        "hint": "sản phẩm thủ công"
+      },
+      {
+        "word": "look around",
+        "hint": "ngắm nghía xung quanh"
+      },
+      {
+        "word": "pass down",
+        "hint": "truyền lại (cho thế hệ sau...)"
+      },
+      {
+        "word": "preserve",
+        "hint": "bảo tồn, gìn giữ"
+      },
+      {
+        "word": "police officer",
+        "hint": "công an, cảnh sát"
+      },
+      {
+        "word": "pottery",
+        "hint": "đồ gốm"
+      },
+      {
+        "word": "Remind sb of",
+        "hint": "gợi nhớ"
+      },
+      {
+        "word": "run out of",
+        "hint": "hết, cạn kiệt"
+      },
+      {
+        "word": "speciality",
+        "hint": "đặc sản"
+      },
+      {
+        "word": "tourist attraction",
+        "hint": "điểm du lịch"
+      },
+      {
+        "word": "team-building",
+        "hint": "việc xây dựng đội ngũ"
+      },
+      {
+        "word": "workshop",
+        "hint": "xưởng, công xưởng, hội thảo"
+      },
+      {
+        "word": "turn up",
+        "hint": "xuất hiện, đến"
+      },
+      {
+        "word": "set off",
+        "hint": "khởi hành, bắt đầu chuyến đi"
+      },
+      {
+        "word": "close down",
+        "hint": "đóng cửa, ngừng hoạt động"
+      },
+      {
+        "word": "face up to",
+        "hint": "đối mặt, giải quyết"
+      },
+      {
+        "word": "turn down",
+        "hint": "từ chối"
+      },
+      {
+        "word": "set up",
+        "hint": "thành lập, tạo dựng"
+      },
+      {
+        "word": "take over",
+        "hint": "tiếp quản, kế nhiệm, nối nghiệp"
+      },
+      {
+        "word": "live on",
+        "hint": "sống bằng, sống dựa vào"
+      }
+    ],
+    "2": [
+      {
+        "word": "bustling",
+        "hint": "hối hả, nhộn nhịp, náo nhiệt"
+      },
+      {
+        "word": "carry out",
+        "hint": "tiến hành"
+      },
+      {
+        "word": "come down with",
+        "hint": "bị nhiễm"
+      },
+      {
+        "word": "concrete jungle",
+        "hint": "rừng bê tông (miêu tả khu vực có nhiều nhà cao tầng."
+      },
+      {
+        "word": "congested",
+        "hint": "tắc nghẽn"
+      },
+      {
+        "word": "construction site",
+        "hint": "công trường xây dựng"
+      },
+      {
+        "word": "get around",
+        "hint": "đi lại, đi xung quanh"
+      },
+      {
+        "word": "forbidden",
+        "hint": "bị cấm"
+      },
+      {
+        "word": "fabulous",
+        "hint": "tuyệt vời, tuyệt diệu"
+      },
+      {
+        "word": "hygiene",
+        "hint": "vệ sinh, vấn đề vệ sinh"
+      },
+      {
+        "word": "itchy",
+        "hint": "bị ngứa"
+      },
+      {
+        "word": "leftover",
+        "hint": "thức ăn thừa"
+      },
+      {
+        "word": "liveable",
+        "hint": "đáng sống"
+      },
+      {
+        "word": "metro",
+        "hint": "hệ thống tàu điện ngầm"
+      },
+      {
+        "word": "pricey",
+        "hint": "đắt đỏ"
+      },
+      {
+        "word": "process",
+        "hint": "xử lý"
+      },
+      {
+        "word": "public amentities",
+        "hint": "Những tiện ích công cộng"
+      },
+      {
+        "word": "rush hour",
+        "hint": "giờ cao điểm"
+      },
+      {
+        "word": "reliable",
+        "hint": "đáng tin cậy"
+      },
+      {
+        "word": "metropolitan",
+        "hint": "(thuộc) đô thị, thủ phủ"
+      },
+      {
+        "word": "multicultural",
+        "hint": "đa văn hóa"
+      },
+      {
+        "word": "variety",
+        "hint": "sự phong phú, đa dạng, nhiều"
+      },
+      {
+        "word": "grow up",
+        "hint": "lớn lên, trưởng thành"
+      },
+      {
+        "word": "drop-off time",
+        "hint": "giờ đưa con đi học"
+      },
+      {
+        "word": "urban",
+        "hint": "(thuộc) đô thị"
+      },
+      {
+        "word": "downtown",
+        "hint": "(thuộc) trung tâm thành phố, khu thương mại"
+      },
+      {
+        "word": "skyscraper",
+        "hint": "nhà cao chọc trời"
+      },
+      {
+        "word": "sky train",
+        "hint": "tàu điện trên không"
+      },
+      {
+        "word": "stuck",
+        "hint": "bị mắc kẹt"
+      },
+      {
+        "word": "affordable",
+        "hint": "(giá cả) phải chăng"
+      },
+      {
+        "word": "tram",
+        "hint": "xe điện"
+      },
+      {
+        "word": "underground",
+        "hint": "(hệ thống) tàu điện ngầm"
+      }
+    ],
+    "3": [
+      {
+        "word": "accomplish",
+        "hint": "hoàn thành, đạt được"
+      },
+      {
+        "word": "adolescence",
+        "hint": "giai đoạn vị thành niên"
+      },
+      {
+        "word": "adulthood",
+        "hint": "giai đoạn trưởng thành"
+      },
+      {
+        "word": "additional",
+        "hint": "thêm, thêm vào"
+      },
+      {
+        "word": "anxiety",
+        "hint": "sự lo lắng"
+      },
+      {
+        "word": "assignment",
+        "hint": "bài tập"
+      },
+      {
+        "word": "calm",
+        "hint": "bình tĩnh"
+      },
+      {
+        "word": "counsellor",
+        "hint": "cố vấn, người tư vấn"
+      },
+      {
+        "word": "concentrate",
+        "hint": "tập trung"
+      },
+      {
+        "word": "confident",
+        "hint": "tự tin"
+      },
+      {
+        "word": "delighted",
+        "hint": "vui sướng"
+      },
+      {
+        "word": "depressed",
+        "hint": "tuyệt vọng, chán nản"
+      },
+      {
+        "word": "deadline",
+        "hint": "thời hạn cuối cùng, hạn cuối"
+      },
+      {
+        "word": "delay",
+        "hint": "chậm trễ, trì hoãn"
+      },
+      {
+        "word": "distraction",
+        "hint": "điều làm sao lãng"
+      },
+      {
+        "word": "due date",
+        "hint": "hạn chót"
+      },
+      {
+        "word": "fattening",
+        "hint": "gây béo phì"
+      },
+      {
+        "word": "mental",
+        "hint": "thuộc tinh thần, trí tuệ, trí óc"
+      },
+      {
+        "word": "minimize",
+        "hint": "giảm đến mức tối thiểu"
+      },
+      {
+        "word": "mood",
+        "hint": "tâm trạng"
+      },
+      {
+        "word": "embarrassed",
+        "hint": "xấu hổ, ngượng nghịu"
+      },
+      {
+        "word": "emergency",
+        "hint": "tình huống khẩn cấp"
+      },
+      {
+        "word": "frustrated",
+        "hint": "nản lòng, nản chí"
+      },
+      {
+        "word": "independence",
+        "hint": "sự độc lập, tự lập"
+      },
+      {
+        "word": "optimistic",
+        "hint": "lạc quan"
+      },
+      {
+        "word": "priority",
+        "hint": "sự ưu tiên"
+      },
+      {
+        "word": "physical",
+        "hint": "(thuộc) cơ thể, thân thể"
+      },
+      {
+        "word": "relaxed",
+        "hint": "thoải mái, thư giãn"
+      },
+      {
+        "word": "resolve",
+        "hint": "giải quyết"
+      },
+      {
+        "word": "risk taking",
+        "hint": "liều lĩnh, đối mặt rủi ro"
+      },
+      {
+        "word": "self-aware",
+        "hint": "tự nhận thức, ngộ ra"
+      },
+      {
+        "word": "self-disciplined",
+        "hint": "tự rèn luyện, tự kỉ luật"
+      },
+      {
+        "word": "stressed",
+        "hint": "căng thẳng, mệt mỏi"
+      },
+      {
+        "word": "tense",
+        "hint": "căng thẳng"
+      },
+      {
+        "word": "worried",
+        "hint": "lo lắng"
+      },
+      {
+        "word": "well-balanced",
+        "hint": "sự ưu tiên"
+      }
+    ],
+    "4": [
+      {
+        "word": "ancient",
+        "hint": "cổ đại, lâu đời"
+      },
+      {
+        "word": "anniversary",
+        "hint": "ngày kỉ niệm, lễ kỉ niệm"
+      },
+      {
+        "word": "act out",
+        "hint": "đóng vai, diễn"
+      },
+      {
+        "word": "barefoot",
+        "hint": "chân đất"
+      },
+      {
+        "word": "craft",
+        "hint": "nghề thủ công"
+      },
+      {
+        "word": "basic",
+        "hint": "cơ bản"
+      },
+      {
+        "word": "behave",
+        "hint": "đối xử, cư xử"
+      },
+      {
+        "word": "castle",
+        "hint": "lâu đài"
+      },
+      {
+        "word": "communal",
+        "hint": "của chung, thuộc cộng đồ"
+      },
+      {
+        "word": "complex",
+        "hint": "khu phức hợp, quần thể"
+      },
+      {
+        "word": "deep-rooted",
+        "hint": "lâu đời, ăn sâu bén rễ"
+      },
+      {
+        "word": "eat out",
+        "hint": "ăn bên ngoài"
+      },
+      {
+        "word": "entertain",
+        "hint": "giải trí"
+      },
+      {
+        "word": "event",
+        "hint": "sự kiện"
+      },
+      {
+        "word": "face to face",
+        "hint": "trực tiếp, mặt đối mặt"
+      },
+      {
+        "word": "facility",
+        "hint": "- phương tiện, thiết bị"
+      },
+      {
+        "word": "fish and chips",
+        "hint": "món cá kèm khoai tây chiên"
+      },
+      {
+        "word": "found",
+        "hint": "thành lập"
+      },
+      {
+        "word": "generation",
+        "hint": "thế hệ"
+      },
+      {
+        "word": "monument",
+        "hint": "tượng đài"
+      },
+      {
+        "word": "illiterate",
+        "hint": "thất học, dốt nát, mù chữ"
+      },
+      {
+        "word": "loudspeaker",
+        "hint": "loa"
+      },
+      {
+        "word": "observe",
+        "hint": "quan sát, theo dõ"
+      },
+      {
+        "word": "occupied",
+        "hint": "đầy, có người đang sử dụng"
+      },
+      {
+        "word": "occupy",
+        "hint": "chiếm giữ, chiếm đóng"
+      },
+      {
+        "word": "pass on",
+        "hint": "truyền lại, kể lại"
+      },
+      {
+        "word": "promote",
+        "hint": "thúc đẩy, quảng bá"
+      },
+      {
+        "word": "recognise",
+        "hint": "công nhận, nhận ra"
+      },
+      {
+        "word": "religious",
+        "hint": "(thuộc) tôn giáo"
+      },
+      {
+        "word": "street vendor",
+        "hint": "người bán hàng r"
+      },
+      {
+        "word": "strict",
+        "hint": "nghiêm khắc, khắt khe, không khoan dung, không ngoại lệ"
+      },
+      {
+        "word": "treat",
+        "hint": "cư xử, thiết đãi, điều trị"
+      },
+      {
+        "word": "structure",
+        "hint": "cấu trúc"
+      },
+      {
+        "word": "takeaway",
+        "hint": "đồ ăn bán sẵn mang về"
+      }
+    ],
+    "5": [
+      {
+        "word": "amazing",
+        "hint": "ngạc nhiên ở mức đáng ngưỡng mộ"
+      },
+      {
+        "word": "army-like",
+        "hint": "như trong quân đội"
+      },
+      {
+        "word": "astounding",
+        "hint": "làm sửng sốt, làm kinh ngạc"
+      },
+      {
+        "word": "brilliant",
+        "hint": "rất ấn tượng, rất thông minh"
+      },
+      {
+        "word": "campus",
+        "hint": "khuôn viên trường học"
+      },
+      {
+        "word": "complex",
+        "hint": "khu liên hợp, quần thể"
+      },
+      {
+        "word": "confidence",
+        "hint": "niềm tin, sự tin tưởng, sự tự tin"
+      },
+      {
+        "word": "coral reef",
+        "hint": "rạn san hô"
+      },
+      {
+        "word": "eco-tour",
+        "hint": "du lịch sinh thái"
+      },
+      {
+        "word": "embarrassing",
+        "hint": "bối rối, ngượng ngùng, xấu hổ"
+      },
+      {
+        "word": "exhilarating",
+        "hint": "đầy phấn khích"
+      },
+      {
+        "word": "experience",
+        "hint": "sự trải nghiệm, kinh nghiệm"
+      },
+      {
+        "word": "explore",
+        "hint": "khám phá, tìm tòi, học hỏi"
+      },
+      {
+        "word": "fauna",
+        "hint": "tất cả động vật của một khu vực"
+      },
+      {
+        "word": "flora",
+        "hint": "tất cả thực vật của một khu vực"
+      },
+      {
+        "word": "helpless",
+        "hint": "cần giúp đỡ, không thể tự lực"
+      },
+      {
+        "word": "lack",
+        "hint": "sự thiếu, thiếu"
+      },
+      {
+        "word": "learn by rote",
+        "hint": "học vẹt, thuộc lòng"
+      },
+      {
+        "word": "memorable",
+        "hint": "đáng nhớ"
+      },
+      {
+        "word": "performance",
+        "hint": "buổi biểu diễn"
+      },
+      {
+        "word": "picturesque",
+        "hint": "đẹp, gây ấn tượng mạnh (phong cảnh)"
+      },
+      {
+        "word": "seabed",
+        "hint": "đáy biển"
+      },
+      {
+        "word": "snorkelling",
+        "hint": "lặn có sử dụng ống thở"
+      },
+      {
+        "word": "theme",
+        "hint": "chủ đề, đề tài"
+      },
+      {
+        "word": "thrilling",
+        "hint": "rất phấn khích, rất vui, gay cấn"
+      },
+      {
+        "word": "touching",
+        "hint": "gây xúc động, tạo càm giác đồng cảm"
+      },
+      {
+        "word": "tribal dance",
+        "hint": "điệu nhảy dân tộc"
+      },
+      {
+        "word": "spectacular",
+        "hint": "đẹp mắt, ngoạn mục, hùng vĩ"
+      },
+      {
+        "word": "unpleasant",
+        "hint": "không thoải mái, không vui vẻ"
+      }
+    ],
+    "6": [
+      {
+        "word": "annoyed",
+        "hint": "bực mình, khó chịu"
+      },
+      {
+        "word": "astonished",
+        "hint": "kinh ng"
+      },
+      {
+        "word": "democratic",
+        "hint": "thuộc dân chủ"
+      },
+      {
+        "word": "dependent",
+        "hint": "lệ thuộc vào"
+      },
+      {
+        "word": "dye",
+        "hint": "nhuộm"
+      },
+      {
+        "word": "extended",
+        "hint": "nhiều thế hệ, mở rộng"
+      },
+      {
+        "word": "extended family",
+        "hint": "đại gia đình, gia đình nhiều thế hệ"
+      },
+      {
+        "word": "family-oriented",
+        "hint": "hướng về, coi trọng gia đình"
+      },
+      {
+        "word": "gap",
+        "hint": "khoảng cách"
+      },
+      {
+        "word": "household",
+        "hint": "hộ gia đình"
+      },
+      {
+        "word": "lifestyle",
+        "hint": "lối sống"
+      },
+      {
+        "word": "memorise",
+        "hint": "ghi nhớ"
+      },
+      {
+        "word": "monk",
+        "hint": "nhà sư, thầy tu"
+      },
+      {
+        "word": "nuclear",
+        "hint": "hạt nhân, 1 gia đình 2 thế hệ"
+      },
+      {
+        "word": "nuclear family",
+        "hint": "gia đình hạt nhân"
+      },
+      {
+        "word": "opportunity",
+        "hint": "cơ hội"
+      },
+      {
+        "word": "popularity",
+        "hint": "sự phổ biến, nổi tiếng"
+      },
+      {
+        "word": "privacy",
+        "hint": "sự riêng tư"
+      },
+      {
+        "word": "promise",
+        "hint": "hứa, lời hứa"
+      },
+      {
+        "word": "pursue",
+        "hint": "theo đuổi"
+      },
+      {
+        "word": "replace",
+        "hint": "thay thế"
+      },
+      {
+        "word": "sandals",
+        "hint": "dép xăng đan"
+      },
+      {
+        "word": "thatched house",
+        "hint": "nhà tranh mái lá"
+      },
+      {
+        "word": "take notes",
+        "hint": "ghi chép"
+      },
+      {
+        "word": "tiled",
+        "hint": "được lợp ngói, lát gạch"
+      },
+      {
+        "word": "tram",
+        "hint": "tàu điện"
+      },
+      {
+        "word": "trend",
+        "hint": "xu hướng"
+      },
+      {
+        "word": "western",
+        "hint": "thuộc phương Tây"
+      }
+    ]
+  },
+  "counts": {
+    "1": 37,
+    "2": 32,
+    "3": 36,
+    "4": 34,
+    "5": 29,
+    "6": 28
+  }
+}

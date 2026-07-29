@@ -18,6 +18,9 @@ describe('PronunciationGameContent', () => {
         index: 0,
         mode: 'phoneme',
         modeLabel: 'Luyện từ',
+        exercise: '',
+        exerciseKey: '',
+        theoryText: '',
         prompt: 'Chú ý âm /l/ cuối từ',
         targetText: 'world',
         targetIpa: '/wɜːrld/',
@@ -29,6 +32,9 @@ describe('PronunciationGameContent', () => {
         index: 1,
         mode: 'sentence',
         modeLabel: 'Luyện câu',
+        exercise: '',
+        exerciseKey: '',
+        theoryText: '',
         prompt: 'Đọc to, rõ ràng và tự nhiên',
         targetText: 'Nice to meet you',
         targetIpa: '',
@@ -40,6 +46,9 @@ describe('PronunciationGameContent', () => {
         index: 2,
         mode: 'stress',
         modeLabel: 'Trọng âm',
+        exercise: '',
+        exerciseKey: '',
+        theoryText: '',
         prompt: 'Nhấn mạnh đúng âm tiết được đánh dấu',
         targetText: 'computer',
         targetIpa: '/kəmˈpjuːtər/',
@@ -60,8 +69,13 @@ describe('PronunciationGameContent', () => {
     isSubmitting: false,
     isResetting: false,
     stats: { total: 2, correct: 0, wrong: 0, pending: 2 },
+    exerciseGroups: [],
+    exerciseFilterKey: null,
+    activeExerciseLabel: null,
+    theoryText: '',
     onBackHome: vi.fn(),
     onBackToList: vi.fn(),
+    onOpenGroup: vi.fn(),
     onOpenQuestion: vi.fn(),
     onStartContinue: vi.fn(),
     onRetry: vi.fn(),
@@ -174,5 +188,55 @@ describe('PronunciationGameContent', () => {
     expect(html).toContain('Từng từ một');
     expect(html).toContain('Chấm bằng nhận dạng trình duyệt');
     expect(html).toContain('Nice');
+  });
+
+  it('treats the scoped exercise as complete on its last question', () => {
+    const html = renderToStaticMarkup(
+      createElement(PronunciationGameContent, {
+        ...baseProps,
+        questions: [
+          {
+            ...baseProps.questions[0],
+            exercise: 'Âm /æ/',
+            exerciseKey: 'AE',
+            theoryText: 'Âm /æ/ mở rộng miệng và hạ hàm thấp.',
+          },
+          {
+            ...baseProps.questions[1],
+            exercise: 'Âm /æ/',
+            exerciseKey: 'AE',
+            theoryText: '',
+          },
+          {
+            ...baseProps.questions[2],
+            mode: 'phoneme',
+            modeLabel: 'Luyện từ',
+            prompt: 'Đọc từ có âm /ɑː/',
+            targetText: 'car',
+            targetIpa: '/kɑːr/',
+            exercise: 'Âm /ɑː/',
+            exerciseKey: 'AA',
+            theoryText: 'Âm /ɑː/ kéo dài hơn.',
+          },
+        ],
+        panel: 'question',
+        currentIndex: 1,
+        currentMode: 'sentence',
+        showActions: true,
+        statuses: ['correct', 'wrong', 'empty'],
+        exerciseGroups: [
+          { key: 'AE', label: 'Âm /æ/', questionCount: 2, completedCount: 2 },
+          { key: 'AA', label: 'Âm /ɑː/', questionCount: 1, completedCount: 0 },
+        ],
+        exerciseFilterKey: 'AE',
+        activeExerciseLabel: 'Âm /æ/',
+        theoryText: 'Âm /æ/ mở rộng miệng và hạ hàm thấp.',
+      })
+    );
+
+    expect(html).toContain('Câu 2/2');
+    expect(html).toContain('Âm /æ/');
+    expect(html).toContain('Xem kết quả');
+    expect(html).not.toContain('Tiếp theo');
   });
 });
