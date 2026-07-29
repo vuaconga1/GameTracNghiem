@@ -32,6 +32,12 @@ export const quizPayloadSchema = z.object({
 export const pronunciationPayloadSchema = z.object({
   mode: z.enum(['phoneme', 'word', 'sentence']).default('phoneme'),
   modeLabel: z.string().optional().default(''),
+  /** Phoneme / worksheet group label, e.g. "Âm /æ/" — one speaking card per value. */
+  exercise: z.string().optional().default(''),
+  /** Stable group key for URLs, e.g. "AE". */
+  exerciseKey: z.string().optional().default(''),
+  /** Theory blurb for this sound (usually set on the first word of the group). */
+  theoryText: z.string().optional().default(''),
   prompt: z.string().optional().default(''),
   targetText: nonEmpty,
   targetIpa: z.string().optional().default(''),

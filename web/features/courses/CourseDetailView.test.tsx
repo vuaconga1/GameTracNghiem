@@ -49,7 +49,7 @@ const sampleData: CourseDetailData = {
 };
 
 describe('CourseDetailContent', () => {
-  it('renders lesson tab without book card and with ebook placeholder', () => {
+  it('keeps the unit overview on exercises even when lesson tab is requested', () => {
     const html = renderToStaticMarkup(
       createElement(CourseDetailContent, { data: sampleData, initialTab: 'lesson' }),
     );
@@ -58,21 +58,15 @@ describe('CourseDetailContent', () => {
     expect(html).toContain('class="view-detail"');
     expect(html).toContain('href="/"');
     expect(html).toContain('class="page-back"');
-    expect(html).toContain('class="detail-body detail-body--lesson-full"');
-    expect(html).not.toContain('class="book-card"');
-    expect(html).not.toContain('câu ngữ pháp');
-
-    expect(html).toContain('class="detail-tabs tabs-secondary"');
-    expect(html).toContain('class="tab-secondary active"');
-    expect(html.indexOf('Bài tập')).toBeLessThan(html.indexOf('Bài học'));
-    expect(html).toContain('Bài học');
-    expect(html).toContain('Bài tập');
-    expect(html).toContain('class="ebook-viewer"');
-    expect(html).toContain('class="ebook-empty"');
-    expect(html).toContain('Chưa gắn sách bài học');
+    expect(html).toContain('class="detail-body"');
+    expect(html).not.toContain('detail-body--lesson-full');
+    expect(html).toContain('class="book-card"');
+    expect(html).not.toContain('class="detail-tabs tabs-secondary"');
+    expect(html).not.toContain('Bài học');
+    expect(html).not.toContain('class="ebook-viewer"');
   });
 
-  it('shows the unit ebook range on lesson tab when no skill is selected', () => {
+  it('does not render the unit lesson viewer when no skill is selected', () => {
     const data: CourseDetailData = {
       ...sampleData,
       course: {
@@ -92,8 +86,9 @@ describe('CourseDetailContent', () => {
       createElement(CourseDetailContent, { data, initialTab: 'lesson' }),
     );
 
-    expect(html).toContain('class="ebook-flip-root"');
-    expect(html).not.toContain('Chưa gán trang bài học cho kỹ năng này');
+    expect(html).not.toContain('class="detail-tabs tabs-secondary"');
+    expect(html).not.toContain('class="ebook-flip-root"');
+    expect(html).toContain('data-skill-step="skills"');
   });
 
   it('restricts lesson pages to the selected skill range', () => {
@@ -163,7 +158,8 @@ describe('CourseDetailContent', () => {
     expect(html).toContain('câu đã làm');
     expect(html).toContain('1.250');
     expect(html).toContain('tổng điểm');
-    expect(html.indexOf('Bài tập')).toBeLessThan(html.indexOf('Bài học'));
+    expect(html).not.toContain('class="detail-tabs tabs-secondary"');
+    expect(html).not.toContain('Bài học');
 
     expect(html).toContain('data-skill-step="skills"');
     expect(html).toContain('Luyện kỹ năng nghe');
@@ -186,6 +182,9 @@ describe('CourseDetailContent', () => {
     );
 
     expect(html).toContain('href="/courses/course-1"');
+    expect(html).toContain('class="detail-tabs tabs-secondary"');
+    expect(html).toContain('Bài tập');
+    expect(html).toContain('Bài học');
     expect(html).toContain('data-skill-step="games"');
     expect(html).toContain('Luyện từ vựng');
     expect(html).toContain('href="/games/quiz/course-1?skill=vocabulary"');
@@ -207,5 +206,48 @@ describe('CourseDetailContent', () => {
     expect(html).not.toContain('href="/games/look-and-write/course-1"');
     expect(html).not.toContain('href="/games/quiz/course-1');
     expect(html).not.toContain('href="/games/pronunciation/course-1"');
+  });
+
+  it('shows single pronunciation card under speaking skill (groups are internal)', () => {
+    const skill: SkillId = 'speaking';
+    const data: CourseDetailData = {
+      ...sampleData,
+      games: {
+        ...sampleData.games,
+        pronunciation: {
+          questionCount: 5,
+          statuses: ['correct', 'empty', 'wrong', 'empty', 'empty'],
+        },
+      },
+      gameExercises: {
+        pronunciation: [
+          {
+            key: 'AE',
+            label: 'Âm /æ/',
+            questionCount: 2,
+            completedCount: 1,
+            indices: [0, 1],
+          },
+          {
+            key: 'AA',
+            label: 'Âm /ɑː/',
+            questionCount: 3,
+            completedCount: 1,
+            indices: [2, 3, 4],
+          },
+        ],
+      },
+    };
+    const html = renderToStaticMarkup(
+      createElement(CourseDetailContent, { data, initialSkill: skill }),
+    );
+
+    // Single parent card links to pronunciation without exercise param
+    expect(html).toContain('href="/games/pronunciation/course-1"');
+    // No per-exercise cards at top level
+    expect(html).not.toContain('exercise=AE');
+    expect(html).not.toContain('exercise=AA');
+    expect(html).not.toContain('Âm /æ/');
+    expect(html).not.toContain('Âm /ɑː/');
   });
 });

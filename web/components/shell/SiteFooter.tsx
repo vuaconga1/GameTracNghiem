@@ -57,9 +57,15 @@ export function SiteFooter() {
           </h3>
           <div className="footer-contact-card">
             <div className="card-label">
-              <i className="fas fa-map-marker-alt" /> Địa chỉ
+              <i className="fas fa-map-marker-alt" /> Cơ sở 1
             </div>
             <p>292B Nơ Trang Long, P.12, Bình Thạnh, TP.HCM</p>
+          </div>
+          <div className="footer-contact-card">
+            <div className="card-label">
+              <i className="fas fa-map-marker-alt" /> Cơ sở 2
+            </div>
+            <p>742 Xô Viết Nghệ Tĩnh, phường Thạnh Mỹ Tây, Bình Thạnh, TP.HCM</p>
           </div>
           <div className="footer-contact-card">
             <div className="card-label">
@@ -77,10 +83,18 @@ export function SiteFooter() {
           </h3>
           <div className="footer-contact-card">
             <div className="card-label">
-              <i className="fas fa-phone" /> Điện thoại
+              <i className="fas fa-phone" /> Hotline cơ sở 1
             </div>
             <p>
               <a href="tel:0345969388">0345 969 388</a>
+            </p>
+          </div>
+          <div className="footer-contact-card">
+            <div className="card-label">
+              <i className="fas fa-phone" /> Hotline cơ sở 2
+            </div>
+            <p>
+              <a href="tel:0378669388">037 866 9388</a>
             </p>
           </div>
           <div className="footer-contact-card">

@@ -29,6 +29,7 @@ type CourseDetailResponse = {
   success: boolean;
   course?: CourseDetail;
   games?: CourseGames;
+  gameExercises?: CourseDetailData['gameExercises'];
   totalScore?: number;
   message?: string;
 };
@@ -105,9 +106,11 @@ export function CourseDetailContent({
     liveActivityKeys
   );
   const totalScore = data.totalScore ?? 0;
-  const showBookCard = activeTab === 'exercises';
-  const showSkillCards = activeTab === 'exercises' && !selectedSkill;
-  const showGameGrid = activeTab === 'exercises' && Boolean(selectedSkill);
+  const showSkillTabs = Boolean(selectedSkill);
+  const effectiveTab: DetailTab = showSkillTabs ? activeTab : 'exercises';
+  const showBookCard = effectiveTab === 'exercises';
+  const showSkillCards = effectiveTab === 'exercises' && !selectedSkill;
+  const showGameGrid = effectiveTab === 'exercises' && Boolean(selectedSkill);
   const selectedSkillMeta = skillCards.find((skill) => skill.id === selectedSkill);
   const backHref = selectedSkill ? `/courses/${data.course.id}` : '/';
   const lessonPages = resolveCourseEbookPagesForSkill({
@@ -122,7 +125,7 @@ export function CourseDetailContent({
     <section id="view-detail" className="view-detail">
       <PageBackButton href={backHref} title="Quay lại" />
 
-      <div className={activeTab === 'lesson' ? 'detail-body detail-body--lesson-full' : 'detail-body'}>
+      <div className={effectiveTab === 'lesson' ? 'detail-body detail-body--lesson-full' : 'detail-body'}>
         {showBookCard ? (
           <div className="book-card">
             <div className="book-card-top">
@@ -152,44 +155,48 @@ export function CourseDetailContent({
         ) : null}
 
         <div className="detail-main-panel">
-          <div className="detail-tabs tabs-secondary">
-            <button
-              type="button"
-              className={activeTab === 'exercises' ? 'tab-secondary active' : 'tab-secondary'}
-              data-detail-tab="exercises"
-              onClick={() => setActiveTab('exercises')}
-            >
-              <i className="fas fa-gamepad" aria-hidden="true" /> Bài tập
-            </button>
-            <button
-              type="button"
-              className={activeTab === 'lesson' ? 'tab-secondary active' : 'tab-secondary'}
-              data-detail-tab="lesson"
-              onClick={() => setActiveTab('lesson')}
-            >
-              <i className="fas fa-book-open" aria-hidden="true" /> Bài học
-            </button>
-          </div>
+          {showSkillTabs ? (
+            <div className="detail-tabs tabs-secondary">
+              <button
+                type="button"
+                className={effectiveTab === 'exercises' ? 'tab-secondary active' : 'tab-secondary'}
+                data-detail-tab="exercises"
+                onClick={() => setActiveTab('exercises')}
+              >
+                <i className="fas fa-gamepad" aria-hidden="true" /> Bài tập
+              </button>
+              <button
+                type="button"
+                className={effectiveTab === 'lesson' ? 'tab-secondary active' : 'tab-secondary'}
+                data-detail-tab="lesson"
+                onClick={() => setActiveTab('lesson')}
+              >
+                <i className="fas fa-book-open" aria-hidden="true" /> Bài học
+              </button>
+            </div>
+          ) : null}
 
-          <div className={activeTab === 'lesson' ? 'detail-panel' : 'detail-panel is-hidden'}>
-            {lessonPages.kind === 'unit' || lessonPages.kind === 'skill' ? (
-              <EbookViewer
-                ebookId={data.course.ebook!.id}
-                pageStart={lessonPages.pageStart}
-                pageEnd={lessonPages.pageEnd}
-              />
-            ) : (
-              <div className="ebook-viewer">
-                <div className="ebook-empty">
-                  {lessonPages.kind === 'missing-skill-lesson'
-                    ? 'Chưa gán trang bài học cho kỹ năng này'
-                    : 'Chưa gắn sách bài học cho unit này. Admin hãy chọn PDF và khoảng trang trong chi tiết khóa học.'}
+          {showSkillTabs ? (
+            <div className={effectiveTab === 'lesson' ? 'detail-panel' : 'detail-panel is-hidden'}>
+              {lessonPages.kind === 'unit' || lessonPages.kind === 'skill' ? (
+                <EbookViewer
+                  ebookId={data.course.ebook!.id}
+                  pageStart={lessonPages.pageStart}
+                  pageEnd={lessonPages.pageEnd}
+                />
+              ) : (
+                <div className="ebook-viewer">
+                  <div className="ebook-empty">
+                    {lessonPages.kind === 'missing-skill-lesson'
+                      ? 'Chưa gán trang bài học cho kỹ năng này'
+                      : 'Chưa gắn sách bài học cho unit này. Admin hãy chọn PDF và khoảng trang trong chi tiết khóa học.'}
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          ) : null}
 
-          <div className={activeTab === 'exercises' ? 'detail-panel' : 'detail-panel is-hidden'}>
+          <div className={effectiveTab === 'exercises' ? 'detail-panel' : 'detail-panel is-hidden'}>
             <div className="activity-area">
               {showSkillCards ? (
                 <div className="activity-grid skill-grid" data-skill-step="skills">
@@ -265,7 +272,7 @@ export function CourseDetailContent({
                       Chưa có bài tập cho kỹ năng này.
                     </div>
                   ) : (
-                    activities.map((activity) => {
+                    activities.flatMap((activity) => {
                       const detail = data.games?.[activity.key];
                       const progress = activityProgress(detail, activity.live);
                       const className = 'activity-card';
@@ -286,7 +293,7 @@ export function CourseDetailContent({
                           activity.key === 'quiz' && selectedSkill
                             ? `/games/${activity.slug}/${data.course.id}?skill=${selectedSkill}`
                             : `/games/${activity.slug}/${data.course.id}`;
-                        return (
+                        return [
                           <Link
                             key={activity.key}
                             href={href}
@@ -294,11 +301,11 @@ export function CourseDetailContent({
                             data-activity={activity.key}
                           >
                             {inner}
-                          </Link>
-                        );
+                          </Link>,
+                        ];
                       }
 
-                      return (
+                      return [
                         <div
                           key={activity.key}
                           className={className}
@@ -306,8 +313,8 @@ export function CourseDetailContent({
                           aria-disabled="true"
                         >
                           {inner}
-                        </div>
-                      );
+                        </div>,
+                      ];
                     })
                   )}
                 </div>
@@ -354,6 +361,7 @@ export function CourseDetailView({
           success: true,
           course: json.course,
           games: json.games,
+          gameExercises: json.gameExercises,
           totalScore: json.totalScore ?? 0,
         });
       } catch (err) {
