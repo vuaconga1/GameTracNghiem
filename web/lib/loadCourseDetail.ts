@@ -10,6 +10,10 @@ import {
   type SkillLessonMap,
 } from '@/lib/courseSkillLesson';
 import {
+  completedCountForIndices,
+  groupPronunciationExercises,
+} from '@/lib/pronunciationExercises';
+import {
   resolveEnabledSkillIds,
   resolveGameSkillsMap,
   resolveVisibleGameKeys,
@@ -43,10 +47,24 @@ export type GameDetail = {
 
 export type CourseGames = Record<string, GameDetail | undefined>;
 
+/** Pronunciation (and similar) worksheet groups shown as separate skill cards. */
+export type GameExerciseCard = {
+  key: string;
+  label: string;
+  questionCount: number;
+  completedCount: number;
+  /** Absolute indices into the game's statuses / question list. */
+  indices: number[];
+};
+
+export type CourseGameExercises = Partial<Record<string, GameExerciseCard[]>>;
+
 export type CourseDetailData = {
   success: true;
   course: CourseDetail;
   games?: CourseGames;
+  /** Present when a game is split into exercise/phoneme cards (e.g. pronunciation). */
+  gameExercises?: CourseGameExercises;
   totalScore?: number;
 };
 
@@ -140,6 +158,44 @@ export async function loadCourseDetail(courseId: string): Promise<CourseDetailDa
     };
   }
 
+  const gameExercises: CourseGameExercises = {};
+  if (enabledSet.has('pronunciation')) {
+    const pronunciationRows = await prisma.question.findMany({
+      where: {
+        courseId: course.id,
+        game: 'pronunciation',
+        active: true,
+        archivedAt: null,
+      },
+      select: { payload: true },
+      orderBy: [{ sortOrder: 'asc' }, { id: 'asc' }],
+    });
+    const grouped = groupPronunciationExercises(
+      pronunciationRows.map((row) => {
+        const payload =
+          typeof row.payload === 'object' && row.payload !== null && !Array.isArray(row.payload)
+            ? (row.payload as Record<string, unknown>)
+            : {};
+        return {
+          exercise: typeof payload.exercise === 'string' ? payload.exercise : '',
+          exerciseKey: typeof payload.exerciseKey === 'string' ? payload.exerciseKey : '',
+        };
+      }),
+    );
+    const statuses = games.pronunciation?.statuses || [];
+    const distinct =
+      grouped.length > 1 || (grouped.length === 1 && grouped[0]!.label !== 'Phát âm');
+    if (distinct) {
+      gameExercises.pronunciation = grouped.map((group) => ({
+        key: group.key,
+        label: group.label,
+        questionCount: group.questionCount,
+        completedCount: completedCountForIndices(statuses, group.indices),
+        indices: group.indices,
+      }));
+    }
+  }
+
   const coursePublic = {
     id: course.id,
     name: course.name,
@@ -173,6 +229,7 @@ export async function loadCourseDetail(courseId: string): Promise<CourseDetailDa
       skillLessons,
     },
     games,
+    gameExercises: Object.keys(gameExercises).length ? gameExercises : undefined,
     totalScore: scoreAggregate._sum.points ?? 0,
   };
 }

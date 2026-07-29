@@ -5,6 +5,9 @@ export type PronunciationQuestion = {
   index: number;
   mode: PronunciationMode;
   modeLabel: string;
+  exercise: string;
+  exerciseKey: string;
+  theoryText: string;
   prompt: string;
   targetText: string;
   targetIpa: string;

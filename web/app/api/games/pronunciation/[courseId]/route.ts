@@ -8,6 +8,9 @@ import { loadGamePlayerState } from '@/lib/loadGamePlayerState';
 type PronunciationPayload = {
   mode?: unknown;
   modeLabel?: unknown;
+  exercise?: unknown;
+  exerciseKey?: unknown;
+  theoryText?: unknown;
   prompt?: unknown;
   targetText?: unknown;
   targetIpa?: unknown;
@@ -79,6 +82,9 @@ export async function GET(
           index,
           mode,
           modeLabel: String(payload.modeLabel || '').trim(),
+          exercise: String(payload.exercise || '').trim(),
+          exerciseKey: String(payload.exerciseKey || '').trim(),
+          theoryText: String(payload.theoryText || '').trim(),
           prompt: String(payload.prompt || ''),
           targetText: String(payload.targetText || ''),
           targetIpa: String(payload.targetIpa || ''),

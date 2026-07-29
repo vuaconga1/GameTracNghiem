@@ -1,5 +1,7 @@
 ﻿'use client';
 
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
@@ -18,6 +20,11 @@ import {
   type ProgressStatus,
   normalizeStatuses,
 } from '@/lib/gameCatalog';
+import {
+  completedCountForIndices,
+  filterQuestionsByExerciseKey,
+  groupPronunciationExercises,
+} from '@/lib/pronunciationExercises';
 
 import { playReferenceAudio } from './audio';
 import {
@@ -318,6 +325,9 @@ export type PronunciationGameContentProps = {
   isSubmitting: boolean;
   isResetting: boolean;
   stats: PronunciationStats;
+  exerciseFilterKey: string | null;
+  activeExerciseLabel: string | null;
+  theoryText: string;
   onBackHome: () => void;
   onBackToList: () => void;
   onOpenQuestion: (index: number) => void;
@@ -350,6 +360,9 @@ export function PronunciationGameContent({
   isSubmitting,
   isResetting,
   stats,
+  exerciseFilterKey,
+  activeExerciseLabel,
+  theoryText,
   onBackHome,
   onBackToList,
   onOpenQuestion,
@@ -365,17 +378,33 @@ export function PronunciationGameContent({
   onNext,
 }: PronunciationGameContentProps) {
   const question = questions[currentIndex];
-  const modes = playableModes(questions);
+  const scopedIndexSet = useMemo(() => {
+    const rows = filterQuestionsByExerciseKey(questions, exerciseFilterKey);
+    return new Set(rows.map((row) => row.index));
+  }, [questions, exerciseFilterKey]);
+  const playableEntries = useMemo(
+    () => playableQuestionEntries(questions).filter(({ index }) => scopedIndexSet.has(index)),
+    [questions, scopedIndexSet],
+  );
+  const modes = useMemo(
+    () => playableModes(playableEntries.map(({ question: item }) => item)),
+    [playableEntries],
+  );
   const modeCfg = modeConfig(currentMode);
   const locked = isGradedStatus(statuses[currentIndex]) || Boolean(answerResult);
-  const playableEntries = playableQuestionEntries(questions);
   const counterTotal = playableEntries.length || questions.length;
   const displayOrdinal =
     playableEntries.findIndex(({ index }) => index === currentIndex) + 1 || currentIndex + 1;
-  const firstPending = nextEmptyPlayableIndex(questions, statuses);
+  const firstPending = playableEntries.find(({ index }) => statuses[index] === 'empty')?.index ?? -1;
   const allAnswered = firstPending === -1;
+  const currentPlayablePos = playableEntries.findIndex(({ index }) => index === currentIndex);
+  const hasNextPlayable =
+    currentPlayablePos >= 0 ? currentPlayablePos < playableEntries.length - 1 : false;
   const startLabel = allAnswered ? 'Làm lại từ đầu' : 'Bắt đầu làm bài';
   const micColor = recordState === 'recording' ? '#ef4444' : modeCfg.color;
+  const listTitle = activeExerciseLabel
+    ? `Danh sách từ · ${activeExerciseLabel}`
+    : 'Danh sách câu hỏi';
 
   return (
     <div className="pronunciation-page pron-page-stack">
@@ -388,6 +417,11 @@ export function PronunciationGameContent({
         <div className="pron-hero">
           <p className="pron-hero-label">Khóa học hiện tại</p>
           <h1 className="pron-hero-title">{course.name}</h1>
+          {activeExerciseLabel ? (
+            <p className="game-subtitle" style={{ marginTop: 6 }}>
+              {activeExerciseLabel}
+            </p>
+          ) : null}
         </div>
 
         {panel === 'question' ? (
@@ -404,7 +438,26 @@ export function PronunciationGameContent({
 
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
-          <div className="list-title">Danh sách câu hỏi</div>
+          <div className="list-title">{listTitle}</div>
+          {theoryText ? (
+            <div
+              className="pron-theory-blurb"
+              style={{
+                margin: '0 0 16px',
+                padding: '12px 14px',
+                borderRadius: 12,
+                background: '#f1f5f9',
+                whiteSpace: 'pre-wrap',
+                fontSize: 14,
+                lineHeight: 1.45,
+                color: '#334155',
+                maxHeight: 160,
+                overflow: 'auto',
+              }}
+            >
+              {theoryText}
+            </div>
+          ) : null}
           <div className="list-stats">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
@@ -594,9 +647,7 @@ export function PronunciationGameContent({
             {showActions ? (
               <div id="actionContainer" className="pron-action-row">
                 <button id="btnNextAction" type="button" className="pron-btn-next" onClick={onNext}>
-                  {nextPlayableIndex(questions, currentIndex) === -1
-                    ? 'Xem kết quả'
-                    : 'Tiếp theo'}{' '}
+                  {hasNextPlayable ? 'Tiếp theo' : 'Xem kết quả'}{' '}
                   <i className="fa-solid fa-chevron-right" aria-hidden="true" />
                 </button>
               </div>
@@ -680,6 +731,8 @@ async function assessClip(
 }
 
 export function PronunciationGame({ courseId }: Props) {
+  const searchParams = useSearchParams();
+  const exerciseParam = searchParams.get('exercise');
   const [data, setData] = useState<PronunciationGameResponse | null>(null);
   const [statuses, setStatuses] = useState<ProgressStatus[]>([]);
   const [panel, setPanel] = useState<Panel>('list');
@@ -763,23 +816,40 @@ export function PronunciationGame({ courseId }: Props) {
 
   const questions = useMemo(() => data?.questions || [], [data?.questions]);
   const course = data?.course;
-  const playableEntries = useMemo(() => playableQuestionEntries(questions), [questions]);
-  const maxScore = playableEntries.length * 200;
+  const scopedEntries = useMemo(() => {
+    const allowed = new Set(
+      filterQuestionsByExerciseKey(questions, exerciseParam).map((row) => row.index),
+    );
+    return playableQuestionEntries(questions).filter(({ index }) => allowed.has(index));
+  }, [questions, exerciseParam]);
+  const maxScore = scopedEntries.length * 200;
   const stats = useMemo<PronunciationStats>(() => {
     let correct = 0;
     let wrong = 0;
-    for (const { index } of playableEntries) {
+    for (const { index } of scopedEntries) {
       if (statuses[index] === 'correct') correct += 1;
       else if (statuses[index] === 'wrong') wrong += 1;
     }
     return {
-      total: playableEntries.length,
+      total: scopedEntries.length,
       correct,
       wrong,
-      pending: Math.max(playableEntries.length - correct - wrong, 0),
+      pending: Math.max(scopedEntries.length - correct - wrong, 0),
     };
-  }, [playableEntries, statuses]);
+  }, [scopedEntries, statuses]);
   const progressPercent = maxScore ? Math.min(100, Math.round((sessionPoints / maxScore) * 100)) : 0;
+  const activeExerciseLabel = useMemo(() => {
+    if (!exerciseParam) return null;
+    const first = filterQuestionsByExerciseKey(questions, exerciseParam)[0];
+    return first?.question.exercise || null;
+  }, [questions, exerciseParam]);
+  const theoryText = useMemo(() => {
+    const rows = filterQuestionsByExerciseKey(questions, exerciseParam);
+    for (const row of rows) {
+      if (row.question.theoryText) return row.question.theoryText;
+    }
+    return '';
+  }, [questions, exerciseParam]);
 
   const resetQuestionState = useCallback(
     (index: number, mode: PronunciationMode) => {
@@ -869,12 +939,13 @@ export function PronunciationGame({ courseId }: Props) {
   function goNext() {
     if (!questions.length) return;
     clearAutoAdvance(advanceTimer);
-    const nextIndex = nextPlayableIndex(questions, currentIndex);
-    if (nextIndex === -1) {
+    const pos = scopedEntries.findIndex(({ index }) => index === currentIndex);
+    const next = pos >= 0 ? scopedEntries[pos + 1] : undefined;
+    if (!next) {
       setPanel('result');
       return;
     }
-    resetQuestionState(nextIndex, questions[nextIndex]?.mode || currentMode);
+    resetQuestionState(next.index, questions[next.index]?.mode || currentMode);
   }
 
   function openQuestion(index: number) {
@@ -891,7 +962,8 @@ export function PronunciationGame({ courseId }: Props) {
   }
 
   function startOrContinue() {
-    const firstEmpty = nextEmptyPlayableIndex(questions, statuses);
+    const firstEmpty =
+      scopedEntries.find(({ index }) => statuses[index] === 'empty')?.index ?? -1;
     if (firstEmpty === -1) return;
     void (async () => {
       try {
@@ -907,7 +979,7 @@ export function PronunciationGame({ courseId }: Props) {
     if (!course || isResetting) return;
 
     const emptyStatuses = Array.from({ length: questions.length }, () => 'empty' as ProgressStatus);
-    const firstPlayable = playableEntries[0]?.index ?? 0;
+    const firstPlayable = scopedEntries[0]?.index ?? 0;
     const nextSession = createPlaySessionId();
 
     setIsResetting(true);
@@ -937,7 +1009,9 @@ export function PronunciationGame({ courseId }: Props) {
   }
 
   function handleModeChange(mode: PronunciationMode) {
-    const nextIndex = findFirstQuestionByMode(questions, mode);
+    const nextIndex =
+      scopedEntries.find(({ question }) => question.mode === mode)?.index ??
+      findFirstQuestionByMode(questions, mode);
     resetQuestionState(nextIndex, mode);
   }
 
@@ -1099,6 +1173,64 @@ export function PronunciationGame({ courseId }: Props) {
     );
   }
 
+  if (exerciseParam && scopedEntries.length === 0) {
+    return (
+      <div className="pronunciation-page">
+        <DataLoading
+          variant="message"
+          message={`Không có từ luyện cho nhóm âm “${exerciseParam}”`}
+        />
+      </div>
+    );
+  }
+
+  // Show exercise group chooser when no exercise filter and multiple groups exist
+  const exerciseGroups = groupPronunciationExercises(
+    questions.map((q) => ({ exercise: q.exercise, exerciseKey: q.exerciseKey })),
+  );
+
+  if (!exerciseParam && exerciseGroups.length > 1) {
+    return (
+      <div className="pronunciation-page pron-page-stack" data-testid="exercise-chooser">
+        <PageBackButton
+          title="Quay lại khóa học"
+          onClick={() => {
+            window.location.href = `/courses/${course.id}?skill=speaking`;
+          }}
+        />
+        <div className="pron-page-header">
+          <div className="pron-hero">
+            <p className="pron-hero-label">Game phát âm</p>
+            <h1 className="pron-hero-title">{course.name}</h1>
+          </div>
+        </div>
+        <div className="activity-grid" data-testid="exercise-group-grid">
+          {exerciseGroups.map((group) => {
+            const completed = completedCountForIndices(statuses, group.indices);
+            return (
+              <Link
+                key={group.key}
+                href={`/games/pronunciation/${courseId}?exercise=${encodeURIComponent(group.key)}`}
+                className="activity-card"
+                data-exercise={group.key}
+              >
+                <div className="activity-left">
+                  <div className="activity-icon skill-speaking">
+                    <i className="fas fa-volume-up" aria-hidden="true" />
+                  </div>
+                  <span className="activity-label">{group.label}</span>
+                </div>
+                <span className="activity-progress">
+                  {completed}/{group.questionCount}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <PronunciationGameContent
       course={course}
@@ -1117,8 +1249,11 @@ export function PronunciationGame({ courseId }: Props) {
       isSubmitting={isSubmitting}
       isResetting={isResetting}
       stats={stats}
+      exerciseFilterKey={exerciseParam}
+      activeExerciseLabel={activeExerciseLabel}
+      theoryText={theoryText}
       onBackHome={() => {
-        window.location.href = `/courses/${course.id}`;
+        window.location.href = `/courses/${course.id}?skill=speaking`;
       }}
       onBackToList={() => {
         clearAutoAdvance(advanceTimer);
