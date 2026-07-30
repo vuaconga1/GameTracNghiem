@@ -24,7 +24,7 @@ const QUIZ_TYPE_INSTRUCTIONS_VI: Record<string, string> = {
 };
 
 const QUIZ_ERROR_UNDERLINE_TAG_RE =
-  /<u\b[^>]*class=(['"])[^'"]*\bquiz-error-opt\b[^'"]*\1[^>]*>(.*?)<\/u>/gis;
+  /<u\b[^>]*class=(['"])[^'"]*\bquiz-error-opt\b[^'"]*\1[^>]*>([\s\S]*?)<\/u>/gi;
 const VOWEL_CLUSTER_RE = /[aeiouy]+/i;
 
 export const GRAMMAR_FILL_INSTRUCTION_VI =

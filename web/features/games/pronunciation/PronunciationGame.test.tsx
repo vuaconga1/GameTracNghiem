@@ -224,10 +224,6 @@ describe('PronunciationGameContent', () => {
         currentMode: 'sentence',
         showActions: true,
         statuses: ['correct', 'wrong', 'empty'],
-        exerciseGroups: [
-          { key: 'AE', label: 'Âm /æ/', questionCount: 2, completedCount: 2 },
-          { key: 'AA', label: 'Âm /ɑː/', questionCount: 1, completedCount: 0 },
-        ],
         exerciseFilterKey: 'AE',
         activeExerciseLabel: 'Âm /æ/',
         theoryText: 'Âm /æ/ mở rộng miệng và hạ hàm thấp.',
