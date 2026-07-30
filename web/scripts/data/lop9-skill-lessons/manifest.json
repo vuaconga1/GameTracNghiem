@@ -1,0 +1,220 @@
+{
+  "generatedAt": "2026-07-30T09:33:41.030721+00:00",
+  "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+  "units": {
+    "1": {
+      "unit": 1,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-1-vocabulary.pdf",
+          "sourcePageStart": 2,
+          "sourcePageEnd": 3,
+          "pageCount": 2
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-1-reading.pdf",
+          "sourcePageStart": 4,
+          "sourcePageEnd": 4,
+          "pageCount": 1
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-1-writing.pdf",
+          "sourcePageStart": 5,
+          "sourcePageEnd": 5,
+          "pageCount": 1
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-1-speaking.pdf",
+          "sourcePageStart": 6,
+          "sourcePageEnd": 8,
+          "pageCount": 3
+        }
+      ]
+    },
+    "2": {
+      "unit": 2,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-2-vocabulary.pdf",
+          "sourcePageStart": 10,
+          "sourcePageEnd": 11,
+          "pageCount": 2
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-2-reading.pdf",
+          "sourcePageStart": 12,
+          "sourcePageEnd": 12,
+          "pageCount": 1
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-2-writing.pdf",
+          "sourcePageStart": 13,
+          "sourcePageEnd": 13,
+          "pageCount": 1
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-2-speaking.pdf",
+          "sourcePageStart": 14,
+          "sourcePageEnd": 16,
+          "pageCount": 3
+        }
+      ]
+    },
+    "3": {
+      "unit": 3,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-3-vocabulary.pdf",
+          "sourcePageStart": 18,
+          "sourcePageEnd": 19,
+          "pageCount": 2
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-3-reading.pdf",
+          "sourcePageStart": 20,
+          "sourcePageEnd": 20,
+          "pageCount": 1
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-3-writing.pdf",
+          "sourcePageStart": 21,
+          "sourcePageEnd": 21,
+          "pageCount": 1
+        }
+      ]
+    },
+    "4": {
+      "unit": 4,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-4-vocabulary.pdf",
+          "sourcePageStart": 23,
+          "sourcePageEnd": 24,
+          "pageCount": 2
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-4-reading.pdf",
+          "sourcePageStart": 25,
+          "sourcePageEnd": 25,
+          "pageCount": 1
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-4-writing.pdf",
+          "sourcePageStart": 26,
+          "sourcePageEnd": 26,
+          "pageCount": 1
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-4-speaking.pdf",
+          "sourcePageStart": 27,
+          "sourcePageEnd": 28,
+          "pageCount": 2
+        }
+      ]
+    },
+    "5": {
+      "unit": 5,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-5-vocabulary.pdf",
+          "sourcePageStart": 30,
+          "sourcePageEnd": 31,
+          "pageCount": 2
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-5-reading.pdf",
+          "sourcePageStart": 32,
+          "sourcePageEnd": 32,
+          "pageCount": 1
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-5-writing.pdf",
+          "sourcePageStart": 33,
+          "sourcePageEnd": 33,
+          "pageCount": 1
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-5-speaking.pdf",
+          "sourcePageStart": 34,
+          "sourcePageEnd": 34,
+          "pageCount": 1
+        }
+      ]
+    },
+    "6": {
+      "unit": 6,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-6-vocabulary.pdf",
+          "sourcePageStart": 35,
+          "sourcePageEnd": 37,
+          "pageCount": 3
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-6-reading.pdf",
+          "sourcePageStart": 38,
+          "sourcePageEnd": 38,
+          "pageCount": 1
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-6-writing.pdf",
+          "sourcePageStart": 39,
+          "sourcePageEnd": 39,
+          "pageCount": 1
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GLOBAL_GRADE_9_FINAL_Anh_Phu_Trang.pdf",
+          "unitPdf": "lop9-skill-lessons/unit-pdfs/unit-6-speaking.pdf",
+          "sourcePageStart": 40,
+          "sourcePageEnd": 41,
+          "pageCount": 2
+        }
+      ]
+    }
+  }
+}

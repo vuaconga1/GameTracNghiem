@@ -8,7 +8,7 @@ const nonEmpty = z.string().trim().min(1, 'Không được để trống');
 
 export const grammarPayloadSchema = z.object({
   source: z.string().optional().default(''),
-  prefix: nonEmpty,
+  prefix: z.string().optional().default(''),
   suffix: z.string().optional().default(''),
   hint: z.string().optional().default(''),
   answers: z.array(nonEmpty).min(1, 'Cần ít nhất một đáp án'),

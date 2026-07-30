@@ -1,6 +1,8 @@
 import type { SkillId } from '@/lib/skillCatalog';
 import { isSkillId } from '@/lib/skillCatalog';
 
+import { quizExerciseDisplayTitle } from '@/features/games/exerciseDisplay';
+
 export const QUIZ_TYPES = ['multiple_choice', 'fill_blank', 'word_form'] as const;
 
 export type QuizType = (typeof QUIZ_TYPES)[number];
@@ -21,6 +23,7 @@ export type QuizNavQuestion = {
   type: string;
   skill?: string | null;
   exercise?: string | null;
+  typeLabel?: string | null;
 };
 
 export function isQuizType(value: string | null | undefined): value is QuizType {
@@ -78,19 +81,32 @@ export function quizExercisesForSkillType<T extends QuizNavQuestion>(
   questions: T[],
   skill: SkillId,
   type: QuizType
-): Array<{ exercise: string; count: number }> {
+): Array<{ exercise: string; count: number; typeLabel: string; displayTitle: string }> {
   const filtered = filterQuizQuestions(questions, skill, type);
-  const counts = new Map<string, number>();
+  const counts = new Map<string, { count: number; typeLabel: string }>();
   for (const question of filtered) {
     const label = normalizeQuizExercise(question.exercise);
-    counts.set(label, (counts.get(label) || 0) + 1);
+    const existing = counts.get(label);
+    if (existing) {
+      existing.count += 1;
+    } else {
+      counts.set(label, {
+        count: 1,
+        typeLabel: String(question.typeLabel || '').trim(),
+      });
+    }
   }
   return [...counts.entries()]
-    .map(([exercise, count]) => ({ exercise, count }))
+    .map(([exercise, meta]) => ({
+      exercise,
+      count: meta.count,
+      typeLabel: meta.typeLabel,
+      displayTitle: quizExerciseDisplayTitle(exercise, meta.typeLabel),
+    }))
     .sort((a, b) => {
       if (a.exercise === DEFAULT_QUIZ_EXERCISE && b.exercise !== DEFAULT_QUIZ_EXERCISE) return 1;
       if (b.exercise === DEFAULT_QUIZ_EXERCISE && a.exercise !== DEFAULT_QUIZ_EXERCISE) return -1;
-      return a.exercise.localeCompare(b.exercise, 'vi');
+      return a.displayTitle.localeCompare(b.displayTitle, 'vi');
     });
 }
 

@@ -7,6 +7,7 @@ import { Suspense, useEffect, useRef, useState } from 'react';
 import { DataLoading } from '@/components/DataLoading';
 import { PageBackButton } from '@/components/PageBackButton';
 import { EbookViewer } from '@/features/courses/EbookViewer';
+import { grammarExerciseDisplayTitle } from '@/features/games/grammar/grammarNav';
 import { resolveCourseEbookPagesForSkill } from '@/lib/courseSkillLesson';
 import { GAME_CATALOG, type ProgressStatus } from '@/lib/gameCatalog';
 import type {
@@ -30,6 +31,7 @@ type CourseDetailResponse = {
   course?: CourseDetail;
   games?: CourseGames;
   gameExercises?: CourseDetailData['gameExercises'];
+  skillStats?: CourseDetailData['skillStats'];
   totalScore?: number;
   message?: string;
 };
@@ -52,8 +54,16 @@ function completedStatusCount(statuses: string[] | undefined) {
   return (statuses || []).filter((status) => status !== 'empty').length;
 }
 
-function activityProgress(detail: GameDetail | undefined, live: boolean) {
+function activityProgress(
+  detail: GameDetail | undefined,
+  live: boolean,
+  skillSlice?: { questionCount: number; completedCount: number } | null
+) {
   if (!live) return 'Sắp có';
+  if (skillSlice) {
+    if (skillSlice.questionCount <= 0) return '—';
+    return `${skillSlice.completedCount}/${skillSlice.questionCount}`;
+  }
   if (!detail) return '—';
   return `${completedStatusCount(detail.statuses)}/${detail.questionCount}`;
 }
@@ -213,7 +223,9 @@ export function CourseDetailContent({
                       const liveKeys = skillGames
                         .filter((game) => game.live)
                         .map((game) => game.key);
-                      const stats = aggregateActivityStats(data.games, liveKeys);
+                      const stats =
+                        data.skillStats?.[skill.id] ??
+                        aggregateActivityStats(data.games, liveKeys);
                       const progress =
                         stats.totalQuestions > 0
                           ? `${stats.completedQuestions}/${stats.totalQuestions}`
@@ -274,7 +286,15 @@ export function CourseDetailContent({
                   ) : (
                     activities.flatMap((activity) => {
                       const detail = data.games?.[activity.key];
-                      const progress = activityProgress(detail, activity.live);
+                      const skillSlice =
+                        selectedSkill && data.skillStats?.[selectedSkill]?.byGame?.[activity.key]
+                          ? data.skillStats[selectedSkill]!.byGame[activity.key]
+                          : null;
+                      const grammarExerciseCards =
+                        selectedSkill === 'writing' && activity.key === 'grammar'
+                          ? data.gameExercises?.grammar || []
+                          : [];
+                      const progress = activityProgress(detail, activity.live, skillSlice);
                       const className = 'activity-card';
                       const inner = (
                         <>
@@ -289,6 +309,32 @@ export function CourseDetailContent({
                       );
 
                       if (activity.live) {
+                        // Hide skill-scoped games that have zero questions for this skill.
+                        if (skillSlice && skillSlice.questionCount <= 0) {
+                          return [];
+                        }
+                        if (grammarExerciseCards.length > 1) {
+                          return grammarExerciseCards.map((card) => (
+                            <Link
+                              key={`${activity.key}-${card.key}`}
+                              href={`/games/${activity.slug}/${data.course.id}?exercise=${encodeURIComponent(card.key)}`}
+                              className={className}
+                              data-activity={`${activity.key}:${card.key}`}
+                            >
+                              <div className="activity-left">
+                                <div className={`activity-icon ${activity.iconClass}`}>
+                                  <i className={activity.icon} aria-hidden="true" />
+                                </div>
+                                <span className="activity-label">
+                                  {grammarExerciseDisplayTitle(card.label)}
+                                </span>
+                              </div>
+                              <span className="activity-progress">
+                                {card.completedCount}/{card.questionCount}
+                              </span>
+                            </Link>
+                          ));
+                        }
                         const href =
                           activity.key === 'quiz' && selectedSkill
                             ? `/games/${activity.slug}/${data.course.id}?skill=${selectedSkill}`
@@ -362,6 +408,7 @@ export function CourseDetailView({
           course: json.course,
           games: json.games,
           gameExercises: json.gameExercises,
+          skillStats: json.skillStats,
           totalScore: json.totalScore ?? 0,
         });
       } catch (err) {

@@ -8,7 +8,7 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Phát âm khác",
-        "question": "Chọn từ có phần nguyên âm khác: garden / artist / candy / drama",
+        "question": "Chọn từ có phần nguyên âm / âm khác: garden / artist / candy / drama",
         "options": [
           "garden",
           "artist",
@@ -29,7 +29,7 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Phát âm khác",
-        "question": "Chọn từ có phần nguyên âm khác: stamp / match / sand / start",
+        "question": "Chọn từ có phần nguyên âm / âm khác: stamp / match / sand / start",
         "options": [
           "stamp",
           "match",
@@ -50,7 +50,7 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Phát âm khác",
-        "question": "Chọn từ có phần nguyên âm khác: lamp / many / angry / camp",
+        "question": "Chọn từ có phần nguyên âm / âm khác: lamp / many / angry / camp",
         "options": [
           "lamp",
           "many",
@@ -71,7 +71,7 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Phát âm khác",
-        "question": "Chọn từ có phần nguyên âm khác: grammar / animal / access / harvest",
+        "question": "Chọn từ có phần nguyên âm / âm khác: grammar / animal / access / harvest",
         "options": [
           "grammar",
           "animal",
@@ -92,7 +92,7 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Phát âm khác",
-        "question": "Chọn từ có phần nguyên âm khác: carry / large / apart / park",
+        "question": "Chọn từ có phần nguyên âm / âm khác: carry / large / apart / park",
         "options": [
           "carry",
           "large",
@@ -113,7 +113,7 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Phát âm khác",
-        "question": "Chọn từ có phần nguyên âm khác: cashier / party / traffic / actress",
+        "question": "Chọn từ có phần nguyên âm / âm khác: cashier / party / traffic / actress",
         "options": [
           "cashier",
           "party",
@@ -134,7 +134,7 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Phát âm khác",
-        "question": "Chọn từ có phần nguyên âm khác: matter / garage / fantastic / attractive",
+        "question": "Chọn từ có phần nguyên âm / âm khác: matter / garage / fantastic / attractive",
         "options": [
           "matter",
           "garage",
@@ -155,7 +155,7 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Phát âm khác",
-        "question": "Chọn từ có phần nguyên âm khác: accident / travel / language / prepare",
+        "question": "Chọn từ có phần nguyên âm / âm khác: accident / travel / language / prepare",
         "options": [
           "accident",
           "travel",
@@ -176,7 +176,7 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Phát âm khác",
-        "question": "Chọn từ có phần nguyên âm khác: pleasure / weather / speaker / feather",
+        "question": "Chọn từ có phần nguyên âm / âm khác: pleasure / weather / speaker / feather",
         "options": [
           "pleasure",
           "weather",
@@ -197,7 +197,7 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Phát âm khác",
-        "question": "Chọn từ có phần nguyên âm khác: anybody / ancestor / natural / calendar",
+        "question": "Chọn từ có phần nguyên âm / âm khác: anybody / ancestor / natural / calendar",
         "options": [
           "anybody",
           "ancestor",
@@ -217,7 +217,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Wh + to-V",
+        "exercise": "Hoàn thành câu",
         "question": "She watched a tutorial video on ______________ to take better photographs.",
         "options": [
           "how",
@@ -238,7 +238,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Wh + to-V",
+        "exercise": "Hoàn thành câu",
         "question": "I asked him for recommendations on ______________ to eat the best pizza in town.",
         "options": [
           "when",
@@ -259,7 +259,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Wh + to-V",
+        "exercise": "Hoàn thành câu",
         "question": "They wonder ______________ to wear for the formal event next week.",
         "options": [
           "what",
@@ -280,8 +280,8 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Wh + to-V",
-        "question": "Tony still doesn't know ______________ to pack for his beach vacation this Sunday.",
+        "exercise": "Hoàn thành câu",
+        "question": "Tony still doesn’t know ______________ to pack for his beach vacation this Sunday.",
         "options": [
           "how",
           "where",
@@ -301,7 +301,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Wh + to-V",
+        "exercise": "Hoàn thành câu",
         "question": "The website listed a lot of great information on ______________ to visit in Hanoi.",
         "options": [
           "when",
@@ -322,8 +322,8 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Wh + to-V",
-        "question": "He still can't decide on ______________ to start the training program, whether in the spring or in the fall.",
+        "exercise": "Hoàn thành câu",
+        "question": "He still can’t decide on ______________ to start the training program, whether in the spring or in the fall.",
         "options": [
           "where",
           "what",
@@ -343,8 +343,8 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Wh + to-V",
-        "question": "Mr. and Mrs. Smiths still don't know ______________ to invite to their wedding next month.",
+        "exercise": "Hoàn thành câu",
+        "question": "Mr. and Mrs. Smiths still don't know ______________ to invite to theừ wedding next month.",
         "options": [
           "where",
           "who",
@@ -364,7 +364,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Wh + to-V",
+        "exercise": "Hoàn thành câu",
         "question": "He searched the Internet to find out ______________ to catch the bus to the city center.",
         "options": [
           "where",
@@ -372,11 +372,11 @@
           "who",
           "what"
         ],
-        "answer": "where",
+        "answer": "when",
         "accept": [
-          "where",
-          "A",
-          "a"
+          "when",
+          "B",
+          "b"
         ],
         "fillMode": false
       },
@@ -385,7 +385,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Wh + to-V",
+        "exercise": "Hoàn thành câu",
         "question": "Our new neighbours wonder ______________ to do to improve the local community.",
         "options": [
           "how",
@@ -406,7 +406,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Wh + to-V",
+        "exercise": "Hoàn thành câu",
         "question": "The team members still can't decide on ______________ to hold the meeting, whether at the conference room or at the training centre.",
         "options": [
           "when",
@@ -427,8 +427,8 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Wh + to-V",
-        "question": "We're planning a trip to Ninh Binh next week. Any suggestions on ______________ to stay in that area?",
+        "exercise": "Hoàn thành câu",
+        "question": "We’re planning a trip to Ninh Binh next week. Any suggestions on ______________ to stay in that area?",
         "options": [
           "when",
           "how",
@@ -448,7 +448,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Wh + to-V",
+        "exercise": "Hoàn thành câu",
         "question": "I need some help with this problem, but I don't know ______________ to ask for assistance.",
         "options": [
           "when",
@@ -469,7 +469,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Wh + to-V",
+        "exercise": "Hoàn thành câu",
         "question": "I've just finished my favourite series. Any recommendations on ______________ to watch next?",
         "options": [
           "who",
@@ -490,7 +490,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Wh + to-V",
+        "exercise": "Hoàn thành câu",
         "question": "I have some new plants at home. Can you advise me on ______________ to water them, in the morning or in the evening?",
         "options": [
           "when",
@@ -511,7 +511,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Wh + to-V",
+        "exercise": "Hoàn thành câu",
         "question": "I don't know ______________ to cook this dish. Can you share with me your recipe, please?",
         "options": [
           "when",
@@ -532,7 +532,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Phrasal prep",
+        "exercise": "Giới từ",
         "question": "This local restaurant had such delicious speciality food that we can't wait to come ______________ next time for another meal.",
         "options": [
           "back",
@@ -553,7 +553,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Phrasal prep",
+        "exercise": "Giới từ",
         "question": "He asked the local organization to find ______________ how to help make the community cleaner and greener.",
         "options": [
           "on",
@@ -574,7 +574,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Phrasal prep",
+        "exercise": "Giới từ",
         "question": "We organized an event to take care ______________ the local park and keep it clean.",
         "options": [
           "with",
@@ -595,7 +595,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Phrasal prep",
+        "exercise": "Giới từ",
         "question": "The laughter of children playing reminds me ______________ happy summer days.",
         "options": [
           "for",
@@ -616,7 +616,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Phrasal prep",
+        "exercise": "Giới từ",
         "question": "In many small towns, people hand ______________ traditions from one generation to the next to preserve the local culture.",
         "options": [
           "through",
@@ -637,7 +637,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Phrasal prep",
+        "exercise": "Giới từ",
         "question": "He shares similar interests with his neighbors, so he really gets ______________ them.",
         "options": [
           "down to",
@@ -658,7 +658,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Phrasal prep",
+        "exercise": "Giới từ",
         "question": "The local government encourages us to cut down ______________ single-use plastic and use reusable bags instead.",
         "options": [
           "on",
@@ -679,7 +679,7 @@
         "type": "multiple_choice",
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
-        "exercise": "Phrasal prep",
+        "exercise": "Giới từ",
         "question": "The tradition of handcrafted pottery has been passed ______________ through many generations in my family.",
         "options": [
           "for",
@@ -698,10 +698,10 @@
       {
         "game": "quiz",
         "type": "multiple_choice",
-        "typeLabel": "Trắc nghiệm",
+        "typeLabel": "Tìm lỗi sai",
         "skill": "reading",
         "exercise": "Tìm lỗi sai",
-        "question": "My father is a police office, and he always works hard to keep the community safe.",
+        "question": "My father is a police <u class=\"quiz-error-opt\">office</u>, and he always works <u class=\"quiz-error-opt\">hard</u> to <u class=\"quiz-error-opt\">keep</u> the community <u class=\"quiz-error-opt\">safe</u>.",
         "options": [
           "office",
           "hard",
@@ -719,10 +719,10 @@
       {
         "game": "quiz",
         "type": "multiple_choice",
-        "typeLabel": "Trắc nghiệm",
+        "typeLabel": "Tìm lỗi sai",
         "skill": "reading",
         "exercise": "Tìm lỗi sai",
-        "question": "The local amusement park is a favourite tourist attract for families thanks to its entertaining shows.",
+        "question": "The local <u class=\"quiz-error-opt\">amusement</u> park <u class=\"quiz-error-opt\">is</u> a favourite tourist <u class=\"quiz-error-opt\">attract</u> for families thanks <u class=\"quiz-error-opt\">to</u> its entertaining shows.",
         "options": [
           "amusement",
           "is",
@@ -740,10 +740,10 @@
       {
         "game": "quiz",
         "type": "multiple_choice",
-        "typeLabel": "Trắc nghiệm",
+        "typeLabel": "Tìm lỗi sai",
         "skill": "reading",
         "exercise": "Tìm lỗi sai",
-        "question": "There is a community center in our neighbour that offers different classes and activities for all ages.",
+        "question": "<u class=\"quiz-error-opt\">There</u> is a community center <u class=\"quiz-error-opt\">in</u> our neighbour that offers different classes and activities for all ages.",
         "options": [
           "There",
           "in",
@@ -753,7 +753,6 @@
         "answer": "neighbor",
         "accept": [
           "neighbor",
-          "neighbour",
           "C",
           "c"
         ],
@@ -762,10 +761,10 @@
       {
         "game": "quiz",
         "type": "multiple_choice",
-        "typeLabel": "Trắc nghiệm",
+        "typeLabel": "Tìm lỗi sai",
         "skill": "reading",
         "exercise": "Tìm lỗi sai",
-        "question": "The museum showcased a variety of origin artefacts from ancient civilizations.",
+        "question": "The museum <u class=\"quiz-error-opt\">showcased</u> a <u class=\"quiz-error-opt\">variety</u> of <u class=\"quiz-error-opt\">origin</u> artefacts <u class=\"quiz-error-opt\">from</u> ancient civilizations.",
         "options": [
           "showcased",
           "variety",
@@ -783,10 +782,10 @@
       {
         "game": "quiz",
         "type": "multiple_choice",
-        "typeLabel": "Trắc nghiệm",
+        "typeLabel": "Tìm lỗi sai",
         "skill": "reading",
         "exercise": "Tìm lỗi sai",
-        "question": "The garbage collector shares interesting information about his work and the important of sorting rubbish.",
+        "question": "The garbage <u class=\"quiz-error-opt\">collector</u> shares interesting information <u class=\"quiz-error-opt\">about</u> his <u class=\"quiz-error-opt\">work</u> and the <u class=\"quiz-error-opt\">important</u> of sorting rubbish.",
         "options": [
           "collector",
           "about",
@@ -804,10 +803,10 @@
       {
         "game": "quiz",
         "type": "multiple_choice",
-        "typeLabel": "Trắc nghiệm",
+        "typeLabel": "Tìm lỗi sai",
         "skill": "reading",
         "exercise": "Tìm lỗi sai",
-        "question": "The deliver person called to keep me informed about the status of my delivery.",
+        "question": "The <u class=\"quiz-error-opt\">deliver</u> person called to <u class=\"quiz-error-opt\">keep</u> me informed about the status <u class=\"quiz-error-opt\">of</u> my <u class=\"quiz-error-opt\">delivery</u>.",
         "options": [
           "deliver",
           "keep",
@@ -821,15 +820,876 @@
           "a"
         ],
         "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu điền khuyết",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (1).",
+        "options": [
+          "neighbor",
+          "helper",
+          "tourist",
+          "adult"
+        ],
+        "answer": "adult",
+        "accept": [
+          "adult",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu điền khuyết",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (2).",
+        "options": [
+          "environment",
+          "relationship",
+          "production",
+          "facility"
+        ],
+        "answer": "production",
+        "accept": [
+          "production",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu điền khuyết",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (3).",
+        "options": [
+          "collecting",
+          "collected",
+          "to collect",
+          "collect"
+        ],
+        "answer": "collected",
+        "accept": [
+          "collected",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu điền khuyết",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (4).",
+        "options": [
+          "ground",
+          "floor",
+          "ocean",
+          "sea"
+        ],
+        "answer": "ground",
+        "accept": [
+          "ground",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu điền khuyết",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (5).",
+        "options": [
+          "decisions",
+          "creations",
+          "products",
+          "ideas"
+        ],
+        "answer": "products",
+        "accept": [
+          "products",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu điền khuyết",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (6).",
+        "options": [
+          "raise",
+          "remain",
+          "increase",
+          "reduce"
+        ],
+        "answer": "reduce",
+        "accept": [
+          "reduce",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu điền khuyết",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (7).",
+        "options": [
+          "physics",
+          "physically",
+          "physic",
+          "physical"
+        ],
+        "answer": "physic",
+        "accept": [
+          "physic",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu điền khuyết",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (8).",
+        "options": [
+          "preventing",
+          "creating",
+          "destroying",
+          "preserving"
+        ],
+        "answer": "preventing",
+        "accept": [
+          "preventing",
+          "A",
+          "a"
+        ],
+        "fillMode": false
       }
     ],
     "2": [
       {
         "game": "quiz",
         "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The ___________________ the exam is, the less confident I feel.",
+        "options": [
+          "more difficulter",
+          "difficulter",
+          "difficult",
+          "more difficult"
+        ],
+        "answer": "more difficult",
+        "accept": [
+          "more difficult",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The more colourful the flowers are, the ___________________ the garden looks.",
+        "options": [
+          "prettyer",
+          "prettier",
+          "pretty",
+          "more pretty"
+        ],
+        "answer": "prettier",
+        "accept": [
+          "prettier",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The ___________________ the rain is, the wetter she becomes.",
+        "options": [
+          "heavier",
+          "heavyer",
+          "more heavy",
+          "more heavier"
+        ],
+        "answer": "heavier",
+        "accept": [
+          "heavier",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The hotter the weather is, the ___________________ I feel.",
+        "options": [
+          "comfortablest",
+          "less comfortabler",
+          "comfortabler",
+          "less comfortable"
+        ],
+        "answer": "less comfortable",
+        "accept": [
+          "less comfortable",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The more crowded the restaurant is, the ___________________ we have to wait.",
+        "options": [
+          "more long",
+          "longer",
+          "more longer",
+          "long"
+        ],
+        "answer": "longer",
+        "accept": [
+          "longer",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The ___________________ the mountain is, the harder it is to climb.",
+        "options": [
+          "taller",
+          "more tall",
+          "tall",
+          "more taller"
+        ],
+        "answer": "taller",
+        "accept": [
+          "taller",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The closer the deadline gets, the ___________________ John feels.",
+        "options": [
+          "stressed",
+          "more stresseder",
+          "more stressed",
+          "stresseder"
+        ],
+        "answer": "more stressed",
+        "accept": [
+          "more stressed",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The darker the night is, the ___________________ the shadows become.",
+        "options": [
+          "scaryer",
+          "scarier",
+          "more scarier",
+          "scary"
+        ],
+        "answer": "scarier",
+        "accept": [
+          "scarier",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The busier the street is, the less ___________________ the walk becomes.",
+        "options": [
+          "enjoyablest",
+          "more enjoyable",
+          "enjoyabler",
+          "enjoyable"
+        ],
+        "answer": "enjoyable",
+        "accept": [
+          "enjoyable",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The clearer the sky is, the ___________________ the stars shine at night.",
+        "options": [
+          "brighter",
+          "bright",
+          "more brightest",
+          "more brighter"
+        ],
+        "answer": "brighter",
+        "accept": [
+          "brighter",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The more tired she is, the less ___________________ she becomes.",
+        "options": [
+          "more patienter",
+          "patienter",
+          "patient",
+          "more patient"
+        ],
+        "answer": "patient",
+        "accept": [
+          "patient",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The ___________________ the movie is, the ___________________ I feel.",
+        "options": [
+          "long - more bored",
+          "more long - more bored",
+          "longer – boreder",
+          "longer - more bored"
+        ],
+        "answer": "longer - more bored",
+        "accept": [
+          "longer - more bored",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The ___________________ the computer is, the ___________________ the price you have to pay.",
+        "options": [
+          "more modem – higher",
+          "modemer – higher",
+          "more modem - more high",
+          "modemer - more high"
+        ],
+        "answer": "more modem – higher",
+        "accept": [
+          "more modem – higher",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The ___________________ the music is, the less ___________________ my brother becomes.",
+        "options": [
+          "louder - more focused",
+          "more loud – focused",
+          "louder – focused",
+          "more loud – focuseder"
+        ],
+        "answer": "louder – focused",
+        "accept": [
+          "louder – focused",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The ___________________ the weather is, the ___________________ clothes you need to wear.",
+        "options": [
+          "colder – warmer",
+          "colder - more warm",
+          "more cold – warmer",
+          "more cold – warm"
+        ],
+        "answer": "colder – warmer",
+        "accept": [
+          "colder – warmer",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "The <u class=\"quiz-error-opt\">more</u> old Kim <u class=\"quiz-error-opt\">gets</u>, the <u class=\"quiz-error-opt\">more thoughtful</u> she <u class=\"quiz-error-opt\">becomes</u>.",
+        "options": [
+          "more",
+          "gets",
+          "more thoughtful",
+          "becomes"
+        ],
+        "answer": "more",
+        "accept": [
+          "more",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "The <u class=\"quiz-error-opt\">louder</u> the <u class=\"quiz-error-opt\">music</u> plays, the more <u class=\"quiz-error-opt\">exciteder</u> the crowd <u class=\"quiz-error-opt\">becomes</u>.",
+        "options": [
+          "louder",
+          "music",
+          "exciteder",
+          "becomes"
+        ],
+        "answer": "exciteder",
+        "accept": [
+          "exciteder",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "<u class=\"quiz-error-opt\">The</u> <u class=\"quiz-error-opt\">clearer</u> the instructions <u class=\"quiz-error-opt\">are</u>, the <u class=\"quiz-error-opt\">easyer</u> the task becomes.",
+        "options": [
+          "The",
+          "clearer",
+          "are",
+          "easyer"
+        ],
+        "answer": "easyer",
+        "accept": [
+          "easyer",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "The longer the line <u class=\"quiz-error-opt\">at</u> <u class=\"quiz-error-opt\">the</u> stoic is, the <u class=\"quiz-error-opt\">most impatient</u> I <u class=\"quiz-error-opt\">become</u>.",
+        "options": [
+          "at",
+          "the",
+          "most impatient",
+          "become"
+        ],
+        "answer": "most impatient",
+        "accept": [
+          "most impatient",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "<u class=\"quiz-error-opt\">The</u> <u class=\"quiz-error-opt\">dry</u> the weather gets, the thirstier <u class=\"quiz-error-opt\">my</u> mother becomes.",
+        "options": [
+          "The",
+          "dry",
+          "thirster",
+          "my"
+        ],
+        "answer": "dry",
+        "accept": [
+          "dry",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "The <u class=\"quiz-error-opt\">thinner</u> the ice <u class=\"quiz-error-opt\">gets</u>, the <u class=\"quiz-error-opt\">more dangerous</u> it becomes to walk <u class=\"quiz-error-opt\">on</u>.",
+        "options": [
+          "thinner",
+          "gets",
+          "more dangerous",
+          "on"
+        ],
+        "answer": "thinner",
+        "accept": [
+          "thinner",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "The <u class=\"quiz-error-opt\">most crowded</u> the elevator <u class=\"quiz-error-opt\">is</u>, the more <u class=\"quiz-error-opt\">uncomfortable</u> I feel.",
+        "options": [
+          "most crowded",
+          "is",
+          "uncomfortable",
+          "on"
+        ],
+        "answer": "most crowded",
+        "accept": [
+          "most crowded",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "The more <u class=\"quiz-error-opt\">expensive</u> the restaurant <u class=\"quiz-error-opt\">is</u>, the <u class=\"quiz-error-opt\">gooder</u> the food <u class=\"quiz-error-opt\">tastes</u>.",
+        "options": [
+          "expensive",
+          "is",
+          "gooder",
+          "tastes"
+        ],
+        "answer": "gooder",
+        "accept": [
+          "gooder",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Giới từ",
+        "question": "We plan to carry ________ a survey to gather opinions from the community.",
+        "options": [
+          "of",
+          "around",
+          "out",
+          "in"
+        ],
+        "answer": "out",
+        "accept": [
+          "out",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Giới từ",
+        "question": "My friends often get ________ the city by motorbike every Sunday.",
+        "options": [
+          "for",
+          "on",
+          "with",
+          "around"
+        ],
+        "answer": "around",
+        "accept": [
+          "around",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Giới từ",
+        "question": "They are trying to cut down ________ unnecessary expenses to save money for their vacation.",
+        "options": [
+          "on",
+          "in",
+          "to",
+          "out"
+        ],
+        "answer": "on",
+        "accept": [
+          "on",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Giới từ",
+        "question": "Mark prefers hanging out ________ his siblings rather than playing alone.",
+        "options": [
+          "with",
+          "on",
+          "in",
+          "to"
+        ],
+        "answer": "with",
+        "accept": [
+          "with",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Giới từ",
+        "question": "Tom came down ________ food poisoning after eating at that new restaurant.",
+        "options": [
+          "of",
+          "on",
+          "to",
+          "with"
+        ],
+        "answer": "with",
+        "accept": [
+          "with",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Giới từ",
+        "question": "My mother always picks me ________ after school.",
+        "options": [
+          "by",
+          "up",
+          "to",
+          "with"
+        ],
+        "answer": "up",
+        "accept": [
+          "up",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Giới từ",
+        "question": "Lan visited her grandparents in another city ________ plane last month.",
+        "options": [
+          "at",
+          "to",
+          "for",
+          "by"
+        ],
+        "answer": "by",
+        "accept": [
+          "by",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Giới từ",
+        "question": "We need to find ________ where the nearest supermarket is.",
+        "options": [
+          "out",
+          "to",
+          "for",
+          "of"
+        ],
+        "answer": "out",
+        "accept": [
+          "out",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Giới từ",
+        "question": "I need to take care ________ my little brother while my parents are out.",
+        "options": [
+          "on",
+          "of",
+          "in",
+          "up"
+        ],
+        "answer": "of",
+        "accept": [
+          "of",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Giới từ",
+        "question": "They always hang ________ with each other during lunch breaks.",
+        "options": [
+          "at",
+          "to",
+          "out",
+          "in"
+        ],
+        "answer": "out",
+        "accept": [
+          "out",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 2 — Exercise 12: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "Traffic jams and pollution are two big problems in the city. Traffic jams occur when there are too many cars on the roads, making it difficult for people to move around quickly. To solve this, cities can encourage people to use public transportation, like buses or trains, instead of driving their own cars. This would reduce the number of vehicles on the roads, easing traffic congestion. Pollution is another issue in cities because there is too much dirty air from vehicles and factories. One solution for this problem is to plant more trees and create more green spaces in the city. Trees provide oxygen and clean the air. By increasing the number of trees, cities can improve air quality and make the environment healthier for everyone. In conclusion, we all need to work together to solve the problems of traffic and pollution. By using public transportation and starting green projects like planting trees, we can make our city environment more sustainable and enjoyable.\n\nWhich is a big problem in the city?",
         "options": [
           "traffic jams",
@@ -850,7 +1710,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 2 — Exercise 12: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "Traffic jams and pollution are two big problems in the city. Traffic jams occur when there are too many cars on the roads, making it difficult for people to move around quickly. To solve this, cities can encourage people to use public transportation, like buses or trains, instead of driving their own cars. This would reduce the number of vehicles on the roads, easing traffic congestion. Pollution is another issue in cities because there is too much dirty air from vehicles and factories. One solution for this problem is to plant more trees and create more green spaces in the city. Trees provide oxygen and clean the air. By increasing the number of trees, cities can improve air quality and make the environment healthier for everyone. In conclusion, we all need to work together to solve the problems of traffic and pollution. By using public transportation and starting green projects like planting trees, we can make our city environment more sustainable and enjoyable.\n\nWhat causes traffic jams in the city?",
         "options": [
           "too many cars on the roads",
@@ -871,7 +1731,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 2 — Exercise 12: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "Traffic jams and pollution are two big problems in the city. Traffic jams occur when there are too many cars on the roads, making it difficult for people to move around quickly. To solve this, cities can encourage people to use public transportation, like buses or trains, instead of driving their own cars. This would reduce the number of vehicles on the roads, easing traffic congestion. Pollution is another issue in cities because there is too much dirty air from vehicles and factories. One solution for this problem is to plant more trees and create more green spaces in the city. Trees provide oxygen and clean the air. By increasing the number of trees, cities can improve air quality and make the environment healthier for everyone. In conclusion, we all need to work together to solve the problems of traffic and pollution. By using public transportation and starting green projects like planting trees, we can make our city environment more sustainable and enjoyable.\n\nHow can cities reduce traffic congestion according to the passage?",
         "options": [
           "by encouraging more people to drive their own cars",
@@ -892,7 +1752,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 2 — Exercise 12: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "Traffic jams and pollution are two big problems in the city. Traffic jams occur when there are too many cars on the roads, making it difficult for people to move around quickly. To solve this, cities can encourage people to use public transportation, like buses or trains, instead of driving their own cars. This would reduce the number of vehicles on the roads, easing traffic congestion. Pollution is another issue in cities because there is too much dirty air from vehicles and factories. One solution for this problem is to plant more trees and create more green spaces in the city. Trees provide oxygen and clean the air. By increasing the number of trees, cities can improve air quality and make the environment healthier for everyone. In conclusion, we all need to work together to solve the problems of traffic and pollution. By using public transportation and starting green projects like planting trees, we can make our city environment more sustainable and enjoyable.\n\nWhat is suggested as a solution for pollution in cities?",
         "options": [
           "increasing the number of factories",
@@ -913,7 +1773,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 2 — Exercise 12: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "Traffic jams and pollution are two big problems in the city. Traffic jams occur when there are too many cars on the roads, making it difficult for people to move around quickly. To solve this, cities can encourage people to use public transportation, like buses or trains, instead of driving their own cars. This would reduce the number of vehicles on the roads, easing traffic congestion. Pollution is another issue in cities because there is too much dirty air from vehicles and factories. One solution for this problem is to plant more trees and create more green spaces in the city. Trees provide oxygen and clean the air. By increasing the number of trees, cities can improve air quality and make the environment healthier for everyone. In conclusion, we all need to work together to solve the problems of traffic and pollution. By using public transportation and starting green projects like planting trees, we can make our city environment more sustainable and enjoyable.\n\nWhat do trees provide?",
         "options": [
           "noise pollution",
@@ -934,7 +1794,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 2 — Exercise 12: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "Traffic jams and pollution are two big problems in the city. Traffic jams occur when there are too many cars on the roads, making it difficult for people to move around quickly. To solve this, cities can encourage people to use public transportation, like buses or trains, instead of driving their own cars. This would reduce the number of vehicles on the roads, easing traffic congestion. Pollution is another issue in cities because there is too much dirty air from vehicles and factories. One solution for this problem is to plant more trees and create more green spaces in the city. Trees provide oxygen and clean the air. By increasing the number of trees, cities can improve air quality and make the environment healthier for everyone. In conclusion, we all need to work together to solve the problems of traffic and pollution. By using public transportation and starting green projects like planting trees, we can make our city environment more sustainable and enjoyable.\n\nWhich sentence is TRUE according to the passage?",
         "options": [
           "Pollution is not a problem in cities",
@@ -955,9 +1815,534 @@
       {
         "game": "quiz",
         "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If they start saving money from now, they _________ afford to go to Ha Long Bay on holiday.",
+        "options": [
+          "should",
+          "need",
+          "can",
+          "must"
+        ],
+        "answer": "can",
+        "accept": [
+          "can",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If I get the job offer today, I _________ accept it and start working on Monday.",
+        "options": [
+          "should",
+          "might",
+          "need",
+          "must"
+        ],
+        "answer": "should",
+        "accept": [
+          "should",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If you want to enhance your well-being, you _________ stay up too late.",
+        "options": [
+          "shouldn't",
+          "may not",
+          "might not",
+          "needn't"
+        ],
+        "answer": "shouldn't",
+        "accept": [
+          "shouldn't",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If you don't charge the battery, your device _________ function properly.",
+        "options": [
+          "mustn't",
+          "can't",
+          "shouldn't",
+          "needn't"
+        ],
+        "answer": "can't",
+        "accept": [
+          "can't",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If you want to travel to Australia, you _________ have a valid passport.",
+        "options": [
+          "should",
+          "may",
+          "can",
+          "must"
+        ],
+        "answer": "must",
+        "accept": [
+          "must",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If it snows tomorrow, we _________ have to cancel our outdoor event.",
+        "options": [
+          "can",
+          "may",
+          "must",
+          "should"
+        ],
+        "answer": "may",
+        "accept": [
+          "may",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If you enroll in our intensive Spanish class, you _________ speak this language fluently after two months.",
+        "options": [
+          "can",
+          "should",
+          "must",
+          "need"
+        ],
+        "answer": "should",
+        "accept": [
+          "should",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If you want to pass the driving test, you _________ study harder and practice more regularly.",
+        "options": [
+          "must",
+          "will",
+          "may",
+          "might"
+        ],
+        "answer": "must",
+        "accept": [
+          "must",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If it's a private event, you _________ attend without an invitation.",
+        "options": [
+          "shouldn’t",
+          "mustn't",
+          "may not",
+          "needn't"
+        ],
+        "answer": "mustn't",
+        "accept": [
+          "mustn't",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If you want to sleep well at night, you _________ drink too much caffeine after 3 p.m.",
+        "options": [
+          "can’t",
+          "might not",
+          "shouldn't",
+          "may not"
+        ],
+        "answer": "shouldn't",
+        "accept": [
+          "shouldn't",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If they want to participate in the competition, they ______ violate any of these regulations.",
+        "options": [
+          "shouldn't",
+          "mustn't",
+          "can't",
+          "might not"
+        ],
+        "answer": "mustn't",
+        "accept": [
+          "mustn't",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If you want to avoid traffic, you _________ leave early in the morning or consider another route.",
+        "options": [
+          "will",
+          "need",
+          "should",
+          "must"
+        ],
+        "answer": "should",
+        "accept": [
+          "should",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If you want to succeed in their career, you _________ consider pursuing further education.",
+        "options": [
+          "can",
+          "might",
+          "need",
+          "must"
+        ],
+        "answer": "might",
+        "accept": [
+          "might",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If the team works effectively, they _________ complete the project ahead of schedule.",
+        "options": [
+          "can",
+          "must",
+          "can’t",
+          "mustn't"
+        ],
+        "answer": "can",
+        "accept": [
+          "can",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If you want to stay healthy, you _________ eat too much junk food.",
+        "options": [
+          "shouldn't",
+          "needn't",
+          "can't",
+          "might not"
+        ],
+        "answer": "shouldn't",
+        "accept": [
+          "shouldn't",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If they want to raduate, they _________ complete all the required coursework.",
+        "options": [
+          "must",
+          "should",
+          "can",
+          "might"
+        ],
+        "answer": "must",
+        "accept": [
+          "must",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If we don't book our tickets in advance, we _________ guarantee seats for the concert.",
+        "options": [
+          "shouldn't",
+          "mustn't",
+          "can't",
+          "might not"
+        ],
+        "answer": "can't",
+        "accept": [
+          "can't",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If you want to have a productive meeting, you _________ carefully make a plan and set clear goals.",
+        "options": [
+          "can",
+          "might",
+          "must",
+          "may"
+        ],
+        "answer": "must",
+        "accept": [
+          "must",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "If the traffic is heavy, we _________ make it to the movie theater before the show starts.",
+        "options": [
+          "needn't",
+          "shouldn't",
+          "might not",
+          "mustn't"
+        ],
+        "answer": "might not",
+        "accept": [
+          "might not",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "To maintain a <u class=\"quiz-error-opt\">healthy</u> lifestyle, it is <u class=\"quiz-error-opt\">important</u> to have a <u class=\"quiz-error-opt\">well-balance</u> approach to <u class=\"quiz-error-opt\">work</u>, rest, and leisure activities.",
+        "options": [
+          "healthy",
+          "important",
+          "well-balance",
+          "work"
+        ],
+        "answer": "well-balance",
+        "accept": [
+          "well-balance",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "Regular exercise <u class=\"quiz-error-opt\">like</u> jogging, cycling, and dancing <u class=\"quiz-error-opt\">can</u> <u class=\"quiz-error-opt\">greatly</u> enhance <u class=\"quiz-error-opt\">physic</u> health.",
+        "options": [
+          "like",
+          "can",
+          "greatly",
+          "physic"
+        ],
+        "answer": "physic",
+        "accept": [
+          "physic",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "When <u class=\"quiz-error-opt\">managing</u> your tasks, you should <u class=\"quiz-error-opt\">make</u> priority to the <u class=\"quiz-error-opt\">most</u> urgent and <u class=\"quiz-error-opt\">important</u> ones.",
+        "options": [
+          "managing",
+          "make",
+          "most",
+          "important"
+        ],
+        "answer": "make",
+        "accept": [
+          "make",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "When feeling <u class=\"quiz-error-opt\">stress</u> out, I find it <u class=\"quiz-error-opt\">helpful</u> to talk to <u class=\"quiz-error-opt\">a</u> close friend or family member <u class=\"quiz-error-opt\">about</u> what's bothering me.",
+        "options": [
+          "stress",
+          "helpful",
+          "a",
+          "about"
+        ],
+        "answer": "stress",
+        "accept": [
+          "stress",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "As we <u class=\"quiz-error-opt\">get</u> older, it's common to <u class=\"quiz-error-opt\">start</u> worrying <u class=\"quiz-error-opt\">of</u> our health and take steps to stay <u class=\"quiz-error-opt\">healthy</u>.",
+        "options": [
+          "get",
+          "start",
+          "of",
+          "healthy"
+        ],
+        "answer": "of",
+        "accept": [
+          "of",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "It is important <u class=\"quiz-error-opt\">for</u> parents to respond <u class=\"quiz-error-opt\">appropriate</u> <u class=\"quiz-error-opt\">to</u> their child's <u class=\"quiz-error-opt\">emotional</u> needs.",
+        "options": [
+          "for",
+          "appropriate",
+          "to",
+          "emotional"
+        ],
+        "answer": "appropriate",
+        "accept": [
+          "appropriate",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (1).",
         "options": [
           "limitation",
@@ -978,7 +2363,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (2).",
         "options": [
           "achieve",
@@ -999,7 +2384,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (3).",
         "options": [
           "give",
@@ -1020,7 +2405,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (4).",
         "options": [
           "communication",
@@ -1041,7 +2426,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (5).",
         "options": [
           "create",
@@ -1062,7 +2447,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (6).",
         "options": [
           "advantage",
@@ -1083,7 +2468,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (7).",
         "options": [
           "advise",
@@ -1104,7 +2489,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (8).",
         "options": [
           "simple",
@@ -1125,7 +2510,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (9).",
         "options": [
           "stressed",
@@ -1146,7 +2531,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 3 — Exercise 13. Read the passage and choose the correct option to fill in the blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "It's not easy to manage school and life, but with some good time (1) ________________ techniques, it's possible to (2) ________________ a study-life balance. Here are some tips for secondary-school students. Firstly, (3) ___________________ a schedule. Plan your week in advance, allocating specific times for studying, attending classes, and doing homework. You should also include breaks and time for (4) ___________________ or hobbies. Secondly, learn to prioritise. You should identify the most important tasks and focus on those first. If necessary, you can (5) ___________________ less urgent activities until you've finished your important tasks. Remember that it's okay to say no sometimes if you feel overwhelmed. Thirdly, take (6) ___________________ of any free time during the day. For example, you can use long bus journeys to read or review notes. It is also (7) ___________________ to get small tasks done during short breaks between classes. Finally, don't be too (8) ___________________ on yourself if you can’t do everything perfectly. It's normal to occasionally feel (9) ____________ out. In these situations, you can consider talking to a teacher or school (10) ___________________ for support.\n\nChọn đáp án đúng cho chỗ trống (10).",
         "options": [
           "manager",
@@ -1167,9 +2552,534 @@
       {
         "game": "quiz",
         "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "Sarah __________ a book while her brother was doing his homework.",
+        "options": [
+          "was reading",
+          "is reading",
+          "reads",
+          "will read"
+        ],
+        "answer": "was reading",
+        "accept": [
+          "was reading",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "I __________ a new book about world history at the bookstore yesterday.",
+        "options": [
+          "buy",
+          "will buy",
+          "was buying",
+          "bought"
+        ],
+        "answer": "bought",
+        "accept": [
+          "bought",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "Hoa __________ English grammar all morning to improve her skills.",
+        "options": [
+          "study",
+          "was studying",
+          "was study",
+          "studying"
+        ],
+        "answer": "was studying",
+        "accept": [
+          "was studying",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "We __________ in the park when it suddenly started raining.",
+        "options": [
+          "were walking",
+          "are walking",
+          "walk",
+          "will walk"
+        ],
+        "answer": "were walking",
+        "accept": [
+          "were walking",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "My mom __________ dinner at seven o'clock yesterday evening.",
+        "options": [
+          "were cooking",
+          "cooked",
+          "is cooking",
+          "was cooking"
+        ],
+        "answer": "was cooking",
+        "accept": [
+          "was cooking",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "We were having a barbecue in the backyard when the neighbours __________ over.",
+        "options": [
+          "were coming",
+          "came",
+          "come",
+          "corned"
+        ],
+        "answer": "came",
+        "accept": [
+          "came",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The chef was cooking dinner while the waiter __________ the tables.",
+        "options": [
+          "sets",
+          "will set",
+          "is setting",
+          "was setting"
+        ],
+        "answer": "was setting",
+        "accept": [
+          "was setting",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "We were hiking in the mountains when we __________ a deer.",
+        "options": [
+          "spotted",
+          "spot",
+          "were spotting",
+          "are spotting"
+        ],
+        "answer": "spotted",
+        "accept": [
+          "spotted",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "I __________ on the couch and watching my favourite TV show on Netflix right now.",
+        "options": [
+          "sat",
+          "am sitting",
+          "was sitting",
+          "sit"
+        ],
+        "answer": "am sitting",
+        "accept": [
+          "am sitting",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "Our team __________ hard all week because we had an important match.",
+        "options": [
+          "was training",
+          "train",
+          "will train",
+          "is training"
+        ],
+        "answer": "was training",
+        "accept": [
+          "was training",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "My friends __________ around the world for years because they wanted to experience different cultures.",
+        "options": [
+          "are travelling",
+          "will travel",
+          "were travelling",
+          "travel"
+        ],
+        "answer": "were travelling",
+        "accept": [
+          "were travelling",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "Kevin __________ for his final exams in his bedroom at 2 p.m. yesterday.",
+        "options": [
+          "was studying",
+          "is studying",
+          "studied",
+          "studies"
+        ],
+        "answer": "was studying",
+        "accept": [
+          "was studying",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "They were watching a movie when the power __________ out.",
+        "options": [
+          "were going",
+          "was going",
+          "went",
+          "goes"
+        ],
+        "answer": "went",
+        "accept": [
+          "went",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "Lan __________ at a local animal shelter three years ago.",
+        "options": [
+          "volunteered",
+          "will volunteer",
+          "was volunteering",
+          "volunteers"
+        ],
+        "answer": "volunteered",
+        "accept": [
+          "volunteered",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "_____ Lisa and Rose _____ for groceries at the supermarket when you met them?",
+        "options": [
+          "Was – shopping",
+          "Were – shopping",
+          "Are - shopping",
+          "Do - shop"
+        ],
+        "answer": "Were – shopping",
+        "accept": [
+          "Were – shopping",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "<u class=\"quiz-error-opt\">Despite</u> <u class=\"quiz-error-opt\">its</u> age, the antique clock is well <u class=\"quiz-error-opt\">preserve</u> and still <u class=\"quiz-error-opt\">keeps</u> accurate time.",
+        "options": [
+          "Despite",
+          "its",
+          "preserve",
+          "keeps"
+        ],
+        "answer": "preserve",
+        "accept": [
+          "preserve",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "We <u class=\"quiz-error-opt\">was walking</u> home when we <u class=\"quiz-error-opt\">saw</u> <u class=\"quiz-error-opt\">a</u> shooting star <u class=\"quiz-error-opt\">in</u> the sky.",
+        "options": [
+          "was walking",
+          "saw",
+          "a",
+          "in"
+        ],
+        "answer": "was walking",
+        "accept": [
+          "was walking",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "Mai <u class=\"quiz-error-opt\">wishes</u> she could <u class=\"quiz-error-opt\">experienced</u> a magical adventure <u class=\"quiz-error-opt\">like</u> <u class=\"quiz-error-opt\">in</u> fairy tales.",
+        "options": [
+          "wishes",
+          "experienced",
+          "like",
+          "in"
+        ],
+        "answer": "experienced",
+        "accept": [
+          "experienced",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "Companies <u class=\"quiz-error-opt\">usually</u> <u class=\"quiz-error-opt\">use</u> advertisements to <u class=\"quiz-error-opt\">promotion</u> <u class=\"quiz-error-opt\">their</u> products.",
+        "options": [
+          "usually",
+          "use",
+          "promotion",
+          "their"
+        ],
+        "answer": "promotion",
+        "accept": [
+          "promotion",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "Toan is chatting <u class=\"quiz-error-opt\">with</u> <u class=\"quiz-error-opt\">his</u> friends online <u class=\"quiz-error-opt\">at</u> 11 p.m. last night.",
+        "options": [
+          "wishes",
+          "with",
+          "his",
+          "at"
+        ],
+        "answer": "wishes",
+        "accept": [
+          "wishes",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "My brother <u class=\"quiz-error-opt\">wishes</u> he <u class=\"quiz-error-opt\">receives</u> a job offer <u class=\"quiz-error-opt\">from</u> his dream <u class=\"quiz-error-opt\">company</u>.",
+        "options": [
+          "wishes",
+          "receives",
+          "from",
+          "company"
+        ],
+        "answer": "receives",
+        "accept": [
+          "receives",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "The <u class=\"quiz-error-opt\">meeting</u> room was occupyed, so we had <u class=\"quiz-error-opt\">to</u> find <u class=\"quiz-error-opt\">another</u> place to meet.",
+        "options": [
+          "meeting",
+          "occupied",
+          "to",
+          "another"
+        ],
+        "answer": "occupied",
+        "accept": [
+          "occupied",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "I was <u class=\"quiz-error-opt\">plan</u> my wedding for <u class=\"quiz-error-opt\">months</u> <u class=\"quiz-error-opt\">because</u> I wanted everything <u class=\"quiz-error-opt\">to be</u> perfect.",
+        "options": [
+          "plan",
+          "months",
+          "because",
+          "to be"
+        ],
+        "answer": "plan",
+        "accept": [
+          "plan",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "Elsa <u class=\"quiz-error-opt\">wishes</u> she <u class=\"quiz-error-opt\">geted</u> a <u class=\"quiz-error-opt\">surprise</u> party <u class=\"quiz-error-opt\">for</u> her birthday.",
+        "options": [
+          "wishes",
+          "geted",
+          "surprise",
+          "for"
+        ],
+        "answer": "geted",
+        "accept": [
+          "geted",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "Astronomers <u class=\"quiz-error-opt\">use</u> telescopes to <u class=\"quiz-error-opt\">observation</u> <u class=\"quiz-error-opt\">distant</u> stars <u class=\"quiz-error-opt\">and</u> galaxies.",
+        "options": [
+          "use",
+          "observation",
+          "distant",
+          "and"
+        ],
+        "answer": "observation",
+        "accept": [
+          "observation",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nWhich countries have Vietnamese people fought against as mentioned in the text?",
         "options": [
           "Thailand and Cambodia",
@@ -1190,7 +3100,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nWhen does the Lunar New Year usually take place?",
         "options": [
           "March or April",
@@ -1211,7 +3121,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nWhy do Vietnamese people clean their houses during Tet?",
         "options": [
           "to get rid of bad luck from the old year",
@@ -1232,7 +3142,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nWhat do people give each other during Tet?",
         "options": [
           "lucky money in red envelopes",
@@ -1253,7 +3163,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nWhat is “banh chung” mentioned in the text?",
         "options": [
           "sticky rice with pork inside",
@@ -1274,7 +3184,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nVietnamese people believe that when someone dies, their soul.",
         "options": [
           "disappears",
@@ -1295,7 +3205,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nWhat do Vietnamese people offer to their ancestors daily?",
         "options": [
           "money",
@@ -1316,7 +3226,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 4 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "Vietnamese traditions are well preserved and passed down through generations thanks to the Vietnamese people's love for their country. They have a long history of fighting against foreign invaders, such as China and France. This has made them very protective of their culture and traditions.\nOne of the most important traditions is Tet, the Lunar New Year. It takes place in January or February. The whole country stops working for a week to celebrate. People visit their families and give each other lucky money in red envelopes. They also clean their houses to get rid of bad luck from the old year. There are many delicious foods to eat at Tet, such as \"banh chung\", which is sticky rice with pork inside, wrapped in “dong” leaves.\nAnother important tradition is ancestor worship. Vietnamese people believe that when someone dies, their soul lives on and can protect the family. They have an altar in their house where they put pictures of their ancestors. Every day, they light incense and offer food and drink to their ancestors. During Tet, they invite their ancestors' spirits to join the celebrations. They also clean and decorate their ancestors' graves and bring them food and flowers.\n\nWhat do Vietnamese people bring to their ancestors' graves during Tet?",
         "options": [
           "food and flowers",
@@ -1337,9 +3247,345 @@
       {
         "game": "quiz",
         "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "Tom can't go to school today because he _________ just _________ his leg.",
+        "options": [
+          "was - breaking",
+          "will - break",
+          "has - broken",
+          "have – broken"
+        ],
+        "answer": "has - broken",
+        "accept": [
+          "has - broken",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "Christine _________ at that company since she was graduated from university.",
+        "options": [
+          "has worked",
+          "was working",
+          "worked",
+          "is working"
+        ],
+        "answer": "has worked",
+        "accept": [
+          "has worked",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "Tina and Chris _________ together as a couple for over five years.",
+        "options": [
+          "have been",
+          "are",
+          "will be",
+          "were"
+        ],
+        "answer": "have been",
+        "accept": [
+          "have been",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "Jane _________ her exam results yet, so she is feeling very anxious about how she performed.",
+        "options": [
+          "hasn't receive",
+          "received",
+          "didn't receive",
+          "hasn't received"
+        ],
+        "answer": "hasn't received",
+        "accept": [
+          "hasn't received",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "I _________ three chapters of this novel so far, and I 'm really enjoying it.",
+        "options": [
+          "complete",
+          "have completed",
+          "has completed",
+          "am completing"
+        ],
+        "answer": "have completed",
+        "accept": [
+          "have completed",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "She has cooked dinner for us every evening since we _________ in together.",
+        "options": [
+          "moved",
+          "have moved",
+          "move",
+          "are moving"
+        ],
+        "answer": "moved",
+        "accept": [
+          "moved",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "We _________ a final decision on the vacation destination yet.",
+        "options": [
+          "have made",
+          "made",
+          "haven't made",
+          "didn't make"
+        ],
+        "answer": "haven't made",
+        "accept": [
+          "haven't made",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "I _________ that series several times, and it never fails to entertain me.",
+        "options": [
+          "have watched",
+          "had watched",
+          "watch",
+          "will watch"
+        ],
+        "answer": "have watched",
+        "accept": [
+          "have watched",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The football team _________ for their upcoming competition when the coach called for a break.",
+        "options": [
+          "was practising",
+          "have practised",
+          "is practising",
+          "practiced"
+        ],
+        "answer": "was practising",
+        "accept": [
+          "was practising",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "My daughter _________ on stage once, and it was such a memorable moment for her.",
+        "options": [
+          "has performed",
+          "performed",
+          "was performing",
+          "have performed"
+        ],
+        "answer": "has performed",
+        "accept": [
+          "has performed",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "_________ you ever _________ any of these famous specialty dishes?",
+        "options": [
+          "Have - try",
+          "Did - try",
+          "Will - try",
+          "Have – tried"
+        ],
+        "answer": "Have – tried",
+        "accept": [
+          "Have – tried",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The students _________ at the library when the fire alarm suddenly went off.",
+        "options": [
+          "have studied",
+          "were studying",
+          "studied",
+          "would study"
+        ],
+        "answer": "were studying",
+        "accept": [
+          "were studying",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "Jenny has been a member of the basketball team the beginning of the season.",
+        "options": [
+          "since",
+          "for",
+          "yet",
+          "once"
+        ],
+        "answer": "since",
+        "accept": [
+          "since",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "Last summer vacation, they _________ a tropical island and immediately fell in love with this place.",
+        "options": [
+          "have visited",
+          "were visiting",
+          "visited",
+          "would visit"
+        ],
+        "answer": "visited",
+        "accept": [
+          "visited",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "The company _________ recently _________ its operations to new international markets.",
+        "options": [
+          "has - expanded",
+          "will - expand",
+          "had - expanded",
+          "was - expanding"
+        ],
+        "answer": "has - expanded",
+        "accept": [
+          "has - expanded",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "This is the first time I _________ ever _________ to such a beautiful village.",
+        "options": [
+          "have - came",
+          "was - coming",
+          "have - come",
+          "did - come"
+        ],
+        "answer": "have - come",
+        "accept": [
+          "have - come",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (1).",
         "options": [
           "exciting",
@@ -1360,7 +3606,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (2).",
         "options": [
           "violence",
@@ -1381,7 +3627,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (3).",
         "options": [
           "hurt",
@@ -1402,7 +3648,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (4).",
         "options": [
           "anxious",
@@ -1423,7 +3669,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (5).",
         "options": [
           "success",
@@ -1444,7 +3690,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (6).",
         "options": [
           "encourage",
@@ -1465,7 +3711,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (7).",
         "options": [
           "action",
@@ -1486,7 +3732,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 5 — Exercise 13. Read the passage and choose the correct option to fill in each blank.",
+        "exercise": "Đọc hiểu điền khuyết",
         "question": "Secondary school was not a fun time with me due to my (1) ________________ experience of being bullied. It started with some teasing and name-calling, but then it got more serious with physical (2) ________________. There were a few times when I tried to fight back the bullies, but I always ended up getting (3) ________________ because they were bigger and stronger than me. The worst part was that none of my peers ever stepped up to help me, which made me feel so alone and (4) ________________. After a long time of suffering alone and keeping silence, I finally sought (5) ________________ from my parents. It took a lot of (6) ________________ for me to tell them what was going on, but I'm glad I did. They immediately contacted the school and demanded that they take (7) ________________ against the bullies. Finally, something was done, and the bullying stopped.\nLooking back, I just wish I had spoken up sooner. I also think the school could have done a better job of (8) ________________ with the issue. Nowadays, there are more methods available for addressing bullying, and I hope that no one else has to go through what I went through.\n\nChọn đáp án đúng cho chỗ trống (8).",
         "options": [
           "connecting",
@@ -1501,15 +3747,519 @@
           "c"
         ],
         "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu",
+        "question": "Recently, Tom has just finished his summer course on 20th century literature, and he has had a great experience. Although he was nervous at first since it was a challenging subject for him, he ended up learning many new things and gaining a deeper appreciation for literature. One of the things that he loved most about this course was that he could have access to various texts from different countries and cultures. The students of the course learned American novels like “The Great Gatsby” and “To Kill a Mockingbird”, as well as works from Europe, Africa, and Asia. This helped them expand their knowledge of world literature and see how different writers express their ideas and experiences. Moreover, the learners also enjoyed the discussions they had in class. The teacher encouraged them to share their opinions of the texts. For example, after reading “Things Fall Apart”, the class talked about the impact of colonialism on African societies and how the main character's actions were influenced by his culture. Listening to other students' opinions helped Tom see the story from different angles and develop a better critical thinking.\nThe course wasn't always easy, though. Some books had complex languages and themes that were hard to understand at first. Tom really struggled with “James Joyce's Ulysses”, which is famous for its experimental style. It took a lot of time and effort to understand the book, but in the end, Tom was glad that he stuck with it because he was able to appreciate its creative use of language and structure. This experience taught him that sometimes you must work through difficult materials to fully appreciate their value.\n\nWhat was the focus of the summer course that Tom took?",
+        "options": [
+          "Poetry",
+          "Short stories",
+          "20th century literature",
+          "Classic novels"
+        ],
+        "answer": "20th century literature",
+        "accept": [
+          "20th century literature",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu",
+        "question": "Recently, Tom has just finished his summer course on 20th century literature, and he has had a great experience. Although he was nervous at first since it was a challenging subject for him, he ended up learning many new things and gaining a deeper appreciation for literature. One of the things that he loved most about this course was that he could have access to various texts from different countries and cultures. The students of the course learned American novels like “The Great Gatsby” and “To Kill a Mockingbird”, as well as works from Europe, Africa, and Asia. This helped them expand their knowledge of world literature and see how different writers express their ideas and experiences. Moreover, the learners also enjoyed the discussions they had in class. The teacher encouraged them to share their opinions of the texts. For example, after reading “Things Fall Apart”, the class talked about the impact of colonialism on African societies and how the main character's actions were influenced by his culture. Listening to other students' opinions helped Tom see the story from different angles and develop a better critical thinking.\nThe course wasn't always easy, though. Some books had complex languages and themes that were hard to understand at first. Tom really struggled with “James Joyce's Ulysses”, which is famous for its experimental style. It took a lot of time and effort to understand the book, but in the end, Tom was glad that he stuck with it because he was able to appreciate its creative use of language and structure. This experience taught him that sometimes you must work through difficult materials to fully appreciate their value.\n\nWhich of the following did Tom’s class read?",
+        "options": [
+          "novels from Europe, Africa, and Asia",
+          "plays from different countries",
+          "biographies of famous authors",
+          "poetries from around the world"
+        ],
+        "answer": "novels from Europe, Africa, and Asia",
+        "accept": [
+          "novels from Europe, Africa, and Asia",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu",
+        "question": "Recently, Tom has just finished his summer course on 20th century literature, and he has had a great experience. Although he was nervous at first since it was a challenging subject for him, he ended up learning many new things and gaining a deeper appreciation for literature. One of the things that he loved most about this course was that he could have access to various texts from different countries and cultures. The students of the course learned American novels like “The Great Gatsby” and “To Kill a Mockingbird”, as well as works from Europe, Africa, and Asia. This helped them expand their knowledge of world literature and see how different writers express their ideas and experiences. Moreover, the learners also enjoyed the discussions they had in class. The teacher encouraged them to share their opinions of the texts. For example, after reading “Things Fall Apart”, the class talked about the impact of colonialism on African societies and how the main character's actions were influenced by his culture. Listening to other students' opinions helped Tom see the story from different angles and develop a better critical thinking.\nThe course wasn't always easy, though. Some books had complex languages and themes that were hard to understand at first. Tom really struggled with “James Joyce's Ulysses”, which is famous for its experimental style. It took a lot of time and effort to understand the book, but in the end, Tom was glad that he stuck with it because he was able to appreciate its creative use of language and structure. This experience taught him that sometimes you must work through difficult materials to fully appreciate their value.\n\nWhat did the class do after reading “Things Fall Apart”?",
+        "options": [
+          "wrote essays about the book",
+          "discussed the impact of colonialism",
+          "watched a movie based on the book",
+          "made a presentation about the book"
+        ],
+        "answer": "discussed the impact of colonialism",
+        "accept": [
+          "discussed the impact of colonialism",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu",
+        "question": "Recently, Tom has just finished his summer course on 20th century literature, and he has had a great experience. Although he was nervous at first since it was a challenging subject for him, he ended up learning many new things and gaining a deeper appreciation for literature. One of the things that he loved most about this course was that he could have access to various texts from different countries and cultures. The students of the course learned American novels like “The Great Gatsby” and “To Kill a Mockingbird”, as well as works from Europe, Africa, and Asia. This helped them expand their knowledge of world literature and see how different writers express their ideas and experiences. Moreover, the learners also enjoyed the discussions they had in class. The teacher encouraged them to share their opinions of the texts. For example, after reading “Things Fall Apart”, the class talked about the impact of colonialism on African societies and how the main character's actions were influenced by his culture. Listening to other students' opinions helped Tom see the story from different angles and develop a better critical thinking.\nThe course wasn't always easy, though. Some books had complex languages and themes that were hard to understand at first. Tom really struggled with “James Joyce's Ulysses”, which is famous for its experimental style. It took a lot of time and effort to understand the book, but in the end, Tom was glad that he stuck with it because he was able to appreciate its creative use of language and structure. This experience taught him that sometimes you must work through difficult materials to fully appreciate their value.\n\nWhat was the biggest difficulty Tom faced while taking the course?",
+        "options": [
+          "having to read too many books",
+          "understanding the complex language and ideas in some books",
+          "expressing his opinions during the class discussions",
+          "completing the writing assignments after the class"
+        ],
+        "answer": "understanding the complex language and ideas in some books",
+        "accept": [
+          "understanding the complex language and ideas in some books",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu",
+        "question": "Recently, Tom has just finished his summer course on 20th century literature, and he has had a great experience. Although he was nervous at first since it was a challenging subject for him, he ended up learning many new things and gaining a deeper appreciation for literature. One of the things that he loved most about this course was that he could have access to various texts from different countries and cultures. The students of the course learned American novels like “The Great Gatsby” and “To Kill a Mockingbird”, as well as works from Europe, Africa, and Asia. This helped them expand their knowledge of world literature and see how different writers express their ideas and experiences. Moreover, the learners also enjoyed the discussions they had in class. The teacher encouraged them to share their opinions of the texts. For example, after reading “Things Fall Apart”, the class talked about the impact of colonialism on African societies and how the main character's actions were influenced by his culture. Listening to other students' opinions helped Tom see the story from different angles and develop a better critical thinking.\nThe course wasn't always easy, though. Some books had complex languages and themes that were hard to understand at first. Tom really struggled with “James Joyce's Ulysses”, which is famous for its experimental style. It took a lot of time and effort to understand the book, but in the end, Tom was glad that he stuck with it because he was able to appreciate its creative use of language and structure. This experience taught him that sometimes you must work through difficult materials to fully appreciate their value.\n\nWhat did Tom learn from reading “James Joyce's Ulysses”?",
+        "options": [
+          "the importance of patience and hard work",
+          "the value of having diverse opinions",
+          "the importance of experimental writing styles",
+          "the difficulty of understanding complex literature"
+        ],
+        "answer": "the importance of patience and hard work",
+        "accept": [
+          "the importance of patience and hard work",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu",
+        "question": "Recently, Tom has just finished his summer course on 20th century literature, and he has had a great experience. Although he was nervous at first since it was a challenging subject for him, he ended up learning many new things and gaining a deeper appreciation for literature. One of the things that he loved most about this course was that he could have access to various texts from different countries and cultures. The students of the course learned American novels like “The Great Gatsby” and “To Kill a Mockingbird”, as well as works from Europe, Africa, and Asia. This helped them expand their knowledge of world literature and see how different writers express their ideas and experiences. Moreover, the learners also enjoyed the discussions they had in class. The teacher encouraged them to share their opinions of the texts. For example, after reading “Things Fall Apart”, the class talked about the impact of colonialism on African societies and how the main character's actions were influenced by his culture. Listening to other students' opinions helped Tom see the story from different angles and develop a better critical thinking.\nThe course wasn't always easy, though. Some books had complex languages and themes that were hard to understand at first. Tom really struggled with “James Joyce's Ulysses”, which is famous for its experimental style. It took a lot of time and effort to understand the book, but in the end, Tom was glad that he stuck with it because he was able to appreciate its creative use of language and structure. This experience taught him that sometimes you must work through difficult materials to fully appreciate their value.\n\nWhich of the following is NOT TRUE about Tom's course?",
+        "options": [
+          "Some books were complex and hard to understand",
+          "Tom could easily understand the book “James Joyce's Ulysses”",
+          "Tom enjoyed having access to texts from different cultures",
+          "“The Great Gatsby” is an example of an American novel"
+        ],
+        "answer": "Tom could easily understand the book “James Joyce's Ulysses”",
+        "accept": [
+          "Tom could easily understand the book “James Joyce's Ulysses”",
+          "B",
+          "b"
+        ],
+        "fillMode": false
       }
     ],
     "6": [
       {
         "game": "quiz",
         "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "They encourage everyone to __________ their goals and ambitions.",
+        "options": [
+          "pursue",
+          "play",
+          "entertain",
+          "depend"
+        ],
+        "answer": "pursue",
+        "accept": [
+          "pursue",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "Our school offers __________ extracurricular activities, including sports, music, and art.",
+        "options": [
+          "private",
+          "personal",
+          "family-oriented",
+          "various"
+        ],
+        "answer": "various",
+        "accept": [
+          "various",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "Rose's looking forward to having her own car so she can be more __________.",
+        "options": [
+          "various",
+          "extended",
+          "dependent",
+          "independent"
+        ],
+        "answer": "independent",
+        "accept": [
+          "independent",
+          "D",
+          "d"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "I find it challenging to __________ new vocabulary words.",
+        "options": [
+          "promise",
+          "replace",
+          "memorise",
+          "pursue"
+        ],
+        "answer": "memorise",
+        "accept": [
+          "memorise",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "My teacher gave me the __________ to present my project to the class.",
+        "options": [
+          "opportune",
+          "opportunity",
+          "opportunely",
+          "opponent"
+        ],
+        "answer": "opportunity",
+        "accept": [
+          "opportunity",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "During the lecture, the professor encouraged us to __________ notes to help with studying later.",
+        "options": [
+          "take",
+          "do",
+          "receive",
+          "join"
+        ],
+        "answer": "take",
+        "accept": [
+          "take",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "My aunt is very __________. She loves spending time with her family and relatives.",
+        "options": [
+          "family-oriented",
+          "annoyed",
+          "lazy",
+          "careless"
+        ],
+        "answer": "family-oriented",
+        "accept": [
+          "family-oriented",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Trắc nghiệm",
+        "skill": "reading",
+        "exercise": "Hoàn thành câu",
+        "question": "We depend __________ the Internet to access information and communicate with others.",
+        "options": [
+          "at",
+          "in",
+          "on",
+          "of"
+        ],
+        "answer": "on",
+        "accept": [
+          "on",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "Alan agreed to <u class=\"quiz-error-opt\">joining</u> the soccer team <u class=\"quiz-error-opt\">and</u> <u class=\"quiz-error-opt\">play</u> in <u class=\"quiz-error-opt\">the</u> match next week.",
+        "options": [
+          "joining",
+          "and",
+          "play",
+          "the"
+        ],
+        "answer": "joining",
+        "accept": [
+          "joining",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "She enjoys <u class=\"quiz-error-opt\">reading</u> in her room <u class=\"quiz-error-opt\">because</u> it gives her <u class=\"quiz-error-opt\">private</u> from the rest <u class=\"quiz-error-opt\">of</u> the house.",
+        "options": [
+          "reading",
+          "because",
+          "private",
+          "of"
+        ],
+        "answer": "private",
+        "accept": [
+          "private",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "They recommend <u class=\"quiz-error-opt\">to visit</u> the museum <u class=\"quiz-error-opt\">on</u> Saturdays <u class=\"quiz-error-opt\">when</u> it's less <u class=\"quiz-error-opt\">crowded</u>.",
+        "options": [
+          "to visit",
+          "on",
+          "when",
+          "crowded"
+        ],
+        "answer": "to visit",
+        "accept": [
+          "to visit",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "We plan to <u class=\"quiz-error-opt\">went</u> to the beach next month <u class=\"quiz-error-opt\">for</u> a vacation, where we’ll <u class=\"quiz-error-opt\">spend</u> our days <u class=\"quiz-error-opt\">swimming</u> in the ocean.",
+        "options": [
+          "went",
+          "for",
+          "spend",
+          "swimming"
+        ],
+        "answer": "went",
+        "accept": [
+          "went",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "We often <u class=\"quiz-error-opt\">have</u> big dinners with our <u class=\"quiz-error-opt\">extend</u> family <u class=\"quiz-error-opt\">on</u> special occasions <u class=\"quiz-error-opt\">like</u> birthdays and weddings.",
+        "options": [
+          "have",
+          "extend",
+          "on",
+          "like"
+        ],
+        "answer": "extend",
+        "accept": [
+          "extend",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "You should avoid <u class=\"quiz-error-opt\">to wasting</u> water <u class=\"quiz-error-opt\">by</u> <u class=\"quiz-error-opt\">turning</u> off the tap <u class=\"quiz-error-opt\">while</u> brushing your teeth.",
+        "options": [
+          "to wasting",
+          "by",
+          "turning",
+          "while"
+        ],
+        "answer": "to wasting",
+        "accept": [
+          "to wasting",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "Minh promises to <u class=\"quiz-error-opt\">is</u> patient while <u class=\"quiz-error-opt\">teaching</u> <u class=\"quiz-error-opt\">his</u> little sister how <u class=\"quiz-error-opt\">to ride</u> a bike.",
+        "options": [
+          "is",
+          "teaching",
+          "his",
+          "to ride"
+        ],
+        "answer": "is",
+        "accept": [
+          "is",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "We <u class=\"quiz-error-opt\">encourage</u> children <u class=\"quiz-error-opt\">to develop</u> their <u class=\"quiz-error-opt\">independent</u> by letting them <u class=\"quiz-error-opt\">do</u> tasks by themselves.",
+        "options": [
+          "encourage",
+          "to develop",
+          "independent",
+          "do"
+        ],
+        "answer": "independent",
+        "accept": [
+          "independent",
+          "C",
+          "c"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "My sister enjoys <u class=\"quiz-error-opt\">going</u> shopping and <u class=\"quiz-error-opt\">try</u> on <u class=\"quiz-error-opt\">different</u> outfits <u class=\"quiz-error-opt\">at</u> the mall.",
+        "options": [
+          "going",
+          "try",
+          "different",
+          "at"
+        ],
+        "answer": "try",
+        "accept": [
+          "try",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Tìm lỗi sai",
+        "skill": "reading",
+        "exercise": "Tìm lỗi sai",
+        "question": "Ngan learns <u class=\"quiz-error-opt\">to speak</u> English by <u class=\"quiz-error-opt\">listen</u> to English songs and <u class=\"quiz-error-opt\">repeating</u> <u class=\"quiz-error-opt\">the</u> lyrics.",
+        "options": [
+          "to speak",
+          "listen",
+          "repeating",
+          "the"
+        ],
+        "answer": "listen",
+        "accept": [
+          "listen",
+          "B",
+          "b"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nWhat were children's eating habits like in the past?",
         "options": [
           "simple and unhealthy",
@@ -1530,7 +4280,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nmeals were common in the past.",
         "options": [
           "Homemade",
@@ -1551,7 +4301,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nWhy was meat not commonly eaten by children in the past?",
         "options": [
           "It was too expensive",
@@ -1572,7 +4322,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nWhich fast food chain is mentioned in the passage?",
         "options": [
           "Lotteria",
@@ -1593,7 +4343,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nWhy are children drawn to fast food?",
         "options": [
           "because of its healthy ingredients",
@@ -1614,7 +4364,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nWhy might families not have time to cook at home nowadays?",
         "options": [
           "because they enjoy cooking at home",
@@ -1635,7 +4385,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nWhich sentence is NOT true according to the passage?",
         "options": [
           "Children's eating habits in the past were simpler and healthier",
@@ -1656,7 +4406,7 @@
         "type": "multiple_choice",
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
-        "exercise": "Unit 6 — Exercise 13: Read the text and choose the correct options.",
+        "exercise": "Đọc hiểu",
         "question": "In the past, children's eating habits were simpler and healthier compared to today. Children mostly ate homemade meals that were prepared by their families. These meals were simple and made from fresh ingredients that were often grown in the family's garden. For example, children would eat fruits, vegetables, grains, and homemade bread. Meat was not as commonly eaten as it is now because it was expensive, so it was considered a special treat. Additionally, eating together as a family was also common, and children would sit down with their parents and siblings to enjoy meals at the dining table.\nHowever, in recent times, children's eating habits have changed significantly. Fast food chains like McDonald's and KFC have become popular, offering quick and convenient meals that are often high in unhealthy fats and sugars. Children are drawn to these foods due to their catchy advertising and toy giveaways. Additionally, processed snacks like chips, candies, and sugary drinks have become staples in many children's diets. Families are busy now, so they might not have time to cook at home. Instead, they might order food from a restaurant or buy ready-made meals from the store. This means children are eating more unhealthy foods than before.\n\nWhat is the best title for this passage?",
         "options": [
           "Changes in Children's Eating Habits",
@@ -1677,38 +4427,88 @@
   "skipped": [
     {
       "unit": 1,
-      "reason": "reading comprehension / T-F / matching — needs passage UI + answer key",
-      "item": "Exercise 13 cloze passage; Exercise 14 T/F + matching places"
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 2: Read the following words and put them in the correct column."
     },
     {
       "unit": 1,
-      "reason": "sound sorting columns — no dedicated game",
-      "item": "Exercise 2 put words in correct column (in Writing file for some units; U1 in Reading routing as phonetics drill)"
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 14: Read the text carefully, then do the tasks."
     },
     {
       "unit": 2,
-      "reason": "photo, sound sorting, matching, T/F, or open-answer layout is unsupported by quiz payload",
-      "item": "all non-MC reading layouts deliberately skipped"
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 1: Read the following words and put them in the correct column."
+    },
+    {
+      "unit": 2,
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 2: Circle the words with /aʊ/, underline the words with /əʊ/ and double underline the words with /eə/."
+    },
+    {
+      "unit": 2,
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 13: Read the text carefully, then do the tasks."
     },
     {
       "unit": 3,
-      "reason": "photo, sound sorting, matching, T/F, or open-answer layout is unsupported by quiz payload",
-      "item": "all non-MC reading layouts deliberately skipped"
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 1: Look at the photo and write the correct word with /h/ or/r/."
+    },
+    {
+      "unit": 3,
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 2: Underline the sound /h/ and double underline the sound /r/ in the following sentences. Then practise reading the sentences aloud."
+    },
+    {
+      "unit": 3,
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 6: Match the first half of the sentence in column A with the second half in column B."
+    },
+    {
+      "unit": 3,
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 14: Read the text carefully, then do the tasks."
     },
     {
       "unit": 4,
-      "reason": "photo, sound sorting, matching, T/F, or open-answer layout is unsupported by quiz payload",
-      "item": "all non-MC reading layouts deliberately skipped"
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 1: Read the following words and put them in the correct column."
+    },
+    {
+      "unit": 4,
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 2: Look at the photos and write down the correct words starting with with /m/ or /l/."
+    },
+    {
+      "unit": 4,
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 12: Read the text carefully, then do the tasks."
     },
     {
       "unit": 5,
-      "reason": "photo, sound sorting, matching, T/F, or open-answer layout is unsupported by quiz payload",
-      "item": "all non-MC reading layouts deliberately skipped"
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 1: Look at the photo and write the correct word with /y/ or /w/."
+    },
+    {
+      "unit": 5,
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 2: Underline the cluster /y/ and double underline the cluster /w/ in the following sentences. Then practise reading the sentences aloud."
     },
     {
       "unit": 6,
-      "reason": "photo, sound sorting, matching, T/F, or open-answer layout is unsupported by quiz payload",
-      "item": "all non-MC reading layouts deliberately skipped"
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 1: Look at the photos and write down the correct w ords starting with /fl/ or /fr/."
+    },
+    {
+      "unit": 6,
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 2: Underline the words with /fl/ and double underline the words with /fr/."
+    },
+    {
+      "unit": 6,
+      "reason": "non-MC layout (photo/column/matching/T-F/open tasks)",
+      "item": "Exercise 12: Read the text carefully and decide whether the following statements are True or False."
     }
   ]
 }

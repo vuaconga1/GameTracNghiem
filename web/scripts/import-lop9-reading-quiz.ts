@@ -23,7 +23,6 @@ import {
   SKILL_IDS,
   skillsForGame,
   type GameSkillsMap,
-  type SkillId,
 } from '../lib/skillCatalog';
 
 const EXTERNAL_PREFIX = 'GS9-READ';
@@ -90,8 +89,8 @@ async function ensureReadingSkills(courseId: string) {
     map[key] = null;
   }
 
-  const circleSkills = skillsForGame(map.choose_and_circle).filter((id) => id !== 'reading');
-  map.choose_and_circle = compactSkillAssignment(circleSkills as SkillId[], true);
+  // Keep choose_and_circle on reading (Lớp 9 circle-correct-form lessons).
+  map.choose_and_circle = 'reading';
 
   const enabledSet = new Set(resolveEnabledSkillIds(course.enabledSkills));
   enabledSet.add('reading');

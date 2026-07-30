@@ -194,18 +194,84 @@ describe('CourseDetailContent', () => {
 
   it('shows filtered games for writing and backs to the unit', () => {
     const skill: SkillId = 'writing';
+    const data: CourseDetailData = {
+      ...sampleData,
+      gameExercises: {
+        grammar: [
+          {
+            key: 'W Exercise 15',
+            label: 'Viết lại câu theo từ gợi ý',
+            questionCount: 10,
+            completedCount: 4,
+            indices: Array.from({ length: 10 }, (_, index) => index),
+          },
+          {
+            key: 'W Exercise 16',
+            label: 'Sắp xếp từ thành câu hoàn chỉnh',
+            questionCount: 8,
+            completedCount: 1,
+            indices: Array.from({ length: 8 }, (_, index) => index + 10),
+          },
+        ],
+      },
+    };
     const html = renderToStaticMarkup(
-      createElement(CourseDetailContent, { data: sampleData, initialSkill: skill }),
+      createElement(CourseDetailContent, { data, initialSkill: skill }),
     );
 
     expect(html).toContain('href="/courses/course-1"');
     expect(html).toContain('data-skill-step="games"');
     expect(html).toContain('Luyện kỹ năng viết');
-    expect(html).toContain('href="/games/grammar/course-1"');
+    expect(html).toContain('href="/games/grammar/course-1?exercise=W%20Exercise%2015"');
+    expect(html).toContain('href="/games/grammar/course-1?exercise=W%20Exercise%2016"');
+    expect(html).toContain('>Viết lại câu theo từ gợi ý<');
+    expect(html).toContain('>Sắp xếp từ thành câu hoàn chỉnh<');
     expect(html).not.toContain('href="/games/scramble/course-1"');
     expect(html).not.toContain('href="/games/look-and-write/course-1"');
     expect(html).not.toContain('href="/games/quiz/course-1');
     expect(html).not.toContain('href="/games/pronunciation/course-1"');
+  });
+
+  it('uses skillStats so multi-skill quiz counts only that skill', () => {
+    const data: CourseDetailData = {
+      ...sampleData,
+      course: {
+        ...sampleData.course,
+        gameSkills: {
+          ...sampleGameSkills,
+          quiz: ['reading', 'writing', 'vocabulary'],
+        },
+      },
+      games: {
+        ...sampleData.games,
+        quiz: {
+          questionCount: 78,
+          statuses: Array.from({ length: 78 }, () => 'empty'),
+        },
+      },
+      skillStats: {
+        reading: {
+          totalQuestions: 26,
+          completedQuestions: 12,
+          byGame: {
+            quiz: { questionCount: 26, completedCount: 12 },
+          },
+        },
+      },
+    };
+
+    const skillsHtml = renderToStaticMarkup(
+      createElement(CourseDetailContent, { data }),
+    );
+    expect(skillsHtml).toContain('12/26');
+    expect(skillsHtml).not.toContain('12/78');
+
+    const readingHtml = renderToStaticMarkup(
+      createElement(CourseDetailContent, { data, initialSkill: 'reading' }),
+    );
+    expect(readingHtml).toContain('href="/games/quiz/course-1?skill=reading"');
+    expect(readingHtml).toContain('>12/26<');
+    expect(readingHtml).not.toContain('>12/78<');
   });
 
   it('shows single pronunciation card under speaking skill (groups are internal)', () => {
@@ -242,9 +308,7 @@ describe('CourseDetailContent', () => {
       createElement(CourseDetailContent, { data, initialSkill: skill }),
     );
 
-    // Single parent card links to pronunciation without exercise param
     expect(html).toContain('href="/games/pronunciation/course-1"');
-    // No per-exercise cards at top level
     expect(html).not.toContain('exercise=AE');
     expect(html).not.toContain('exercise=AA');
     expect(html).not.toContain('Âm /æ/');

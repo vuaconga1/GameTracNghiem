@@ -778,6 +778,52 @@
   word-wrap: break-word;
 }
 
+.question-text.has-passage {
+  font-weight: 600;
+}
+
+.quiz-passage {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.75;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  background: var(--primary-light, #eef4ff);
+  border-radius: 10px;
+  border-left: 3px solid var(--primary, #1e3a8a);
+  color: var(--text-dark, #1f2937);
+  white-space: pre-wrap;
+}
+
+.quiz-stem {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.6;
+  color: var(--text-dark, #1f2937);
+}
+
+.question-text u.quiz-error-opt,
+.quiz-stem u.quiz-error-opt {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  font-weight: 800;
+  color: inherit;
+}
+
+.question-instruction {
+  margin: 0 0 14px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--primary-light, #eef4ff);
+  border-left: 3px solid var(--primary, #1e3a8a);
+  color: var(--text-dark, #1f2937);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
 .question-text .blank {
   display: inline-block;
   min-width: 100px;

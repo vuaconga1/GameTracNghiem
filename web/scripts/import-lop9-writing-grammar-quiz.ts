@@ -123,12 +123,8 @@ async function ensureWritingSkills(courseId: string, unit: number) {
     : [...quizSkills, 'writing' as const];
   map.quiz = compactSkillAssignment(nextQuiz, true);
 
-  const circleSkills = new Set(skillsForGame(map.choose_and_circle));
-  circleSkills.add('writing');
-  map.choose_and_circle = compactSkillAssignment(
-    SKILL_IDS.filter((id) => circleSkills.has(id)),
-    true,
-  );
+  // Circle-correct-form belongs under reading for Lớp 9, not writing.
+  map.choose_and_circle = 'reading';
 
   const enabledSet = new Set(resolveEnabledSkillIds(course.enabledSkills));
   enabledSet.add('writing');

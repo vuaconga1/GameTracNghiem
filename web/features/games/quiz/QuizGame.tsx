@@ -23,6 +23,15 @@ import { parseSkillQuery, type SkillId } from '@/lib/skillCatalog';
 
 import { gradeQuizFillAnswer, gradeQuizOptionAnswer } from './gradeAnswer';
 import {
+  isFindTheMistakeQuiz,
+  normalizeQuizQuestionHtml,
+  quizExerciseDisplayTitle,
+  quizExerciseInstructionVi,
+  repairErrorOptions,
+  splitQuizPassageAndStem,
+  underlineErrorOptionsInSentence,
+} from '@/features/games/exerciseDisplay';
+import {
   QUIZ_TYPE_LABELS,
   buildQuizQuery,
   filterQuizQuestions,
@@ -104,9 +113,52 @@ function statusIcon(status: ProgressStatus) {
 }
 
 function questionPreview(question: QuizQuestion): string {
-  const text = question.question.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  const { stem } = splitQuizPassageAndStem(question.question);
+  const text = (stem || question.question).replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   const withType = question.typeLabel ? `[${question.typeLabel}] ${text}` : text;
   return withType.length > 50 ? `${withType.slice(0, 50)}...` : withType;
+}
+
+function QuizQuestionBody({
+  html,
+  options,
+  underlineErrors,
+}: {
+  html: string;
+  options?: string[];
+  underlineErrors?: boolean;
+}) {
+  const { passage, stem } = splitQuizPassageAndStem(html);
+  const stemSource = passage ? stem : html;
+  const stemHtml = underlineErrors
+    ? underlineErrorOptionsInSentence(stemSource, options)
+    : stemSource.includes('<')
+      ? stemSource
+      : stemSource.replace(/\n/g, '<br />');
+
+  if (!passage) {
+    return (
+      <div
+        className="question-text"
+        dangerouslySetInnerHTML={{ __html: stemHtml }}
+      />
+    );
+  }
+
+  const passageHtml = passage.includes('<') ? passage : passage.replace(/\n/g, '<br />');
+
+  return (
+    <div className="question-text has-passage">
+      <div
+        className="quiz-passage"
+        dangerouslySetInnerHTML={{ __html: passageHtml }}
+      />
+      <p
+        className="quiz-stem"
+        dangerouslySetInnerHTML={{ __html: stemHtml }}
+      />
+    </div>
+  );
 }
 
 function statsForQuestions(
@@ -406,7 +458,12 @@ export function QuizGame({ courseId }: Props) {
 
     setSelectedOption(option);
     const alreadyAnswered = statuses[currentQuestion.index] !== 'empty';
-    const isCorrect = gradeQuizOptionAnswer(option, currentQuestion.answer);
+    const plainStem = splitQuizPassageAndStem(currentQuestion.question).stem.replace(/<[^>]+>/g, '')
+      || currentQuestion.question.replace(/<[^>]+>/g, '');
+    const expected = isFindTheMistakeQuiz(currentQuestion.typeLabel, currentQuestion.exercise)
+      ? repairErrorOptions(plainStem, [currentQuestion.answer])[0] || currentQuestion.answer
+      : currentQuestion.answer;
+    const isCorrect = gradeQuizOptionAnswer(option, expected);
     await submitAnswer(isCorrect, alreadyAnswered);
   }
 
@@ -529,14 +586,55 @@ export function QuizGame({ courseId }: Props) {
   const allAnswered = playQuestions.length > 0 && firstPending === -1;
   const startLabel = allAnswered ? 'Làm lại từ đầu' : 'Bắt đầu làm bài';
   const typeLabel = selectedType ? QUIZ_TYPE_LABELS[selectedType] : '';
-  const subtitle = [
-    course.name,
-    course.levelName,
-    typeLabel,
-    selectedExercise,
-  ]
+  const selectedExerciseTitle = selectedExercise
+    ? quizExerciseDisplayTitle(
+        selectedExercise,
+        playQuestions[0]?.typeLabel ||
+          exerciseCards.find((card) => card.exercise === selectedExercise)?.typeLabel ||
+          ''
+      )
+    : '';
+  const subtitle = [course.name, course.levelName, typeLabel, selectedExerciseTitle]
     .filter(Boolean)
     .join(' · ');
+  const questionInstruction = currentQuestion
+    ? quizExerciseInstructionVi(
+        currentQuestion.typeLabel,
+        currentQuestion.type,
+        currentQuestion.exercise,
+        currentQuestion.question
+      )
+    : '';
+  const normalizedQuestionHtml = currentQuestion
+    ? normalizeQuizQuestionHtml(
+        currentQuestion.question,
+        currentQuestion.typeLabel,
+        currentQuestion.exercise,
+        currentQuestion.question,
+        currentQuestion.options
+      )
+    : '';
+  const findMistakeQuestion = Boolean(
+    currentQuestion &&
+      isFindTheMistakeQuiz(
+        currentQuestion.typeLabel,
+        currentQuestion.exercise,
+        currentQuestion.question
+      )
+  );
+  const questionPlainStem = currentQuestion
+    ? splitQuizPassageAndStem(normalizedQuestionHtml).stem.replace(/<[^>]+>/g, '') ||
+      normalizedQuestionHtml.replace(/<[^>]+>/g, '')
+    : '';
+  const displayOptions =
+    findMistakeQuestion && currentQuestion
+      ? repairErrorOptions(questionPlainStem, currentQuestion.options)
+      : currentQuestion?.options || [];
+  const displayAnswer =
+    findMistakeQuestion && currentQuestion
+      ? repairErrorOptions(questionPlainStem, [currentQuestion.answer])[0] ||
+        currentQuestion.answer
+      : currentQuestion?.answer || '';
 
   return (
     <div className="game-page quiz-page">
@@ -617,7 +715,7 @@ export function QuizGame({ courseId }: Props) {
                     <div className="activity-icon quiz">
                       <i className="fas fa-folder-open" aria-hidden="true" />
                     </div>
-                    <span className="activity-label">{card.exercise}</span>
+                    <span className="activity-label">{card.displayTitle}</span>
                   </div>
                   <span className="activity-progress">{card.count} câu</span>
                 </button>
@@ -631,7 +729,7 @@ export function QuizGame({ courseId }: Props) {
         <div className="game-card" id="listPanel">
           <div className="list-title">
             Danh sách câu hỏi
-            {selectedExercise ? ` · ${selectedExercise}` : ''}
+            {selectedExerciseTitle ? ` · ${selectedExerciseTitle}` : ''}
           </div>
           {playQuestions.length === 0 ? (
             <DataLoading variant="message" message="Không có câu hỏi trong bài này" />
@@ -708,9 +806,13 @@ export function QuizGame({ courseId }: Props) {
           <span className="question-counter-pill">
             Câu {currentIndex + 1}/{playQuestions.length}
           </span>
-          <div
-            className="question-text"
-            dangerouslySetInnerHTML={{ __html: currentQuestion.question }}
+          {questionInstruction ? (
+            <p className="question-instruction">{questionInstruction}</p>
+          ) : null}
+          <QuizQuestionBody
+            html={normalizedQuestionHtml}
+            options={displayOptions}
+            underlineErrors={findMistakeQuestion}
           />
 
           <div id="answerArea">
@@ -776,10 +878,10 @@ export function QuizGame({ courseId }: Props) {
             ) : (
               <>
                 <div className="options-list">
-                  {currentQuestion.options.map((option, optIndex) => {
+                  {displayOptions.map((option, optIndex) => {
                     let extra = '';
                     if (answerResult) {
-                      const isCorrectOpt = gradeQuizOptionAnswer(option, currentQuestion.answer);
+                      const isCorrectOpt = gradeQuizOptionAnswer(option, displayAnswer);
                       if (isCorrectOpt) extra = ' correct';
                       else if (selectedOption === option) extra = ' wrong';
                     } else if (selectedOption === option) {

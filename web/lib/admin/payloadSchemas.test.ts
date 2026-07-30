@@ -18,6 +18,16 @@ describe('admin payloadSchemas', () => {
     expect(payload.answers).toEqual(['goes']);
   });
 
+  it('allows full-sentence grammar rewrites without a prefix', () => {
+    const payload = grammarPayloadSchema.parse({
+      source: 'He has recently began implementing new strategies.',
+      prefix: '',
+      answers: ['He has recently begun implementing new strategies.'],
+    });
+    expect(payload.prefix).toBe('');
+    expect(payload.answers[0]).toContain('begun');
+  });
+
   it('rejects empty quiz question', () => {
     expect(() =>
       parseGamePayload('quiz', {

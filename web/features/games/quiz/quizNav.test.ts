@@ -32,11 +32,41 @@ describe('quizNav', () => {
 
   it('groups exercises for skill+type and hides empty', () => {
     expect(quizExercisesForSkillType(sample, 'vocabulary', 'multiple_choice')).toEqual([
-      { exercise: 'Exercise 1', count: 1 },
-      { exercise: 'Exercise 2', count: 1 },
+      {
+        exercise: 'Exercise 1',
+        count: 1,
+        typeLabel: '',
+        displayTitle: 'Exercise 1',
+      },
+      {
+        exercise: 'Exercise 2',
+        count: 1,
+        typeLabel: '',
+        displayTitle: 'Exercise 2',
+      },
     ]);
     expect(quizExercisesForSkillType(sample, 'reading', 'word_form')).toEqual([
-      { exercise: 'Khác', count: 1 },
+      { exercise: 'Khác', count: 1, typeLabel: '', displayTitle: 'Khác' },
+    ]);
+  });
+
+  it('prefers typeLabel as displayTitle when exercise is a workbook code', () => {
+    const coded = [
+      {
+        index: 0,
+        type: 'fill_blank' as const,
+        skill: 'writing',
+        exercise: 'U4 Ex14',
+        typeLabel: 'Find the mistake',
+      },
+    ];
+    expect(quizExercisesForSkillType(coded, 'writing', 'fill_blank')).toEqual([
+      {
+        exercise: 'U4 Ex14',
+        count: 1,
+        typeLabel: 'Find the mistake',
+        displayTitle: 'Find the mistake',
+      },
     ]);
   });
 

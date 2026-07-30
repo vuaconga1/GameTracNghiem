@@ -5,15 +5,24 @@ import { notArchived } from '@/lib/admin/notArchived';
 import { progressCourseKey, scoreLookupCourseKeys } from '@/lib/courseKey';
 import { prisma } from '@/lib/db';
 import { GAME_CATALOG, progressStatuses } from '@/lib/gameCatalog';
+import { resolveCanonicalLop9CourseId } from '@/lib/lop9Units';
 import {
   skillLessonsToMap,
   type SkillLessonMap,
 } from '@/lib/courseSkillLesson';
+import { groupGrammarExercises } from '@/features/games/grammar/grammarNav';
 import {
   completedCountForIndices,
   groupPronunciationExercises,
 } from '@/lib/pronunciationExercises';
 import {
+  aggregateSkillQuestionCounts,
+  type SkillProgressStats,
+  type SkillScopedQuestion,
+} from '@/lib/gameQuestionCounts';
+import {
+  MULTI_SKILL_GAME_KEYS,
+  gamesForSkillOnCourse,
   resolveEnabledSkillIds,
   resolveGameSkillsMap,
   resolveVisibleGameKeys,
@@ -65,13 +74,16 @@ export type CourseDetailData = {
   games?: CourseGames;
   /** Present when a game is split into exercise/phoneme cards (e.g. pronunciation). */
   gameExercises?: CourseGameExercises;
+  /** Per-skill totals (skill-scoped games filtered by payload.skill). */
+  skillStats?: Partial<Record<SkillId, SkillProgressStats>>;
   totalScore?: number;
 };
 
 export async function loadCourseDetail(courseId: string): Promise<CourseDetailData | null> {
   const session = await requireSession();
+  const resolvedCourseId = await resolveCanonicalLop9CourseId(prisma, courseId);
   const course = await prisma.course.findFirst({
-    where: { id: courseId, active: true, archivedAt: null },
+    where: { id: resolvedCourseId, active: true, archivedAt: null },
     select: {
       id: true,
       name: true,
@@ -159,6 +171,43 @@ export async function loadCourseDetail(courseId: string): Promise<CourseDetailDa
   }
 
   const gameExercises: CourseGameExercises = {};
+  if (enabledSet.has('grammar')) {
+    const grammarRows = await prisma.question.findMany({
+      where: {
+        courseId: course.id,
+        game: 'grammar',
+        active: true,
+        archivedAt: null,
+      },
+      select: { payload: true },
+      orderBy: [{ sortOrder: 'asc' }, { id: 'asc' }],
+    });
+    const grouped = groupGrammarExercises(
+      grammarRows.map((row) => {
+        const payload =
+          typeof row.payload === 'object' && row.payload !== null && !Array.isArray(row.payload)
+            ? (row.payload as Record<string, unknown>)
+            : {};
+        return {
+          hint: typeof payload.hint === 'string' ? payload.hint : '',
+          source: typeof payload.source === 'string' ? payload.source : '',
+          prefix: typeof payload.prefix === 'string' ? payload.prefix : '',
+          suffix: typeof payload.suffix === 'string' ? payload.suffix : '',
+        };
+      }),
+    );
+    const statuses = games.grammar?.statuses || [];
+    const distinct = grouped.length > 1;
+    if (distinct) {
+      gameExercises.grammar = grouped.map((group) => ({
+        key: group.key,
+        label: group.label,
+        questionCount: group.questionCount,
+        completedCount: completedCountForIndices(statuses, group.indices),
+        indices: group.indices,
+      }));
+    }
+  }
   if (enabledSet.has('pronunciation')) {
     const pronunciationRows = await prisma.question.findMany({
       where: {
@@ -196,6 +245,53 @@ export async function loadCourseDetail(courseId: string): Promise<CourseDetailDa
     }
   }
 
+  const skillScopedGameKeys = gameKeys.filter((key) => MULTI_SKILL_GAME_KEYS.has(key));
+  const skillScopedQuestions: Record<string, SkillScopedQuestion[]> = {};
+  if (skillScopedGameKeys.length) {
+    const rows = await prisma.question.findMany({
+      where: {
+        courseId: course.id,
+        active: true,
+        archivedAt: null,
+        game: { in: skillScopedGameKeys },
+      },
+      select: { game: true, payload: true },
+      orderBy: [{ sortOrder: 'asc' }, { id: 'asc' }],
+    });
+    for (const key of skillScopedGameKeys) {
+      skillScopedQuestions[key] = [];
+    }
+    for (const row of rows) {
+      const payload =
+        typeof row.payload === 'object' && row.payload !== null && !Array.isArray(row.payload)
+          ? (row.payload as Record<string, unknown>)
+          : {};
+      const skill = typeof payload.skill === 'string' ? payload.skill : '';
+      skillScopedQuestions[row.game] = skillScopedQuestions[row.game] || [];
+      skillScopedQuestions[row.game]!.push({ skill });
+    }
+  }
+
+  const skillStats: Partial<Record<SkillId, SkillProgressStats>> = {};
+  for (const skillId of enabledSkills) {
+    const skillGames = gamesForSkillOnCourse(
+      gameSkills,
+      enabledSkills,
+      skillId,
+      course.enabledGames
+    );
+    const liveKeys = skillGames.filter((game) => game.live).map((game) => game.key);
+    skillStats[skillId] = aggregateSkillQuestionCounts({
+      skillId,
+      games: liveKeys.map((gameKey) => ({
+        gameKey,
+        questions: skillScopedQuestions[gameKey],
+        questionCount: games[gameKey]?.questionCount,
+        statuses: games[gameKey]?.statuses,
+      })),
+    });
+  }
+
   const coursePublic = {
     id: course.id,
     name: course.name,
@@ -230,6 +326,7 @@ export async function loadCourseDetail(courseId: string): Promise<CourseDetailDa
     },
     games,
     gameExercises: Object.keys(gameExercises).length ? gameExercises : undefined,
+    skillStats: Object.keys(skillStats).length ? skillStats : undefined,
     totalScore: scoreAggregate._sum.points ?? 0,
   };
 }

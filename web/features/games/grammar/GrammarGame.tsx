@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
@@ -15,6 +16,15 @@ import {
 } from '@/features/games/persistProgress';
 import { progressCourseKey } from '@/lib/courseKey';
 
+import {
+  isWorkbookExerciseCode,
+} from '@/features/games/exerciseDisplay';
+import {
+  filterGrammarQuestionsByExercise,
+  grammarExerciseDisplayTitle,
+  grammarQuestionDisplayMeta,
+  normalizeGrammarExercise,
+} from '@/features/games/grammar/grammarNav';
 import { gradeGrammarAnswer } from './gradeAnswer';
 
 type ProgressStatus = 'empty' | 'correct' | 'wrong';
@@ -63,10 +73,38 @@ type GrammarStats = {
   pending: number;
 };
 
+function statsForQuestions(
+  questions: GrammarQuestion[],
+  statuses: ProgressStatus[]
+): GrammarStats {
+  let correct = 0;
+  let wrong = 0;
+  for (const question of questions) {
+    const status = statuses[question.index] || 'empty';
+    if (status === 'correct') correct += 1;
+    else if (status === 'wrong') wrong += 1;
+  }
+  return {
+    total: questions.length,
+    correct,
+    wrong,
+    pending: Math.max(questions.length - correct - wrong, 0),
+  };
+}
+
+function nextEmptyInSubset(
+  questions: GrammarQuestion[],
+  statuses: ProgressStatus[]
+): number {
+  return questions.findIndex((question) => (statuses[question.index] || 'empty') === 'empty');
+}
+
 type GrammarGameContentProps = {
   courseId: string;
   course: GrammarCourse;
   questions: GrammarQuestion[];
+  exerciseTitle?: string;
+  backHref?: string;
   statuses: readonly ProgressStatus[];
   panel: Panel;
   currentIndex: number;
@@ -95,10 +133,6 @@ function normalizeStatuses(statuses: ProgressStatus[] | undefined, questionCount
   return Array.from({ length: questionCount }, (_, index) => statuses?.[index] || 'empty');
 }
 
-function nextEmptyIndex(statuses: ProgressStatus[]): number {
-  return statuses.findIndex((status) => status === 'empty');
-}
-
 function formatPoints(points: number): string {
   const sign = points >= 0 ? '+' : '';
   return `${sign}${points.toLocaleString('vi-VN')} điểm`;
@@ -121,7 +155,10 @@ function statusIcon(status: ProgressStatus) {
 }
 
 function questionPreview(question: GrammarQuestion): string {
-  const preview = question.source || `${question.prefix} ${question.suffix}`.trim();
+  const fromParts = `${question.prefix} ___ ${question.suffix}`.replace(/\s+/g, ' ').trim();
+  const preview = isWorkbookExerciseCode(question.source)
+    ? fromParts
+    : question.source || fromParts;
   return preview.length > 50 ? `${preview.slice(0, 50)}...` : preview;
 }
 
@@ -133,6 +170,8 @@ export function GrammarGameContent({
   courseId,
   course,
   questions,
+  exerciseTitle = '',
+  backHref = `/courses/${courseId}`,
   statuses,
   panel,
   currentIndex,
@@ -157,10 +196,16 @@ export function GrammarGameContent({
   onNext,
 }: GrammarGameContentProps) {
   const currentQuestion = questions[currentIndex];
-  const firstPending = statuses.findIndex((status) => status === 'empty');
+  const firstPending = nextEmptyInSubset(questions, [...statuses]);
   const allAnswered = firstPending === -1;
   const startLabel = allAnswered ? 'Làm lại từ đầu' : 'Bắt đầu làm bài';
-  const subtitle = `${course.name}${course.levelName ? ` · ${course.levelName}` : ''}`;
+  const subtitle = [course.name, course.levelName, exerciseTitle].filter(Boolean).join(' · ');
+  const sourceIsCode = currentQuestion ? isWorkbookExerciseCode(currentQuestion.source) : false;
+  const displayMeta = currentQuestion ? grammarQuestionDisplayMeta(currentQuestion) : null;
+  const showSourceBlock = Boolean(
+    currentQuestion && displayMeta?.sourceLabel && currentQuestion.source.trim() && !sourceIsCode
+  );
+  const helperText = displayMeta?.helperText || '';
 
   return (
     <div className="game-page grammar-page">
@@ -192,7 +237,10 @@ export function GrammarGameContent({
 
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
-          <div className="list-title">Danh sách câu hỏi</div>
+          <div className="list-title">
+            Danh sách câu hỏi
+            {exerciseTitle ? ` · ${exerciseTitle}` : ''}
+          </div>
           <div className="list-stats">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
@@ -213,7 +261,7 @@ export function GrammarGameContent({
           </div>
           <div className="question-list">
             {questions.map((question, index) => {
-              const status = statuses[index] || 'empty';
+              const status = statuses[question.index] || 'empty';
               return (
                 <div
                   key={question.id}
@@ -258,12 +306,19 @@ export function GrammarGameContent({
           <span className="question-counter-pill">
             Câu {currentIndex + 1}/{questions.length}
           </span>
-          <div className="question-label">Câu mẫu</div>
-          <div className="source-sentence">
-            {currentQuestion.source || answerSample(currentQuestion)}
-          </div>
+          <p className="question-instruction">
+            {displayMeta?.instruction || 'Đọc câu hỏi rồi hoàn thành câu trả lời.'}
+          </p>
+          {showSourceBlock ? (
+            <>
+              <div className="question-label">{displayMeta?.sourceLabel}</div>
+              <div className="source-sentence">{currentQuestion.source}</div>
+            </>
+          ) : null}
 
-          <div className="rewrite-label">Viết lại câu theo mẫu:</div>
+          <div className="rewrite-label">
+            {displayMeta?.answerLabel || 'Nhập câu trả lời:'}
+          </div>
           <form onSubmit={onSubmit}>
             <div className="rewrite-row">
               <span className="rewrite-prefix">{currentQuestion.prefix}</span>
@@ -279,10 +334,10 @@ export function GrammarGameContent({
               <span className="rewrite-suffix">{currentQuestion.suffix}</span>
             </div>
 
-            {currentQuestion.hint ? (
+            {helperText ? (
               <div className="hint-box">
                 <i className="fas fa-lightbulb" aria-hidden="true" />
-                <span>{currentQuestion.hint}</span>
+                <span>{helperText}</span>
               </div>
             ) : null}
 
@@ -343,7 +398,7 @@ export function GrammarGameContent({
             >
               {isResetting ? 'Đang làm lại...' : 'Làm lại'}
             </button>
-            <Link href={`/courses/${courseId}`} className="btn btn-secondary">
+            <Link href={backHref} className="btn btn-secondary">
               Quay lại khóa học
             </Link>
           </GameResultSummary>
@@ -354,6 +409,12 @@ export function GrammarGameContent({
 }
 
 export function GrammarGame({ courseId }: Props) {
+  const searchParams = useSearchParams();
+  const exerciseParam = searchParams.get('exercise');
+  const selectedExercise =
+    exerciseParam != null && exerciseParam !== ''
+      ? normalizeGrammarExercise(exerciseParam)
+      : null;
   const [data, setData] = useState<GrammarGameResponse | null>(null);
   const [statuses, setStatuses] = useState<ProgressStatus[]>([]);
   const [panel, setPanel] = useState<Panel>('list');
@@ -389,11 +450,10 @@ export function GrammarGame({ courseId }: Props) {
 
         const questions = json.questions || [];
         const nextStatuses = normalizeStatuses(json.statuses, questions.length);
-        const firstEmptyIndex = nextEmptyIndex(nextStatuses);
 
         setData(json);
         setStatuses(nextStatuses);
-        setCurrentIndex(firstEmptyIndex === -1 ? 0 : firstEmptyIndex);
+        setCurrentIndex(0);
         setPanel('list');
         setSessionPoints(0);
         setGameScore(json.gameScore || 0);
@@ -420,35 +480,44 @@ export function GrammarGame({ courseId }: Props) {
   }, [courseId]);
 
   const questions = useMemo(() => data?.questions || [], [data?.questions]);
+  const playQuestions = useMemo(
+    () =>
+      filterGrammarQuestionsByExercise(questions, selectedExercise).map(({ question }) => question),
+    [questions, selectedExercise]
+  );
   const course = data?.course;
-  const currentQuestion = questions[currentIndex];
-  const maxScore = questions.length * 200;
-  const stats = useMemo<GrammarStats>(() => {
-    const correct = statuses.filter((status) => status === 'correct').length;
-    const wrong = statuses.filter((status) => status === 'wrong').length;
-    return {
-      total: questions.length,
-      correct,
-      wrong,
-      pending: Math.max(questions.length - correct - wrong, 0),
-    };
-  }, [questions.length, statuses]);
+  const currentQuestion = playQuestions[currentIndex];
+  const maxScore = playQuestions.length * 200;
+  const stats = useMemo<GrammarStats>(
+    () => statsForQuestions(playQuestions, statuses),
+    [playQuestions, statuses]
+  );
   const progressPercent = maxScore ? Math.min(100, Math.round((sessionPoints / maxScore) * 100)) : 0;
+  const selectedExerciseTitle = selectedExercise
+    ? grammarExerciseDisplayTitle(selectedExercise, playQuestions[0])
+    : '';
+  const backHref = selectedExercise ? `/courses/${courseId}?skill=writing` : `/courses/${courseId}`;
 
   useEffect(() => {
-    if (panel === 'question') {
+    if (panel === 'question' || panel === 'result') return;
+    const firstEmpty = nextEmptyInSubset(playQuestions, statuses);
+    setCurrentIndex(firstEmpty === -1 ? 0 : firstEmpty);
+  }, [panel, playQuestions, statuses]);
+
+  useEffect(() => {
+    if (panel === 'question' && currentQuestion) {
       clearAutoAdvance(advanceTimer);
       questionStartTime.current = Date.now();
       setInput('');
       setSubmitMessage('');
-      if (isGradedStatus(statuses[currentIndex])) {
-        setAnswerResult({ isCorrect: gradedIsCorrect(statuses[currentIndex]) });
+      const questionStatus = statuses[currentQuestion.index];
+      if (isGradedStatus(questionStatus)) {
+        setAnswerResult({ isCorrect: gradedIsCorrect(questionStatus) });
       } else {
         setAnswerResult(null);
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- lock from status at navigation time
-  }, [currentIndex, panel]);
+  }, [currentIndex, currentQuestion, panel, statuses]);
 
   async function persistProgress(
     nextStatuses: ProgressStatus[],
@@ -537,7 +606,7 @@ export function GrammarGame({ courseId }: Props) {
   function goNext() {
     clearAutoAdvance(advanceTimer);
     const nextIndex = currentIndex + 1;
-    if (nextIndex >= questions.length) {
+    if (nextIndex >= playQuestions.length) {
       setPanel('result');
       return;
     }
@@ -557,7 +626,7 @@ export function GrammarGame({ courseId }: Props) {
   }
 
   function startOrContinue() {
-    const firstEmptyIndex = nextEmptyIndex(statuses);
+    const firstEmptyIndex = nextEmptyInSubset(playQuestions, statuses);
     if (firstEmptyIndex === -1) return;
     void (async () => {
       try {
@@ -573,19 +642,22 @@ export function GrammarGame({ courseId }: Props) {
   async function resetProgress(openFirstQuestion: boolean) {
     if (!course || isResetting) return;
 
-    const emptyStatuses = Array.from({ length: questions.length }, () => 'empty' as ProgressStatus);
+    const nextStatuses = [...statuses];
+    for (const question of playQuestions) {
+      nextStatuses[question.index] = 'empty';
+    }
     const nextSession = createPlaySessionId();
 
     setIsResetting(true);
     setSubmitMessage('');
 
     try {
-      setStatuses(emptyStatuses);
+      setStatuses(nextStatuses);
       setSessionPoints(0);
       setAnswerResult(null);
       setCurrentIndex(0);
       setPlaySessionId(nextSession);
-      await persistProgress(emptyStatuses, true, nextSession);
+      await persistProgress(nextStatuses, !selectedExercise, nextSession);
       setPanel(openFirstQuestion ? 'question' : 'list');
     } catch (err) {
       setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
@@ -610,10 +682,17 @@ export function GrammarGame({ courseId }: Props) {
     );
   }
 
-  if (questions.length === 0) {
+  if (playQuestions.length === 0) {
     return (
       <div className="game-page grammar-page">
-        <DataLoading variant="message" message="Chưa có câu hỏi Grammar cho khóa học này" />
+        <DataLoading
+          variant="message"
+          message={
+            selectedExerciseTitle
+              ? `Chưa có câu hỏi cho ${selectedExerciseTitle}`
+              : 'Chưa có câu hỏi Grammar cho khóa học này'
+          }
+        />
       </div>
     );
   }
@@ -622,7 +701,9 @@ export function GrammarGame({ courseId }: Props) {
     <GrammarGameContent
       courseId={course.id}
       course={course}
-      questions={questions}
+      questions={playQuestions}
+      exerciseTitle={selectedExerciseTitle}
+      backHref={backHref}
       statuses={statuses}
       panel={panel}
       currentIndex={currentIndex}
@@ -635,7 +716,7 @@ export function GrammarGame({ courseId }: Props) {
       progressPercent={progressPercent}
       stats={stats}
       onBackHome={() => {
-        window.location.href = `/courses/${course.id}`;
+        window.location.href = backHref;
       }}
       onBackToList={() => setPanel('list')}
       onOpenQuestion={openQuestion}
