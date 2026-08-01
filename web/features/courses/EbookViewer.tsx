@@ -8,8 +8,16 @@ import {
   useMemo,
   useRef,
   useState,
+  type MouseEvent,
   type ReactNode,
 } from 'react';
+
+import {
+  extractVocabHotspots,
+  textItemToViewportBox,
+  type VocabHotspot,
+} from '@/lib/ebook/vocabHotspots';
+import { speakEnglish } from '@/lib/tts/speakEnglish';
 
 type EbookViewerProps = {
   ebookId: string;
@@ -17,15 +25,27 @@ type EbookViewerProps = {
   pageEnd: number;
 };
 
-type PdfViewport = { width: number; height: number };
+type PdfViewport = {
+  width: number;
+  height: number;
+  transform: number[];
+};
 
 type PdfRenderTask = {
   promise: Promise<void>;
   cancel: () => void;
 };
 
+type PdfTextContentItem = {
+  str?: string;
+  transform?: number[];
+  width?: number;
+  height?: number;
+};
+
 type PdfPage = {
   getViewport: (params: { scale: number }) => PdfViewport;
+  getTextContent: () => Promise<{ items: PdfTextContentItem[] }>;
   render: (params: {
     canvasContext: CanvasRenderingContext2D;
     viewport: PdfViewport;
@@ -35,6 +55,11 @@ type PdfPage = {
 type PdfDoc = {
   numPages: number;
   getPage: (pageNumber: number) => Promise<PdfPage>;
+};
+
+type PageRender = {
+  dataUrl: string;
+  hotspots: VocabHotspot[];
 };
 
 type FlipApi = {
@@ -55,21 +80,79 @@ const HTMLFlipBook = dynamic(() => import('react-pageflip'), {
   ),
 });
 
-const FlipPage = forwardRef<HTMLDivElement, { src: string; label: string }>(
-  function FlipPage({ src, label }, ref) {
-    return (
-      <div className="ebook-flip-page" ref={ref} data-density="soft">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={src} alt={label} draggable={false} />
-      </div>
-    );
-  },
-);
+const FlipPage = forwardRef<
+  HTMLDivElement,
+  {
+    src: string;
+    label: string;
+    hotspots: VocabHotspot[];
+    activeWord: string | null;
+    onSpeak: (word: string) => void;
+  }
+>(function FlipPage({ src, label, hotspots, activeWord, onSpeak }, ref) {
+  const onHotspotClick = (event: MouseEvent<HTMLButtonElement>, word: string) => {
+    event.preventDefault();
+    event.stopPropagation();
+    onSpeak(word);
+  };
+
+  return (
+    <div className="ebook-flip-page" ref={ref} data-density="soft">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt={label} draggable={false} />
+      {hotspots.length > 0 ? (
+        <div className="ebook-vocab-hotspots" aria-hidden={false}>
+          {hotspots.map((spot, index) => (
+            <button
+              key={`${spot.word}-${index}`}
+              type="button"
+              className={`ebook-vocab-hotspot${activeWord === spot.word ? ' is-active' : ''}`}
+              style={{
+                left: `${spot.x * 100}%`,
+                top: `${spot.y * 100}%`,
+                width: `${spot.width * 100}%`,
+                height: `${spot.height * 100}%`,
+              }}
+              title={`Nghe: ${spot.word}`}
+              aria-label={`Nghe phát âm: ${spot.word}`}
+              onClick={(event) => onHotspotClick(event, spot.word)}
+              onMouseDown={(event) => event.stopPropagation()}
+              onPointerDown={(event) => event.stopPropagation()}
+            />
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+});
+
+async function extractPageHotspots(pdfPage: PdfPage): Promise<VocabHotspot[]> {
+  try {
+    const viewport = pdfPage.getViewport({ scale: 1 });
+    const textContent = await pdfPage.getTextContent();
+    const boxes = [];
+    for (const item of textContent.items) {
+      if (!item?.str || !item.transform) continue;
+      const box = textItemToViewportBox(
+        item.str,
+        item.transform,
+        item.width ?? 0,
+        item.height ?? 0,
+        viewport.transform
+      );
+      if (box) boxes.push(box);
+    }
+    return extractVocabHotspots(boxes, viewport.width, viewport.height);
+  } catch {
+    return [];
+  }
+}
 
 async function rasterizePage(doc: PdfDoc, pageNumber: number, scale: number): Promise<{
   dataUrl: string;
   width: number;
   height: number;
+  hotspots: VocabHotspot[];
 }> {
   const pdfPage = await doc.getPage(pageNumber);
   const viewport = pdfPage.getViewport({ scale });
@@ -87,10 +170,12 @@ async function rasterizePage(doc: PdfDoc, pageNumber: number, scale: number): Pr
   context.imageSmoothingEnabled = true;
   context.imageSmoothingQuality = 'high';
   await pdfPage.render({ canvasContext: context, viewport }).promise;
+  const hotspots = await extractPageHotspots(pdfPage);
   return {
     dataUrl: canvas.toDataURL('image/png'),
     width: canvas.width,
     height: canvas.height,
+    hotspots,
   };
 }
 
@@ -110,7 +195,7 @@ export function EbookViewer({ ebookId, pageStart, pageEnd }: EbookViewerProps) {
   const stageRef = useRef<HTMLDivElement | null>(null);
   const flipRef = useRef<FlipApi | null>(null);
   const [doc, setDoc] = useState<PdfDoc | null>(null);
-  const [pageImages, setPageImages] = useState<string[]>([]);
+  const [pages, setPages] = useState<PageRender[]>([]);
   const [pageSize, setPageSize] = useState({ width: 600, height: 850 });
   const [flipIndex, setFlipIndex] = useState(0);
   const [zoom, setZoom] = useState(1);
@@ -118,6 +203,7 @@ export function EbookViewer({ ebookId, pageStart, pageEnd }: EbookViewerProps) {
   const [rendering, setRendering] = useState(false);
   const [error, setError] = useState('');
   const [stageWidth, setStageWidth] = useState(640);
+  const [activeWord, setActiveWord] = useState<string | null>(null);
 
   const safeStart = Math.max(1, pageStart || 1);
   const safeEnd = Math.max(safeStart, pageEnd || safeStart);
@@ -126,7 +212,8 @@ export function EbookViewer({ ebookId, pageStart, pageEnd }: EbookViewerProps) {
 
   useEffect(() => {
     setFlipIndex(0);
-    setPageImages([]);
+    setPages([]);
+    setActiveWord(null);
   }, [ebookId, safeStart, safeEnd]);
 
   useEffect(() => {
@@ -165,21 +252,29 @@ export function EbookViewer({ ebookId, pageStart, pageEnd }: EbookViewerProps) {
         setRendering(true);
         setError('');
         try {
+          if (safeStart > doc.numPages || safeEnd > doc.numPages) {
+            throw new Error(
+              `Khoảng trang ${safeStart}–${safeEnd} vượt quá số trang PDF (${doc.numPages}). Hãy chỉnh lại trong Quản trị → khóa học.`,
+            );
+          }
           const probe = await doc.getPage(safeStart);
           const base = probe.getViewport({ scale: 1 });
           const displayCssWidth = Math.min(Math.max(stageWidth, 320), 1200) * zoom;
           const scale = computeRenderScale(base.width, displayCssWidth);
 
-          const urls: string[] = [];
+          const renderedPages: PageRender[] = [];
           for (let n = safeStart; n <= safeEnd; n += 1) {
             const rendered = await rasterizePage(doc, n, scale);
             if (cancelled) return;
-            urls.push(rendered.dataUrl);
+            renderedPages.push({
+              dataUrl: rendered.dataUrl,
+              hotspots: rendered.hotspots,
+            });
           }
           if (cancelled) return;
           // Keep PDF unit aspect (not scaled canvas px) for layout math.
           setPageSize({ width: base.width, height: base.height });
-          setPageImages(urls);
+          setPages(renderedPages);
         } catch (err) {
           if (!cancelled) {
             setError(err instanceof Error ? err.message : 'Không vẽ được trang sách');
@@ -223,7 +318,7 @@ export function EbookViewer({ ebookId, pageStart, pageEnd }: EbookViewerProps) {
   }, [bookWidth, pageSize.height, pageSize.width]);
 
   const canPrev = !loading && !rendering && flipIndex > 0;
-  const canNext = !loading && !rendering && flipIndex < pageImages.length - 1;
+  const canNext = !loading && !rendering && flipIndex < pages.length - 1;
 
   const goPrev = useCallback(() => {
     flipRef.current?.pageFlip()?.flipPrev();
@@ -235,14 +330,23 @@ export function EbookViewer({ ebookId, pageStart, pageEnd }: EbookViewerProps) {
 
   const onFlip = useCallback((e: { data: number }) => {
     setFlipIndex(e.data);
+    setActiveWord(null);
+  }, []);
+
+  const onSpeakWord = useCallback((word: string) => {
+    setActiveWord(word);
+    speakEnglish(word);
+    window.setTimeout(() => {
+      setActiveWord((current) => (current === word ? null : current));
+    }, 900);
   }, []);
 
   let book: ReactNode = null;
-  if (!loading && !error && pageImages.length > 0 && !rendering) {
+  if (!loading && !error && pages.length > 0 && !rendering) {
     book = (
       // react-pageflip typings mark className/style required; size stretch fills stage
       <HTMLFlipBook
-        key={`${ebookId}-${pageImages.length}-${bookWidth}-${pageImages[0]?.slice(0, 48) ?? 'x'}`}
+        key={`${ebookId}-${pages.length}-${bookWidth}-${pages[0]?.dataUrl.slice(0, 48) ?? 'x'}`}
         width={bookWidth}
         height={bookHeight}
         size="fixed"
@@ -269,11 +373,14 @@ export function EbookViewer({ ebookId, pageStart, pageEnd }: EbookViewerProps) {
         onFlip={onFlip}
         ref={flipRef as never}
       >
-        {pageImages.map((src, index) => (
+        {pages.map((page, index) => (
           <FlipPage
             key={`${ebookId}-p${index}`}
-            src={src}
-            label={`Trang ${index + 1} / ${pageImages.length}`}
+            src={page.dataUrl}
+            label={`Trang ${index + 1} / ${pages.length}`}
+            hotspots={page.hotspots}
+            activeWord={activeWord}
+            onSpeak={onSpeakWord}
           />
         ))}
       </HTMLFlipBook>
@@ -285,7 +392,7 @@ export function EbookViewer({ ebookId, pageStart, pageEnd }: EbookViewerProps) {
       <div
         className="ebook-viewer ebook-viewer--natural ebook-viewer--flip"
         style={
-          !loading && !rendering && !error && pageImages.length > 0
+          !loading && !rendering && !error && pages.length > 0
             ? { width: Math.min(stageWidth, Math.round(bookWidth + 8)) }
             : undefined
         }

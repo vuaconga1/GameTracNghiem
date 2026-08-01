@@ -1440,6 +1440,7 @@
     }
 
     .ebook-flip-page {
+      position: relative;
       background: #fffef8;
       overflow: hidden;
       box-shadow: inset -8px 0 16px rgba(13, 43, 110, 0.06);
@@ -1456,6 +1457,40 @@
       -webkit-user-drag: none;
       image-rendering: auto;
       -ms-interpolation-mode: bicubic;
+    }
+
+    .ebook-vocab-hotspots {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .ebook-vocab-hotspot {
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      background: transparent;
+      cursor: pointer;
+      pointer-events: auto;
+      appearance: none;
+      -webkit-appearance: none;
+      transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .ebook-vocab-hotspot:hover,
+    .ebook-vocab-hotspot:focus-visible {
+      background: rgba(13, 110, 253, 0.08);
+      border-color: rgba(13, 110, 253, 0.35);
+      outline: none;
+    }
+
+    .ebook-vocab-hotspot.is-active {
+      background: rgba(13, 110, 253, 0.14);
+      border-color: rgba(13, 110, 253, 0.55);
+      box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.12);
     }
 
     .ebook-loading-overlay {
