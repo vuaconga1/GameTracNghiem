@@ -1,11 +1,13 @@
 ﻿'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
+import { finalizePlaySessionIfComplete } from '@/features/scoring/completeSession';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
 import {
@@ -120,6 +122,7 @@ function exercisePreview(exercise: ReadAndMatchExercise): string {
 }
 
 export function ReadAndMatchGame({ courseId }: Props) {
+  const router = useRouter();
   const [data, setData] = useState<ReadAndMatchGameResponse | null>(null);
   const [statuses, setStatuses] = useState<ProgressStatus[]>([]);
   const [panel, setPanel] = useState<Panel>('list');
@@ -342,7 +345,12 @@ export function ReadAndMatchGame({ courseId }: Props) {
         const nextStatuses = [...statuses];
         nextStatuses[currentExercise.index] = isCorrect ? 'correct' : 'wrong';
         setStatuses(nextStatuses);
-        await persistProgress(nextStatuses);
+        const sessionIdForProgress = await persistProgress(nextStatuses);
+        const finalized = await finalizePlaySessionIfComplete({
+          statuses: nextStatuses,
+          playSessionId: sessionIdForProgress || playSessionId,
+        });
+        if (finalized) router.refresh();
 
         setAnswered(true);
         setCheckResult({
@@ -443,6 +451,7 @@ export function ReadAndMatchGame({ courseId }: Props) {
       setCurrentIndex(0);
       setPlaySessionId(nextSession);
       await persistProgress(emptyStatuses, true, nextSession);
+      router.refresh();
       setPanel(openFirstExercise ? 'game' : 'list');
     } catch (err) {
       setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');

@@ -7,6 +7,10 @@ import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { DataLoading } from '@/components/DataLoading';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
+import {
+  completePlaySessionExperience,
+  finalizePlaySessionIfComplete,
+} from '@/features/scoring/completeSession';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
 import { gradedIsCorrect, isGradedStatus } from '@/features/games/gradedLock';
@@ -216,6 +220,31 @@ export function QuizGame({ courseId }: Props) {
   const [submitMessage, setSubmitMessage] = useState('');
   const questionStartTime = useRef(Date.now());
   const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const exerciseSessionKeyRef = useRef<string | null>(null);
+  const exerciseSessionKey =
+    skill && selectedType && selectedExercise
+      ? `${skill}|${selectedType}|${selectedExercise}`
+      : '';
+
+  useEffect(() => {
+    if (!exerciseSessionKey) return;
+    const previous = exerciseSessionKeyRef.current;
+    if (previous === exerciseSessionKey) return;
+    const isFirst = previous == null;
+    exerciseSessionKeyRef.current = exerciseSessionKey;
+    if (isFirst) return;
+
+    // Switching exercise: close prior session for EXP, then start a fresh id on next answer.
+    setPlaySessionId((current) => {
+      if (current) {
+        void completePlaySessionExperience(current).then(() => {
+          router.refresh();
+        });
+      }
+      return null;
+    });
+    setSessionPoints(0);
+  }, [exerciseSessionKey, router]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -309,8 +338,31 @@ export function QuizGame({ courseId }: Props) {
   }, [filteredQuestions, panel, statuses]);
 
   const playQuestions = filteredQuestions;
+  const playIndexes = useMemo(
+    () => playQuestions.map((question) => question.index),
+    [playQuestions]
+  );
   const currentQuestion = playQuestions[currentIndex];
   const maxScore = playQuestions.length * 200;
+
+  // Recover EXP for finished exercise sessions that were never granted.
+  useEffect(() => {
+    if (isLoading || !playSessionId || playIndexes.length === 0) return;
+
+    let cancelled = false;
+    void finalizePlaySessionIfComplete({
+      statuses,
+      playSessionId,
+      indexes: playIndexes,
+    }).then((result) => {
+      if (cancelled || !result?.success || result.alreadyGranted) return;
+      router.refresh();
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [isLoading, playIndexes, playSessionId, router, statuses]);
+
   const stats = useMemo(
     () => statsForQuestions(playQuestions, statuses),
     [playQuestions, statuses]
@@ -399,9 +451,10 @@ export function QuizGame({ courseId }: Props) {
 
     try {
       let points: number | undefined;
+      let activeSessionId: string | null = playSessionId;
 
       if (!alreadyAnswered) {
-        const sessionId = await ensurePlaySession();
+        activeSessionId = await ensurePlaySession();
         const elapsedMs = Date.now() - questionStartTime.current;
         const score = await submitAnswerScore(
           progressCourseKey(course.name, course.levelName),
@@ -409,7 +462,7 @@ export function QuizGame({ courseId }: Props) {
           currentQuestion.index,
           isCorrect,
           elapsedMs,
-          sessionId
+          activeSessionId
         );
         if (!score.success) {
           throw new Error(score.message || 'Không ghi được điểm');
@@ -427,7 +480,13 @@ export function QuizGame({ courseId }: Props) {
       nextStatuses[currentQuestion.index] = isCorrect ? 'correct' : 'wrong';
       setStatuses(nextStatuses);
       if (!alreadyAnswered) {
-        await persistProgress(nextStatuses);
+        const sessionIdForProgress = await persistProgress(nextStatuses);
+        const finalized = await finalizePlaySessionIfComplete({
+          statuses: nextStatuses,
+          playSessionId: sessionIdForProgress || activeSessionId,
+          indexes: playIndexes,
+        });
+        if (finalized) router.refresh();
       }
 
       setAnswerResult({ isCorrect, points });
@@ -511,8 +570,9 @@ export function QuizGame({ courseId }: Props) {
       setAnswerResult(null);
       setCurrentIndex(0);
       setPlaySessionId(nextSession);
-      await persistProgress(nextStatuses, false, nextSession);
+      await persistProgress(nextStatuses, true, nextSession);
       setPanel(openFirstQuestion ? 'question' : 'list');
+      router.refresh();
     } catch (err) {
       setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
     } finally {

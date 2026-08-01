@@ -1,11 +1,13 @@
 ﻿'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
+import { finalizePlaySessionIfComplete } from '@/features/scoring/completeSession';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
 import { gradedIsCorrect, isGradedStatus } from '@/features/games/gradedLock';
@@ -133,6 +135,7 @@ function questionPreview(question: ScrambleQuestion, status: ProgressStatus, lis
 }
 
 export function ScrambleGame({ courseId }: Props) {
+  const router = useRouter();
   const [data, setData] = useState<ScrambleGameResponse | null>(null);
   const [statuses, setStatuses] = useState<ProgressStatus[]>([]);
   const [panel, setPanel] = useState<Panel>('list');
@@ -281,7 +284,8 @@ export function ScrambleGame({ courseId }: Props) {
     clearAutoAdvance(advanceTimer);
     const nextIndex = currentIndex + 1;
     if (nextIndex >= questions.length) {
-      setPanel('result');
+      const pending = statuses.filter((status) => status === 'empty').length;
+      setPanel(pending === 0 ? 'result' : 'list');
       return;
     }
     setCurrentIndex(nextIndex);
@@ -332,7 +336,12 @@ export function ScrambleGame({ courseId }: Props) {
       nextStatuses[currentQuestion.index] = isCorrect ? 'correct' : 'wrong';
       setStatuses(nextStatuses);
       if (!alreadyAnswered) {
-        await persistProgress(nextStatuses);
+        const sessionIdForProgress = await persistProgress(nextStatuses);
+        const finalized = await finalizePlaySessionIfComplete({
+          statuses: nextStatuses,
+          playSessionId: sessionIdForProgress || playSessionId,
+        });
+        if (finalized) router.refresh();
       }
 
       setAnswerResult({ isCorrect, points });
@@ -452,6 +461,7 @@ export function ScrambleGame({ courseId }: Props) {
       setPlaySessionId(nextSession);
       await persistProgress(emptyStatuses, true, nextSession);
       setPanel(openFirstQuestion ? 'question' : 'list');
+      router.refresh();
     } catch (err) {
       setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
     } finally {

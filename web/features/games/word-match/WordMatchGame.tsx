@@ -1,11 +1,13 @@
 ﻿'use client';
 
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
+import { finalizePlaySessionIfComplete } from '@/features/scoring/completeSession';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import {
   createPlaySessionId,
@@ -95,6 +97,7 @@ function initialWordMatchState(initialData?: WordMatchGameData | null) {
 }
 
 export function WordMatchGame({ courseId, initialData }: Props) {
+  const router = useRouter();
   const initialState = initialWordMatchState(initialData);
   const [data, setData] = useState<WordMatchGameResponse | null>(initialState.data);
   const [statuses, setStatuses] = useState<ProgressStatus[]>(initialState.statuses);
@@ -267,7 +270,12 @@ export function WordMatchGame({ courseId, initialData }: Props) {
           const nextStatuses = [...statuses];
           nextStatuses[wordIndex] = 'correct';
           setStatuses(nextStatuses);
-          await persistProgress(nextStatuses);
+          const sessionIdForProgress = await persistProgress(nextStatuses);
+          const finalized = await finalizePlaySessionIfComplete({
+            statuses: nextStatuses,
+            playSessionId: sessionIdForProgress || sessionId,
+          });
+          if (finalized) router.refresh();
           setFeedback({
             isCorrect: true,
             message: question?.hint ? question.hint : '',
@@ -363,6 +371,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
       rebuildOrders(questions.length);
       setPlaySessionId(nextSession);
       await persistProgress(emptyStatuses, true, nextSession);
+      router.refresh();
       setPanel('board');
     } catch (err) {
       setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');

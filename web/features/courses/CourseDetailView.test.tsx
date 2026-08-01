@@ -175,6 +175,35 @@ describe('CourseDetailContent', () => {
     expect(html).not.toContain('href="/games/grammar/course-1"');
   });
 
+  it('opens Logistics units directly on the lesson slides', () => {
+    const data: CourseDetailData = {
+      ...sampleData,
+      course: {
+        ...sampleData.course,
+        name: 'Level 1: English for Logistics & Supply Chain',
+        levelName: 'English For Logictics',
+        enabledSkills: ['vocabulary'],
+        ebook: {
+          id: 'ebook-logistics',
+          title: 'Logistics',
+          pageStart: 1,
+          pageEnd: 6,
+        },
+        skillLessons: {
+          vocabulary: { pageStart: 3, pageEnd: 6 },
+        },
+      },
+    };
+    const html = renderToStaticMarkup(createElement(CourseDetailContent, { data }));
+
+    expect(html).toContain('detail-body--lesson-full');
+    expect(html).toContain('class="ebook-flip-root"');
+    expect(html).not.toContain('data-skill-step="skills"');
+    expect(html).not.toContain('Luyện từ vựng');
+    expect(html).not.toContain('class="detail-tabs tabs-secondary"');
+    expect(html).toContain('href="/"');
+  });
+
   it('shows quiz and scramble under vocabulary skill', () => {
     const skill: SkillId = 'vocabulary';
     const html = renderToStaticMarkup(

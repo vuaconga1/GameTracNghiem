@@ -1,5 +1,5 @@
 /**
- * Detect clickable vocabulary hotspots from PDF text (Logistics + general slides).
+ * Detect clickable vocabulary / sentence hotspots from PDF text (Logistics + general slides).
  *
  * Supported layouts:
  * 1) Key Vocabulary cards with Meaning: / Example:
@@ -7,6 +7,7 @@
  * 3) One-term flashcard page (title + definition)
  * 4) Vertical term → definition stacks
  * 5) Label: definition pairs (Department:, Handle:, …)
+ * 6) Key Sentence Structures cards with Pattern: / Example:
  */
 
 export type PdfTextBox = {
@@ -38,12 +39,16 @@ type TextLine = {
 
 const MEANING_RE = /^meaning\s*:?\s*$/i;
 const EXAMPLE_RE = /^example\s*:?\s*$/i;
+const PATTERN_RE = /^pattern\s*:?\s*$/i;
+const STRUCTURE_LABEL_RE = /^(pattern|example)\s*:?\s*$/i;
+const STRUCTURE_LABEL_PREFIX_RE = /^(pattern|example)\s*:/i;
 const SKIP_PAGE_RE =
   /^(lesson overview|key sentence|discussion|practical activity|questions\?|thank you|useful phone|call structure|handling peak|part\s*\d+)/i;
 const SKIP_TITLE_RE =
   /^(key\s+vocabulary|vocabulary(\s*[-–—]\s*part\s*\d+)?|core vocabulary|more key|basic supply|operations\s*&\s*fulfillment|strategy\s*&\s*efficiency|department\s*&\s*|urgent sentences|roleplay practice|standard booking|urgent\s*\/\s*peak|unit\s+\d+|lesson\s+\d+)\b/i;
 // Dialogue/meta labels must include a colon. Bare words like "Carrier" are vocab.
 const META_LABEL_RE = /^(pattern|example|meaning|caller|carrier|q\d+)\s*:$/i;
+const SECTION_HEADING_RE = /^\d+\.\s+\S.{0,50}$/;
 
 function cleanWord(text: string): string {
   return text
@@ -54,6 +59,28 @@ function cleanWord(text: string): string {
     .replace(/[()[\]{}]/g, (ch) => ch)
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+/** Strip quote wrappers for TTS while keeping placeholders like [Role]. */
+function cleanSpeakText(text: string): string {
+  return text
+    .replace(/[\uE000-\uF8FF]/g, '')
+    .replace(/^[“"']+|[”"']+$/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function isSpeakableSentence(text: string): boolean {
+  const spoken = cleanSpeakText(text);
+  if (spoken.length < 8 || spoken.length > 220) return false;
+  if (!/[\p{L}]/u.test(spoken)) return false;
+  if (STRUCTURE_LABEL_RE.test(spoken) || MEANING_RE.test(spoken)) return false;
+  // Reject short slide titles only — long lines may legitimately start with "Thank you".
+  if (spoken.length < 42 && (SKIP_PAGE_RE.test(spoken) || SKIP_TITLE_RE.test(spoken))) {
+    return false;
+  }
+  if (SECTION_HEADING_RE.test(spoken) && spoken.length < 40) return false;
+  return true;
 }
 
 function isSentenceFragment(text: string): boolean {
@@ -89,7 +116,8 @@ function estimateWidth(box: PdfTextBox): number {
   return Math.min(box.width, fromChars * 1.35);
 }
 
-function clusterLines(items: PdfTextBox[]): TextLine[] {
+/** @internal Exported for unit tests. */
+export function clusterLines(items: PdfTextBox[]): TextLine[] {
   if (items.length === 0) return [];
 
   const sorted = [...items].sort((a, b) => {
@@ -125,11 +153,11 @@ function clusterLines(items: PdfTextBox[]): TextLine[] {
       const last = g[g.length - 1];
       const top = Math.min(...g.map((i) => i.y));
       const bottom = Math.max(...g.map((i) => i.y + i.height));
-      // Keep Meaning:/Example: as their own tokens when glued to definitions.
+      // Keep Meaning:/Example:/Pattern: as their own tokens when glued to text.
       const parts: string[] = [];
       for (const box of g) {
         const s = box.str.trim();
-        if (/^(meaning|example)\s*:?\s*$/i.test(s)) {
+        if (/^(meaning|example|pattern)\s*:?\s*$/i.test(s)) {
           if (parts.length) {
             lines.push(makeLine(parts.join(' '), g[0], last, top, bottom));
             parts.length = 0;
@@ -137,8 +165,11 @@ function clusterLines(items: PdfTextBox[]): TextLine[] {
           lines.push(makeLine(s.replace(/:$/, '') + ':', box, box, box.y, box.y + box.height));
           continue;
         }
-        if (/^(meaning|example)\s*:/i.test(s) && !/^(meaning|example)\s*:?\s*$/i.test(s)) {
-          const label = s.match(/^(meaning|example)\s*:/i)?.[0] || '';
+        if (
+          /^(meaning|example|pattern)\s*:/i.test(s) &&
+          !/^(meaning|example|pattern)\s*:?\s*$/i.test(s)
+        ) {
+          const label = s.match(/^(meaning|example|pattern)\s*:/i)?.[0] || '';
           const rest = s.slice(label.length).trim();
           lines.push(
             makeLine(
@@ -176,9 +207,9 @@ function clusterLines(items: PdfTextBox[]): TextLine[] {
       const prev = group[group.length - 1];
       const gap = item.x - (prev.x + estimateWidth(prev));
       const gapTol = Math.max(prev.height, item.height, 10) * 1.15;
-      // Always split Meaning:/Example: labels from neighboring text.
-      const itemIsLabel = /^(meaning|example)\s*:?\s*$/i.test(item.str.trim());
-      const prevIsLabel = /^(meaning|example)\s*:?\s*$/i.test(prev.str.trim());
+      // Always split Meaning:/Example:/Pattern: labels from neighboring text.
+      const itemIsLabel = /^(meaning|example|pattern)\s*:?\s*$/i.test(item.str.trim());
+      const prevIsLabel = /^(meaning|example|pattern)\s*:?\s*$/i.test(prev.str.trim());
       if (gap > gapTol || itemIsLabel || prevIsLabel) {
         emit(group);
         group = [item];
@@ -242,6 +273,111 @@ function normalizeHotspot(
   };
 }
 
+function normalizeSpeakHotspot(
+  text: string,
+  left: number,
+  top: number,
+  right: number,
+  bottom: number,
+  pageWidth: number,
+  pageHeight: number
+): VocabHotspot | null {
+  const spoken = cleanSpeakText(text);
+  if (!isSpeakableSentence(spoken)) return null;
+  const w = Math.max(1, pageWidth);
+  const h = Math.max(1, pageHeight);
+  const boxW = right - left;
+  const boxH = bottom - top;
+  if (boxW < 12 || boxH < 8) return null;
+  return {
+    word: spoken,
+    x: Math.max(0, left) / w,
+    y: Math.max(0, top) / h,
+    width: Math.min(boxW, w - Math.max(0, left)) / w,
+    height: Math.min(boxH, h - Math.max(0, top)) / h,
+  };
+}
+
+/** Key Sentence Structures: clickable Pattern / Example lines. */
+export function extractFromSentenceStructures(
+  lines: TextLine[],
+  pageWidth: number,
+  pageHeight: number
+): VocabHotspot[] {
+  const hotspots: VocabHotspot[] = [];
+
+  for (let i = 0; i < lines.length; i += 1) {
+    const line = lines[i];
+    const prefix = line.text.match(STRUCTURE_LABEL_PREFIX_RE)?.[0] || '';
+    const isBareLabel = STRUCTURE_LABEL_RE.test(line.text) || PATTERN_RE.test(line.text);
+    if (!prefix && !isBareLabel) continue;
+
+    let content = prefix ? line.text.slice(prefix.length).trim() : '';
+    const contentBoxes: TextLine[] = [];
+    const labelMidX = lineMidX(line);
+    const sameColumn = (box: TextLine) => Math.abs(lineMidX(box) - labelMidX) <= pageWidth * 0.3;
+
+    if (isSpeakableSentence(content)) {
+      contentBoxes.push({
+        ...line,
+        text: content,
+        x: line.x + Math.min(line.width * 0.2, 70),
+        width: Math.max(40, line.width * 0.8),
+      });
+    } else {
+      content = '';
+      for (let j = i + 1; j < lines.length; j += 1) {
+        const next = lines[j];
+        if (STRUCTURE_LABEL_PREFIX_RE.test(next.text) || STRUCTURE_LABEL_RE.test(next.text)) {
+          // Another label in this column ends the block; other-column labels are skipped.
+          if (sameColumn(next)) break;
+          continue;
+        }
+        if (MEANING_RE.test(next.text)) {
+          if (sameColumn(next)) break;
+          continue;
+        }
+        if (SECTION_HEADING_RE.test(next.text)) {
+          if (sameColumn(next)) break;
+          continue;
+        }
+        // Only treat short page/section titles as stoppers — not Example sentences
+        // that happen to start with words like "Thank you…".
+        if (
+          next.text.length < 42 &&
+          (SKIP_PAGE_RE.test(next.text) || SKIP_TITLE_RE.test(next.text))
+        ) {
+          break;
+        }
+        if (next.y - line.y > Math.max(line.height, 12) * 7) break;
+        if (!sameColumn(next)) continue;
+
+        const nextPrefix = next.text.match(STRUCTURE_LABEL_PREFIX_RE)?.[0] || '';
+        const piece = nextPrefix ? next.text.slice(nextPrefix.length).trim() : next.text.trim();
+        if (!piece) continue;
+
+        content = content ? `${content} ${piece}` : piece;
+        contentBoxes.push(nextPrefix ? { ...next, text: piece } : next);
+
+        // Prefer stopping after a finished sentence so Pattern/Example stay separate.
+        if (content.length >= 12 && /[.!?]"?\s*$/.test(piece)) break;
+        if (content.length > 160) break;
+      }
+    }
+
+    if (!contentBoxes.length || !isSpeakableSentence(content)) continue;
+
+    const left = Math.min(...contentBoxes.map((box) => box.x)) - 8;
+    const top = Math.min(...contentBoxes.map((box) => box.y)) - 4;
+    const right = Math.max(...contentBoxes.map((box) => box.x + box.width)) + 8;
+    const bottom = Math.max(...contentBoxes.map((box) => box.y + box.height)) + 6;
+    const spot = normalizeSpeakHotspot(content, left, top, right, bottom, pageWidth, pageHeight);
+    if (spot) hotspots.push(spot);
+  }
+
+  return hotspots;
+}
+
 function pageHeader(lines: TextLine[]): string {
   return (lines[0]?.text || '').trim();
 }
@@ -249,9 +385,11 @@ function pageHeader(lines: TextLine[]): string {
 function isNonVocabPage(lines: TextLine[]): boolean {
   const header = pageHeader(lines);
   if (SKIP_PAGE_RE.test(header)) return true;
-  // Discussion / thank-you slides.
-  if (/discussion|thank you|questions\?/i.test(lines.map((l) => l.text).join(' ').slice(0, 120))) {
-    if (!lines.some((l) => MEANING_RE.test(l.text))) return true;
+  // Discussion / closing slides (header-only — not Pattern/Example body copy).
+  if (/^(discussion|thank you|questions\?)\b/i.test(header)) {
+    if (!lines.some((l) => MEANING_RE.test(l.text) || STRUCTURE_LABEL_RE.test(l.text))) {
+      return true;
+    }
   }
   return false;
 }
@@ -544,13 +682,19 @@ export function extractVocabHotspots(
   const boxes = items.filter((i) => i.str.trim());
   const lines = clusterLines(boxes);
   if (!lines.length) return [];
+
+  const fromSentences = extractFromSentenceStructures(lines, pageWidth, pageHeight);
+
   if (isNonVocabPage(lines)) {
-    // Still allow Meaning:-anchored cards on mixed pages.
-    return dedupeHotspots(extractFromMeanings(lines, pageWidth, pageHeight));
+    // Key Sentence Structures + any Meaning cards on overview-style pages.
+    const fromMeanings = extractFromMeanings(lines, pageWidth, pageHeight);
+    return dedupeHotspots([...fromSentences, ...fromMeanings]);
   }
 
   const fromMeanings = extractFromMeanings(lines, pageWidth, pageHeight);
   if (fromMeanings.length >= 2) return dedupeHotspots(fromMeanings);
+
+  if (fromSentences.length >= 2) return dedupeHotspots(fromSentences);
 
   const fromColumns = extractFromTermColumns(lines, pageWidth, pageHeight);
   if (fromColumns.length >= 2) return dedupeHotspots(fromColumns);
@@ -562,6 +706,7 @@ export function extractVocabHotspots(
   if (fromStacked.length >= 1) return dedupeHotspots(fromStacked);
 
   if (fromMeanings.length) return dedupeHotspots(fromMeanings);
+  if (fromSentences.length) return dedupeHotspots(fromSentences);
   if (fromColumns.length) return dedupeHotspots(fromColumns);
   return [];
 }

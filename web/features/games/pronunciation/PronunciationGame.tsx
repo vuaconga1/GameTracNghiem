@@ -1,12 +1,16 @@
 ﻿'use client';
 
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
+import {
+  completePlaySessionExperience,
+  finalizePlaySessionIfComplete,
+} from '@/features/scoring/completeSession';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
 import { isGradedStatus } from '@/features/games/gradedLock';
@@ -731,6 +735,7 @@ async function assessClip(
 }
 
 export function PronunciationGame({ courseId }: Props) {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const exerciseParam = searchParams.get('exercise');
   const [data, setData] = useState<PronunciationGameResponse | null>(null);
@@ -753,6 +758,27 @@ export function PronunciationGame({ courseId }: Props) {
   const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const activeAudio = useRef<HTMLAudioElement | null>(null);
   const micSession = useRef<MicSession | null>(null);
+  const exerciseSessionKeyRef = useRef<string | null>(null);
+  const exerciseSessionKey = exerciseParam || '';
+
+  useEffect(() => {
+    if (!exerciseSessionKey) return;
+    const previous = exerciseSessionKeyRef.current;
+    if (previous === exerciseSessionKey) return;
+    const isFirst = previous == null;
+    exerciseSessionKeyRef.current = exerciseSessionKey;
+    if (isFirst) return;
+
+    setPlaySessionId((current) => {
+      if (current) {
+        void completePlaySessionExperience(current).then(() => {
+          router.refresh();
+        });
+      }
+      return null;
+    });
+    setSessionPoints(0);
+  }, [exerciseSessionKey, router]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -822,7 +848,29 @@ export function PronunciationGame({ courseId }: Props) {
     );
     return playableQuestionEntries(questions).filter(({ index }) => allowed.has(index));
   }, [questions, exerciseParam]);
+  const scopedIndexes = useMemo(
+    () => scopedEntries.map(({ index }) => index),
+    [scopedEntries]
+  );
   const maxScore = scopedEntries.length * 200;
+
+  // Recover EXP for sessions that finished before subset-complete wiring existed.
+  useEffect(() => {
+    if (isLoading || !playSessionId || scopedIndexes.length === 0) return;
+
+    let cancelled = false;
+    void finalizePlaySessionIfComplete({
+      statuses,
+      playSessionId,
+      indexes: scopedIndexes,
+    }).then((result) => {
+      if (cancelled || !result?.success || result.alreadyGranted) return;
+      router.refresh();
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [isLoading, playSessionId, router, scopedIndexes, statuses]);
   const stats = useMemo<PronunciationStats>(() => {
     let correct = 0;
     let wrong = 0;
@@ -1001,6 +1049,7 @@ export function PronunciationGame({ courseId }: Props) {
       } else {
         setPanel('list');
       }
+      router.refresh();
     } catch (err) {
       setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
     } finally {
@@ -1027,9 +1076,10 @@ export function PronunciationGame({ courseId }: Props) {
     try {
       const alreadyAnswered = statuses[currentIndex] !== 'empty';
       let points: number | undefined;
+      let activeSessionId: string | null = playSessionId;
 
       if (!alreadyAnswered) {
-        const sessionId = await ensurePlaySession();
+        activeSessionId = await ensurePlaySession();
         const elapsedMs = Date.now() - questionStartTime.current;
         const submit = await submitAnswerScore(
           progressCourseKey(course.name, course.levelName),
@@ -1037,7 +1087,7 @@ export function PronunciationGame({ courseId }: Props) {
           currentIndex,
           score.isCorrect,
           elapsedMs,
-          sessionId
+          activeSessionId
         );
         if (!submit.success) {
           throw new Error(submit.message || 'Không ghi được điểm');
@@ -1059,7 +1109,17 @@ export function PronunciationGame({ courseId }: Props) {
       setRecordState('done');
       setShowActions(true);
       setStatuses(nextStatuses);
-      await persistProgress(nextStatuses);
+      if (!alreadyAnswered) {
+        const sessionIdForProgress = await persistProgress(nextStatuses);
+        const finalized = await finalizePlaySessionIfComplete({
+          statuses: nextStatuses,
+          playSessionId: sessionIdForProgress || activeSessionId,
+          indexes: scopedIndexes,
+        });
+        if (finalized) router.refresh();
+      } else {
+        await persistProgress(nextStatuses);
+      }
       scheduleAdvance();
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Không nộp được câu trả lời';

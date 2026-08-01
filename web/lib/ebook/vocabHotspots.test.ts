@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  clusterLines,
+  extractFromSentenceStructures,
   extractVocabHotspots,
   isVocabHeadword,
   textItemToViewportBox,
@@ -138,6 +140,86 @@ describe('extractVocabHotspots', () => {
       { str: 'Learn 6 essential terms for', x: 50, y: 145, width: 160, height: 12 },
     ];
     expect(extractVocabHotspots(items, 600, 500)).toEqual([]);
+  });
+
+  it('detects Key Sentence Structures Pattern and Example lines', () => {
+    const items: PdfTextBox[] = [
+      { str: 'Key Sentence Structures', x: 40, y: 20, width: 260, height: 20 },
+      { str: '1. Professional Introduction', x: 50, y: 80, width: 220, height: 14 },
+      { str: 'Pattern:', x: 50, y: 110, width: 60, height: 12 },
+      {
+        str: '"I am a [Role] handling [Task]."',
+        x: 115,
+        y: 110,
+        width: 240,
+        height: 12,
+      },
+      { str: 'Example:', x: 50, y: 135, width: 60, height: 12 },
+      {
+        str: '"I am a Documentation Specialist handling export data."',
+        x: 115,
+        y: 135,
+        width: 320,
+        height: 12,
+      },
+      { str: '2. Client Communication', x: 360, y: 80, width: 200, height: 14 },
+      { str: 'Pattern:', x: 360, y: 110, width: 60, height: 12 },
+      {
+        str: '"Thank you for calling [Company]. How can I assist?"',
+        x: 425,
+        y: 110,
+        width: 280,
+        height: 12,
+      },
+      { str: 'Example:', x: 360, y: 135, width: 60, height: 12 },
+      {
+        str: '"Thank you for calling Apex Freight. How can I assist?"',
+        x: 425,
+        y: 135,
+        width: 300,
+        height: 12,
+      },
+    ];
+
+    const lines = clusterLines(items);
+    expect(
+      lines.map(
+        (line) =>
+          `${line.text}@${Math.round(line.x)}:${Math.round(line.width)}`
+      )
+    ).toEqual([
+      'Key Sentence Structures@40:260',
+      '1. Professional Introduction@50:220',
+      '2. Client Communication@360:200',
+      'Pattern:@50:60',
+      '"I am a [Role] handling [Task]."@115:240',
+      'Pattern:@360:60',
+      '"Thank you for calling [Company]. How can I assist?"@425:280',
+      'Example:@50:60',
+      '"I am a Documentation Specialist handling export data."@115:320',
+      'Example:@360:60',
+      '"Thank you for calling Apex Freight. How can I assist?"@425:300',
+    ]);
+
+    const labelMids = lines
+      .filter((line) => /^(Pattern|Example):$/.test(line.text))
+      .map((line) => Math.round(line.x + line.width / 2));
+    expect(labelMids).toEqual([80, 390, 80, 390]);
+
+    expect(extractFromSentenceStructures(lines, 780, 500).map((s) => s.word)).toEqual([
+      'I am a [Role] handling [Task].',
+      'Thank you for calling [Company]. How can I assist?',
+      'I am a Documentation Specialist handling export data.',
+      'Thank you for calling Apex Freight. How can I assist?',
+    ]);
+
+    const words = extractVocabHotspots(items, 780, 500).map((s) => s.word);
+    expect(words).toEqual([
+      'I am a [Role] handling [Task].',
+      'Thank you for calling [Company]. How can I assist?',
+      'I am a Documentation Specialist handling export data.',
+      'Thank you for calling Apex Freight. How can I assist?',
+    ]);
   });
 });
 

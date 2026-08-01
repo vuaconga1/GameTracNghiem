@@ -113,12 +113,16 @@ const FlipPage = forwardRef<
                 width: `${spot.width * 100}%`,
                 height: `${spot.height * 100}%`,
               }}
-              title={`Nghe: ${spot.word}`}
               aria-label={`Nghe phát âm: ${spot.word}`}
               onClick={(event) => onHotspotClick(event, spot.word)}
               onMouseDown={(event) => event.stopPropagation()}
               onPointerDown={(event) => event.stopPropagation()}
-            />
+            >
+              <span className="ebook-vocab-hotspot-chip" aria-hidden="true">
+                <i className="fas fa-volume-up" />
+                <span>Nghe</span>
+              </span>
+            </button>
           ))}
         </div>
       ) : null}
@@ -338,7 +342,7 @@ export function EbookViewer({ ebookId, pageStart, pageEnd }: EbookViewerProps) {
     speakEnglish(word);
     window.setTimeout(() => {
       setActiveWord((current) => (current === word ? null : current));
-    }, 900);
+    }, 1400);
   }, []);
 
   let book: ReactNode = null;

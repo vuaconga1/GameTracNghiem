@@ -93,3 +93,45 @@ export function skillLessonsToMap(
   }
   return map;
 }
+
+/** English for Logistics / Logictics — slide-only units open Bài học directly. */
+export function isLogisticsLevelName(levelName: string | null | undefined): boolean {
+  return /logi[sc]tics/i.test(String(levelName || ''));
+}
+
+const DIRECT_LESSON_SKILL_ORDER: SkillId[] = [
+  'vocabulary',
+  'reading',
+  'listening',
+  'speaking',
+  'writing',
+];
+
+/**
+ * Page range when opening a Logistics unit (no skill card step).
+ * Prefer vocabulary skill lesson, then any configured skill lesson, else unit range.
+ */
+export function resolveDirectUnitLessonPages(input: {
+  unitEbook: { pageStart: number; pageEnd: number } | null;
+  skillLessons: SkillLessonMap | null | undefined;
+}): ResolvedCourseEbookPages {
+  if (!input.unitEbook) return { kind: 'missing-ebook' };
+
+  const lessons = input.skillLessons || {};
+  for (const skillId of DIRECT_LESSON_SKILL_ORDER) {
+    const lesson = lessons[skillId];
+    if (!lesson) continue;
+    return {
+      kind: 'skill',
+      skillId,
+      pageStart: lesson.pageStart,
+      pageEnd: lesson.pageEnd,
+    };
+  }
+
+  return {
+    kind: 'unit',
+    pageStart: input.unitEbook.pageStart,
+    pageEnd: input.unitEbook.pageEnd,
+  };
+}

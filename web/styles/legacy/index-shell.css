@@ -1470,27 +1470,155 @@
       position: absolute;
       margin: 0;
       padding: 0;
-      border: 2px solid transparent;
-      border-radius: 10px;
+      border: 0;
+      border-radius: 14px;
       background: transparent;
       cursor: pointer;
       pointer-events: auto;
       appearance: none;
       -webkit-appearance: none;
-      transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+      overflow: visible;
+      z-index: 1;
+      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .ebook-vocab-hotspot::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 1.5px solid transparent;
+      background: transparent;
+      box-shadow: none;
+      pointer-events: none;
+      transition:
+        border-color 0.22s ease,
+        box-shadow 0.22s ease,
+        background-color 0.22s ease,
+        transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .ebook-vocab-hotspot-chip {
+      position: absolute;
+      top: 0.45rem;
+      right: 0.45rem;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.28rem;
+      padding: 0.28rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 118, 110, 0.18);
+      background: rgba(255, 255, 255, 0.94);
+      color: #0f766e;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+      opacity: 0;
+      transform: translateY(6px) scale(0.92);
+      pointer-events: none;
+      transition:
+        opacity 0.2s ease,
+        transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+        background-color 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .ebook-vocab-hotspot-chip i {
+      font-size: 0.62rem;
     }
 
     .ebook-vocab-hotspot:hover,
     .ebook-vocab-hotspot:focus-visible {
-      background: rgba(13, 110, 253, 0.08);
-      border-color: rgba(13, 110, 253, 0.35);
       outline: none;
+      z-index: 3;
+      transform: translateY(-2px);
+    }
+
+    .ebook-vocab-hotspot:hover::before,
+    .ebook-vocab-hotspot:focus-visible::before {
+      border-color: rgba(15, 118, 110, 0.42);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow:
+        0 10px 24px rgba(15, 23, 42, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+    }
+
+    .ebook-vocab-hotspot:hover .ebook-vocab-hotspot-chip,
+    .ebook-vocab-hotspot:focus-visible .ebook-vocab-hotspot-chip {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
 
     .ebook-vocab-hotspot.is-active {
-      background: rgba(13, 110, 253, 0.14);
-      border-color: rgba(13, 110, 253, 0.55);
-      box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.12);
+      z-index: 4;
+      transform: translateY(-2px);
+    }
+
+    .ebook-vocab-hotspot.is-active::before {
+      border-color: rgba(13, 148, 136, 0.7);
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow:
+        0 0 0 3px rgba(20, 184, 166, 0.16),
+        0 12px 28px rgba(15, 23, 42, 0.12);
+      animation: ebook-vocab-ring-pulse 1.2s ease;
+    }
+
+    .ebook-vocab-hotspot.is-active .ebook-vocab-hotspot-chip {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      color: #fff;
+      background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
+      border-color: transparent;
+      box-shadow: 0 8px 18px rgba(13, 148, 136, 0.35);
+    }
+
+    .ebook-vocab-hotspot.is-active .ebook-vocab-hotspot-chip i {
+      animation: ebook-vocab-speaker-pulse 0.9s ease infinite;
+    }
+
+    @keyframes ebook-vocab-ring-pulse {
+      0% {
+        box-shadow:
+          0 0 0 0 rgba(20, 184, 166, 0.28),
+          0 12px 28px rgba(15, 23, 42, 0.12);
+      }
+      70% {
+        box-shadow:
+          0 0 0 8px rgba(20, 184, 166, 0),
+          0 12px 28px rgba(15, 23, 42, 0.12);
+      }
+      100% {
+        box-shadow:
+          0 0 0 3px rgba(20, 184, 166, 0.16),
+          0 12px 28px rgba(15, 23, 42, 0.12);
+      }
+    }
+
+    @keyframes ebook-vocab-speaker-pulse {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.12);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ebook-vocab-hotspot,
+      .ebook-vocab-hotspot::before,
+      .ebook-vocab-hotspot-chip {
+        transition: none;
+      }
+
+      .ebook-vocab-hotspot.is-active::before,
+      .ebook-vocab-hotspot.is-active .ebook-vocab-hotspot-chip i {
+        animation: none;
+      }
     }
 
     .ebook-loading-overlay {

@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  isLogisticsLevelName,
   resolveCourseEbookPagesForSkill,
+  resolveDirectUnitLessonPages,
   skillLessonsToMap,
 } from './courseSkillLesson';
 
@@ -62,5 +64,41 @@ describe('skillLessonsToMap', () => {
         { skillId: 'nope', pageStart: 2, pageEnd: 2 },
       ])
     ).toEqual({ listening: { pageStart: 1, pageEnd: 1 } });
+  });
+});
+
+describe('isLogisticsLevelName', () => {
+  it('matches Logistics / Logictics level names', () => {
+    expect(isLogisticsLevelName('English For Logictics')).toBe(true);
+    expect(isLogisticsLevelName('English for Logistics Level 2: Core')).toBe(true);
+    expect(isLogisticsLevelName('Lớp 8')).toBe(false);
+  });
+});
+
+describe('resolveDirectUnitLessonPages', () => {
+  it('prefers vocabulary skill lesson pages', () => {
+    expect(
+      resolveDirectUnitLessonPages({
+        unitEbook: { pageStart: 1, pageEnd: 12 },
+        skillLessons: {
+          vocabulary: { pageStart: 3, pageEnd: 6 },
+          reading: { pageStart: 7, pageEnd: 8 },
+        },
+      })
+    ).toEqual({
+      kind: 'skill',
+      skillId: 'vocabulary',
+      pageStart: 3,
+      pageEnd: 6,
+    });
+  });
+
+  it('falls back to unit range when no skill lessons exist', () => {
+    expect(
+      resolveDirectUnitLessonPages({
+        unitEbook: { pageStart: 1, pageEnd: 4 },
+        skillLessons: {},
+      })
+    ).toEqual({ kind: 'unit', pageStart: 1, pageEnd: 4 });
   });
 });

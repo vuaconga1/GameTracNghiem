@@ -8,7 +8,11 @@ import { DataLoading } from '@/components/DataLoading';
 import { PageBackButton } from '@/components/PageBackButton';
 import { EbookViewer } from '@/features/courses/EbookViewer';
 import { grammarExerciseDisplayTitle } from '@/features/games/grammar/grammarNav';
-import { resolveCourseEbookPagesForSkill } from '@/lib/courseSkillLesson';
+import {
+  isLogisticsLevelName,
+  resolveCourseEbookPagesForSkill,
+  resolveDirectUnitLessonPages,
+} from '@/lib/courseSkillLesson';
 import { GAME_CATALOG, type ProgressStatus } from '@/lib/gameCatalog';
 import type {
   CourseDetail,
@@ -103,8 +107,11 @@ export function CourseDetailContent({
     data.course.enabledGames
   );
   const skillCards = visibleSkillsForCourse(enabledSkills);
+  const logisticsDirectLesson = isLogisticsLevelName(data.course.levelName);
   const selectedSkill =
-    skillFromUrl && enabledSkills.includes(skillFromUrl) ? skillFromUrl : null;
+    !logisticsDirectLesson && skillFromUrl && enabledSkills.includes(skillFromUrl)
+      ? skillFromUrl
+      : null;
   const activities = selectedSkill
     ? gamesForSkillOnCourse(gameSkills, enabledSkills, selectedSkill, data.course.enabledGames)
     : GAME_CATALOG.filter((activity) => visibleGameKeys.includes(activity.key));
@@ -116,20 +123,32 @@ export function CourseDetailContent({
     liveActivityKeys
   );
   const totalScore = data.totalScore ?? 0;
-  const showSkillTabs = Boolean(selectedSkill);
-  const effectiveTab: DetailTab = showSkillTabs ? activeTab : 'exercises';
+  const showSkillTabs = Boolean(selectedSkill) && !logisticsDirectLesson;
+  const effectiveTab: DetailTab = logisticsDirectLesson
+    ? 'lesson'
+    : showSkillTabs
+      ? activeTab
+      : 'exercises';
   const showBookCard = effectiveTab === 'exercises';
   const showSkillCards = effectiveTab === 'exercises' && !selectedSkill;
   const showGameGrid = effectiveTab === 'exercises' && Boolean(selectedSkill);
   const selectedSkillMeta = skillCards.find((skill) => skill.id === selectedSkill);
   const backHref = selectedSkill ? `/courses/${data.course.id}` : '/';
-  const lessonPages = resolveCourseEbookPagesForSkill({
-    skillId: selectedSkill,
-    unitEbook: data.course.ebook
-      ? { pageStart: data.course.ebook.pageStart, pageEnd: data.course.ebook.pageEnd }
-      : null,
-    skillLessons: data.course.skillLessons,
-  });
+  const unitEbook = data.course.ebook
+    ? { pageStart: data.course.ebook.pageStart, pageEnd: data.course.ebook.pageEnd }
+    : null;
+  const lessonPages = logisticsDirectLesson
+    ? resolveDirectUnitLessonPages({
+        unitEbook,
+        skillLessons: data.course.skillLessons,
+      })
+    : resolveCourseEbookPagesForSkill({
+        skillId: selectedSkill,
+        unitEbook,
+        skillLessons: data.course.skillLessons,
+      });
+  const showLessonViewer =
+    logisticsDirectLesson || (showSkillTabs && effectiveTab === 'lesson');
 
   return (
     <section id="view-detail" className="view-detail">
@@ -186,8 +205,14 @@ export function CourseDetailContent({
             </div>
           ) : null}
 
-          {showSkillTabs ? (
-            <div className={effectiveTab === 'lesson' ? 'detail-panel' : 'detail-panel is-hidden'}>
+          {showLessonViewer ? (
+            <div
+              className={
+                logisticsDirectLesson || effectiveTab === 'lesson'
+                  ? 'detail-panel'
+                  : 'detail-panel is-hidden'
+              }
+            >
               {lessonPages.kind === 'unit' || lessonPages.kind === 'skill' ? (
                 <EbookViewer
                   ebookId={data.course.ebook!.id}
@@ -206,7 +231,13 @@ export function CourseDetailContent({
             </div>
           ) : null}
 
-          <div className={effectiveTab === 'exercises' ? 'detail-panel' : 'detail-panel is-hidden'}>
+          <div
+            className={
+              !logisticsDirectLesson && effectiveTab === 'exercises'
+                ? 'detail-panel'
+                : 'detail-panel is-hidden'
+            }
+          >
             <div className="activity-area">
               {showSkillCards ? (
                 <div className="activity-grid skill-grid" data-skill-step="skills">
