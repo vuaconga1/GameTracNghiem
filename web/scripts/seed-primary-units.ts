@@ -16,7 +16,11 @@ import {
   PRIMARY_GAME_SKILLS,
   PRIMARY_VOCAB_GAME_KEYS,
 } from '../lib/primaryGradeConfig';
-import { parsePrimaryGradeArg, PRIMARY_GRADE_SPECS } from '../lib/primaryGradeSpecs';
+import {
+  parsePrimaryGradeArg,
+  PRIMARY_GRADE_SPECS,
+  type PrimaryGradeId,
+} from '../lib/primaryGradeSpecs';
 
 async function resolveEbookId(hints: string[]): Promise<string | null> {
   for (const hint of hints) {
@@ -39,7 +43,7 @@ async function resolveEbookId(hints: string[]): Promise<string | null> {
   return null;
 }
 
-async function seedGrade(grade: 2 | 3 | 5) {
+async function seedGrade(grade: PrimaryGradeId) {
   const spec = PRIMARY_GRADE_SPECS[grade];
   await prisma.classLevel.upsert({
     where: { levelName: spec.levelName },
