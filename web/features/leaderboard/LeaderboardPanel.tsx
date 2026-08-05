@@ -4,6 +4,7 @@ import type { CSSProperties } from 'react';
 import { useEffect, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
+import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import type { LeaderboardPeriod, LeaderboardPlayer } from '@/lib/leaderboard';
 
@@ -37,11 +38,11 @@ type LeaderboardContentProps = {
   onOffsetChange: (updater: (offset: number) => number) => void;
 };
 
-const PERIOD_TABS: Array<{ value: LeaderboardPeriod; label: string }> = [
-  { value: 'day', label: 'Ngày' },
-  { value: 'week', label: 'Tuần' },
-  { value: 'month', label: 'Tháng' },
-  { value: 'all', label: 'Tất cả' },
+const PERIOD_TAB_KEYS: Array<{ value: LeaderboardPeriod; labelKey: string }> = [
+  { value: 'day', labelKey: 'leaderboard.periodDay' },
+  { value: 'week', labelKey: 'leaderboard.periodWeek' },
+  { value: 'month', labelKey: 'leaderboard.periodMonth' },
+  { value: 'all', labelKey: 'leaderboard.periodAll' },
 ];
 
 const PODIUM_META: Record<
@@ -68,8 +69,8 @@ const PODIUM_META: Record<
   },
 };
 
-function formatScore(points: number) {
-  return Number(points).toLocaleString('vi-VN');
+function formatScore(points: number, locale: string) {
+  return Number(points).toLocaleString(locale === 'en' ? 'en-US' : 'vi-VN');
 }
 
 function getPlayerName(player: Pick<LeaderboardPlayer, 'displayName' | 'username'>) {
@@ -90,6 +91,7 @@ function rankPlayers(players: LeaderboardPlayer[]): RankedPlayer[] {
 }
 
 function PodiumPlayer({ player }: { player: RankedPlayer }) {
+  const { locale } = useI18n();
   const meta = PODIUM_META[player.rank];
   const name = getPlayerName(player);
   const pedestalStyle: CSSProperties = {
@@ -107,7 +109,7 @@ function PodiumPlayer({ player }: { player: RankedPlayer }) {
         <div className="podium-name">{name}</div>
         <div className="podium-meta">
           <span className="lb-badge">#{player.rank}</span>
-          <span className="podium-score">{formatScore(player.points)}</span>
+          <span className="podium-score">{formatScore(player.points, locale)}</span>
         </div>
       </div>
       <div className="podium-pedestal" style={pedestalStyle}>
@@ -118,6 +120,7 @@ function PodiumPlayer({ player }: { player: RankedPlayer }) {
 }
 
 function LeaderboardRow({ player }: { player: RankedPlayer }) {
+  const { locale } = useI18n();
   const name = getPlayerName(player);
 
   return (
@@ -127,36 +130,39 @@ function LeaderboardRow({ player }: { player: RankedPlayer }) {
       <span className="lb-name">{name}</span>
       <span className="lb-badge">#{player.rank}</span>
       <span className="lb-score">
-        <i className="fas fa-star text-gold" aria-hidden="true" /> {formatScore(player.points)}
+        <i className="fas fa-star text-gold" aria-hidden="true" /> {formatScore(player.points, locale)}
       </span>
     </div>
   );
 }
 
 function StickyLeaderboard({ player }: { player: RankedPlayer }) {
+  const { t, locale } = useI18n();
   const name = getPlayerName(player);
 
   return (
     <div className="lb-sticky-wrap">
       <div className="lb-sticky">
-        <span className="lb-sticky-rank">Hạng {player.rank}</span>
+        <span className="lb-sticky-rank">{t('leaderboard.yourRank', { rank: player.rank })}</span>
         <div className="lb-avatar">{getInitials(name)}</div>
         <span className="lb-name">{name}</span>
         <div className="lb-sticky-medals" aria-hidden="true" />
-        <span className="lb-score">{formatScore(player.points)}</span>
+        <span className="lb-score">{formatScore(player.points, locale)}</span>
       </div>
     </div>
   );
 }
 
 function LoadingSticky() {
+  const { t } = useI18n();
+
   return (
     <div className="lb-sticky-wrap">
       <div className="lb-sticky is-loading">
         <span className="lb-sticky-loading-text">
-          <i className="fas fa-gear fa-spin" aria-hidden="true" /> đang tải dữ liệu
+          <i className="fas fa-gear fa-spin" aria-hidden="true" /> {t('leaderboard.loading')}
         </span>
-        <span className="lb-sticky-rank">Hạng —</span>
+        <span className="lb-sticky-rank">{t('leaderboard.yourRankPlaceholder')}</span>
         <div className="lb-avatar">—</div>
         <span className="lb-name">—</span>
         <div className="lb-sticky-medals" />
@@ -178,6 +184,7 @@ export function LeaderboardContent({
   onPeriodChange,
   onOffsetChange,
 }: LeaderboardContentProps) {
+  const { t } = useI18n();
   const rankedPlayers = rankPlayers(players);
   const top3 = rankedPlayers.slice(0, 3);
   const podiumPlayers = [top3[1], top3[0], top3[2]].filter(
@@ -187,19 +194,19 @@ export function LeaderboardContent({
   const currentPlayer = currentUsername
     ? rankedPlayers.find((player) => player.username === currentUsername)
     : undefined;
-  const periodLabel = label || (period === 'all' ? 'TẤT CẢ' : '—');
+  const periodLabel = label || (period === 'all' ? t('leaderboard.periodAllLabel') : '—');
   const disablePeriodNav = isLoading || period === 'all';
 
   return (
     <div className="view-leaderboard">
       <div className="lb-page">
-        <PageBackButton href="/" title="Quay lại" />
+        <PageBackButton href="/" />
         <div className="lb-top">
           <div className="lb-title-row">
-            <h1 className="lb-title">Bảng xếp hạng</h1>
+            <h1 className="lb-title">{t('leaderboard.title')}</h1>
           </div>
           <div className="period-toggle">
-            {PERIOD_TABS.map((tab) => (
+            {PERIOD_TAB_KEYS.map((tab) => (
               <button
                 key={tab.value}
                 type="button"
@@ -208,7 +215,7 @@ export function LeaderboardContent({
                 disabled={isLoading}
                 data-period={tab.value}
               >
-                {tab.label}
+                {t(tab.labelKey)}
               </button>
             ))}
           </div>
@@ -220,7 +227,7 @@ export function LeaderboardContent({
             className="period-nav-btn"
             onClick={() => onOffsetChange((value) => value - 1)}
             disabled={disablePeriodNav}
-            aria-label="Kỳ trước"
+            aria-label={t('leaderboard.prevPeriod')}
           >
             <i className="fas fa-chevron-left" aria-hidden="true" />
           </button>
@@ -230,13 +237,13 @@ export function LeaderboardContent({
             className="period-nav-btn"
             onClick={() => onOffsetChange((value) => value + 1)}
             disabled={disablePeriodNav || offset >= 0}
-            aria-label="Kỳ sau"
+            aria-label={t('leaderboard.nextPeriod')}
           >
             <i className="fas fa-chevron-right" aria-hidden="true" />
           </button>
         </div>
 
-        <p className="lb-updated">Thời gian cập nhật mới nhất: {updatedAt || '--'}</p>
+        <p className="lb-updated">{t('leaderboard.updatedAt', { time: updatedAt || '--' })}</p>
 
         {isLoading ? (
           <>
@@ -256,7 +263,7 @@ export function LeaderboardContent({
           <>
             <div className="lb-podium" />
             <div className="lb-list">
-              <DataLoading variant="message" message="Chưa có dữ liệu" />
+              <DataLoading variant="message" message={t('leaderboard.emptyData')} />
             </div>
           </>
         ) : (
@@ -283,6 +290,7 @@ export function LeaderboardContent({
 }
 
 export function LeaderboardPanel() {
+  const { t, locale } = useI18n();
   const [period, setPeriod] = useState<LeaderboardPeriod>('week');
   const [offset, setOffset] = useState(0);
   const [label, setLabel] = useState('');
@@ -331,18 +339,18 @@ export function LeaderboardPanel() {
         const data = (await res.json()) as LeaderboardResponse;
 
         if (!res.ok || !data.success) {
-          throw new Error(data.message || 'Không tải được bảng xếp hạng');
+          throw new Error(data.message || t('leaderboard.loadFailed'));
         }
 
         setPlayers(data.players || []);
         setLabel(data.label || '');
-        setUpdatedAt(new Date().toLocaleString('vi-VN'));
+        setUpdatedAt(new Date().toLocaleString(locale === 'en' ? 'en-US' : 'vi-VN'));
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setPlayers([]);
         setLabel('');
         setUpdatedAt('');
-        setErrorMessage(err instanceof Error ? err.message : 'Không tải được bảng xếp hạng');
+        setErrorMessage(err instanceof Error ? err.message : t('leaderboard.loadFailed'));
       } finally {
         if (!controller.signal.aborted) {
           setIsLoading(false);
@@ -353,7 +361,7 @@ export function LeaderboardPanel() {
     loadLeaderboard();
 
     return () => controller.abort();
-  }, [period, offset]);
+  }, [period, offset, t, locale]);
 
   function handlePeriodChange(nextPeriod: LeaderboardPeriod) {
     setPeriod(nextPeriod);

@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
+import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import { EbookViewer } from '@/features/courses/EbookViewer';
 import { grammarExerciseDisplayTitle } from '@/features/games/grammar/grammarNav';
@@ -61,9 +62,10 @@ function completedStatusCount(statuses: string[] | undefined) {
 function activityProgress(
   detail: GameDetail | undefined,
   live: boolean,
-  skillSlice?: { questionCount: number; completedCount: number } | null
+  skillSlice: { questionCount: number; completedCount: number } | null | undefined,
+  comingSoonLabel: string
 ) {
-  if (!live) return 'Sắp có';
+  if (!live) return comingSoonLabel;
   if (skillSlice) {
     if (skillSlice.questionCount <= 0) return '—';
     return `${skillSlice.completedCount}/${skillSlice.questionCount}`;
@@ -86,8 +88,8 @@ function aggregateActivityStats(games: CourseGames | undefined, gameKeys: string
   return { totalQuestions, completedQuestions };
 }
 
-function formatCourseScore(points: number) {
-  return Number(points).toLocaleString('vi-VN');
+function formatCourseScore(points: number, locale: string) {
+  return Number(points).toLocaleString(locale === 'en' ? 'en-US' : 'vi-VN');
 }
 
 export function CourseDetailContent({
@@ -95,6 +97,7 @@ export function CourseDetailContent({
   initialTab = 'exercises',
   initialSkill = null,
 }: CourseDetailContentProps) {
+  const { t, formatClassLevel, locale } = useI18n();
   const searchParams = useSearchParams();
   const skillFromUrl = parseSkillQuery(searchParams.get('skill')) ?? initialSkill;
   const [activeTab, setActiveTab] = useState<DetailTab>(initialTab);
@@ -149,10 +152,11 @@ export function CourseDetailContent({
       });
   const showLessonViewer =
     logisticsDirectLesson || (showSkillTabs && effectiveTab === 'lesson');
+  const comingSoonLabel = t('course.comingSoon');
 
   return (
     <section id="view-detail" className="view-detail">
-      <PageBackButton href={backHref} title="Quay lại" />
+      <PageBackButton href={backHref} />
 
       <div className={effectiveTab === 'lesson' ? 'detail-body detail-body--lesson-full' : 'detail-body'}>
         {showBookCard ? (
@@ -163,7 +167,7 @@ export function CourseDetailContent({
               </div>
               <div className="book-info">
                 <h2>{data.course.name}</h2>
-                <p>{data.course.levelName}</p>
+                <p>{formatClassLevel(data.course.levelName)}</p>
               </div>
             </div>
             {totalQuestions > 0 ? (
@@ -172,11 +176,11 @@ export function CourseDetailContent({
                   <div className="book-stat-value">
                     {completedQuestions}/{totalQuestions}
                   </div>
-                  <div className="book-stat-label">câu đã làm</div>
+                  <div className="book-stat-label">{t('course.statQuestionsDone')}</div>
                 </div>
                 <div className="book-stat">
-                  <div className="book-stat-value">{formatCourseScore(totalScore)}</div>
-                  <div className="book-stat-label">tổng điểm</div>
+                  <div className="book-stat-value">{formatCourseScore(totalScore, locale)}</div>
+                  <div className="book-stat-label">{t('course.statTotalScore')}</div>
                 </div>
               </div>
             ) : null}
@@ -192,7 +196,7 @@ export function CourseDetailContent({
                 data-detail-tab="exercises"
                 onClick={() => setActiveTab('exercises')}
               >
-                <i className="fas fa-gamepad" aria-hidden="true" /> Bài tập
+                <i className="fas fa-gamepad" aria-hidden="true" /> {t('course.tabExercises')}
               </button>
               <button
                 type="button"
@@ -200,7 +204,7 @@ export function CourseDetailContent({
                 data-detail-tab="lesson"
                 onClick={() => setActiveTab('lesson')}
               >
-                <i className="fas fa-book-open" aria-hidden="true" /> Bài học
+                <i className="fas fa-book-open" aria-hidden="true" /> {t('course.tabLessons')}
               </button>
             </div>
           ) : null}
@@ -223,8 +227,8 @@ export function CourseDetailContent({
                 <div className="ebook-viewer">
                   <div className="ebook-empty">
                     {lessonPages.kind === 'missing-skill-lesson'
-                      ? 'Chưa gán trang bài học cho kỹ năng này'
-                      : 'Chưa gắn sách bài học cho unit này. Admin hãy chọn PDF và khoảng trang trong chi tiết khóa học.'}
+                      ? t('course.missingSkillLesson')
+                      : t('course.missingUnitEbook')}
                   </div>
                 </div>
               )}
@@ -242,7 +246,7 @@ export function CourseDetailContent({
               {showSkillCards ? (
                 <div className="activity-grid skill-grid" data-skill-step="skills">
                   {skillCards.length === 0 ? (
-                    <div className="ebook-empty">Chưa có kỹ năng nào được mở trong khóa này.</div>
+                    <div className="ebook-empty">{t('course.noSkills')}</div>
                   ) : (
                     skillCards.map((skill) => {
                       const skillGames = gamesForSkillOnCourse(
@@ -261,7 +265,7 @@ export function CourseDetailContent({
                         stats.totalQuestions > 0
                           ? `${stats.completedQuestions}/${stats.totalQuestions}`
                           : skillGames.length === 0
-                            ? 'Chưa có bài'
+                            ? t('course.noExercisesYet')
                             : '—';
                       return (
                         <Link
@@ -274,7 +278,7 @@ export function CourseDetailContent({
                             <div className={`activity-icon ${skill.iconClass}`}>
                               <i className={skill.icon} aria-hidden="true" />
                             </div>
-                            <span className="activity-label">{skill.label}</span>
+                            <span className="activity-label">{t(`skills.${skill.id}`)}</span>
                           </div>
                           <span className="activity-progress">{progress}</span>
                         </Link>
@@ -292,7 +296,7 @@ export function CourseDetailContent({
                 >
                   {selectedSkillMeta ? (
                     <div className="skill-games-heading" style={{ gridColumn: '1 / -1' }}>
-                      {selectedSkillMeta.label}
+                      {t(`skills.${selectedSkillMeta.id}`)}
                     </div>
                   ) : null}
                   {selectedSkill === 'speaking' ? (
@@ -305,14 +309,14 @@ export function CourseDetailContent({
                         <div className="activity-icon skill-speaking">
                           <i className="fas fa-comments" aria-hidden="true" />
                         </div>
-                        <span className="activity-label">AI Speaking (1 lượt/ngày)</span>
+                        <span className="activity-label">{t('course.speakingDaily')}</span>
                       </div>
-                      <span className="activity-progress">Luyện nói</span>
+                      <span className="activity-progress">{t('course.practiceSpeaking')}</span>
                     </Link>
                   ) : null}
                   {activities.length === 0 && selectedSkill !== 'speaking' ? (
                     <div className="ebook-empty" style={{ gridColumn: '1 / -1' }}>
-                      Chưa có bài tập cho kỹ năng này.
+                      {t('course.noGamesForSkill')}
                     </div>
                   ) : (
                     activities.flatMap((activity) => {
@@ -325,15 +329,21 @@ export function CourseDetailContent({
                         selectedSkill === 'writing' && activity.key === 'grammar'
                           ? data.gameExercises?.grammar || []
                           : [];
-                      const progress = activityProgress(detail, activity.live, skillSlice);
+                      const progress = activityProgress(
+                        detail,
+                        activity.live,
+                        skillSlice,
+                        comingSoonLabel
+                      );
                       const className = 'activity-card';
+                      const activityLabel = t(`games.${activity.key}`);
                       const inner = (
                         <>
                           <div className="activity-left">
                             <div className={`activity-icon ${activity.iconClass}`}>
                               <i className={activity.icon} aria-hidden="true" />
                             </div>
-                            <span className="activity-label">{activity.label}</span>
+                            <span className="activity-label">{activityLabel}</span>
                           </div>
                           <span className="activity-progress">{progress}</span>
                         </>
@@ -409,6 +419,7 @@ export function CourseDetailView({
   initialData,
   initialSkill = null,
 }: CourseDetailViewProps) {
+  const { t } = useI18n();
   const [data, setData] = useState<CourseDetailData | null>(initialData || null);
   const [isLoading, setIsLoading] = useState(!initialData);
   const [errorMessage, setErrorMessage] = useState('');
@@ -432,7 +443,7 @@ export function CourseDetailView({
         });
         const json = (await res.json()) as CourseDetailResponse;
         if (!res.ok || !json.success || !json.course) {
-          throw new Error(json.message || 'Không tải được khóa học');
+          throw new Error(json.message || t('course.loadFailed'));
         }
         setData({
           success: true,
@@ -445,7 +456,7 @@ export function CourseDetailView({
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
-        setErrorMessage(err instanceof Error ? err.message : 'Không tải được khóa học');
+        setErrorMessage(err instanceof Error ? err.message : t('course.loadFailed'));
       } finally {
         if (!controller.signal.aborted) {
           setIsLoading(false);
@@ -457,19 +468,19 @@ export function CourseDetailView({
       loadCourse();
     } else {
       setData(null);
-      setErrorMessage('Không tìm thấy khóa học');
+      setErrorMessage(t('course.notFound'));
       setIsLoading(false);
     }
 
     return () => controller.abort();
-  }, [courseId, initialData]);
+  }, [courseId, initialData, t]);
 
   if (isLoading) {
     return <DataLoading />;
   }
 
   if (errorMessage || !data) {
-    return <DataLoading variant="message" message={errorMessage || 'Không tìm thấy khóa học'} />;
+    return <DataLoading variant="message" message={errorMessage || t('course.notFound')} />;
   }
 
   return (

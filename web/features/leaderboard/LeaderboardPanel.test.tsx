@@ -1,12 +1,20 @@
-import { createElement } from 'react';
+import { createElement, type ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
+import { I18nProvider } from '@/components/i18n/I18nProvider';
+
 import { LeaderboardContent } from './LeaderboardPanel';
+
+function renderContent(node: ReactNode) {
+  return renderToStaticMarkup(
+    createElement(I18nProvider, { initialLocale: 'vi' }, node),
+  );
+}
 
 describe('LeaderboardContent', () => {
   it('renders the legacy podium, list, and sticky leaderboard structure', () => {
-    const html = renderToStaticMarkup(
+    const html = renderContent(
       createElement(LeaderboardContent, {
         period: 'week',
         offset: 0,
@@ -22,13 +30,15 @@ describe('LeaderboardContent', () => {
         errorMessage: '',
         onPeriodChange: () => undefined,
         onOffsetChange: () => undefined,
-      })
+      }),
     );
 
     expect(html).toContain('class="view-leaderboard"');
     expect(html).toContain('class="lb-page"');
     expect(html).toContain('class="period-toggle"');
     expect(html).toContain('class="period-btn active"');
+    expect(html).toContain('Bảng xếp hạng');
+    expect(html).toContain('Tuần');
     expect(html).toContain('class="lb-podium"');
     expect(html).toContain('class="podium-container"');
     expect(html).toContain('class="podium-step silver"');

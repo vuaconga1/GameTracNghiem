@@ -1,12 +1,20 @@
-import { createElement } from 'react';
+import { createElement, type ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
+import { I18nProvider } from '@/components/i18n/I18nProvider';
+
 import { CourseList } from './CourseList';
+
+function renderContent(node: ReactNode) {
+  return renderToStaticMarkup(
+    createElement(I18nProvider, { initialLocale: 'vi' }, node),
+  );
+}
 
 describe('CourseList', () => {
   it('renders legacy course card links', () => {
-    const html = renderToStaticMarkup(
+    const html = renderContent(
       createElement(CourseList, {
         courses: [
           {
@@ -17,7 +25,7 @@ describe('CourseList', () => {
             backgroundImageUrl: 'https://cdn.example.com/unit-1.webp',
           },
         ],
-      })
+      }),
     );
 
     expect(html).toContain('class="course-grid"');
@@ -39,7 +47,7 @@ describe('CourseList', () => {
   });
 
   it('keeps the gradient placeholder when no background is configured', () => {
-    const html = renderToStaticMarkup(
+    const html = renderContent(
       createElement(CourseList, {
         courses: [
           {
@@ -50,10 +58,35 @@ describe('CourseList', () => {
             backgroundImageUrl: null,
           },
         ],
-      })
+      }),
     );
 
     expect(html).toContain('class="course-thumb-placeholder"');
     expect(html).not.toContain('class="course-thumb"');
+    expect(html).toContain('Lớp 8');
+  });
+
+  it('formats class level for English locale', () => {
+    const html = renderToStaticMarkup(
+      createElement(
+        I18nProvider,
+        { initialLocale: 'en' },
+        createElement(CourseList, {
+          courses: [
+            {
+              id: 'course-3',
+              name: 'Unit 3',
+              levelName: 'Lớp 8',
+              completionPercent: 10,
+              backgroundImageUrl: null,
+            },
+          ],
+        }),
+      ),
+    );
+
+    expect(html).toContain('Grade 8');
+    expect(html).toContain('10% complete');
+    expect(html).toContain('Start learning');
   });
 });

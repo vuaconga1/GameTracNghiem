@@ -1,8 +1,11 @@
+'use client';
+
 /* eslint-disable @next/next/no-img-element */
 
 import Link from 'next/link';
 
 import { DataLoading } from '@/components/DataLoading';
+import { useI18n } from '@/components/i18n/I18nProvider';
 
 export type CourseListItem = {
   id: string;
@@ -26,8 +29,10 @@ const FALLBACK_GRADIENTS = [
 ];
 
 export function CourseList({ courses }: CourseListProps) {
+  const { t, formatClassLevel } = useI18n();
+
   if (courses.length === 0) {
-    return <DataLoading variant="message" message="Chưa có khóa học phù hợp" />;
+    return <DataLoading variant="message" message={t('home.emptyFiltered')} />;
   }
 
   return (
@@ -58,15 +63,17 @@ export function CourseList({ courses }: CourseListProps) {
             )}
             <div className="course-card-body">
               <div className="course-title">{course.name}</div>
-              <div className="course-level">{course.levelName}</div>
-              <div className="course-progress-text">{completionPercent}% hoàn thành</div>
+              <div className="course-level">{formatClassLevel(course.levelName)}</div>
+              <div className="course-progress-text">
+                {t('home.completedPercent', { percent: completionPercent })}
+              </div>
               <span className="course-progress-track" aria-hidden="true">
                 <span
                   className="course-progress-fill"
                   style={{ width: `${completionPercent}%` }}
                 />
               </span>
-              <span className="course-start-button">Bắt đầu học</span>
+              <span className="course-start-button">{t('home.startLearning')}</span>
             </div>
           </Link>
         );

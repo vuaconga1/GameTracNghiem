@@ -8,37 +8,49 @@ export type ScoreRing = {
   color: string;
 };
 
+type Translate = (key: string, params?: Record<string, string | number>) => string;
+
 export function extractIpaHighlight(targetIpa: string): string {
   if (!targetIpa) return '';
   const matched = targetIpa.match(/\/([^/]+)\//);
   return matched ? matched[0] : targetIpa;
 }
 
-export function wordScoreRings(score: TranscriptScoreResult): ScoreRing[] {
+export function wordScoreRings(score: TranscriptScoreResult, t: Translate): ScoreRing[] {
   const color = score.isCorrect ? '#22c55e' : '#ef4444';
-  return [{ value: score.accuracy, label: 'Độ chính xác', color }];
+  return [{ value: score.accuracy, label: t('pronunciation.accuracy'), color }];
 }
 
-export function sentenceScoreRingsFromResult(score: TranscriptScoreResult): ScoreRing[] {
+export function sentenceScoreRingsFromResult(
+  score: TranscriptScoreResult,
+  t: Translate,
+): ScoreRing[] {
   const accuracyColor = score.isCorrect ? '#22c55e' : '#ef4444';
   return [
-    { value: score.accuracy, label: 'Độ chính xác', color: accuracyColor },
-    { value: score.fluency ?? score.accuracy, label: 'Trôi chảy', color: '#0d2b6e' },
+    { value: score.accuracy, label: t('pronunciation.accuracy'), color: accuracyColor },
+    { value: score.fluency ?? score.accuracy, label: t('pronunciation.fluency'), color: '#0d2b6e' },
   ];
 }
 
-export function stressFeedbackText(word: string, isCorrect: boolean): { title: string; body: string } {
+export function stressFeedbackText(
+  word: string,
+  isCorrect: boolean,
+  t: Translate,
+): { title: string; body: string } {
   const stressedText = stressedSyllableText(word);
   const unstressedText = unstressedSyllableText(word);
   if (isCorrect) {
     return {
-      title: 'Nhấn đúng trọng âm!',
-      body: `Giọng của bạn nhấn mạnh đúng vào ${stressedText}. Xuất sắc!`,
+      title: t('pronunciation.stressCorrectTitle'),
+      body: t('pronunciation.stressCorrectBody', { stressed: stressedText }),
     };
   }
   return {
-    title: 'Chưa đúng trọng âm',
-    body: `Giọng bạn mạnh nhất ở ${unstressedText}. Mục tiêu: ${stressedText}. Thử lại nhé.`,
+    title: t('pronunciation.stressWrongTitle'),
+    body: t('pronunciation.stressWrongBody', {
+      unstressed: unstressedText,
+      stressed: stressedText,
+    }),
   };
 }
 
@@ -64,13 +76,13 @@ export function stressSyllablesForDisplay(word: string) {
   return getWordSyllables(word);
 }
 
-export function feedbackMessage(score: TranscriptScoreResult): string {
+export function feedbackMessage(score: TranscriptScoreResult, t: Translate): string {
   if (score.isCorrect) {
     return score.mode === 'sentence'
-      ? 'Phát âm câu khá tốt! Hãy tiếp tục luyện tập.'
-      : 'Phát âm rất chuẩn! Hãy tiếp tục luyện tập.';
+      ? t('pronunciation.feedbackSentenceGood')
+      : t('pronunciation.feedbackWordGood');
   }
   return score.mode === 'sentence'
-    ? 'Chưa khớp câu mẫu — đọc chậm và rõ từng từ.'
-    : 'Chưa chuẩn — nghe mẫu rồi thử lại nhé.';
+    ? t('pronunciation.feedbackSentenceBad')
+    : t('pronunciation.feedbackWordBad');
 }

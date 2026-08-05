@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { createPortal } from 'react-dom';
 
 import { DataLoading } from '@/components/DataLoading';
+import { useI18n } from '@/components/i18n/I18nProvider';
 import { CourseFilters } from '@/features/courses/CourseFilters';
 import { CourseList, type CourseListItem } from '@/features/courses/CourseList';
 import {
@@ -43,6 +44,7 @@ type HomeCoursesViewProps = {
 
 export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
   const pathname = usePathname();
+  const { t } = useI18n();
   const initialSelectedLevelName = normalizeHomeCoursesLevelName(initialData?.selectedLevelName);
   const [levelName, setLevelName] = useState(initialSelectedLevelName);
   const [courses, setCourses] = useState<CourseListItem[]>(initialData?.courses || []);
@@ -138,7 +140,7 @@ export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
         });
         const data = (await res.json()) as CoursesResponse;
         if (!res.ok || !data.success) {
-          throw new Error(data.message || 'Không tải được danh sách khóa học');
+          throw new Error(data.message || t('home.loadFailed'));
         }
 
         setCourses(data.courses || []);
@@ -149,7 +151,7 @@ export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setCourses([]);
-        setErrorMessage(err instanceof Error ? err.message : 'Không tải được danh sách khóa học');
+        setErrorMessage(err instanceof Error ? err.message : t('home.loadFailed'));
       } finally {
         if (!controller.signal.aborted) {
           setIsLoading(false);
@@ -160,7 +162,7 @@ export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
     loadCourses();
 
     return () => controller.abort();
-  }, [initialSelectedLevelName, levelName]);
+  }, [initialSelectedLevelName, levelName, t]);
 
   const filtersNode = (
     <CourseFilters
@@ -180,7 +182,7 @@ export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
           <div className="courses-header-icon">
             <i className="fas fa-graduation-cap" aria-hidden="true" />
           </div>
-          <span className="courses-header-text">Khóa học</span>
+          <span className="courses-header-text">{t('home.title')}</span>
           <i className="fas fa-chevron-down" aria-hidden="true" />
         </div>
 

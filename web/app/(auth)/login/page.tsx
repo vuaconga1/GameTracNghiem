@@ -1,3 +1,4 @@
+import { LanguageSwitcher } from '@/components/i18n/LanguageSwitcher';
 import { LoginForm } from '@/features/auth/LoginForm';
 
 type LoginPageProps = {
@@ -42,11 +43,14 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         aria-modal="true"
         aria-labelledby="loginTitle"
       >
-        <div className="login-modal-header">
+        <div className="login-modal-header" style={{ position: 'relative' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img id="modalLogo" src="/wewinlogo.png" alt="WeWIN" />
+          <div style={{ position: 'absolute', top: 12, right: 12 }}>
+            <LanguageSwitcher />
+          </div>
         </div>
         <div className="login-modal-body">
-          <h2 id="loginTitle">Đăng nhập</h2>
           <LoginForm next={next} initialError={ssoError} />
         </div>
       </div>

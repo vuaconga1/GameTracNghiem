@@ -1,4 +1,4 @@
-import { createElement } from 'react';
+import { createElement, type ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -6,10 +6,17 @@ vi.mock('next/navigation', () => ({
   useSearchParams: () => new URLSearchParams(),
 }));
 
+import { I18nProvider } from '@/components/i18n/I18nProvider';
 import type { CourseDetailData } from '@/lib/loadCourseDetail';
 import type { GameSkillsMap, SkillId } from '@/lib/skillCatalog';
 
 import { CourseDetailContent } from './CourseDetailView';
+
+function renderContent(node: ReactNode) {
+  return renderToStaticMarkup(
+    createElement(I18nProvider, { initialLocale: 'vi' }, node),
+  );
+}
 
 const sampleGameSkills = {
   grammar: 'writing',
@@ -50,7 +57,7 @@ const sampleData: CourseDetailData = {
 
 describe('CourseDetailContent', () => {
   it('keeps the unit overview on exercises even when lesson tab is requested', () => {
-    const html = renderToStaticMarkup(
+    const html = renderContent(
       createElement(CourseDetailContent, { data: sampleData, initialTab: 'lesson' }),
     );
 
@@ -82,7 +89,7 @@ describe('CourseDetailContent', () => {
         },
       },
     };
-    const html = renderToStaticMarkup(
+    const html = renderContent(
       createElement(CourseDetailContent, { data, initialTab: 'lesson' }),
     );
 
@@ -107,7 +114,7 @@ describe('CourseDetailContent', () => {
         },
       },
     };
-    const html = renderToStaticMarkup(
+    const html = renderContent(
       createElement(CourseDetailContent, {
         data,
         initialTab: 'lesson',
@@ -135,7 +142,7 @@ describe('CourseDetailContent', () => {
         },
       },
     };
-    const html = renderToStaticMarkup(
+    const html = renderContent(
       createElement(CourseDetailContent, {
         data,
         initialTab: 'lesson',
@@ -148,7 +155,7 @@ describe('CourseDetailContent', () => {
   });
 
   it('defaults to exercises tab with five skill cards', () => {
-    const html = renderToStaticMarkup(createElement(CourseDetailContent, { data: sampleData }));
+    const html = renderContent(createElement(CourseDetailContent, { data: sampleData }));
 
     expect(html).toContain('class="book-card"');
     expect(html).toContain('EveryUp');
@@ -194,7 +201,7 @@ describe('CourseDetailContent', () => {
         },
       },
     };
-    const html = renderToStaticMarkup(createElement(CourseDetailContent, { data }));
+    const html = renderContent(createElement(CourseDetailContent, { data }));
 
     expect(html).toContain('detail-body--lesson-full');
     expect(html).toContain('class="ebook-flip-root"');
@@ -206,7 +213,7 @@ describe('CourseDetailContent', () => {
 
   it('shows quiz and scramble under vocabulary skill', () => {
     const skill: SkillId = 'vocabulary';
-    const html = renderToStaticMarkup(
+    const html = renderContent(
       createElement(CourseDetailContent, { data: sampleData, initialSkill: skill }),
     );
 
@@ -244,7 +251,7 @@ describe('CourseDetailContent', () => {
         ],
       },
     };
-    const html = renderToStaticMarkup(
+    const html = renderContent(
       createElement(CourseDetailContent, { data, initialSkill: skill }),
     );
 
@@ -289,13 +296,13 @@ describe('CourseDetailContent', () => {
       },
     };
 
-    const skillsHtml = renderToStaticMarkup(
+    const skillsHtml = renderContent(
       createElement(CourseDetailContent, { data }),
     );
     expect(skillsHtml).toContain('12/26');
     expect(skillsHtml).not.toContain('12/78');
 
-    const readingHtml = renderToStaticMarkup(
+    const readingHtml = renderContent(
       createElement(CourseDetailContent, { data, initialSkill: 'reading' }),
     );
     expect(readingHtml).toContain('href="/games/quiz/course-1?skill=reading"');
@@ -333,7 +340,7 @@ describe('CourseDetailContent', () => {
         ],
       },
     };
-    const html = renderToStaticMarkup(
+    const html = renderContent(
       createElement(CourseDetailContent, { data, initialSkill: skill }),
     );
 

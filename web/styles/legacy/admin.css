@@ -104,6 +104,14 @@
   text-align: left;
 }
 
+.admin-nav-footer .action-item-lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .admin-main {
   display: flex;
   flex-direction: column;

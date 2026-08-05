@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
+import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
 import { finalizePlaySessionIfComplete } from '@/features/scoring/completeSession';
@@ -75,11 +76,6 @@ type SlotLetter = {
   ch: string;
 };
 
-function formatPoints(points: number): string {
-  const sign = points >= 0 ? '+' : '';
-  return `${sign}${points.toLocaleString('vi-VN')} điểm`;
-}
-
 function statusClass(status: ProgressStatus): string {
   if (status === 'correct') return 'status-correct';
   if (status === 'wrong') return 'status-wrong';
@@ -127,14 +123,28 @@ function formatScrambledDots(letters: string[]): string {
   return letters.map((ch) => String(ch).toUpperCase()).join('.');
 }
 
-function questionPreview(question: ScrambleQuestion, status: ProgressStatus, listPos: number): string {
+function questionPreview(
+  question: ScrambleQuestion,
+  status: ProgressStatus,
+  listPos: number,
+  wordNumberLabel: string,
+): string {
   if (status === 'correct' || status === 'wrong') {
     return String(question.word).toUpperCase();
   }
-  return `Từ ${listPos + 1}`;
+  return wordNumberLabel;
 }
 
 export function ScrambleGame({ courseId }: Props) {
+  const { t, locale } = useI18n();
+  const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
+
+  function formatPoints(points: number): string {
+    const sign = points >= 0 ? '+' : '';
+    return `${sign}${points.toLocaleString(numberLocale)} ${t('common.points')}`;
+  }
+
+
   const router = useRouter();
   const [data, setData] = useState<ScrambleGameResponse | null>(null);
   const [statuses, setStatuses] = useState<ProgressStatus[]>([]);
@@ -168,7 +178,7 @@ export function ScrambleGame({ courseId }: Props) {
         });
         const json = (await res.json()) as ScrambleGameResponse;
         if (!res.ok || !json.success) {
-          throw new Error(json.message || 'Không tải được trò chơi');
+          throw new Error(json.message || t('gameUi.loadFailed'));
         }
 
         const questions = json.questions || [];
@@ -185,7 +195,7 @@ export function ScrambleGame({ courseId }: Props) {
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
-        setErrorMessage(err instanceof Error ? err.message : 'Không tải được trò chơi');
+        setErrorMessage(err instanceof Error ? err.message : t('gameUi.loadFailed'));
       } finally {
         if (!controller.signal.aborted) {
           setIsLoading(false);
@@ -262,7 +272,7 @@ export function ScrambleGame({ courseId }: Props) {
       playSessionId: sessionId === undefined ? playSessionId : sessionId,
     });
     if (!json.success) {
-      throw new Error(json.message || 'Không lưu được tiến độ');
+      throw new Error(json.message || t('gameUi.progressSaveFailed'));
     }
     if (json.statuses) {
       setStatuses(normalizeStatuses(json.statuses, questions.length));
@@ -321,7 +331,7 @@ export function ScrambleGame({ courseId }: Props) {
           sessionId
         );
         if (!score.success) {
-          throw new Error(score.message || 'Không ghi được điểm');
+          throw new Error(score.message || t('gameUi.scoreSaveFailed'));
         }
         points = score.points;
         if (typeof points === 'number') {
@@ -347,7 +357,7 @@ export function ScrambleGame({ courseId }: Props) {
       setAnswerResult({ isCorrect, points });
       scheduleAdvance();
     } catch (err) {
-      setSubmitMessage(err instanceof Error ? err.message : 'Không nộp được câu trả lời');
+      setSubmitMessage(err instanceof Error ? err.message : t('gameUi.submitFailed'));
     } finally {
       setIsSubmitting(false);
     }
@@ -497,7 +507,7 @@ export function ScrambleGame({ courseId }: Props) {
         setCurrentIndex(index);
         setPanel('question');
       } catch (err) {
-        setSubmitMessage(err instanceof Error ? err.message : 'Không mở được câu hỏi');
+        setSubmitMessage(err instanceof Error ? err.message : t('gameUi.openQuestionFailed'));
       }
     })();
   }
@@ -511,7 +521,7 @@ export function ScrambleGame({ courseId }: Props) {
         setCurrentIndex(firstEmptyIndex);
         setPanel('question');
       } catch (err) {
-        setSubmitMessage(err instanceof Error ? err.message : 'Không bắt đầu được bài');
+        setSubmitMessage(err instanceof Error ? err.message : t('gameUi.startFailed'));
       }
     })();
   }
@@ -535,7 +545,7 @@ export function ScrambleGame({ courseId }: Props) {
       setPanel(openFirstQuestion ? 'question' : 'list');
       router.refresh();
     } catch (err) {
-      setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
+      setSubmitMessage(err instanceof Error ? err.message : t('gameUi.redoFailed'));
     } finally {
       setIsResetting(false);
     }
@@ -552,7 +562,7 @@ export function ScrambleGame({ courseId }: Props) {
   if (errorMessage || !course) {
     return (
       <div className="game-page scramble-page">
-        <DataLoading variant="message" message={errorMessage || 'Không tìm thấy trò chơi'} />
+        <DataLoading variant="message" message={errorMessage || t('gameUi.notFound')} />
       </div>
     );
   }
@@ -560,21 +570,21 @@ export function ScrambleGame({ courseId }: Props) {
   if (questions.length === 0) {
     return (
       <div className="game-page scramble-page">
-        <DataLoading variant="message" message="Chưa có từ Sắp xếp cho khóa học này" />
+        <DataLoading variant="message" message={t('scramble.empty')} />
       </div>
     );
   }
 
   const firstPending = statuses.findIndex((status) => status === 'empty');
   const allAnswered = firstPending === -1;
-  const startLabel = allAnswered ? 'Làm lại từ đầu' : 'Bắt đầu làm bài';
+  const startLabel = allAnswered ? t('common.restartFromStart') : t('common.startExercise');
   const subtitle = `${course.name}${course.levelName ? ` · ${course.levelName}` : ''}`;
   const answered = Boolean(answerResult);
 
   return (
     <div className="game-page scramble-page">
       <PageBackButton
-        title={panel === 'question' ? 'Về danh sách' : 'Quay lại khóa học'}
+        title={panel === 'question' ? t('common.backToList') : t('common.backToCourse')}
         onClick={() => {
           if (panel === 'question') {
             setPanel('list');
@@ -585,20 +595,20 @@ export function ScrambleGame({ courseId }: Props) {
       />
       <div className="game-top">
         <div className="game-title-wrap">
-          <h1>Sắp xếp từ vựng</h1>
+          <h1>{t('scramble.title')}</h1>
           <p className="game-subtitle">{subtitle}</p>
         </div>
       </div>
 
       {panel === 'question' && currentQuestion ? (
         <div className="game-meta">
-          <span className="meta-pill">{course.name || 'Khóa học'}</span>
+          <span className="meta-pill">{course.name || t('gameUi.courseLabel')}</span>
           <span className="meta-pill meta-score-pill">
-            {sessionPoints.toLocaleString('vi-VN')}/{maxScore.toLocaleString('vi-VN')} điểm
+            {t('gameUi.sessionScore', { earned: sessionPoints.toLocaleString(numberLocale), max: maxScore.toLocaleString(numberLocale) })}
           </span>
           <div
             className="progress-bar-wrap"
-            aria-label={`Điểm phiên ${sessionPoints}/${maxScore}`}
+            aria-label={t('gameUi.sessionScoreAria', { earned: sessionPoints, max: maxScore })}
           >
             <div className="progress-bar-fill" style={{ width: `${progressPercent}%` }} />
           </div>
@@ -607,23 +617,23 @@ export function ScrambleGame({ courseId }: Props) {
 
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
-          <div className="list-title">Danh sách từ</div>
+          <div className="list-title">{t('gameUi.wordList')}</div>
           <div className="list-stats">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
-              <span className="stat-label">Tổng từ</span>
+              <span className="stat-label">{t('gameUi.totalWords')}</span>
             </div>
             <div className="stat-item correct">
               <span className="stat-num">{stats.correct}</span>
-              <span className="stat-label">Đúng</span>
+              <span className="stat-label">{t('gameUi.correct')}</span>
             </div>
             <div className="stat-item wrong">
               <span className="stat-num">{stats.wrong}</span>
-              <span className="stat-label">Sai</span>
+              <span className="stat-label">{t('gameUi.wrong')}</span>
             </div>
             <div className="stat-item pending">
               <span className="stat-num">{stats.pending}</span>
-              <span className="stat-label">Chưa làm</span>
+              <span className="stat-label">{t('gameUi.pending')}</span>
             </div>
           </div>
           <div className="game-actions">
@@ -633,11 +643,11 @@ export function ScrambleGame({ courseId }: Props) {
               onClick={allAnswered ? () => void resetProgress(true) : startOrContinue}
               disabled={isResetting}
             >
-              {isResetting ? 'Đang làm lại...' : startLabel}
+              {isResetting ? t('common.redoing') : startLabel}
             </button>
             {allAnswered ? (
               <button type="button" className="btn btn-secondary" onClick={() => setPanel('result')}>
-                Xem kết quả
+                {t('gameUi.seeResults')}
               </button>
             ) : null}
           </div>
@@ -659,7 +669,7 @@ export function ScrambleGame({ courseId }: Props) {
                   }}
                 >
                   <span className="q-num">{index + 1}</span>
-                  <span className="q-preview">{questionPreview(question, status, index)}</span>
+                  <span className="q-preview">{questionPreview(question, status, index, t('gameUi.wordNumber', { n: index + 1 }))}</span>
                   <span className="q-status">{statusIcon(status)}</span>
                 </div>
               );
@@ -671,9 +681,9 @@ export function ScrambleGame({ courseId }: Props) {
       {panel === 'question' && currentQuestion ? (
         <div className="game-card" id="questionPanel">
           <span className="question-counter-pill">
-            Từ {currentIndex + 1}/{questions.length}
+            {t('gameUi.wordCounter', { current: currentIndex + 1, total: questions.length })}
           </span>
-          <div className="question-label">Sắp xếp các chữ thành từ đúng</div>
+          <div className="question-label">{t('scramble.instruction')}</div>
           <div className="scramble-display">{scrambledDisplay}</div>
 
           {currentQuestion.image ? (
@@ -689,7 +699,7 @@ export function ScrambleGame({ courseId }: Props) {
             </div>
           ) : null}
 
-          <div className="scramble-slot-row" aria-label="Ô xếp chữ">
+          <div className="scramble-slot-row" aria-label={t('scramble.slotsAria')}>
             {slotLetters.map((slot, slotIdx) => {
               let extra = '';
               if (slot) extra += ' is-filled';
@@ -711,11 +721,11 @@ export function ScrambleGame({ courseId }: Props) {
           </div>
           {!answered ? (
             <p className="scramble-keyboard-hint">
-              Gõ chữ trên bàn phím · Backspace xóa · Esc xóa hết
+              {t('scramble.keyboardHint')}
             </p>
           ) : null}
 
-          <div className="scramble-pool" aria-label="Chữ cái đảo">
+          <div className="scramble-pool" aria-label={t('scramble.poolAria')}>
             {poolLetters.map((letter) => (
               <button
                 key={`chip-${currentQuestion.id}-${letter.id}`}
@@ -739,11 +749,11 @@ export function ScrambleGame({ courseId }: Props) {
               />{' '}
               {answerResult.isCorrect ? (
                 <>
-                  Chính xác! <strong>{String(currentQuestion.word).toUpperCase()}</strong>
+                  {t('gameUi.feedbackCorrect')} <strong>{String(currentQuestion.word).toUpperCase()}</strong>
                 </>
               ) : (
                 <>
-                  Chưa đúng. Đáp án: <strong>{String(currentQuestion.word).toUpperCase()}</strong>
+                  {t('gameUi.feedbackWrongAnswer')} <strong>{String(currentQuestion.word).toUpperCase()}</strong>
                 </>
               )}
               {typeof answerResult.points === 'number' ? (
@@ -761,7 +771,7 @@ export function ScrambleGame({ courseId }: Props) {
                   onClick={clearBoard}
                   disabled={isSubmitting}
                 >
-                  Xóa
+                  {t('common.clear')}
                 </button>
                 <button
                   type="button"
@@ -770,16 +780,16 @@ export function ScrambleGame({ courseId }: Props) {
                   onClick={() => void finishAnswer()}
                 >
                   <i className="fas fa-check" aria-hidden="true" />{' '}
-                  {isSubmitting ? 'Đang nộp...' : 'Kiểm tra đáp án'}
+                  {isSubmitting ? t('gameUi.submitting') : t('common.checkAnswers')}
                 </button>
               </>
             ) : (
               <button type="button" className="btn btn-secondary" onClick={goNext}>
-                {currentIndex + 1 >= questions.length ? 'Xem kết quả' : 'Từ tiếp theo'}
+                {currentIndex + 1 >= questions.length ? t('gameUi.seeResults') : t('gameUi.nextWord')}
               </button>
             )}
             <button type="button" className="btn btn-secondary" onClick={() => setPanel('list')}>
-              Về danh sách
+              {t('common.backToList')}
             </button>
           </div>
         </div>
@@ -798,10 +808,10 @@ export function ScrambleGame({ courseId }: Props) {
               onClick={() => void resetProgress(false)}
               disabled={isResetting}
             >
-              {isResetting ? 'Đang làm lại...' : 'Làm lại'}
+              {isResetting ? t('common.redoing') : t('common.redo')}
             </button>
             <Link href={`/courses/${course.id}`} className="btn btn-secondary">
-              Quay lại khóa học
+              {t('common.backToCourse')}
             </Link>
           </GameResultSummary>
         </div>

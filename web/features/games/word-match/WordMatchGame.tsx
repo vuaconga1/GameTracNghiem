@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
+import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
 import { finalizePlaySessionIfComplete } from '@/features/scoring/completeSession';
@@ -86,11 +87,6 @@ function linePath(from: Point, to: Point): string {
   return `M ${from.x} ${from.y} C ${midX} ${from.y}, ${midX} ${to.y}, ${to.x} ${to.y}`;
 }
 
-function formatPoints(points: number): string {
-  const sign = points >= 0 ? '+' : '';
-  return `${sign}${points.toLocaleString('vi-VN')} điểm`;
-}
-
 function doneCount(statuses: ProgressStatus[]): number {
   return statuses.filter((status) => status === 'correct').length;
 }
@@ -125,6 +121,15 @@ function initialWordMatchState(initialData?: WordMatchGameData | null) {
 }
 
 export function WordMatchGame({ courseId, initialData }: Props) {
+  const { t, locale } = useI18n();
+  const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
+
+  function formatPoints(points: number): string {
+    const sign = points >= 0 ? '+' : '';
+    return `${sign}${points.toLocaleString(numberLocale)} ${t('common.points')}`;
+  }
+
+
   const router = useRouter();
   const initialState = initialWordMatchState(initialData);
   const [data, setData] = useState<WordMatchGameResponse | null>(initialState.data);
@@ -179,7 +184,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
         });
         const json = (await res.json()) as WordMatchGameResponse;
         if (!res.ok || !json.success) {
-          throw new Error(json.message || 'Không tải được trò chơi');
+          throw new Error(json.message || t('gameUi.loadFailed'));
         }
 
         const questions = json.questions || [];
@@ -198,7 +203,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
-        setErrorMessage(err instanceof Error ? err.message : 'Không tải được trò chơi');
+        setErrorMessage(err instanceof Error ? err.message : t('gameUi.loadFailed'));
       } finally {
         if (!controller.signal.aborted) {
           setIsLoading(false);
@@ -368,7 +373,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
       playSessionId: sessionId === undefined ? playSessionId : sessionId,
     });
     if (!json.success) {
-      throw new Error(json.message || 'Không lưu được tiến độ');
+      throw new Error(json.message || t('gameUi.progressSaveFailed'));
     }
     if (json.statuses) {
       setStatuses(normalizeStatuses(json.statuses, questions.length));
@@ -414,7 +419,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
           sessionId
         );
         if (!score.success) {
-          throw new Error(score.message || 'Không ghi được điểm');
+          throw new Error(score.message || t('gameUi.scoreSaveFailed'));
         }
 
         let points: number | undefined;
@@ -449,7 +454,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
         } else {
           setFeedback({
             isCorrect: false,
-            message: 'Chưa khớp. Thử cặp khác nhé.',
+            message: t('wordMatch.mismatch'),
             points,
           });
           setWrongPair({ wordIndex, imageIndex });
@@ -460,7 +465,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
           }, 600);
         }
       } catch (err) {
-        setSubmitMessage(err instanceof Error ? err.message : 'Không nộp được câu trả lời');
+        setSubmitMessage(err instanceof Error ? err.message : t('gameUi.submitFailed'));
         clearSelection();
         setIsSubmitting(false);
       }
@@ -525,7 +530,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
     if (selectedWordIndex < 0 || selectedImageIndex < 0) {
       setFeedback({
         isCorrect: false,
-        message: 'Hãy chọn một từ và một hình trước khi kiểm tra.',
+        message: t('wordMatch.selectBoth'),
       });
       return;
     }
@@ -554,7 +559,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
       router.refresh();
       setPanel('board');
     } catch (err) {
-      setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
+      setSubmitMessage(err instanceof Error ? err.message : t('gameUi.redoFailed'));
     } finally {
       setIsResetting(false);
     }
@@ -571,7 +576,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
   if (errorMessage || !course) {
     return (
       <div className="game-page wm-page">
-        <DataLoading variant="message" message={errorMessage || 'Không tìm thấy trò chơi'} />
+        <DataLoading variant="message" message={errorMessage || t('gameUi.notFound')} />
       </div>
     );
   }
@@ -581,7 +586,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
       <div className="game-page wm-page">
         <DataLoading
           variant="message"
-          message="Chưa có dữ liệu game nối từ với hình cho khóa học này"
+          message={t('wordMatch.empty')}
         />
       </div>
     );
@@ -591,10 +596,10 @@ export function WordMatchGame({ courseId, initialData }: Props) {
 
   return (
     <div className="game-page wm-page">
-      <PageBackButton href={`/courses/${course.id}`} title="Quay lại khóa học" />
+      <PageBackButton href={`/courses/${course.id}`} title={t('common.backToCourse')} />
       <div className="game-top">
         <div className="game-title-wrap">
-          <h1>Nối từ với hình ảnh</h1>
+          <h1>{t('wordMatch.title')}</h1>
           <p className="game-subtitle">{subtitle}</p>
         </div>
       </div>
@@ -602,13 +607,13 @@ export function WordMatchGame({ courseId, initialData }: Props) {
       {panel === 'board' ? (
         <>
           <div className="game-meta">
-            <span className="meta-pill">{course.name || 'Khóa học'}</span>
+            <span className="meta-pill">{course.name || t('gameUi.courseLabel')}</span>
             <span className="meta-pill meta-score-pill">
-              {sessionPoints.toLocaleString('vi-VN')}/{maxScore.toLocaleString('vi-VN')} điểm
+              {t('gameUi.sessionScore', { earned: sessionPoints.toLocaleString(numberLocale), max: maxScore.toLocaleString(numberLocale) })}
             </span>
             <div
               className="progress-bar-wrap"
-              aria-label={`Điểm phiên ${sessionPoints}/${maxScore}`}
+              aria-label={t('gameUi.sessionScoreAria', { earned: sessionPoints, max: maxScore })}
             >
               <div className="progress-bar-fill" style={{ width: `${progressPercent}%` }} />
             </div>
@@ -616,9 +621,9 @@ export function WordMatchGame({ courseId, initialData }: Props) {
 
           <div className="game-card" id="playPanel">
             <span className="question-counter-pill">
-              Cặp {correctCount}/{questions.length}
+              {t('gameUi.pairCounter', { current: correctCount, total: questions.length })}
             </span>
-            <div className="question-label">Nối đúng từ tiếng Anh với hình tương ứng</div>
+            <div className="question-label">{t('wordMatch.instruction')}</div>
             <div className="wm-hint">{hintText}</div>
             <div className="wm-board" ref={boardRef}>
               <svg className="wm-lines" aria-hidden="true">
@@ -668,7 +673,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
               </svg>
               <div>
                 <div className="wm-col-title">
-                  <i className="fas fa-font" aria-hidden="true" /> Từ vựng
+                  <i className="fas fa-font" aria-hidden="true" /> {t('gameUi.vocabularyLabel')}
                 </div>
                 <div className="wm-list" id="wordList">
                   {wordOrder.map((index) => {
@@ -705,7 +710,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
               </div>
               <div>
                 <div className="wm-col-title">
-                  <i className="fas fa-image" aria-hidden="true" /> Hình ảnh
+                  <i className="fas fa-image" aria-hidden="true" /> {t('gameUi.imageLabel')}
                 </div>
                 <div className="wm-list" id="imageList">
                   {imageOrder.map((index) => {
@@ -742,7 +747,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
               </div>
             </div>
             <div className="wm-progress-line">
-              Đúng {correctCount}/{questions.length} cặp
+              {t('gameUi.correctCountPairs', { correct: correctCount, total: questions.length })}
             </div>
 
             {submitMessage ? (
@@ -759,7 +764,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
                 />{' '}
                 {feedback.isCorrect ? (
                   <>
-                    Đúng rồi!{' '}
+                    {t('wordMatch.matchedAll')}{' '}
                     {feedback.message ? <strong>{feedback.message}</strong> : null}
                   </>
                 ) : (
@@ -779,10 +784,10 @@ export function WordMatchGame({ courseId, initialData }: Props) {
                 disabled={isSubmitting}
               >
                 <i className="fas fa-check" aria-hidden="true" />{' '}
-                {isSubmitting ? 'Đang kiểm tra...' : 'Kiểm tra đáp án'}
+                {isSubmitting ? t('common.checking') : t('common.checkAnswers')}
               </button>
               <button type="button" className="btn btn-secondary" onClick={clearSelection}>
-                Bỏ chọn
+                {t('wordMatch.clearSelection')}
               </button>
               <button
                 type="button"
@@ -790,7 +795,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
                 onClick={() => void resetGame()}
                 disabled={isResetting}
               >
-                {isResetting ? 'Đang làm lại...' : 'Làm lại'}
+                {isResetting ? t('common.redoing') : t('common.redo')}
               </button>
             </div>
           </div>
@@ -809,10 +814,10 @@ export function WordMatchGame({ courseId, initialData }: Props) {
               onClick={() => void resetGame()}
               disabled={isResetting}
             >
-              {isResetting ? 'Đang làm lại...' : 'Làm lại'}
+              {isResetting ? t('common.redoing') : t('common.redo')}
             </button>
             <Link href={`/courses/${course.id}`} className="btn btn-secondary">
-              Quay lại khóa học
+              {t('common.backToCourse')}
             </Link>
           </GameResultSummary>
         </div>

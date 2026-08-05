@@ -2,6 +2,7 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 
+import { I18nProvider } from '@/components/i18n/I18nProvider';
 import { PronunciationGameContent } from './PronunciationGame';
 import { scoreTranscript } from './scoreTranscript';
 
@@ -91,12 +92,12 @@ describe('PronunciationGameContent', () => {
 
   it('shows question list and start button on list panel', () => {
     const html = renderToStaticMarkup(
-      createElement(PronunciationGameContent, {
+      createElement(I18nProvider, { initialLocale: 'vi' }, createElement(PronunciationGameContent, {
         ...baseProps,
         panel: 'list',
         statuses: ['correct', 'empty', 'empty'],
         stats: { total: 2, correct: 1, wrong: 0, pending: 1 },
-      })
+      }))
     );
 
     expect(html).toContain('id="listPanel"');
@@ -111,12 +112,12 @@ describe('PronunciationGameContent', () => {
 
   it('shows redo from start when all playable questions are graded', () => {
     const html = renderToStaticMarkup(
-      createElement(PronunciationGameContent, {
+      createElement(I18nProvider, { initialLocale: 'vi' }, createElement(PronunciationGameContent, {
         ...baseProps,
         panel: 'list',
         statuses: ['correct', 'wrong', 'empty'],
         stats: { total: 2, correct: 1, wrong: 1, pending: 0 },
-      })
+      }))
     );
 
     expect(html).toContain('Làm lại từ đầu');
@@ -125,10 +126,10 @@ describe('PronunciationGameContent', () => {
 
   it('renders pronunciation chrome and hides stress tab', () => {
     const html = renderToStaticMarkup(
-      createElement(PronunciationGameContent, {
+      createElement(I18nProvider, { initialLocale: 'vi' }, createElement(PronunciationGameContent, {
         ...baseProps,
         statuses: ['empty', 'empty', 'empty'],
-      })
+      }))
     );
 
     expect(html).toContain('class="pronunciation-page pron-page-stack"');
@@ -142,7 +143,7 @@ describe('PronunciationGameContent', () => {
   it('shows auto-scored word result without phoneme chips or self-eval', () => {
     const score = scoreTranscript('world', 'world', 'phoneme');
     const html = renderToStaticMarkup(
-      createElement(PronunciationGameContent, {
+      createElement(I18nProvider, { initialLocale: 'vi' }, createElement(PronunciationGameContent, {
         ...baseProps,
         statuses: ['correct', 'empty', 'empty'],
         recordState: 'done',
@@ -153,7 +154,7 @@ describe('PronunciationGameContent', () => {
           score,
           engine: 'groq',
         },
-      })
+      }))
     );
 
     expect(html).toContain('id="actionContainer"');
@@ -169,7 +170,7 @@ describe('PronunciationGameContent', () => {
   it('shows per-word scores for sentence mode', () => {
     const score = scoreTranscript('Nice to meet you', 'Nice to meet you', 'sentence');
     const html = renderToStaticMarkup(
-      createElement(PronunciationGameContent, {
+      createElement(I18nProvider, { initialLocale: 'vi' }, createElement(PronunciationGameContent, {
         ...baseProps,
         currentIndex: 1,
         currentMode: 'sentence',
@@ -182,7 +183,7 @@ describe('PronunciationGameContent', () => {
           score,
           engine: 'webspeech',
         },
-      })
+      }))
     );
 
     expect(html).toContain('Từng từ một');
@@ -192,7 +193,7 @@ describe('PronunciationGameContent', () => {
 
   it('treats the scoped exercise as complete on its last question', () => {
     const html = renderToStaticMarkup(
-      createElement(PronunciationGameContent, {
+      createElement(I18nProvider, { initialLocale: 'vi' }, createElement(PronunciationGameContent, {
         ...baseProps,
         questions: [
           {
@@ -227,7 +228,7 @@ describe('PronunciationGameContent', () => {
         exerciseFilterKey: 'AE',
         activeExerciseLabel: 'Âm /æ/',
         theoryText: 'Âm /æ/ mở rộng miệng và hạ hàm thấp.',
-      })
+      }))
     );
 
     expect(html).toContain('Câu 2/2');

@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+import { LanguageSwitcher } from '@/components/i18n/LanguageSwitcher';
+import { useI18n } from '@/components/i18n/I18nProvider';
+
 import { useSidebar } from './SidebarContext';
 
 type AppHeaderProps = {
@@ -14,6 +17,7 @@ type AppHeaderProps = {
 export function AppHeader({ isAdmin = false, showMenu = true }: AppHeaderProps) {
   const router = useRouter();
   const { open, toggle } = useSidebar();
+  const { t } = useI18n();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   async function handleLogout() {
@@ -35,7 +39,7 @@ export function AppHeader({ isAdmin = false, showMenu = true }: AppHeaderProps) 
           <button
             type="button"
             className="mobile-menu-btn"
-            aria-label="Mở menu"
+            aria-label={t('common.openMenu')}
             aria-expanded={open}
             onClick={toggle}
           >
@@ -45,25 +49,26 @@ export function AppHeader({ isAdmin = false, showMenu = true }: AppHeaderProps) 
       </div>
 
       <div className="header-actions">
+        <LanguageSwitcher />
         {isAdmin ? (
           <Link className="action-item" href="/admin">
             <i className="fas fa-screwdriver-wrench" />
-            <span>Quản trị</span>
+            <span>{t('common.admin')}</span>
           </Link>
         ) : null}
         <Link className="action-item" href="/leaderboard">
           <i className="fas fa-chart-bar" />
-          <span>Xếp hạng</span>
+          <span>{t('common.leaderboard')}</span>
         </Link>
         <button
           type="button"
           className="action-item action-item-logout"
-          title="Đăng xuất"
+          title={t('common.logout')}
           onClick={handleLogout}
           disabled={isLoggingOut}
         >
           <i className="fas fa-right-from-bracket" />
-          <span>{isLoggingOut ? 'Đang đăng xuất...' : 'Đăng xuất'}</span>
+          <span>{isLoggingOut ? t('common.loggingOut') : t('common.logout')}</span>
         </button>
       </div>
     </header>

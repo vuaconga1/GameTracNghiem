@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { useI18n } from '@/components/i18n/I18nProvider';
 import { findGameByPathname } from '@/lib/gameCatalog';
 
 import { AppHeader } from './AppHeader';
@@ -33,6 +34,7 @@ export function MainShell({
 }: MainShellProps) {
   const pathname = usePathname();
   const { setOpen } = useSidebar();
+  const { t } = useI18n();
   const activeGame = findGameByPathname(pathname);
   const isGamePage = Boolean(activeGame);
   const isHome = pathname === '/';
@@ -48,7 +50,8 @@ export function MainShell({
     progressPercent,
   };
 
-  // Home: level filters. Course / games / leaderboard: compact nav with Trang chủ.
+  const gameLabel = activeGame ? t(`games.${activeGame.key}`) : '';
+
   let sidebar: React.ReactNode = null;
   if (isGamePage && activeGame) {
     sidebar = (
@@ -59,11 +62,11 @@ export function MainShell({
           <>
             <Link className="nav-item" href="/" onClick={() => setOpen(false)}>
               <i className="fas fa-home" />
-              <span>Trang chủ</span>
+              <span>{t('common.home')}</span>
             </Link>
             <Link className="nav-item active" href={pathname} onClick={() => setOpen(false)}>
               <i className={activeGame.icon} />
-              <span>{activeGame.label}</span>
+              <span>{gameLabel}</span>
             </Link>
           </>
         }
@@ -80,11 +83,11 @@ export function MainShell({
           <>
             <Link className="nav-item" href="/" onClick={() => setOpen(false)}>
               <i className="fas fa-home" />
-              <span>Trang chủ</span>
+              <span>{t('common.home')}</span>
             </Link>
             <Link className="nav-item active" href={pathname} onClick={() => setOpen(false)}>
               <i className="fas fa-graduation-cap" />
-              <span>Khóa học</span>
+              <span>{t('common.courses')}</span>
             </Link>
           </>
         }
@@ -99,11 +102,11 @@ export function MainShell({
           <>
             <Link className="nav-item" href="/" onClick={() => setOpen(false)}>
               <i className="fas fa-home" />
-              <span>Trang chủ</span>
+              <span>{t('common.home')}</span>
             </Link>
             <Link className="nav-item active" href="/leaderboard" onClick={() => setOpen(false)}>
               <i className="fas fa-trophy" />
-              <span>Xếp hạng</span>
+              <span>{t('common.leaderboard')}</span>
             </Link>
           </>
         }

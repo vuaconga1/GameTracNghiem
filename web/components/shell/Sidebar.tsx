@@ -1,6 +1,10 @@
+'use client';
+
 /* eslint-disable @next/next/no-img-element */
 
 import Link from 'next/link';
+
+import { useI18n } from '@/components/i18n/I18nProvider';
 
 import { RankBadge } from './RankBadge';
 
@@ -34,9 +38,11 @@ export function Sidebar({
   filtersSlot,
   gameNav,
 }: SidebarProps) {
+  const { t } = useI18n();
+
   return (
     <aside className="sidebar">
-      <Link href="/" className="sidebar-logo" aria-label="Về trang chủ WeWIN">
+      <Link href="/" className="sidebar-logo" aria-label={t('common.home')}>
         <img src="/wewinlogo.png" alt="WeWIN Logo" />
       </Link>
 
@@ -63,7 +69,7 @@ export function Sidebar({
         <div className="sidebar-filters filters">{filtersSlot}</div>
       )}
 
-      <div className="sidebar-version">Version: 2.3.219</div>
+      <div className="sidebar-version">{t('common.version', { version: '2.3.219' })}</div>
     </aside>
   );
 }

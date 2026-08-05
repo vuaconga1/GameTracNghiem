@@ -3,6 +3,8 @@
 import { useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 
+import { useI18n } from '@/components/i18n/I18nProvider';
+
 type LoginFormProps = {
   next?: string;
   initialError?: string;
@@ -15,6 +17,7 @@ type LoginResponse = {
 
 export function LoginForm({ next, initialError }: LoginFormProps) {
   const router = useRouter();
+  const { t } = useI18n();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(initialError || '');
@@ -34,14 +37,14 @@ export function LoginForm({ next, initialError }: LoginFormProps) {
       const data = (await response.json()) as LoginResponse;
 
       if (!response.ok || !data.success) {
-        setError(data.message || 'Không thể đăng nhập');
+        setError(data.message || t('auth.failed'));
         return;
       }
 
       router.push(next || '/');
       router.refresh();
     } catch {
-      setError('Không thể kết nối máy chủ');
+      setError(t('auth.connectionFailed'));
     } finally {
       setIsSubmitting(false);
     }
@@ -49,6 +52,7 @@ export function LoginForm({ next, initialError }: LoginFormProps) {
 
   return (
     <>
+      <h2 id="loginTitle">{t('auth.loginTitle')}</h2>
       <div
         id="loginError"
         className={error ? 'login-error show' : 'login-error'}
@@ -58,11 +62,11 @@ export function LoginForm({ next, initialError }: LoginFormProps) {
       </div>
       <form id="loginForm" onSubmit={handleSubmit}>
         <div className="login-field">
-          <label htmlFor="loginUsername">Username</label>
+          <label htmlFor="loginUsername">{t('auth.username')}</label>
           <input
             type="text"
             id="loginUsername"
-            placeholder="Nhập username"
+            placeholder={t('auth.usernamePlaceholder')}
             value={username}
             onChange={(event) => setUsername(event.target.value)}
             autoComplete="username"
@@ -70,11 +74,11 @@ export function LoginForm({ next, initialError }: LoginFormProps) {
           />
         </div>
         <div className="login-field">
-          <label htmlFor="loginPassword">Password</label>
+          <label htmlFor="loginPassword">{t('auth.password')}</label>
           <input
             type="password"
             id="loginPassword"
-            placeholder="Nhập password"
+            placeholder={t('auth.passwordPlaceholder')}
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             autoComplete="current-password"
@@ -87,7 +91,7 @@ export function LoginForm({ next, initialError }: LoginFormProps) {
           id="loginSubmit"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Đang đăng nhập...' : 'Đăng nhập'}
+          {isSubmitting ? t('auth.submitting') : t('auth.submit')}
         </button>
       </form>
     </>

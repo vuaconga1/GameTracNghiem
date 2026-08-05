@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 
+import { AppI18nProvider } from "@/components/i18n/AppI18nProvider";
+
 const nunito = Nunito({
   variable: "--font-nunito",
   subsets: ["latin", "vietnamese"],
 });
 
 export const metadata: Metadata = {
-  title: "WeWIN Game Trắc Nghiệm",
-  description: "Nền tảng luyện tập trắc nghiệm WeWIN",
+  title: "WeWIN Quiz Games",
+  description: "WeWIN English practice platform",
 };
 
 export default function RootLayout({
@@ -18,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link
           rel="stylesheet"
@@ -28,7 +30,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${nunito.variable} antialiased`} suppressHydrationWarning>
-        {children}
+        <AppI18nProvider>{children}</AppI18nProvider>
       </body>
     </html>
   );

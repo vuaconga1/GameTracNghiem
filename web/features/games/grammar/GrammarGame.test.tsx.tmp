@@ -1,9 +1,16 @@
-import { createElement } from 'react';
+﻿import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 
 import { I18nProvider } from '@/components/i18n/I18nProvider';
+
 import { GrammarGameContent } from './GrammarGame';
+
+function renderContent(props: React.ComponentProps<typeof GrammarGameContent>) {
+  return renderToStaticMarkup(
+    createElement(I18nProvider, { initialLocale: 'vi' }, createElement(GrammarGameContent, props)),
+  );
+}
 
 describe('GrammarGameContent', () => {
   const baseProps = {
@@ -56,72 +63,63 @@ describe('GrammarGameContent', () => {
   };
 
   it('renders the legacy list question and result panel chrome', () => {
-    const listHtml = renderToStaticMarkup(
-      createElement(I18nProvider, { initialLocale: 'vi' }, createElement(GrammarGameContent, {
+    const listHtml = renderContent( {
         ...baseProps,
         statuses: ['correct', 'empty'],
         panel: 'list',
-      }))
-    );
+      });
     expect(listHtml).toContain('class="game-page grammar-page"');
     expect(listHtml).toContain('id="listPanel"');
     expect(listHtml).toContain('class="list-stats"');
     expect(listHtml).not.toContain('class="game-score-hero"');
-    expect(listHtml).not.toContain('Tổng điểm cao nhất');
+    expect(listHtml).not.toContain('Tá»•ng Ä‘iá»ƒm cao nháº¥t');
     expect(listHtml).toContain('class="q-list-item status-correct"');
     expect(listHtml).toContain('class="q-list-item status-pending"');
-    expect(listHtml).toContain('Bắt đầu làm bài');
+    expect(listHtml).toContain('Báº¯t Ä‘áº§u lÃ m bÃ i');
 
-    const questionHtml = renderToStaticMarkup(
-      createElement(I18nProvider, { initialLocale: 'vi' }, createElement(GrammarGameContent, {
+    const questionHtml = renderContent( {
         ...baseProps,
         statuses: ['correct', 'empty'],
         panel: 'question',
-      }))
-    );
+      });
     expect(questionHtml).toContain('class="game-meta"');
     expect(questionHtml).toContain('class="question-counter-pill"');
     expect(questionHtml).toContain('class="meta-pill meta-score-pill"');
-    expect(questionHtml).toContain('120/400 điểm');
+    expect(questionHtml).toContain('120/400 Ä‘iá»ƒm');
     expect(questionHtml).toContain('class="progress-bar-wrap"');
     expect(questionHtml).toContain('style="width:30%"');
     expect(questionHtml).toContain('class="rewrite-row"');
     expect(questionHtml).toContain('class="hint-box"');
 
-    const resultHtml = renderToStaticMarkup(
-      createElement(I18nProvider, { initialLocale: 'vi' }, createElement(GrammarGameContent, {
+    const resultHtml = renderContent( {
         ...baseProps,
         statuses: ['correct', 'empty'],
         panel: 'result',
-      }))
-    );
+      });
     expect(resultHtml).toContain('id="resultPanel"');
     expect(resultHtml).not.toContain('class="game-score-hero"');
-    expect(resultHtml).not.toContain('Tổng điểm cao nhất');
-    expect(resultHtml).toContain('Đúng 1/2 câu');
-    expect(resultHtml).toContain('Làm lại');
-    expect(resultHtml).toContain('Quay lại khóa học');
+    expect(resultHtml).not.toContain('Tá»•ng Ä‘iá»ƒm cao nháº¥t');
+    expect(resultHtml).toContain('ÄÃºng 1/2 cÃ¢u');
+    expect(resultHtml).toContain('LÃ m láº¡i');
+    expect(resultHtml).toContain('Quay láº¡i khÃ³a há»c');
   });
 
   it('shows retry-from-start primary CTA when all questions are answered', () => {
-    const listHtml = renderToStaticMarkup(
-      createElement(I18nProvider, { initialLocale: 'vi' }, createElement(GrammarGameContent, {
+    const listHtml = renderContent( {
         ...baseProps,
         statuses: ['correct', 'wrong'],
         stats: { total: 2, correct: 1, wrong: 1, pending: 0 },
         progressPercent: 100,
         panel: 'list',
-      }))
-    );
+      });
 
-    expect(listHtml).toContain('Làm lại từ đầu');
-    expect(listHtml).toContain('Xem kết quả');
-    expect(listHtml).not.toContain('Bắt đầu làm bài');
+    expect(listHtml).toContain('LÃ m láº¡i tá»« Ä‘áº§u');
+    expect(listHtml).toContain('Xem káº¿t quáº£');
+    expect(listHtml).not.toContain('Báº¯t Ä‘áº§u lÃ m bÃ i');
   });
 
   it('shows Vietnamese fill instruction when source is a workbook code', () => {
-    const questionHtml = renderToStaticMarkup(
-      createElement(I18nProvider, { initialLocale: 'vi' }, createElement(GrammarGameContent, {
+    const questionHtml = renderContent( {
         ...baseProps,
         questions: [
           {
@@ -138,17 +136,15 @@ describe('GrammarGameContent', () => {
         statuses: ['empty'],
         stats: { total: 1, correct: 0, wrong: 0, pending: 1 },
         panel: 'question',
-      }))
-    );
-    expect(questionHtml).toContain('Chọn từ trong gợi ý và điền vào chỗ trống.');
-    expect(questionHtml).toContain('Điền từ vào chỗ trống:');
+      });
+    expect(questionHtml).toContain('Chá»n tá»« trong gá»£i Ã½ vÃ  Ä‘iá»n vÃ o chá»— trá»‘ng.');
+    expect(questionHtml).toContain('Äiá»n tá»« vÃ o chá»— trá»‘ng:');
     expect(questionHtml).not.toContain('>U1 Ex4<');
-    expect(questionHtml).not.toContain('Câu mẫu');
+    expect(questionHtml).not.toContain('CÃ¢u máº«u');
   });
 
   it('renders descriptive rewrite instructions for prompt-based writing questions', () => {
-    const questionHtml = renderToStaticMarkup(
-      createElement(I18nProvider, { initialLocale: 'vi' }, createElement(GrammarGameContent, {
+    const questionHtml = renderContent( {
         ...baseProps,
         questions: [
           {
@@ -162,27 +158,25 @@ describe('GrammarGameContent', () => {
           },
         ],
         currentIndex: 0,
-        exerciseTitle: 'Viết lại câu theo từ gợi ý',
+        exerciseTitle: 'Viáº¿t láº¡i cÃ¢u theo tá»« gá»£i Ã½',
         statuses: ['empty'],
         stats: { total: 1, correct: 0, wrong: 0, pending: 1 },
         panel: 'question',
-      }))
-    );
+      });
 
     expect(questionHtml).toContain(
-      'Đọc câu gốc rồi viết phần còn thiếu để hoàn thành câu mới đúng ngữ pháp và đúng nghĩa.'
+      'Äá»c cÃ¢u gá»‘c rá»“i viáº¿t pháº§n cÃ²n thiáº¿u Ä‘á»ƒ hoÃ n thÃ nh cÃ¢u má»›i Ä‘Ãºng ngá»¯ phÃ¡p vÃ  Ä‘Ãºng nghÄ©a.'
     );
-    expect(questionHtml).toContain('Câu gốc');
-    expect(questionHtml).toContain('Viết phần còn thiếu:');
+    expect(questionHtml).toContain('CÃ¢u gá»‘c');
+    expect(questionHtml).toContain('Viáº¿t pháº§n cÃ²n thiáº¿u:');
     expect(questionHtml).not.toContain('>W Exercise 15<');
     expect(questionHtml).toContain(
-      'Giữ nguyên phần đã cho và chỉ điền đoạn còn thiếu vào ô trả lời.'
+      'Giá»¯ nguyÃªn pháº§n Ä‘Ã£ cho vÃ  chá»‰ Ä‘iá»n Ä‘oáº¡n cÃ²n thiáº¿u vÃ o Ã´ tráº£ lá»i.'
     );
   });
 
   it('renders descriptive correction instructions for error-fixing questions', () => {
-    const questionHtml = renderToStaticMarkup(
-      createElement(I18nProvider, { initialLocale: 'vi' }, createElement(GrammarGameContent, {
+    const questionHtml = renderContent( {
         ...baseProps,
         questions: [
           {
@@ -196,23 +190,21 @@ describe('GrammarGameContent', () => {
           },
         ],
         currentIndex: 0,
-        exerciseTitle: 'Tìm và sửa lỗi sai trong câu',
+        exerciseTitle: 'TÃ¬m vÃ  sá»­a lá»—i sai trong cÃ¢u',
         statuses: ['empty'],
         stats: { total: 1, correct: 0, wrong: 0, pending: 1 },
         panel: 'question',
-      }))
-    );
+      });
 
-    expect(questionHtml).toContain('Đọc câu, tìm lỗi sai rồi viết lại cả câu cho đúng.');
-    expect(questionHtml).toContain('Câu có lỗi');
-    expect(questionHtml).toContain('Viết lại câu đúng:');
-    expect(questionHtml).not.toContain('Câu mẫu');
+    expect(questionHtml).toContain('Äá»c cÃ¢u, tÃ¬m lá»—i sai rá»“i viáº¿t láº¡i cáº£ cÃ¢u cho Ä‘Ãºng.');
+    expect(questionHtml).toContain('CÃ¢u cÃ³ lá»—i');
+    expect(questionHtml).toContain('Viáº¿t láº¡i cÃ¢u Ä‘Ãºng:');
+    expect(questionHtml).not.toContain('CÃ¢u máº«u');
     expect(questionHtml).not.toContain('>W Exercise 14<');
   });
 
   it('renders double-comparative instructions for sparse slash cues', () => {
-    const questionHtml = renderToStaticMarkup(
-      createElement(I18nProvider, { initialLocale: 'vi' }, createElement(GrammarGameContent, {
+    const questionHtml = renderContent( {
         ...baseProps,
         questions: [
           {
@@ -226,26 +218,24 @@ describe('GrammarGameContent', () => {
           },
         ],
         currentIndex: 0,
-        exerciseTitle: 'Viết lại câu theo dạng so sánh kép',
+        exerciseTitle: 'Viáº¿t láº¡i cÃ¢u theo dáº¡ng so sÃ¡nh kÃ©p',
         statuses: ['empty'],
         stats: { total: 1, correct: 0, wrong: 0, pending: 1 },
         panel: 'question',
-      }))
-    );
+      });
 
     expect(questionHtml).toContain(
-      'Dùng các từ gợi ý để viết câu theo cấu trúc so sánh kép (The more/less/-er ..., the more/less/-er ...).'
+      'DÃ¹ng cÃ¡c tá»« gá»£i Ã½ Ä‘á»ƒ viáº¿t cÃ¢u theo cáº¥u trÃºc so sÃ¡nh kÃ©p (The more/less/-er ..., the more/less/-er ...).'
     );
-    expect(questionHtml).toContain('Từ/cụm từ gợi ý');
-    expect(questionHtml).toContain('Viết câu so sánh kép:');
-    expect(questionHtml).toContain('Viết đầy đủ câu dạng &quot;The ..., the ...&quot;');
-    expect(questionHtml).not.toContain('Sắp xếp các từ hoặc cụm từ đã cho');
+    expect(questionHtml).toContain('Tá»«/cá»¥m tá»« gá»£i Ã½');
+    expect(questionHtml).toContain('Viáº¿t cÃ¢u so sÃ¡nh kÃ©p:');
+    expect(questionHtml).toContain('Viáº¿t Ä‘áº§y Ä‘á»§ cÃ¢u dáº¡ng &quot;The ..., the ...&quot;');
+    expect(questionHtml).not.toContain('Sáº¯p xáº¿p cÃ¡c tá»« hoáº·c cá»¥m tá»« Ä‘Ã£ cho');
     expect(questionHtml).not.toContain('>W Exercise 16<');
   });
 
   it('renders present-perfect instructions for guided slash cues', () => {
-    const questionHtml = renderToStaticMarkup(
-      createElement(I18nProvider, { initialLocale: 'vi' }, createElement(GrammarGameContent, {
+    const questionHtml = renderContent( {
         ...baseProps,
         questions: [
           {
@@ -259,20 +249,20 @@ describe('GrammarGameContent', () => {
           },
         ],
         currentIndex: 0,
-        exerciseTitle: 'Viết câu dùng thì hiện tại hoàn thành',
+        exerciseTitle: 'Viáº¿t cÃ¢u dÃ¹ng thÃ¬ hiá»‡n táº¡i hoÃ n thÃ nh',
         statuses: ['empty'],
         stats: { total: 1, correct: 0, wrong: 0, pending: 1 },
         panel: 'question',
-      }))
-    );
+      });
 
     expect(questionHtml).toContain(
-      'Dùng các từ gợi ý để viết câu đúng với thì hiện tại hoàn thành (present perfect).'
+      'DÃ¹ng cÃ¡c tá»« gá»£i Ã½ Ä‘á»ƒ viáº¿t cÃ¢u Ä‘Ãºng vá»›i thÃ¬ hiá»‡n táº¡i hoÃ n thÃ nh (present perfect).'
     );
-    expect(questionHtml).toContain('Từ/cụm từ gợi ý');
-    expect(questionHtml).toContain('Viết câu hiện tại hoàn thành:');
-    expect(questionHtml).toContain('Chia động từ ở thì hiện tại hoàn thành');
-    expect(questionHtml).not.toContain('Sắp xếp các từ hoặc cụm từ đã cho');
+    expect(questionHtml).toContain('Tá»«/cá»¥m tá»« gá»£i Ã½');
+    expect(questionHtml).toContain('Viáº¿t cÃ¢u hiá»‡n táº¡i hoÃ n thÃ nh:');
+    expect(questionHtml).toContain('Chia Ä‘á»™ng tá»« á»Ÿ thÃ¬ hiá»‡n táº¡i hoÃ n thÃ nh');
+    expect(questionHtml).not.toContain('Sáº¯p xáº¿p cÃ¡c tá»« hoáº·c cá»¥m tá»« Ä‘Ã£ cho');
     expect(questionHtml).not.toContain('>W Exercise 15<');
   });
 });
+

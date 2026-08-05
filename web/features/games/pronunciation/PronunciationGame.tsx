@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
+import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
 import {
@@ -85,11 +86,6 @@ type MicSession = {
   cancel: () => void;
   done: Promise<RecordedClip>;
 };
-
-function formatPoints(points: number): string {
-  const sign = points >= 0 ? '+' : '';
-  return `${sign}${points.toLocaleString('vi-VN')} điểm`;
-}
 
 function statusClass(status: ProgressStatus): string {
   if (status === 'correct') return 'status-correct';
@@ -179,11 +175,19 @@ function EvaluationResult({
   question: PronunciationQuestion;
   result: AnswerResult;
 }) {
+  const { t, locale } = useI18n();
+  const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
+
+  function formatPoints(points: number): string {
+    const sign = points >= 0 ? '+' : '';
+    return `${sign}${points.toLocaleString(numberLocale)} ${t('common.points')}`;
+  }
+
   const mode = resolveFeedbackMode(question.mode);
   const { score, points, engine } = result;
 
   if (mode === 'sentence') {
-    const rings = sentenceScoreRingsFromResult(score);
+    const rings = sentenceScoreRingsFromResult(score, t);
     const words = score.wordScores || [];
     return (
       <div className="evaluation-result pron-content-stack">
@@ -193,7 +197,7 @@ function EvaluationResult({
           ))}
         </div>
         {engine === 'webspeech' ? (
-          <p className="pron-engine-badge">Chấm bằng nhận dạng trình duyệt</p>
+          <p className="pron-engine-badge">{t('pronunciation.browserScoring')}</p>
         ) : null}
         <div className={`eval-feedback ${score.isCorrect ? 'correct' : 'wrong'}`}>
           <p className="eval-feedback-title">
@@ -201,11 +205,11 @@ function EvaluationResult({
               className={`fa-solid ${score.isCorrect ? 'fa-circle-check text-green-500' : 'fa-circle-xmark text-red-500'}`}
               aria-hidden="true"
             />
-            <span>{feedbackMessage(score)}</span>
+            <span>{feedbackMessage(score, t)}</span>
           </p>
         </div>
         <div className="eval-word-breakdown">
-          <p className="eval-word-breakdown-title">Từng từ một</p>
+          <p className="eval-word-breakdown-title">{t('pronunciation.wordBreakdown')}</p>
           <div className="eval-word-row">
             {words.map((item) => {
               const colorClass = item.score >= 80 ? 'good' : item.score >= 60 ? 'mid' : 'bad';
@@ -223,7 +227,7 @@ function EvaluationResult({
     );
   }
 
-  const rings = wordScoreRings(score);
+  const rings = wordScoreRings(score, t);
   return (
     <div className="evaluation-result pron-content-stack">
       <div className="eval-rings">
@@ -232,7 +236,7 @@ function EvaluationResult({
         ))}
       </div>
       {engine === 'webspeech' ? (
-        <p className="pron-engine-badge">Chấm bằng nhận dạng trình duyệt</p>
+        <p className="pron-engine-badge">{t('pronunciation.browserScoring')}</p>
       ) : null}
       <div className={`eval-feedback ${score.isCorrect ? 'correct' : 'wrong'}`}>
         <p className="eval-feedback-title">
@@ -240,7 +244,7 @@ function EvaluationResult({
             className={`fa-solid ${score.isCorrect ? 'fa-circle-check text-green-500' : 'fa-circle-xmark text-red-500'}`}
             aria-hidden="true"
           />
-          <span>{feedbackMessage(score)}</span>
+          <span>{feedbackMessage(score, t)}</span>
         </p>
       </div>
       {typeof points === 'number' ? <div className="eval-points">{formatPoints(points)}</div> : null}
@@ -249,16 +253,18 @@ function EvaluationResult({
 }
 
 function WordCard({ question, mode }: { question: PronunciationQuestion; mode: PronunciationMode }) {
+  const { t } = useI18n();
+
   const cfg = modeConfig(mode);
   const cardStyle = getModeWordCardStyle(mode);
-  const prompt = question.prompt || 'Nghe và đọc lại mẫu bên dưới';
+  const prompt = question.prompt || t('pronunciation.defaultPrompt');
   const isWord = mode === 'phoneme' || mode === 'word';
 
   return (
     <div className="pron-content-stack">
       <div className="text-center">
         <p className="pron-prompt-label" style={{ color: cfg.color }}>
-          Nội dung luyện
+          {t('pronunciation.contentLabel')}
         </p>
         <p className="pron-prompt-text">{prompt}</p>
       </div>
@@ -285,7 +291,7 @@ function WordCard({ question, mode }: { question: PronunciationQuestion; mode: P
       {mode === 'stress' ? (
         <div className="pron-word-card" style={cardStyle}>
           <p className="pron-prompt-label" style={{ color: cfg.color }}>
-            Nhìn điểm nhấn âm tiết
+            {t('pronunciation.stressHint')}
           </p>
           <StressSyllables word={question.targetText} accentColor={cfg.color} />
           <p className="pron-target-md">{question.targetText}</p>
@@ -304,12 +310,13 @@ function WordCard({ question, mode }: { question: PronunciationQuestion; mode: P
 function micStatusText(
   recordState: RecordState,
   hasAnswer: boolean,
-  alreadyDone: boolean
+  alreadyDone: boolean,
+  t: (key: string, params?: Record<string, string | number>) => string,
 ): string {
-  if (recordState === 'recording') return 'Đang ghi — nhấn lại để dừng';
-  if (recordState === 'assessing') return 'đang tải dữ liệu';
-  if (recordState === 'done' && (hasAnswer || alreadyDone)) return 'Đã hoàn thành câu này';
-  return 'Nhấn micro để bắt đầu ghi âm';
+  if (recordState === 'recording') return t('pronunciation.recordRecording');
+  if (recordState === 'assessing') return t('pronunciation.recordAssessing');
+  if (recordState === 'done' && (hasAnswer || alreadyDone)) return t('pronunciation.recordDone');
+  return t('pronunciation.recordIdle');
 }
 
 export type PronunciationGameContentProps = {
@@ -381,6 +388,15 @@ export function PronunciationGameContent({
   onMicClick,
   onNext,
 }: PronunciationGameContentProps) {
+  const { t, locale } = useI18n();
+  const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
+
+  function formatPoints(points: number): string {
+    const sign = points >= 0 ? '+' : '';
+    return `${sign}${points.toLocaleString(numberLocale)} ${t('common.points')}`;
+  }
+
+
   const question = questions[currentIndex];
   const scopedIndexSet = useMemo(() => {
     const rows = filterQuestionsByExerciseKey(questions, exerciseFilterKey);
@@ -404,22 +420,22 @@ export function PronunciationGameContent({
   const currentPlayablePos = playableEntries.findIndex(({ index }) => index === currentIndex);
   const hasNextPlayable =
     currentPlayablePos >= 0 ? currentPlayablePos < playableEntries.length - 1 : false;
-  const startLabel = allAnswered ? 'Làm lại từ đầu' : 'Bắt đầu làm bài';
+  const startLabel = allAnswered ? t('common.restartFromStart') : t('common.startExercise');
   const micColor = recordState === 'recording' ? '#ef4444' : modeCfg.color;
   const listTitle = activeExerciseLabel
-    ? `Danh sách từ · ${activeExerciseLabel}`
-    : 'Danh sách câu hỏi';
+    ? t('pronunciation.wordListWithGroup', { group: activeExerciseLabel })
+    : t('gameUi.questionList');
 
   return (
     <div className="pronunciation-page pron-page-stack">
       <PageBackButton
-        title={panel === 'question' ? 'Về danh sách' : 'Quay lại khóa học'}
+        title={panel === 'question' ? t('common.backToList') : t('common.backToCourse')}
         onClick={panel === 'question' ? onBackToList : onBackHome}
       />
 
       <div className="pron-page-header">
         <div className="pron-hero">
-          <p className="pron-hero-label">Khóa học hiện tại</p>
+          <p className="pron-hero-label">{t('pronunciation.heroLabel')}</p>
           <h1 className="pron-hero-title">{course.name}</h1>
           {activeExerciseLabel ? (
             <p className="game-subtitle" style={{ marginTop: 6 }}>
@@ -431,9 +447,9 @@ export function PronunciationGameContent({
         {panel === 'question' ? (
           <div className="game-meta pron-game-meta">
             <span className="meta-pill meta-score-pill">
-              {sessionPoints.toLocaleString('vi-VN')}/{maxScore.toLocaleString('vi-VN')} điểm
+              {t('gameUi.sessionScore', { earned: sessionPoints.toLocaleString(numberLocale), max: maxScore.toLocaleString(numberLocale) })}
             </span>
-            <div className="progress-bar-wrap" aria-label={`Điểm phiên ${sessionPoints}/${maxScore}`}>
+            <div className="progress-bar-wrap" aria-label={t('gameUi.sessionScoreAria', { earned: sessionPoints, max: maxScore })}>
               <div className="progress-bar-fill" style={{ width: `${progressPercent}%` }} />
             </div>
           </div>
@@ -465,19 +481,19 @@ export function PronunciationGameContent({
           <div className="list-stats">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
-              <span className="stat-label">Tổng câu</span>
+              <span className="stat-label">{t('gameUi.totalQuestions')}</span>
             </div>
             <div className="stat-item correct">
               <span className="stat-num">{stats.correct}</span>
-              <span className="stat-label">Đúng</span>
+              <span className="stat-label">{t('gameUi.correct')}</span>
             </div>
             <div className="stat-item wrong">
               <span className="stat-num">{stats.wrong}</span>
-              <span className="stat-label">Sai</span>
+              <span className="stat-label">{t('gameUi.wrong')}</span>
             </div>
             <div className="stat-item pending">
               <span className="stat-num">{stats.pending}</span>
-              <span className="stat-label">Chưa làm</span>
+              <span className="stat-label">{t('gameUi.pending')}</span>
             </div>
           </div>
           <div className="game-actions">
@@ -487,11 +503,11 @@ export function PronunciationGameContent({
               onClick={allAnswered ? onRetryFromStart : onStartContinue}
               disabled={isResetting}
             >
-              {isResetting ? 'Đang làm lại...' : startLabel}
+              {isResetting ? t('common.redoing') : startLabel}
             </button>
             {allAnswered ? (
               <button type="button" className="btn btn-secondary" onClick={onViewResult}>
-                Xem kết quả
+                {t('gameUi.seeResults')}
               </button>
             ) : null}
           </div>
@@ -525,7 +541,7 @@ export function PronunciationGameContent({
       {panel === 'question' && question ? (
         <div className="pron-main-shell pron-main-card">
           <span className="question-counter-pill" style={{ top: 12, right: 12 }}>
-            Câu {displayOrdinal}/{counterTotal}
+            {t('gameUi.questionCounter', { current: displayOrdinal, total: counterTotal })}
           </span>
           <div className="pron-card-stripe" style={{ background: modeCfg.color }} />
 
@@ -555,7 +571,7 @@ export function PronunciationGameContent({
                       onClick={() => onModeChange(mode)}
                     >
                       <i className={`${cfg.icon} w-4 h-4 shrink-0`} aria-hidden="true" />
-                      {label === 'Luyện âm' ? 'Luyện từ' : label}
+                      {label === 'Luyện âm' ? t('pronunciation.practiceWord') : label}
                     </button>
                   );
                 })}
@@ -563,7 +579,7 @@ export function PronunciationGameContent({
               <button
                 type="button"
                 className="pron-reset-btn"
-                title="Làm lại"
+                title={t('common.redo')}
                 onClick={onResetQuestion}
                 disabled={locked}
               >
@@ -582,7 +598,7 @@ export function PronunciationGameContent({
                     className="pron-btn-audio pron-btn-audio-primary"
                     onClick={onPlayReference}
                   >
-                    Nghe mẫu
+                    {t('pronunciation.listenModel')}
                   </button>
                   <button
                     id="btnAudioSlow"
@@ -590,7 +606,7 @@ export function PronunciationGameContent({
                     className="pron-btn-audio pron-btn-audio-secondary"
                     onClick={onPlaySlow}
                   >
-                    Nghe chậm
+                    {t('pronunciation.listenSlow')}
                   </button>
                 </div>
 
@@ -625,14 +641,15 @@ export function PronunciationGameContent({
                   </div>
                   {recordState === 'assessing' ? (
                     <div className="data-loading-state">
-                      <i className="fas fa-gear fa-spin" aria-hidden="true" /> đang tải dữ liệu
+                      <i className="fas fa-gear fa-spin" aria-hidden="true" /> {t('common.loading')}
                     </div>
                   ) : (
                     <p id="micStatusText" className="pron-mic-status">
                       {micStatusText(
                         recordState,
                         Boolean(answerResult),
-                        statuses[currentIndex] !== 'empty'
+                        statuses[currentIndex] !== 'empty',
+                        t,
                       )}
                     </p>
                   )}
@@ -651,7 +668,7 @@ export function PronunciationGameContent({
             {showActions ? (
               <div id="actionContainer" className="pron-action-row">
                 <button id="btnNextAction" type="button" className="pron-btn-next" onClick={onNext}>
-                  {hasNextPlayable ? 'Tiếp theo' : 'Xem kết quả'}{' '}
+                  {hasNextPlayable ? t('common.next') : t('gameUi.seeResults')}{' '}
                   <i className="fa-solid fa-chevron-right" aria-hidden="true" />
                 </button>
               </div>
@@ -673,10 +690,10 @@ export function PronunciationGameContent({
               onClick={onRetry}
               disabled={isResetting}
             >
-              {isResetting ? 'Đang làm lại...' : 'Làm lại'}
+              {isResetting ? t('common.redoing') : t('common.redo')}
             </button>
             <button type="button" className="btn btn-secondary" onClick={onBackHome}>
-              Quay lại khóa học
+              {t('common.backToCourse')}
             </button>
           </GameResultSummary>
         </div>
@@ -688,11 +705,12 @@ export function PronunciationGameContent({
 async function assessClip(
   clip: RecordedClip,
   question: PronunciationQuestion,
+  t: (key: string, params?: Record<string, string | number>) => string,
   onFallback?: () => void
 ): Promise<{ transcript: string; engine: 'groq' | 'webspeech' }> {
   // Echo-loop guard: never spend Whisper tokens while AI/reference audio is playing.
   if (!canSendAudioToWhisper()) {
-    throw new Error('Đang phát audio mẫu — hãy đợi hết rồi ghi âm lại.');
+    throw new Error(t('pronunciation.waitForAudio'));
   }
 
   const form = new FormData();
@@ -713,7 +731,7 @@ async function assessClip(
   };
 
   if (!res.ok || !json.success) {
-    throw new Error(json.message || 'Không chấm được phát âm');
+    throw new Error(json.message || t('pronunciation.assessFailed'));
   }
 
   if (json.transcript && json.engine === 'groq') {
@@ -722,9 +740,7 @@ async function assessClip(
 
   if (json.fallback === 'webspeech' || !json.transcript) {
     if (!isWebSpeechAvailable()) {
-      throw new Error(
-        'Hết hạn mức chấm âm thanh và trình duyệt không hỗ trợ nhận dạng giọng nói. Thử Chrome hoặc thêm GROQ_API_KEY.'
-      );
+      throw new Error(t('pronunciation.quotaFallback'));
     }
     onFallback?.();
     const transcript = await recognizeWithWebSpeech();
@@ -735,6 +751,9 @@ async function assessClip(
 }
 
 export function PronunciationGame({ courseId }: Props) {
+  const { t, locale } = useI18n();
+  const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const exerciseParam = searchParams.get('exercise');
@@ -793,7 +812,7 @@ export function PronunciationGame({ courseId }: Props) {
         });
         const json = (await res.json()) as PronunciationGameResponse;
         if (!res.ok || !json.success) {
-          throw new Error(json.message || 'Không tải được trò chơi');
+          throw new Error(json.message || t('gameUi.loadFailed'));
         }
 
         const questions = (json.questions || []).map((item) => ({
@@ -816,7 +835,7 @@ export function PronunciationGame({ courseId }: Props) {
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
-        setErrorMessage(err instanceof Error ? err.message : 'Không tải được trò chơi');
+        setErrorMessage(err instanceof Error ? err.message : t('gameUi.loadFailed'));
       } finally {
         if (!controller.signal.aborted) {
           setIsLoading(false);
@@ -962,7 +981,7 @@ export function PronunciationGame({ courseId }: Props) {
       playSessionId: sessionId === undefined ? playSessionId : sessionId,
     });
     if (!json.success) {
-      throw new Error(json.message || 'Không lưu được tiến độ');
+      throw new Error(json.message || t('gameUi.progressSaveFailed'));
     }
     if (json.statuses) {
       setStatuses(normalizeStatuses(json.statuses, questions.length));
@@ -1004,7 +1023,7 @@ export function PronunciationGame({ courseId }: Props) {
         await ensurePlaySession();
         resetQuestionState(index, question.mode || 'phoneme');
       } catch (err) {
-        setSubmitMessage(err instanceof Error ? err.message : 'Không mở được câu hỏi');
+        setSubmitMessage(err instanceof Error ? err.message : t('gameUi.openQuestionFailed'));
       }
     })();
   }
@@ -1018,7 +1037,7 @@ export function PronunciationGame({ courseId }: Props) {
         await ensurePlaySession();
         openQuestion(firstEmpty);
       } catch (err) {
-        setSubmitMessage(err instanceof Error ? err.message : 'Không bắt đầu được bài');
+        setSubmitMessage(err instanceof Error ? err.message : t('gameUi.startFailed'));
       }
     })();
   }
@@ -1051,7 +1070,7 @@ export function PronunciationGame({ courseId }: Props) {
       }
       router.refresh();
     } catch (err) {
-      setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
+      setSubmitMessage(err instanceof Error ? err.message : t('gameUi.redoFailed'));
     } finally {
       setIsResetting(false);
     }
@@ -1090,7 +1109,7 @@ export function PronunciationGame({ courseId }: Props) {
           activeSessionId
         );
         if (!submit.success) {
-          throw new Error(submit.message || 'Không ghi được điểm');
+          throw new Error(submit.message || t('gameUi.scoreSaveFailed'));
         }
         points = submit.points;
         if (typeof points === 'number') {
@@ -1122,7 +1141,7 @@ export function PronunciationGame({ courseId }: Props) {
       }
       scheduleAdvance();
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Không nộp được câu trả lời';
+      const message = err instanceof Error ? err.message : t('gameUi.submitFailed');
       setSubmitMessage(message);
       setRecordState('idle');
       if (/đăng nhập/i.test(message)) {
@@ -1161,8 +1180,8 @@ export function PronunciationGame({ courseId }: Props) {
           if (micSession.current !== session) return;
           micSession.current = null;
           setRecordState('assessing');
-          const { transcript, engine } = await assessClip(clip, question, () => {
-            setSubmitMessage('Đang dùng nhận dạng trình duyệt — hãy đọc lại rõ…');
+          const { transcript, engine } = await assessClip(clip, question, t, () => {
+            setSubmitMessage(t('pronunciation.browserRetry'));
           });
           setSubmitMessage('');
           const score = scoreTranscript(
@@ -1173,8 +1192,8 @@ export function PronunciationGame({ courseId }: Props) {
           await finishWithScore(score, engine);
         } catch (err) {
           if (micSession.current === session) micSession.current = null;
-          const message = err instanceof Error ? err.message : 'Không chấm được phát âm';
-          if (message === 'Đã hủy ghi âm') {
+          const message = err instanceof Error ? err.message : t('pronunciation.assessFailed');
+          if (message === t('pronunciation.cancelled') || message === 'Đã hủy ghi âm') {
             setRecordState('idle');
             return;
           }
@@ -1187,7 +1206,7 @@ export function PronunciationGame({ courseId }: Props) {
       setSubmitMessage(
         err instanceof Error
           ? err.message
-          : 'Không mở được micro. Hãy cho phép quyền micro rồi thử lại.'
+          : t('pronunciation.micDenied')
       );
     }
   }
@@ -1217,7 +1236,7 @@ export function PronunciationGame({ courseId }: Props) {
   if (errorMessage || !course) {
     return (
       <div className="pronunciation-page">
-        <DataLoading variant="message" message={errorMessage || 'Không tìm thấy trò chơi'} />
+        <DataLoading variant="message" message={errorMessage || t('gameUi.notFound')} />
       </div>
     );
   }
@@ -1227,7 +1246,7 @@ export function PronunciationGame({ courseId }: Props) {
       <div className="pronunciation-page">
         <DataLoading
           variant="message"
-          message="Chưa có câu hỏi Phát âm (luyện từ/câu) cho khóa học này"
+          message={t('pronunciation.empty')}
         />
       </div>
     );
@@ -1238,7 +1257,7 @@ export function PronunciationGame({ courseId }: Props) {
       <div className="pronunciation-page">
         <DataLoading
           variant="message"
-          message={`Không có từ luyện cho nhóm âm “${exerciseParam}”`}
+          message={t('pronunciation.emptyFiltered', { group: exerciseParam })}
         />
       </div>
     );
@@ -1253,14 +1272,14 @@ export function PronunciationGame({ courseId }: Props) {
     return (
       <div className="pronunciation-page pron-page-stack" data-testid="exercise-chooser">
         <PageBackButton
-          title="Quay lại khóa học"
+          title={t('common.backToCourse')}
           onClick={() => {
             window.location.href = `/courses/${course.id}?skill=speaking`;
           }}
         />
         <div className="pron-page-header">
           <div className="pron-hero">
-            <p className="pron-hero-label">Game phát âm</p>
+            <p className="pron-hero-label">{t('pronunciation.gameLabel')}</p>
             <h1 className="pron-hero-title">{course.name}</h1>
           </div>
         </div>

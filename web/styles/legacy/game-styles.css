@@ -386,6 +386,11 @@
   flex-shrink: 0;
 }
 
+.action-item-lang {
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
 .action-item-logout:hover {
   background: rgba(253, 236, 234, 0.18);
   color: #ffb4a8;

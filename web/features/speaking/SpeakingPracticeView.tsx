@@ -5,6 +5,7 @@ import { useCallback, useEffect, useRef, useState, type RefObject } from 'react'
 import { useSearchParams } from 'next/navigation';
 
 import { DataLoading } from '@/components/DataLoading';
+import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import {
   openMicStream,
@@ -85,6 +86,9 @@ export function SpeakingPracticeView({
   courseName?: string;
   topicId?: string;
 }) {
+  const { t, locale } = useI18n();
+  const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
+
   const searchParams = useSearchParams();
   const previewSessionId = searchParams.get('previewSession');
 
@@ -130,14 +134,14 @@ export function SpeakingPracticeView({
     }
   }
 
-  const selectedTopic = topics.find((t) => t.id === selectedTopicId) || null;
+  const selectedTopic = topics.find((topic) => topic.id === selectedTopicId) || null;
   const isLive = phase === 'connecting' || phase === 'active' || phase === 'finishing';
   const showChat = isLive || phase === 'blocked' || phase === 'done';
   const headerSubtitle =
     selectedTopic?.title ||
     usage?.session?.topic?.title ||
     courseName ||
-    'Luyện nói với AI';
+    t('speaking.practiceTitle');
 
   const load = useCallback(async (opts?: { silent?: boolean }) => {
     if (!opts?.silent) setPhase('loading');
@@ -150,10 +154,10 @@ export function SpeakingPracticeView({
       const topicsJson = await topicsRes.json();
       const usageJson = await usageRes.json();
       if (!topicsRes.ok || !topicsJson.success) {
-        throw new Error(topicsJson.message || 'Không tải được topic');
+        throw new Error(topicsJson.message || t('speaking.loadTopicsFailed'));
       }
       if (!usageRes.ok || !usageJson.success) {
-        throw new Error(usageJson.message || 'Không tải được lượt Speaking');
+        throw new Error(usageJson.message || t('speaking.loadUsageFailed'));
       }
 
       const list = (topicsJson.topics || []) as Topic[];
@@ -179,7 +183,7 @@ export function SpeakingPracticeView({
         setPhase((p) => (p === 'loading' || p === 'connecting' || p === 'error' ? 'prepare' : p));
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Lỗi tải dữ liệu');
+      setError(err instanceof Error ? err.message : t('speaking.loadFailed'));
       setPhase('error');
     }
   }, [courseId, topicId, previewSessionId]);
@@ -229,7 +233,7 @@ export function SpeakingPracticeView({
       setError('');
     } catch {
       setMicOk(false);
-      setError('Không truy cập được microphone. Hãy cho phép mic trong trình duyệt.');
+      setError(t('speaking.micDenied'));
     }
   }
 
@@ -238,7 +242,7 @@ export function SpeakingPracticeView({
     startedSentRef.current = true;
     try {
       await fetch(`/api/speaking/sessions/${id}/started`, { method: 'POST' });
-      setStatusNote('Đã bắt đầu — lượt hôm nay đã được tính');
+      setStatusNote(t('speaking.startedNote'));
     } catch {
       /* keep trying state; server is source of truth on reload */
     }
@@ -332,7 +336,7 @@ export function SpeakingPracticeView({
       recorder.start(1000);
       recorderRef.current = recorder;
     } catch {
-      setStatusNote('Không ghi được bản ghi hỗn hợp — phiên vẫn tiếp tục');
+      setStatusNote(t('speaking.mixRecordFailed'));
     }
   }
 
@@ -340,7 +344,7 @@ export function SpeakingPracticeView({
     if (finishingRef.current) return;
     finishingRef.current = true;
     setPhase('finishing');
-    setStatusNote(reason === 'time' ? 'Hết giờ — đang lưu phiên' : 'Đang kết thúc phiên');
+    setStatusNote(reason === 'time' ? t('speaking.endingTime') : t('speaking.endingManual'));
 
     if (timerRef.current) {
       clearInterval(timerRef.current);
@@ -381,7 +385,7 @@ export function SpeakingPracticeView({
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           failed: true,
-          errorMessage: reason === 'error' ? error || 'Lỗi trước khi AI phát' : 'Hủy trước khi bắt đầu',
+          errorMessage: reason === 'error' ? error || t('speaking.errorBeforeAi') : t('speaking.cancelBeforeStart'),
         }),
       });
       cleanupMedia();
@@ -409,7 +413,7 @@ export function SpeakingPracticeView({
   async function startPractice() {
     if (!selectedTopic) return;
     if (micOk !== true) {
-      setError('Hãy kiểm tra microphone trước khi bắt đầu');
+      setError(t('speaking.checkMicFirst'));
       return;
     }
     if (!previewSessionId && !usage?.canStart) {
@@ -421,8 +425,8 @@ export function SpeakingPracticeView({
     setPhase('connecting');
     setStatusNote(
       previewSessionId
-        ? 'Admin preview — không trừ lượt học sinh…'
-        : 'Đang giữ lượt và kết nối AI…'
+        ? t('speaking.adminPreviewConnecting')
+        : t('speaking.connectingHold')
     );
     startedSentRef.current = false;
     finishingRef.current = false;
@@ -459,7 +463,7 @@ export function SpeakingPracticeView({
                 : u
             );
           }
-          throw new Error(createJson.message || 'Không tạo được phiên');
+          throw new Error(createJson.message || t('speaking.createSessionFailed'));
         }
 
         createdId = createJson.session.id as string;
@@ -507,7 +511,7 @@ export function SpeakingPracticeView({
 
       const localSdp = pc.localDescription?.sdp || offer.sdp || '';
       if (!localSdp.includes('v=0') || !localSdp.includes('m=')) {
-        throw new Error('Trình duyệt không tạo được SDP offer hợp lệ');
+        throw new Error(t('speaking.sdpOfferFailed'));
       }
 
       // Server mints ephemeral OpenAI credential (master key stays server-side).
@@ -518,7 +522,7 @@ export function SpeakingPracticeView({
       });
       const credJson = await credRes.json().catch(() => ({}));
       if (!credRes.ok || !credJson.success || typeof credJson.clientSecret !== 'string') {
-        throw new Error(credJson.message || 'Không lấy được credential Realtime');
+        throw new Error(credJson.message || t('speaking.credentialFailed'));
       }
 
       // Browser exchanges SDP directly with OpenAI using the short-lived secret.
@@ -539,21 +543,21 @@ export function SpeakingPracticeView({
         } catch {
           /* keep raw */
         }
-        throw new Error(`OpenAI WebRTC lỗi ${sdpRes.status}: ${detail || 'SDP answer không hợp lệ'}`);
+        throw new Error(t('speaking.webrtcError', { status: sdpRes.status, detail: detail || t('speaking.invalidSdp') }));
       }
       await pc.setRemoteDescription({ type: 'answer', sdp: answerSdp });
 
       setPhase('active');
       setStatusNote(
         previewSessionId
-          ? 'Admin preview đang chạy'
-          : 'Đang chờ AI chào… Lượt chỉ bị trừ khi AI bắt đầu nói'
+          ? t('speaking.adminPreviewRunning')
+          : t('speaking.waitingAiHello')
       );
       startCountdown(durationRef.current, () => {
         if (createdId) void finishSession(createdId, 'time');
       });
     } catch (err) {
-      const message = err instanceof Error ? err.message : 'Không bắt đầu được phiên';
+      const message = err instanceof Error ? err.message : t('speaking.startSessionFailed');
       setError(message);
       if (createdId && !startedSentRef.current && !previewSessionId) {
         await fetch(`/api/speaking/sessions/${createdId}/finish`, {
@@ -571,7 +575,7 @@ export function SpeakingPracticeView({
   if (phase === 'loading') {
     return (
       <section className="view-detail">
-        <PageBackButton href={`/courses/${courseId}?skill=speaking`} title="Quay lại" />
+        <PageBackButton href={`/courses/${courseId}?skill=speaking`} title={t('common.back')} />
         <DataLoading />
       </section>
     );
@@ -579,7 +583,7 @@ export function SpeakingPracticeView({
 
   return (
     <section className="view-detail speaking-practice">
-      <PageBackButton href={`/courses/${courseId}?skill=speaking`} title="Quay lại" />
+      <PageBackButton href={`/courses/${courseId}?skill=speaking`} title={t('common.back')} />
       <audio ref={remoteAudioRef} autoPlay playsInline />
 
       <div className="speaking-shell">
@@ -589,7 +593,7 @@ export function SpeakingPracticeView({
               <i className="fas fa-comments" />
             </div>
             <div className="speaking-header-text">
-              <h1>AI Speaking</h1>
+              <h1>{t('speaking.title')}</h1>
               <p>{headerSubtitle}</p>
             </div>
           </div>
@@ -604,7 +608,7 @@ export function SpeakingPracticeView({
                 className={`speaking-quota ${usage.remainingToday > 0 ? 'is-available' : 'is-used'}`}
               >
                 <i className="fas fa-ticket" aria-hidden="true" />
-                {usage.remainingToday}/{usage.dailyLimit} lượt
+                {t('speaking.turnsRemaining', { remaining: usage.remainingToday, limit: usage.dailyLimit })}
               </div>
             ) : null}
           </div>
@@ -627,20 +631,20 @@ export function SpeakingPracticeView({
           {(phase === 'prepare' || phase === 'error') && usage ? (
             <div className="speaking-prepare">
               <div className="speaking-panel">
-                <h2 className="speaking-panel-title">Chuẩn bị phiên</h2>
+                <h2 className="speaking-panel-title">{t('speaking.prepareTitle')}</h2>
                 <p className="speaking-panel-note">
-                  Lượt bị trừ khi AI bắt đầu phát câu mở đầu. Đóng tab sau thời điểm đó vẫn mất lượt.
+                  {t('speaking.prepareHint')}
                 </p>
 
                 <label className="speaking-field">
-                  <span>Chủ đề</span>
+                  <span>{t('speaking.topicLabel')}</span>
                   <select
                     value={selectedTopicId}
                     onChange={(e) => setSelectedTopicId(e.target.value)}
                     disabled={topics.length === 0}
                   >
                     {topics.length === 0 ? (
-                      <option value="">Chưa có topic Speaking</option>
+                      <option value="">{t('speaking.noTopics')}</option>
                     ) : (
                       topics.map((t) => (
                         <option key={t.id} value={t.id}>
@@ -659,10 +663,10 @@ export function SpeakingPracticeView({
                     }`}
                   >
                     {micOk === true
-                      ? 'Sẵn sàng'
+                      ? t('speaking.micReady')
                       : micOk === false
-                        ? 'Chưa cấp quyền'
-                        : 'Chưa kiểm tra'}
+                        ? t('speaking.micDeniedShort')
+                        : t('speaking.micUnchecked')}
                   </span>
                 </div>
               </div>
@@ -670,7 +674,7 @@ export function SpeakingPracticeView({
               <div className="speaking-actions">
                 <button type="button" className="admin-btn speaking-btn" onClick={() => void checkMic()}>
                   <i className="fas fa-microphone" aria-hidden="true" />
-                  {micOk === true ? 'Mic OK — kiểm tra lại' : micOk === false ? 'Thử lại mic' : 'Kiểm tra mic'}
+                  {micOk === true ? t('speaking.micOkRecheck') : micOk === false ? t('speaking.micRetry') : t('speaking.micCheck')}
                 </button>
                 <button
                   type="button"
@@ -679,7 +683,7 @@ export function SpeakingPracticeView({
                   onClick={() => void startPractice()}
                 >
                   <i className="fas fa-play" aria-hidden="true" />
-                  {previewSessionId ? 'Bắt đầu preview' : 'Bắt đầu luyện nói'}
+                  {previewSessionId ? t('speaking.startPreview') : t('speaking.startPractice')}
                 </button>
               </div>
             </div>
@@ -690,15 +694,15 @@ export function SpeakingPracticeView({
               <div className="speaking-banner speaking-banner--warn">
                 <i className="fas fa-hourglass-end" aria-hidden="true" />
                 <div>
-                  <strong>Đã hết lượt Speaking hôm nay</strong>
+                  <strong>{t('speaking.outOfTurns')}</strong>
                   <p>
                     {usage.nextAvailableAt
-                      ? `Lượt mới từ ${new Date(usage.nextAvailableAt).toLocaleString('vi-VN')}.`
-                      : 'Quay lại vào ngày mai để luyện tiếp.'}
+                      ? t('speaking.nextAvailable', { when: new Date(usage.nextAvailableAt).toLocaleString(numberLocale) })
+                      : t('speaking.comeBackTomorrow')}
                   </p>
                   {usage.session?.topic ? (
                     <p>
-                      Phiên gần nhất: <strong>{usage.session.topic.title}</strong>
+                      {t('speaking.lastSession')} <strong>{usage.session.topic.title}</strong>
                     </p>
                   ) : null}
                 </div>
@@ -707,7 +711,7 @@ export function SpeakingPracticeView({
               <SpeakingChatFrame
                 chatRef={chatRef}
                 transcript={transcript}
-                emptyLabel="Chưa có transcript cho phiên hôm nay."
+                emptyLabel={t('speaking.emptyTranscriptToday')}
               />
 
               <div className="speaking-actions">
@@ -719,12 +723,12 @@ export function SpeakingPracticeView({
                     rel="noreferrer"
                   >
                     <i className="fas fa-headphones" aria-hidden="true" />
-                    Nghe bản ghi
+                    {t('speaking.listenRecording')}
                   </a>
                 ) : null}
                 <Link className="admin-btn primary speaking-btn" href={`/courses/${courseId}?skill=speaking`}>
                   <i className="fas fa-arrow-left" aria-hidden="true" />
-                  Về kỹ năng Speaking
+                  {t('speaking.backToSpeakingSkill')}
                 </Link>
               </div>
             </div>
@@ -739,10 +743,10 @@ export function SpeakingPracticeView({
                   }`}
                 />
                 {phase === 'connecting'
-                  ? 'Đang kết nối với AI…'
+                  ? t('speaking.connectingAi')
                   : phase === 'finishing'
-                    ? 'Đang lưu phiên…'
-                    : 'Đang hội thoại — hãy nói vào mic'}
+                    ? t('speaking.savingSession')
+                    : t('speaking.inConversation')}
               </div>
 
               <SpeakingChatFrame
@@ -750,8 +754,8 @@ export function SpeakingPracticeView({
                 transcript={transcript}
                 emptyLabel={
                   phase === 'connecting'
-                    ? 'Đang kết nối — transcript sẽ hiện tại đây.'
-                    : 'Đang chờ AI chào…'
+                    ? t('speaking.transcriptConnecting')
+                    : t('speaking.transcriptWaiting')
                 }
               />
 
@@ -763,12 +767,12 @@ export function SpeakingPracticeView({
                     onClick={() => sessionId && void finishSession(sessionId, 'manual')}
                   >
                     <i className="fas fa-stop" aria-hidden="true" />
-                    Kết thúc sớm
+                    {t('speaking.endEarly')}
                   </button>
                 ) : (
                   <button type="button" className="admin-btn speaking-btn" disabled>
                     <i className="fas fa-gear fa-spin" aria-hidden="true" />
-                    {phase === 'finishing' ? 'đang lưu dữ liệu' : 'đang tải dữ liệu'}
+                    {phase === 'finishing' ? t('speaking.savingData') : t('common.loading')}
                   </button>
                 )}
               </div>
@@ -780,8 +784,8 @@ export function SpeakingPracticeView({
               <div className="speaking-banner speaking-banner--success">
                 <i className="fas fa-circle-check" aria-hidden="true" />
                 <div>
-                  <strong>Đã lưu phiên Speaking</strong>
-                  <p>Bạn có thể xem lại hội thoại bên dưới.</p>
+                  <strong>{t('speaking.sessionSaved')}</strong>
+                  <p>{t('speaking.sessionSavedHint')}</p>
                 </div>
               </div>
 
@@ -789,18 +793,18 @@ export function SpeakingPracticeView({
                 <SpeakingChatFrame
                   chatRef={chatRef}
                   transcript={transcript}
-                  emptyLabel="Phiên đã lưu nhưng chưa có transcript."
+                  emptyLabel={t('speaking.emptyTranscriptSaved')}
                 />
               ) : null}
 
               <div className="speaking-actions">
                 <button type="button" className="admin-btn speaking-btn" onClick={() => void load()}>
                   <i className="fas fa-rotate" aria-hidden="true" />
-                  Xem lại trạng thái
+                  {t('speaking.reviewStatus')}
                 </button>
                 <Link className="admin-btn primary speaking-btn" href={`/courses/${courseId}?skill=speaking`}>
                   <i className="fas fa-arrow-left" aria-hidden="true" />
-                  Về kỹ năng Speaking
+                  {t('speaking.backToSpeakingSkill')}
                 </Link>
               </div>
             </div>
@@ -820,14 +824,15 @@ function SpeakingChatFrame({
   transcript: TranscriptLine[];
   emptyLabel: string;
 }) {
+  const { t } = useI18n();
   return (
     <div className="speaking-chat-frame">
       <div className="speaking-chat-toolbar">
         <span>
-          <i className="fas fa-comments" aria-hidden="true" /> Hội thoại
+          <i className="fas fa-comments" aria-hidden="true" /> {t('speaking.conversation')}
         </span>
         <span className="speaking-chat-count">
-          {transcript.length} lượt
+          {t('speaking.turnCount', { count: transcript.length })}
         </span>
       </div>
       <div className="speaking-chat" ref={chatRef} role="log" aria-live="polite">
@@ -840,7 +845,7 @@ function SpeakingChatFrame({
               className={`speaking-bubble speaking-bubble--${line.role === 'assistant' ? 'ai' : 'user'}`}
             >
               <span className="speaking-bubble-role">
-                {line.role === 'assistant' ? 'AI' : 'Bạn'}
+                {line.role === 'assistant' ? 'AI' : t('common.you')}
               </span>
               <p className="speaking-bubble-text">{line.text}</p>
             </div>

@@ -1,4 +1,7 @@
+'use client';
+
 import { normalizeRankTier, rankIconForTier } from '@/lib/rankIcons';
+import { useI18n } from '@/components/i18n/I18nProvider';
 
 export type RankBadgeProps = {
   level?: number;
@@ -32,6 +35,7 @@ export function RankBadge({
   progressPercent = 0,
   variant = 'default',
 }: RankBadgeProps) {
+  const { t, locale } = useI18n();
   const displayLevel = normalizeDisplayLevel(level);
   const displayTier = normalizeRankTier(tier);
   const isMaxLevel = expToNextLevel === null;
@@ -39,21 +43,25 @@ export function RankBadge({
   const displayRequiredExp =
     expToNextLevel === null ? null : normalizeNonNegativeInteger(expToNextLevel);
   const displayProgress = isMaxLevel ? 100 : normalizeProgress(progressPercent);
+  const numberLocale = locale === 'vi' ? 'vi-VN' : 'en-US';
   const expLabel = isMaxLevel
-    ? 'Cấp tối đa'
-    : `${displayExp.toLocaleString('vi-VN')} / ${displayRequiredExp?.toLocaleString('vi-VN')} EXP`;
+    ? t('shell.maxLevel')
+    : `${displayExp.toLocaleString(numberLocale)} / ${displayRequiredExp?.toLocaleString(numberLocale)} EXP`;
+  const levelLabel = t('shell.level', { level: displayLevel });
+  const progressAria = isMaxLevel ? t('shell.reachedMaxLevel') : t('shell.expProgress');
 
   if (variant === 'sidebar') {
     return (
       <span className="badge-rank badge-rank--sidebar">
         <span className="badge-rank-head">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={rankIconForTier(displayTier)} alt="" width={28} height={28} />
-          <span className="badge-rank-level">Cấp {displayLevel}</span>
+          <span className="badge-rank-level">{levelLabel}</span>
         </span>
         <span
           className="badge-rank-exp-track"
           role="progressbar"
-          aria-label={isMaxLevel ? 'Đã đạt cấp tối đa' : 'Tiến độ kinh nghiệm'}
+          aria-label={progressAria}
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={displayProgress}
@@ -67,13 +75,14 @@ export function RankBadge({
 
   return (
     <span className="badge-rank">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={rankIconForTier(displayTier)} alt="" width={28} height={28} />
       <span className="badge-rank-content">
-        <span className="badge-rank-level">Cấp {displayLevel}</span>
+        <span className="badge-rank-level">{levelLabel}</span>
         <span
           className="badge-rank-exp-track"
           role="progressbar"
-          aria-label={isMaxLevel ? 'Đã đạt cấp tối đa' : 'Tiến độ kinh nghiệm'}
+          aria-label={progressAria}
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={displayProgress}

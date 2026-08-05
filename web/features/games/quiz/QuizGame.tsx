@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
+import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
 import {
@@ -94,11 +95,6 @@ type QuizStats = {
 };
 
 const OPT_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
-
-function formatPoints(points: number): string {
-  const sign = points >= 0 ? '+' : '';
-  return `${sign}${points.toLocaleString('vi-VN')} điểm`;
-}
 
 function statusClass(status: ProgressStatus): string {
   if (status === 'correct') return 'status-correct';
@@ -193,6 +189,15 @@ function nextEmptyInSubset(
 }
 
 export function QuizGame({ courseId }: Props) {
+  const { t, locale } = useI18n();
+  const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
+
+  function formatPoints(points: number): string {
+    const sign = points >= 0 ? '+' : '';
+    return `${sign}${points.toLocaleString(numberLocale)} ${t('common.points')}`;
+  }
+
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const skill = parseSkillQuery(searchParams.get('skill'));
@@ -259,7 +264,7 @@ export function QuizGame({ courseId }: Props) {
         });
         const json = (await res.json()) as QuizGameResponse;
         if (!res.ok || !json.success) {
-          throw new Error(json.message || 'Không tải được trò chơi');
+          throw new Error(json.message || t('gameUi.loadFailed'));
         }
 
         const questions = json.questions || [];
@@ -273,7 +278,7 @@ export function QuizGame({ courseId }: Props) {
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
-        setErrorMessage(err instanceof Error ? err.message : 'Không tải được trò chơi');
+        setErrorMessage(err instanceof Error ? err.message : t('gameUi.loadFailed'));
       } finally {
         if (!controller.signal.aborted) {
           setIsLoading(false);
@@ -410,7 +415,7 @@ export function QuizGame({ courseId }: Props) {
       playSessionId: sessionId === undefined ? playSessionId : sessionId,
     });
     if (!json.success) {
-      throw new Error(json.message || 'Không lưu được tiến độ');
+      throw new Error(json.message || t('gameUi.progressSaveFailed'));
     }
     if (json.statuses) {
       setStatuses(normalizeStatuses(json.statuses, allQuestions.length));
@@ -465,7 +470,7 @@ export function QuizGame({ courseId }: Props) {
           activeSessionId
         );
         if (!score.success) {
-          throw new Error(score.message || 'Không ghi được điểm');
+          throw new Error(score.message || t('gameUi.scoreSaveFailed'));
         }
         points = score.points;
         if (typeof points === 'number') {
@@ -492,7 +497,7 @@ export function QuizGame({ courseId }: Props) {
       setAnswerResult({ isCorrect, points });
       scheduleAdvance();
     } catch (err) {
-      setSubmitMessage(err instanceof Error ? err.message : 'Không nộp được câu trả lời');
+      setSubmitMessage(err instanceof Error ? err.message : t('gameUi.submitFailed'));
     } finally {
       setIsSubmitting(false);
     }
@@ -503,7 +508,7 @@ export function QuizGame({ courseId }: Props) {
     if (!currentQuestion || isSubmitting || answerResult) return;
 
     if (!input.trim()) {
-      setSubmitMessage('Hãy nhập câu trả lời trước khi nộp.');
+      setSubmitMessage(t('gameUi.enterAnswerFirst'));
       return;
     }
 
@@ -533,7 +538,7 @@ export function QuizGame({ courseId }: Props) {
         setCurrentIndex(listIndex);
         setPanel('question');
       } catch (err) {
-        setSubmitMessage(err instanceof Error ? err.message : 'Không mở được câu hỏi');
+        setSubmitMessage(err instanceof Error ? err.message : t('gameUi.openQuestionFailed'));
       }
     })();
   }
@@ -547,7 +552,7 @@ export function QuizGame({ courseId }: Props) {
         setCurrentIndex(firstEmptyIndex);
         setPanel('question');
       } catch (err) {
-        setSubmitMessage(err instanceof Error ? err.message : 'Không bắt đầu được bài');
+        setSubmitMessage(err instanceof Error ? err.message : t('gameUi.startFailed'));
       }
     })();
   }
@@ -574,7 +579,7 @@ export function QuizGame({ courseId }: Props) {
       setPanel(openFirstQuestion ? 'question' : 'list');
       router.refresh();
     } catch (err) {
-      setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
+      setSubmitMessage(err instanceof Error ? err.message : t('gameUi.redoFailed'));
     } finally {
       setIsResetting(false);
     }
@@ -603,12 +608,12 @@ export function QuizGame({ courseId }: Props) {
 
   const backTitle =
     panel === 'question' || panel === 'result'
-      ? 'Về danh sách'
+      ? t('common.backToList')
       : panel === 'list'
-        ? 'Về bài tập'
+        ? t('gameUi.backToExercises')
         : panel === 'exercises'
-          ? 'Về loại câu'
-          : 'Quay lại khóa học';
+          ? t('gameUi.backToQuestionTypes')
+          : t('common.backToCourse');
 
   if (isLoading) {
     return (
@@ -629,7 +634,7 @@ export function QuizGame({ courseId }: Props) {
   if (errorMessage || !course) {
     return (
       <div className="game-page quiz-page">
-        <DataLoading variant="message" message={errorMessage || 'Không tìm thấy trò chơi'} />
+        <DataLoading variant="message" message={errorMessage || t('gameUi.notFound')} />
       </div>
     );
   }
@@ -637,14 +642,14 @@ export function QuizGame({ courseId }: Props) {
   if (allQuestions.length === 0) {
     return (
       <div className="game-page quiz-page">
-        <DataLoading variant="message" message="Chưa có câu hỏi Trắc nghiệm cho khóa học này" />
+        <DataLoading variant="message" message={t('quiz.empty')} />
       </div>
     );
   }
 
   const firstPending = nextEmptyInSubset(playQuestions, statuses);
   const allAnswered = playQuestions.length > 0 && firstPending === -1;
-  const startLabel = allAnswered ? 'Làm lại từ đầu' : 'Bắt đầu làm bài';
+  const startLabel = allAnswered ? t('common.restartFromStart') : t('common.startExercise');
   const typeLabel = selectedType ? QUIZ_TYPE_LABELS[selectedType] : '';
   const selectedExerciseTitle = selectedExercise
     ? quizExerciseDisplayTitle(
@@ -701,21 +706,21 @@ export function QuizGame({ courseId }: Props) {
       <PageBackButton title={backTitle} onClick={handleBack} />
       <div className="game-top">
         <div className="game-title-wrap">
-          <h1>Trắc nghiệm</h1>
+          <h1>{t('quiz.title')}</h1>
           <p className="game-subtitle">{subtitle}</p>
         </div>
       </div>
 
       {panel === 'question' && currentQuestion ? (
         <div className="game-meta">
-          <span className="meta-pill">{course.name || 'Khóa học'}</span>
+          <span className="meta-pill">{course.name || t('gameUi.courseLabel')}</span>
           <span className="meta-pill type-badge">{currentQuestion.typeLabel}</span>
           <span className="meta-pill meta-score-pill">
-            {sessionPoints.toLocaleString('vi-VN')}/{maxScore.toLocaleString('vi-VN')} điểm
+            {t('gameUi.sessionScore', { earned: sessionPoints.toLocaleString(numberLocale), max: maxScore.toLocaleString(numberLocale) })}
           </span>
           <div
             className="progress-bar-wrap"
-            aria-label={`Điểm phiên ${sessionPoints}/${maxScore}`}
+            aria-label={t('gameUi.sessionScoreAria', { earned: sessionPoints, max: maxScore })}
           >
             <div className="progress-bar-fill" style={{ width: `${progressPercent}%` }} />
           </div>
@@ -724,11 +729,11 @@ export function QuizGame({ courseId }: Props) {
 
       {panel === 'types' ? (
         <div className="game-card" id="typePanel">
-          <div className="list-title">Chọn loại câu</div>
+          <div className="list-title">{t('gameUi.selectQuestionType')}</div>
           {typeCards.length === 0 ? (
             <DataLoading
               variant="message"
-              message="Chưa có câu hỏi Trắc nghiệm cho kỹ năng này"
+              message={t('quiz.emptyForSkill')}
             />
           ) : (
             <div className="activity-grid" style={{ marginTop: 12 }}>
@@ -744,9 +749,9 @@ export function QuizGame({ courseId }: Props) {
                     <div className="activity-icon quiz">
                       <i className="fas fa-list-ul" aria-hidden="true" />
                     </div>
-                    <span className="activity-label">{card.label}</span>
+                    <span className="activity-label">{t(`quiz.types.${card.type as 'multiple_choice' | 'fill_blank' | 'word_form'}`)}</span>
                   </div>
-                  <span className="activity-progress">{card.count} câu</span>
+                  <span className="activity-progress">{t('gameUi.questionCountBadge', { count: card.count })}</span>
                 </button>
               ))}
             </div>
@@ -756,9 +761,9 @@ export function QuizGame({ courseId }: Props) {
 
       {panel === 'exercises' && selectedType ? (
         <div className="game-card" id="exercisePanel">
-          <div className="list-title">Chọn bài ({QUIZ_TYPE_LABELS[selectedType]})</div>
+          <div className="list-title">{t('gameUi.selectExercise', { type: t(`quiz.types.${selectedType}`) })}</div>
           {exerciseCards.length === 0 ? (
-            <DataLoading variant="message" message="Chưa có bài tập cho loại câu này" />
+            <DataLoading variant="message" message={t('quiz.emptyForType')} />
           ) : (
             <div className="activity-grid" style={{ marginTop: 12 }}>
               {exerciseCards.map((card) => (
@@ -777,7 +782,7 @@ export function QuizGame({ courseId }: Props) {
                     </div>
                     <span className="activity-label">{card.displayTitle}</span>
                   </div>
-                  <span className="activity-progress">{card.count} câu</span>
+                  <span className="activity-progress">{t('gameUi.questionCountBadge', { count: card.count })}</span>
                 </button>
               ))}
             </div>
@@ -788,29 +793,29 @@ export function QuizGame({ courseId }: Props) {
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
           <div className="list-title">
-            Danh sách câu hỏi
+            {t('gameUi.questionList')}
             {selectedExerciseTitle ? ` · ${selectedExerciseTitle}` : ''}
           </div>
           {playQuestions.length === 0 ? (
-            <DataLoading variant="message" message="Không có câu hỏi trong bài này" />
+            <DataLoading variant="message" message={t('quiz.emptyInExercise')} />
           ) : (
             <>
               <div className="list-stats">
                 <div className="stat-item">
                   <span className="stat-num">{stats.total}</span>
-                  <span className="stat-label">Tổng câu</span>
+                  <span className="stat-label">{t('gameUi.totalQuestions')}</span>
                 </div>
                 <div className="stat-item correct">
                   <span className="stat-num">{stats.correct}</span>
-                  <span className="stat-label">Đúng</span>
+                  <span className="stat-label">{t('gameUi.correct')}</span>
                 </div>
                 <div className="stat-item wrong">
                   <span className="stat-num">{stats.wrong}</span>
-                  <span className="stat-label">Sai</span>
+                  <span className="stat-label">{t('gameUi.wrong')}</span>
                 </div>
                 <div className="stat-item pending">
                   <span className="stat-num">{stats.pending}</span>
-                  <span className="stat-label">Chưa làm</span>
+                  <span className="stat-label">{t('gameUi.pending')}</span>
                 </div>
               </div>
               <div className="game-actions">
@@ -820,7 +825,7 @@ export function QuizGame({ courseId }: Props) {
                   onClick={allAnswered ? () => void resetProgress(true) : startOrContinue}
                   disabled={isResetting}
                 >
-                  {isResetting ? 'Đang làm lại...' : startLabel}
+                  {isResetting ? t('common.redoing') : startLabel}
                 </button>
                 {allAnswered ? (
                   <button
@@ -828,7 +833,7 @@ export function QuizGame({ courseId }: Props) {
                     className="btn btn-secondary"
                     onClick={() => setPanel('result')}
                   >
-                    Xem kết quả
+                    {t('gameUi.seeResults')}
                   </button>
                 ) : null}
               </div>
@@ -864,7 +869,7 @@ export function QuizGame({ courseId }: Props) {
       {panel === 'question' && currentQuestion ? (
         <div className="game-card" id="questionPanel">
           <span className="question-counter-pill">
-            Câu {currentIndex + 1}/{playQuestions.length}
+            {t('gameUi.questionCounter', { current: currentIndex + 1, total: playQuestions.length })}
           </span>
           {questionInstruction ? (
             <p className="question-instruction">{questionInstruction}</p>
@@ -887,7 +892,7 @@ export function QuizGame({ courseId }: Props) {
                     disabled={isSubmitting || Boolean(answerResult)}
                     autoComplete="off"
                     spellCheck={false}
-                    placeholder="Nhập đáp án..."
+                    placeholder={t('gameUi.answerPlaceholder')}
                   />
                 </div>
 
@@ -904,10 +909,10 @@ export function QuizGame({ courseId }: Props) {
                       aria-hidden="true"
                     />{' '}
                     {answerResult.isCorrect ? (
-                      'Chính xác!'
+                      t('gameUi.feedbackCorrect')
                     ) : (
                       <>
-                        Chưa đúng. Đáp án:{' '}
+                        {t('gameUi.feedbackWrongAnswer')}{' '}
                         <strong
                           dangerouslySetInnerHTML={{ __html: currentQuestion.answer }}
                         />
@@ -923,15 +928,15 @@ export function QuizGame({ courseId }: Props) {
                   {!answerResult ? (
                     <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
                       <i className="fas fa-check" aria-hidden="true" />{' '}
-                      {isSubmitting ? 'Đang nộp...' : 'Kiểm tra'}
+                      {isSubmitting ? t('gameUi.submitting') : t('common.check')}
                     </button>
                   ) : (
                     <button type="button" className="btn btn-secondary" onClick={goNext}>
-                      {currentIndex + 1 >= playQuestions.length ? 'Xem kết quả' : 'Câu tiếp theo'}
+                      {currentIndex + 1 >= playQuestions.length ? t('gameUi.seeResults') : t('gameUi.nextQuestion')}
                     </button>
                   )}
                   <button type="button" className="btn btn-secondary" onClick={() => setPanel('list')}>
-                    Về danh sách
+                    {t('common.backToList')}
                   </button>
                 </div>
               </form>
@@ -974,7 +979,7 @@ export function QuizGame({ courseId }: Props) {
                       }
                       aria-hidden="true"
                     />{' '}
-                    {answerResult.isCorrect ? 'Chính xác!' : 'Chưa đúng.'}
+                    {answerResult.isCorrect ? t('gameUi.feedbackCorrect') : t('gameUi.feedbackWrong')}
                     {typeof answerResult.points === 'number' ? (
                       <div className="score-line">{formatPoints(answerResult.points)}</div>
                     ) : null}
@@ -984,11 +989,11 @@ export function QuizGame({ courseId }: Props) {
                 <div className="game-actions">
                   {answerResult ? (
                     <button type="button" className="btn btn-secondary" onClick={goNext}>
-                      {currentIndex + 1 >= playQuestions.length ? 'Xem kết quả' : 'Câu tiếp theo'}
+                      {currentIndex + 1 >= playQuestions.length ? t('gameUi.seeResults') : t('gameUi.nextQuestion')}
                     </button>
                   ) : null}
                   <button type="button" className="btn btn-secondary" onClick={() => setPanel('list')}>
-                    Về danh sách
+                    {t('common.backToList')}
                   </button>
                 </div>
               </>
@@ -1010,13 +1015,13 @@ export function QuizGame({ courseId }: Props) {
               onClick={() => void resetProgress(false)}
               disabled={isResetting}
             >
-              {isResetting ? 'Đang làm lại...' : 'Làm lại'}
+              {isResetting ? t('common.redoing') : t('common.redo')}
             </button>
             <Link
               href={`/courses/${course.id}?skill=${skill}`}
               className="btn btn-secondary"
             >
-              Quay lại khóa học
+              {t('common.backToCourse')}
             </Link>
           </GameResultSummary>
         </div>

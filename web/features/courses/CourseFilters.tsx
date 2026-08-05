@@ -1,5 +1,6 @@
 'use client';
 
+import { useI18n } from '@/components/i18n/I18nProvider';
 import { useSidebar } from '@/components/shell/SidebarContext';
 
 type CourseFiltersProps = {
@@ -23,6 +24,7 @@ export function CourseFilters({
   disabled = false,
   onLevelNameChange,
 }: CourseFiltersProps) {
+  const { t, formatClassLevel } = useI18n();
   const levelOptions = cleanOptions(levels);
   const { setOpen } = useSidebar();
 
@@ -33,7 +35,7 @@ export function CourseFilters({
 
   return (
     <div className="filter-section">
-      <h3 className="filter-title">Cấp độ</h3>
+      <h3 className="filter-title">{t('home.filterLevel')}</h3>
       <div className="filter-grid" id="filterGrid">
         {levelOptions.map((value) => (
           <button
@@ -46,7 +48,7 @@ export function CourseFilters({
             onClick={() => handleSelectLevel(value)}
           >
             <i className="fas fa-graduation-cap" aria-hidden="true" />
-            <span>{value}</span>
+            <span>{formatClassLevel(value)}</span>
           </button>
         ))}
       </div>

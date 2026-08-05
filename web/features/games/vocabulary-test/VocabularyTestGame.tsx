@@ -12,6 +12,7 @@ import {
 } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
+import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
 import { finalizePlaySessionIfComplete } from '@/features/scoring/completeSession';
@@ -71,11 +72,6 @@ type ExerciseStats = {
   pending: number;
 };
 
-function formatPoints(points: number): string {
-  const sign = points >= 0 ? '+' : '';
-  return `${sign}${points.toLocaleString('vi-VN')} điểm`;
-}
-
 function statusClass(status: ProgressStatus): string {
   if (status === 'correct') return 'status-correct';
   if (status === 'wrong') return 'status-wrong';
@@ -119,6 +115,15 @@ function initialVocabularyTestState(initialData?: VocabularyTestGameData | null)
 }
 
 export function VocabularyTestGame({ courseId, initialData }: Props) {
+  const { t, locale } = useI18n();
+  const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
+
+  function formatPoints(points: number): string {
+    const sign = points >= 0 ? '+' : '';
+    return `${sign}${points.toLocaleString(numberLocale)} ${t('common.points')}`;
+  }
+
+
   const router = useRouter();
   const initialState = initialVocabularyTestState(initialData);
   const [data, setData] = useState<VocabularyTestGameResponse | null>(initialState.data);
@@ -163,7 +168,7 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
         });
         const json = (await res.json()) as VocabularyTestGameResponse;
         if (!res.ok || !json.success) {
-          throw new Error(json.message || 'Không tải được trò chơi');
+          throw new Error(json.message || t('gameUi.loadFailed'));
         }
 
         const exercises = json.exercises || [];
@@ -180,7 +185,7 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
-        setErrorMessage(err instanceof Error ? err.message : 'Không tải được trò chơi');
+        setErrorMessage(err instanceof Error ? err.message : t('gameUi.loadFailed'));
       } finally {
         if (!controller.signal.aborted) {
           setIsLoading(false);
@@ -287,7 +292,7 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
       playSessionId: sessionId === undefined ? playSessionId : sessionId,
     });
     if (!json.success) {
-      throw new Error(json.message || 'Không lưu được tiến độ');
+      throw new Error(json.message || t('gameUi.progressSaveFailed'));
     }
     if (json.statuses) {
       setStatuses(normalizeStatuses(json.statuses, exercises.length));
@@ -373,7 +378,7 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
 
     const allFilled = currentExercise.items.every((_, index) => Boolean(placements[index]));
     if (!allFilled) {
-      setSubmitMessage('Hãy kéo từ vào tất cả các ô trống trước khi kiểm tra.');
+      setSubmitMessage(t('vocabularyTest.fillAll'));
       return;
     }
 
@@ -399,7 +404,7 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
           sessionId
         );
         if (!score.success) {
-          throw new Error(score.message || 'Không ghi được điểm');
+          throw new Error(score.message || t('gameUi.scoreSaveFailed'));
         }
         if (typeof score.points === 'number') {
           pointsEarned += score.points;
@@ -432,7 +437,7 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
       });
       scheduleAdvance(nextStatuses);
     } catch (err) {
-      setSubmitMessage(err instanceof Error ? err.message : 'Không nộp được câu trả lời');
+      setSubmitMessage(err instanceof Error ? err.message : t('gameUi.submitFailed'));
     } finally {
       setIsSubmitting(false);
     }
@@ -445,7 +450,7 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
         setCurrentIndex(index);
         setPanel('game');
       } catch (err) {
-        setSubmitMessage(err instanceof Error ? err.message : 'Không mở được bài');
+        setSubmitMessage(err instanceof Error ? err.message : t('gameUi.openFailed'));
       }
     })();
   }
@@ -475,7 +480,7 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
       router.refresh();
       setPanel(openFirstExercise ? 'game' : 'list');
     } catch (err) {
-      setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
+      setSubmitMessage(err instanceof Error ? err.message : t('gameUi.redoFailed'));
     } finally {
       setIsResetting(false);
     }
@@ -512,7 +517,7 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
   if (errorMessage || !course) {
     return (
       <div className="game-page vt-page">
-        <DataLoading variant="message" message={errorMessage || 'Không tìm thấy trò chơi'} />
+        <DataLoading variant="message" message={errorMessage || t('gameUi.notFound')} />
       </div>
     );
   }
@@ -520,20 +525,20 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
   if (exercises.length === 0) {
     return (
       <div className="game-page vt-page">
-        <DataLoading variant="message" message="Chưa có bài Kiểm tra từ vựng cho khóa học này" />
+        <DataLoading variant="message" message={t('vocabularyTest.empty')} />
       </div>
     );
   }
 
   const firstPending = statuses.findIndex((status) => status === 'empty');
   const allAnswered = firstPending === -1;
-  const startLabel = allAnswered ? 'Làm lại từ đầu' : 'Bắt đầu làm bài';
+  const startLabel = allAnswered ? t('common.restartFromStart') : t('common.startExercise');
   const subtitle = `${course.name}${course.levelName ? ` · ${course.levelName}` : ''}`;
 
   return (
     <div className="game-page vt-page">
       <PageBackButton
-        title={panel === 'game' ? 'Về danh sách' : 'Quay lại khóa học'}
+        title={panel === 'game' ? t('common.backToList') : t('common.backToCourse')}
         onClick={() => {
           if (panel === 'game') {
             setPanel('list');
@@ -544,27 +549,27 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
       />
       <div className="game-top">
         <div className="game-title-wrap">
-          <h1>Kiểm tra từ vựng</h1>
+          <h1>{t('vocabularyTest.title')}</h1>
           <p className="game-subtitle">{subtitle}</p>
         </div>
       </div>
 
       {panel === 'list' ? (
         <div className="law-banner">
-          <h2>Kiểm tra từ vựng — kéo từ vào đúng chỗ</h2>
+          <h2>{t('vocabularyTest.instruction')}</h2>
           <p>{course.name}</p>
         </div>
       ) : null}
 
       {panel === 'game' && currentExercise ? (
         <div className="game-meta">
-          <span className="meta-pill">{course.name || 'Khóa học'}</span>
+          <span className="meta-pill">{course.name || t('gameUi.courseLabel')}</span>
           <span className="meta-pill meta-score-pill">
-            {sessionPoints.toLocaleString('vi-VN')}/{maxScore.toLocaleString('vi-VN')} điểm
+            {t('gameUi.sessionScore', { earned: sessionPoints.toLocaleString(numberLocale), max: maxScore.toLocaleString(numberLocale) })}
           </span>
           <div
             className="progress-bar-wrap"
-            aria-label={`Điểm phiên ${sessionPoints}/${maxScore}`}
+            aria-label={t('gameUi.sessionScoreAria', { earned: sessionPoints, max: maxScore })}
           >
             <div className="progress-bar-fill" style={{ width: `${progressPercent}%` }} />
           </div>
@@ -573,23 +578,23 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
 
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
-          <div className="list-title">Danh sách bài tập</div>
+          <div className="list-title">{t('gameUi.exerciseList')}</div>
           <div className="list-stats">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
-              <span className="stat-label">Tổng bài</span>
+              <span className="stat-label">{t('gameUi.totalExercises')}</span>
             </div>
             <div className="stat-item correct">
               <span className="stat-num">{stats.correct}</span>
-              <span className="stat-label">Đúng</span>
+              <span className="stat-label">{t('gameUi.correct')}</span>
             </div>
             <div className="stat-item wrong">
               <span className="stat-num">{stats.wrong}</span>
-              <span className="stat-label">Sai</span>
+              <span className="stat-label">{t('gameUi.wrong')}</span>
             </div>
             <div className="stat-item pending">
               <span className="stat-num">{stats.pending}</span>
-              <span className="stat-label">Chưa làm</span>
+              <span className="stat-label">{t('gameUi.pending')}</span>
             </div>
           </div>
           <div className="game-actions">
@@ -599,11 +604,11 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
               onClick={allAnswered ? () => void resetProgress(true) : startOrContinue}
               disabled={isResetting}
             >
-              {isResetting ? 'Đang làm lại...' : startLabel}
+              {isResetting ? t('common.redoing') : startLabel}
             </button>
             {allAnswered ? (
               <button type="button" className="btn btn-secondary" onClick={() => setPanel('result')}>
-                Xem kết quả
+                {t('gameUi.seeResults')}
               </button>
             ) : null}
           </div>
@@ -649,13 +654,13 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
               style={{ padding: '8px 16px', fontSize: '13px' }}
               onClick={() => setPanel('list')}
             >
-              <i className="fas fa-list" aria-hidden="true" /> Danh sách
+              <i className="fas fa-list" aria-hidden="true" /> {t('gameUi.list')}
             </button>
           </div>
 
           <div className="law-worksheet" id="worksheet">
             <span className="question-counter-pill" id="metaProgress">
-              Bài {currentIndex + 1}/{exercises.length}
+              {t('gameUi.exerciseCounter', { current: currentIndex + 1, total: exercises.length })}
             </span>
             <h2 className="law-title">{currentExercise.title}</h2>
             <p className="law-instruction">{currentExercise.instruction}</p>
@@ -676,7 +681,7 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
                 returnWordToBank(word);
               }}
             >
-              <span className="law-word-bank-label">Kéo từ từ đây</span>
+              <span className="law-word-bank-label">{t('vocabularyTest.dragFromHere')}</span>
               {availableWords.map((word) => (
                 <span
                   key={word}
@@ -696,8 +701,8 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
             </div>
 
             <p className="law-touch-hint" id="touchHint">
-              <i className="fas fa-hand-pointer" aria-hidden="true" /> Chạm chọn từ, rồi chạm vào ô
-              trống bên dưới tranh
+              <i className="fas fa-hand-pointer" aria-hidden="true" />{' '}
+              {t('vocabularyTest.tapHint')}
             </p>
 
             <div className="law-grid" id="pictureGrid">
@@ -771,7 +776,7 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
                           {placed}
                         </span>
                       ) : !answered ? (
-                        <span className="law-drop-placeholder">kéo từ vào đây</span>
+                        <span className="law-drop-placeholder">{t('gameUi.dropHere')}</span>
                       ) : null}
                       {answered && itemCorrect === false && item.answer ? (
                         <div
@@ -782,7 +787,7 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
                             marginTop: 4,
                           }}
                         >
-                          Đáp án: {item.answer}
+                          {t('gameUi.answerLabel')} {item.answer}
                         </div>
                       ) : null}
                     </div>
@@ -801,8 +806,8 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
                 aria-hidden="true"
               />{' '}
               {checkResult.isCorrect
-                ? `Tuyệt vời! Bạn đã đúng tất cả ${currentExercise.items.length} từ!`
-                : `Bạn đúng ${checkResult.correctCount}/${currentExercise.items.length} từ. Thử lại nhé!`}
+                ? t('vocabularyTest.allCorrect', { total: currentExercise.items.length })
+                : t('vocabularyTest.partialCorrect', { correct: checkResult.correctCount, total: currentExercise.items.length })}
               {checkResult.pointsEarned ? (
                 <div className="score-line">{formatPoints(checkResult.pointsEarned)}</div>
               ) : null}
@@ -818,11 +823,11 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
                 disabled={isSubmitting}
               >
                 <i className="fas fa-check" aria-hidden="true" />{' '}
-                {isSubmitting ? 'Đang kiểm tra...' : 'Kiểm tra đáp án'}
+                {isSubmitting ? t('common.checking') : t('common.checkAnswers')}
               </button>
             ) : (
               <button type="button" className="btn btn-secondary" onClick={() => goNextExercise()}>
-                {currentIndex + 1 >= exercises.length ? 'Xem kết quả' : 'Bài tiếp theo'}
+                {currentIndex + 1 >= exercises.length ? t('gameUi.seeResults') : t('gameUi.nextExercise')}
               </button>
             )}
             {!answered ? (
@@ -831,7 +836,7 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
                 className="btn btn-secondary"
                 onClick={() => resetExerciseState(currentExercise)}
               >
-                Làm lại bài này
+                {t('common.redoThis')}
               </button>
             ) : null}
           </div>
@@ -851,13 +856,13 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
               onClick={() => void resetProgress(false)}
               disabled={isResetting}
             >
-              {isResetting ? 'Đang làm lại...' : 'Làm lại'}
+              {isResetting ? t('common.redoing') : t('common.redo')}
             </button>
             <button type="button" className="btn btn-secondary" onClick={() => setPanel('list')}>
-              Quay lại danh sách
+              {t('common.backToList')}
             </button>
             <Link href={`/courses/${course.id}`} className="btn btn-secondary">
-              Quay lại khóa học
+              {t('common.backToCourse')}
             </Link>
           </GameResultSummary>
         </div>

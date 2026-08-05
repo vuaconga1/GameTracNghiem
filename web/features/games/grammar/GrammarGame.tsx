@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
+import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
 import {
@@ -137,11 +138,6 @@ function normalizeStatuses(statuses: ProgressStatus[] | undefined, questionCount
   return Array.from({ length: questionCount }, (_, index) => statuses?.[index] || 'empty');
 }
 
-function formatPoints(points: number): string {
-  const sign = points >= 0 ? '+' : '';
-  return `${sign}${points.toLocaleString('vi-VN')} điểm`;
-}
-
 function statusClass(status: ProgressStatus): string {
   if (status === 'correct') return 'status-correct';
   if (status === 'wrong') return 'status-wrong';
@@ -199,10 +195,19 @@ export function GrammarGameContent({
   onSubmit,
   onNext,
 }: GrammarGameContentProps) {
+  const { t, locale } = useI18n();
+  const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
+
+  function formatPoints(points: number): string {
+    const sign = points >= 0 ? '+' : '';
+    return `${sign}${points.toLocaleString(numberLocale)} ${t('common.points')}`;
+  }
+
+
   const currentQuestion = questions[currentIndex];
   const firstPending = nextEmptyInSubset(questions, [...statuses]);
   const allAnswered = firstPending === -1;
-  const startLabel = allAnswered ? 'Làm lại từ đầu' : 'Bắt đầu làm bài';
+  const startLabel = allAnswered ? t('common.restartFromStart') : t('common.startExercise');
   const subtitle = [course.name, course.levelName, exerciseTitle].filter(Boolean).join(' · ');
   const sourceIsCode = currentQuestion ? isWorkbookExerciseCode(currentQuestion.source) : false;
   const displayMeta = currentQuestion ? grammarQuestionDisplayMeta(currentQuestion) : null;
@@ -214,25 +219,25 @@ export function GrammarGameContent({
   return (
     <div className="game-page grammar-page">
       <PageBackButton
-        title={panel === 'question' ? 'Về danh sách' : 'Quay lại khóa học'}
+        title={panel === 'question' ? t('common.backToList') : t('common.backToCourse')}
         onClick={panel === 'question' ? onBackToList : onBackHome}
       />
       <div className="game-top">
         <div className="game-title-wrap">
-          <h1>Viết lại câu</h1>
+          <h1>{t('grammar.title')}</h1>
           <p className="game-subtitle">{subtitle}</p>
         </div>
       </div>
 
       {panel === 'question' ? (
         <div className="game-meta">
-          <span className="meta-pill">{course.name || 'Khóa học'}</span>
+          <span className="meta-pill">{course.name || t('gameUi.courseLabel')}</span>
           <span className="meta-pill meta-score-pill">
-            {sessionPoints.toLocaleString('vi-VN')}/{maxScore.toLocaleString('vi-VN')} điểm
+            {t('gameUi.sessionScore', { earned: sessionPoints.toLocaleString(numberLocale), max: maxScore.toLocaleString(numberLocale) })}
           </span>
           <div
             className="progress-bar-wrap"
-            aria-label={`Điểm phiên ${sessionPoints}/${maxScore}`}
+            aria-label={t('gameUi.sessionScoreAria', { earned: sessionPoints, max: maxScore })}
           >
             <div className="progress-bar-fill" style={{ width: `${progressPercent}%` }} />
           </div>
@@ -242,25 +247,25 @@ export function GrammarGameContent({
       {panel === 'list' ? (
         <div className="game-card" id="listPanel">
           <div className="list-title">
-            Danh sách câu hỏi
+            {t('gameUi.questionList')}
             {exerciseTitle ? ` · ${exerciseTitle}` : ''}
           </div>
           <div className="list-stats">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
-              <span className="stat-label">Tổng câu</span>
+              <span className="stat-label">{t('gameUi.totalQuestions')}</span>
             </div>
             <div className="stat-item correct">
               <span className="stat-num">{stats.correct}</span>
-              <span className="stat-label">Đúng</span>
+              <span className="stat-label">{t('gameUi.correct')}</span>
             </div>
             <div className="stat-item wrong">
               <span className="stat-num">{stats.wrong}</span>
-              <span className="stat-label">Sai</span>
+              <span className="stat-label">{t('gameUi.wrong')}</span>
             </div>
             <div className="stat-item pending">
               <span className="stat-num">{stats.pending}</span>
-              <span className="stat-label">Chưa làm</span>
+              <span className="stat-label">{t('gameUi.pending')}</span>
             </div>
           </div>
           <div className="game-actions">
@@ -270,11 +275,11 @@ export function GrammarGameContent({
               onClick={allAnswered ? onRetryFromStart : onStartContinue}
               disabled={isResetting}
             >
-              {isResetting ? 'Đang làm lại...' : startLabel}
+              {isResetting ? t('common.redoing') : startLabel}
             </button>
             {allAnswered ? (
               <button type="button" className="btn btn-secondary" onClick={onViewResult}>
-                Xem kết quả
+                {t('gameUi.seeResults')}
               </button>
             ) : null}
           </div>
@@ -308,10 +313,10 @@ export function GrammarGameContent({
       {panel === 'question' && currentQuestion ? (
         <div className="game-card" id="questionPanel">
           <span className="question-counter-pill">
-            Câu {currentIndex + 1}/{questions.length}
+            {t('gameUi.questionCounter', { current: currentIndex + 1, total: questions.length })}
           </span>
           <p className="question-instruction">
-            {displayMeta?.instruction || 'Đọc câu hỏi rồi hoàn thành câu trả lời.'}
+            {displayMeta?.instruction || t('grammar.defaultInstruction')}
           </p>
           {showSourceBlock ? (
             <>
@@ -321,7 +326,7 @@ export function GrammarGameContent({
           ) : null}
 
           <div className="rewrite-label">
-            {displayMeta?.answerLabel || 'Nhập câu trả lời:'}
+            {displayMeta?.answerLabel || t('grammar.answerLabel')}
           </div>
           <form onSubmit={onSubmit}>
             <div className="rewrite-row">
@@ -356,10 +361,10 @@ export function GrammarGameContent({
                   aria-hidden="true"
                 />{' '}
                 {answerResult.isCorrect ? (
-                  'Chính xác!'
+                  t('gameUi.feedbackCorrect')
                 ) : (
                   <>
-                    Chưa đúng. Gợi ý: <strong>{answerSample(currentQuestion)}</strong>
+                    {t('gameUi.feedbackWrongHint')} <strong>{answerSample(currentQuestion)}</strong>
                   </>
                 )}
                 {typeof answerResult.points === 'number' ? (
@@ -372,15 +377,15 @@ export function GrammarGameContent({
               {!answerResult ? (
                 <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
                   <i className="fas fa-check" aria-hidden="true" />{' '}
-                  {isSubmitting ? 'Đang nộp...' : 'Kiểm tra đáp án'}
+                  {isSubmitting ? t('gameUi.submitting') : t('common.checkAnswers')}
                 </button>
               ) : (
                 <button type="button" className="btn btn-secondary" onClick={onNext}>
-                  {currentIndex + 1 >= questions.length ? 'Xem kết quả' : 'Câu tiếp theo'}
+                  {currentIndex + 1 >= questions.length ? t('gameUi.seeResults') : t('gameUi.nextQuestion')}
                 </button>
               )}
               <button type="button" className="btn btn-secondary" onClick={onBackToList}>
-                Về danh sách
+                {t('common.backToList')}
               </button>
             </div>
           </form>
@@ -400,10 +405,10 @@ export function GrammarGameContent({
               onClick={onRetry}
               disabled={isResetting}
             >
-              {isResetting ? 'Đang làm lại...' : 'Làm lại'}
+              {isResetting ? t('common.redoing') : t('common.redo')}
             </button>
             <Link href={backHref} className="btn btn-secondary">
-              Quay lại khóa học
+              {t('common.backToCourse')}
             </Link>
           </GameResultSummary>
         </div>
@@ -413,6 +418,9 @@ export function GrammarGameContent({
 }
 
 export function GrammarGame({ courseId }: Props) {
+  const { t, locale } = useI18n();
+  const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const exerciseParam = searchParams.get('exercise');
@@ -471,7 +479,7 @@ export function GrammarGame({ courseId }: Props) {
         });
         const json = (await res.json()) as GrammarGameResponse;
         if (!res.ok || !json.success) {
-          throw new Error(json.message || 'Không tải được trò chơi');
+          throw new Error(json.message || t('gameUi.loadFailed'));
         }
 
         const questions = json.questions || [];
@@ -487,7 +495,7 @@ export function GrammarGame({ courseId }: Props) {
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
-        setErrorMessage(err instanceof Error ? err.message : 'Không tải được trò chơi');
+        setErrorMessage(err instanceof Error ? err.message : t('gameUi.loadFailed'));
       } finally {
         if (!controller.signal.aborted) {
           setIsLoading(false);
@@ -582,7 +590,7 @@ export function GrammarGame({ courseId }: Props) {
       playSessionId: sessionId === undefined ? playSessionId : sessionId,
     });
     if (!json.success) {
-      throw new Error(json.message || 'Không lưu được tiến độ');
+      throw new Error(json.message || t('gameUi.progressSaveFailed'));
     }
     if (json.statuses) {
       setStatuses(normalizeStatuses(json.statuses, questions.length));
@@ -606,7 +614,7 @@ export function GrammarGame({ courseId }: Props) {
     if (isGradedStatus(statuses[currentQuestion.index])) return;
 
     if (!input.trim()) {
-      setSubmitMessage('Hãy nhập câu trả lời trước khi nộp.');
+      setSubmitMessage(t('gameUi.enterAnswerFirst'));
       return;
     }
 
@@ -627,7 +635,7 @@ export function GrammarGame({ courseId }: Props) {
       );
 
       if (!score.success) {
-        throw new Error(score.message || 'Không ghi được điểm');
+        throw new Error(score.message || t('gameUi.scoreSaveFailed'));
       }
 
       const nextStatuses = [...statuses];
@@ -651,7 +659,7 @@ export function GrammarGame({ courseId }: Props) {
       setAnswerResult({ isCorrect, points });
       scheduleAutoAdvance(advanceTimer, goNext);
     } catch (err) {
-      setSubmitMessage(err instanceof Error ? err.message : 'Không nộp được câu trả lời');
+      setSubmitMessage(err instanceof Error ? err.message : t('gameUi.submitFailed'));
     } finally {
       setIsSubmitting(false);
     }
@@ -674,7 +682,7 @@ export function GrammarGame({ courseId }: Props) {
         setCurrentIndex(index);
         setPanel('question');
       } catch (err) {
-        setSubmitMessage(err instanceof Error ? err.message : 'Không mở được câu hỏi');
+        setSubmitMessage(err instanceof Error ? err.message : t('gameUi.openQuestionFailed'));
       }
     })();
   }
@@ -688,7 +696,7 @@ export function GrammarGame({ courseId }: Props) {
         setCurrentIndex(firstEmptyIndex);
         setPanel('question');
       } catch (err) {
-        setSubmitMessage(err instanceof Error ? err.message : 'Không bắt đầu được bài');
+        setSubmitMessage(err instanceof Error ? err.message : t('gameUi.startFailed'));
       }
     })();
   }
@@ -715,7 +723,7 @@ export function GrammarGame({ courseId }: Props) {
       setPanel(openFirstQuestion ? 'question' : 'list');
       router.refresh();
     } catch (err) {
-      setSubmitMessage(err instanceof Error ? err.message : 'Không làm lại được bài');
+      setSubmitMessage(err instanceof Error ? err.message : t('gameUi.redoFailed'));
     } finally {
       setIsResetting(false);
     }
@@ -732,7 +740,7 @@ export function GrammarGame({ courseId }: Props) {
   if (errorMessage || !course) {
     return (
       <div className="game-page grammar-page">
-        <DataLoading variant="message" message={errorMessage || 'Không tìm thấy trò chơi'} />
+        <DataLoading variant="message" message={errorMessage || t('gameUi.notFound')} />
       </div>
     );
   }
@@ -744,8 +752,8 @@ export function GrammarGame({ courseId }: Props) {
           variant="message"
           message={
             selectedExerciseTitle
-              ? `Chưa có câu hỏi cho ${selectedExerciseTitle}`
-              : 'Chưa có câu hỏi Grammar cho khóa học này'
+              ? t('grammar.emptyForExercise', { exercise: selectedExerciseTitle })
+              : t('grammar.empty')
           }
         />
       </div>

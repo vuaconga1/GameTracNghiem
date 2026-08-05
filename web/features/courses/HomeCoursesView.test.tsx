@@ -1,4 +1,4 @@
-import { createElement } from 'react';
+import { createElement, type ReactNode } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -7,11 +7,19 @@ vi.mock('next/navigation', () => ({
   useSearchParams: () => new URLSearchParams(),
 }));
 
+import { I18nProvider } from '@/components/i18n/I18nProvider';
+
 import { HomeCoursesView } from './HomeCoursesView';
+
+function renderContent(node: ReactNode) {
+  return renderToStaticMarkup(
+    createElement(I18nProvider, { initialLocale: 'vi' }, node),
+  );
+}
 
 describe('HomeCoursesView', () => {
   it('renders the legacy courses area header while loading', () => {
-    const html = renderToStaticMarkup(createElement(HomeCoursesView));
+    const html = renderContent(createElement(HomeCoursesView));
 
     expect(html).toContain('id="view-courses"');
     expect(html).toContain('class="courses-area"');
@@ -25,7 +33,7 @@ describe('HomeCoursesView', () => {
   });
 
   it('uses initial data without showing the loading state', () => {
-    const html = renderToStaticMarkup(
+    const html = renderContent(
       createElement(HomeCoursesView, {
         initialData: {
           courses: [
@@ -40,7 +48,7 @@ describe('HomeCoursesView', () => {
           filters: { levels: ['A1', 'A2'] },
           selectedLevelName: 'A2',
         },
-      })
+      }),
     );
 
     expect(html).toContain('Starter A');
