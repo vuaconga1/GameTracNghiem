@@ -260,8 +260,8 @@ describe('CourseDetailContent', () => {
     expect(html).toContain('Luyện kỹ năng viết');
     expect(html).toContain('href="/games/grammar/course-1?exercise=W%20Exercise%2015"');
     expect(html).toContain('href="/games/grammar/course-1?exercise=W%20Exercise%2016"');
-    expect(html).toContain('>Viết lại câu theo từ gợi ý<');
-    expect(html).toContain('>Sắp xếp từ thành câu hoàn chỉnh<');
+    expect(html).toContain('>Bài tập viết<');
+    expect(html).toContain('>Sắp xếp thành câu<');
     expect(html).not.toContain('href="/games/scramble/course-1"');
     expect(html).not.toContain('href="/games/look-and-write/course-1"');
     expect(html).not.toContain('href="/games/quiz/course-1');

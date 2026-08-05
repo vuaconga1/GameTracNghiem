@@ -30,14 +30,14 @@ import { gradeQuizFillAnswer, gradeQuizOptionAnswer } from './gradeAnswer';
 import {
   isFindTheMistakeQuiz,
   normalizeQuizQuestionHtml,
-  quizExerciseDisplayTitle,
   quizExerciseInstructionVi,
   repairErrorOptions,
   splitQuizPassageAndStem,
   underlineErrorOptionsInSentence,
 } from '@/features/games/exerciseDisplay';
+import { localizeExerciseTitle } from '@/features/games/localizeExerciseTitle';
 import {
-  QUIZ_TYPE_LABELS,
+  QUIZ_TYPES,
   buildQuizQuery,
   filterQuizQuestions,
   normalizeQuizExercise,
@@ -189,7 +189,7 @@ function nextEmptyInSubset(
 }
 
 export function QuizGame({ courseId }: Props) {
-  const { t, locale } = useI18n();
+  const { t, locale, formatClassLevel } = useI18n();
   const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
 
   function formatPoints(points: number): string {
@@ -650,16 +650,17 @@ export function QuizGame({ courseId }: Props) {
   const firstPending = nextEmptyInSubset(playQuestions, statuses);
   const allAnswered = playQuestions.length > 0 && firstPending === -1;
   const startLabel = allAnswered ? t('common.restartFromStart') : t('common.startExercise');
-  const typeLabel = selectedType ? QUIZ_TYPE_LABELS[selectedType] : '';
+  const typeLabel = selectedType ? t(`quiz.types.${selectedType}`) : '';
   const selectedExerciseTitle = selectedExercise
-    ? quizExerciseDisplayTitle(
+    ? localizeExerciseTitle(
+        t,
         selectedExercise,
         playQuestions[0]?.typeLabel ||
           exerciseCards.find((card) => card.exercise === selectedExercise)?.typeLabel ||
-          ''
+          '',
       )
     : '';
-  const subtitle = [course.name, course.levelName, typeLabel, selectedExerciseTitle]
+  const subtitle = [course.name, formatClassLevel(course.levelName), typeLabel, selectedExerciseTitle]
     .filter(Boolean)
     .join(' · ');
   const questionInstruction = currentQuestion
@@ -780,7 +781,9 @@ export function QuizGame({ courseId }: Props) {
                     <div className="activity-icon quiz">
                       <i className="fas fa-folder-open" aria-hidden="true" />
                     </div>
-                    <span className="activity-label">{card.displayTitle}</span>
+                    <span className="activity-label">
+                      {localizeExerciseTitle(t, card.exercise, card.typeLabel)}
+                    </span>
                   </div>
                   <span className="activity-progress">{t('gameUi.questionCountBadge', { count: card.count })}</span>
                 </button>

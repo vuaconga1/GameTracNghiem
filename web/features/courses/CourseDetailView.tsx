@@ -8,7 +8,7 @@ import { DataLoading } from '@/components/DataLoading';
 import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import { EbookViewer } from '@/features/courses/EbookViewer';
-import { grammarExerciseDisplayTitle } from '@/features/games/grammar/grammarNav';
+import { localizeExerciseTitle } from '@/features/games/localizeExerciseTitle';
 import {
   isLogisticsLevelName,
   resolveCourseEbookPagesForSkill,
@@ -367,7 +367,7 @@ export function CourseDetailContent({
                                   <i className={activity.icon} aria-hidden="true" />
                                 </div>
                                 <span className="activity-label">
-                                  {grammarExerciseDisplayTitle(card.label)}
+                                  {localizeExerciseTitle(t, card.key, card.label)}
                                 </span>
                               </div>
                               <span className="activity-progress">

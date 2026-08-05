@@ -15,6 +15,7 @@ import {
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
 import { isGradedStatus } from '@/features/games/gradedLock';
+import { localizeExerciseTitle } from '@/features/games/localizeExerciseTitle';
 import {
   createPlaySessionId,
   persistGameProgress,
@@ -103,8 +104,11 @@ function statusIcon(status: ProgressStatus) {
   return <i className="far fa-circle" aria-hidden="true" />;
 }
 
-function questionPreview(question: PronunciationQuestion): string {
-  const label = modeLabel(question.mode || 'phoneme', question.modeLabel);
+function questionPreview(
+  question: PronunciationQuestion,
+  t: (key: string, params?: Record<string, string | number>) => string,
+): string {
+  const label = modeLabel(question.mode || 'phoneme', question.modeLabel, t);
   const text = question.targetText || question.prompt || '';
   const preview = `[${label}] ${text}`.trim();
   return preview.length > 50 ? `${preview.slice(0, 50)}...` : preview;
@@ -411,6 +415,9 @@ export function PronunciationGameContent({
     [playableEntries],
   );
   const modeCfg = modeConfig(currentMode);
+  const localizedActiveExercise = activeExerciseLabel
+    ? localizeExerciseTitle(t, activeExerciseLabel, activeExerciseLabel)
+    : null;
   const locked = isGradedStatus(statuses[currentIndex]) || Boolean(answerResult);
   const counterTotal = playableEntries.length || questions.length;
   const displayOrdinal =
@@ -422,8 +429,8 @@ export function PronunciationGameContent({
     currentPlayablePos >= 0 ? currentPlayablePos < playableEntries.length - 1 : false;
   const startLabel = allAnswered ? t('common.restartFromStart') : t('common.startExercise');
   const micColor = recordState === 'recording' ? '#ef4444' : modeCfg.color;
-  const listTitle = activeExerciseLabel
-    ? t('pronunciation.wordListWithGroup', { group: activeExerciseLabel })
+  const listTitle = localizedActiveExercise
+    ? t('pronunciation.wordListWithGroup', { group: localizedActiveExercise })
     : t('gameUi.questionList');
 
   return (
@@ -437,9 +444,9 @@ export function PronunciationGameContent({
         <div className="pron-hero">
           <p className="pron-hero-label">{t('pronunciation.heroLabel')}</p>
           <h1 className="pron-hero-title">{course.name}</h1>
-          {activeExerciseLabel ? (
+          {localizedActiveExercise ? (
             <p className="game-subtitle" style={{ marginTop: 6 }}>
-              {activeExerciseLabel}
+              {localizedActiveExercise}
             </p>
           ) : null}
         </div>
@@ -529,7 +536,7 @@ export function PronunciationGameContent({
                   }}
                 >
                   <span className="q-num">{ordinal + 1}</span>
-                  <span className="q-preview">{questionPreview(item)}</span>
+                  <span className="q-preview">{questionPreview(item, t)}</span>
                   <span className="q-status">{statusIcon(status)}</span>
                 </div>
               );
@@ -551,7 +558,7 @@ export function PronunciationGameContent({
                 {modes.map((mode) => {
                   const cfg = modeConfig(mode);
                   const tabQuestion = questions.find((item) => item.mode === mode);
-                  const label = modeLabel(mode, tabQuestion?.modeLabel);
+                  const label = modeLabel(mode, tabQuestion?.modeLabel, t);
                   const isActive = mode === currentMode;
                   return (
                     <button
@@ -571,7 +578,7 @@ export function PronunciationGameContent({
                       onClick={() => onModeChange(mode)}
                     >
                       <i className={`${cfg.icon} w-4 h-4 shrink-0`} aria-hidden="true" />
-                      {label === 'Luyện âm' ? t('pronunciation.practiceWord') : label}
+                      {label}
                     </button>
                   );
                 })}
@@ -1297,7 +1304,9 @@ export function PronunciationGame({ courseId }: Props) {
                   <div className="activity-icon skill-speaking">
                     <i className="fas fa-volume-up" aria-hidden="true" />
                   </div>
-                  <span className="activity-label">{group.label}</span>
+                  <span className="activity-label">
+                    {localizeExerciseTitle(t, group.key, group.label)}
+                  </span>
                 </div>
                 <span className="activity-progress">
                   {completed}/{group.questionCount}

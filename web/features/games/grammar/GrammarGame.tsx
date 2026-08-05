@@ -30,6 +30,7 @@ import {
   grammarQuestionDisplayMeta,
   normalizeGrammarExercise,
 } from '@/features/games/grammar/grammarNav';
+import { localizeExerciseTitle } from '@/features/games/localizeExerciseTitle';
 import { gradeGrammarAnswer } from './gradeAnswer';
 
 type ProgressStatus = 'empty' | 'correct' | 'wrong';
@@ -195,7 +196,7 @@ export function GrammarGameContent({
   onSubmit,
   onNext,
 }: GrammarGameContentProps) {
-  const { t, locale } = useI18n();
+  const { t, locale, formatClassLevel } = useI18n();
   const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
 
   function formatPoints(points: number): string {
@@ -208,7 +209,9 @@ export function GrammarGameContent({
   const firstPending = nextEmptyInSubset(questions, [...statuses]);
   const allAnswered = firstPending === -1;
   const startLabel = allAnswered ? t('common.restartFromStart') : t('common.startExercise');
-  const subtitle = [course.name, course.levelName, exerciseTitle].filter(Boolean).join(' · ');
+  const subtitle = [course.name, formatClassLevel(course.levelName), exerciseTitle]
+    .filter(Boolean)
+    .join(' · ');
   const sourceIsCode = currentQuestion ? isWorkbookExerciseCode(currentQuestion.source) : false;
   const displayMeta = currentQuestion ? grammarQuestionDisplayMeta(currentQuestion) : null;
   const showSourceBlock = Boolean(
@@ -550,7 +553,11 @@ export function GrammarGame({ courseId }: Props) {
   );
   const progressPercent = maxScore ? Math.min(100, Math.round((sessionPoints / maxScore) * 100)) : 0;
   const selectedExerciseTitle = selectedExercise
-    ? grammarExerciseDisplayTitle(selectedExercise, playQuestions[0])
+    ? localizeExerciseTitle(
+        t,
+        selectedExercise,
+        grammarExerciseDisplayTitle(selectedExercise, playQuestions[0]),
+      )
     : '';
   const backHref = selectedExercise ? `/courses/${courseId}?skill=writing` : `/courses/${courseId}`;
 
