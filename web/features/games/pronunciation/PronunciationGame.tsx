@@ -480,6 +480,21 @@ export function PronunciationGameContent({
               <span className="stat-label">Chưa làm</span>
             </div>
           </div>
+          <div className="game-actions">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={allAnswered ? onRetryFromStart : onStartContinue}
+              disabled={isResetting}
+            >
+              {isResetting ? 'Đang làm lại...' : startLabel}
+            </button>
+            {allAnswered ? (
+              <button type="button" className="btn btn-secondary" onClick={onViewResult}>
+                Xem kết quả
+              </button>
+            ) : null}
+          </div>
           <div className="question-list">
             {playableEntries.map(({ question: item, index }, ordinal) => {
               const status = statuses[index] || 'empty';
@@ -503,21 +518,6 @@ export function PronunciationGameContent({
                 </div>
               );
             })}
-          </div>
-          <div className="game-actions">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={allAnswered ? onRetryFromStart : onStartContinue}
-              disabled={isResetting}
-            >
-              {isResetting ? 'Đang làm lại...' : startLabel}
-            </button>
-            {allAnswered ? (
-              <button type="button" className="btn btn-secondary" onClick={onViewResult}>
-                Xem kết quả
-              </button>
-            ) : null}
           </div>
         </div>
       ) : null}

@@ -113,7 +113,9 @@ export function ReadAndCompleteGame({ courseId }: Props) {
   const [panel, setPanel] = useState<Panel>('list');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [placements, setPlacements] = useState<Record<number, string>>({});
-  const [selectedWord, setSelectedWord] = useState<string | null>(null);
+  const [dragWord, setDragWord] = useState<string | null>(null);
+  const [dropTargetIndex, setDropTargetIndex] = useState<number | null>(null);
+  const [dragPoint, setDragPoint] = useState<{ x: number; y: number } | null>(null);
   const [answered, setAnswered] = useState(false);
   const [checkResult, setCheckResult] = useState<CheckResult | null>(null);
   const [sessionPoints, setSessionPoints] = useState(0);
@@ -208,7 +210,9 @@ export function ReadAndCompleteGame({ courseId }: Props) {
 
   const resetExerciseState = useCallback(() => {
     setPlacements({});
-    setSelectedWord(null);
+    setDragWord(null);
+    setDropTargetIndex(null);
+    setDragPoint(null);
     setAnswered(false);
     setCheckResult(null);
     setSubmitMessage('');
@@ -292,7 +296,9 @@ export function ReadAndCompleteGame({ courseId }: Props) {
       next[itemIndex] = word;
       return next;
     });
-    setSelectedWord(null);
+    setDragWord(null);
+    setDropTargetIndex(null);
+    setDragPoint(null);
   }
 
   function clearBlank(itemIndex: number) {
@@ -305,9 +311,38 @@ export function ReadAndCompleteGame({ courseId }: Props) {
     });
   }
 
-  function toggleWordSelection(word: string) {
+  function blankIndexFromPoint(clientX: number, clientY: number): number | null {
+    const el = document.elementFromPoint(clientX, clientY);
+    if (!el) return null;
+    const blank = el.closest('[data-rc-blank]') as HTMLElement | null;
+    if (!blank) return null;
+    const idx = Number(blank.dataset.rcBlank);
+    return Number.isFinite(idx) ? idx : null;
+  }
+
+  function beginWordDrag(word: string, clientX: number, clientY: number, withGhost: boolean) {
     if (answered) return;
-    setSelectedWord((current) => (current === word ? null : word));
+    setDragWord(word);
+    setDragPoint(withGhost ? { x: clientX, y: clientY } : null);
+    setDropTargetIndex(null);
+  }
+
+  function moveWordDrag(clientX: number, clientY: number) {
+    if (!dragWord) return;
+    setDragPoint({ x: clientX, y: clientY });
+    setDropTargetIndex(blankIndexFromPoint(clientX, clientY));
+  }
+
+  function endWordDrag(clientX: number, clientY: number) {
+    if (!dragWord) return;
+    const target = blankIndexFromPoint(clientX, clientY);
+    if (target !== null) {
+      placeWord(target, dragWord);
+      return;
+    }
+    setDragWord(null);
+    setDropTargetIndex(null);
+    setDragPoint(null);
   }
 
   function goNextExercise(nextStatuses = statuses) {
@@ -508,7 +543,7 @@ export function ReadAndCompleteGame({ courseId }: Props) {
 
       {panel === 'list' ? (
         <div className="rc-banner">
-          <h2>Đọc câu — chọn từ điền chỗ trống</h2>
+          <h2>Đọc câu — kéo từ vào chỗ trống</h2>
           <p>{course.name}</p>
         </div>
       ) : null}
@@ -549,6 +584,21 @@ export function ReadAndCompleteGame({ courseId }: Props) {
               <span className="stat-label">Chưa làm</span>
             </div>
           </div>
+          <div className="game-actions">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={allAnswered ? () => void resetProgress(true) : startOrContinue}
+              disabled={isResetting}
+            >
+              {isResetting ? 'Đang làm lại...' : startLabel}
+            </button>
+            {allAnswered ? (
+              <button type="button" className="btn btn-secondary" onClick={() => setPanel('result')}>
+                Xem kết quả
+              </button>
+            ) : null}
+          </div>
           <div className="question-list">
             {exercises.map((exercise, index) => {
               const status = statuses[index] || 'empty';
@@ -579,21 +629,6 @@ export function ReadAndCompleteGame({ courseId }: Props) {
               );
             })}
           </div>
-          <div className="game-actions">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={allAnswered ? () => void resetProgress(true) : startOrContinue}
-              disabled={isResetting}
-            >
-              {isResetting ? 'Đang làm lại...' : startLabel}
-            </button>
-            {allAnswered ? (
-              <button type="button" className="btn btn-secondary" onClick={() => setPanel('result')}>
-                Xem kết quả
-              </button>
-            ) : null}
-          </div>
         </div>
       ) : null}
 
@@ -617,12 +652,46 @@ export function ReadAndCompleteGame({ courseId }: Props) {
             <h2 className="rc-ws-title">{currentExercise.title}</h2>
             <p className="rc-ws-instruction">{currentExercise.instruction}</p>
 
-            <div className="rc-bank">
+            <div className="rc-bank" aria-label="Kéo từ vào chỗ trống">
               {availableWords.map((word) => (
                 <span
                   key={word}
-                  className={`rc-chip${selectedWord === word ? ' is-selected' : ''}`}
-                  onClick={() => toggleWordSelection(word)}
+                  className={`rc-chip${dragWord === word ? ' is-dragging' : ''}`}
+                  draggable={!answered}
+                  onDragStart={(event) => {
+                    if (answered) {
+                      event.preventDefault();
+                      return;
+                    }
+                    event.dataTransfer.setData('text/plain', word);
+                    event.dataTransfer.effectAllowed = 'move';
+                    beginWordDrag(word, event.clientX, event.clientY, false);
+                  }}
+                  onDragEnd={(event) => {
+                    endWordDrag(event.clientX, event.clientY);
+                  }}
+                  onPointerDown={(event) => {
+                    if (answered || event.button !== 0) return;
+                    // Native HTML5 drag handles mouse; pointer capture for touch
+                    if (event.pointerType === 'touch') {
+                      event.preventDefault();
+                      (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
+                      beginWordDrag(word, event.clientX, event.clientY, true);
+                    }
+                  }}
+                  onPointerMove={(event) => {
+                    if (event.pointerType !== 'touch' || !dragWord) return;
+                    moveWordDrag(event.clientX, event.clientY);
+                  }}
+                  onPointerUp={(event) => {
+                    if (event.pointerType !== 'touch') return;
+                    endWordDrag(event.clientX, event.clientY);
+                  }}
+                  onPointerCancel={() => {
+                    setDragWord(null);
+                    setDropTargetIndex(null);
+                    setDragPoint(null);
+                  }}
                 >
                   {word}
                 </span>
@@ -638,6 +707,8 @@ export function ReadAndCompleteGame({ courseId }: Props) {
                   'rc-blank',
                   answered && itemCorrect === true ? 'is-correct' : '',
                   answered && itemCorrect === false ? 'is-wrong' : '',
+                  !answered && dropTargetIndex === itemIndex ? 'is-drop-target' : '',
+                  !answered && placed ? 'is-filled' : '',
                 ]
                   .filter(Boolean)
                   .join(' ');
@@ -651,15 +722,35 @@ export function ReadAndCompleteGame({ courseId }: Props) {
                     <div className="rc-sentence">
                       {before}
                       <span
+                        data-rc-blank={itemIndex}
                         className={blankClass}
+                        onDragOver={(event) => {
+                          if (answered) return;
+                          event.preventDefault();
+                          event.dataTransfer.dropEffect = 'move';
+                          setDropTargetIndex(itemIndex);
+                        }}
+                        onDragLeave={() => {
+                          setDropTargetIndex((current) => (current === itemIndex ? null : current));
+                        }}
+                        onDrop={(event) => {
+                          if (answered) return;
+                          event.preventDefault();
+                          const word =
+                            event.dataTransfer.getData('text/plain') || dragWord || '';
+                          if (word) placeWord(itemIndex, word);
+                        }}
                         onClick={() => {
                           if (answered) return;
-                          if (selectedWord) {
-                            placeWord(itemIndex, selectedWord);
-                          } else if (placed) {
-                            clearBlank(itemIndex);
-                          }
+                          if (placed) clearBlank(itemIndex);
                         }}
+                        title={
+                          answered
+                            ? undefined
+                            : placed
+                              ? 'Bấm để lấy từ ra'
+                              : 'Thả từ vào đây'
+                        }
                       >
                         {answered && itemCorrect === false ? item.answer : placed || '…'}
                       </span>
@@ -670,6 +761,16 @@ export function ReadAndCompleteGame({ courseId }: Props) {
               })}
             </div>
           </div>
+
+          {dragWord && dragPoint ? (
+            <div
+              className="rc-drag-ghost"
+              style={{ left: dragPoint.x, top: dragPoint.y }}
+              aria-hidden="true"
+            >
+              {dragWord}
+            </div>
+          ) : null}
 
           {submitMessage ? <div className="feedback show wrong">{submitMessage}</div> : null}
 

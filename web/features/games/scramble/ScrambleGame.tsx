@@ -626,6 +626,21 @@ export function ScrambleGame({ courseId }: Props) {
               <span className="stat-label">Chưa làm</span>
             </div>
           </div>
+          <div className="game-actions">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={allAnswered ? () => void resetProgress(true) : startOrContinue}
+              disabled={isResetting}
+            >
+              {isResetting ? 'Đang làm lại...' : startLabel}
+            </button>
+            {allAnswered ? (
+              <button type="button" className="btn btn-secondary" onClick={() => setPanel('result')}>
+                Xem kết quả
+              </button>
+            ) : null}
+          </div>
           <div className="question-list">
             {questions.map((question, index) => {
               const status = statuses[index] || 'empty';
@@ -649,21 +664,6 @@ export function ScrambleGame({ courseId }: Props) {
                 </div>
               );
             })}
-          </div>
-          <div className="game-actions">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={allAnswered ? () => void resetProgress(true) : startOrContinue}
-              disabled={isResetting}
-            >
-              {isResetting ? 'Đang làm lại...' : startLabel}
-            </button>
-            {allAnswered ? (
-              <button type="button" className="btn btn-secondary" onClick={() => setPanel('result')}>
-                Xem kết quả
-              </button>
-            ) : null}
           </div>
         </div>
       ) : null}

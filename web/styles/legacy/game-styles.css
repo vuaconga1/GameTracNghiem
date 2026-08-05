@@ -971,6 +971,11 @@
   flex-wrap: wrap;
 }
 
+.list-stats + .game-actions {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
 .btn {
   border: none;
   border-radius: 10px;
@@ -2803,14 +2808,37 @@ a.btn-secondary:hover {
   border: 2px solid #a8d5b5;
   border-radius: 999px;
   font-weight: 800;
-  cursor: pointer;
+  cursor: grab;
   user-select: none;
-  transition: border-color 0.15s, background 0.15s;
+  touch-action: none;
+  transition: border-color 0.15s, background 0.15s, opacity 0.15s, transform 0.15s;
+}
+
+.rc-chip:active {
+  cursor: grabbing;
+}
+
+.rc-chip.is-dragging {
+  opacity: 0.45;
+  transform: scale(0.96);
 }
 
 .rc-chip.is-selected {
   border-color: var(--primary);
   background: var(--primary-light);
+}
+
+.rc-drag-ghost {
+  position: fixed;
+  z-index: 80;
+  pointer-events: none;
+  transform: translate(-50%, -120%);
+  padding: 8px 16px;
+  background: #fff;
+  border: 2px solid var(--primary);
+  border-radius: 999px;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(25, 55, 109, 0.2);
 }
 
 .rc-sentence-list {
@@ -2853,6 +2881,17 @@ a.btn-secondary:hover {
   text-align: center;
   font-weight: 900;
   color: var(--primary);
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+
+.rc-blank.is-drop-target {
+  background: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(25, 55, 109, 0.18);
+  border-radius: 8px;
+}
+
+.rc-blank.is-filled {
   cursor: pointer;
 }
 

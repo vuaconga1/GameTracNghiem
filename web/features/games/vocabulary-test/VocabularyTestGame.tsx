@@ -592,6 +592,21 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
               <span className="stat-label">Chưa làm</span>
             </div>
           </div>
+          <div className="game-actions">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={allAnswered ? () => void resetProgress(true) : startOrContinue}
+              disabled={isResetting}
+            >
+              {isResetting ? 'Đang làm lại...' : startLabel}
+            </button>
+            {allAnswered ? (
+              <button type="button" className="btn btn-secondary" onClick={() => setPanel('result')}>
+                Xem kết quả
+              </button>
+            ) : null}
+          </div>
           <div className="question-list">
             {exercises.map((exercise, index) => {
               const status = statuses[index] || 'empty';
@@ -621,21 +636,6 @@ export function VocabularyTestGame({ courseId, initialData }: Props) {
                 </div>
               );
             })}
-          </div>
-          <div className="game-actions">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={allAnswered ? () => void resetProgress(true) : startOrContinue}
-              disabled={isResetting}
-            >
-              {isResetting ? 'Đang làm lại...' : startLabel}
-            </button>
-            {allAnswered ? (
-              <button type="button" className="btn btn-secondary" onClick={() => setPanel('result')}>
-                Xem kết quả
-              </button>
-            ) : null}
           </div>
         </div>
       ) : null}

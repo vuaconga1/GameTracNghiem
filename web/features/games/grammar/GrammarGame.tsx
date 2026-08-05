@@ -263,6 +263,21 @@ export function GrammarGameContent({
               <span className="stat-label">Chưa làm</span>
             </div>
           </div>
+          <div className="game-actions">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={allAnswered ? onRetryFromStart : onStartContinue}
+              disabled={isResetting}
+            >
+              {isResetting ? 'Đang làm lại...' : startLabel}
+            </button>
+            {allAnswered ? (
+              <button type="button" className="btn btn-secondary" onClick={onViewResult}>
+                Xem kết quả
+              </button>
+            ) : null}
+          </div>
           <div className="question-list">
             {questions.map((question, index) => {
               const status = statuses[question.index] || 'empty';
@@ -286,21 +301,6 @@ export function GrammarGameContent({
                 </div>
               );
             })}
-          </div>
-          <div className="game-actions">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={allAnswered ? onRetryFromStart : onStartContinue}
-              disabled={isResetting}
-            >
-              {isResetting ? 'Đang làm lại...' : startLabel}
-            </button>
-            {allAnswered ? (
-              <button type="button" className="btn btn-secondary" onClick={onViewResult}>
-                Xem kết quả
-              </button>
-            ) : null}
           </div>
         </div>
       ) : null}
