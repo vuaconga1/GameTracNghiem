@@ -12,8 +12,17 @@
   flex-wrap: wrap;
   gap: 8px;
   justify-content: center;
-  margin-bottom: 18px;
+  margin-bottom: 8px;
   min-height: 56px;
+}
+
+.scramble-keyboard-hint {
+  margin: 0 0 14px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
 }
 
 .scramble-slot {

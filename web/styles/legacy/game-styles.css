@@ -1810,18 +1810,24 @@ a.btn-secondary:hover {
 
 .law-item-img-wrap {
   width: 100%;
-  max-width: 140px;
+  max-width: 160px;
   aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px;
+  padding: 8px;
+  overflow: hidden;
+  background: #f8fafc;
+  border-radius: 10px;
 }
 
 .law-item-img {
+  width: 100%;
+  height: 100%;
   max-width: 100%;
-  max-height: 120px;
+  max-height: 100%;
   object-fit: contain;
+  object-position: center;
 }
 
 .law-drop-zone {
@@ -2224,6 +2230,7 @@ a.btn-secondary:hover {
 }
 
 .wm-board {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   column-gap: 72px;
@@ -2241,7 +2248,40 @@ a.btn-secondary:hover {
   );
   border: 1px solid rgba(26, 84, 148, 0.12);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  --wm-row-h: 88px;
+  --wm-row-h: 96px;
+}
+
+.wm-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+  overflow: visible;
+}
+
+.wm-line {
+  fill: none;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.wm-line.is-preview {
+  stroke: var(--primary);
+  stroke-dasharray: 6 5;
+  opacity: 0.9;
+}
+
+.wm-line.is-correct {
+  stroke: #22c55e;
+  stroke-width: 3.5;
+}
+
+.wm-line.is-wrong {
+  stroke: #ef4444;
+  stroke-width: 3.5;
 }
 
 .wm-col-title {
@@ -2322,12 +2362,15 @@ a.btn-secondary:hover {
   box-shadow: 0 0 0 3px rgba(26, 84, 148, 0.22), 0 8px 16px -4px rgba(26, 84, 148, 0.12);
 }
 
-.wm-item.is-done {
+.wm-item.is-done,
+#wordList .wm-item.is-done,
+#imageList .wm-item.is-done {
   animation: wm-pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
   border-color: #22c55e;
   background: #f0fdf4;
   cursor: default;
-  opacity: 0.85;
+  opacity: 0.95;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.28), 0 6px 14px -4px rgba(34, 197, 94, 0.22);
 }
 
 .wm-item.is-wrong {
@@ -2428,9 +2471,11 @@ a.btn-secondary:hover {
   border: none;
   background: transparent;
   cursor: inherit;
-  padding: 0;
+  padding: 6px;
   border-radius: 0;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
@@ -2438,15 +2483,17 @@ a.btn-secondary:hover {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
   object-position: center;
   border-radius: 0;
-  background: #dbeafe;
+  background: transparent;
   transition: transform 0.2s ease;
 }
 
 .wm-item:hover:not(.is-done):not(.is-wrong) .wm-img {
-  transform: scale(1.04);
+  transform: scale(1.03);
 }
 
 .wm-img-placeholder {

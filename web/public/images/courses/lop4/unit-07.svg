@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 500" width="850" height="500" role="img" aria-label="Unit 7: Our Timetables">
-  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C5CAE9"/><stop offset="100%" stop-color="#E8EAF6"/></linearGradient></defs>
-    <rect width="850" height="500" fill="url(#sky)"/>
-    <rect x="0" y="380" width="850" height="120" fill="#BCAAA4"/>
-    <rect x="200" y="100" width="450" height="260" rx="8" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="2"/>
-    <rect x="200" y="100" width="450" height="35" fill="#5C6BC0" stroke="#1A1A2E" stroke-width="2"/>
-    <text x="260" y="125" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#FFF">Mon</text><text x="345" y="125" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#FFF">Tue</text><text x="430" y="125" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#FFF">Wed</text><text x="515" y="125" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#FFF">Thu</text><text x="600" y="125" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#FFF">Fri</text>
-    <rect x="220" y="150" width="75" height="38" rx="4" fill="#EF5350" stroke="#1A1A2E" stroke-width="1"/>
-      <text x="257" y="174" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#FFF">Math</text><rect x="305" y="150" width="75" height="38" rx="4" fill="#42A5F5" stroke="#1A1A2E" stroke-width="1"/>
-      <text x="342" y="174" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#FFF">Eng</text><rect x="390" y="150" width="75" height="38" rx="4" fill="#66BB6A" stroke="#1A1A2E" stroke-width="1"/>
-      <text x="427" y="174" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#FFF">PE</text><rect x="475" y="150" width="75" height="38" rx="4" fill="#FFD54F" stroke="#1A1A2E" stroke-width="1"/>
-      <text x="512" y="174" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#FFF">Art</text><rect x="560" y="150" width="75" height="38" rx="4" fill="#AB47BC" stroke="#1A1A2E" stroke-width="1"/>
-      <text x="597" y="174" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#FFF">Music</text><rect x="220" y="200" width="75" height="38" rx="4" fill="#FF7043" stroke="#1A1A2E" stroke-width="1"/>
-      <text x="257" y="224" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#FFF">Sci</text><rect x="305" y="200" width="75" height="38" rx="4" fill="#26C6DA" stroke="#1A1A2E" stroke-width="1"/>
-      <text x="342" y="224" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#FFF">Hist</text><rect x="390" y="200" width="75" height="38" rx="4" fill="#8D6E63" stroke="#1A1A2E" stroke-width="1"/>
-      <text x="427" y="224" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#FFF">Geo</text>
-    <g transform="translate(680,340) scale(1)">
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#CE93D8"/><stop offset="100%" stop-color="#F3E5F5"/></linearGradient></defs>
+  <rect width="850" height="500" fill="url(#sky)"/><circle cx="120" cy="70" r="36" fill="#FFD54F" stroke="#1A1A2E" stroke-width="2"/>
+  <circle cx="120" cy="70" r="28" fill="#FFEB3B" opacity="0.6"/><g transform="translate(280,50) scale(0.85)">
+    <ellipse cx="0" cy="0" rx="35" ry="18" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="-25" cy="5" rx="22" ry="14" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="25" cy="5" rx="22" ry="14" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  </g><g transform="translate(520,40) scale(0.7)">
+    <ellipse cx="0" cy="0" rx="35" ry="18" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="-25" cy="5" rx="22" ry="14" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="25" cy="5" rx="22" ry="14" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  </g>
+    <rect y="370" width="850" height="130" fill="#7CB342"/>
+  <ellipse cx="120" cy="400" rx="90" ry="18" fill="#558B2F" opacity="0.5"/>
+  <ellipse cx="420" cy="390" rx="120" ry="22" fill="#558B2F" opacity="0.4"/>
+  <ellipse cx="720" cy="405" rx="100" ry="20" fill="#558B2F" opacity="0.5"/>
+    <g transform="translate(720,340)">
+      <ellipse cx="0" cy="15" rx="35" ry="25" fill="#FFCC80" stroke="#1A1A2E" stroke-width="2"/>
+      <circle cx="0" cy="-15" r="22" fill="#FFCC80" stroke="#1A1A2E" stroke-width="2"/>
+      <ellipse cx="-18" cy="-22" rx="10" ry="14" fill="#FFCC80" stroke="#1A1A2E" stroke-width="1.5"/>
+      <ellipse cx="18" cy="-22" rx="10" ry="14" fill="#FFCC80" stroke="#1A1A2E" stroke-width="1.5"/>
+      <ellipse cx="-8" cy="-15" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="-9" cy="-13" r="5.5" fill="#1A1A2E"/>
+  <circle cx="-10" cy="-16" r="2" fill="#FFFFFF"/><ellipse cx="8" cy="-15" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="9" cy="-13" r="5.5" fill="#1A1A2E"/>
+  <circle cx="10" cy="-16" r="2" fill="#FFFFFF"/>
+      <ellipse cx="0" cy="-5" rx="6" ry="5" fill="#5D4037" stroke="#1A1A2E" stroke-width="1"/>
+      <path d="M-5 2 Q0 10 5 2" fill="none" stroke="#1A1A2E" stroke-width="2" stroke-linecap="round"/>
+      <path d="M-30 15 Q-50 5 -45 -5" fill="none" stroke="#FFCC80" stroke-width="8" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(180,320) scale(0.95)">
     <line x1="-11" y1="52" x2="-11" y2="82" stroke="#1565C0" stroke-width="13" stroke-linecap="round"/>
     <line x1="11" y1="52" x2="11" y2="82" stroke="#1565C0" stroke-width="13" stroke-linecap="round"/>
     <ellipse cx="-11" cy="86" rx="11" ry="5" fill="#37474F" stroke="#1A1A2E" stroke-width="1.5"/>
     <ellipse cx="11" cy="86" rx="11" ry="5" fill="#37474F" stroke="#1A1A2E" stroke-width="1.5"/>
-    <path d="M-24 18 Q0 12 24 18 L26 55 Q0 62 -26 55 Z" fill="#5C6BC0" stroke="#1A1A2E" stroke-width="2"/>
+    <path d="M-24 18 Q0 12 24 18 L26 55 Q0 62 -26 55 Z" fill="#7E57C2" stroke="#1A1A2E" stroke-width="2"/>
     <path d="M-24 22 Q-42 35 -46 52" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
     <path d="M24 22 Q42 35 46 52" fill="none" stroke="#FFCC80" stroke-width="11" stroke-linecap="round"/>
     <circle cx="0" cy="-8" r="30" fill="#FFCC80" stroke="#1A1A2E" stroke-width="2"/>
@@ -33,6 +47,31 @@
   <circle cx="14" cy="-6" r="2" fill="#FFFFFF"/>
     <path d="M-8 10 Q0 18 8 10" fill="none" stroke="#1A1A2E" stroke-width="2" stroke-linecap="round"/>
   </g>
+    <g transform="translate(300,325) scale(0.9)">
+    <line x1="-10" y1="52" x2="-10" y2="80" stroke="#FFCC80" stroke-width="10" stroke-linecap="round"/>
+    <line x1="10" y1="52" x2="10" y2="80" stroke="#FFCC80" stroke-width="10" stroke-linecap="round"/>
+    <ellipse cx="-10" cy="84" rx="10" ry="5" fill="#EF5350" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="10" cy="84" rx="10" ry="5" fill="#EF5350" stroke="#1A1A2E" stroke-width="1.5"/>
+    <path d="M-22 18 Q0 14 22 18 L24 70 Q0 78 -24 70 Z" fill="#EC407A" stroke="#1A1A2E" stroke-width="2"/>
+    <path d="M-22 22 Q-38 38 -42 55" fill="none" stroke="#FFCC80" stroke-width="10" stroke-linecap="round"/>
+    <path d="M22 22 Q38 38 42 55" fill="none" stroke="#FFCC80" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="0" cy="-8" r="28" fill="#FFCC80" stroke="#1A1A2E" stroke-width="2"/>
+    <path d="M-30 0 Q-32 -30 0 -35 Q32 -30 30 0 L28 15 Q0 20 -28 15 Z" fill="#6D4C41" stroke="#1A1A2E" stroke-width="1.5"/>
+    <ellipse cx="-11" cy="-5" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="-12" cy="-3" r="5.5" fill="#1A1A2E"/>
+  <circle cx="-13" cy="-6" r="2" fill="#FFFFFF"/><ellipse cx="11" cy="-5" rx="9" ry="11" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="1.5"/>
+  <circle cx="12" cy="-3" r="5.5" fill="#1A1A2E"/>
+  <circle cx="13" cy="-6" r="2" fill="#FFFFFF"/>
+    <path d="M-8 10 Q0 18 8 10" fill="none" stroke="#1A1A2E" stroke-width="2" stroke-linecap="round"/>
+  </g>
+    <g transform="translate(425,210)">
+      <ellipse cx="0" cy="0" rx="210" ry="88" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="3" opacity="0.96"/>
+      <ellipse cx="-90" cy="20" rx="70" ry="40" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="2" opacity="0.96"/>
+      <ellipse cx="90" cy="18" rx="70" ry="40" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="2" opacity="0.96"/>
+      <text x="0" y="-8" text-anchor="middle" font-family="Arial Rounded MT Bold,Arial,Helvetica,sans-serif" font-size="34" font-weight="700" fill="#7B1FA2">Our Timetables</text>
+      <rect x="-95" y="18" width="190" height="28" rx="14" fill="#7B1FA2"/>
+      <text x="0" y="38" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">Global Success 4 · Unit 7</text>
+    </g>
   <rect x="28" y="28" width="118" height="42" rx="21" fill="rgba(255,255,255,0.92)" stroke="#1A1A2E" stroke-width="1"/>
-  <text x="87" y="56" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#3949AB">Unit 7</text>
+  <text x="87" y="56" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="22" font-weight="700" fill="#5E35B1">Unit 7</text>
 </svg>

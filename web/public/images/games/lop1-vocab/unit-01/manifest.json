@@ -1,0 +1,12 @@
+﻿{
+  "grade": 1,
+  "unit": 1,
+  "title": "In The School Playground",
+  "source": "PDF/Global Grade 1/Global 2/Global success 1 Từ Vựng + Grammar.pdf (page 1)",
+  "images": [
+    { "word": "ball", "file": "ball.png", "method": "recreated-clean", "reason": "crop had dashed border remnant" },
+    { "word": "bike", "file": "bike.png", "method": "recreated-clean", "reason": "crop overlapped orange dashed frame + blue cloud" },
+    { "word": "book", "file": "book.png", "method": "recreated-clean", "reason": "crop included vocabulary text fragments" }
+  ],
+  "note": "Illustrations only — no word / IPA. Style matches PDF flashcard icons on white background."
+}

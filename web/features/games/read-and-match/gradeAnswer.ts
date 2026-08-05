@@ -2,8 +2,16 @@ export type ReadAndMatchGradeItem = {
   answer: string;
 };
 
-export function gradeReadAndMatchPair(matchedLabel: string, answer: string): boolean {
-  return String(matchedLabel || '').trim() === String(answer || '').trim();
+function normalizeAnswer(value: string): string {
+  return String(value || '')
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, ' ');
+}
+
+/** Compare the English answer keys of the paired sentence and image (labels may be Vietnamese). */
+export function gradeReadAndMatchPair(matchedAnswer: string, answer: string): boolean {
+  return normalizeAnswer(matchedAnswer) === normalizeAnswer(answer);
 }
 
 export function gradeReadAndMatchExercise(

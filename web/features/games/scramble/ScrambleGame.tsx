@@ -418,6 +418,78 @@ export function ScrambleGame({ courseId }: Props) {
     setSlotLetters((current) => current.map(() => null));
   }
 
+  useEffect(() => {
+    if (panel !== 'question' || answerResult || isSubmitting) return;
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+
+      const target = event.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === 'INPUT' ||
+          target.tagName === 'TEXTAREA' ||
+          target.tagName === 'SELECT' ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+
+      if (event.key === 'Backspace') {
+        event.preventDefault();
+        let lastFilled = -1;
+        for (let i = slotLetters.length - 1; i >= 0; i -= 1) {
+          if (slotLetters[i]) {
+            lastFilled = i;
+            break;
+          }
+        }
+        if (lastFilled >= 0) removeFromSlot(lastFilled);
+        return;
+      }
+
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        clearBoard();
+        return;
+      }
+
+      if (event.key === 'Enter') {
+        if (slotsFull) {
+          event.preventDefault();
+          void finishAnswer();
+        }
+        return;
+      }
+
+      if (event.key.length !== 1 || event.key === ' ') return;
+
+      const typed = event.key;
+      const typedLower = typed.toLowerCase();
+      const letter = poolLetters.find(
+        (item) =>
+          !item.used &&
+          (item.ch === typed || item.ch.toLowerCase() === typedLower)
+      );
+      if (!letter) return;
+
+      event.preventDefault();
+      placeLetter(letter.id);
+    }
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+    // placeLetter/removeFromSlot/clearBoard/finishAnswer close over latest state each render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    answerResult,
+    isSubmitting,
+    panel,
+    poolLetters,
+    slotLetters,
+    slotsFull,
+  ]);
+
   function openQuestion(index: number) {
     void (async () => {
       try {
@@ -637,6 +709,11 @@ export function ScrambleGame({ courseId }: Props) {
               );
             })}
           </div>
+          {!answered ? (
+            <p className="scramble-keyboard-hint">
+              Gõ chữ trên bàn phím · Backspace xóa · Esc xóa hết
+            </p>
+          ) : null}
 
           <div className="scramble-pool" aria-label="Chữ cái đảo">
             {poolLetters.map((letter) => (

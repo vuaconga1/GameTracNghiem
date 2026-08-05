@@ -377,7 +377,9 @@ export function ReadAndMatchGame({ courseId }: Props) {
     }
 
     const sentenceIndex = selectedSent;
-    const isCorrect = gradeReadAndMatchPair(entry.item.label, currentExercise.items[sentenceIndex].answer);
+    const expected = currentExercise.items[sentenceIndex];
+    // Grade by English answer keys; right-side labels may be Vietnamese meanings.
+    const isCorrect = gradeReadAndMatchPair(entry.item.answer, expected.answer);
     const nextMatch: MatchRecord = {
       label: entry.item.label,
       correct: isCorrect,

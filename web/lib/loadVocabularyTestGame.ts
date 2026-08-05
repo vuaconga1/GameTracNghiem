@@ -57,6 +57,17 @@ function stringList(value: unknown): string[] {
   return value.map((item) => String(item || '').trim()).filter(Boolean);
 }
 
+/** Prefer English answers when the stored word bank is empty or only Vietnamese hints. */
+function resolveWordBank(wordBank: string[], answers: string[]): string[] {
+  const englishAnswers = answers.map((answer) => answer.trim()).filter(Boolean);
+  if (!englishAnswers.length) return wordBank;
+  if (!wordBank.length) return englishAnswers;
+
+  const answerSet = new Set(englishAnswers.map((answer) => answer.toLowerCase()));
+  const bankHasEnglishAnswer = wordBank.some((word) => answerSet.has(word.toLowerCase()));
+  return bankHasEnglishAnswer ? wordBank : englishAnswers;
+}
+
 function parseItems(value: unknown) {
   if (!Array.isArray(value)) return [];
   return value
@@ -106,15 +117,15 @@ export async function loadVocabularyTestGame(
   const exercises = questions.map((question, index) => {
     const payload = asPayload(question.payload);
     const items = parseItems(payload.items);
-    const wordBank = stringList(payload.word_bank);
+    const answers = items.map((item) => item.answer).filter(Boolean);
     return {
       id: question.id,
       index,
       title: String(payload.title || '').trim() || `Bài ${index + 1}`,
       instruction:
         String(payload.instruction || '').trim() ||
-        'Look at the pictures and write the correct words.',
-      word_bank: wordBank.length ? wordBank : items.map((item) => item.answer).filter(Boolean),
+        'Look at the pictures and write the correct English words.',
+      word_bank: resolveWordBank(stringList(payload.word_bank), answers),
       items,
     };
   });

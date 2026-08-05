@@ -49,6 +49,15 @@ type Props = {
 
 type Panel = 'board' | 'result';
 
+type Point = { x: number; y: number };
+
+type MatchLine = {
+  key: string;
+  from: Point;
+  to: Point;
+  status: 'preview' | 'correct' | 'wrong';
+};
+
 function shuffleArray<T>(items: T[]): T[] {
   const arr = items.slice();
   for (let i = arr.length - 1; i > 0; i -= 1) {
@@ -56,6 +65,25 @@ function shuffleArray<T>(items: T[]): T[] {
     [arr[i], arr[j]] = [arr[j], arr[i]];
   }
   return arr;
+}
+
+function cardAnchor(
+  board: HTMLElement,
+  card: HTMLElement,
+  side: 'word' | 'image'
+): Point {
+  const boardRect = board.getBoundingClientRect();
+  const cardRect = card.getBoundingClientRect();
+  return {
+    x: (side === 'word' ? cardRect.right : cardRect.left) - boardRect.left,
+    y: cardRect.top + cardRect.height / 2 - boardRect.top,
+  };
+}
+
+function linePath(from: Point, to: Point): string {
+  const dx = to.x - from.x;
+  const midX = from.x + dx * 0.5;
+  return `M ${from.x} ${from.y} C ${midX} ${from.y}, ${midX} ${to.y}, ${to.x} ${to.y}`;
 }
 
 function formatPoints(points: number): string {
@@ -117,8 +145,13 @@ export function WordMatchGame({ courseId, initialData }: Props) {
   const [errorMessage, setErrorMessage] = useState('');
   const [submitMessage, setSubmitMessage] = useState('');
   const [wrongPair, setWrongPair] = useState<{ wordIndex: number; imageIndex: number } | null>(null);
+  const [cursorPos, setCursorPos] = useState<Point | null>(null);
+  const [layoutTick, setLayoutTick] = useState(0);
   const questionStartTime = useRef(Date.now());
   const didUseInitialData = useRef(Boolean(initialData));
+  const boardRef = useRef<HTMLDivElement | null>(null);
+  const wordRefs = useRef<Map<number, HTMLDivElement>>(new Map());
+  const imageRefs = useRef<Map<number, HTMLDivElement>>(new Map());
 
   const rebuildOrders = useCallback((count: number) => {
     const indexes = Array.from({ length: count }, (_, index) => index);
@@ -190,7 +223,135 @@ export function WordMatchGame({ courseId, initialData }: Props) {
     setSelectedWordIndex(-1);
     setSelectedImageIndex(-1);
     setHintText('');
+    setCursorPos(null);
   }, []);
+
+  const bumpLayout = useCallback(() => {
+    setLayoutTick((tick) => tick + 1);
+  }, []);
+
+  useEffect(() => {
+    const board = boardRef.current;
+    if (!board || panel !== 'board') return;
+
+    const observer = new ResizeObserver(() => bumpLayout());
+    observer.observe(board);
+
+    const onScroll = () => bumpLayout();
+    window.addEventListener('scroll', onScroll, true);
+    window.addEventListener('resize', bumpLayout);
+
+    const raf = requestAnimationFrame(bumpLayout);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('scroll', onScroll, true);
+      window.removeEventListener('resize', bumpLayout);
+      cancelAnimationFrame(raf);
+    };
+  }, [bumpLayout, panel, wordOrder, imageOrder, statuses]);
+
+  const hasPreviewLine =
+    (selectedWordIndex >= 0) !== (selectedImageIndex >= 0);
+
+  useEffect(() => {
+    if (!hasPreviewLine || panel !== 'board') {
+      setCursorPos(null);
+      return;
+    }
+
+    const updateFromClient = (clientX: number, clientY: number) => {
+      const board = boardRef.current;
+      if (!board) return;
+      const rect = board.getBoundingClientRect();
+      setCursorPos({
+        x: clientX - rect.left,
+        y: clientY - rect.top,
+      });
+    };
+
+    const onMouseMove = (event: MouseEvent) => {
+      updateFromClient(event.clientX, event.clientY);
+    };
+    const onTouchMove = (event: TouchEvent) => {
+      const touch = event.touches[0];
+      if (!touch) return;
+      updateFromClient(touch.clientX, touch.clientY);
+    };
+
+    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('touchmove', onTouchMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('touchmove', onTouchMove);
+    };
+  }, [hasPreviewLine, panel]);
+
+  const matchLines = useMemo((): MatchLine[] => {
+    void layoutTick;
+    const board = boardRef.current;
+    if (!board || panel !== 'board') return [];
+
+    const lines: MatchLine[] = [];
+
+    statuses.forEach((status, index) => {
+      if (status !== 'correct') return;
+      const wordEl = wordRefs.current.get(index);
+      const imageEl = imageRefs.current.get(index);
+      if (!wordEl || !imageEl) return;
+      lines.push({
+        key: `correct-${index}`,
+        from: cardAnchor(board, wordEl, 'word'),
+        to: cardAnchor(board, imageEl, 'image'),
+        status: 'correct',
+      });
+    });
+
+    if (wrongPair) {
+      const wordEl = wordRefs.current.get(wrongPair.wordIndex);
+      const imageEl = imageRefs.current.get(wrongPair.imageIndex);
+      if (wordEl && imageEl) {
+        lines.push({
+          key: `wrong-${wrongPair.wordIndex}-${wrongPair.imageIndex}`,
+          from: cardAnchor(board, wordEl, 'word'),
+          to: cardAnchor(board, imageEl, 'image'),
+          status: 'wrong',
+        });
+      }
+    } else if (hasPreviewLine && cursorPos) {
+      if (selectedWordIndex >= 0) {
+        const wordEl = wordRefs.current.get(selectedWordIndex);
+        if (wordEl) {
+          lines.push({
+            key: 'preview',
+            from: cardAnchor(board, wordEl, 'word'),
+            to: cursorPos,
+            status: 'preview',
+          });
+        }
+      } else if (selectedImageIndex >= 0) {
+        const imageEl = imageRefs.current.get(selectedImageIndex);
+        if (imageEl) {
+          lines.push({
+            key: 'preview',
+            from: cursorPos,
+            to: cardAnchor(board, imageEl, 'image'),
+            status: 'preview',
+          });
+        }
+      }
+    }
+
+    return lines;
+  }, [
+    cursorPos,
+    hasPreviewLine,
+    layoutTick,
+    panel,
+    selectedImageIndex,
+    selectedWordIndex,
+    statuses,
+    wrongPair,
+  ]);
 
   async function persistProgress(
     nextStatuses: ProgressStatus[],
@@ -283,6 +444,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
           });
           maybeFinish(nextStatuses);
           clearSelection();
+          requestAnimationFrame(bumpLayout);
           setIsSubmitting(false);
         } else {
           setFeedback({
@@ -304,6 +466,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
       }
     },
     [
+      bumpLayout,
       clearSelection,
       course,
       isSubmitting,
@@ -314,6 +477,17 @@ export function WordMatchGame({ courseId, initialData }: Props) {
       wrongPair,
     ]
   );
+
+  function seedCursorFromCard(index: number, side: 'word' | 'image') {
+    const board = boardRef.current;
+    const el = (side === 'word' ? wordRefs : imageRefs).current.get(index);
+    if (!board || !el) return;
+    const from = cardAnchor(board, el, side);
+    setCursorPos({
+      x: from.x + (side === 'word' ? 28 : -28),
+      y: from.y,
+    });
+  }
 
   function handleWordClick(index: number) {
     if (statuses[index] === 'correct' || isSubmitting || wrongPair) return;
@@ -326,6 +500,9 @@ export function WordMatchGame({ courseId, initialData }: Props) {
 
     if (selectedImageIndex >= 0) {
       void checkMatch(index, selectedImageIndex);
+    } else {
+      seedCursorFromCard(index, 'word');
+      bumpLayout();
     }
   }
 
@@ -338,6 +515,9 @@ export function WordMatchGame({ courseId, initialData }: Props) {
 
     if (selectedWordIndex >= 0) {
       void checkMatch(selectedWordIndex, index);
+    } else {
+      seedCursorFromCard(index, 'image');
+      bumpLayout();
     }
   }
 
@@ -440,7 +620,52 @@ export function WordMatchGame({ courseId, initialData }: Props) {
             </span>
             <div className="question-label">Nối đúng từ tiếng Anh với hình tương ứng</div>
             <div className="wm-hint">{hintText}</div>
-            <div className="wm-board">
+            <div className="wm-board" ref={boardRef}>
+              <svg className="wm-lines" aria-hidden="true">
+                <defs>
+                  <marker
+                    id="wm-arrow-preview"
+                    markerWidth="8"
+                    markerHeight="8"
+                    refX="6"
+                    refY="3"
+                    orient="auto"
+                    markerUnits="strokeWidth"
+                  >
+                    <path d="M0,0 L6,3 L0,6 Z" fill="var(--primary)" />
+                  </marker>
+                  <marker
+                    id="wm-arrow-correct"
+                    markerWidth="8"
+                    markerHeight="8"
+                    refX="6"
+                    refY="3"
+                    orient="auto"
+                    markerUnits="strokeWidth"
+                  >
+                    <path d="M0,0 L6,3 L0,6 Z" fill="#22c55e" />
+                  </marker>
+                  <marker
+                    id="wm-arrow-wrong"
+                    markerWidth="8"
+                    markerHeight="8"
+                    refX="6"
+                    refY="3"
+                    orient="auto"
+                    markerUnits="strokeWidth"
+                  >
+                    <path d="M0,0 L6,3 L0,6 Z" fill="#ef4444" />
+                  </marker>
+                </defs>
+                {matchLines.map((line) => (
+                  <path
+                    key={line.key}
+                    className={`wm-line is-${line.status}`}
+                    d={linePath(line.from, line.to)}
+                    markerEnd={`url(#wm-arrow-${line.status})`}
+                  />
+                ))}
+              </svg>
               <div>
                 <div className="wm-col-title">
                   <i className="fas fa-font" aria-hidden="true" /> Từ vựng
@@ -455,6 +680,10 @@ export function WordMatchGame({ courseId, initialData }: Props) {
                     return (
                       <div
                         key={`word-${question.id}`}
+                        ref={(el) => {
+                          if (el) wordRefs.current.set(index, el);
+                          else wordRefs.current.delete(index);
+                        }}
                         className={classes.join(' ')}
                         onClick={() => handleWordClick(index)}
                         onKeyDown={(event) => {
@@ -488,6 +717,10 @@ export function WordMatchGame({ courseId, initialData }: Props) {
                     return (
                       <div
                         key={`image-${question.id}`}
+                        ref={(el) => {
+                          if (el) imageRefs.current.set(index, el);
+                          else imageRefs.current.delete(index);
+                        }}
                         className={classes.join(' ')}
                         onClick={() => handleImageClick(index)}
                         onKeyDown={(event) => {

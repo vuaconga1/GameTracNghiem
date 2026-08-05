@@ -3,12 +3,13 @@ import { describe, expect, it } from 'vitest';
 import { gradeReadAndMatchExercise, gradeReadAndMatchPair } from './gradeAnswer';
 
 describe('gradeReadAndMatchPair', () => {
-  it('matches label to answer with trim', () => {
-    expect(gradeReadAndMatchPair(' A ', 'A')).toBe(true);
+  it('matches English answers with trim and case-insensitive compare', () => {
+    expect(gradeReadAndMatchPair(' Bill ', 'bill')).toBe(true);
   });
 
-  it('rejects non-matching label', () => {
-    expect(gradeReadAndMatchPair('B', 'A')).toBe(false);
+  it('rejects non-matching answers even when labels would look related', () => {
+    expect(gradeReadAndMatchPair('bạn Bill', 'Bill')).toBe(false);
+    expect(gradeReadAndMatchPair('ball', 'bike')).toBe(false);
   });
 });
 
