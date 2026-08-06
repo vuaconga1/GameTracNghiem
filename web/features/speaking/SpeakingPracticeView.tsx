@@ -18,6 +18,12 @@ import {
 import { SPEAKING_OPENING_INSTRUCTIONS } from '@/lib/speaking/prompts';
 import type { SpeakingAccessReason } from '@/lib/speaking/access';
 import { speakingHubPath } from '@/lib/speaking/hubRoutes';
+import {
+  pttBeginEvents,
+  pttDisableVadEvent,
+  pttEndEvents,
+  shouldCommitPushToTalk,
+} from '@/lib/speaking/pushToTalk';
 import { SpeakingAccessNotice } from '@/features/speaking/SpeakingAccessNotice';
 
 type Topic = {
@@ -143,6 +149,8 @@ export function SpeakingPracticeView({
   const [transcript, setTranscript] = useState<TranscriptLine[]>([]);
   const [statusNote, setStatusNote] = useState('');
   const [accessReason, setAccessReason] = useState<SpeakingAccessReason | null>(null);
+  const [pttHeld, setPttHeld] = useState(false);
+  const [aiTalking, setAiTalking] = useState(false);
 
   const pcRef = useRef<RTCPeerConnection | null>(null);
   const dcRef = useRef<RTCDataChannel | null>(null);
@@ -162,6 +170,9 @@ export function SpeakingPracticeView({
   const seenUserTranscriptItemIdsRef = useRef<Set<string>>(new Set());
   const chatRef = useRef<HTMLDivElement | null>(null);
   const aiSpeakingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const aiSpeakingRef = useRef(false);
+  const pttHeldRef = useRef(false);
+  const pttHoldStartedAtRef = useRef<number | null>(null);
   const realtimeUsageRef = useRef({
     inputTokens: 0,
     outputTokens: 0,
@@ -169,20 +180,81 @@ export function SpeakingPracticeView({
     audioOutputTokens: 0,
   });
 
-  /** Flag only — do NOT mute WebRTC mic tracks (MediaStream never "ends"). */
+  function sendRealtimeEvent(payload: Record<string, unknown>) {
+    const dc = dcRef.current;
+    if (!dc || dc.readyState !== 'open') return false;
+    try {
+      dc.send(JSON.stringify(payload));
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  function setLocalMicEnabled(enabled: boolean) {
+    localStreamRef.current?.getAudioTracks().forEach((track) => {
+      track.enabled = enabled;
+    });
+  }
+
+  /** Flag only for echo gate — mic unmute is driven by push-to-talk hold. */
   function applyAiSpeaking(speaking: boolean) {
     if (aiSpeakingTimeoutRef.current) {
       clearTimeout(aiSpeakingTimeoutRef.current);
       aiSpeakingTimeoutRef.current = null;
     }
+    aiSpeakingRef.current = speaking;
+    setAiTalking(speaking);
     setAiSpeaking(speaking);
     // Safety: never leave STT blocked if stop event is missed.
     if (speaking) {
       aiSpeakingTimeoutRef.current = setTimeout(() => {
+        aiSpeakingRef.current = false;
+        setAiTalking(false);
         setAiSpeaking(false);
         aiSpeakingTimeoutRef.current = null;
       }, 12_000);
     }
+  }
+
+  function beginPushToTalk() {
+    if (phase !== 'active' || finishingRef.current || pttHeldRef.current) return;
+    pttHeldRef.current = true;
+    pttHoldStartedAtRef.current = Date.now();
+    setPttHeld(true);
+    for (const event of pttBeginEvents({ interruptAi: aiSpeakingRef.current })) {
+      sendRealtimeEvent(event);
+    }
+    if (aiSpeakingRef.current) {
+      applyAiSpeaking(false);
+    }
+    setLocalMicEnabled(true);
+    setStatusNote(t('speaking.pttHolding'));
+  }
+
+  function endPushToTalk() {
+    if (!pttHeldRef.current) return;
+    const heldMs =
+      pttHoldStartedAtRef.current != null
+        ? Date.now() - pttHoldStartedAtRef.current
+        : 0;
+    pttHeldRef.current = false;
+    pttHoldStartedAtRef.current = null;
+    setPttHeld(false);
+    setLocalMicEnabled(false);
+
+    if (!shouldCommitPushToTalk(heldMs)) {
+      sendRealtimeEvent({ type: 'input_audio_buffer.clear' });
+      setStatusNote(
+        aiSpeakingRef.current ? t('speaking.pttWaitAi') : t('speaking.pttHint'),
+      );
+      return;
+    }
+
+    for (const event of pttEndEvents()) {
+      sendRealtimeEvent(event);
+    }
+    setStatusNote(t('speaking.pttWaitingReply'));
   }
 
   const selectedTopic = topics.find((topic) => topic.id === selectedTopicId) || null;
@@ -325,6 +397,9 @@ export function SpeakingPracticeView({
       clearTimeout(aiSpeakingTimeoutRef.current);
       aiSpeakingTimeoutRef.current = null;
     }
+    pttHeldRef.current = false;
+    pttHoldStartedAtRef.current = null;
+    setPttHeld(false);
     applyAiSpeaking(false);
   }
 
@@ -450,9 +525,15 @@ export function SpeakingPracticeView({
     if (isAiAudioStartEvent(type)) {
       applyAiSpeaking(true);
       void markStarted(id);
+      if (!pttHeldRef.current) {
+        setStatusNote(t('speaking.pttWaitAi'));
+      }
     }
     if (isAiAudioStopEvent(type)) {
       applyAiSpeaking(false);
+      if (!pttHeldRef.current && !finishingRef.current) {
+        setStatusNote(t('speaking.pttHint'));
+      }
     }
     if (
       type === 'response.output_audio_transcript.delta' ||
@@ -535,6 +616,12 @@ export function SpeakingPracticeView({
   async function finishSession(id: string, reason: 'time' | 'manual' | 'error') {
     if (finishingRef.current) return;
     finishingRef.current = true;
+    if (pttHeldRef.current) {
+      pttHeldRef.current = false;
+      pttHoldStartedAtRef.current = null;
+      setPttHeld(false);
+      setLocalMicEnabled(false);
+    }
     setPhase('finishing');
     setStatusNote(reason === 'time' ? t('speaking.endingTime') : t('speaking.endingManual'));
 
@@ -710,6 +797,10 @@ export function SpeakingPracticeView({
       }
 
       const stream = await openMicStream();
+      // Push-to-talk: keep mic muted until the student holds the speak button.
+      stream.getAudioTracks().forEach((track) => {
+        track.enabled = false;
+      });
       localStreamRef.current = stream;
 
       const pc = new RTCPeerConnection();
@@ -733,14 +824,13 @@ export function SpeakingPracticeView({
       const dc = pc.createDataChannel('oai-events');
       dcRef.current = dc;
       dc.addEventListener('open', () => {
-        dc.send(
-          JSON.stringify({
-            type: 'response.create',
-            response: {
-              instructions: SPEAKING_OPENING_INSTRUCTIONS,
-            },
-          })
-        );
+        sendRealtimeEvent(pttDisableVadEvent());
+        sendRealtimeEvent({
+          type: 'response.create',
+          response: {
+            instructions: SPEAKING_OPENING_INSTRUCTIONS,
+          },
+        });
       });
       dc.addEventListener('message', (ev) => {
         if (createdId) handleRealtimeEvent(String(ev.data), createdId);
@@ -809,6 +899,8 @@ export function SpeakingPracticeView({
           ? t('speaking.adminPreviewRunning')
           : t('speaking.waitingAiHello')
       );
+      setPttHeld(false);
+      pttHeldRef.current = false;
     } catch (err) {
       const message = err instanceof Error ? err.message : t('speaking.startSessionFailed');
       setError(message);
@@ -1008,14 +1100,26 @@ export function SpeakingPracticeView({
               <div className="speaking-live-status" aria-live="polite">
                 <span
                   className={`speaking-live-dot ${
-                    phase === 'active' ? 'is-live' : phase === 'finishing' ? 'is-saving' : 'is-connecting'
+                    phase === 'active'
+                      ? pttHeld
+                        ? 'is-live'
+                        : aiTalking
+                          ? 'is-saving'
+                          : 'is-live'
+                      : phase === 'finishing'
+                        ? 'is-saving'
+                        : 'is-connecting'
                   }`}
                 />
                 {phase === 'connecting'
                   ? t('speaking.connectingAi')
                   : phase === 'finishing'
                     ? t('speaking.savingSession')
-                    : t('speaking.inConversation')}
+                    : pttHeld
+                      ? t('speaking.pttHolding')
+                      : aiTalking
+                        ? t('speaking.pttWaitAi')
+                        : t('speaking.inConversation')}
               </div>
 
               <SpeakingChatFrame
@@ -1028,16 +1132,49 @@ export function SpeakingPracticeView({
                 }
               />
 
-              <div className="speaking-actions">
+              <div className="speaking-actions speaking-actions--live">
                 {phase === 'active' ? (
-                  <button
-                    type="button"
-                    className="admin-btn danger speaking-btn"
-                    onClick={() => sessionId && void finishSession(sessionId, 'manual')}
-                  >
-                    <i className="fas fa-stop" aria-hidden="true" />
-                    {t('speaking.endEarly')}
-                  </button>
+                  <>
+                    <button
+                      type="button"
+                      className={`speaking-ptt-btn${pttHeld ? ' is-held' : ''}${aiTalking && !pttHeld ? ' is-waiting' : ''}`}
+                      aria-pressed={pttHeld}
+                      aria-label={t('speaking.pttAria')}
+                      onPointerDown={(e) => {
+                        e.preventDefault();
+                        try {
+                          e.currentTarget.setPointerCapture(e.pointerId);
+                        } catch {
+                          /* ignore */
+                        }
+                        beginPushToTalk();
+                      }}
+                      onPointerUp={(e) => {
+                        e.preventDefault();
+                        endPushToTalk();
+                      }}
+                      onPointerCancel={() => {
+                        endPushToTalk();
+                      }}
+                      onContextMenu={(e) => e.preventDefault()}
+                    >
+                      <i
+                        className={`fas ${pttHeld ? 'fa-microphone' : 'fa-microphone-lines'}`}
+                        aria-hidden="true"
+                      />
+                      <span>
+                        {pttHeld ? t('speaking.pttRelease') : t('speaking.pttHold')}
+                      </span>
+                    </button>
+                    <button
+                      type="button"
+                      className="admin-btn danger speaking-btn"
+                      onClick={() => sessionId && void finishSession(sessionId, 'manual')}
+                    >
+                      <i className="fas fa-stop" aria-hidden="true" />
+                      {t('speaking.endEarly')}
+                    </button>
+                  </>
                 ) : (
                   <button type="button" className="admin-btn speaking-btn" disabled>
                     <i className="fas fa-gear fa-spin" aria-hidden="true" />

@@ -42,6 +42,7 @@ describe('OpenAI Realtime server controls', () => {
     expect(String(request.headers)).not.toContain('req_trace_only');
     expect(Buffer.isBuffer(request.body)).toBe(true);
     expect(String(request.body)).toContain(offerSdp.trim());
+    expect(String(request.body)).toContain('"turn_detection":null');
   });
 
   it('fails closed when OpenAI omits Location', async () => {

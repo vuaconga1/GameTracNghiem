@@ -2,6 +2,7 @@ import 'server-only';
 
 import { OPENAI_REALTIME_MODEL } from '@/lib/speaking/config';
 import { buildSpeakingRealtimeInstructions } from '@/lib/speaking/prompts';
+import { speakingRealtimeAudioInput } from '@/lib/speaking/pushToTalk';
 
 export type RealtimeEphemeralResult = {
   clientSecret: string;
@@ -39,15 +40,7 @@ export async function createRealtimeClientSecret(input: {
         grade: input.grade,
         levelName: input.levelName,
       }),
-      audio: {
-        input: {
-          transcription: {
-            model: 'gpt-4o-mini-transcribe',
-            language: 'en',
-          },
-        },
-        output: { voice: input.voice || 'marin' },
-      },
+      audio: speakingRealtimeAudioInput(input.voice),
     },
   };
 
@@ -132,15 +125,7 @@ export async function createRealtimeCall(input: {
       grade: input.grade,
       levelName: input.levelName,
     }),
-    audio: {
-      input: {
-        transcription: {
-          model: 'gpt-4o-mini-transcribe',
-          language: 'en',
-        },
-      },
-      output: { voice: input.voice || 'marin' },
-    },
+    audio: speakingRealtimeAudioInput(input.voice),
   });
 
   // Build multipart manually — Node FormData was truncating long browser SDPs (EOF).
