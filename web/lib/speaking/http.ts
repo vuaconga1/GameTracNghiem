@@ -9,6 +9,7 @@ import {
   DrillProcessingError,
 } from '@/lib/speaking/drillErrors';
 import { SpeakingSecurityError } from '@/lib/speaking/security';
+import { SessionEndSchedulerError } from '@/lib/speaking/sessionEndScheduler';
 
 export function speakingErrorResponse(err: unknown) {
   if (err instanceof SpeakingSecurityError) {
@@ -70,6 +71,19 @@ export function speakingErrorResponse(err: unknown) {
         counted: false,
       },
       { status: err.status },
+    );
+  }
+
+  if (err instanceof SessionEndSchedulerError) {
+    return Response.json(
+      {
+        success: false,
+        code: 'SESSION_END_SCHEDULER_NOT_READY',
+        message:
+          'AI Speaking chưa cấu hình đủ hệ thống dừng phiên (QStash). Liên hệ admin để bổ sung SPEAKING_SESSION_END_SCHEDULER / QSTASH_* trên Vercel.',
+        detail: err.message,
+      },
+      { status: 503, headers: { 'Cache-Control': 'private, no-store' } },
     );
   }
 
