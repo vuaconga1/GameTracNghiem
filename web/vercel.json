@@ -7,7 +7,7 @@
   "crons": [
     {
       "path": "/api/cron/speaking-session-ends",
-      "schedule": "* * * * *"
+      "schedule": "12 3 * * *"
     },
     {
       "path": "/api/cron/speaking-recordings",

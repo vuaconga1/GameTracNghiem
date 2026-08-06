@@ -50,8 +50,9 @@ Blank examples in `.env.example` are not deployable values.
   `SPEAKING_PUBLIC_BASE_URL`, `QSTASH_TOKEN`,
   `QSTASH_CURRENT_SIGNING_KEY`, `QSTASH_NEXT_SIGNING_KEY`,
   `SPEAKING_INTERNAL_CALLBACK_SECRET`.
-- Scheduled jobs: `CRON_SECRET`; verify the one-minute session-end and daily
-  recording-retention schedules in `vercel.json`.
+- Scheduled jobs: `CRON_SECRET`; verify both daily crons in `vercel.json`
+  (session-end backup sweep + recording retention). Hard-stop at 180s must use
+  QStash — Hobby Vercel only allows once-per-day native cron expressions.
 - Private recording storage: `BLOB_READ_WRITE_TOKEN`,
   `GOOGLE_DRIVE_SPEAKING_FOLDER_ID`, and exactly one of
   `GOOGLE_SERVICE_ACCOUNT_JSON` or `GOOGLE_SERVICE_ACCOUNT_JSON_BASE64`.
