@@ -22,12 +22,27 @@ export async function POST(req: Request, { params }: Ctx) {
       authSession: auth,
       idempotencyKey: req.headers.get('idempotency-key'),
     });
-    // The outbox row was committed in markSessionStarted's transaction.
-    await dispatchSessionEndJobForSession(result.session.id);
+    // Outbox row is already committed. Do not fail /started if QStash publish
+    // fails — client needs mustEndAt for the 3-minute countdown; cron/retry
+    // will redispatch the PENDING job.
+    let hardStopQueued = true;
+    try {
+      await dispatchSessionEndJobForSession(result.session.id);
+    } catch (dispatchErr) {
+      hardStopQueued = false;
+      console.error('[speaking] hard-stop dispatch failed after start', {
+        sessionId: result.session.id,
+        error:
+          dispatchErr instanceof Error
+            ? dispatchErr.message
+            : String(dispatchErr),
+      });
+    }
 
     return Response.json({
       success: true,
       alreadyStarted: result.alreadyStarted,
+      hardStopQueued,
       session: {
         id: result.session.id,
         status: result.session.status,

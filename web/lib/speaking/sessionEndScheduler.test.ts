@@ -102,7 +102,7 @@ describe('durable Speaking hard-stop scheduler', () => {
         url: 'https://app.example/api/internal/speaking/session-end',
         body: { jobId: 'job-1', sessionId: 'session-1' },
         delay: 180,
-        deduplicationId: 'speaking-session-end:job-1',
+        deduplicationId: 'speaking-session-end-job-1',
         retries: 5,
       }),
     );

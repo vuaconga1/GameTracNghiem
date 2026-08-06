@@ -63,8 +63,33 @@ describe('POST /api/speaking/sessions/:id/started', () => {
       }),
     );
     expect(json.session.mustEndAt).toBe('2026-08-06T03:03:00.000Z');
+    expect(json.hardStopQueued).toBe(true);
     expect(assertSessionEndSchedulerReady).toHaveBeenCalledOnce();
     expect(dispatchSessionEndJobForSession).toHaveBeenCalledWith('session-1');
+  });
+
+  it('still returns mustEndAt when hard-stop dispatch fails', async () => {
+    dispatchSessionEndJobForSession.mockRejectedValueOnce(
+      new Error('DeduplicationId cannot contain \':\''),
+    );
+    const response = await POST(
+      new Request('http://localhost/api/speaking/sessions/session-1/started', {
+        method: 'POST',
+        headers: { 'Idempotency-Key': 'stable-start-key' },
+      }),
+      { params: Promise.resolve({ id: 'session-1' }) },
+    );
+    const json = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(json).toMatchObject({
+      success: true,
+      hardStopQueued: false,
+      session: {
+        id: 'session-1',
+        mustEndAt: '2026-08-06T03:03:00.000Z',
+      },
+    });
   });
 
   it('returns the service idempotency result unchanged on retry', async () => {

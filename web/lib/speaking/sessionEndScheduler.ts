@@ -231,7 +231,8 @@ export async function dispatchSessionEndJob(jobId: string) {
         delay: delaySeconds,
         retries: 5,
         retryDelay: 'max(1000, pow(2, retried) * 1000)',
-        deduplicationId: `speaking-session-end:${job.id}`,
+        // QStash rejects ':' in deduplicationId ("DeduplicationId cannot contain ':'").
+        deduplicationId: `speaking-session-end-${job.id}`,
       });
       providerMessageId = result.messageId;
     }
