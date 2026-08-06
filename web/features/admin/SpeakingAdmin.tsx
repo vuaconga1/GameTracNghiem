@@ -5,6 +5,8 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { AdminShell } from '@/components/admin/AdminShell';
 import { DataLoading } from '@/components/DataLoading';
+import { SpeakingAccessAdmin } from '@/features/admin/SpeakingAccessAdmin';
+import { SpeakingOperationsAdmin } from '@/features/admin/SpeakingOperationsAdmin';
 
 type Topic = {
   id: string;
@@ -23,29 +25,49 @@ type SessionRow = {
   id: string;
   status: string;
   kind: string;
+  activityType: string;
   createdAt: string;
   errorMessage?: string | null;
+  model?: string | null;
+  configSnapshot?: { promptVersion?: string } | null;
   user: { username: string; displayName: string };
-  topic: { title: string; course?: { name: string; levelName: string } };
+  topic?: { title: string; course?: { name: string; levelName: string } } | null;
 };
 
 type UsageRow = {
   id: string;
   status: string;
   usageDate: string;
+  activityType: string;
+  usedCount: number;
+  reservedCount: number;
+  limitSnapshot: number;
   sessionId?: string | null;
   user: { username: string; displayName: string };
   session?: { id: string; status: string; errorMessage?: string | null } | null;
 };
 
 export function SpeakingAdmin({ displayName }: { displayName: string }) {
-  const [tab, setTab] = useState<'topics' | 'sessions' | 'usages'>('topics');
+  const [tab, setTab] = useState<
+    'topics' | 'drills' | 'attempts' | 'sessions' | 'usages' | 'entitlements' | 'config'
+  >('topics');
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState('');
   const [topics, setTopics] = useState<Topic[]>([]);
   const [courses, setCourses] = useState<CourseOption[]>([]);
   const [sessions, setSessions] = useState<SessionRow[]>([]);
   const [usages, setUsages] = useState<UsageRow[]>([]);
+  const [promptPreview, setPromptPreview] = useState<{
+    topicTitle: string;
+    prompt: string;
+    promptVersion?: string | null;
+    model?: string | null;
+    previewState?: {
+      emergencyDisabled?: boolean;
+      activityEnabled?: boolean;
+      bypassesStudentKillSwitch?: boolean;
+    };
+  } | null>(null);
 
   const [courseId, setCourseId] = useState('');
   const [title, setTitle] = useState('');
@@ -59,7 +81,7 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
       const [topicsRes, coursesRes, sessionsRes, usagesRes] = await Promise.all([
         fetch('/api/admin/speaking/topics'),
         fetch('/api/admin/courses?limit=200'),
-        fetch('/api/admin/speaking/sessions?limit=40'),
+        fetch('/api/admin/speaking/sessions?limit=100&current=1'),
         fetch('/api/admin/speaking/usages'),
       ]);
       const topicsJson = await topicsRes.json();
@@ -90,7 +112,7 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
     setMessage('');
     const res = await fetch('/api/admin/speaking/topics', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'x-wewin-csrf': '1' },
       body: JSON.stringify({ courseId, title, instructions, durationSeconds }),
     });
     const json = await res.json();
@@ -106,28 +128,85 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
   async function toggleActive(topic: Topic) {
     await fetch(`/api/admin/speaking/topics/${topic.id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'x-wewin-csrf': '1' },
       body: JSON.stringify({ active: !topic.active }),
     });
     await load();
   }
 
+  async function editTopic(topic: Topic) {
+    const nextTitle = prompt('Tiêu đề topic:', topic.title);
+    if (nextTitle == null) return;
+    const nextInstructions = prompt(
+      'Khối hướng dẫn admin/topic (không thay thế safety bắt buộc):',
+      topic.instructions,
+    );
+    if (nextInstructions == null) return;
+    const nextDuration = Number(
+      prompt('Thời lượng (giây):', String(topic.durationSeconds)),
+    );
+    const response = await fetch(`/api/admin/speaking/topics/${topic.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-wewin-csrf': '1',
+      },
+      body: JSON.stringify({
+        title: nextTitle,
+        instructions: nextInstructions,
+        durationSeconds: nextDuration,
+      }),
+    });
+    const json = await response.json();
+    if (!response.ok || !json.success) {
+      setMessage(json.message || 'Không sửa được topic');
+      return;
+    }
+    await load();
+  }
+
+  async function showPrompt(topic: Topic) {
+    const response = await fetch(
+      `/api/admin/speaking/topics/${topic.id}/preview`,
+    );
+    const json = await response.json();
+    if (!response.ok || !json.success) {
+      setMessage(json.message || 'Không dựng được prompt');
+      return;
+    }
+    setPromptPreview({
+      topicTitle: topic.title,
+      prompt: json.prompt,
+      promptVersion: json.promptVersion,
+      model: json.model,
+      previewState: json.previewState,
+    });
+  }
+
   async function softDelete(topic: Topic) {
     if (!confirm(`Ẩn topic "${topic.title}"?`)) return;
-    await fetch(`/api/admin/speaking/topics/${topic.id}`, { method: 'DELETE' });
+    await fetch(`/api/admin/speaking/topics/${topic.id}`, {
+      method: 'DELETE',
+      headers: { 'x-wewin-csrf': '1' },
+    });
     await load();
   }
 
   async function preview(topic: Topic) {
     const res = await fetch(`/api/admin/speaking/topics/${topic.id}/preview`, {
       method: 'POST',
+      headers: { 'x-wewin-csrf': '1' },
     });
     const json = await res.json();
     if (!res.ok || !json.success) {
       setMessage(json.message || 'Không tạo preview');
       return;
     }
-    window.location.href = `/speaking/${topic.courseId}?topicId=${topic.id}&previewSession=${json.session.id}`;
+    const query = new URLSearchParams({
+      topicId: topic.id,
+      previewSession: json.session.id,
+    });
+    window.location.href = `/speaking/${encodeURIComponent(topic.courseId)}/conversation?${query.toString()}`;
   }
 
   async function releaseUsage(usage: UsageRow) {
@@ -135,7 +214,7 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
     if (!reason || !reason.trim()) return;
     const res = await fetch(`/api/admin/speaking/usages/${usage.id}/release`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', 'x-wewin-csrf': '1' },
       body: JSON.stringify({ reason: reason.trim() }),
     });
     const json = await res.json();
@@ -159,6 +238,20 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
         </button>
         <button
           type="button"
+          className={tab === 'drills' ? 'admin-btn primary' : 'admin-btn'}
+          onClick={() => setTab('drills')}
+        >
+          Bài drill
+        </button>
+        <button
+          type="button"
+          className={tab === 'attempts' ? 'admin-btn primary' : 'admin-btn'}
+          onClick={() => setTab('attempts')}
+        >
+          Attempts
+        </button>
+        <button
+          type="button"
           className={tab === 'sessions' ? 'admin-btn primary' : 'admin-btn'}
           onClick={() => setTab('sessions')}
         >
@@ -171,6 +264,20 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
         >
           Lượt hôm nay
         </button>
+        <button
+          type="button"
+          className={tab === 'entitlements' ? 'admin-btn primary' : 'admin-btn'}
+          onClick={() => setTab('entitlements')}
+        >
+          Cấp quyền
+        </button>
+        <button
+          type="button"
+          className={tab === 'config' ? 'admin-btn primary' : 'admin-btn'}
+          onClick={() => setTab('config')}
+        >
+          Cấu hình
+        </button>
         <button type="button" className="admin-btn" onClick={() => void load()}>
           Tải lại
         </button>
@@ -181,6 +288,30 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
 
       {!loading && tab === 'topics' ? (
         <div>
+          {promptPreview ? (
+            <div className="admin-card" style={{ marginBottom: 16 }}>
+              <h3>Prompt đã compose — {promptPreview.topicTitle}</h3>
+              <p>
+                Version: {promptPreview.promptVersion || '—'} · Model:{' '}
+                {promptPreview.model || '—'} · DB activity:{' '}
+                {promptPreview.previewState?.activityEnabled ? 'ON' : 'OFF'} ·
+                Emergency kill:{' '}
+                {promptPreview.previewState?.emergencyDisabled ? 'ON' : 'OFF'}
+              </p>
+              <p>
+                Admin preview được phép bypass kill switch một cách rõ ràng:{' '}
+                {promptPreview.previewState?.bypassesStudentKillSwitch
+                  ? 'Yes'
+                  : 'No'}
+              </p>
+              <pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>
+                {promptPreview.prompt}
+              </pre>
+              <button type="button" className="admin-btn" onClick={() => setPromptPreview(null)}>
+                Đóng
+              </button>
+            </div>
+          ) : null}
           <div className="admin-card" style={{ marginBottom: 16 }}>
             <h3>Thêm topic</h3>
             <label className="speaking-field">
@@ -198,7 +329,7 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
               <input value={title} onChange={(e) => setTitle(e.target.value)} />
             </label>
             <label className="speaking-field">
-              <span>Hướng dẫn / prompt AI</span>
+              <span>Khối admin/topic (safety, grade, English và voice được ghép bên ngoài)</span>
               <textarea
                 rows={4}
                 value={instructions}
@@ -243,6 +374,12 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
                     <button type="button" className="admin-btn" onClick={() => void toggleActive(t)}>
                       {t.active ? 'Tắt' : 'Bật'}
                     </button>{' '}
+                    <button type="button" className="admin-btn" onClick={() => void editTopic(t)}>
+                      Sửa
+                    </button>{' '}
+                    <button type="button" className="admin-btn" onClick={() => void showPrompt(t)}>
+                      Xem prompt
+                    </button>{' '}
                     <button type="button" className="admin-btn" onClick={() => void preview(t)}>
                       Preview
                     </button>{' '}
@@ -257,6 +394,14 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
         </div>
       ) : null}
 
+      {!loading && tab === 'drills' ? (
+        <SpeakingOperationsAdmin mode="drills" courses={courses} />
+      ) : null}
+
+      {!loading && tab === 'attempts' ? (
+        <SpeakingOperationsAdmin mode="attempts" courses={courses} />
+      ) : null}
+
       {!loading && tab === 'sessions' ? (
         <table className="admin-table">
           <thead>
@@ -266,6 +411,7 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
               <th>Loại</th>
               <th>Trạng thái</th>
               <th>Lỗi</th>
+              <th>Prompt / model</th>
               <th>Chi tiết</th>
             </tr>
           </thead>
@@ -276,12 +422,15 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
                   {s.user.displayName} ({s.user.username})
                 </td>
                 <td>
-                  {s.topic.title}
-                  {s.topic.course ? ` — ${s.topic.course.name}` : ''}
+                  {s.topic?.title || s.activityType}
+                  {s.topic?.course ? ` — ${s.topic.course.name}` : ''}
                 </td>
                 <td>{s.kind}</td>
                 <td>{s.status}</td>
                 <td>{s.errorMessage || '—'}</td>
+                <td>
+                  {s.configSnapshot?.promptVersion || '—'} / {s.model || '—'}
+                </td>
                 <td>
                   <Link className="admin-btn" href={`/admin/speaking/sessions/${s.id}`}>
                     Xem
@@ -298,7 +447,8 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
           <thead>
             <tr>
               <th>Học sinh</th>
-              <th>Trạng thái</th>
+              <th>Hoạt động</th>
+              <th>Đã dùng</th>
               <th>Session</th>
               <th />
             </tr>
@@ -309,10 +459,14 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
                 <td>
                   {u.user.displayName} ({u.user.username})
                 </td>
-                <td>{u.status}</td>
+                <td>{u.activityType}</td>
+                <td>
+                  {u.usedCount}/{u.limitSnapshot}
+                  {u.reservedCount > 0 ? ` (${u.reservedCount} giữ chỗ)` : ''}
+                </td>
                 <td>{u.session?.status || u.sessionId || '—'}</td>
                 <td>
-                  {u.status === 'CONSUMED' ? (
+                  {u.usedCount > 0 ? (
                     <button
                       type="button"
                       className="admin-btn primary"
@@ -326,6 +480,14 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
             ))}
           </tbody>
         </table>
+      ) : null}
+
+      {!loading && tab === 'entitlements' ? (
+        <SpeakingAccessAdmin mode="entitlements" courses={courses} />
+      ) : null}
+
+      {!loading && tab === 'config' ? (
+        <SpeakingAccessAdmin mode="config" courses={courses} />
       ) : null}
     </AdminShell>
   );

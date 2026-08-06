@@ -38,19 +38,28 @@ export function buildPgPoolConfig(connectionString: string): PoolConfig {
   };
 }
 
-function hasCourseField(client: unknown, field: string): boolean {
+function hasModelField(client: unknown, model: string, field: string): boolean {
   const models = (
     client as {
       _runtimeDataModel?: { models?: Record<string, { fields?: Record<string, unknown> }> };
     }
   )._runtimeDataModel?.models;
-  const fields = models?.Course?.fields;
+  const fields = models?.[model]?.fields;
   return Boolean(fields && field in fields);
 }
 
 /** Dev-only: drop a stale HMR Prisma client without ending the shared pg pool. */
 export function shouldRecycleDevClient(client: unknown): boolean {
-  return !hasCourseField(client, 'gameSkills') || !hasCourseField(client, 'enabledSkills');
+  return (
+    !hasModelField(client, 'Course', 'gameSkills') ||
+    !hasModelField(client, 'Course', 'enabledSkills') ||
+    !hasModelField(client, 'User', 'portalLinkedAt') ||
+    !hasModelField(client, 'SpeakingActivityConfig', 'activityType') ||
+    !hasModelField(client, 'DailySpeakingUsage', 'usedCount') ||
+    !hasModelField(client, 'SpeakingSession', 'mustEndAt') ||
+    !hasModelField(client, 'SpeakingSessionEndJob', 'dueAt') ||
+    !hasModelField(client, 'SpeakingAttempt', 'idempotencyKey')
+  );
 }
 
 function createPrismaClient(): PrismaClient {

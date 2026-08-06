@@ -2,6 +2,7 @@ import { adminErrorResponse } from '@/lib/admin/http';
 import { requireAdmin } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { DEFAULT_DURATION_SECONDS } from '@/lib/speaking/config';
+import { assertSpeakingMutationRequest } from '@/lib/speaking/security';
 
 type Ctx = { params: Promise<{ id: string }> };
 
@@ -24,6 +25,7 @@ export async function GET(_req: Request, { params }: Ctx) {
 
 export async function PUT(req: Request, { params }: Ctx) {
   try {
+    assertSpeakingMutationRequest(req);
     await requireAdmin();
     const { id } = await params;
     const body = (await req.json()) as {
@@ -67,8 +69,9 @@ export async function PUT(req: Request, { params }: Ctx) {
   }
 }
 
-export async function DELETE(_req: Request, { params }: Ctx) {
+export async function DELETE(req: Request, { params }: Ctx) {
   try {
+    assertSpeakingMutationRequest(req);
     await requireAdmin();
     const { id } = await params;
     const existing = await prisma.speakingTopic.findFirst({

@@ -1,3 +1,5 @@
+import type { PlayerDescriptor } from '@/lib/player/types';
+
 export type CompleteSessionResult = {
   success: boolean;
   alreadyGranted?: boolean;
@@ -20,8 +22,10 @@ export type CompleteSessionResult = {
 
 /** Grant EXP for a finished play session (idempotent). */
 export async function completePlaySessionExperience(
-  playSessionId: string | null | undefined
+  playSessionId: string | null | undefined,
+  player?: PlayerDescriptor,
 ): Promise<CompleteSessionResult | null> {
+  if (player?.kind === 'guest') return null;
   const id = String(playSessionId || '').trim();
   if (!id) return null;
 
@@ -62,10 +66,11 @@ export async function finalizePlaySessionIfComplete(params: {
   statuses: Array<'empty' | 'correct' | 'wrong'>;
   playSessionId?: string | null;
   indexes?: number[];
+  player?: PlayerDescriptor;
 }): Promise<CompleteSessionResult | null> {
   const done = params.indexes
     ? isSubsetFullyGraded(params.indexes, params.statuses)
     : isStatusesFullyGraded(params.statuses);
   if (!done) return null;
-  return completePlaySessionExperience(params.playSessionId);
+  return completePlaySessionExperience(params.playSessionId, params.player);
 }

@@ -1,5 +1,3 @@
-import { redirect } from 'next/navigation';
-
 import { MainShell } from '@/components/shell/MainShell';
 import { SidebarProvider } from '@/components/shell/SidebarContext';
 import { lookupSessionForPage } from '@/lib/auth';
@@ -10,26 +8,20 @@ export default async function MainLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { session, stale } = await lookupSessionForPage();
-  if (!session) {
-    if (stale) {
-      redirect('/api/auth/logout?next=/login');
-    }
-    redirect('/login');
-  }
-
-  const experience = await loadHeaderExperience(session.userId);
+  const { session } = await lookupSessionForPage();
+  const experience = session ? await loadHeaderExperience(session.userId) : null;
 
   return (
     <SidebarProvider>
       <MainShell
-        displayName={session.displayName}
-        isAdmin={session.role === 'admin'}
-        level={experience.level}
-        tier={experience.tier}
-        expInLevel={experience.expInLevel}
-        expToNextLevel={experience.expToNextLevel}
-        progressPercent={experience.progressPercent}
+        displayName={session?.displayName}
+        isAuthenticated={Boolean(session)}
+        isAdmin={session?.role === 'admin'}
+        level={experience?.level}
+        tier={experience?.tier}
+        expInLevel={experience?.expInLevel}
+        expToNextLevel={experience?.expToNextLevel}
+        progressPercent={experience?.progressPercent}
       >
         {children}
       </MainShell>

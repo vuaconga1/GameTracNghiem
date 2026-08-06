@@ -9,13 +9,22 @@ export async function GET(req: Request) {
     const userId = url.searchParams.get('userId')?.trim();
     const topicId = url.searchParams.get('topicId')?.trim();
     const status = url.searchParams.get('status')?.trim();
+    const current = url.searchParams.get('current') === '1';
     const take = Math.min(Number(url.searchParams.get('limit') || 50), 100);
 
     const sessions = await prisma.speakingSession.findMany({
       where: {
         ...(userId ? { userId } : {}),
         ...(topicId ? { topicId } : {}),
-        ...(status ? { status } : {}),
+        ...(status
+          ? { status }
+          : current
+            ? {
+                status: {
+                  in: ['RESERVED', 'CONNECTING', 'ACTIVE', 'FINISHING', 'UPLOADING'],
+                },
+              }
+            : {}),
       },
       orderBy: { createdAt: 'desc' },
       take,
@@ -32,7 +41,26 @@ export async function GET(req: Request) {
       },
     });
 
-    return Response.json({ success: true, sessions });
+    const aggregates = sessions.reduce(
+      (total, session) => ({
+        inputTokens: total.inputTokens + (session.inputTokens ?? 0),
+        outputTokens: total.outputTokens + (session.outputTokens ?? 0),
+        audioInputTokens:
+          total.audioInputTokens + (session.audioInputTokens ?? 0),
+        audioOutputTokens:
+          total.audioOutputTokens + (session.audioOutputTokens ?? 0),
+        estimatedCostUsd:
+          total.estimatedCostUsd + (session.estimatedCostUsd ?? 0),
+      }),
+      {
+        inputTokens: 0,
+        outputTokens: 0,
+        audioInputTokens: 0,
+        audioOutputTokens: 0,
+        estimatedCostUsd: 0,
+      },
+    );
+    return Response.json({ success: true, sessions, aggregates });
   } catch (err) {
     return adminErrorResponse(err);
   }

@@ -91,7 +91,7 @@ export async function completeExperienceSession(
   profile: ExperienceProfile;
 }> {
   const rows = await prisma.scoreLog.findMany({
-    where: { userId, playSessionId },
+    where: { userId, playSessionId, countsForCourseTotal: true },
     select: { course: true, game: true, isCorrect: true, elapsedMs: true },
   });
 

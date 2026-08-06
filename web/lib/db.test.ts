@@ -13,12 +13,18 @@ describe('buildPgPoolConfig', () => {
 });
 
 describe('shouldRecycleDevClient', () => {
-  it('does not recycle when Course.gameSkills and enabledSkills are present', () => {
+  it('does not recycle when the current Course and Speaking fields are present', () => {
     expect(
       shouldRecycleDevClient({
         _runtimeDataModel: {
           models: {
             Course: { fields: { gameSkills: {}, enabledSkills: {}, enabledGames: {} } },
+            User: { fields: { portalLinkedAt: {} } },
+            SpeakingActivityConfig: { fields: { activityType: {} } },
+            DailySpeakingUsage: { fields: { usedCount: {} } },
+            SpeakingSession: { fields: { mustEndAt: {} } },
+            SpeakingSessionEndJob: { fields: { dueAt: {} } },
+            SpeakingAttempt: { fields: { idempotencyKey: {} } },
           },
         },
       })

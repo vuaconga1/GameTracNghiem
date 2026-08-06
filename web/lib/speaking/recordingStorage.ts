@@ -1,8 +1,8 @@
 import 'server-only';
 
-import { mkdir, readFile, stat, writeFile } from 'fs/promises';
+import { mkdir, readFile, rm, stat, writeFile } from 'fs/promises';
 import path from 'path';
-import { get, put } from '@vercel/blob';
+import { del, get, put } from '@vercel/blob';
 
 const SPEAKING_RECORDING_DIR = path.join(process.cwd(), 'storage', 'speaking-recordings');
 
@@ -90,4 +90,25 @@ export async function openSpeakingRecording(storageKey: string): Promise<{
   } catch {
     return null;
   }
+}
+
+/** Idempotently remove a private Blob/local recording. */
+export async function deleteSpeakingRecording(storageKey: string): Promise<void> {
+  if (!storageKey) return;
+  if (
+    usesBlobStorage() &&
+    (isRemoteKey(storageKey) || storageKey.includes('speaking-recordings/'))
+  ) {
+    const key = isRemoteKey(storageKey)
+      ? storageKey
+      : `speaking-recordings/${path.basename(storageKey)}`;
+    await del(key, { token: process.env.BLOB_READ_WRITE_TOKEN });
+    return;
+  }
+  if (isVercelRuntime()) {
+    throw new Error('Không thể xóa recording local trong Vercel runtime');
+  }
+  await rm(path.join(SPEAKING_RECORDING_DIR, path.basename(storageKey)), {
+    force: true,
+  });
 }

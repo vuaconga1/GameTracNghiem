@@ -1,11 +1,13 @@
 import { adminErrorResponse } from '@/lib/admin/http';
 import { requireAdmin } from '@/lib/auth';
 import { releaseDailyUsage } from '@/lib/speaking/usage';
+import { assertSpeakingMutationRequest } from '@/lib/speaking/security';
 
 type Ctx = { params: Promise<{ id: string }> };
 
 export async function POST(req: Request, { params }: Ctx) {
   try {
+    assertSpeakingMutationRequest(req);
     const admin = await requireAdmin();
     const { id } = await params;
     const body = (await req.json().catch(() => ({}))) as { reason?: string };

@@ -13,6 +13,9 @@ export type CourseListItem = {
   levelName: string;
   completionPercent: number;
   backgroundImageUrl?: string | null;
+  courseKey?: string;
+  enabledGames?: string[];
+  questionCounts?: Record<string, number>;
 };
 
 type CourseListProps = {

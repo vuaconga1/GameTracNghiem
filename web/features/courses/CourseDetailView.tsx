@@ -7,6 +7,7 @@ import { Suspense, useEffect, useRef, useState } from 'react';
 import { DataLoading } from '@/components/DataLoading';
 import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
+import { usePlayer } from '@/components/player/PlayerContext';
 import { EbookViewer } from '@/features/courses/EbookViewer';
 import { localizeExerciseTitle } from '@/features/games/localizeExerciseTitle';
 import {
@@ -21,6 +22,10 @@ import type {
   CourseGames,
   GameDetail,
 } from '@/lib/loadCourseDetail';
+import {
+  guestCourseScore,
+  readGuestGameState,
+} from '@/lib/player/guestPlayerAdapter';
 import {
   gamesForSkillOnCourse,
   parseSkillQuery,
@@ -38,6 +43,7 @@ type CourseDetailResponse = {
   gameExercises?: CourseDetailData['gameExercises'];
   skillStats?: CourseDetailData['skillStats'];
   totalScore?: number;
+  playerKind?: 'guest' | 'authenticated';
   message?: string;
 };
 
@@ -90,6 +96,68 @@ function aggregateActivityStats(games: CourseGames | undefined, gameKeys: string
 
 function formatCourseScore(points: number, locale: string) {
   return Number(points).toLocaleString(locale === 'en' ? 'en-US' : 'vi-VN');
+}
+
+export function hydrateGuestCourseDetail(data: CourseDetailData): CourseDetailData {
+  const games = Object.fromEntries(
+    Object.entries(data.games || {}).map(([game, detail]) => {
+      if (!detail) return [game, detail];
+      const local = readGuestGameState(data.course.courseKey, game);
+      return [game, { ...detail, statuses: local.statuses }];
+    }),
+  );
+  const gameExercises = data.gameExercises
+    ? Object.fromEntries(
+        Object.entries(data.gameExercises).map(([game, groups]) => [
+          game,
+          groups?.map((group) => ({
+            ...group,
+            completedCount: group.indices.filter(
+              (index) => games[game]?.statuses[index] !== 'empty',
+            ).length,
+          })),
+        ]),
+      )
+    : undefined;
+  const skillStats = data.skillStats
+    ? Object.fromEntries(
+        Object.entries(data.skillStats).map(([skill, stats]) => {
+          const byGame = Object.fromEntries(
+            Object.entries(stats?.byGame || {}).map(([game, slice]) => [
+              game,
+              {
+                ...slice,
+                completedCount: Math.min(
+                  slice.questionCount,
+                  completedStatusCount(games[game]?.statuses),
+                ),
+              },
+            ]),
+          );
+          return [
+            skill,
+            stats
+              ? {
+                  ...stats,
+                  byGame,
+                  completedQuestions: Object.values(byGame).reduce(
+                    (total, slice) => total + slice.completedCount,
+                    0,
+                  ),
+                }
+              : stats,
+          ];
+        }),
+      )
+    : undefined;
+  const gameKeys = Object.keys(games);
+  return {
+    ...data,
+    games,
+    gameExercises,
+    skillStats,
+    totalScore: guestCourseScore(data.course.courseKey, gameKeys),
+  };
 }
 
 export function CourseDetailContent({
@@ -420,10 +488,16 @@ export function CourseDetailView({
   initialSkill = null,
 }: CourseDetailViewProps) {
   const { t } = useI18n();
+  const player = usePlayer();
   const [data, setData] = useState<CourseDetailData | null>(initialData || null);
   const [isLoading, setIsLoading] = useState(!initialData);
   const [errorMessage, setErrorMessage] = useState('');
   const didUseInitialData = useRef(Boolean(initialData));
+
+  useEffect(() => {
+    if (player.kind !== 'guest' || !initialData) return;
+    setData(hydrateGuestCourseDetail(initialData));
+  }, [initialData, player.kind]);
 
   useEffect(() => {
     if (didUseInitialData.current && initialData?.course.id === courseId) {
@@ -445,14 +519,16 @@ export function CourseDetailView({
         if (!res.ok || !json.success || !json.course) {
           throw new Error(json.message || t('course.loadFailed'));
         }
-        setData({
+        const nextData: CourseDetailData = {
           success: true,
           course: json.course,
           games: json.games,
           gameExercises: json.gameExercises,
           skillStats: json.skillStats,
           totalScore: json.totalScore ?? 0,
-        });
+          playerKind: json.playerKind,
+        };
+        setData(player.kind === 'guest' ? hydrateGuestCourseDetail(nextData) : nextData);
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
@@ -473,7 +549,7 @@ export function CourseDetailView({
     }
 
     return () => controller.abort();
-  }, [courseId, initialData, t]);
+  }, [courseId, initialData, player.kind, t]);
 
   if (isLoading) {
     return <DataLoading />;

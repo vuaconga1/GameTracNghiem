@@ -1,31 +1,36 @@
-import { Suspense } from 'react';
+import { redirect } from 'next/navigation';
 
-import { DataLoading } from '@/components/DataLoading';
-import { SpeakingPracticeView } from '@/features/speaking/SpeakingPracticeView';
+import { SpeakingHub } from '@/features/speaking/SpeakingHub';
 import { prisma } from '@/lib/db';
+import {
+  hasLegacySpeakingDeepLink,
+  legacySpeakingConversationPath,
+} from '@/lib/speaking/hubRoutes';
 
-export default async function SpeakingPracticePage({
+type SpeakingHubSearchParams = {
+  topicId?: string | string[];
+  previewSession?: string | string[];
+  legacyRealtime?: string | string[];
+};
+
+export default async function SpeakingHubPage({
   params,
   searchParams,
 }: {
   params: Promise<{ courseId: string }>;
-  searchParams: Promise<{ topicId?: string }>;
+  searchParams: Promise<SpeakingHubSearchParams>;
 }) {
   const { courseId } = await params;
-  const { topicId } = await searchParams;
+  const query = await searchParams;
+
+  if (hasLegacySpeakingDeepLink(query)) {
+    redirect(legacySpeakingConversationPath(courseId, query));
+  }
 
   const course = await prisma.course.findFirst({
-    where: { id: courseId, archivedAt: null },
+    where: { id: courseId, active: true, archivedAt: null },
     select: { id: true, name: true },
   });
 
-  return (
-    <Suspense fallback={<DataLoading />}>
-      <SpeakingPracticeView
-        courseId={courseId}
-        courseName={course?.name}
-        topicId={topicId}
-      />
-    </Suspense>
-  );
+  return <SpeakingHub courseId={courseId} courseName={course?.name} />;
 }

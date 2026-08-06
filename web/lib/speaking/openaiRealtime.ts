@@ -11,7 +11,7 @@ export type RealtimeEphemeralResult = {
 
 /**
  * Mint a short-lived Realtime client secret.
- * Browser uses it to POST SDP directly to OpenAI (API key never leaves the server).
+ * One-release rollback path for feature-flagged admin preview only.
  */
 export async function createRealtimeClientSecret(input: {
   instructions: string;
@@ -94,7 +94,19 @@ export async function createRealtimeClientSecret(input: {
   };
 }
 
-/** @deprecated Prefer ephemeral client secret + browser SDP exchange. */
+export function extractRealtimeCallId(location: string | null) {
+  if (!location) return null;
+  try {
+    const url = new URL(location, 'https://api.openai.com');
+    const parts = url.pathname.split('/').filter(Boolean);
+    const callId = parts.at(-1)?.trim() || null;
+    return callId && callId !== 'calls' ? callId : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Unified backend SDP exchange; the master key and Location call ID stay server-side. */
 export async function createRealtimeCall(input: {
   sdp: string;
   instructions: string;
@@ -104,7 +116,7 @@ export async function createRealtimeCall(input: {
   grade?: number | null;
   levelName?: string | null;
   topicTitle?: string | null;
-}): Promise<{ sdpAnswer: string; callId: string | null }> {
+}): Promise<{ sdpAnswer: string; callId: string; model: string }> {
   const apiKey = process.env.OPENAI_API_KEY?.trim();
   if (!apiKey) {
     throw new Error('Thiếu OPENAI_API_KEY trên server');
@@ -164,10 +176,45 @@ export async function createRealtimeCall(input: {
     throw new Error('OpenAI Realtime không trả SDP answer');
   }
 
-  const callId =
-    response.headers.get('x-request-id') ||
-    response.headers.get('location')?.split('/').pop() ||
-    null;
+  // Location contains the Realtime call ID. x-request-id is only request
+  // tracing metadata and cannot be used with /hangup.
+  const callId = extractRealtimeCallId(response.headers.get('location'));
+  if (!callId) {
+    throw new Error('OpenAI Realtime không trả Location call ID');
+  }
 
-  return { sdpAnswer: text, callId };
+  return { sdpAnswer: text, callId, model };
+}
+
+/** Idempotent-enough hard stop: an already-ended/missing call is considered closed. */
+export async function hangupRealtimeCall(callId: string) {
+  const apiKey = process.env.OPENAI_API_KEY?.trim();
+  if (!apiKey) {
+    throw new Error('Thiếu OPENAI_API_KEY trên server');
+  }
+  const normalizedCallId = callId.trim();
+  if (!normalizedCallId) {
+    throw new Error('Thiếu OpenAI Realtime call ID');
+  }
+
+  const response = await fetch(
+    `https://api.openai.com/v1/realtime/calls/${encodeURIComponent(normalizedCallId)}/hangup`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        Accept: '*/*',
+      },
+    },
+  );
+  if (response.ok || response.status === 404 || response.status === 409) {
+    return { closed: true, status: response.status };
+  }
+
+  const text = await response.text();
+  throw new Error(
+    `OpenAI Realtime hangup lỗi ${response.status}: ${
+      text.slice(0, 400) || 'unknown'
+    }`,
+  );
 }

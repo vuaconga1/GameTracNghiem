@@ -10,11 +10,16 @@ import { useI18n } from '@/components/i18n/I18nProvider';
 import { useSidebar } from './SidebarContext';
 
 type AppHeaderProps = {
+  isAuthenticated?: boolean;
   isAdmin?: boolean;
   showMenu?: boolean;
 };
 
-export function AppHeader({ isAdmin = false, showMenu = true }: AppHeaderProps) {
+export function AppHeader({
+  isAuthenticated = true,
+  isAdmin = false,
+  showMenu = true,
+}: AppHeaderProps) {
   const router = useRouter();
   const { open, toggle } = useSidebar();
   const { t } = useI18n();
@@ -56,20 +61,29 @@ export function AppHeader({ isAdmin = false, showMenu = true }: AppHeaderProps) 
             <span>{t('common.admin')}</span>
           </Link>
         ) : null}
-        <Link className="action-item" href="/leaderboard">
-          <i className="fas fa-chart-bar" />
-          <span>{t('common.leaderboard')}</span>
-        </Link>
-        <button
-          type="button"
-          className="action-item action-item-logout"
-          title={t('common.logout')}
-          onClick={handleLogout}
-          disabled={isLoggingOut}
-        >
-          <i className="fas fa-right-from-bracket" />
-          <span>{isLoggingOut ? t('common.loggingOut') : t('common.logout')}</span>
-        </button>
+        {isAuthenticated ? (
+          <>
+            <Link className="action-item" href="/leaderboard">
+              <i className="fas fa-chart-bar" />
+              <span>{t('common.leaderboard')}</span>
+            </Link>
+            <button
+              type="button"
+              className="action-item action-item-logout"
+              title={t('common.logout')}
+              onClick={handleLogout}
+              disabled={isLoggingOut}
+            >
+              <i className="fas fa-right-from-bracket" />
+              <span>{isLoggingOut ? t('common.loggingOut') : t('common.logout')}</span>
+            </button>
+          </>
+        ) : (
+          <Link className="action-item action-item-login" href="/login">
+            <i className="fas fa-right-to-bracket" />
+            <span>{t('common.login')}</span>
+          </Link>
+        )}
       </div>
     </header>
   );

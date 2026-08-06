@@ -8,6 +8,7 @@ import { DataLoading } from '@/components/DataLoading';
 import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
+import { usePlayer } from '@/components/player/PlayerContext';
 import { finalizePlaySessionIfComplete } from '@/features/scoring/completeSession';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
@@ -17,6 +18,7 @@ import {
 } from '@/features/games/persistProgress';
 import { gradedIsCorrect, isGradedStatus } from '@/features/games/gradedLock';
 import { progressCourseKey } from '@/lib/courseKey';
+import { hydrateGamePlayerState } from '@/lib/player/guestPlayerAdapter';
 import {
   type ProgressStatus,
   nextEmptyIndex,
@@ -122,6 +124,7 @@ function exercisePreview(
 
 export function ReadAndMatchGame({ courseId }: Props) {
   const { t, locale } = useI18n();
+  const player = usePlayer();
   const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
 
   function formatPoints(points: number): string {
@@ -169,7 +172,18 @@ export function ReadAndMatchGame({ courseId }: Props) {
         }
 
         const exercises = json.exercises || [];
-        const nextStatuses = normalizeStatuses(json.statuses, exercises.length);
+        const courseKey = json.course
+          ? progressCourseKey(json.course.name, json.course.levelName)
+          : '';
+        const hydrated = hydrateGamePlayerState({
+          player,
+          courseKey,
+          game: 'read_and_match',
+          statuses: json.statuses,
+          playSessionId: json.playSessionId,
+          gameScore: json.gameScore,
+        });
+        const nextStatuses = normalizeStatuses(hydrated.statuses, exercises.length);
         const firstEmptyIndex = nextEmptyIndex(nextStatuses);
 
         setData(json);
@@ -177,8 +191,8 @@ export function ReadAndMatchGame({ courseId }: Props) {
         setCurrentIndex(firstEmptyIndex === -1 ? 0 : firstEmptyIndex);
         setPanel('list');
         setSessionPoints(0);
-        setGameScore(json.gameScore || 0);
-        setPlaySessionId(json.playSessionId || null);
+        setGameScore(hydrated.gameScore);
+        setPlaySessionId(hydrated.playSessionId);
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
@@ -198,7 +212,7 @@ export function ReadAndMatchGame({ courseId }: Props) {
       controller.abort();
       if (advanceTimer.current) clearTimeout(advanceTimer.current);
     };
-  }, [courseId]);
+  }, [courseId, player, t]);
 
   const exercises = useMemo(() => data?.exercises || [], [data?.exercises]);
   const course = data?.course;
@@ -291,6 +305,7 @@ export function ReadAndMatchGame({ courseId }: Props) {
       statuses: nextStatuses,
       reset,
       playSessionId: sessionId === undefined ? playSessionId : sessionId,
+      player,
     });
     if (!json.success) {
       throw new Error(json.message || t('gameUi.progressSaveFailed'));
@@ -357,6 +372,7 @@ export function ReadAndMatchGame({ courseId }: Props) {
         const finalized = await finalizePlaySessionIfComplete({
           statuses: nextStatuses,
           playSessionId: sessionIdForProgress || playSessionId,
+          player,
         });
         if (finalized) router.refresh();
 
@@ -375,7 +391,7 @@ export function ReadAndMatchGame({ courseId }: Props) {
         setIsSubmitting(false);
       }
     },
-    [answered, course, currentExercise, isSubmitting, statuses]
+    [answered, course, currentExercise, isSubmitting, player, statuses]
   );
 
   async function handleImageClick(entry: ShuffledImage, imageSlotIndex: number) {
@@ -407,7 +423,8 @@ export function ReadAndMatchGame({ courseId }: Props) {
         currentExercise.index * 100 + sentenceIndex,
         isCorrect,
         elapsedMs,
-        sessionId
+        sessionId,
+        player,
       );
       if (!score.success) {
         throw new Error(score.message || t('gameUi.scoreSaveFailed'));

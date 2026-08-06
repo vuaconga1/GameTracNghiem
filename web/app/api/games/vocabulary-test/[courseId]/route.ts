@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { requireSession } from '@/lib/auth';
+import { optionalSession } from '@/lib/auth';
 import { loadVocabularyTestGame } from '@/lib/loadVocabularyTestGame';
 
 function errorResponse(err: unknown) {
@@ -17,9 +17,9 @@ export async function GET(
   { params }: { params: Promise<{ courseId: string }> }
 ) {
   try {
-    const session = await requireSession();
+    const session = await optionalSession();
     const { courseId } = await params;
-    const data = await loadVocabularyTestGame(courseId, session.userId);
+    const data = await loadVocabularyTestGame(courseId, session?.userId);
     if (!data) {
       return NextResponse.json(
         { success: false, message: 'Không tìm thấy khóa học' },

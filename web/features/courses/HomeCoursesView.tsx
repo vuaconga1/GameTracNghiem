@@ -6,6 +6,7 @@ import { createPortal } from 'react-dom';
 
 import { DataLoading } from '@/components/DataLoading';
 import { useI18n } from '@/components/i18n/I18nProvider';
+import { usePlayer } from '@/components/player/PlayerContext';
 import { CourseFilters } from '@/features/courses/CourseFilters';
 import { CourseList, type CourseListItem } from '@/features/courses/CourseList';
 import {
@@ -17,6 +18,8 @@ import {
   resolveClientHomeCoursesLevel,
 } from '@/lib/homeCoursesFilterState';
 import type { HomeCoursesData } from '@/lib/loadHomeCourses';
+import { courseCompletionPercent } from '@/lib/courseProgress';
+import { readGuestGameState } from '@/lib/player/guestPlayerAdapter';
 
 type CourseFiltersData = HomeCoursesData['filters'];
 
@@ -25,6 +28,7 @@ type CoursesResponse = {
   courses?: CourseListItem[];
   filters?: CourseFiltersData;
   selectedLevelName?: string;
+  playerKind?: 'guest' | 'authenticated';
   message?: string;
 };
 
@@ -38,6 +42,30 @@ function coursesUrl(levelName: string) {
   return `/api/courses?${params.toString()}`;
 }
 
+function hydrateGuestCourses(
+  courses: CourseListItem[],
+  isGuest: boolean,
+): CourseListItem[] {
+  if (!isGuest) return courses;
+  return courses.map((course) => {
+    if (!course.courseKey || !course.enabledGames || !course.questionCounts) return course;
+    const progress = Object.fromEntries(
+      course.enabledGames.map((game) => [
+        game,
+        readGuestGameState(course.courseKey!, game).statuses,
+      ]),
+    );
+    return {
+      ...course,
+      completionPercent: courseCompletionPercent({
+        enabledGames: course.enabledGames,
+        questionCounts: course.questionCounts,
+        progress,
+      }),
+    };
+  });
+}
+
 type HomeCoursesViewProps = {
   initialData?: HomeCoursesData;
 };
@@ -45,6 +73,7 @@ type HomeCoursesViewProps = {
 export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
   const pathname = usePathname();
   const { t } = useI18n();
+  const player = usePlayer();
   const initialSelectedLevelName = normalizeHomeCoursesLevelName(initialData?.selectedLevelName);
   const [levelName, setLevelName] = useState(initialSelectedLevelName);
   const [courses, setCourses] = useState<CourseListItem[]>(initialData?.courses || []);
@@ -54,6 +83,11 @@ export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
   const [filtersRoot, setFiltersRoot] = useState<HTMLElement | null>(null);
   const didUseInitialData = useRef(Boolean(initialData));
   const didInitializeLevel = useRef(false);
+
+  useLayoutEffect(() => {
+    if (player.kind !== 'guest') return;
+    setCourses((current) => hydrateGuestCourses(current, true));
+  }, [player.kind]);
 
   useEffect(() => {
     setFiltersRoot(document.getElementById('sidebar-filters-root'));
@@ -143,7 +177,7 @@ export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
           throw new Error(data.message || t('home.loadFailed'));
         }
 
-        setCourses(data.courses || []);
+        setCourses(hydrateGuestCourses(data.courses || [], player.kind === 'guest'));
         setFilters(data.filters || EMPTY_FILTERS);
         if (!levelName && data.selectedLevelName) {
           setLevelName(data.selectedLevelName);
@@ -162,7 +196,7 @@ export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
     loadCourses();
 
     return () => controller.abort();
-  }, [initialSelectedLevelName, levelName, t]);
+  }, [initialSelectedLevelName, levelName, player.kind, t]);
 
   const filtersNode = (
     <CourseFilters

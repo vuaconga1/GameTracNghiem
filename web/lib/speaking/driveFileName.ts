@@ -1,15 +1,11 @@
-/** Safe Drive file stem: username-DisplayName-sessionId (never overwrites). */
+/** Non-PII Drive name derived only from the opaque unique session id. */
 export function buildSpeakingDriveFileName(input: {
-  username: string;
-  displayName: string;
   sessionId: string;
   ext?: string;
 }) {
   const ext = (input.ext || 'webm').replace(/[^a-z0-9]/gi, '') || 'webm';
-  const username = sanitizeDriveNamePart(input.username) || 'user';
-  const displayName = sanitizeDriveNamePart(input.displayName) || 'hoc-sinh';
   const sessionId = sanitizeDriveNamePart(input.sessionId) || String(Date.now());
-  return `${username}-${displayName}-${sessionId}.${ext}`;
+  return `speaking-${sessionId}.${ext}`;
 }
 
 export function sanitizeDriveNamePart(value: string) {

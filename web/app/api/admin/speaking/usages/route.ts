@@ -8,6 +8,7 @@ export async function GET(req: Request) {
     await requireAdmin();
     const url = new URL(req.url);
     const userId = url.searchParams.get('userId')?.trim();
+    const activityType = url.searchParams.get('activityType')?.trim();
     const dateParam = url.searchParams.get('date')?.trim();
     const usageDate = dateParam
       ? usageDateToUtcMidnight(dateParam)
@@ -15,8 +16,9 @@ export async function GET(req: Request) {
 
     const usages = await prisma.dailySpeakingUsage.findMany({
       where: {
-        usageDate,
+        usageDateVN: usageDate,
         ...(userId ? { userId } : {}),
+        ...(activityType ? { activityType } : {}),
       },
       orderBy: { updatedAt: 'desc' },
       take: 100,
@@ -35,7 +37,13 @@ export async function GET(req: Request) {
       },
     });
 
-    return Response.json({ success: true, usageDate: usageDate.toISOString(), usages });
+    return Response.json({
+      success: true,
+      usageDateVN: usageDate.toISOString(),
+      // Compatibility alias for the current admin UI.
+      usageDate: usageDate.toISOString(),
+      usages,
+    });
   } catch (err) {
     return adminErrorResponse(err);
   }

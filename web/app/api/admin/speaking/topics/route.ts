@@ -2,6 +2,7 @@ import { adminErrorResponse } from '@/lib/admin/http';
 import { requireAdmin } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { DEFAULT_DURATION_SECONDS } from '@/lib/speaking/config';
+import { assertSpeakingMutationRequest } from '@/lib/speaking/security';
 
 export async function GET(req: Request) {
   try {
@@ -28,6 +29,7 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request) {
   try {
+    assertSpeakingMutationRequest(req);
     await requireAdmin();
     const body = (await req.json()) as {
       courseId?: string;

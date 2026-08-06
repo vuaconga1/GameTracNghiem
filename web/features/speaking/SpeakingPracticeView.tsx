@@ -16,6 +16,9 @@ import {
   type TranscriptLine,
 } from '@/lib/speaking/appendTranscriptLine';
 import { SPEAKING_OPENING_INSTRUCTIONS } from '@/lib/speaking/prompts';
+import type { SpeakingAccessReason } from '@/lib/speaking/access';
+import { speakingHubPath } from '@/lib/speaking/hubRoutes';
+import { SpeakingAccessNotice } from '@/features/speaking/SpeakingAccessNotice';
 
 type Topic = {
   id: string;
@@ -34,10 +37,20 @@ type DailyUsage = {
   session?: {
     id: string;
     status: string;
+    mustEndAt?: string | null;
     transcript?: unknown;
     recordingUrl?: string | null;
     topic?: { id: string; title: string; durationSeconds: number } | null;
   } | null;
+};
+
+type AccessResponse = {
+  success?: boolean;
+  message?: string;
+  access?: {
+    allowed: boolean;
+    reason: SpeakingAccessReason;
+  };
 };
 
 type Phase = 'loading' | 'prepare' | 'connecting' | 'active' | 'finishing' | 'done' | 'blocked' | 'error';
@@ -47,6 +60,30 @@ function formatClock(totalSeconds: number) {
   const m = Math.floor(s / 60);
   const r = s % 60;
   return `${m}:${r.toString().padStart(2, '0')}`;
+}
+
+export function realtimeSecondsRemaining(mustEndAt: string, nowMs = Date.now()) {
+  const deadlineMs = Date.parse(mustEndAt);
+  if (!Number.isFinite(deadlineMs)) return 0;
+  return Math.max(0, Math.ceil((deadlineMs - nowMs) / 1000));
+}
+
+export function crossedRealtimeWarningThreshold(
+  previousSeconds: number,
+  nextSeconds: number,
+) {
+  return previousSeconds > 30 && nextSeconds <= 30 && nextSeconds > 0;
+}
+
+function isRealtimeSessionReusable(
+  session: DailyUsage['session'],
+  nowMs = Date.now(),
+) {
+  return Boolean(
+    session &&
+      ['RESERVED', 'CONNECTING', 'ACTIVE'].includes(session.status) &&
+      (!session.mustEndAt || Date.parse(session.mustEndAt) > nowMs),
+  );
 }
 
 function isAiAudioStartEvent(type: string) {
@@ -91,6 +128,9 @@ export function SpeakingPracticeView({
 
   const searchParams = useSearchParams();
   const previewSessionId = searchParams.get('previewSession');
+  const hubPath = speakingHubPath(courseId);
+  const useLegacyClientSecret =
+    Boolean(previewSessionId) && searchParams.get('legacyRealtime') === '1';
 
   const [phase, setPhase] = useState<Phase>('loading');
   const [topics, setTopics] = useState<Topic[]>([]);
@@ -102,21 +142,32 @@ export function SpeakingPracticeView({
   const [remainingSec, setRemainingSec] = useState(300);
   const [transcript, setTranscript] = useState<TranscriptLine[]>([]);
   const [statusNote, setStatusNote] = useState('');
+  const [accessReason, setAccessReason] = useState<SpeakingAccessReason | null>(null);
 
   const pcRef = useRef<RTCPeerConnection | null>(null);
   const dcRef = useRef<RTCDataChannel | null>(null);
   const localStreamRef = useRef<MediaStream | null>(null);
   const remoteAudioRef = useRef<HTMLAudioElement | null>(null);
   const startedSentRef = useRef(false);
+  const startIdempotencyKeyRef = useRef<string | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const recorderRef = useRef<MediaRecorder | null>(null);
   const recordChunksRef = useRef<BlobPart[]>([]);
-  const durationRef = useRef(300);
   const finishingRef = useRef(false);
+  const mustEndAtRef = useRef<string | null>(null);
+  const startedRequestRef = useRef<Promise<string | null> | null>(null);
+  const countdownDeadlineRef = useRef<string | null>(null);
+  const countdownWarningSentRef = useRef(false);
   const transcriptRef = useRef<TranscriptLine[]>([]);
   const seenUserTranscriptItemIdsRef = useRef<Set<string>>(new Set());
   const chatRef = useRef<HTMLDivElement | null>(null);
   const aiSpeakingTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const realtimeUsageRef = useRef({
+    inputTokens: 0,
+    outputTokens: 0,
+    audioInputTokens: 0,
+    audioOutputTokens: 0,
+  });
 
   /** Flag only — do NOT mute WebRTC mic tracks (MediaStream never "ends"). */
   function applyAiSpeaking(speaking: boolean) {
@@ -146,10 +197,54 @@ export function SpeakingPracticeView({
   const load = useCallback(async (opts?: { silent?: boolean }) => {
     if (!opts?.silent) setPhase('loading');
     setError('');
+    setAccessReason(null);
     try {
+      if (!previewSessionId) {
+        const accessRes = await fetch(
+          `/api/speaking/access?courseId=${encodeURIComponent(courseId)}&activityType=REALTIME_CONVERSATION`,
+        );
+        const accessJson = (await accessRes.json()) as AccessResponse;
+        if (!accessRes.ok || !accessJson.success || !accessJson.access) {
+          throw new Error(accessJson.message || t('speaking.loadFailed'));
+        }
+        if (!accessJson.access.allowed) {
+          setAccessReason(accessJson.access.reason);
+          setTopics([]);
+          if (accessJson.access.reason !== 'DAILY_LIMIT_REACHED') {
+            setUsage(null);
+            setPhase('blocked');
+            return;
+          }
+
+          const usageRes = await fetch(
+            `/api/speaking/daily-usage?courseId=${encodeURIComponent(courseId)}`,
+          );
+          const usageJson = await usageRes.json();
+          if (!usageRes.ok || !usageJson.success) {
+            throw new Error(usageJson.message || t('speaking.loadUsageFailed'));
+          }
+          setUsage(usageJson as DailyUsage);
+          if (usageJson.session?.transcript) {
+            const lines = normalizeTranscript(usageJson.session.transcript);
+            setTranscript(lines);
+            transcriptRef.current = lines;
+          }
+          if (!isRealtimeSessionReusable(usageJson.session)) {
+            setPhase('blocked');
+            return;
+          }
+          if (usageJson.session?.topic) {
+            setTopics([usageJson.session.topic]);
+            setSelectedTopicId(usageJson.session.topic.id);
+            setPhase('prepare');
+            return;
+          }
+        }
+      }
+
       const [topicsRes, usageRes] = await Promise.all([
         fetch(`/api/speaking/topics?courseId=${encodeURIComponent(courseId)}`),
-        fetch('/api/speaking/daily-usage'),
+        fetch(`/api/speaking/daily-usage?courseId=${encodeURIComponent(courseId)}`),
       ]);
       const topicsJson = await topicsRes.json();
       const usageJson = await usageRes.json();
@@ -167,10 +262,18 @@ export function SpeakingPracticeView({
       const initial =
         topicId && list.some((t) => t.id === topicId)
           ? topicId
+          : usageJson.session?.topic?.id &&
+              list.some((t) => t.id === usageJson.session.topic.id)
+            ? usageJson.session.topic.id
           : list[0]?.id || '';
       setSelectedTopicId((prev) => prev || initial);
 
-      if (!usageJson.canStart && usageJson.status === 'CONSUMED' && !previewSessionId) {
+      if (
+        !usageJson.canStart &&
+        usageJson.status === 'CONSUMED' &&
+        !previewSessionId &&
+        !isRealtimeSessionReusable(usageJson.session)
+      ) {
         setPhase('blocked');
         if (usageJson.session?.transcript) {
           const lines = normalizeTranscript(usageJson.session.transcript);
@@ -231,21 +334,68 @@ export function SpeakingPracticeView({
       stream.getTracks().forEach((t) => t.stop());
       setMicOk(true);
       setError('');
+      void reportMicrophonePermission('granted');
     } catch {
       setMicOk(false);
       setError(t('speaking.micDenied'));
+      void reportMicrophonePermission('denied');
     }
   }
 
-  async function markStarted(id: string) {
-    if (startedSentRef.current) return;
-    startedSentRef.current = true;
-    try {
-      await fetch(`/api/speaking/sessions/${id}/started`, { method: 'POST' });
-      setStatusNote(t('speaking.startedNote'));
-    } catch {
-      /* keep trying state; server is source of truth on reload */
-    }
+  async function reportMicrophonePermission(outcome: 'granted' | 'denied') {
+    await fetch('/api/speaking/analytics', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-wewin-csrf': '1',
+      },
+      body: JSON.stringify({
+        event: outcome,
+        activityType: 'REALTIME_CONVERSATION',
+      }),
+    }).catch(() => undefined);
+  }
+
+  function markStarted(id: string): Promise<string | null> {
+    if (mustEndAtRef.current) return Promise.resolve(mustEndAtRef.current);
+    if (startedRequestRef.current) return startedRequestRef.current;
+
+    const idempotencyKey =
+      startIdempotencyKeyRef.current ?? crypto.randomUUID();
+    startIdempotencyKeyRef.current = idempotencyKey;
+    const request = (async () => {
+      startedSentRef.current = true;
+      try {
+        const response = await fetch(`/api/speaking/sessions/${id}/started`, {
+          method: 'POST',
+          headers: {
+            'Idempotency-Key': idempotencyKey,
+            'x-wewin-csrf': '1',
+          },
+        });
+        const body = (await response.json().catch(() => ({}))) as {
+          session?: { mustEndAt?: string | null };
+        };
+        const mustEndAt = body.session?.mustEndAt || null;
+        if (!response.ok || !mustEndAt) {
+          startedSentRef.current = false;
+          return null;
+        }
+        mustEndAtRef.current = mustEndAt;
+        setStatusNote(t('speaking.startedNote'));
+        startCountdown(mustEndAt, () => {
+          void finishSession(id, 'time');
+        });
+        return mustEndAt;
+      } catch {
+        startedSentRef.current = false;
+        return null;
+      } finally {
+        startedRequestRef.current = null;
+      }
+    })();
+    startedRequestRef.current = request;
+    return request;
   }
 
   function appendTranscript(role: 'user' | 'assistant', text: string) {
@@ -263,6 +413,14 @@ export function SpeakingPracticeView({
       delta?: string;
       item_id?: string;
       item?: { role?: string };
+      response?: {
+        usage?: {
+          input_tokens?: number;
+          output_tokens?: number;
+          input_token_details?: { audio_tokens?: number };
+          output_token_details?: { audio_tokens?: number };
+        };
+      };
     };
     try {
       event = JSON.parse(raw);
@@ -270,6 +428,25 @@ export function SpeakingPracticeView({
       return;
     }
     const type = String(event.type || '');
+    if (type === 'response.done' && event.response?.usage) {
+      const usage = event.response.usage;
+      realtimeUsageRef.current.inputTokens += Math.max(
+        0,
+        Number(usage.input_tokens) || 0,
+      );
+      realtimeUsageRef.current.outputTokens += Math.max(
+        0,
+        Number(usage.output_tokens) || 0,
+      );
+      realtimeUsageRef.current.audioInputTokens += Math.max(
+        0,
+        Number(usage.input_token_details?.audio_tokens) || 0,
+      );
+      realtimeUsageRef.current.audioOutputTokens += Math.max(
+        0,
+        Number(usage.output_token_details?.audio_tokens) || 0,
+      );
+    }
     if (isAiAudioStartEvent(type)) {
       applyAiSpeaking(true);
       void markStarted(id);
@@ -297,21 +474,36 @@ export function SpeakingPracticeView({
     }
   }
 
-  function startCountdown(seconds: number, onDone: () => void) {
-    durationRef.current = seconds;
-    setRemainingSec(seconds);
+  function startCountdown(mustEndAt: string, onDone: () => void) {
+    if (countdownDeadlineRef.current === mustEndAt && timerRef.current) return;
+    countdownDeadlineRef.current = mustEndAt;
+    countdownWarningSentRef.current = false;
     if (timerRef.current) clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      setRemainingSec((prev) => {
-        if (prev <= 1) {
-          if (timerRef.current) clearInterval(timerRef.current);
-          timerRef.current = null;
-          onDone();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    let previous = realtimeSecondsRemaining(mustEndAt);
+    setRemainingSec(previous);
+
+    const tick = () => {
+      const next = realtimeSecondsRemaining(mustEndAt);
+      setRemainingSec(next);
+      if (
+        !countdownWarningSentRef.current &&
+        (crossedRealtimeWarningThreshold(previous, next) ||
+          (previous <= 30 && next > 0))
+      ) {
+        countdownWarningSentRef.current = true;
+        setStatusNote(t('speaking.thirtySecondsLeft'));
+      }
+      previous = next;
+      if (next === 0) {
+        if (timerRef.current) clearInterval(timerRef.current);
+        timerRef.current = null;
+        onDone();
+      }
+    };
+    tick();
+    if (previous > 0) {
+      timerRef.current = setInterval(tick, 1000);
+    }
   }
 
   function startMixedRecorder(local: MediaStream, remoteStream: MediaStream | null) {
@@ -382,7 +574,10 @@ export function SpeakingPracticeView({
     if (!consumed) {
       await fetch(`/api/speaking/sessions/${id}/finish`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-wewin-csrf': '1',
+        },
         body: JSON.stringify({
           failed: true,
           errorMessage: reason === 'error' ? error || t('speaking.errorBeforeAi') : t('speaking.cancelBeforeStart'),
@@ -395,14 +590,24 @@ export function SpeakingPracticeView({
 
     await fetch(`/api/speaking/sessions/${id}/finish`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ transcript: transcriptRef.current }),
+      headers: {
+        'Content-Type': 'application/json',
+        'x-wewin-csrf': '1',
+      },
+      body: JSON.stringify({
+        transcript: transcriptRef.current,
+        usage: realtimeUsageRef.current,
+      }),
     });
 
     if (blob && blob.size > 0) {
       const form = new FormData();
       form.append('file', blob, `speaking-${id}.webm`);
-      await fetch(`/api/speaking/sessions/${id}/recording`, { method: 'POST', body: form });
+      await fetch(`/api/speaking/sessions/${id}/recording`, {
+        method: 'POST',
+        headers: { 'x-wewin-csrf': '1' },
+        body: form,
+      });
     }
 
     cleanupMedia();
@@ -416,10 +621,19 @@ export function SpeakingPracticeView({
       setError(t('speaking.checkMicFirst'));
       return;
     }
-    if (!previewSessionId && !usage?.canStart) {
+    if (
+      !previewSessionId &&
+      !usage?.canStart &&
+      !isRealtimeSessionReusable(usage?.session)
+    ) {
       setPhase('blocked');
       return;
     }
+
+    const usageSessionIsReusable = isRealtimeSessionReusable(usage?.session);
+    const reusableSessionId =
+      (startedSentRef.current && sessionId) ||
+      (usageSessionIsReusable ? usage!.session!.id : null);
 
     setError('');
     setPhase('connecting');
@@ -429,21 +643,43 @@ export function SpeakingPracticeView({
         : t('speaking.connectingHold')
     );
     startedSentRef.current = false;
+    startedRequestRef.current = null;
+    mustEndAtRef.current = null;
+    countdownDeadlineRef.current = null;
+    countdownWarningSentRef.current = false;
+    startIdempotencyKeyRef.current = crypto.randomUUID();
     finishingRef.current = false;
     setTranscript([]);
     transcriptRef.current = [];
     seenUserTranscriptItemIdsRef.current = new Set();
+    realtimeUsageRef.current = {
+      inputTokens: 0,
+      outputTokens: 0,
+      audioInputTokens: 0,
+      audioOutputTokens: 0,
+    };
 
     let createdId: string | null = null;
     try {
       if (previewSessionId) {
         createdId = previewSessionId;
         setSessionId(createdId);
-        durationRef.current = selectedTopic.durationSeconds;
+        setRemainingSec(selectedTopic.durationSeconds);
+      } else if (reusableSessionId) {
+        createdId = reusableSessionId;
+        setSessionId(createdId);
+        setRemainingSec(
+          usage?.session?.mustEndAt
+            ? realtimeSecondsRemaining(usage.session.mustEndAt)
+            : selectedTopic.durationSeconds,
+        );
       } else {
         const createRes = await fetch('/api/speaking/sessions', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'x-wewin-csrf': '1',
+          },
           body: JSON.stringify({ topicId: selectedTopic.id }),
         });
         const createJson = await createRes.json();
@@ -468,7 +704,9 @@ export function SpeakingPracticeView({
 
         createdId = createJson.session.id as string;
         setSessionId(createdId);
-        durationRef.current = createJson.topic.durationSeconds || selectedTopic.durationSeconds;
+        setRemainingSec(
+          createJson.topic.durationSeconds || selectedTopic.durationSeconds,
+        );
       }
 
       const stream = await openMicStream();
@@ -483,6 +721,9 @@ export function SpeakingPracticeView({
         remoteStream = e.streams[0] || null;
         if (remoteAudioRef.current && remoteStream) {
           remoteAudioRef.current.srcObject = remoteStream;
+          void remoteAudioRef.current
+            .play()
+            .catch(() => setStatusNote(t('speaking.audioStartFailed')));
         }
         if (localStreamRef.current) {
           startMixedRecorder(localStreamRef.current, remoteStream);
@@ -514,36 +755,51 @@ export function SpeakingPracticeView({
         throw new Error(t('speaking.sdpOfferFailed'));
       }
 
-      // Server mints ephemeral OpenAI credential (master key stays server-side).
-      const credRes = await fetch(`/api/speaking/sessions/${createdId}/realtime`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: '{}',
-      });
-      const credJson = await credRes.json().catch(() => ({}));
-      if (!credRes.ok || !credJson.success || typeof credJson.clientSecret !== 'string') {
-        throw new Error(credJson.message || t('speaking.credentialFailed'));
-      }
-
-      // Browser exchanges SDP directly with OpenAI using the short-lived secret.
-      const model = encodeURIComponent(String(credJson.model || 'gpt-realtime-mini'));
-      const sdpRes = await fetch(`https://api.openai.com/v1/realtime/calls?model=${model}`, {
+      // Default: backend performs the unified SDP exchange and retains the
+      // OpenAI Location call ID for the durable hard stop.
+      const realtimeUrl = `/api/speaking/sessions/${createdId}/realtime${
+        useLegacyClientSecret ? '?legacyClientSecret=1' : ''
+      }`;
+      const realtimeRes = await fetch(realtimeUrl, {
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${credJson.clientSecret}`,
           'Content-Type': 'application/sdp',
+          'x-wewin-csrf': '1',
         },
         body: localSdp,
       });
-      const answerSdp = await sdpRes.text();
-      if (!sdpRes.ok || !answerSdp.includes('v=0')) {
-        let detail = answerSdp.slice(0, 240);
-        try {
-          detail = JSON.parse(answerSdp)?.error?.message || detail;
-        } catch {
-          /* keep raw */
+      const realtimeJson = await realtimeRes.json().catch(() => ({}));
+      if (!realtimeRes.ok || !realtimeJson.success) {
+        throw new Error(realtimeJson.message || t('speaking.credentialFailed'));
+      }
+      let answerSdp = String(realtimeJson.sdpAnswer || '');
+      if (
+        realtimeJson.transport === 'legacy-client-secret' &&
+        typeof realtimeJson.clientSecret === 'string'
+      ) {
+        const legacySdpRes = await fetch(
+          'https://api.openai.com/v1/realtime/calls',
+          {
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${realtimeJson.clientSecret}`,
+              'Content-Type': 'application/sdp',
+            },
+            body: localSdp,
+          },
+        );
+        answerSdp = await legacySdpRes.text();
+        if (!legacySdpRes.ok) {
+          throw new Error(
+            t('speaking.webrtcError', {
+              status: legacySdpRes.status,
+              detail: answerSdp.slice(0, 240) || t('speaking.invalidSdp'),
+            }),
+          );
         }
-        throw new Error(t('speaking.webrtcError', { status: sdpRes.status, detail: detail || t('speaking.invalidSdp') }));
+      }
+      if (!answerSdp.includes('v=0')) {
+        throw new Error(t('speaking.invalidSdp'));
       }
       await pc.setRemoteDescription({ type: 'answer', sdp: answerSdp });
 
@@ -553,18 +809,19 @@ export function SpeakingPracticeView({
           ? t('speaking.adminPreviewRunning')
           : t('speaking.waitingAiHello')
       );
-      startCountdown(durationRef.current, () => {
-        if (createdId) void finishSession(createdId, 'time');
-      });
     } catch (err) {
       const message = err instanceof Error ? err.message : t('speaking.startSessionFailed');
       setError(message);
       if (createdId && !startedSentRef.current && !previewSessionId) {
         await fetch(`/api/speaking/sessions/${createdId}/finish`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'x-wewin-csrf': '1',
+          },
           body: JSON.stringify({ failed: true, errorMessage: message }),
         });
+        setSessionId(null);
       }
       cleanupMedia();
       setPhase('error');
@@ -575,7 +832,7 @@ export function SpeakingPracticeView({
   if (phase === 'loading') {
     return (
       <section className="view-detail">
-        <PageBackButton href={`/courses/${courseId}?skill=speaking`} title={t('common.back')} />
+        <PageBackButton href={hubPath} title={t('common.back')} />
         <DataLoading />
       </section>
     );
@@ -583,8 +840,8 @@ export function SpeakingPracticeView({
 
   return (
     <section className="view-detail speaking-practice">
-      <PageBackButton href={`/courses/${courseId}?skill=speaking`} title={t('common.back')} />
-      <audio ref={remoteAudioRef} autoPlay playsInline />
+      <PageBackButton href={hubPath} title={t('common.back')} />
+      <audio ref={remoteAudioRef} playsInline />
 
       <div className="speaking-shell">
         <header className="speaking-header">
@@ -628,6 +885,13 @@ export function SpeakingPracticeView({
         ) : null}
 
         <div className="speaking-layout">
+          {phase === 'blocked' &&
+          accessReason &&
+          accessReason !== 'ALLOWED' &&
+          accessReason !== 'DAILY_LIMIT_REACHED' ? (
+            <SpeakingAccessNotice reason={accessReason} courseId={courseId} />
+          ) : null}
+
           {(phase === 'prepare' || phase === 'error') && usage ? (
             <div className="speaking-prepare">
               <div className="speaking-panel">
@@ -679,7 +943,12 @@ export function SpeakingPracticeView({
                 <button
                   type="button"
                   className="admin-btn primary speaking-btn"
-                  disabled={!selectedTopic || (!previewSessionId && !usage.canStart)}
+                  disabled={
+                    !selectedTopic ||
+                    (!previewSessionId &&
+                      !usage.canStart &&
+                      !isRealtimeSessionReusable(usage.session))
+                  }
                   onClick={() => void startPractice()}
                 >
                   <i className="fas fa-play" aria-hidden="true" />
@@ -726,9 +995,9 @@ export function SpeakingPracticeView({
                     {t('speaking.listenRecording')}
                   </a>
                 ) : null}
-                <Link className="admin-btn primary speaking-btn" href={`/courses/${courseId}?skill=speaking`}>
+                <Link className="admin-btn primary speaking-btn" href={hubPath}>
                   <i className="fas fa-arrow-left" aria-hidden="true" />
-                  {t('speaking.backToSpeakingSkill')}
+                  {t('speaking.backToSpeakingHub')}
                 </Link>
               </div>
             </div>
@@ -802,9 +1071,9 @@ export function SpeakingPracticeView({
                   <i className="fas fa-rotate" aria-hidden="true" />
                   {t('speaking.reviewStatus')}
                 </button>
-                <Link className="admin-btn primary speaking-btn" href={`/courses/${courseId}?skill=speaking`}>
+                <Link className="admin-btn primary speaking-btn" href={hubPath}>
                   <i className="fas fa-arrow-left" aria-hidden="true" />
-                  {t('speaking.backToSpeakingSkill')}
+                  {t('speaking.backToSpeakingHub')}
                 </Link>
               </div>
             </div>

@@ -3,5 +3,15 @@
   "framework": "nextjs",
   "installCommand": "npm install",
   "buildCommand": "npm run build",
-  "regions": ["sin1"]
+  "regions": ["sin1"],
+  "crons": [
+    {
+      "path": "/api/cron/speaking-session-ends",
+      "schedule": "* * * * *"
+    },
+    {
+      "path": "/api/cron/speaking-recordings",
+      "schedule": "17 2 * * *"
+    }
+  ]
 }

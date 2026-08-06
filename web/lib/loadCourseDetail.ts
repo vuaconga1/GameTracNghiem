@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { requireSession } from '@/lib/auth';
+import { optionalSession } from '@/lib/auth';
 import { notArchived } from '@/lib/admin/notArchived';
 import { progressCourseKey, scoreLookupCourseKeys } from '@/lib/courseKey';
 import { prisma } from '@/lib/db';
@@ -77,10 +77,11 @@ export type CourseDetailData = {
   /** Per-skill totals (skill-scoped games filtered by payload.skill). */
   skillStats?: Partial<Record<SkillId, SkillProgressStats>>;
   totalScore?: number;
+  playerKind?: 'guest' | 'authenticated';
 };
 
 export async function loadCourseDetail(courseId: string): Promise<CourseDetailData | null> {
-  const session = await requireSession();
+  const session = await optionalSession();
   const resolvedCourseId = await resolveCanonicalLop9CourseId(prisma, courseId);
   const course = await prisma.course.findFirst({
     where: { id: resolvedCourseId, active: true, archivedAt: null },
@@ -133,7 +134,7 @@ export async function loadCourseDetail(courseId: string): Promise<CourseDetailDa
           _count: { _all: true },
         })
       : Promise.resolve([]),
-    gameKeys.length
+    session && gameKeys.length
       ? prisma.gameProgress.findMany({
           where: {
             userId: session.userId,
@@ -146,15 +147,18 @@ export async function loadCourseDetail(courseId: string): Promise<CourseDetailDa
           },
         })
       : Promise.resolve([]),
-    prisma.scoreLog.aggregate({
-      where: {
-        userId: session.userId,
-        course: { in: scoreLookupCourseKeys(course.name, course.levelName) },
-      },
-      _sum: {
-        points: true,
-      },
-    }),
+    session
+      ? prisma.scoreLog.aggregate({
+          where: {
+            userId: session.userId,
+            course: { in: scoreLookupCourseKeys(course.name, course.levelName) },
+            countsForCourseTotal: true,
+          },
+          _sum: {
+            points: true,
+          },
+        })
+      : Promise.resolve({ _sum: { points: null } }),
   ]);
 
   const countByGame = new Map(questionGroups.map((row) => [row.game, row._count._all] as const));
@@ -328,5 +332,6 @@ export async function loadCourseDetail(courseId: string): Promise<CourseDetailDa
     gameExercises: Object.keys(gameExercises).length ? gameExercises : undefined,
     skillStats: Object.keys(skillStats).length ? skillStats : undefined,
     totalScore: scoreAggregate._sum.points ?? 0,
+    playerKind: session ? 'authenticated' : 'guest',
   };
 }

@@ -92,3 +92,37 @@ export async function uploadSpeakingRecordingToDrive(input: {
     fileName: created.data.name || input.fileName,
   };
 }
+
+/** Idempotently delete an optional Drive copy. Missing files are success. */
+export async function deleteSpeakingRecordingFromDrive(
+  fileId: string,
+): Promise<void> {
+  const normalizedId = fileId.trim();
+  if (!normalizedId) return;
+  const creds = loadServiceAccount();
+  if (!creds) {
+    throw new Error(
+      'Thiếu Google service account để xóa recording đã lưu trên Drive',
+    );
+  }
+  const auth = new google.auth.JWT({
+    email: creds.client_email,
+    key: creds.private_key,
+    scopes: ['https://www.googleapis.com/auth/drive.file'],
+  });
+  const drive = google.drive({ version: 'v3', auth });
+  try {
+    await drive.files.delete({
+      fileId: normalizedId,
+      supportsAllDrives: true,
+    });
+  } catch (error) {
+    const status =
+      typeof error === 'object' &&
+      error !== null &&
+      'code' in error &&
+      Number(error.code);
+    if (status === 404) return;
+    throw error;
+  }
+}

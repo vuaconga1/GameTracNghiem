@@ -17,6 +17,17 @@ async function hasValidSession(req: NextRequest): Promise<boolean> {
   }
 }
 
+export function isPublicPlayerPage(pathname: string): boolean {
+  return (
+    pathname === '/' ||
+    pathname === '/courses' ||
+    pathname.startsWith('/courses/') ||
+    pathname === '/games' ||
+    pathname.startsWith('/games/') ||
+    /^\/speaking\/[^/]+\/?$/.test(pathname)
+  );
+}
+
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   if (
@@ -32,6 +43,10 @@ export async function middleware(req: NextRequest) {
 
   if (pathname.startsWith('/api/')) {
     // API routes enforce auth themselves where needed
+    return NextResponse.next();
+  }
+
+  if (isPublicPlayerPage(pathname)) {
     return NextResponse.next();
   }
 

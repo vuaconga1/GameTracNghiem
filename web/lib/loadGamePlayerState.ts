@@ -10,11 +10,19 @@ export type GamePlayerState = {
 };
 
 export async function loadGamePlayerState(params: {
-  userId: string;
+  userId?: string | null;
   courseName: string;
   levelName?: string | null;
   game: string;
 }): Promise<GamePlayerState> {
+  if (!params.userId) {
+    return {
+      statuses: [],
+      playSessionId: null,
+      gameScore: 0,
+    };
+  }
+
   const courseKey = progressCourseKey(params.courseName, params.levelName);
   const [progress, gameScore] = await Promise.all([
     prisma.gameProgress.findUnique({

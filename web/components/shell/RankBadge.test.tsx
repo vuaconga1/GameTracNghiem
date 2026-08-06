@@ -2,6 +2,7 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
+import { I18nProvider } from '@/components/i18n/I18nProvider';
 import { RankBadge } from './RankBadge';
 
 function renderRankBadge(
@@ -14,7 +15,13 @@ function renderRankBadge(
     variant?: 'default' | 'sidebar';
   } = {}
 ) {
-  return renderToStaticMarkup(createElement(RankBadge, props));
+  return renderToStaticMarkup(
+    createElement(
+      I18nProvider,
+      { initialLocale: 'vi' },
+      createElement(RankBadge, props),
+    ),
+  );
 }
 
 describe('RankBadge', () => {

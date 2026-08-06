@@ -1,6 +1,6 @@
 import 'server-only';
 
-import { requireSession } from '@/lib/auth';
+import { optionalSession } from '@/lib/auth';
 import { courseBackgroundSrc } from '@/lib/courseBackground';
 import { progressCourseKey } from '@/lib/courseKey';
 import { courseCompletionPercent } from '@/lib/courseProgress';
@@ -15,6 +15,9 @@ export type HomeCourseListItem = {
   levelName: string;
   completionPercent: number;
   backgroundImageUrl?: string | null;
+  courseKey?: string;
+  enabledGames?: string[];
+  questionCounts?: Record<string, number>;
 };
 
 export type HomeCoursesFiltersData = {
@@ -25,6 +28,7 @@ export type HomeCoursesData = {
   courses: HomeCourseListItem[];
   filters: HomeCoursesFiltersData;
   selectedLevelName: string;
+  playerKind?: 'guest' | 'authenticated';
 };
 
 function uniqueSorted(values: Array<string | null | undefined>): string[] {
@@ -38,7 +42,7 @@ function uniqueSorted(values: Array<string | null | undefined>): string[] {
 }
 
 export async function loadHomeCourses(levelName = ''): Promise<HomeCoursesData> {
-  const session = await requireSession();
+  const session = await optionalSession();
   const [classLevels, activeCoursesForFilters] = await Promise.all([
     prisma.classLevel.findMany({
       where: { active: true, archivedAt: null },
@@ -89,7 +93,7 @@ export async function loadHomeCourses(levelName = ''): Promise<HomeCoursesData> 
           _count: { _all: true },
         })
       : Promise.resolve([]),
-    courseKeys.length
+    session && courseKeys.length
       ? prisma.gameProgress.findMany({
           where: {
             userId: session.userId,
@@ -131,6 +135,9 @@ export async function loadHomeCourses(levelName = ''): Promise<HomeCoursesData> 
         name: course.name,
         levelName: course.levelName,
         backgroundImageUrl: courseBackgroundSrc(course),
+        courseKey,
+        enabledGames,
+        questionCounts: counts,
         completionPercent: courseCompletionPercent({
           enabledGames,
           questionCounts: counts,
@@ -142,5 +149,6 @@ export async function loadHomeCourses(levelName = ''): Promise<HomeCoursesData> 
       levels: availableLevels,
     },
     selectedLevelName,
+    playerKind: session ? 'authenticated' : 'guest',
   };
 }

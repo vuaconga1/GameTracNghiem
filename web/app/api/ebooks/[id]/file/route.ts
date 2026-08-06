@@ -1,4 +1,3 @@
-import { requireSession } from '@/lib/auth';
 import { notArchived } from '@/lib/admin/notArchived';
 import { prisma } from '@/lib/db';
 import { openEbookFile } from '@/lib/ebookStorage';
@@ -9,7 +8,6 @@ type Ctx = { params: Promise<{ id: string }> };
 
 export async function GET(_req: Request, { params }: Ctx) {
   try {
-    await requireSession();
     const { id } = await params;
     const ebook = await prisma.ebook.findFirst({
       where: { id, active: true, ...notArchived },
@@ -29,7 +27,7 @@ export async function GET(_req: Request, { params }: Ctx) {
     const headers: Record<string, string> = {
       'Content-Type': 'application/pdf',
       'Content-Disposition': `inline; filename="${encodeURIComponent(ebook.originalName)}"`,
-      'Cache-Control': 'private, max-age=300',
+      'Cache-Control': 'public, max-age=300',
     };
     if (file.contentLength != null && Number.isFinite(file.contentLength)) {
       headers['Content-Length'] = String(file.contentLength);

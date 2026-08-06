@@ -39,7 +39,7 @@ function asWordMatchPayload(value: unknown): WordMatchPayload {
 
 export async function loadWordMatchGame(
   courseId: string,
-  userId: string
+  userId?: string | null,
 ): Promise<WordMatchGameData | null> {
   const course = await findPlayableCourseGame(courseId, 'word_match');
   if (!course) return null;

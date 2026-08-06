@@ -1,6 +1,6 @@
 import { GameLessonTabs } from '@/features/games/GameLessonTabs';
 import { VocabularyTestGame } from '@/features/games/vocabulary-test/VocabularyTestGame';
-import { requireSession } from '@/lib/auth';
+import { optionalSession } from '@/lib/auth';
 import { loadCourseGameLesson } from '@/lib/loadCourseGameLesson';
 import { loadVocabularyTestGame } from '@/lib/loadVocabularyTestGame';
 
@@ -10,10 +10,10 @@ export default async function VocabularyTestGamePage({
   params: Promise<{ courseId: string }>;
 }) {
   const { courseId } = await params;
-  const session = await requireSession();
+  const session = await optionalSession();
   const [lesson, initialData] = await Promise.all([
     loadCourseGameLesson(courseId, 'vocabulary_test'),
-    loadVocabularyTestGame(courseId, session.userId),
+    session ? loadVocabularyTestGame(courseId, session.userId) : Promise.resolve(null),
   ]);
   return (
     <GameLessonTabs lesson={lesson}>

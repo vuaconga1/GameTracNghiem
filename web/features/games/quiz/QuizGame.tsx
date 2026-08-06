@@ -8,6 +8,7 @@ import { DataLoading } from '@/components/DataLoading';
 import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
+import { usePlayer } from '@/components/player/PlayerContext';
 import {
   completePlaySessionExperience,
   finalizePlaySessionIfComplete,
@@ -20,6 +21,7 @@ import {
   persistGameProgress,
 } from '@/features/games/persistProgress';
 import { progressCourseKey } from '@/lib/courseKey';
+import { hydrateGamePlayerState } from '@/lib/player/guestPlayerAdapter';
 import {
   type ProgressStatus,
   normalizeStatuses,
@@ -190,6 +192,7 @@ function nextEmptyInSubset(
 
 export function QuizGame({ courseId }: Props) {
   const { t, locale, formatClassLevel } = useI18n();
+  const player = usePlayer();
   const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
 
   function formatPoints(points: number): string {
@@ -242,14 +245,14 @@ export function QuizGame({ courseId }: Props) {
     // Switching exercise: close prior session for EXP, then start a fresh id on next answer.
     setPlaySessionId((current) => {
       if (current) {
-        void completePlaySessionExperience(current).then(() => {
+        void completePlaySessionExperience(current, player).then(() => {
           router.refresh();
         });
       }
       return null;
     });
     setSessionPoints(0);
-  }, [exerciseSessionKey, router]);
+  }, [exerciseSessionKey, player, router]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -268,13 +271,24 @@ export function QuizGame({ courseId }: Props) {
         }
 
         const questions = json.questions || [];
-        const nextStatuses = normalizeStatuses(json.statuses, questions.length);
+        const courseKey = json.course
+          ? progressCourseKey(json.course.name, json.course.levelName)
+          : '';
+        const hydrated = hydrateGamePlayerState({
+          player,
+          courseKey,
+          game: 'quiz',
+          statuses: json.statuses,
+          playSessionId: json.playSessionId,
+          gameScore: json.gameScore,
+        });
+        const nextStatuses = normalizeStatuses(hydrated.statuses, questions.length);
 
         setData(json);
         setStatuses(nextStatuses);
         setSessionPoints(0);
-        setGameScore(json.gameScore || 0);
-        setPlaySessionId(json.playSessionId || null);
+        setGameScore(hydrated.gameScore);
+        setPlaySessionId(hydrated.playSessionId);
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
@@ -294,7 +308,7 @@ export function QuizGame({ courseId }: Props) {
       controller.abort();
       if (advanceTimer.current) clearTimeout(advanceTimer.current);
     };
-  }, [courseId]);
+  }, [courseId, player, t]);
 
   const allQuestions = useMemo(() => data?.questions || [], [data?.questions]);
   const course = data?.course;
@@ -359,6 +373,7 @@ export function QuizGame({ courseId }: Props) {
       statuses,
       playSessionId,
       indexes: playIndexes,
+      player,
     }).then((result) => {
       if (cancelled || !result?.success || result.alreadyGranted) return;
       router.refresh();
@@ -366,7 +381,7 @@ export function QuizGame({ courseId }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [isLoading, playIndexes, playSessionId, router, statuses]);
+  }, [isLoading, playIndexes, playSessionId, player, router, statuses]);
 
   const stats = useMemo(
     () => statsForQuestions(playQuestions, statuses),
@@ -413,6 +428,7 @@ export function QuizGame({ courseId }: Props) {
       statuses: nextStatuses,
       reset,
       playSessionId: sessionId === undefined ? playSessionId : sessionId,
+      player,
     });
     if (!json.success) {
       throw new Error(json.message || t('gameUi.progressSaveFailed'));
@@ -467,7 +483,8 @@ export function QuizGame({ courseId }: Props) {
           currentQuestion.index,
           isCorrect,
           elapsedMs,
-          activeSessionId
+          activeSessionId,
+          player,
         );
         if (!score.success) {
           throw new Error(score.message || t('gameUi.scoreSaveFailed'));
@@ -490,6 +507,7 @@ export function QuizGame({ courseId }: Props) {
           statuses: nextStatuses,
           playSessionId: sessionIdForProgress || activeSessionId,
           indexes: playIndexes,
+          player,
         });
         if (finalized) router.refresh();
       }

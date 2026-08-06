@@ -30,6 +30,7 @@ const vi: Messages = {
     start: 'Bắt đầu',
     startExercise: 'Bắt đầu làm bài',
     restartFromStart: 'Làm lại từ đầu',
+    login: 'Đăng nhập',
     logout: 'Đăng xuất',
     loggingOut: 'Đang đăng xuất...',
     admin: 'Quản trị',
@@ -47,6 +48,8 @@ const vi: Messages = {
     you: 'Bạn',
   },
   shell: {
+    guest: 'Khách',
+    guestProgress: 'Tiến độ lưu trên trình duyệt',
     adminRole: 'Quản trị viên',
     studentRole: 'Học sinh',
     level: 'Cấp {level}',
@@ -94,8 +97,8 @@ const vi: Messages = {
     statQuestionsDone: 'câu đã làm',
     statTotalScore: 'tổng điểm',
     openEbook: 'Mở ebook',
-    speakingDaily: 'AI Speaking (1 lượt/ngày)',
-    practiceSpeaking: 'Luyện nói',
+    speakingDaily: 'Trung tâm AI Speaking',
+    practiceSpeaking: '4 hoạt động',
     noGames: 'Chưa bật bài tập cho unit này',
     noGamesForSkill: 'Chưa có bài tập cho kỹ năng này',
     noSkills: 'Chưa có kỹ năng nào được mở trong khóa này.',
@@ -379,7 +382,7 @@ const vi: Messages = {
   speaking: {
     title: 'AI Speaking',
     practiceTitle: 'Luyện nói với AI',
-    dailyLimit: '1 lượt/ngày',
+    dailyLimit: 'Hạn mức theo hoạt động',
     start: 'Bắt đầu nói',
     empty: 'Chưa có chủ đề Speaking cho khóa học này',
     loadTopicsFailed: 'Không tải được topic',
@@ -387,6 +390,7 @@ const vi: Messages = {
     loadFailed: 'Lỗi tải dữ liệu',
     micDenied: 'Không truy cập được microphone. Hãy cho phép mic trong trình duyệt.',
     startedNote: 'Đã bắt đầu — lượt hôm nay đã được tính',
+    thirtySecondsLeft: 'Còn 30 giây — hãy hoàn thành câu trả lời',
     mixRecordFailed: 'Không ghi được bản ghi hỗn hợp — phiên vẫn tiếp tục',
     endingTime: 'Hết giờ — đang lưu phiên',
     endingManual: 'Đang kết thúc phiên',
@@ -437,6 +441,128 @@ const vi: Messages = {
     reviewStatus: 'Xem lại trạng thái',
     conversation: 'Hội thoại',
     turnCount: '{count} lượt',
+    audioStartFailed: 'Trình duyệt chưa phát âm thanh AI. Hãy kiểm tra quyền phát âm thanh.',
+    backToSpeakingHub: 'Về trung tâm Speaking',
+    hub: {
+      eyebrow: 'LUYỆN NÓI CÙNG WEWIN',
+      title: 'Trung tâm AI Speaking',
+      subtitle: 'Chọn một hoạt động phù hợp để bắt đầu luyện nói.',
+      subtitleWithCourse: 'Chọn hoạt động luyện nói cho {course}.',
+      activityListAria: 'Danh sách hoạt động AI Speaking',
+      loadFailed: 'Không tải được trạng thái AI Speaking',
+      partialLoadFailed:
+        'Một số trạng thái chưa tải được. Em có thể thử lại sau nhé.',
+      enabled: 'Có thể luyện',
+      locked: 'Đang khóa',
+      statusUnavailable: 'Chưa rõ trạng thái',
+      difficultyLabel: 'Độ khó',
+      difficulty: {
+        beginner: 'Khởi động',
+        easy: 'Dễ',
+        medium: 'Vừa',
+        challenge: 'Thử thách',
+      },
+      duration: {
+        oneMinute: '1 phút',
+        twoMinutes: '2 phút',
+        threeMinutes: '3 phút',
+      },
+      quotaRemaining: 'Còn {remaining}/{limit} lượt hôm nay',
+      quotaUsed: 'Đã dùng {used}/{limit}',
+      entitlementExpiry: 'Quyền đến {date}',
+      openActivityAria: 'Mở hoạt động {activity}',
+      lockedActivityAria: '{activity} đang khóa, mở thông tin',
+      loginCta: 'Đăng nhập WeWIN',
+      continueGames: 'Tiếp tục chơi game',
+      activities: {
+        word: {
+          title: 'Phát âm từ',
+          description: 'Nghe mẫu và luyện đọc từng từ thật rõ.',
+        },
+        sentence: {
+          title: 'Đọc câu',
+          description: 'Luyện nhịp điệu và phát âm qua các câu ngắn.',
+        },
+        guided: {
+          title: 'Trả lời có hướng dẫn',
+          description: 'Nhìn gợi ý và tự tin trả lời bằng tiếng Anh.',
+        },
+        conversation: {
+          title: 'Hội thoại Realtime',
+          description: 'Trò chuyện trực tiếp với trợ lý AI của WeWIN.',
+        },
+      },
+    },
+    access: {
+      LOGIN_REQUIRED: {
+        title: 'Đăng nhập để luyện Speaking',
+        detail:
+          'AI Speaking là quyền lợi dành riêng cho học sinh WeWIN. Em hãy đăng nhập tài khoản WeWIN hoặc mở từ Parent Portal để bắt đầu luyện nói nhé!',
+      },
+      NOT_WEWIN_STUDENT: {
+        title: 'Chưa xác nhận học sinh WeWIN',
+        detail:
+          'Tài khoản này chưa được liên kết với hồ sơ học sinh WeWIN. Em hãy mở lại từ Parent Portal để WeWIN nhận diện tài khoản nhé.',
+      },
+      NO_ACTIVE_COURSE: {
+        title: 'Khóa học chưa có quyền AI Speaking',
+        detail:
+          'Em chưa được cấp quyền AI Speaking cho khóa học này. Nhờ bố mẹ liên hệ WeWIN để được hỗ trợ nhé.',
+      },
+      COURSE_EXPIRED: {
+        title: 'Quyền AI Speaking đã hết hạn',
+        detail:
+          'Quyền luyện nói của em đã hết hạn. Nhờ bố mẹ liên hệ WeWIN để gia hạn và tiếp tục luyện nhé.',
+      },
+      ACCOUNT_SUSPENDED: {
+        title: 'Tài khoản Speaking đang tạm ngưng',
+        detail:
+          'Tài khoản Speaking của em đang tạm nghỉ. Nhờ bố mẹ liên hệ WeWIN để được hỗ trợ nhé.',
+      },
+      FEATURE_DISABLED: {
+        title: 'Hoạt động này chưa mở',
+        detail:
+          'WeWIN đang chuẩn bị hoạt động này để em luyện thật tốt. Em hãy chọn một hoạt động khác nhé.',
+      },
+      DAILY_LIMIT_REACHED: {
+        title: 'Hôm nay em đã luyện đủ lượt',
+        detail:
+          'Hoạt động này sẽ có lượt mới vào ngày mai. Em vẫn có thể chọn các hoạt động Speaking khác còn lượt nhé.',
+      },
+    },
+    drill: {
+      backToHub: 'Chọn hoạt động khác',
+      loadFailed: 'Không tải được bài luyện Speaking',
+      emptyTitle: 'Chưa có bài luyện',
+      emptyDetail: 'WeWIN đang chuẩn bị nội dung cho hoạt động này.',
+      progress: 'Bài {current}/{total}',
+      listenSample: 'Nghe mẫu',
+      listenFailed: 'Không phát được âm thanh mẫu.',
+      showHelp: 'Xem gợi ý và câu mẫu',
+      sampleAnswer: 'Câu trả lời mẫu',
+      micIdle: 'Mic đang tắt',
+      requestingMic: 'Đang chờ quyền sử dụng mic',
+      countdown: 'Chuẩn bị',
+      recording: 'Đang ghi âm — em hãy nói',
+      recorded: 'Đã ghi âm xong',
+      waveform: 'Mức âm thanh trực tiếp từ mic',
+      startRecording: 'Bắt đầu ghi âm',
+      stopRecording: 'Dừng ghi âm',
+      playback: 'Nghe lại trước khi nộp',
+      submitRecording: 'Nộp để nhận phản hồi',
+      submitFailed:
+        'Bài ghi chưa được chấm và không bị trừ lượt. Em hãy thử lại.',
+      recordFailed: 'Trình duyệt không ghi được âm thanh.',
+      recordTooShort: 'Bản ghi quá ngắn. Em hãy thử lại.',
+      unsupportedMic: 'Trình duyệt này chưa hỗ trợ ghi âm bằng mic.',
+      micDenied:
+        'Chưa được cấp quyền sử dụng mic. Em hãy kiểm tra cài đặt trình duyệt rồi thử lại.',
+      practiceFeedback: 'Phản hồi luyện tập',
+      praise: 'Một điểm em làm tốt',
+      improvement: 'Một điểm cần cải thiện',
+      retry: 'Ghi âm lại',
+      next: 'Bài tiếp theo',
+    },
   },
   admin: {
     title: 'Quản trị',

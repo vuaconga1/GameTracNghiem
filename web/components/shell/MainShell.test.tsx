@@ -1,5 +1,6 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
+import { I18nProvider } from '@/components/i18n/I18nProvider';
 
 vi.mock('next/navigation', () => ({
   usePathname: () => '/courses/course-1',
@@ -12,18 +13,21 @@ import { SidebarProvider } from './SidebarContext';
 describe('MainShell course pages', () => {
   it('renders the profile sidebar with home and active course navigation', () => {
     const html = renderToStaticMarkup(
-      <SidebarProvider>
-        <MainShell
-          displayName="Quản trị viên"
-          level={2}
-          tier={1}
-          expInLevel={1}
-          expToNextLevel={204}
-          progressPercent={1}
-        >
-          <div>Course detail</div>
-        </MainShell>
-      </SidebarProvider>
+      <I18nProvider initialLocale="vi">
+        <SidebarProvider>
+          <MainShell
+            displayName="Quản trị viên"
+            isAuthenticated
+            level={2}
+            tier={1}
+            expInLevel={1}
+            expToNextLevel={204}
+            progressPercent={1}
+          >
+            <div>Course detail</div>
+          </MainShell>
+        </SidebarProvider>
+      </I18nProvider>,
     );
 
     expect(html).toContain('class="sidebar"');

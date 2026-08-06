@@ -24,6 +24,21 @@ type SessionDetail = {
   recordingBytes?: number | null;
   driveFileId?: string | null;
   driveFileName?: string | null;
+  recordingDeleteAfter?: string | null;
+  recordingDeletedAt?: string | null;
+  recordingCleanupAttempts?: number;
+  recordingCleanupLastError?: string | null;
+  model?: string | null;
+  configSnapshot?: { promptVersion?: string } | null;
+  inputTokens?: number | null;
+  outputTokens?: number | null;
+  estimatedCostUsd?: number | null;
+  recordingAccessAudits?: Array<{
+    id: string;
+    action: string;
+    createdAt: string;
+    admin: { username: string; displayName: string };
+  }>;
   startedAt?: string | null;
   endedAt?: string | null;
   errorMessage?: string | null;
@@ -171,6 +186,17 @@ export function SpeakingSessionDetail({
                   Kết thúc: {formatWhen(session.endedAt)}
                 </div>
               </div>
+              <div>
+                <div className="label">Prompt / model</div>
+                <div className="value">
+                  {session.configSnapshot?.promptVersion || '—'} /{' '}
+                  {session.model || '—'}
+                </div>
+                <div className="muted">
+                  {session.inputTokens ?? 0} input · {session.outputTokens ?? 0}{' '}
+                  output
+                </div>
+              </div>
             </div>
             {session.errorMessage ? (
               <div className="admin-alert error" style={{ marginTop: 12 }}>
@@ -186,6 +212,16 @@ export function SpeakingSessionDetail({
               </strong>
               {sizeLabel ? <span className="muted">{sizeLabel}</span> : null}
             </div>
+            <p className="muted">
+              Tự động xóa: {formatWhen(session.recordingDeleteAfter)} · Đã xóa:{' '}
+              {formatWhen(session.recordingDeletedAt)} · Số lần cleanup:{' '}
+              {session.recordingCleanupAttempts ?? 0}
+            </p>
+            {session.recordingCleanupLastError ? (
+              <div className="admin-alert error">
+                {session.recordingCleanupLastError}
+              </div>
+            ) : null}
 
             {recordingSrc ? (
               <>
@@ -198,15 +234,9 @@ export function SpeakingSessionDetail({
                     Mở tab mới
                   </a>
                   {session.driveFileId ? (
-                    <a
-                      className="admin-btn"
-                      href={`https://drive.google.com/file/d/${session.driveFileId}/view`}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <i className="fas fa-hard-drive" aria-hidden="true" />
-                      Xem trên Drive
-                    </a>
+                    <span className="muted">
+                      Có bản sao Drive; truy cập recording qua API đã kiểm toán
+                    </span>
                   ) : (
                     <span className="muted">Chưa có file trên Google Drive</span>
                   )}
@@ -215,6 +245,19 @@ export function SpeakingSessionDetail({
             ) : (
               <div className="data-loading-state">Phiên này chưa có bản ghi âm</div>
             )}
+            {session.recordingAccessAudits?.length ? (
+              <details style={{ marginTop: 12 }}>
+                <summary>Nhật ký admin nghe recording</summary>
+                <ul>
+                  {session.recordingAccessAudits.map((audit) => (
+                    <li key={audit.id}>
+                      {formatWhen(audit.createdAt)} — {audit.admin.displayName} (
+                      {audit.admin.username}) — {audit.action}
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            ) : null}
           </section>
 
           <section className="admin-panel admin-speaking-chat-wrap">

@@ -22,6 +22,7 @@ export async function GET(req: Request) {
       courses: data.courses,
       filters: data.filters,
       selectedLevelName: data.selectedLevelName,
+      playerKind: data.playerKind,
     });
   } catch (err) {
     return errorResponse(err);

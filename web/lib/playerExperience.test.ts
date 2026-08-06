@@ -76,7 +76,7 @@ describe('completeExperienceSession', () => {
     vi.clearAllMocks();
   });
 
-  it('throws status 404 when there are no score rows', async () => {
+  it('excludes practice rows from EXP and throws when no official rows remain', async () => {
     mocks.scoreLogFindMany.mockResolvedValue([]);
 
     await expect(completeExperienceSession(userId, playSessionId)).rejects.toMatchObject({
@@ -84,7 +84,7 @@ describe('completeExperienceSession', () => {
     });
 
     expect(mocks.scoreLogFindMany).toHaveBeenCalledWith({
-      where: { userId, playSessionId },
+      where: { userId, playSessionId, countsForCourseTotal: true },
       select: { course: true, game: true, isCorrect: true, elapsedMs: true },
     });
     expect(mocks.transaction).not.toHaveBeenCalled();

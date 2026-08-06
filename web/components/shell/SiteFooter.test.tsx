@@ -2,11 +2,22 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
+import { I18nProvider } from '@/components/i18n/I18nProvider';
 import { SiteFooter } from './SiteFooter';
+
+function renderFooter() {
+  return renderToStaticMarkup(
+    createElement(
+      I18nProvider,
+      { initialLocale: 'vi' },
+      createElement(SiteFooter),
+    ),
+  );
+}
 
 describe('SiteFooter', () => {
   it('renders the legacy footer structure and brand links', () => {
-    const html = renderToStaticMarkup(createElement(SiteFooter));
+    const html = renderFooter();
 
     expect(html).toContain('class="site-footer"');
     expect(html).toContain('class="footer-inner"');
@@ -21,7 +32,7 @@ describe('SiteFooter', () => {
   });
 
   it('renders co so 1 and co so 2 contact details', () => {
-    const html = renderToStaticMarkup(createElement(SiteFooter));
+    const html = renderFooter();
 
     expect(html).toContain('Cơ sở 1');
     expect(html).toContain('292B Nơ Trang Long, P.12, Bình Thạnh, TP.HCM');

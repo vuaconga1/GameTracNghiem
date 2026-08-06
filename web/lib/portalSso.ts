@@ -79,11 +79,12 @@ export async function upsertPortalStudent(claims: PortalSsoClaims): Promise<Sess
   }
 
   const passwordHash = await hashPassword(password);
+  const portalLinkedAt = new Date();
 
   const user = existing
     ? await prisma.user.update({
         where: { id: existing.id },
-        data: { displayName, passwordHash },
+        data: { displayName, passwordHash, portalLinkedAt },
       })
     : await prisma.user.create({
         data: {
@@ -91,6 +92,7 @@ export async function upsertPortalStudent(claims: PortalSsoClaims): Promise<Sess
           displayName,
           passwordHash,
           role: 'student',
+          portalLinkedAt,
         },
       });
 

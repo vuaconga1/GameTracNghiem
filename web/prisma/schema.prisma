@@ -7,21 +7,28 @@ datasource db {
 }
 
 model User {
-  id                     String                      @id @default(cuid())
-  username               String                      @unique
-  passwordHash           String
-  displayName            String
-  role                   String                      @default("student")
-  createdAt              DateTime                    @default(now())
-  archivedAt             DateTime?
-  progress               GameProgress[]
-  scoreLogs              ScoreLog[]
-  experience             PlayerExperience?
-  experienceGrants       ExperienceGrant[]
-  speakingSessions       SpeakingSession[]
-  dailySpeakingUsages    DailySpeakingUsage[]
-  speakingUsageReleases  DailySpeakingUsageRelease[] @relation("SpeakingReleaseStudent")
-  speakingReleasesAdmin  DailySpeakingUsageRelease[] @relation("SpeakingReleaseAdmin")
+  id                    String                      @id @default(cuid())
+  username              String                      @unique
+  passwordHash          String
+  displayName           String
+  role                  String                      @default("student")
+  portalLinkedAt        DateTime?
+  speakingAccountStatus String                      @default("ACTIVE")
+  createdAt             DateTime                    @default(now())
+  archivedAt            DateTime?
+  progress              GameProgress[]
+  scoreLogs             ScoreLog[]
+  experience            PlayerExperience?
+  experienceGrants      ExperienceGrant[]
+  speakingSessions      SpeakingSession[]
+  dailySpeakingUsages   DailySpeakingUsage[]
+  speakingUsageReleases DailySpeakingUsageRelease[] @relation("SpeakingReleaseStudent")
+  speakingReleasesAdmin DailySpeakingUsageRelease[] @relation("SpeakingReleaseAdmin")
+  speakingEntitlements  SpeakingEntitlement[]       @relation("SpeakingEntitlementStudent")
+  speakingGrantsCreated SpeakingEntitlement[]       @relation("SpeakingEntitlementCreator")
+  speakingGrantsRevoked SpeakingEntitlement[]       @relation("SpeakingEntitlementRevoker")
+  speakingAttempts      SpeakingAttempt[]
+  speakingRecordingAudits SpeakingRecordingAccessAudit[]
 }
 
 model ClassLevel {
@@ -46,37 +53,40 @@ model Ebook {
 }
 
 model Course {
-  id                 String             @id @default(cuid())
-  name               String
-  levelName          String
-  active             Boolean            @default(true)
-  archivedAt         DateTime?
+  id                   String                @id @default(cuid())
+  name                 String
+  levelName            String
+  active               Boolean               @default(true)
+  archivedAt           DateTime?
   /**
    * Legacy: game keys visible to students. Empty = all catalog games enabled.
    * Prefer gameSkills + enabledSkills; kept in sync on admin write.
    */
-  enabledGames       String[]           @default([])
+  enabledGames         String[]              @default([])
   /**
    * Per-unit map of gameKey → skill id (or null/omit = hidden).
    * See lib/skillCatalog.ts and docs/superpowers/specs/2026-07-23-unit-skill-cards-design.md
    */
-  gameSkills         Json?
+  gameSkills           Json?
   /**
    * Skill ids shown as student cards. Empty = all four skills enabled.
    */
-  enabledSkills      String[]           @default([])
+  enabledSkills        String[]              @default([])
   /**
    * References Ebook.id when set.
    */
-  ebookFileId        String?
-  ebookPageStart     Int?
-  ebookPageEnd       Int?
-  backgroundImageUrl String?
-  backgroundImageKey String?
-  questions          Question[]
-  gameLessons        CourseGameLesson[]
-  skillLessons       CourseSkillLesson[]
-  speakingTopics     SpeakingTopic[]
+  ebookFileId          String?
+  ebookPageStart       Int?
+  ebookPageEnd         Int?
+  backgroundImageUrl   String?
+  backgroundImageKey   String?
+  questions            Question[]
+  gameLessons          CourseGameLesson[]
+  skillLessons         CourseSkillLesson[]
+  speakingTopics       SpeakingTopic[]
+  speakingSessions     SpeakingSession[]
+  speakingEntitlements SpeakingEntitlement[]
+  speakingAttempts     SpeakingAttempt[]
 
   @@index([levelName])
   @@index([name])
@@ -117,16 +127,17 @@ model CourseSkillLesson {
 }
 
 model Question {
-  id         String    @id @default(cuid())
-  courseId   String
-  course     Course    @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  game       String
-  level      String?
-  payload    Json
-  active     Boolean   @default(true)
-  archivedAt DateTime?
-  sortOrder  Int       @default(0)
-  externalId String?
+  id               String            @id @default(cuid())
+  courseId         String
+  course           Course            @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  game             String
+  level            String?
+  payload          Json
+  active           Boolean           @default(true)
+  archivedAt       DateTime?
+  sortOrder        Int               @default(0)
+  externalId       String?
+  speakingAttempts SpeakingAttempt[]
 
   @@index([courseId, game, active])
   @@index([archivedAt])
@@ -146,17 +157,20 @@ model GameProgress {
 }
 
 model ScoreLog {
-  id            String   @id @default(cuid())
-  userId        String
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  course        String
-  game          String
-  questionIndex Int
-  isCorrect     Boolean
-  elapsedMs     Int
-  points        Int
-  playSessionId String?
-  answeredAt    DateTime @default(now())
+  id                   String           @id @default(cuid())
+  userId               String
+  user                 User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course               String
+  game                 String
+  questionIndex        Int
+  isCorrect            Boolean
+  elapsedMs            Int
+  points               Int
+  countsForCourseTotal Boolean          @default(true)
+  playSessionId        String?
+  answeredAt           DateTime         @default(now())
+  speakingAttempt      SpeakingAttempt? @relation("SpeakingAttemptScoreLog")
+  realtimeSession      SpeakingSession? @relation("SpeakingRealtimeScoreLog")
 
   @@index([userId, course])
   @@index([answeredAt])
@@ -191,6 +205,54 @@ model ExperienceGrant {
 }
 
 /**
+ * Explicit access grant for AI Speaking.
+ * status: ACTIVE | EXPIRED | SUSPENDED | REVOKED
+ * startsAt is inclusive and expiresAt is exclusive. Admin date inputs use
+ * Asia/Ho_Chi_Minh midnight boundaries before being stored as instants.
+ */
+model SpeakingEntitlement {
+  id             String    @id @default(cuid())
+  userId         String
+  user           User      @relation("SpeakingEntitlementStudent", fields: [userId], references: [id], onDelete: Cascade)
+  courseId       String?
+  course         Course?   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  status         String    @default("ACTIVE")
+  startsAt       DateTime
+  expiresAt      DateTime
+  source         String    @default("ADMIN")
+  createdById    String
+  createdBy      User      @relation("SpeakingEntitlementCreator", fields: [createdById], references: [id], onDelete: Restrict)
+  note           String?
+  revokedAt      DateTime?
+  revokedById    String?
+  revokedBy      User?     @relation("SpeakingEntitlementRevoker", fields: [revokedById], references: [id], onDelete: SetNull)
+  revocationNote String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([userId, status, startsAt, expiresAt])
+  @@index([courseId, status])
+  @@index([createdById, createdAt])
+  @@index([revokedById, revokedAt])
+}
+
+/**
+ * Server-managed activity switches and pilot limits.
+ * activityType: WORD_PRONUNCIATION | SENTENCE_READING | GUIDED_ANSWER |
+ * REALTIME_CONVERSATION
+ */
+model SpeakingActivityConfig {
+  activityType          String   @id
+  enabled               Boolean  @default(false)
+  dailyLimit            Int
+  durationSeconds       Int
+  reservationTtlSeconds Int
+  promptVersion         String
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+/**
  * AI Speaking practice topic bound to a course.
  * Pilot may seed lớp 8 only; schema applies to every course.
  */
@@ -217,66 +279,227 @@ model SpeakingTopic {
  * status: RESERVED | CONNECTING | ACTIVE | FINISHING | UPLOADING | SUBMITTED | UPLOAD_FAILED | INTERRUPTED | FAILED
  */
 model SpeakingSession {
-  id                String                     @id @default(cuid())
-  userId            String
-  user              User                       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  topicId           String
-  topic             SpeakingTopic              @relation(fields: [topicId], references: [id], onDelete: Cascade)
-  kind              String                     @default("STUDENT_PRACTICE")
-  status            String                     @default("RESERVED")
-  openaiCallId      String?
-  transcript        Json?
-  recordingUrl      String?
-  recordingKey      String?
-  recordingMimeType String?
-  recordingBytes    Int?
-  driveFileId       String?
-  driveFileName     String?
-  startedAt         DateTime?
-  endedAt           DateTime?
-  errorMessage      String?
-  createdAt         DateTime                   @default(now())
-  updatedAt         DateTime                   @updatedAt
-  dailyUsage        DailySpeakingUsage?
-  usageReleases     DailySpeakingUsageRelease[]
+  id                   String                      @id @default(cuid())
+  userId               String
+  user                 User                        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId             String
+  course               Course                      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  topicId              String?
+  topic                SpeakingTopic?              @relation(fields: [topicId], references: [id], onDelete: SetNull)
+  activityType         String                      @default("REALTIME_CONVERSATION")
+  kind                 String                      @default("STUDENT_PRACTICE")
+  status               String                      @default("RESERVED")
+  reservationExpiresAt DateTime?
+  mustEndAt            DateTime?
+  startIdempotencyKey  String?
+  configSnapshot       Json?
+  model                String?
+  quotaUsageId         String?
+  quotaUsage           DailySpeakingUsage?         @relation("QuotaUsageSessions", fields: [quotaUsageId], references: [id], onDelete: SetNull)
+  usageCountedAt       DateTime?
+  scoreLogId           String?                     @unique
+  scoreLog             ScoreLog?                   @relation("SpeakingRealtimeScoreLog", fields: [scoreLogId], references: [id], onDelete: SetNull)
+  failureStage         String?
+  failureCode          String?
+  failedAt             DateTime?
+  openaiCallId         String?
+  transcript           Json?
+  recordingUrl         String?
+  recordingKey         String?
+  recordingMimeType    String?
+  recordingBytes       Int?
+  driveFileId          String?
+  driveFileName        String?
+  recordingDeleteAfter DateTime?
+  recordingDeletedAt   DateTime?
+  recordingCleanupAttempts Int                     @default(0)
+  recordingCleanupLastAttemptAt DateTime?
+  recordingCleanupLastError String?
+  inputTokens          Int?
+  outputTokens         Int?
+  audioInputTokens     Int?
+  audioOutputTokens    Int?
+  estimatedCostUsd     Float?
+  startedAt            DateTime?
+  endedAt              DateTime?
+  errorMessage         String?
+  createdAt            DateTime                    @default(now())
+  updatedAt            DateTime                    @updatedAt
+  legacyDailyUsage     DailySpeakingUsage?         @relation("LegacyUsageSession")
+  usageReleases        DailySpeakingUsageRelease[]
+  endJob               SpeakingSessionEndJob?
+  attempts             SpeakingAttempt[]
+  recordingAccessAudits SpeakingRecordingAccessAudit[]
 
+  @@unique([userId, startIdempotencyKey])
   @@index([userId, createdAt])
+  @@index([courseId, activityType, createdAt])
   @@index([topicId])
   @@index([status])
+  @@index([quotaUsageId, usageCountedAt])
+  @@index([recordingDeleteAfter, recordingDeletedAt])
 }
 
 /**
- * status: AVAILABLE | RESERVED | CONSUMED
- * usageDate is calendar date in Asia/Ho_Chi_Minh (stored as Date @db.Date).
+ * One server-assessed short Speaking drill. Audio bytes are intentionally
+ * transient and never have a URL or storage key on this model.
+ * status: PROCESSING | COMPLETED | FAILED
+ */
+model SpeakingAttempt {
+  id                   String          @id @default(cuid())
+  sessionId            String          @unique
+  session              SpeakingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  userId               String
+  user                 User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  courseId             String
+  course               Course          @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  questionId           String
+  question             Question        @relation(fields: [questionId], references: [id], onDelete: Restrict)
+  activityType         String
+  status               String          @default("PROCESSING")
+  idempotencyKey       String
+  reservationExpiresAt DateTime
+  targetSnapshot       String?
+  questionSnapshot     String?
+  scoreLogId           String?         @unique
+  scoreLog             ScoreLog?       @relation("SpeakingAttemptScoreLog", fields: [scoreLogId], references: [id], onDelete: SetNull)
+  serverTranscript     String?
+  score                Int?
+  details              Json?
+  feedback             Json?
+  audioMimeType        String?
+  audioBytes           Int?
+  audioDurationMs      Int?
+  engine               String?
+  model                String?
+  promptVersion        String?
+  inputTokens          Int?
+  outputTokens         Int?
+  audioInputTokens     Int?
+  audioOutputTokens    Int?
+  estimatedCostUsd     Float?
+  completedAt          DateTime?
+  failedAt             DateTime?
+  failureCode          String?
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+
+  @@unique([userId, idempotencyKey])
+  @@index([userId, activityType, createdAt])
+  @@index([courseId, questionId, createdAt])
+  @@index([status, reservationExpiresAt])
+}
+
+/**
+ * Immutable audit trail for authenticated admin access to private recordings.
+ * It intentionally stores IDs and action metadata only, never transcript/audio.
+ */
+model SpeakingRecordingAccessAudit {
+  id        String          @id @default(cuid())
+  sessionId String
+  session   SpeakingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  adminId   String
+  admin     User            @relation(fields: [adminId], references: [id], onDelete: Restrict)
+  action    String          @default("STREAM")
+  createdAt DateTime        @default(now())
+
+  @@index([sessionId, createdAt])
+  @@index([adminId, createdAt])
+}
+
+/**
+ * Small durable counters for expensive per-user Speaking actions.
+ * key is userId:action; rows reset in place after their short window expires.
+ */
+model SpeakingBurstLimit {
+  key             String   @id
+  userId          String
+  action          String
+  windowStartedAt DateTime
+  expiresAt       DateTime
+  count           Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([expiresAt])
+  @@index([userId, action])
+}
+
+/**
+ * Durable outbox row for the mandatory Realtime session hard stop.
+ * status: PENDING | DISPATCHED | PROCESSING | RETRY | COMPLETED
+ */
+model SpeakingSessionEndJob {
+  id                String          @id @default(cuid())
+  sessionId         String          @unique
+  session           SpeakingSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  dueAt             DateTime
+  status            String          @default("PENDING")
+  provider          String          @default("QSTASH")
+  providerMessageId String?
+  dispatchAttempts  Int             @default(0)
+  processAttempts   Int             @default(0)
+  nextAttemptAt     DateTime?
+  lastAttemptAt     DateTime?
+  lockedAt          DateTime?
+  dispatchedAt      DateTime?
+  completedAt       DateTime?
+  lastError         String?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  @@index([status, nextAttemptAt, dueAt])
+  @@index([dueAt, status])
+}
+
+/**
+ * Quota counters per user, Vietnam calendar date, and activity.
+ * status/sessionId/reservedUntil/usageDate are one-release compatibility fields.
  */
 model DailySpeakingUsage {
-  id            String          @id @default(cuid())
+  id            String                      @id @default(cuid())
   userId        String
-  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  usageDate     DateTime        @db.Date
-  status        String          @default("AVAILABLE")
-  sessionId     String?         @unique
-  session       SpeakingSession? @relation(fields: [sessionId], references: [id], onDelete: SetNull)
+  user          User                        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  usageDateVN   DateTime                    @db.Date
+  activityType  String                      @default("REALTIME_CONVERSATION")
+  usedCount     Int                         @default(0)
+  reservedCount Int                         @default(0)
+  limitSnapshot Int
+  sessions      SpeakingSession[]           @relation("QuotaUsageSessions")
+  releases      DailySpeakingUsageRelease[]
+  usageDate     DateTime                    @db.Date
+  status        String                      @default("AVAILABLE")
+  sessionId     String?                     @unique
+  session       SpeakingSession?            @relation("LegacyUsageSession", fields: [sessionId], references: [id], onDelete: SetNull)
   reservedUntil DateTime?
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
+  createdAt     DateTime                    @default(now())
+  updatedAt     DateTime                    @updatedAt
 
-  @@unique([userId, usageDate])
+  @@unique([userId, usageDateVN, activityType])
+  @@index([userId, usageDate])
   @@index([usageDate, status])
+  @@index([usageDateVN, activityType])
 }
 
 model DailySpeakingUsageRelease {
-  id        String           @id @default(cuid())
-  studentId String
-  student   User             @relation("SpeakingReleaseStudent", fields: [studentId], references: [id], onDelete: Cascade)
-  sessionId String
-  session   SpeakingSession  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  usageDate DateTime         @db.Date
-  adminId   String
-  admin     User             @relation("SpeakingReleaseAdmin", fields: [adminId], references: [id], onDelete: Cascade)
-  reason    String
-  createdAt DateTime         @default(now())
+  id              String              @id @default(cuid())
+  studentId       String
+  student         User                @relation("SpeakingReleaseStudent", fields: [studentId], references: [id], onDelete: Cascade)
+  sessionId       String
+  session         SpeakingSession     @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  usageId         String?
+  usage           DailySpeakingUsage? @relation(fields: [usageId], references: [id], onDelete: SetNull)
+  usageDate       DateTime            @db.Date
+  activityType    String              @default("REALTIME_CONVERSATION")
+  releasedCount   Int                 @default(1)
+  usedCountBefore Int?
+  usedCountAfter  Int?
+  adminId         String
+  admin           User                @relation("SpeakingReleaseAdmin", fields: [adminId], references: [id], onDelete: Cascade)
+  reason          String
+  createdAt       DateTime            @default(now())
 
   @@index([studentId, usageDate])
+  @@index([usageId, createdAt])
   @@index([adminId, createdAt])
 }

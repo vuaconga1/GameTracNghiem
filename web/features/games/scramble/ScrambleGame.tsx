@@ -8,6 +8,7 @@ import { DataLoading } from '@/components/DataLoading';
 import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
+import { usePlayer } from '@/components/player/PlayerContext';
 import { finalizePlaySessionIfComplete } from '@/features/scoring/completeSession';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
@@ -17,6 +18,7 @@ import {
   persistGameProgress,
 } from '@/features/games/persistProgress';
 import { progressCourseKey } from '@/lib/courseKey';
+import { hydrateGamePlayerState } from '@/lib/player/guestPlayerAdapter';
 import {
   type ProgressStatus,
   nextEmptyIndex,
@@ -137,6 +139,7 @@ function questionPreview(
 
 export function ScrambleGame({ courseId }: Props) {
   const { t, locale } = useI18n();
+  const player = usePlayer();
   const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
 
   function formatPoints(points: number): string {
@@ -182,7 +185,18 @@ export function ScrambleGame({ courseId }: Props) {
         }
 
         const questions = json.questions || [];
-        const nextStatuses = normalizeStatuses(json.statuses, questions.length);
+        const courseKey = json.course
+          ? progressCourseKey(json.course.name, json.course.levelName)
+          : '';
+        const hydrated = hydrateGamePlayerState({
+          player,
+          courseKey,
+          game: 'scramble',
+          statuses: json.statuses,
+          playSessionId: json.playSessionId,
+          gameScore: json.gameScore,
+        });
+        const nextStatuses = normalizeStatuses(hydrated.statuses, questions.length);
         const firstEmptyIndex = nextEmptyIndex(nextStatuses);
 
         setData(json);
@@ -190,8 +204,8 @@ export function ScrambleGame({ courseId }: Props) {
         setCurrentIndex(firstEmptyIndex === -1 ? 0 : firstEmptyIndex);
         setPanel('list');
         setSessionPoints(0);
-        setGameScore(json.gameScore || 0);
-        setPlaySessionId(json.playSessionId || null);
+        setGameScore(hydrated.gameScore);
+        setPlaySessionId(hydrated.playSessionId);
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
@@ -211,7 +225,7 @@ export function ScrambleGame({ courseId }: Props) {
       controller.abort();
       if (advanceTimer.current) clearTimeout(advanceTimer.current);
     };
-  }, [courseId]);
+  }, [courseId, player, t]);
 
   const questions = useMemo(() => data?.questions || [], [data?.questions]);
   const course = data?.course;
@@ -270,6 +284,7 @@ export function ScrambleGame({ courseId }: Props) {
       statuses: nextStatuses,
       reset,
       playSessionId: sessionId === undefined ? playSessionId : sessionId,
+      player,
     });
     if (!json.success) {
       throw new Error(json.message || t('gameUi.progressSaveFailed'));
@@ -328,7 +343,8 @@ export function ScrambleGame({ courseId }: Props) {
           currentQuestion.index,
           isCorrect,
           elapsedMs,
-          sessionId
+          sessionId,
+          player,
         );
         if (!score.success) {
           throw new Error(score.message || t('gameUi.scoreSaveFailed'));
@@ -350,6 +366,7 @@ export function ScrambleGame({ courseId }: Props) {
         const finalized = await finalizePlaySessionIfComplete({
           statuses: nextStatuses,
           playSessionId: sessionIdForProgress || playSessionId,
+          player,
         });
         if (finalized) router.refresh();
       }

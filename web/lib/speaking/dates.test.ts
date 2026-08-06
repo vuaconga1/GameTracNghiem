@@ -4,6 +4,7 @@ import {
   nextAvailableAt,
   usageDateString,
   usageDateToUtcMidnight,
+  parseHoChiMinhDateBoundary,
   canStartNewSession,
   buildDailyUsageResponse,
 } from '@/lib/speaking/dates';
@@ -33,10 +34,18 @@ describe('speaking dates (Asia/Ho_Chi_Minh)', () => {
     expect(next.toISOString()).toBe('2026-07-24T17:00:00.000Z');
   });
 
-  it('usageDateToUtcMidnight round-trips', () => {
+  it('represents a VN calendar label at UTC midnight for PostgreSQL DATE', () => {
     const midnight = usageDateToUtcMidnight('2026-07-24');
-    expect(midnight.toISOString()).toBe('2026-07-23T17:00:00.000Z');
+    expect(midnight.toISOString()).toBe('2026-07-24T00:00:00.000Z');
     expect(usageDateString(midnight)).toBe('2026-07-24');
+  });
+
+  it('parses strict admin date boundaries at Vietnam midnight', () => {
+    expect(parseHoChiMinhDateBoundary('2026-08-06')?.toISOString()).toBe(
+      '2026-08-05T17:00:00.000Z'
+    );
+    expect(parseHoChiMinhDateBoundary('2026-02-30')).toBeNull();
+    expect(parseHoChiMinhDateBoundary('06/08/2026')).toBeNull();
   });
 });
 
@@ -61,14 +70,27 @@ describe('canStartNewSession', () => {
     );
   });
 
-  it('buildDailyUsageResponse sets nextAvailableAt only when consumed', () => {
-    const consumed = buildDailyUsageResponse({ status: 'CONSUMED', now });
+  it('buildDailyUsageResponse exposes V2 counts and compatibility aliases', () => {
+    const consumed = buildDailyUsageResponse({
+      usedCount: 2,
+      reservedCount: 0,
+      limitSnapshot: 2,
+      now,
+    });
     expect(consumed.canStart).toBe(false);
-    expect(consumed.usedToday).toBe(1);
+    expect(consumed.used).toBe(2);
+    expect(consumed.usedToday).toBe(2);
+    expect(consumed.remaining).toBe(0);
     expect(consumed.nextAvailableAt).toBe('2026-07-24T17:00:00.000Z');
 
-    const free = buildDailyUsageResponse({ status: 'AVAILABLE', now });
+    const free = buildDailyUsageResponse({
+      usedCount: 1,
+      reservedCount: 0,
+      limitSnapshot: 2,
+      now,
+    });
     expect(free.canStart).toBe(true);
+    expect(free.remainingToday).toBe(1);
     expect(free.nextAvailableAt).toBeNull();
   });
 });

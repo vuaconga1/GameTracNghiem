@@ -11,6 +11,7 @@ import { RankBadge } from './RankBadge';
 type SidebarProps = {
   mode: 'home' | 'game';
   displayName: string;
+  isGuest?: boolean;
   level?: number;
   tier?: number;
   expInLevel?: number;
@@ -30,6 +31,7 @@ function initialsFromName(name: string) {
 export function Sidebar({
   mode,
   displayName,
+  isGuest = false,
   level,
   tier,
   expInLevel,
@@ -52,14 +54,18 @@ export function Sidebar({
         </div>
         <div className="sidebar-user-meta">
           <div className="sidebar-user-name">{displayName}</div>
-          <RankBadge
-            variant="sidebar"
-            level={level}
-            tier={tier}
-            expInLevel={expInLevel}
-            expToNextLevel={expToNextLevel}
-            progressPercent={progressPercent}
-          />
+          {isGuest ? (
+            <div className="sidebar-user-role">{t('shell.guestProgress')}</div>
+          ) : (
+            <RankBadge
+              variant="sidebar"
+              level={level}
+              tier={tier}
+              expInLevel={expInLevel}
+              expToNextLevel={expToNextLevel}
+              progressPercent={progressPercent}
+            />
+          )}
         </div>
       </div>
 

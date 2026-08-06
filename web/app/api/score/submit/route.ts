@@ -51,6 +51,7 @@ export async function POST(req: Request) {
         isCorrect,
         elapsedMs,
         points,
+        countsForCourseTotal: true,
         playSessionId,
       },
     });
@@ -60,6 +61,7 @@ export async function POST(req: Request) {
         where: {
           userId: session.userId,
           course,
+          countsForCourseTotal: true,
         },
         _sum: {
           points: true,

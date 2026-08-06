@@ -22,11 +22,20 @@ export async function GET(_req: Request, { params }: Ctx) {
             course: { select: { name: true, levelName: true } },
           },
         },
-        dailyUsage: true,
+        quotaUsage: true,
         usageReleases: {
           orderBy: { createdAt: 'desc' },
           include: {
             admin: { select: { id: true, username: true, displayName: true } },
+          },
+        },
+        recordingAccessAudits: {
+          orderBy: { createdAt: 'desc' },
+          take: 20,
+          include: {
+            admin: {
+              select: { id: true, username: true, displayName: true },
+            },
           },
         },
       },

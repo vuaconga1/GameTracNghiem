@@ -16,16 +16,31 @@ export function usageDateString(now: Date = new Date()): string {
 }
 
 /**
- * Midnight 00:00:00 of the given VN calendar date as a UTC Date.
- * Asia/Ho_Chi_Minh is UTC+7 year-round (no DST).
+ * UTC-midnight representation of a Vietnam calendar label for Prisma @db.Date.
+ * This is a date-only storage value, not the instant when Vietnam midnight occurs.
  */
 export function usageDateToUtcMidnight(dateStr: string): Date {
+  return new Date(`${dateStr}T00:00:00.000Z`);
+}
+
+/** The actual instant when a Vietnam calendar date starts (UTC+7, no DST). */
+function hoChiMinhMidnight(dateStr: string): Date {
   return new Date(`${dateStr}T00:00:00+07:00`);
+}
+
+/** Parse a date-only admin value as midnight in Asia/Ho_Chi_Minh. */
+export function parseHoChiMinhDateBoundary(dateStr: string): Date | null {
+  const normalized = dateStr.trim();
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(normalized)) return null;
+  const boundary = hoChiMinhMidnight(normalized);
+  return Number.isNaN(boundary.getTime()) || usageDateString(boundary) !== normalized
+    ? null
+    : boundary;
 }
 
 /** Start of the next VN calendar day after `now` (when a new daily slot opens). */
 export function nextAvailableAt(now: Date = new Date()): Date {
-  const todayMidnight = usageDateToUtcMidnight(usageDateString(now));
+  const todayMidnight = hoChiMinhMidnight(usageDateString(now));
   return new Date(todayMidnight.getTime() + 24 * 60 * 60 * 1000);
 }
 
@@ -55,27 +70,50 @@ export function canStartNewSession(
 }
 
 export function buildDailyUsageResponse(input: {
-  status: string | null | undefined;
+  status?: string | null;
+  usedCount?: number | null;
+  reservedCount?: number | null;
+  limitSnapshot?: number | null;
   reservedUntil?: Date | null;
   sessionId?: string | null;
+  activityType?: string;
   now?: Date;
 }) {
   const now = input.now ?? new Date();
-  const status = input.status ?? 'AVAILABLE';
-  const usedToday = status === 'CONSUMED' ? DAILY_SPEAKING_LIMIT : 0;
-  const remainingToday = Math.max(0, DAILY_SPEAKING_LIMIT - usedToday);
+  const dailyLimit = Math.max(1, input.limitSnapshot ?? DAILY_SPEAKING_LIMIT);
+  const usedToday = Math.max(
+    0,
+    input.usedCount ?? (input.status === 'CONSUMED' ? 1 : 0),
+  );
+  const reservedToday = Math.max(
+    0,
+    input.reservedCount ?? (input.status === 'RESERVED' ? 1 : 0),
+  );
+  const remainingToday = Math.max(0, dailyLimit - usedToday);
   const reservationActive =
-    status === 'RESERVED' && isReservationActive(input.reservedUntil, now);
+    reservedToday > 0 && isReservationActive(input.reservedUntil, now);
+  const status =
+    remainingToday === 0
+      ? 'CONSUMED'
+      : reservationActive
+        ? 'RESERVED'
+        : 'AVAILABLE';
 
   return {
-    canStart: canStartNewSession(status, input.reservedUntil, now),
+    activityType: input.activityType ?? 'REALTIME_CONVERSATION',
+    canStart: remainingToday > 0 && !reservationActive,
     status,
-    dailyLimit: DAILY_SPEAKING_LIMIT,
+    used: usedToday,
+    reserved: reservedToday,
+    limit: dailyLimit,
+    remaining: remainingToday,
+    dailyLimit,
     usedToday,
+    reservedToday,
     remainingToday,
     timezone: SPEAKING_TIMEZONE,
     nextAvailableAt:
-      status === 'CONSUMED' ? nextAvailableAt(now).toISOString() : null,
+      remainingToday === 0 ? nextAvailableAt(now).toISOString() : null,
     sessionId: input.sessionId ?? null,
     reservedUntil: input.reservedUntil?.toISOString() ?? null,
     reservationActive,

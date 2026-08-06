@@ -8,6 +8,7 @@ import { DataLoading } from '@/components/DataLoading';
 import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
+import { usePlayer } from '@/components/player/PlayerContext';
 import {
   completePlaySessionExperience,
   finalizePlaySessionIfComplete,
@@ -22,6 +23,7 @@ import {
 } from '@/features/games/persistProgress';
 import { progressCourseKey } from '@/lib/courseKey';
 import { canSendAudioToWhisper } from '@/lib/audio/echoGate';
+import { hydrateGamePlayerState } from '@/lib/player/guestPlayerAdapter';
 import {
   type ProgressStatus,
   normalizeStatuses,
@@ -759,6 +761,7 @@ async function assessClip(
 
 export function PronunciationGame({ courseId }: Props) {
   const { t, locale } = useI18n();
+  const player = usePlayer();
   const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
 
   const router = useRouter();
@@ -797,14 +800,14 @@ export function PronunciationGame({ courseId }: Props) {
 
     setPlaySessionId((current) => {
       if (current) {
-        void completePlaySessionExperience(current).then(() => {
+        void completePlaySessionExperience(current, player).then(() => {
           router.refresh();
         });
       }
       return null;
     });
     setSessionPoints(0);
-  }, [exerciseSessionKey, router]);
+  }, [exerciseSessionKey, player, router]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -826,7 +829,18 @@ export function PronunciationGame({ courseId }: Props) {
           ...item,
           mode: item.mode === 'word' ? 'phoneme' : item.mode || 'phoneme',
         }));
-        const nextStatuses = normalizeStatuses(json.statuses, questions.length);
+        const courseKey = json.course
+          ? progressCourseKey(json.course.name, json.course.levelName)
+          : '';
+        const hydrated = hydrateGamePlayerState({
+          player,
+          courseKey,
+          game: 'pronunciation',
+          statuses: json.statuses,
+          playSessionId: json.playSessionId,
+          gameScore: json.gameScore,
+        });
+        const nextStatuses = normalizeStatuses(hydrated.statuses, questions.length);
         const firstEmpty = nextEmptyPlayableIndex(questions, nextStatuses);
         const startIndex = firstEmpty === -1 ? (playableQuestionEntries(questions)[0]?.index ?? 0) : firstEmpty;
         const startMode = questions[startIndex]?.mode || playableModes(questions)[0] || 'phoneme';
@@ -837,8 +851,8 @@ export function PronunciationGame({ courseId }: Props) {
         setCurrentIndex(startIndex);
         setPanel('list');
         setSessionPoints(0);
-        setGameScore(json.gameScore || 0);
-        setPlaySessionId(json.playSessionId || null);
+        setGameScore(hydrated.gameScore);
+        setPlaySessionId(hydrated.playSessionId);
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
         setData(null);
@@ -864,7 +878,7 @@ export function PronunciationGame({ courseId }: Props) {
         activeAudio.current = null;
       }
     };
-  }, [courseId]);
+  }, [courseId, player, t]);
 
   const questions = useMemo(() => data?.questions || [], [data?.questions]);
   const course = data?.course;
@@ -889,6 +903,7 @@ export function PronunciationGame({ courseId }: Props) {
       statuses,
       playSessionId,
       indexes: scopedIndexes,
+      player,
     }).then((result) => {
       if (cancelled || !result?.success || result.alreadyGranted) return;
       router.refresh();
@@ -896,7 +911,7 @@ export function PronunciationGame({ courseId }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [isLoading, playSessionId, router, scopedIndexes, statuses]);
+  }, [isLoading, playSessionId, player, router, scopedIndexes, statuses]);
   const stats = useMemo<PronunciationStats>(() => {
     let correct = 0;
     let wrong = 0;
@@ -986,6 +1001,7 @@ export function PronunciationGame({ courseId }: Props) {
       statuses: nextStatuses,
       reset,
       playSessionId: sessionId === undefined ? playSessionId : sessionId,
+      player,
     });
     if (!json.success) {
       throw new Error(json.message || t('gameUi.progressSaveFailed'));
@@ -1113,7 +1129,8 @@ export function PronunciationGame({ courseId }: Props) {
           currentIndex,
           score.isCorrect,
           elapsedMs,
-          activeSessionId
+          activeSessionId,
+          player,
         );
         if (!submit.success) {
           throw new Error(submit.message || t('gameUi.scoreSaveFailed'));
@@ -1141,6 +1158,7 @@ export function PronunciationGame({ courseId }: Props) {
           statuses: nextStatuses,
           playSessionId: sessionIdForProgress || activeSessionId,
           indexes: scopedIndexes,
+          player,
         });
         if (finalized) router.refresh();
       } else {
@@ -1175,6 +1193,25 @@ export function PronunciationGame({ courseId }: Props) {
     setShowActions(false);
     setAnswerResult(null);
     setSubmitMessage('');
+    if (player.kind === 'guest') {
+      setRecordState('assessing');
+      try {
+        const transcript = await recognizeWithWebSpeech();
+        const score = scoreTranscript(
+          question.targetText,
+          transcript,
+          String(question.mode || 'phoneme'),
+        );
+        await finishWithScore(score, 'webspeech');
+      } catch (err) {
+        setRecordState('idle');
+        setSubmitMessage(
+          err instanceof Error ? err.message : t('pronunciation.assessFailed'),
+        );
+      }
+      return;
+    }
+
     setRecordState('recording');
 
     try {

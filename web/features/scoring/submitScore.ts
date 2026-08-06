@@ -1,3 +1,6 @@
+import { submitGuestAnswerScore } from '@/lib/player/guestPlayerAdapter';
+import type { PlayerDescriptor } from '@/lib/player/types';
+
 export type SubmitScoreResult = {
   success: boolean;
   points?: number;
@@ -14,8 +17,19 @@ export async function submitAnswerScore(
   questionIndex: number,
   isCorrect: boolean,
   elapsedMs: number,
-  playSessionId?: string | null
+  playSessionId?: string | null,
+  player?: PlayerDescriptor,
 ): Promise<SubmitScoreResult> {
+  if (player?.kind === 'guest') {
+    return submitGuestAnswerScore({
+      courseKey: course,
+      game,
+      isCorrect,
+      elapsedMs,
+      playSessionId,
+    });
+  }
+
   const res = await fetch('/api/score/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

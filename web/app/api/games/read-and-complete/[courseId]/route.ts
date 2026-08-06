@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { requireSession } from '@/lib/auth';
+import { optionalSession } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { findPlayableCourseGame } from '@/lib/findPlayableCourseGame';
 import { loadGamePlayerState } from '@/lib/loadGamePlayerState';
@@ -70,7 +70,7 @@ export async function GET(
   { params }: { params: Promise<{ courseId: string }> }
 ) {
   try {
-    const session = await requireSession();
+    const session = await optionalSession();
     const { courseId } = await params;
 
     const course = await findPlayableCourseGame(courseId, 'read_and_complete');
@@ -97,7 +97,7 @@ export async function GET(
         orderBy: [{ sortOrder: 'asc' }, { id: 'asc' }],
       }),
       loadGamePlayerState({
-        userId: session.userId,
+        userId: session?.userId,
         courseName: course.name,
         levelName: course.levelName,
         game: 'read_and_complete',

@@ -64,6 +64,12 @@ export async function lookupSessionForPage(): Promise<SessionLookup> {
   return lookupSession();
 }
 
+/** Resolve an active session when present; anonymous and stale sessions become guests. */
+export async function optionalSession(): Promise<SessionPayload | null> {
+  const { session } = await lookupSession();
+  return session;
+}
+
 export async function requireSession(): Promise<SessionPayload> {
   const { session, stale } = await lookupSession();
   if (session) return session;

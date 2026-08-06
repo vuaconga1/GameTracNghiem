@@ -1,6 +1,10 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
-import { isStatusesFullyGraded, isSubsetFullyGraded } from './completeSession';
+import {
+  completePlaySessionExperience,
+  isStatusesFullyGraded,
+  isSubsetFullyGraded,
+} from './completeSession';
 
 describe('isSubsetFullyGraded', () => {
   it('returns false for an empty subset', () => {
@@ -27,5 +31,18 @@ describe('isStatusesFullyGraded', () => {
 
   it('returns false when any status is empty', () => {
     expect(isStatusesFullyGraded(['correct', 'empty'])).toBe(false);
+  });
+});
+
+describe('completePlaySessionExperience', () => {
+  it('does not call the EXP API for guests', async () => {
+    const fetchMock = vi.spyOn(globalThis, 'fetch');
+
+    await expect(
+      completePlaySessionExperience('guest-session', { kind: 'guest' }),
+    ).resolves.toBeNull();
+    expect(fetchMock).not.toHaveBeenCalled();
+
+    fetchMock.mockRestore();
   });
 });

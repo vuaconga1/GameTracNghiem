@@ -67,7 +67,13 @@ describe('portalSso', () => {
       pwd: '123',
     });
 
-    expect(create).toHaveBeenCalled();
+    expect(create).toHaveBeenCalledWith(
+      expect.objectContaining({
+        data: expect.objectContaining({
+          portalLinkedAt: expect.any(Date),
+        }),
+      })
+    );
     expect(session).toMatchObject({
       userId: 'u1',
       username: 'WeWIN01-HV-1602',
@@ -104,6 +110,7 @@ describe('portalSso', () => {
         data: expect.objectContaining({
           displayName: 'Lê Quang Khôi',
           passwordHash: 'hash:123',
+          portalLinkedAt: expect.any(Date),
         }),
       })
     );

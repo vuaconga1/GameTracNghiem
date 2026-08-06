@@ -29,6 +29,7 @@ export async function getBestGameSessionScore(params: {
       userId: params.userId,
       game: params.game,
       course: { in: courseKeys },
+      countsForCourseTotal: true,
     },
     _sum: {
       points: true,

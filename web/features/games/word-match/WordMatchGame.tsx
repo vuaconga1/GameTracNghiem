@@ -8,6 +8,7 @@ import { DataLoading } from '@/components/DataLoading';
 import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import { GameResultSummary } from '@/components/games/GameScoreHero';
+import { usePlayer } from '@/components/player/PlayerContext';
 import { finalizePlaySessionIfComplete } from '@/features/scoring/completeSession';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import {
@@ -15,6 +16,7 @@ import {
   persistGameProgress,
 } from '@/features/games/persistProgress';
 import { progressCourseKey } from '@/lib/courseKey';
+import { hydrateGamePlayerState } from '@/lib/player/guestPlayerAdapter';
 import {
   type ProgressStatus,
   normalizeStatuses,
@@ -122,6 +124,7 @@ function initialWordMatchState(initialData?: WordMatchGameData | null) {
 
 export function WordMatchGame({ courseId, initialData }: Props) {
   const { t, locale } = useI18n();
+  const player = usePlayer();
   const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
 
   function formatPoints(points: number): string {
@@ -188,7 +191,18 @@ export function WordMatchGame({ courseId, initialData }: Props) {
         }
 
         const questions = json.questions || [];
-        const nextStatuses = normalizeStatuses(json.statuses, questions.length);
+        const courseKey = json.course
+          ? progressCourseKey(json.course.name, json.course.levelName)
+          : '';
+        const hydrated = hydrateGamePlayerState({
+          player,
+          courseKey,
+          game: 'word_match',
+          statuses: json.statuses,
+          playSessionId: json.playSessionId,
+          gameScore: json.gameScore,
+        });
+        const nextStatuses = normalizeStatuses(hydrated.statuses, questions.length);
         const allDone =
           questions.length > 0 && doneCount(nextStatuses) === questions.length;
 
@@ -196,8 +210,8 @@ export function WordMatchGame({ courseId, initialData }: Props) {
         setStatuses(nextStatuses);
         setPanel(allDone ? 'result' : 'board');
         setSessionPoints(0);
-        setGameScore(json.gameScore || 0);
-        setPlaySessionId(json.playSessionId || null);
+        setGameScore(hydrated.gameScore);
+        setPlaySessionId(hydrated.playSessionId);
         rebuildOrders(questions.length);
         questionStartTime.current = Date.now();
       } catch (err) {
@@ -216,7 +230,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
     }
 
     return () => controller.abort();
-  }, [courseId, initialData, rebuildOrders]);
+  }, [courseId, initialData, player, rebuildOrders, t]);
 
   const questions = useMemo(() => data?.questions || [], [data?.questions]);
   const course = data?.course;
@@ -371,6 +385,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
       statuses: nextStatuses,
       reset,
       playSessionId: sessionId === undefined ? playSessionId : sessionId,
+      player,
     });
     if (!json.success) {
       throw new Error(json.message || t('gameUi.progressSaveFailed'));
@@ -416,7 +431,8 @@ export function WordMatchGame({ courseId, initialData }: Props) {
           wordIndex,
           isCorrect,
           elapsedMs,
-          sessionId
+          sessionId,
+          player,
         );
         if (!score.success) {
           throw new Error(score.message || t('gameUi.scoreSaveFailed'));
@@ -440,6 +456,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
           const finalized = await finalizePlaySessionIfComplete({
             statuses: nextStatuses,
             playSessionId: sessionIdForProgress || sessionId,
+            player,
           });
           if (finalized) router.refresh();
           setFeedback({
@@ -476,6 +493,7 @@ export function WordMatchGame({ courseId, initialData }: Props) {
       course,
       isSubmitting,
       maybeFinish,
+      player,
       playSessionId,
       questions,
       statuses,

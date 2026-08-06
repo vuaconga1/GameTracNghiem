@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { useI18n } from '@/components/i18n/I18nProvider';
+import { PlayerProvider } from '@/components/player/PlayerContext';
 import { findGameByPathname } from '@/lib/gameCatalog';
 
 import { AppHeader } from './AppHeader';
@@ -12,7 +13,8 @@ import { Sidebar } from './Sidebar';
 import { useSidebar } from './SidebarContext';
 
 type MainShellProps = {
-  displayName: string;
+  displayName?: string;
+  isAuthenticated?: boolean;
   isAdmin?: boolean;
   level?: number;
   tier?: number;
@@ -24,6 +26,7 @@ type MainShellProps = {
 
 export function MainShell({
   displayName,
+  isAuthenticated = false,
   isAdmin = false,
   level,
   tier,
@@ -42,7 +45,8 @@ export function MainShell({
   const isLeaderboard = pathname === '/leaderboard' || pathname.startsWith('/leaderboard/');
 
   const userProps = {
-    displayName,
+    displayName: displayName || t('shell.guest'),
+    isGuest: !isAuthenticated,
     level,
     tier,
     expInLevel,
@@ -115,12 +119,20 @@ export function MainShell({
   }
 
   return (
-    <AppShell
-      layout={isCoursePage ? 'course' : isGamePage || isLeaderboard ? 'game' : 'index'}
-      sidebar={sidebar}
-      header={<AppHeader isAdmin={isAdmin} showMenu={Boolean(sidebar)} />}
-    >
-      {children}
-    </AppShell>
+    <PlayerProvider kind={isAuthenticated ? 'authenticated' : 'guest'}>
+      <AppShell
+        layout={isCoursePage ? 'course' : isGamePage || isLeaderboard ? 'game' : 'index'}
+        sidebar={sidebar}
+        header={
+          <AppHeader
+            isAuthenticated={isAuthenticated}
+            isAdmin={isAdmin}
+            showMenu={Boolean(sidebar)}
+          />
+        }
+      >
+        {children}
+      </AppShell>
+    </PlayerProvider>
   );
 }

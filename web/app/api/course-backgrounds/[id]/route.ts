@@ -1,4 +1,3 @@
-import { requireSession } from '@/lib/auth';
 import { openCourseBackground } from '@/lib/courseBackgroundStorage';
 import { prisma } from '@/lib/db';
 
@@ -8,7 +7,6 @@ type Ctx = { params: Promise<{ id: string }> };
 
 export async function GET(_req: Request, { params }: Ctx) {
   try {
-    await requireSession();
     const { id } = await params;
     const course = await prisma.course.findFirst({
       where: { id, active: true, archivedAt: null },
@@ -29,7 +27,7 @@ export async function GET(_req: Request, { params }: Ctx) {
         'Content-Type': image.contentType,
         ...(image.contentLength ? { 'Content-Length': String(image.contentLength) } : {}),
         'Content-Disposition': 'inline',
-        'Cache-Control': 'private, max-age=300',
+        'Cache-Control': 'public, max-age=300',
       },
     });
   } catch (err) {

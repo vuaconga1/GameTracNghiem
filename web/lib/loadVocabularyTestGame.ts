@@ -87,7 +87,7 @@ function parseItems(value: unknown) {
 
 export async function loadVocabularyTestGame(
   courseId: string,
-  userId: string
+  userId?: string | null,
 ): Promise<VocabularyTestGameData | null> {
   const course = await findPlayableCourseGame(courseId, 'vocabulary_test');
   if (!course) return null;

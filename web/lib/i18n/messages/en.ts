@@ -30,6 +30,7 @@ const en: Messages = {
     start: 'Start',
     startExercise: 'Start practice',
     restartFromStart: 'Start over',
+    login: 'Sign in',
     logout: 'Log out',
     loggingOut: 'Logging out...',
     admin: 'Admin',
@@ -47,6 +48,8 @@ const en: Messages = {
     you: 'You',
   },
   shell: {
+    guest: 'Guest',
+    guestProgress: 'Progress saved in this browser',
     adminRole: 'Administrator',
     studentRole: 'Student',
     level: 'Level {level}',
@@ -94,8 +97,8 @@ const en: Messages = {
     statQuestionsDone: 'questions done',
     statTotalScore: 'total score',
     openEbook: 'Open ebook',
-    speakingDaily: 'AI Speaking (1 turn/day)',
-    practiceSpeaking: 'Speaking practice',
+    speakingDaily: 'AI Speaking hub',
+    practiceSpeaking: '4 activities',
     noGames: 'No exercises enabled for this unit',
     noGamesForSkill: 'No exercises for this skill yet',
     noSkills: 'No skills are enabled for this course.',
@@ -378,7 +381,7 @@ const en: Messages = {
   speaking: {
     title: 'AI Speaking',
     practiceTitle: 'Practice speaking with AI',
-    dailyLimit: '1 turn per day',
+    dailyLimit: 'Activity-based daily limit',
     start: 'Start speaking',
     empty: 'No speaking topic for this course yet',
     loadTopicsFailed: 'Could not load topics',
@@ -386,6 +389,7 @@ const en: Messages = {
     loadFailed: 'Could not load data',
     micDenied: 'Could not access the microphone. Allow mic access in your browser.',
     startedNote: 'Started — today’s turn has been counted',
+    thirtySecondsLeft: '30 seconds left — please finish your answer',
     mixRecordFailed: 'Could not save the mixed recording — the session continues',
     endingTime: 'Time’s up — saving session',
     endingManual: 'Ending session',
@@ -436,6 +440,128 @@ const en: Messages = {
     reviewStatus: 'Review status',
     conversation: 'Conversation',
     turnCount: '{count} turns',
+    audioStartFailed: 'The browser did not start AI audio. Check audio playback permission.',
+    backToSpeakingHub: 'Back to Speaking hub',
+    hub: {
+      eyebrow: 'PRACTISE SPEAKING WITH WEWIN',
+      title: 'AI Speaking hub',
+      subtitle: 'Choose the right activity and start speaking.',
+      subtitleWithCourse: 'Choose a speaking activity for {course}.',
+      activityListAria: 'AI Speaking activity list',
+      loadFailed: 'Could not load AI Speaking status',
+      partialLoadFailed:
+        'Some statuses could not be loaded. You can try again.',
+      enabled: 'Ready',
+      locked: 'Locked',
+      statusUnavailable: 'Status unavailable',
+      difficultyLabel: 'Difficulty',
+      difficulty: {
+        beginner: 'Warm-up',
+        easy: 'Easy',
+        medium: 'Medium',
+        challenge: 'Challenge',
+      },
+      duration: {
+        oneMinute: '1 minute',
+        twoMinutes: '2 minutes',
+        threeMinutes: '3 minutes',
+      },
+      quotaRemaining: '{remaining}/{limit} turns left today',
+      quotaUsed: 'Used {used}/{limit}',
+      entitlementExpiry: 'Access until {date}',
+      openActivityAria: 'Open {activity}',
+      lockedActivityAria: '{activity} is locked, open information',
+      loginCta: 'Sign in to WeWIN',
+      continueGames: 'Continue playing games',
+      activities: {
+        word: {
+          title: 'Word pronunciation',
+          description: 'Listen to a model and practise each word clearly.',
+        },
+        sentence: {
+          title: 'Sentence reading',
+          description: 'Practise rhythm and pronunciation with short sentences.',
+        },
+        guided: {
+          title: 'Guided answer',
+          description: 'Use friendly prompts to answer confidently in English.',
+        },
+        conversation: {
+          title: 'Realtime conversation',
+          description: 'Talk live with WeWIN’s AI assistant.',
+        },
+      },
+    },
+    access: {
+      LOGIN_REQUIRED: {
+        title: 'Sign in for Speaking practice',
+        detail:
+          'AI Speaking is a benefit just for WeWIN students. Sign in with your WeWIN account or open this app from Parent Portal to start speaking!',
+      },
+      NOT_WEWIN_STUDENT: {
+        title: 'WeWIN student profile not linked',
+        detail:
+          'This account is not linked to a WeWIN student profile yet. Open the app again from Parent Portal so WeWIN can recognise your account.',
+      },
+      NO_ACTIVE_COURSE: {
+        title: 'No AI Speaking access for this course',
+        detail:
+          'You do not have AI Speaking access for this course yet. Ask a parent to contact WeWIN for help.',
+      },
+      COURSE_EXPIRED: {
+        title: 'AI Speaking access has expired',
+        detail:
+          'Your speaking access has expired. Ask a parent to contact WeWIN to renew it and keep practising.',
+      },
+      ACCOUNT_SUSPENDED: {
+        title: 'Speaking account is paused',
+        detail:
+          'Your Speaking account is taking a break. Ask a parent to contact WeWIN for help.',
+      },
+      FEATURE_DISABLED: {
+        title: 'This activity is not open yet',
+        detail:
+          'WeWIN is preparing this activity for you. Choose another activity for now.',
+      },
+      DAILY_LIMIT_REACHED: {
+        title: 'You have finished today’s turns',
+        detail:
+          'This activity gets new turns tomorrow. You can still choose another Speaking activity that has turns left.',
+      },
+    },
+    drill: {
+      backToHub: 'Choose another activity',
+      loadFailed: 'Could not load Speaking practice',
+      emptyTitle: 'No practice exercises yet',
+      emptyDetail: 'WeWIN is preparing exercises for this activity.',
+      progress: 'Exercise {current}/{total}',
+      listenSample: 'Listen to sample',
+      listenFailed: 'The sample could not be played.',
+      showHelp: 'Show hints and sample',
+      sampleAnswer: 'Sample answer',
+      micIdle: 'Microphone is off',
+      requestingMic: 'Waiting for microphone permission',
+      countdown: 'Get ready',
+      recording: 'Recording — speak now',
+      recorded: 'Recording ready',
+      waveform: 'Live microphone level',
+      startRecording: 'Start recording',
+      stopRecording: 'Stop recording',
+      playback: 'Listen before submitting',
+      submitRecording: 'Submit for practice feedback',
+      submitFailed:
+        'The recording was not assessed or counted. Please try again.',
+      recordFailed: 'The browser could not record audio.',
+      recordTooShort: 'The recording is too short. Please try again.',
+      unsupportedMic: 'This browser does not support microphone recording.',
+      micDenied:
+        'Microphone permission was not granted. Check browser settings and try again.',
+      practiceFeedback: 'Practice feedback',
+      praise: 'One thing done well',
+      improvement: 'One thing to improve',
+      retry: 'Record again',
+      next: 'Next exercise',
+    },
   },
   admin: {
     title: 'Admin',
