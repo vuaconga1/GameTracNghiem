@@ -1,0 +1,591 @@
+{
+  "unit": 2,
+  "title": "Healthy Living",
+  "source": "PDF/GRADE 7 HK1 (GS) FINAL.pdf (pages 16–27)",
+  "skipped": [
+    {
+      "reason": "Thiếu ảnh",
+      "item": "Look at pictures fill blanks"
+    },
+    {
+      "reason": "S-V-O underline open",
+      "item": "Underline Subject Verb Object"
+    },
+    {
+      "reason": "Reading herbal medicine answer key chưa đủ",
+      "item": "Reading exercises partial"
+    }
+  ],
+  "quiz": [
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. of  B. five  C. leaf  D. off",
+      "answer": "of",
+      "options": [
+        "of",
+        "five",
+        "leaf",
+        "off"
+      ],
+      "accept": [
+        "of",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. very  B. view  C. of  D. van",
+      "answer": "of",
+      "options": [
+        "very",
+        "view",
+        "of",
+        "van"
+      ],
+      "accept": [
+        "of",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Health",
+      "question": "You should ________ exercise regularly.",
+      "answer": "do",
+      "options": [],
+      "accept": [
+        "do",
+        "take"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Health",
+      "question": "I often ________ a cold in winter.",
+      "answer": "have",
+      "options": [],
+      "accept": [
+        "have",
+        "catch",
+        "get"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Health",
+      "question": "She ________ tired after the long walk.",
+      "answer": "felt",
+      "options": [],
+      "accept": [
+        "felt",
+        "feels",
+        "feel"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Health",
+      "question": "Eat more vegetables to stay ________.",
+      "answer": "healthy",
+      "options": [],
+      "accept": [
+        "healthy",
+        "fit"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Health",
+      "question": "Don't eat too much ________ food.",
+      "answer": "junk",
+      "options": [],
+      "accept": [
+        "junk",
+        "fast"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Health",
+      "question": "Wash your hands ________ meals.",
+      "answer": "before",
+      "options": [],
+      "accept": [
+        "before",
+        "after"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Prepositions",
+      "question": "I go to bed ________ 10 p.m.",
+      "answer": "at",
+      "options": [],
+      "accept": [
+        "at"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Prepositions",
+      "question": "She is good ________ swimming.",
+      "answer": "at",
+      "options": [],
+      "accept": [
+        "at"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Prepositions",
+      "question": "He recovered ________ his illness.",
+      "answer": "from",
+      "options": [],
+      "accept": [
+        "from"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U2 Reading — Cloze",
+      "question": "You should exercise ______ to stay healthy.",
+      "answer": "regularly",
+      "options": [
+        "regularly",
+        "regular",
+        "irregular",
+        "irregularly"
+      ],
+      "accept": [
+        "regularly",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U2 Reading — Cloze",
+      "question": "______ sports is good for your body.",
+      "answer": "Playing",
+      "options": [
+        "play",
+        "do",
+        "make",
+        "Playing"
+      ],
+      "accept": [
+        "Playing",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U2 Reading — Cloze",
+      "question": "Drink ______ water every day.",
+      "answer": "a lot of",
+      "options": [
+        "least",
+        "most",
+        "less",
+        "a lot of"
+      ],
+      "accept": [
+        "a lot of",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "Regular exercise keeps you ______. (HEALTH)",
+      "answer": "healthy",
+      "options": [],
+      "accept": [
+        "healthy"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "This food is ______. (NATURE)",
+      "answer": "natural",
+      "options": [],
+      "accept": [
+        "natural"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "She recovered ______. (QUICK)",
+      "answer": "quickly",
+      "options": [],
+      "accept": [
+        "quickly"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "Obesity can be ______. (DANGER)",
+      "answer": "dangerous",
+      "options": [],
+      "accept": [
+        "dangerous"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "We need a ______ diet. (BALANCE)",
+      "answer": "balanced",
+      "options": [],
+      "accept": [
+        "balanced"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U2 Speaking — Match",
+      "question": "How often do you exercise?",
+      "answer": "Three times a week.",
+      "options": [
+        "Three times a week.",
+        "In the park.",
+        "Because I'm tired.",
+        "Yes, I do."
+      ],
+      "accept": [
+        "Three times a week.",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U2 Speaking — Match",
+      "question": "What's the matter with you?",
+      "answer": "I have a headache.",
+      "options": [
+        "I have a headache.",
+        "I'm a student.",
+        "At home.",
+        "Football."
+      ],
+      "accept": [
+        "I have a headache.",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    }
+  ],
+  "grammar": [
+    {
+      "source": "I ______ a temperature.",
+      "prefix": "I",
+      "suffix": "a temperature.",
+      "hint": "U2 Grammar — have/feel",
+      "answers": [
+        "have",
+        "have got"
+      ]
+    },
+    {
+      "source": "She ______ tired today.",
+      "prefix": "She",
+      "suffix": "tired today.",
+      "hint": "U2 Grammar — have/feel",
+      "answers": [
+        "feels",
+        "feel"
+      ]
+    },
+    {
+      "source": "Does he ______ a sore throat?",
+      "prefix": "Does he",
+      "suffix": "a sore throat?",
+      "hint": "U2 Grammar — have/feel",
+      "answers": [
+        "have"
+      ]
+    },
+    {
+      "source": "They ______ sick after the meal.",
+      "prefix": "They",
+      "suffix": "sick after the meal.",
+      "hint": "U2 Grammar — have/feel",
+      "answers": [
+        "felt",
+        "feel"
+      ]
+    },
+    {
+      "source": "She usually ______ (get) up early.",
+      "prefix": "She usually",
+      "suffix": "up early.",
+      "hint": "U2 Grammar — Verb tense",
+      "answers": [
+        "gets"
+      ]
+    },
+    {
+      "source": "He ______ (not eat) junk food.",
+      "prefix": "He",
+      "suffix": "junk food.",
+      "hint": "U2 Grammar — Verb tense",
+      "answers": [
+        "doesn't eat",
+        "does not eat"
+      ]
+    },
+    {
+      "source": "______ you ______ (wash) your hands before meals?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Grammar — Verb tense",
+      "answers": [
+        "Do / wash",
+        "Do you wash"
+      ]
+    },
+    {
+      "source": "I have a toothache.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Writing — Rewrite",
+      "answers": [
+        "My tooth hurts.",
+        "I have a pain in my tooth."
+      ]
+    },
+    {
+      "source": "You should do more exercise.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Writing — Rewrite",
+      "answers": [
+        "You ought to do more exercise.",
+        "You had better do more exercise."
+      ]
+    },
+    {
+      "source": "should/ You/ regularly/ exercise/.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Writing — Reorder the words",
+      "answers": [
+        "You should exercise regularly.",
+        "You should exercise regularly"
+      ]
+    },
+    {
+      "source": "junk/ eat/ shouldn't/ food/ You/.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Writing — Reorder the words",
+      "answers": [
+        "You shouldn't eat junk food.",
+        "You should not eat junk food."
+      ]
+    },
+    {
+      "source": "hands/ Wash/ before/ your/ meals/.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Writing — Reorder the words",
+      "answers": [
+        "Wash your hands before meals.",
+        "Wash your hands before meals"
+      ]
+    }
+  ],
+  "scramble": [
+    {
+      "word": "healthy",
+      "hint": "U2 Health"
+    },
+    {
+      "word": "exercise",
+      "hint": "U2 Health"
+    },
+    {
+      "word": "vitamin",
+      "hint": "U2 Health"
+    },
+    {
+      "word": "temperature",
+      "hint": "U2 Health"
+    },
+    {
+      "word": "headache",
+      "hint": "U2 Health"
+    },
+    {
+      "word": "balanced",
+      "hint": "U2 Health"
+    },
+    {
+      "word": "hygiene",
+      "hint": "U2 Health"
+    },
+    {
+      "word": "protein",
+      "hint": "U2 Health"
+    },
+    {
+      "word": "calorie",
+      "hint": "U2 Health"
+    },
+    {
+      "word": "lifestyle",
+      "hint": "U2 Health"
+    }
+  ],
+  "pronunciation": [
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /f/",
+      "exerciseKey": "F",
+      "targetText": "fit",
+      "targetIpa": "",
+      "hint": "U2"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /f/",
+      "exerciseKey": "F",
+      "targetText": "coffee",
+      "targetIpa": "",
+      "hint": "U2"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /f/",
+      "exerciseKey": "F",
+      "targetText": "leaf",
+      "targetIpa": "",
+      "hint": "U2"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /v/",
+      "exerciseKey": "V",
+      "targetText": "very",
+      "targetIpa": "",
+      "hint": "U2"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /v/",
+      "exerciseKey": "V",
+      "targetText": "vitamin",
+      "targetIpa": "",
+      "hint": "U2"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /v/",
+      "exerciseKey": "V",
+      "targetText": "vegetable",
+      "targetIpa": "",
+      "hint": "U2"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /f/",
+      "exerciseKey": "F",
+      "targetText": "enough",
+      "targetIpa": "",
+      "hint": "U2"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /v/",
+      "exerciseKey": "V",
+      "targetText": "recover",
+      "targetIpa": "",
+      "hint": "U2"
+    }
+  ],
+  "speakingTopic": {
+    "title": "Chat about healthy living",
+    "durationSeconds": 300
+  }
+}

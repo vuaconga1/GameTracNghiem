@@ -28,7 +28,8 @@ import {
 type ActivityDefinition = {
   activityType: SpeakingActivityType;
   icon: string;
-  tone: string;
+  iconClass: string;
+  dataActivity: string;
   titleKey: string;
   descriptionKey: string;
   difficultyKey: string;
@@ -39,7 +40,8 @@ export const SPEAKING_HUB_ACTIVITIES: readonly ActivityDefinition[] = [
   {
     activityType: 'WORD_PRONUNCIATION',
     icon: 'fas fa-volume-high',
-    tone: 'word',
+    iconClass: 'pronunciation',
+    dataActivity: 'speaking-word',
     titleKey: 'speaking.hub.activities.word.title',
     descriptionKey: 'speaking.hub.activities.word.description',
     difficultyKey: 'speaking.hub.difficulty.beginner',
@@ -48,7 +50,8 @@ export const SPEAKING_HUB_ACTIVITIES: readonly ActivityDefinition[] = [
   {
     activityType: 'SENTENCE_READING',
     icon: 'fas fa-book-open-reader',
-    tone: 'sentence',
+    iconClass: 'read-complete',
+    dataActivity: 'speaking-sentence',
     titleKey: 'speaking.hub.activities.sentence.title',
     descriptionKey: 'speaking.hub.activities.sentence.description',
     difficultyKey: 'speaking.hub.difficulty.easy',
@@ -57,7 +60,8 @@ export const SPEAKING_HUB_ACTIVITIES: readonly ActivityDefinition[] = [
   {
     activityType: 'GUIDED_ANSWER',
     icon: 'fas fa-message',
-    tone: 'guided',
+    iconClass: 'look-write',
+    dataActivity: 'speaking-guided',
     titleKey: 'speaking.hub.activities.guided.title',
     descriptionKey: 'speaking.hub.activities.guided.description',
     difficultyKey: 'speaking.hub.difficulty.medium',
@@ -66,7 +70,8 @@ export const SPEAKING_HUB_ACTIVITIES: readonly ActivityDefinition[] = [
   {
     activityType: 'REALTIME_CONVERSATION',
     icon: 'fas fa-comments',
-    tone: 'conversation',
+    iconClass: 'skill-speaking',
+    dataActivity: 'speaking-conversation',
     titleKey: 'speaking.hub.activities.conversation.title',
     descriptionKey: 'speaking.hub.activities.conversation.description',
     difficultyKey: 'speaking.hub.difficulty.challenge',
@@ -83,6 +88,23 @@ type AccessResponse = {
   message?: string;
   access?: SpeakingAccessResult;
 };
+
+function activityProgressLabel(
+  access: SpeakingAccessResult | null | undefined,
+  durationLabel: string,
+  t: (key: string, vars?: Record<string, string | number>) => string,
+) {
+  if (access === null || access === undefined) {
+    return t('speaking.hub.statusUnavailable');
+  }
+  if (!access.allowed) {
+    return t('speaking.hub.locked');
+  }
+  if (access.quota) {
+    return `${access.quota.remaining}/${access.quota.limit}`;
+  }
+  return durationLabel;
+}
 
 export function SpeakingHub({
   courseId,
@@ -145,46 +167,55 @@ export function SpeakingHub({
         href={`/courses/${encodeURIComponent(courseId)}?skill=speaking`}
       />
 
-      <div className="speaking-hub-shell">
-        <header className="speaking-hub-hero">
-          <div className="speaking-hub-hero-icon" aria-hidden="true">
-            <i className="fas fa-microphone-lines" />
+      <div className="detail-body">
+        <div className="book-card">
+          <div className="book-card-top">
+            <div className="book-thumb">
+              <i className="fas fa-microphone-lines" aria-hidden="true" />
+            </div>
+            <div className="book-info">
+              <h2>{courseName || t('speaking.hub.title')}</h2>
+              <p>{t('skills.speaking')}</p>
+            </div>
           </div>
-          <div>
-            <p className="speaking-hub-eyebrow">{t('speaking.hub.eyebrow')}</p>
-            <h1>{t('speaking.hub.title')}</h1>
-            <p>
-              {courseName
-                ? t('speaking.hub.subtitleWithCourse', { course: courseName })
-                : t('speaking.hub.subtitle')}
-            </p>
+        </div>
+
+        <div className="detail-main-panel">
+          <div className="detail-panel">
+            <div className="activity-area">
+              {loading ? (
+                <DataLoading />
+              ) : (
+                <>
+                  {loadError ? (
+                    <div
+                      className="speaking-banner speaking-banner--warn"
+                      role="alert"
+                    >
+                      <i
+                        className="fas fa-triangle-exclamation"
+                        aria-hidden="true"
+                      />
+                      <span>{loadError}</span>
+                      <button
+                        type="button"
+                        className="speaking-hub-retry"
+                        onClick={() => setRetryCount((count) => count + 1)}
+                      >
+                        {t('common.retry')}
+                      </button>
+                    </div>
+                  ) : null}
+
+                  <SpeakingHubCards
+                    courseId={courseId}
+                    accessByActivity={accessByActivity}
+                  />
+                </>
+              )}
+            </div>
           </div>
-        </header>
-
-        {loading ? (
-          <DataLoading />
-        ) : (
-          <>
-            {loadError ? (
-              <div className="speaking-banner speaking-banner--warn" role="alert">
-                <i className="fas fa-triangle-exclamation" aria-hidden="true" />
-                <span>{loadError}</span>
-                <button
-                  type="button"
-                  className="speaking-hub-retry"
-                  onClick={() => setRetryCount((count) => count + 1)}
-                >
-                  {t('common.retry')}
-                </button>
-              </div>
-            ) : null}
-
-            <SpeakingHubCards
-              courseId={courseId}
-              accessByActivity={accessByActivity}
-            />
-          </>
-        )}
+        </div>
       </div>
     </section>
   );
@@ -197,7 +228,7 @@ export function SpeakingHubCards({
   courseId: string;
   accessByActivity: AccessByActivity;
 }) {
-  const { t, locale } = useI18n();
+  const { t } = useI18n();
   const [blockedActivity, setBlockedActivity] =
     useState<ActivityDefinition | null>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
@@ -221,93 +252,39 @@ export function SpeakingHubCards({
   return (
     <>
       <div
-        className="speaking-hub-grid"
+        className="activity-grid"
         aria-label={t('speaking.hub.activityListAria')}
+        data-skill-step="speaking-hub"
       >
+        <div className="skill-games-heading" style={{ gridColumn: '1 / -1' }}>
+          {t('speaking.hub.title')}
+        </div>
         {SPEAKING_HUB_ACTIVITIES.map((activity) => {
           const access = accessByActivity[activity.activityType];
           const href = speakingActivityPath(courseId, activity.activityType);
           const title = t(activity.titleKey);
-          const cardContent = (
+          const progress = activityProgressLabel(
+            access,
+            t(activity.durationKey),
+            t,
+          );
+          const locked = !access?.allowed;
+          const className = locked
+            ? 'activity-card activity-card--locked'
+            : 'activity-card';
+
+          const inner = (
             <>
-              <div
-                className={`speaking-hub-card-icon speaking-hub-card-icon--${activity.tone}`}
-                aria-hidden="true"
-              >
-                <i className={activity.icon} />
-              </div>
-              <div className="speaking-hub-card-body">
-                <div className="speaking-hub-card-heading">
-                  <h2>{title}</h2>
-                  <span
-                    className={`speaking-hub-status ${
-                      access?.allowed ? 'is-enabled' : 'is-locked'
-                    }`}
-                  >
-                    <i
-                      className={
-                        access?.allowed
-                          ? 'fas fa-circle-check'
-                          : 'fas fa-lock'
-                      }
-                      aria-hidden="true"
-                    />
-                    {access === null || access === undefined
-                      ? t('speaking.hub.statusUnavailable')
-                      : access.allowed
-                        ? t('speaking.hub.enabled')
-                        : t('speaking.hub.locked')}
-                  </span>
+              <div className="activity-left">
+                <div
+                  className={`activity-icon ${activity.iconClass}`}
+                  aria-hidden="true"
+                >
+                  <i className={activity.icon} />
                 </div>
-                <p className="speaking-hub-card-description">
-                  {t(activity.descriptionKey)}
-                </p>
-                <div className="speaking-hub-card-meta">
-                  <span>
-                    <i className="fas fa-signal" aria-hidden="true" />
-                    {t('speaking.hub.difficultyLabel')}:{' '}
-                    {t(activity.difficultyKey)}
-                  </span>
-                  <span>
-                    <i className="fas fa-clock" aria-hidden="true" />
-                    {t(activity.durationKey)}
-                  </span>
-                </div>
-                {access?.quota ? (
-                  <div className="speaking-hub-quota">
-                    <span>
-                      {t('speaking.hub.quotaRemaining', {
-                        remaining: access.quota.remaining,
-                        limit: access.quota.limit,
-                      })}
-                    </span>
-                    <span>
-                      {t('speaking.hub.quotaUsed', {
-                        used: access.quota.used,
-                        limit: access.quota.limit,
-                      })}
-                    </span>
-                  </div>
-                ) : null}
-                {access?.entitlementExpiresAt ? (
-                  <p className="speaking-hub-expiry">
-                    <i className="fas fa-calendar-check" aria-hidden="true" />
-                    {t('speaking.hub.entitlementExpiry', {
-                      date: new Intl.DateTimeFormat(
-                        locale === 'en' ? 'en-US' : 'vi-VN',
-                        {
-                          dateStyle: 'medium',
-                          timeZone: 'Asia/Ho_Chi_Minh',
-                        },
-                      ).format(new Date(access.entitlementExpiresAt)),
-                    })}
-                  </p>
-                ) : null}
+                <span className="activity-label">{title}</span>
               </div>
-              <i
-                className="fas fa-chevron-right speaking-hub-card-arrow"
-                aria-hidden="true"
-              />
+              <span className="activity-progress">{progress}</span>
             </>
           );
 
@@ -316,13 +293,15 @@ export function SpeakingHubCards({
               <Link
                 key={activity.activityType}
                 href={href}
-                className="speaking-hub-card"
+                className={className}
+                data-activity={activity.dataActivity}
                 data-speaking-activity={activity.activityType}
+                title={t(activity.descriptionKey)}
                 aria-label={t('speaking.hub.openActivityAria', {
                   activity: title,
                 })}
               >
-                {cardContent}
+                {inner}
               </Link>
             );
           }
@@ -331,8 +310,10 @@ export function SpeakingHubCards({
             <button
               key={activity.activityType}
               type="button"
-              className="speaking-hub-card speaking-hub-card--locked"
+              className={className}
+              data-activity={activity.dataActivity}
               data-speaking-activity={activity.activityType}
+              title={t(activity.descriptionKey)}
               aria-label={t('speaking.hub.lockedActivityAria', {
                 activity: title,
               })}
@@ -340,7 +321,7 @@ export function SpeakingHubCards({
               disabled={!access}
               onClick={(event) => openModal(activity, event)}
             >
-              {cardContent}
+              {inner}
             </button>
           );
         })}
@@ -409,8 +390,7 @@ export function SpeakingLockedModal({
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  const key =
-    reason === 'ALLOWED' ? 'FEATURE_DISABLED' : reason;
+  const key = reason === 'ALLOWED' ? 'FEATURE_DISABLED' : reason;
 
   return (
     <div
@@ -440,12 +420,8 @@ export function SpeakingLockedModal({
           <i className="fas fa-lock" />
         </div>
         <p className="speaking-hub-modal-activity">{activityTitle}</p>
-        <h2 id="speaking-access-title">
-          {t(`speaking.access.${key}.title`)}
-        </h2>
-        <p id="speaking-access-detail">
-          {t(`speaking.access.${key}.detail`)}
-        </p>
+        <h2 id="speaking-access-title">{t(`speaking.access.${key}.title`)}</h2>
+        <p id="speaking-access-detail">{t(`speaking.access.${key}.detail`)}</p>
         <div className="speaking-hub-modal-actions">
           {reason === 'LOGIN_REQUIRED' ? (
             <Link

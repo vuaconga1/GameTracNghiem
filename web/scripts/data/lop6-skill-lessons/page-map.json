@@ -1,0 +1,38 @@
+{
+  "1": [
+    { "skillId": "speaking", "pageStart": 1, "pageEnd": 2 },
+    { "skillId": "vocabulary", "pageStart": 3, "pageEnd": 9 },
+    { "skillId": "writing", "pageStart": 10, "pageEnd": 13 },
+    { "skillId": "reading", "pageStart": 14, "pageEnd": 16 }
+  ],
+  "2": [
+    { "skillId": "speaking", "pageStart": 17, "pageEnd": 18 },
+    { "skillId": "vocabulary", "pageStart": 19, "pageEnd": 23 },
+    { "skillId": "writing", "pageStart": 24, "pageEnd": 26 },
+    { "skillId": "reading", "pageStart": 27, "pageEnd": 30 }
+  ],
+  "3": [
+    { "skillId": "speaking", "pageStart": 31, "pageEnd": 31 },
+    { "skillId": "vocabulary", "pageStart": 32, "pageEnd": 36 },
+    { "skillId": "writing", "pageStart": 37, "pageEnd": 40 },
+    { "skillId": "reading", "pageStart": 41, "pageEnd": 43 }
+  ],
+  "4": [
+    { "skillId": "speaking", "pageStart": 44, "pageEnd": 45 },
+    { "skillId": "vocabulary", "pageStart": 46, "pageEnd": 49 },
+    { "skillId": "writing", "pageStart": 50, "pageEnd": 52 },
+    { "skillId": "reading", "pageStart": 53, "pageEnd": 56 }
+  ],
+  "5": [
+    { "skillId": "speaking", "pageStart": 57, "pageEnd": 57 },
+    { "skillId": "vocabulary", "pageStart": 58, "pageEnd": 62 },
+    { "skillId": "writing", "pageStart": 63, "pageEnd": 67 },
+    { "skillId": "reading", "pageStart": 68, "pageEnd": 70 }
+  ],
+  "6": [
+    { "skillId": "speaking", "pageStart": 71, "pageEnd": 72 },
+    { "skillId": "vocabulary", "pageStart": 73, "pageEnd": 78 },
+    { "skillId": "writing", "pageStart": 79, "pageEnd": 83 },
+    { "skillId": "reading", "pageStart": 84, "pageEnd": 85 }
+  ]
+}

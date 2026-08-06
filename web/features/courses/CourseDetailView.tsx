@@ -11,9 +11,7 @@ import { usePlayer } from '@/components/player/PlayerContext';
 import { EbookViewer } from '@/features/courses/EbookViewer';
 import { localizeExerciseTitle } from '@/features/games/localizeExerciseTitle';
 import {
-  isLogisticsLevelName,
   resolveCourseEbookPagesForSkill,
-  resolveDirectUnitLessonPages,
 } from '@/lib/courseSkillLesson';
 import { GAME_CATALOG, type ProgressStatus } from '@/lib/gameCatalog';
 import type {
@@ -178,11 +176,8 @@ export function CourseDetailContent({
     data.course.enabledGames
   );
   const skillCards = visibleSkillsForCourse(enabledSkills);
-  const logisticsDirectLesson = isLogisticsLevelName(data.course.levelName);
   const selectedSkill =
-    !logisticsDirectLesson && skillFromUrl && enabledSkills.includes(skillFromUrl)
-      ? skillFromUrl
-      : null;
+    skillFromUrl && enabledSkills.includes(skillFromUrl) ? skillFromUrl : null;
   const activities = selectedSkill
     ? gamesForSkillOnCourse(gameSkills, enabledSkills, selectedSkill, data.course.enabledGames)
     : GAME_CATALOG.filter((activity) => visibleGameKeys.includes(activity.key));
@@ -194,12 +189,8 @@ export function CourseDetailContent({
     liveActivityKeys
   );
   const totalScore = data.totalScore ?? 0;
-  const showSkillTabs = Boolean(selectedSkill) && !logisticsDirectLesson;
-  const effectiveTab: DetailTab = logisticsDirectLesson
-    ? 'lesson'
-    : showSkillTabs
-      ? activeTab
-      : 'exercises';
+  const showSkillTabs = Boolean(selectedSkill);
+  const effectiveTab: DetailTab = showSkillTabs ? activeTab : 'exercises';
   const showBookCard = effectiveTab === 'exercises';
   const showSkillCards = effectiveTab === 'exercises' && !selectedSkill;
   const showGameGrid = effectiveTab === 'exercises' && Boolean(selectedSkill);
@@ -208,18 +199,12 @@ export function CourseDetailContent({
   const unitEbook = data.course.ebook
     ? { pageStart: data.course.ebook.pageStart, pageEnd: data.course.ebook.pageEnd }
     : null;
-  const lessonPages = logisticsDirectLesson
-    ? resolveDirectUnitLessonPages({
-        unitEbook,
-        skillLessons: data.course.skillLessons,
-      })
-    : resolveCourseEbookPagesForSkill({
-        skillId: selectedSkill,
-        unitEbook,
-        skillLessons: data.course.skillLessons,
-      });
-  const showLessonViewer =
-    logisticsDirectLesson || (showSkillTabs && effectiveTab === 'lesson');
+  const lessonPages = resolveCourseEbookPagesForSkill({
+    skillId: selectedSkill,
+    unitEbook,
+    skillLessons: data.course.skillLessons,
+  });
+  const showLessonViewer = showSkillTabs && effectiveTab === 'lesson';
   const comingSoonLabel = t('course.comingSoon');
 
   return (
@@ -278,13 +263,7 @@ export function CourseDetailContent({
           ) : null}
 
           {showLessonViewer ? (
-            <div
-              className={
-                logisticsDirectLesson || effectiveTab === 'lesson'
-                  ? 'detail-panel'
-                  : 'detail-panel is-hidden'
-              }
-            >
+            <div className="detail-panel">
               {lessonPages.kind === 'unit' || lessonPages.kind === 'skill' ? (
                 <EbookViewer
                   ebookId={data.course.ebook!.id}
@@ -303,20 +282,34 @@ export function CourseDetailContent({
             </div>
           ) : null}
 
-          <div
-            className={
-              !logisticsDirectLesson && effectiveTab === 'exercises'
-                ? 'detail-panel'
-                : 'detail-panel is-hidden'
-            }
-          >
+          <div className={effectiveTab === 'exercises' ? 'detail-panel' : 'detail-panel is-hidden'}>
             <div className="activity-area">
               {showSkillCards ? (
                 <div className="activity-grid skill-grid" data-skill-step="skills">
-                  {skillCards.length === 0 ? (
-                    <div className="ebook-empty">{t('course.noSkills')}</div>
-                  ) : (
-                    skillCards.map((skill) => {
+                  {(() => {
+                    const visibleSkillCards = skillCards.filter((skill) => {
+                      const skillGames = gamesForSkillOnCourse(
+                        gameSkills,
+                        enabledSkills,
+                        skill.id,
+                        data.course.enabledGames
+                      );
+                      const liveKeys = skillGames
+                        .filter((game) => game.live)
+                        .map((game) => game.key);
+                      const stats =
+                        data.skillStats?.[skill.id] ??
+                        aggregateActivityStats(data.games, liveKeys);
+                      // Speaking stays visible: AI Speaking hub is available without question rows.
+                      if (skill.id === 'speaking') return true;
+                      return stats.totalQuestions > 0;
+                    });
+
+                    if (visibleSkillCards.length === 0) {
+                      return <div className="ebook-empty">{t('course.noSkills')}</div>;
+                    }
+
+                    return visibleSkillCards.map((skill) => {
                       const skillGames = gamesForSkillOnCourse(
                         gameSkills,
                         enabledSkills,
@@ -332,9 +325,9 @@ export function CourseDetailContent({
                       const progress =
                         stats.totalQuestions > 0
                           ? `${stats.completedQuestions}/${stats.totalQuestions}`
-                          : skillGames.length === 0
-                            ? t('course.noExercisesYet')
-                            : '—';
+                          : skill.id === 'speaking'
+                            ? t('course.practiceSpeaking')
+                            : t('course.noExercisesYet');
                       return (
                         <Link
                           key={skill.id}
@@ -351,8 +344,8 @@ export function CourseDetailContent({
                           <span className="activity-progress">{progress}</span>
                         </Link>
                       );
-                    })
-                  )}
+                    });
+                  })()}
                 </div>
               ) : null}
 
@@ -382,21 +375,23 @@ export function CourseDetailContent({
                       <span className="activity-progress">{t('course.practiceSpeaking')}</span>
                     </Link>
                   ) : null}
-                  {activities.length === 0 && selectedSkill !== 'speaking' ? (
-                    <div className="ebook-empty" style={{ gridColumn: '1 / -1' }}>
-                      {t('course.noGamesForSkill')}
-                    </div>
-                  ) : (
-                    activities.flatMap((activity) => {
+                  {(() => {
+                    const gameCards = activities.flatMap((activity) => {
                       const detail = data.games?.[activity.key];
                       const skillSlice =
                         selectedSkill && data.skillStats?.[selectedSkill]?.byGame?.[activity.key]
                           ? data.skillStats[selectedSkill]!.byGame[activity.key]
                           : null;
+                      const questionCount =
+                        skillSlice?.questionCount ?? detail?.questionCount ?? 0;
                       const grammarExerciseCards =
                         selectedSkill === 'writing' && activity.key === 'grammar'
                           ? data.gameExercises?.grammar || []
                           : [];
+                      // Hide every game card with no question content (all grades).
+                      if (activity.live && questionCount <= 0) {
+                        return [];
+                      }
                       const progress = activityProgress(
                         detail,
                         activity.live,
@@ -418,10 +413,6 @@ export function CourseDetailContent({
                       );
 
                       if (activity.live) {
-                        // Hide skill-scoped games that have zero questions for this skill.
-                        if (skillSlice && skillSlice.questionCount <= 0) {
-                          return [];
-                        }
                         if (grammarExerciseCards.length > 1) {
                           return grammarExerciseCards.map((card) => (
                             <Link
@@ -470,8 +461,17 @@ export function CourseDetailContent({
                           {inner}
                         </div>,
                       ];
-                    })
-                  )}
+                    });
+
+                    if (gameCards.length === 0 && selectedSkill !== 'speaking') {
+                      return (
+                        <div className="ebook-empty" style={{ gridColumn: '1 / -1' }}>
+                          {t('course.noGamesForSkill')}
+                        </div>
+                      );
+                    }
+                    return gameCards;
+                  })()}
                 </div>
               ) : null}
             </div>

@@ -1,0 +1,509 @@
+{
+  "unit": 4,
+  "title": "Music And Arts",
+  "source": "PDF/GRADE 7 HK1 (GS) FINAL.pdf (pages 41–53)",
+  "skipped": [
+    {
+      "reason": "Thiếu ảnh",
+      "item": "Put words under pictures"
+    },
+    {
+      "reason": "Reading dialogue dense",
+      "item": "Reading exercises partial"
+    }
+  ],
+  "quiz": [
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U4 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. dish  B. sugar  C. shoes  D. sing",
+      "answer": "sing",
+      "options": [
+        "dish",
+        "sugar",
+        "shoes",
+        "sing"
+      ],
+      "accept": [
+        "sing",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U4 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. vision  B. pressure  C. washer  D. machine",
+      "answer": "vision",
+      "options": [
+        "vision",
+        "pressure",
+        "washer",
+        "machine"
+      ],
+      "accept": [
+        "vision",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U4 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. division  B. occasion  C. leisure  D. ensure",
+      "answer": "ensure",
+      "options": [
+        "division",
+        "occasion",
+        "leisure",
+        "ensure"
+      ],
+      "accept": [
+        "ensure",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U4 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. chauffeur  B. shampoo  C. children  D. cashier",
+      "answer": "children",
+      "options": [
+        "chauffeur",
+        "shampoo",
+        "children",
+        "cashier"
+      ],
+      "accept": [
+        "children",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U4 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. exhibition  B. revision  C. anxious  D. social",
+      "answer": "anxious",
+      "options": [
+        "exhibition",
+        "revision",
+        "anxious",
+        "social"
+      ],
+      "accept": [
+        "anxious",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Vocabulary — Arts",
+      "question": "She can play the ______ very well.",
+      "answer": "piano",
+      "options": [],
+      "accept": [
+        "piano",
+        "guitar"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Vocabulary — Arts",
+      "question": "This ______ was painted by a famous artist.",
+      "answer": "picture",
+      "options": [],
+      "accept": [
+        "picture",
+        "painting"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Vocabulary — Arts",
+      "question": "We went to an art ______ last week.",
+      "answer": "exhibition",
+      "options": [],
+      "accept": [
+        "exhibition",
+        "gallery"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Vocabulary — Arts",
+      "question": "Pop ______ is popular among teenagers.",
+      "answer": "music",
+      "options": [],
+      "accept": [
+        "music"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Vocabulary — Arts",
+      "question": "He likes drawing ______.",
+      "answer": "cartoons",
+      "options": [],
+      "accept": [
+        "comics",
+        "cartoons"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U4 Speaking — Match",
+      "question": "What kind of music do you like?",
+      "answer": "I like pop music.",
+      "options": [
+        "I like pop music.",
+        "In the cinema.",
+        "Yes, I can.",
+        "At 7 p.m."
+      ],
+      "accept": [
+        "I like pop music.",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U4 Speaking — Match",
+      "question": "Can you play any musical instruments?",
+      "answer": "Yes, I can play the guitar.",
+      "options": [
+        "Yes, I can play the guitar.",
+        "I like painting.",
+        "Twice a week.",
+        "It's boring."
+      ],
+      "accept": [
+        "Yes, I can play the guitar.",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "She is a famous ______. (ART)",
+      "answer": "artist",
+      "options": [],
+      "accept": [
+        "artist"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "The concert was ______. (WONDER)",
+      "answer": "wonderful",
+      "options": [],
+      "accept": [
+        "wonderful"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "He is a talented ______. (MUSIC)",
+      "answer": "musician",
+      "options": [],
+      "accept": [
+        "musician"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "This song is very ______. (ATTRACT)",
+      "answer": "attractive",
+      "options": [],
+      "accept": [
+        "attractive"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "They had a great musical ______. (PERFORM)",
+      "answer": "performance",
+      "options": [],
+      "accept": [
+        "performance"
+      ],
+      "fillMode": true
+    }
+  ],
+  "grammar": [
+    {
+      "source": "She sings ______ her sister. (well)",
+      "prefix": "She sings",
+      "suffix": "her sister.",
+      "hint": "U4 Grammar — as ... as",
+      "answers": [
+        "as well as"
+      ]
+    },
+    {
+      "source": "This song is ______ that one. (popular)",
+      "prefix": "This song is",
+      "suffix": "that one.",
+      "hint": "U4 Grammar — as ... as",
+      "answers": [
+        "as popular as"
+      ]
+    },
+    {
+      "source": "He doesn't paint ______ Picasso. (creatively)",
+      "prefix": "He doesn't paint",
+      "suffix": "Picasso.",
+      "hint": "U4 Grammar — as ... as",
+      "answers": [
+        "as creatively as"
+      ]
+    },
+    {
+      "source": "My guitar is ______ yours. (good)",
+      "prefix": "My guitar is",
+      "suffix": "yours.",
+      "hint": "U4 Grammar — as ... as",
+      "answers": [
+        "as good as"
+      ]
+    },
+    {
+      "source": "My taste in music is different from yours.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U4 Grammar — different from / the same as",
+      "answers": [
+        "My taste in music is different from yours.",
+        "My taste in music is different from yours"
+      ]
+    },
+    {
+      "source": "This painting is the same as that one.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U4 Grammar — different from / the same as",
+      "answers": [
+        "This painting is the same as that one.",
+        "This painting is the same as that one"
+      ]
+    },
+    {
+      "source": "This film is not as interesting as that film.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U4 Writing — Rewrite",
+      "answers": [
+        "That film is more interesting than this film.",
+        "That film is more interesting than this one."
+      ]
+    },
+    {
+      "source": "My singing is the same as yours.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U4 Writing — Rewrite",
+      "answers": [
+        "I sing as well as you.",
+        "I sing as well as you do."
+      ]
+    },
+    {
+      "source": "plays/ She/ piano/ the/ beautifully/.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U4 Writing — Reorder the words",
+      "answers": [
+        "She plays the piano beautifully.",
+        "She plays the piano beautifully"
+      ]
+    },
+    {
+      "source": "as/ not/ This/ song/ popular/ that/ as/ is/.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U4 Writing — Reorder the words",
+      "answers": [
+        "This song is not as popular as that.",
+        "This song is not as popular as that one."
+      ]
+    }
+  ],
+  "scramble": [
+    {
+      "word": "piano",
+      "hint": "U4 Arts"
+    },
+    {
+      "word": "guitar",
+      "hint": "U4 Arts"
+    },
+    {
+      "word": "artist",
+      "hint": "U4 Arts"
+    },
+    {
+      "word": "melody",
+      "hint": "U4 Arts"
+    },
+    {
+      "word": "concert",
+      "hint": "U4 Arts"
+    },
+    {
+      "word": "painting",
+      "hint": "U4 Arts"
+    },
+    {
+      "word": "gallery",
+      "hint": "U4 Arts"
+    },
+    {
+      "word": "opera",
+      "hint": "U4 Arts"
+    },
+    {
+      "word": "sculpture",
+      "hint": "U4 Arts"
+    },
+    {
+      "word": "cinema",
+      "hint": "U4 Arts"
+    }
+  ],
+  "pronunciation": [
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʃ/",
+      "exerciseKey": "SH",
+      "targetText": "shoes",
+      "targetIpa": "",
+      "hint": "U4"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʃ/",
+      "exerciseKey": "SH",
+      "targetText": "sugar",
+      "targetIpa": "",
+      "hint": "U4"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʒ/",
+      "exerciseKey": "ZH",
+      "targetText": "vision",
+      "targetIpa": "",
+      "hint": "U4"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʒ/",
+      "exerciseKey": "ZH",
+      "targetText": "leisure",
+      "targetIpa": "",
+      "hint": "U4"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʃ/",
+      "exerciseKey": "SH",
+      "targetText": "machine",
+      "targetIpa": "",
+      "hint": "U4"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʃ/",
+      "exerciseKey": "SH",
+      "targetText": "exhibition",
+      "targetIpa": "",
+      "hint": "U4"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʒ/",
+      "exerciseKey": "ZH",
+      "targetText": "television",
+      "targetIpa": "",
+      "hint": "U4"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʃ/",
+      "exerciseKey": "SH",
+      "targetText": "musician",
+      "targetIpa": "",
+      "hint": "U4"
+    }
+  ],
+  "speakingTopic": {
+    "title": "Chat about music and arts",
+    "durationSeconds": 300
+  }
+}

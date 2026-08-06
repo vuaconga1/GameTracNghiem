@@ -154,7 +154,7 @@ describe('CourseDetailContent', () => {
     expect(html).not.toContain('class="ebook-flip-root"');
   });
 
-  it('defaults to exercises tab with five skill cards', () => {
+  it('defaults to exercises tab and hides skill cards without questions', () => {
     const html = renderContent(createElement(CourseDetailContent, { data: sampleData }));
 
     expect(html).toContain('class="book-card"');
@@ -169,27 +169,67 @@ describe('CourseDetailContent', () => {
     expect(html).not.toContain('Bài học');
 
     expect(html).toContain('data-skill-step="skills"');
-    expect(html).toContain('Luyện kỹ năng nghe');
-    expect(html).toContain('Luyện kỹ năng đọc');
-    expect(html).toContain('Luyện kỹ năng nói');
-    expect(html).toContain('Luyện kỹ năng viết');
+    // sampleData only has quiz (vocabulary) + grammar (writing); speaking kept for AI hub.
     expect(html).toContain('Luyện từ vựng');
-    expect(html).toContain('href="/courses/course-1?skill=listening"');
-    expect(html).toContain('href="/courses/course-1?skill=reading"');
-    expect(html).toContain('href="/courses/course-1?skill=speaking"');
-    expect(html).toContain('href="/courses/course-1?skill=writing"');
+    expect(html).toContain('Luyện kỹ năng viết');
+    expect(html).toContain('Luyện kỹ năng nói');
     expect(html).toContain('href="/courses/course-1?skill=vocabulary"');
+    expect(html).toContain('href="/courses/course-1?skill=writing"');
+    expect(html).toContain('href="/courses/course-1?skill=speaking"');
+    expect(html).not.toContain('href="/courses/course-1?skill=listening"');
+    expect(html).not.toContain('href="/courses/course-1?skill=reading"');
     expect(html).not.toContain('href="/games/grammar/course-1"');
   });
 
-  it('opens Logistics units directly on the lesson slides', () => {
+  it('hides skill cards that have zero question content', () => {
+    const data: CourseDetailData = {
+      ...sampleData,
+      skillStats: {
+        listening: {
+          totalQuestions: 0,
+          completedQuestions: 0,
+          byGame: {},
+        },
+        reading: {
+          totalQuestions: 24,
+          completedQuestions: 0,
+          byGame: { quiz: { questionCount: 24, completedCount: 0 } },
+        },
+        speaking: {
+          totalQuestions: 20,
+          completedQuestions: 0,
+          byGame: { pronunciation: { questionCount: 20, completedCount: 0 } },
+        },
+        writing: {
+          totalQuestions: 0,
+          completedQuestions: 0,
+          byGame: {},
+        },
+        vocabulary: {
+          totalQuestions: 21,
+          completedQuestions: 0,
+          byGame: { scramble: { questionCount: 21, completedCount: 0 } },
+        },
+      },
+    };
+    const html = renderContent(createElement(CourseDetailContent, { data }));
+
+    expect(html).toContain('href="/courses/course-1?skill=reading"');
+    expect(html).toContain('href="/courses/course-1?skill=speaking"');
+    expect(html).toContain('href="/courses/course-1?skill=vocabulary"');
+    expect(html).not.toContain('href="/courses/course-1?skill=listening"');
+    expect(html).not.toContain('href="/courses/course-1?skill=writing"');
+  });
+
+  it('shows Logistics units with skill cards like other levels', () => {
     const data: CourseDetailData = {
       ...sampleData,
       course: {
         ...sampleData.course,
         name: 'Level 1: English for Logistics & Supply Chain',
         levelName: 'English For Logictics',
-        enabledSkills: ['vocabulary'],
+        enabledSkills: ['vocabulary', 'speaking'],
+        enabledGames: ['scramble', 'pronunciation'],
         ebook: {
           id: 'ebook-logistics',
           title: 'Logistics',
@@ -200,21 +240,81 @@ describe('CourseDetailContent', () => {
           vocabulary: { pageStart: 3, pageEnd: 6 },
         },
       },
+      games: {
+        scramble: { questionCount: 8, statuses: Array(8).fill('empty') },
+        pronunciation: { questionCount: 8, statuses: Array(8).fill('empty') },
+      },
+      skillStats: {
+        vocabulary: {
+          totalQuestions: 8,
+          completedQuestions: 0,
+          byGame: { scramble: { questionCount: 8, completedCount: 0 } },
+        },
+        speaking: {
+          totalQuestions: 8,
+          completedQuestions: 0,
+          byGame: { pronunciation: { questionCount: 8, completedCount: 0 } },
+        },
+      },
     };
     const html = renderContent(createElement(CourseDetailContent, { data }));
 
-    expect(html).toContain('detail-body--lesson-full');
-    expect(html).toContain('class="ebook-flip-root"');
-    expect(html).not.toContain('data-skill-step="skills"');
-    expect(html).not.toContain('Luyện từ vựng');
-    expect(html).not.toContain('class="detail-tabs tabs-secondary"');
-    expect(html).toContain('href="/"');
+    expect(html).not.toContain('detail-body--lesson-full');
+    expect(html).toContain('data-skill-step="skills"');
+    expect(html).toContain('Luyện từ vựng');
+    expect(html).toContain('href="/courses/course-1?skill=vocabulary"');
+    expect(html).toContain('href="/courses/course-1?skill=speaking"');
+    expect(html).not.toContain('class="ebook-flip-root"');
+  });
+
+  it('hides game cards with zero question content', () => {
+    const skill: SkillId = 'vocabulary';
+    const data: CourseDetailData = {
+      ...sampleData,
+      games: {
+        quiz: { questionCount: 2, statuses: ['correct', 'correct'] },
+        scramble: { questionCount: 0, statuses: [] },
+      },
+      skillStats: {
+        vocabulary: {
+          totalQuestions: 2,
+          completedQuestions: 2,
+          byGame: {
+            quiz: { questionCount: 2, completedCount: 2 },
+            scramble: { questionCount: 0, completedCount: 0 },
+          },
+        },
+      },
+    };
+    const html = renderContent(
+      createElement(CourseDetailContent, { data, initialSkill: skill }),
+    );
+
+    expect(html).toContain('href="/games/quiz/course-1?skill=vocabulary"');
+    expect(html).not.toContain('href="/games/scramble/course-1"');
   });
 
   it('shows quiz and scramble under vocabulary skill', () => {
     const skill: SkillId = 'vocabulary';
+    const data: CourseDetailData = {
+      ...sampleData,
+      games: {
+        ...sampleData.games,
+        scramble: { questionCount: 5, statuses: Array(5).fill('empty') },
+      },
+      skillStats: {
+        vocabulary: {
+          totalQuestions: 7,
+          completedQuestions: 2,
+          byGame: {
+            quiz: { questionCount: 2, completedCount: 2 },
+            scramble: { questionCount: 5, completedCount: 0 },
+          },
+        },
+      },
+    };
     const html = renderContent(
-      createElement(CourseDetailContent, { data: sampleData, initialSkill: skill }),
+      createElement(CourseDetailContent, { data: data, initialSkill: skill }),
     );
 
     expect(html).toContain('href="/courses/course-1"');

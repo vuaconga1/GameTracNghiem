@@ -1,0 +1,547 @@
+{
+  "unit": 5,
+  "title": "Food And Drink",
+  "source": "PDF/GRADE 7 HK1 (GS) FINAL.pdf (pages 54–68)",
+  "skipped": [
+    {
+      "reason": "Thiếu ảnh",
+      "item": "Picture cues / complete words"
+    },
+    {
+      "reason": "Cột countable grouping UI",
+      "item": "Put words in columns"
+    }
+  ],
+  "quiz": [
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U5 Vocabulary — Food",
+      "question": "Phở is a traditional Vietnamese ______.",
+      "answer": "dish",
+      "options": [],
+      "accept": [
+        "dish",
+        "soup"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U5 Vocabulary — Food",
+      "question": "Add some ______ to the soup.",
+      "answer": "salt",
+      "options": [],
+      "accept": [
+        "salt",
+        "pepper"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U5 Vocabulary — Food",
+      "question": "I would like a ______ of tea.",
+      "answer": "cup",
+      "options": [],
+      "accept": [
+        "cup",
+        "glass"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U5 Vocabulary — Food",
+      "question": "Orange juice is my favourite ______.",
+      "answer": "drink",
+      "options": [],
+      "accept": [
+        "drink",
+        "beverage"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U5 Vocabulary — Food",
+      "question": "We need ______ rice for dinner.",
+      "answer": "some",
+      "options": [],
+      "accept": [
+        "some",
+        "any"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U5 Vocabulary — Countable",
+      "question": "Which noun is uncountable?",
+      "answer": "rice",
+      "options": [
+        "apple",
+        "egg",
+        "rice",
+        "banana"
+      ],
+      "accept": [
+        "rice",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U5 Vocabulary — Countable",
+      "question": "Which noun is countable?",
+      "answer": "sandwich",
+      "options": [
+        "milk",
+        "butter",
+        "water",
+        "sandwich"
+      ],
+      "accept": [
+        "sandwich",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U5 Grammar — Quantifiers",
+      "question": "There isn't ______ milk in the fridge.",
+      "answer": "any",
+      "options": [],
+      "accept": [
+        "any"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U5 Grammar — Quantifiers",
+      "question": "There are ______ apples on the table.",
+      "answer": "some",
+      "options": [],
+      "accept": [
+        "some",
+        "a lot of",
+        "many"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U5 Grammar — Quantifiers",
+      "question": "How ______ sugar do you need?",
+      "answer": "much",
+      "options": [],
+      "accept": [
+        "much"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U5 Grammar — Quantifiers",
+      "question": "How ______ eggs are there?",
+      "answer": "many",
+      "options": [],
+      "accept": [
+        "many"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U5 Grammar — Quantifiers",
+      "question": "I'd like ______ orange, please.",
+      "answer": "an",
+      "options": [],
+      "accept": [
+        "an"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U5 Grammar — Quantifiers",
+      "question": "There is ______ lot of food at the party.",
+      "answer": "a",
+      "options": [],
+      "accept": [
+        "a"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U5 Word form",
+      "question": "This cake is ______. (TASTE)",
+      "answer": "tasty",
+      "options": [],
+      "accept": [
+        "tasty",
+        "tasteful"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U5 Word form",
+      "question": "She is a good ______. (COOK)",
+      "answer": "cook",
+      "options": [],
+      "accept": [
+        "cook",
+        "cooker"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U5 Word form",
+      "question": "The ______ of the dish is amazing. (FRESH)",
+      "answer": "freshness",
+      "options": [],
+      "accept": [
+        "freshness"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U5 Word form",
+      "question": "Eating junk food is ______. (HEALTH)",
+      "answer": "unhealthy",
+      "options": [],
+      "accept": [
+        "unhealthy"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U5 Speaking — Match",
+      "question": "Would you like some tea?",
+      "answer": "Yes, please.",
+      "options": [
+        "Yes, please.",
+        "I play football.",
+        "At school.",
+        "Because I'm hungry."
+      ],
+      "accept": [
+        "Yes, please.",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U5 Speaking — Match",
+      "question": "How much milk do we need?",
+      "answer": "Two litres.",
+      "options": [
+        "Two litres.",
+        "Yes, I do.",
+        "In the kitchen.",
+        "It's delicious."
+      ],
+      "accept": [
+        "Two litres.",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    }
+  ],
+  "grammar": [
+    {
+      "source": "Have you got ______ potatoes?",
+      "prefix": "Have you got",
+      "suffix": "potatoes?",
+      "hint": "U5 Grammar — a/an/some/any/much/many",
+      "answers": [
+        "any"
+      ]
+    },
+    {
+      "source": "I'd like ______ bread.",
+      "prefix": "I'd like",
+      "suffix": "bread.",
+      "hint": "U5 Grammar — a/an/some/any/much/many",
+      "answers": [
+        "some"
+      ]
+    },
+    {
+      "source": "There isn't ______ milk left.",
+      "prefix": "There isn't",
+      "suffix": "milk left.",
+      "hint": "U5 Grammar — a/an/some/any/much/many",
+      "answers": [
+        "any"
+      ]
+    },
+    {
+      "source": "There are ______ oranges in the basket.",
+      "prefix": "There are",
+      "suffix": "oranges in the basket.",
+      "hint": "U5 Grammar — a/an/some/any/much/many",
+      "answers": [
+        "some",
+        "many",
+        "a lot of"
+      ]
+    },
+    {
+      "source": "She bought ______ egg and ______ butter.",
+      "prefix": "She bought",
+      "suffix": "egg and butter.",
+      "hint": "U5 Grammar — a/an/some/any/much/many",
+      "answers": [
+        "an / some",
+        "an, some"
+      ]
+    },
+    {
+      "source": "______ water do you drink a day?",
+      "prefix": "",
+      "suffix": "water do you drink a day?",
+      "hint": "U5 Grammar — How much/How many",
+      "answers": [
+        "How much"
+      ]
+    },
+    {
+      "source": "______ apples are there?",
+      "prefix": "",
+      "suffix": "apples are there?",
+      "hint": "U5 Grammar — How much/How many",
+      "answers": [
+        "How many"
+      ]
+    },
+    {
+      "source": "______ sugar do we need?",
+      "prefix": "",
+      "suffix": "sugar do we need?",
+      "hint": "U5 Grammar — How much/How many",
+      "answers": [
+        "How much"
+      ]
+    },
+    {
+      "source": "______ bottles of juice have you had?",
+      "prefix": "",
+      "suffix": "bottles of juice have you had?",
+      "hint": "U5 Grammar — How much/How many",
+      "answers": [
+        "How many"
+      ]
+    },
+    {
+      "source": "like/ I'd/ some/ noodles/.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U5 Writing — Reorder the words",
+      "answers": [
+        "I'd like some noodles.",
+        "I would like some noodles."
+      ]
+    },
+    {
+      "source": "much/ How/ milk/ there/ is/?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U5 Writing — Reorder the words",
+      "answers": [
+        "How much milk is there?",
+        "How much milk is there"
+      ]
+    },
+    {
+      "source": "There are a lot of bananas.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U5 Writing — Rewrite",
+      "answers": [
+        "There are many bananas.",
+        "There are lots of bananas."
+      ]
+    },
+    {
+      "source": "I don't have any sugar.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U5 Writing — Rewrite",
+      "answers": [
+        "I have no sugar.",
+        "There isn't any sugar."
+      ]
+    }
+  ],
+  "scramble": [
+    {
+      "word": "noodles",
+      "hint": "U5 Food"
+    },
+    {
+      "word": "pancake",
+      "hint": "U5 Food"
+    },
+    {
+      "word": "sandwich",
+      "hint": "U5 Food"
+    },
+    {
+      "word": "lemonade",
+      "hint": "U5 Food"
+    },
+    {
+      "word": "vinegar",
+      "hint": "U5 Food"
+    },
+    {
+      "word": "ingredient",
+      "hint": "U5 Food"
+    },
+    {
+      "word": "recipe",
+      "hint": "U5 Food"
+    },
+    {
+      "word": "dessert",
+      "hint": "U5 Food"
+    },
+    {
+      "word": "porridge",
+      "hint": "U5 Food"
+    },
+    {
+      "word": "omelette",
+      "hint": "U5 Food"
+    }
+  ],
+  "pronunciation": [
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Food words",
+      "exerciseKey": "FOOD",
+      "targetText": "sugar",
+      "targetIpa": "",
+      "hint": "U5"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Food words",
+      "exerciseKey": "FOOD",
+      "targetText": "salt",
+      "targetIpa": "",
+      "hint": "U5"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Food words",
+      "exerciseKey": "FOOD",
+      "targetText": "sauce",
+      "targetIpa": "",
+      "hint": "U5"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Food words",
+      "exerciseKey": "FOOD",
+      "targetText": "soup",
+      "targetIpa": "",
+      "hint": "U5"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Food words",
+      "exerciseKey": "FOOD",
+      "targetText": "rice",
+      "targetIpa": "",
+      "hint": "U5"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Food words",
+      "exerciseKey": "FOOD",
+      "targetText": "bread",
+      "targetIpa": "",
+      "hint": "U5"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Food words",
+      "exerciseKey": "FOOD",
+      "targetText": "fruit",
+      "targetIpa": "",
+      "hint": "U5"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Food words",
+      "exerciseKey": "FOOD",
+      "targetText": "juice",
+      "targetIpa": "",
+      "hint": "U5"
+    }
+  ],
+  "speakingTopic": {
+    "title": "Chat about food and drink",
+    "durationSeconds": 300
+  }
+}

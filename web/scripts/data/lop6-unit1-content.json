@@ -1,0 +1,1750 @@
+{
+  "unit": 1,
+  "title": "My New School",
+  "source": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf (pages 1–16)",
+  "skipped": [
+    {
+      "reason": "Cần UI kéo vào nhiều cột âm /ɑː/ vs /ʌ/",
+      "item": "Pronunciation Task 1 — Put the words into the correct columns"
+    },
+    {
+      "reason": "Thiếu ảnh trong PDF extract — làm sau khi gắn media",
+      "item": "Vocabulary Task 1 — Look at the pictures and complete the blanks"
+    },
+    {
+      "reason": "Cần UI kéo từ vào cột play/do/have/study",
+      "item": "Vocabulary Task 2 — Put the words into the right column"
+    },
+    {
+      "reason": "Câu hỏi mở (viết câu hỏi cho từ gạch chân)",
+      "item": "Speaking Task 2 — Write questions for the underlined words"
+    }
+  ],
+  "quiz": [
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U1 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. cover  B. go  C. flow  D. so",
+      "answer": "cover",
+      "options": [
+        "cover",
+        "go",
+        "flow",
+        "so"
+      ],
+      "accept": [
+        "A",
+        "a",
+        "cover"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U1 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. aunt  B. ball  C. call  D. chalk",
+      "answer": "aunt",
+      "options": [
+        "aunt",
+        "ball",
+        "call",
+        "chalk"
+      ],
+      "accept": [
+        "A",
+        "a",
+        "aunt"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U1 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. summer  B. sun  C. glue  D. shut",
+      "answer": "glue",
+      "options": [
+        "summer",
+        "sun",
+        "glue",
+        "shut"
+      ],
+      "accept": [
+        "C",
+        "c",
+        "glue"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U1 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. Monday  B. play  C. carp  D. stay",
+      "answer": "carp",
+      "options": [
+        "Monday",
+        "play",
+        "carp",
+        "stay"
+      ],
+      "accept": [
+        "C",
+        "c",
+        "carp"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U1 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. blood  B. shoot  C. shut  D. flood",
+      "answer": "shoot",
+      "options": [
+        "blood",
+        "shoot",
+        "shut",
+        "flood"
+      ],
+      "accept": [
+        "B",
+        "b",
+        "shoot"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U1 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. money  B. sorry  C. morning  D. story",
+      "answer": "money",
+      "options": [
+        "money",
+        "sorry",
+        "morning",
+        "story"
+      ],
+      "accept": [
+        "A",
+        "a",
+        "money"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U1 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. now  B. grow  C. down  D. town",
+      "answer": "grow",
+      "options": [
+        "now",
+        "grow",
+        "down",
+        "town"
+      ],
+      "accept": [
+        "B",
+        "b",
+        "grow"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U1 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. study  B. student  C. studio  D. stupid",
+      "answer": "study",
+      "options": [
+        "study",
+        "student",
+        "studio",
+        "stupid"
+      ],
+      "accept": [
+        "A",
+        "a",
+        "study"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U1 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. house  B. about  C. hour  D. country",
+      "answer": "hour",
+      "options": [
+        "house",
+        "about",
+        "hour",
+        "country"
+      ],
+      "accept": [
+        "C",
+        "c",
+        "hour"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U1 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. lunch  B. fun  C. judo  D. sun",
+      "answer": "judo",
+      "options": [
+        "lunch",
+        "fun",
+        "judo",
+        "sun"
+      ],
+      "accept": [
+        "C",
+        "c",
+        "judo"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Vocabulary fill",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Words from the box",
+      "question": "Vy and Phong are _______________ about their first day at secondary school.",
+      "answer": "excited",
+      "options": [],
+      "accept": [
+        "excited"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Vocabulary fill",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Words from the box",
+      "question": "Phong and Duy are in the same class at school. They are _______________.",
+      "answer": "classmates",
+      "options": [],
+      "accept": [
+        "classmates",
+        "classmate"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Vocabulary fill",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Words from the box",
+      "question": "Most schools require children to wear school _______________.",
+      "answer": "uniforms",
+      "options": [],
+      "accept": [
+        "uniforms",
+        "uniform"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Vocabulary fill",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Words from the box",
+      "question": "My sister is very _______________. She is very good at painting pictures.",
+      "answer": "creative",
+      "options": [],
+      "accept": [
+        "creative"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Vocabulary fill",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Words from the box",
+      "question": "A _______________ school is a school where students study and live during the school year.",
+      "answer": "boarding",
+      "options": [],
+      "accept": [
+        "boarding"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Vocabulary fill",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Words from the box",
+      "question": "AIS is an _______________ school in Vietnam. It provides American education.",
+      "answer": "international",
+      "options": [],
+      "accept": [
+        "international"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Vocabulary fill",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Words from the box",
+      "question": "The school gym has lots of new, modern _______________.",
+      "answer": "equipment",
+      "options": [],
+      "accept": [
+        "equipment"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Vocabulary fill",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Words from the box",
+      "question": "In the ____________, you can read books and papers or borrow them to read at home.",
+      "answer": "library",
+      "options": [],
+      "accept": [
+        "library"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Vocabulary MC",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Choose the best answer",
+      "question": "Listening to music is one of the most popular leisure __________.",
+      "answer": "activities",
+      "options": [
+        "kindergart",
+        "activities",
+        "hobby",
+        "equipments"
+      ],
+      "accept": [
+        "B",
+        "b",
+        "activities"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Vocabulary MC",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Choose the best answer",
+      "question": "My son is just 2 years old and he is in __________ now.",
+      "answer": "kindergarten",
+      "options": [
+        "kindergarten",
+        "secondary school",
+        "overseas",
+        "high school"
+      ],
+      "accept": [
+        "A",
+        "a",
+        "kindergarten"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Vocabulary MC",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Choose the best answer",
+      "question": "I don’t like to __________ money from friends.",
+      "answer": "borrow",
+      "options": [
+        "pay",
+        "knock",
+        "borrow",
+        "help"
+      ],
+      "accept": [
+        "C",
+        "c",
+        "borrow"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Vocabulary MC",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Choose the best answer",
+      "question": "We only have time for a snack at __________.",
+      "answer": "break time",
+      "options": [
+        "lunch",
+        "gym",
+        "meals",
+        "break time"
+      ],
+      "accept": [
+        "D",
+        "d",
+        "break time",
+        "breaktime"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Vocabulary MC",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Choose the best answer",
+      "question": "Do you know where our new __________ is? Our teacher wants to meet him.",
+      "answer": "classmate",
+      "options": [
+        "poem",
+        "classmate",
+        "swimming pool",
+        "gym"
+      ],
+      "accept": [
+        "B",
+        "b",
+        "classmate"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Vocabulary MC",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Choose the best answer",
+      "question": "In order to keep __________, you should eat well and exercise regularly.",
+      "answer": "healthy",
+      "options": [
+        "warm",
+        "excited",
+        "healthy",
+        "quiet"
+      ],
+      "accept": [
+        "C",
+        "c",
+        "healthy"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Vocabulary MC",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Choose the best answer",
+      "question": "My sister always has a lot of new ideas. She’s a __________ person.",
+      "answer": "creative",
+      "options": [
+        "creative",
+        "hard-working",
+        "quiet",
+        "healthy"
+      ],
+      "accept": [
+        "A",
+        "a",
+        "creative"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Vocabulary MC",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Choose the best answer",
+      "question": "Don’t go climbing without the necessary __________.",
+      "answer": "equipment",
+      "options": [
+        "uniform",
+        "pocket money",
+        "equipment",
+        "share"
+      ],
+      "accept": [
+        "C",
+        "c",
+        "equipment"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "He is certainly the finest ________ in Hollywood today. (ACT)",
+      "answer": "actor",
+      "options": [],
+      "accept": [
+        "actor"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "He is a serious ________, and totally committed to his work. (ART)",
+      "answer": "artist",
+      "options": [],
+      "accept": [
+        "artist"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "She’s very ________ on the design front. (CREATE)",
+      "answer": "creative",
+      "options": [],
+      "accept": [
+        "creative"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "No special ________ is needed. (EQUIP)",
+      "answer": "equipment",
+      "options": [],
+      "accept": [
+        "equipment"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "I still find the job ________. (EXCITE)",
+      "answer": "exciting",
+      "options": [],
+      "accept": [
+        "exciting"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "They are afraid of losing their ________ identity. (NATION)",
+      "answer": "national",
+      "options": [],
+      "accept": [
+        "national"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "________ rarely ask about his personal life. (INTERVIEW)",
+      "answer": "Interviewers",
+      "options": [],
+      "accept": [
+        "Interviewers",
+        "interviewers"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "He’s the ________ of a successful cartoon series. (CREATE)",
+      "answer": "creator",
+      "options": [],
+      "accept": [
+        "creator"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "There is increased volcanic ________ in the region. (ACT)",
+      "answer": "activity",
+      "options": [],
+      "accept": [
+        "activity"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "She’s the highest-paid ________ in Hollywood. (ACT)",
+      "answer": "actress",
+      "options": [],
+      "accept": [
+        "actress"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "History is an ________ subject. (INTEREST)",
+      "answer": "interesting",
+      "options": [],
+      "accept": [
+        "interesting"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "They have ________ in finding a suitable apartment. (DIFFICULT)",
+      "answer": "difficulty",
+      "options": [],
+      "accept": [
+        "difficulty"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "The company has only 60 ________. (EMPLOY)",
+      "answer": "employees",
+      "options": [],
+      "accept": [
+        "employees",
+        "employees"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "The ________ way to travel is by plane. (FAST)",
+      "answer": "fastest",
+      "options": [],
+      "accept": [
+        "fastest"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "Her English is ________ than mine. (GOOD)",
+      "answer": "better",
+      "options": [],
+      "accept": [
+        "better"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "What a ________ party! I’d like to go home. (BORE)",
+      "answer": "boring",
+      "options": [],
+      "accept": [
+        "boring"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "Few students like him. He is an ________ teacher. (POPULAR)",
+      "answer": "unpopular",
+      "options": [],
+      "accept": [
+        "unpopular"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "Some people play sport to be ________, not because they like it. (HEALTH)",
+      "answer": "healthy",
+      "options": [],
+      "accept": [
+        "healthy"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "My aunt works as a ________ at a university. (CHEMISTRY)",
+      "answer": "chemist",
+      "options": [],
+      "accept": [
+        "chemist"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "Students of our school are ________ with one another. (FRIEND)",
+      "answer": "friendly",
+      "options": [],
+      "accept": [
+        "friendly"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "The ________ of the experiment is 20 minutes. (LONG)",
+      "answer": "length",
+      "options": [],
+      "accept": [
+        "length"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "Be ________! The ground is very wet and slippery. (CARE)",
+      "answer": "careful",
+      "options": [],
+      "accept": [
+        "careful"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "When foreigners talk to him, he can speak English ________ with them. (EASY)",
+      "answer": "easily",
+      "options": [],
+      "accept": [
+        "easily"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "I like the fried chicken in our school canteen: it's really ________. (TASTE)",
+      "answer": "tasty",
+      "options": [],
+      "accept": [
+        "tasty"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "Sometimes we are bored and ________ with his long lectures. (SLEEP)",
+      "answer": "sleepy",
+      "options": [],
+      "accept": [
+        "sleepy"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Speaking match",
+      "skill": "reading",
+      "exercise": "U1 Speaking — Match questions and answers",
+      "question": "Who are you waiting for?",
+      "answer": "I’m waiting for my friends.",
+      "options": [
+        "No, they are sleeping.",
+        "I go to school by bicycle.",
+        "To buy some bread",
+        "I’m waiting for my friends."
+      ],
+      "accept": [
+        "I’m waiting for my friends.",
+        "I'm waiting for my friends."
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Speaking match",
+      "skill": "reading",
+      "exercise": "U1 Speaking — Match questions and answers",
+      "question": "What do you do at break time?",
+      "answer": "I go out and play in the playground.",
+      "options": [
+        "I go to school by bicycle.",
+        "I go out and play in the playground.",
+        "Yes, I do",
+        "I’m going home."
+      ],
+      "accept": [
+        "I go out and play in the playground."
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Speaking match",
+      "skill": "reading",
+      "exercise": "U1 Speaking — Match questions and answers",
+      "question": "Where are you going?",
+      "answer": "I’m going home.",
+      "options": [
+        "To buy some bread",
+        "I’m going home.",
+        "I go to school five days a week",
+        "Yes, I do"
+      ],
+      "accept": [
+        "I’m going home.",
+        "I'm going home."
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Speaking match",
+      "skill": "reading",
+      "exercise": "U1 Speaking — Match questions and answers",
+      "question": "Do you play sports after school?",
+      "answer": "Yes, I do",
+      "options": [
+        "No, they are sleeping.",
+        "Yes, I do",
+        "I go to school by bicycle.",
+        "To buy some bread"
+      ],
+      "accept": [
+        "Yes, I do",
+        "Yes, I do."
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Speaking match",
+      "skill": "reading",
+      "exercise": "U1 Speaking — Match questions and answers",
+      "question": "Are they watching television?",
+      "answer": "No, they are sleeping.",
+      "options": [
+        "No, they are sleeping.",
+        "I’m waiting for my friends.",
+        "Yes, I do",
+        "I’m going home."
+      ],
+      "accept": [
+        "No, they are sleeping."
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Speaking match",
+      "skill": "reading",
+      "exercise": "U1 Speaking — Match questions and answers",
+      "question": "Why is he going out?",
+      "answer": "To buy some bread",
+      "options": [
+        "To buy some bread",
+        "I go to school five days a week",
+        "I’m going home.",
+        "Yes, I do"
+      ],
+      "accept": [
+        "To buy some bread",
+        "To buy some bread."
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Speaking match",
+      "skill": "reading",
+      "exercise": "U1 Speaking — Match questions and answers",
+      "question": "How often do you go to school?",
+      "answer": "I go to school five days a week",
+      "options": [
+        "I go to school by bicycle.",
+        "I go to school five days a week",
+        "I go out and play in the playground.",
+        "Yes, I do"
+      ],
+      "accept": [
+        "I go to school five days a week",
+        "I go to school five days a week."
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Speaking match",
+      "skill": "reading",
+      "exercise": "U1 Speaking — Match questions and answers",
+      "question": "How do you go to school?",
+      "answer": "I go to school by bicycle.",
+      "options": [
+        "I go to school by bicycle.",
+        "I go to school five days a week",
+        "I’m going home.",
+        "To buy some bread"
+      ],
+      "accept": [
+        "I go to school by bicycle."
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Reading T/F/NG",
+      "skill": "reading",
+      "exercise": "U1 Reading — Starting at a global school",
+      "question": "Students are required to wear a uniform on their first day of school.",
+      "answer": "TRUE",
+      "options": [
+        "TRUE",
+        "FALSE",
+        "NOT GIVEN"
+      ],
+      "accept": [
+        "TRUE",
+        "True",
+        "T",
+        "true"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Reading T/F/NG",
+      "skill": "reading",
+      "exercise": "U1 Reading — Starting at a global school",
+      "question": "Classmates at the school all come from the same country.",
+      "answer": "FALSE",
+      "options": [
+        "TRUE",
+        "FALSE",
+        "NOT GIVEN"
+      ],
+      "accept": [
+        "FALSE",
+        "False",
+        "F",
+        "false"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Reading T/F/NG",
+      "skill": "reading",
+      "exercise": "U1 Reading — Starting at a global school",
+      "question": "The school football pitch is made of real grass.",
+      "answer": "NOT GIVEN",
+      "options": [
+        "TRUE",
+        "FALSE",
+        "NOT GIVEN"
+      ],
+      "accept": [
+        "NOT GIVEN",
+        "Not Given",
+        "NG",
+        "not given"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Reading T/F/NG",
+      "skill": "reading",
+      "exercise": "U1 Reading — Starting at a global school",
+      "question": "Science lessons at the school involve practical, hands-on activities.",
+      "answer": "TRUE",
+      "options": [
+        "TRUE",
+        "FALSE",
+        "NOT GIVEN"
+      ],
+      "accept": [
+        "TRUE",
+        "True",
+        "T",
+        "true"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Reading dialogue",
+      "skill": "reading",
+      "exercise": "U1 Reading — Complete the conversation",
+      "question": "After we _______ at the cafeteria",
+      "answer": "have lunch",
+      "options": [
+        "have lunch",
+        "take a nap",
+        "play soccer"
+      ],
+      "accept": [
+        "a",
+        "A",
+        "have lunch"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Reading dialogue",
+      "skill": "reading",
+      "exercise": "U1 Reading — Complete the conversation",
+      "question": "I head over to the music room to ________ for an hour",
+      "answer": "play the piano",
+      "options": [
+        "play games",
+        "play soccer",
+        "play the piano"
+      ],
+      "accept": [
+        "c",
+        "C",
+        "play the piano"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Reading dialogue",
+      "skill": "reading",
+      "exercise": "U1 Reading — Complete the conversation",
+      "question": "I change out of my clothes because I hate to ________ while doing sports",
+      "answer": "wear a uniform",
+      "options": [
+        "wear a uniform",
+        "wear a costume",
+        "wear shoes"
+      ],
+      "accept": [
+        "a",
+        "A",
+        "wear a uniform"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Reading dialogue",
+      "skill": "reading",
+      "exercise": "U1 Reading — Complete the conversation",
+      "question": "Then, I head to the school gym to ________.",
+      "answer": "do exercise",
+      "options": [
+        "have lunch",
+        "play the guitar",
+        "do exercise"
+      ],
+      "accept": [
+        "c",
+        "C",
+        "do exercise"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Reading dialogue",
+      "skill": "reading",
+      "exercise": "U1 Reading — Complete the conversation",
+      "question": "I still need to go home and ________ for our English vocabulary quiz tomorrow",
+      "answer": "study new words",
+      "options": [
+        "study new poems",
+        "study new words",
+        "study new songs"
+      ],
+      "accept": [
+        "b",
+        "B",
+        "study new words"
+      ],
+      "fillMode": false
+    }
+  ],
+  "grammar": [
+    {
+      "source": "She (walk) to school every morning.",
+      "prefix": "She",
+      "suffix": "to school every morning.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "walks"
+      ]
+    },
+    {
+      "source": "They (learn) how to use the lawnmower in their free time.",
+      "prefix": "They",
+      "suffix": "how to use the lawnmower in their free time.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "learn"
+      ]
+    },
+    {
+      "source": "Linda (go) to the supermarket to buy some sugar.",
+      "prefix": "Linda",
+      "suffix": "to the supermarket to buy some sugar.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "goes"
+      ]
+    },
+    {
+      "source": "Sometimes I (feel) really lazy to do anything.",
+      "prefix": "Sometimes I",
+      "suffix": "really lazy to do anything.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "feel"
+      ]
+    },
+    {
+      "source": "Phong and I (study) English in my room.",
+      "prefix": "Phong and I",
+      "suffix": "English in my room.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "study"
+      ]
+    },
+    {
+      "source": "I often (have) breakfast at 7 am at home.",
+      "prefix": "I often",
+      "suffix": "breakfast at 7 am at home.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "have"
+      ]
+    },
+    {
+      "source": "She (do) aerobics every morning to keep fit.",
+      "prefix": "She",
+      "suffix": "aerobics every morning to keep fit.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "does"
+      ]
+    },
+    {
+      "source": "Nga (like) playing basketball very much.",
+      "prefix": "Nga",
+      "suffix": "playing basketball very much.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "likes"
+      ]
+    },
+    {
+      "source": "What time you (have) lunch every day?",
+      "prefix": "What time",
+      "suffix": "lunch every day?",
+      "hint": "U1 Grammar — Interrogative",
+      "answers": [
+        "do you have",
+        "do you have your"
+      ]
+    },
+    {
+      "source": "She (not have) any pen, so I lend her one.",
+      "prefix": "She",
+      "suffix": "any pen, so I lend her one.",
+      "hint": "U1 Grammar — Negative",
+      "answers": [
+        "doesn't have",
+        "does not have"
+      ]
+    },
+    {
+      "source": "They (play) football and basketball at school.",
+      "prefix": "They",
+      "suffix": "football and basketball at school.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "play"
+      ]
+    },
+    {
+      "source": "My father (read) the newspaper every morning.",
+      "prefix": "My father",
+      "suffix": "the newspaper every morning.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "reads"
+      ]
+    },
+    {
+      "source": "We (have) English, Maths and Science on Monday.",
+      "prefix": "We",
+      "suffix": "English, Maths and Science on Monday.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "have"
+      ]
+    },
+    {
+      "source": "She never (do) her homework.",
+      "prefix": "She never",
+      "suffix": "her homework.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "does"
+      ]
+    },
+    {
+      "source": "I (go) swimming twice a week.",
+      "prefix": "I",
+      "suffix": "swimming twice a week.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "go"
+      ]
+    },
+    {
+      "source": "Cars (be) more expensive than motorbikes.",
+      "prefix": "Cars",
+      "suffix": "more expensive than motorbikes.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "are"
+      ]
+    },
+    {
+      "source": "Jane always (have) breakfast at 6 o’clock.",
+      "prefix": "Jane always",
+      "suffix": "breakfast at 6 o’clock.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "has"
+      ]
+    },
+    {
+      "source": "He usually (watch) TV after dinner.",
+      "prefix": "He usually",
+      "suffix": "TV after dinner.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "watches"
+      ]
+    },
+    {
+      "source": "London (be) a very big country.",
+      "prefix": "London",
+      "suffix": "a very big country.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "is"
+      ]
+    },
+    {
+      "source": "I (be) a student and my parents (be) teachers.",
+      "prefix": "I",
+      "suffix": "a student and my parents are teachers.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "am"
+      ]
+    },
+    {
+      "source": "My brothers often sleep on the floor.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Grammar — Adverb of frequency",
+      "answers": [
+        "My brothers often sleep on the floor.",
+        "My brothers often sleep on the floor"
+      ]
+    },
+    {
+      "source": "Does he sometimes stay up late?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Grammar — Adverb of frequency",
+      "answers": [
+        "Does he sometimes stay up late?",
+        "Does he sometimes stay up late"
+      ]
+    },
+    {
+      "source": "I always do the housework with my brother.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Grammar — Adverb of frequency",
+      "answers": [
+        "I always do the housework with my brother.",
+        "I always do the housework with my brother"
+      ]
+    },
+    {
+      "source": "Peter and Mary never come to class on time.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Grammar — Adverb of frequency",
+      "answers": [
+        "Peter and Mary never come to class on time.",
+        "Peter and Mary never come to class on time"
+      ]
+    },
+    {
+      "source": "They don't listen to English every day. / Do they listen to English every day?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Grammar — Negative",
+      "answers": [
+        "They don't listen to English every day.",
+        "They do not listen to English every day."
+      ]
+    },
+    {
+      "source": "Do they listen to English every day?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Grammar — Interrogative",
+      "answers": [
+        "Do they listen to English every day?",
+        "Do they listen to English every day"
+      ]
+    },
+    {
+      "source": "She doesn't play badminton every afternoon.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Grammar — Negative",
+      "answers": [
+        "She doesn't play badminton every afternoon.",
+        "She does not play badminton every afternoon."
+      ]
+    },
+    {
+      "source": "Does she play badminton every afternoon?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Grammar — Interrogative",
+      "answers": [
+        "Does she play badminton every afternoon?",
+        "Does she play badminton every afternoon"
+      ]
+    },
+    {
+      "source": "We don't play volleyball every morning.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Grammar — Negative",
+      "answers": [
+        "We don't play volleyball every morning.",
+        "We do not play volleyball every morning."
+      ]
+    },
+    {
+      "source": "Do we play volleyball every morning?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Grammar — Interrogative",
+      "answers": [
+        "Do we play volleyball every morning?",
+        "Do we play volleyball every morning"
+      ]
+    },
+    {
+      "source": "He doesn't do homework every night.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Grammar — Negative",
+      "answers": [
+        "He doesn't do homework every night.",
+        "He does not do homework every night."
+      ]
+    },
+    {
+      "source": "Does he do homework every night?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Grammar — Interrogative",
+      "answers": [
+        "Does he do homework every night?",
+        "Does he do homework every night"
+      ]
+    },
+    {
+      "source": "secondary/ first/ your/ at/ school/ is/ how/ week?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Writing — Reorder the words",
+      "answers": [
+        "How is your first week at secondary school?",
+        "How is your first week at secondary school"
+      ]
+    },
+    {
+      "source": "lessons/ many/ have/ on/ how/ you/ do/ Friday?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Writing — Reorder the words",
+      "answers": [
+        "How many lessons do you have on Friday?",
+        "How many lessons do you have on Friday"
+      ]
+    },
+    {
+      "source": "art/ creative/ are/ drawings/ students/ the/ some/ doing/ in/ club",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Writing — Reorder the words",
+      "answers": [
+        "Some creative students are doing drawings in the art club.",
+        "Some creative students are doing drawings in the art club"
+      ]
+    },
+    {
+      "source": "school/ at/ English/ we/ have/ classes/ don't/ today",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Writing — Reorder the words",
+      "answers": [
+        "We don't have English classes at school today.",
+        "We do not have English classes at school today.",
+        "We don't have English classes at school today"
+      ]
+    },
+    {
+      "source": "Does/ she/ do/ her/ maths/ homework/ in the evening?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Writing — Reorder the words",
+      "answers": [
+        "Does she do her maths homework in the evening?",
+        "Does she do her maths homework in the evening"
+      ]
+    },
+    {
+      "source": "children/ first/ on/ most/ school/ excited/ are/ day/ of/ the",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Writing — Reorder the words",
+      "answers": [
+        "Most children are excited on the first day of school.",
+        "Most children are excited on the first day of school"
+      ]
+    },
+    {
+      "source": "What is your favorite subject?",
+      "prefix": "What subject",
+      "suffix": "?",
+      "hint": "U1 Writing — Rewrite",
+      "answers": [
+        "do you like best",
+        "do you like most",
+        "do you like"
+      ]
+    },
+    {
+      "source": "There are 35 students in my class.",
+      "prefix": "My class",
+      "suffix": ".",
+      "hint": "U1 Writing — Rewrite",
+      "answers": [
+        "has 35 students",
+        "has thirty-five students"
+      ]
+    },
+    {
+      "source": "Mai lives near her school.",
+      "prefix": "Mai’s house isn’t",
+      "suffix": ".",
+      "hint": "U1 Writing — Rewrite",
+      "answers": [
+        "far from her school",
+        "far from the school"
+      ]
+    },
+    {
+      "source": "Mary plays the piano very well.",
+      "prefix": "Mary is good",
+      "suffix": ".",
+      "hint": "U1 Writing — Rewrite",
+      "answers": [
+        "at playing the piano",
+        "at the piano"
+      ]
+    },
+    {
+      "source": "Do you like physics?",
+      "prefix": "Are you interested",
+      "suffix": "?",
+      "hint": "U1 Writing — Rewrite",
+      "answers": [
+        "in physics",
+        "in Physics"
+      ]
+    },
+    {
+      "source": "The school has a computer room and a library.",
+      "prefix": "There",
+      "suffix": ".",
+      "hint": "U1 Writing — Rewrite",
+      "answers": [
+        "is a computer room and a library in the school",
+        "are a computer room and a library in the school",
+        "is a computer room and a library at the school"
+      ]
+    }
+  ],
+  "scramble": [
+    {
+      "word": "schoolbag",
+      "hint": "U1 Vocab — school things"
+    },
+    {
+      "word": "uniform",
+      "hint": "U1 Vocab — school things"
+    },
+    {
+      "word": "classmate",
+      "hint": "U1 Vocab — people at school"
+    },
+    {
+      "word": "library",
+      "hint": "U1 Vocab — place to read books"
+    },
+    {
+      "word": "equipment",
+      "hint": "U1 Vocab — things in the gym"
+    },
+    {
+      "word": "boarding",
+      "hint": "U1 Vocab — _____ school"
+    },
+    {
+      "word": "creative",
+      "hint": "U1 Vocab — good at new ideas"
+    },
+    {
+      "word": "international",
+      "hint": "U1 Vocab — from many countries"
+    },
+    {
+      "word": "calculator",
+      "hint": "U1 Vocab — school things"
+    },
+    {
+      "word": "notebook",
+      "hint": "U1 Vocab — school things"
+    },
+    {
+      "word": "compass",
+      "hint": "U1 Vocab — school things"
+    },
+    {
+      "word": "eraser",
+      "hint": "U1 Vocab — school things"
+    }
+  ],
+  "pronunciation": [
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʌ/",
+      "exerciseKey": "STRUT",
+      "targetText": "cup",
+      "targetIpa": "/kʌp/",
+      "hint": "U1 Pronunciation"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʌ/",
+      "exerciseKey": "STRUT",
+      "targetText": "mother",
+      "targetIpa": "/ˈmʌðə/",
+      "hint": "U1 Pronunciation"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʌ/",
+      "exerciseKey": "STRUT",
+      "targetText": "Monday",
+      "targetIpa": "/ˈmʌndeɪ/",
+      "hint": "U1 Pronunciation"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʌ/",
+      "exerciseKey": "STRUT",
+      "targetText": "brother",
+      "targetIpa": "/ˈbrʌðə/",
+      "hint": "U1 Pronunciation"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ɑː/",
+      "exerciseKey": "PALM",
+      "targetText": "father",
+      "targetIpa": "/ˈfɑːðə/",
+      "hint": "U1 Pronunciation"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ɑː/",
+      "exerciseKey": "PALM",
+      "targetText": "start",
+      "targetIpa": "/stɑːt/",
+      "hint": "U1 Pronunciation"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ɑː/",
+      "exerciseKey": "PALM",
+      "targetText": "heart",
+      "targetIpa": "/hɑːt/",
+      "hint": "U1 Pronunciation"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ɑː/",
+      "exerciseKey": "PALM",
+      "targetText": "class",
+      "targetIpa": "/klɑːs/",
+      "hint": "U1 Pronunciation"
+    }
+  ],
+  "speakingTopic": {
+    "title": "Chat about my new school",
+    "durationSeconds": 300
+  },
+  "read_and_complete": [
+    {
+      "title": "U1 Reading — Summary completion",
+      "instruction": "Complete the sentences with words from the box.",
+      "word_bank": [
+        "exercise",
+        "intelligent",
+        "football pitch",
+        "classmates",
+        "neat",
+        "activities"
+      ],
+      "items": [
+        {
+          "order": 1,
+          "sentence": "Starting at this international school is an exciting experience where you will meet ___ from a worldwide community.",
+          "image": "",
+          "answer": "classmates"
+        },
+        {
+          "order": 2,
+          "sentence": "On your very first day, you should keep in mind to wear your uniform so you look ___.",
+          "image": "",
+          "answer": "neat"
+        },
+        {
+          "order": 3,
+          "sentence": "The daily schedule is filled with ___, such as doing an exercise in science class or practicing teamwork drills during PE.",
+          "image": "",
+          "answer": "activities"
+        },
+        {
+          "order": 4,
+          "sentence": "You might do an ___ in science class or practice teamwork drills during PE.",
+          "image": "",
+          "answer": "exercise"
+        },
+        {
+          "order": 5,
+          "sentence": "You can practice teamwork drills during PE on the ___.",
+          "image": "",
+          "answer": "football pitch"
+        },
+        {
+          "order": 6,
+          "sentence": "If you ever feel confused, you can always ask a teacher or an ___ schoolmate for assistance.",
+          "image": "",
+          "answer": "intelligent"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,586 @@
+{
+  "unit": 3,
+  "title": "Community Service",
+  "source": "PDF/GRADE 7 HK1 (GS) FINAL.pdf (pages 28–40)",
+  "skipped": [
+    {
+      "reason": "Thiếu ảnh",
+      "item": "Match pictures with volunteer activities"
+    },
+    {
+      "reason": "Reading multi-section IELTS dense",
+      "item": "Reading A–F matching full"
+    }
+  ],
+  "quiz": [
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U3 Pronunciation — Past -ed",
+      "question": "Choose the word that has the underlined part pronounced differently: A. arrived  B. believed  C. hoped  D. opened",
+      "answer": "hoped",
+      "options": [
+        "arrived",
+        "believed",
+        "hoped",
+        "opened"
+      ],
+      "accept": [
+        "hoped",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U3 Pronunciation — Past -ed",
+      "question": "Choose the word that has the underlined part pronounced differently: A. stopped  B. passed  C. asked  D. obeyed",
+      "answer": "obeyed",
+      "options": [
+        "stopped",
+        "passed",
+        "asked",
+        "obeyed"
+      ],
+      "accept": [
+        "obeyed",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U3 Pronunciation — Past -ed",
+      "question": "Choose the word that has the underlined part pronounced differently: A. cleaned  B. watched  C. laughed  D. finished",
+      "answer": "cleaned",
+      "options": [
+        "cleaned",
+        "watched",
+        "laughed",
+        "finished"
+      ],
+      "accept": [
+        "cleaned",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U3 Pronunciation — Past -ed",
+      "question": "Choose the word that has the underlined part pronounced differently: A. wanted  B. started  C. ended  D. walked",
+      "answer": "walked",
+      "options": [
+        "wanted",
+        "started",
+        "ended",
+        "walked"
+      ],
+      "accept": [
+        "walked",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U3 Pronunciation — Past -ed",
+      "question": "Choose the word that has the underlined part pronounced differently: A. showed  B. pushed  C. rained  D. followed",
+      "answer": "pushed",
+      "options": [
+        "showed",
+        "pushed",
+        "rained",
+        "followed"
+      ],
+      "accept": [
+        "pushed",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U3 Vocabulary — Community",
+      "question": "We ______ old people every weekend.",
+      "answer": "help",
+      "options": [],
+      "accept": [
+        "help",
+        "visit"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U3 Vocabulary — Community",
+      "question": "They ______ blood at the hospital.",
+      "answer": "donate",
+      "options": [],
+      "accept": [
+        "donate"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U3 Vocabulary — Community",
+      "question": "Students ______ litter in the park.",
+      "answer": "collect",
+      "options": [],
+      "accept": [
+        "collect",
+        "pick up"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U3 Vocabulary — Community",
+      "question": "She ______ books to poor children.",
+      "answer": "gives",
+      "options": [],
+      "accept": [
+        "gives",
+        "donates"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U3 Vocabulary — Community",
+      "question": "Community service ______ other people.",
+      "answer": "benefits",
+      "options": [],
+      "accept": [
+        "benefits",
+        "helps"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U3 Reading — Community service",
+      "question": "What is community service?",
+      "answer": "Work that benefits others",
+      "options": [
+        "A paid job",
+        "Work that benefits others",
+        "A holiday",
+        "A sport"
+      ],
+      "accept": [
+        "Work that benefits others",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U3 Reading — Community service",
+      "question": "Is community service a paying job?",
+      "answer": "No",
+      "options": [
+        "Yes",
+        "No",
+        "Sometimes",
+        "NOT GIVEN"
+      ],
+      "accept": [
+        "No",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U3 Reading — Cloze",
+      "question": "Five years ago Will Slade ______ about an aid project.",
+      "answer": "read",
+      "options": [
+        "like",
+        "same",
+        "read",
+        "sound like"
+      ],
+      "accept": [
+        "read",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U3 Reading — Cloze",
+      "question": "He ______ working for the local community.",
+      "answer": "started",
+      "options": [
+        "was starting",
+        "has started",
+        "started",
+        "starts"
+      ],
+      "accept": [
+        "started",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "She is a ______. (VOLUNTEER)",
+      "answer": "volunteer",
+      "options": [],
+      "accept": [
+        "volunteer"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "Their ______ helped many people. (DONATE)",
+      "answer": "donation",
+      "options": [],
+      "accept": [
+        "donation"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "It was a ______ experience. (MEAN)",
+      "answer": "meaningful",
+      "options": [],
+      "accept": [
+        "meaningful"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "We need more ______ in this project. (PARTICIPATE)",
+      "answer": "participants",
+      "options": [],
+      "accept": [
+        "participants",
+        "participation"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "Helping others brings ______. (HAPPY)",
+      "answer": "happiness",
+      "options": [],
+      "accept": [
+        "happiness"
+      ],
+      "fillMode": true
+    }
+  ],
+  "grammar": [
+    {
+      "source": "She ______ at home yesterday.",
+      "prefix": "She",
+      "suffix": "at home yesterday.",
+      "hint": "U3 Grammar — was/were/did",
+      "answers": [
+        "was"
+      ]
+    },
+    {
+      "source": "They ______ at the park last Sunday.",
+      "prefix": "They",
+      "suffix": "at the park last Sunday.",
+      "hint": "U3 Grammar — was/were/did",
+      "answers": [
+        "were"
+      ]
+    },
+    {
+      "source": "He ______ not at school yesterday.",
+      "prefix": "He",
+      "suffix": "not at school yesterday.",
+      "hint": "U3 Grammar — was/were/did",
+      "answers": [
+        "was"
+      ]
+    },
+    {
+      "source": "______ you go to the volunteer meeting?",
+      "prefix": "",
+      "suffix": "you go to the volunteer meeting?",
+      "hint": "U3 Grammar — was/were/did",
+      "answers": [
+        "Did"
+      ]
+    },
+    {
+      "source": "We ______ not start the project in 2010.",
+      "prefix": "We",
+      "suffix": "not start the project in 2010.",
+      "hint": "U3 Grammar — was/were/did",
+      "answers": [
+        "did"
+      ]
+    },
+    {
+      "source": "They ______ (donate) blood last month.",
+      "prefix": "They",
+      "suffix": "blood last month.",
+      "hint": "U3 Grammar — Past simple",
+      "answers": [
+        "donated"
+      ]
+    },
+    {
+      "source": "She ______ (help) old people yesterday.",
+      "prefix": "She",
+      "suffix": "old people yesterday.",
+      "hint": "U3 Grammar — Past simple",
+      "answers": [
+        "helped"
+      ]
+    },
+    {
+      "source": "We ______ (not start) the community garden in 2010.",
+      "prefix": "We",
+      "suffix": "the community garden in 2010.",
+      "hint": "U3 Grammar — Past simple",
+      "answers": [
+        "didn't start",
+        "did not start"
+      ]
+    },
+    {
+      "source": "______ he ______ (join) the campaign?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U3 Grammar — Past simple",
+      "answers": [
+        "Did / join",
+        "Did he join"
+      ]
+    },
+    {
+      "source": "I ______ (clean) the street with my classmates.",
+      "prefix": "I",
+      "suffix": "the street with my classmates.",
+      "hint": "U3 Grammar — Past simple",
+      "answers": [
+        "cleaned"
+      ]
+    },
+    {
+      "source": "donated/ They/ blood/ hospital/ the/ at/.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U3 Writing — Reorder the words",
+      "answers": [
+        "They donated blood at the hospital.",
+        "They donated blood at the hospital"
+      ]
+    },
+    {
+      "source": "helped/ She/ people/ old/ weekend/ last/.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U3 Writing — Reorder the words",
+      "answers": [
+        "She helped old people last weekend.",
+        "She helped old people last weekend"
+      ]
+    },
+    {
+      "source": "They started the project in 2015.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U3 Writing — Rewrite",
+      "answers": [
+        "Did they start the project in 2015?",
+        "Did they start the project in 2015"
+      ]
+    },
+    {
+      "source": "He was a volunteer last year.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U3 Writing — Rewrite",
+      "answers": [
+        "He wasn't a volunteer last year.",
+        "He was not a volunteer last year."
+      ]
+    }
+  ],
+  "scramble": [
+    {
+      "word": "volunteer",
+      "hint": "U3 Community"
+    },
+    {
+      "word": "donate",
+      "hint": "U3 Community"
+    },
+    {
+      "word": "litter",
+      "hint": "U3 Community"
+    },
+    {
+      "word": "benefit",
+      "hint": "U3 Community"
+    },
+    {
+      "word": "community",
+      "hint": "U3 Community"
+    },
+    {
+      "word": "campaign",
+      "hint": "U3 Community"
+    },
+    {
+      "word": "homeless",
+      "hint": "U3 Community"
+    },
+    {
+      "word": "elderly",
+      "hint": "U3 Community"
+    },
+    {
+      "word": "recycle",
+      "hint": "U3 Community"
+    },
+    {
+      "word": "charity",
+      "hint": "U3 Community"
+    }
+  ],
+  "pronunciation": [
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Past -ed /t/",
+      "exerciseKey": "EDT",
+      "targetText": "hoped",
+      "targetIpa": "",
+      "hint": "U3"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Past -ed /t/",
+      "exerciseKey": "EDT",
+      "targetText": "asked",
+      "targetIpa": "",
+      "hint": "U3"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Past -ed /d/",
+      "exerciseKey": "EDD",
+      "targetText": "arrived",
+      "targetIpa": "",
+      "hint": "U3"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Past -ed /d/",
+      "exerciseKey": "EDD",
+      "targetText": "opened",
+      "targetIpa": "",
+      "hint": "U3"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Past -ed /ɪd/",
+      "exerciseKey": "EDID",
+      "targetText": "wanted",
+      "targetIpa": "",
+      "hint": "U3"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Past -ed /ɪd/",
+      "exerciseKey": "EDID",
+      "targetText": "started",
+      "targetIpa": "",
+      "hint": "U3"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Past -ed /t/",
+      "exerciseKey": "EDT",
+      "targetText": "watched",
+      "targetIpa": "",
+      "hint": "U3"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Past -ed /d/",
+      "exerciseKey": "EDD",
+      "targetText": "cleaned",
+      "targetIpa": "",
+      "hint": "U3"
+    }
+  ],
+  "speakingTopic": {
+    "title": "Chat about community service",
+    "durationSeconds": 300
+  }
+}

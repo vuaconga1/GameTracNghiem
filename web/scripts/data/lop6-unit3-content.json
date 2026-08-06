@@ -1,0 +1,863 @@
+{
+  "unit": 3,
+  "title": "My Friends",
+  "source": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf (pages 31–43)",
+  "skipped": [
+    {
+      "reason": "Cần UI cột /b/ /p/",
+      "item": "Pronunciation Task 1"
+    },
+    {
+      "reason": "Crossword thân người khó parse",
+      "item": "Vocabulary Task 1 body parts"
+    },
+    {
+      "reason": "Câu hỏi mở",
+      "item": "Speaking Task 2"
+    }
+  ],
+  "quiz": [
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U3 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. best  B. part  C. pie  D. pen",
+      "answer": "best",
+      "options": [
+        "best",
+        "part",
+        "pie",
+        "pen"
+      ],
+      "accept": [
+        "best",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U3 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. bow  B. pie  C. back  D. baby",
+      "answer": "pie",
+      "options": [
+        "bow",
+        "pie",
+        "back",
+        "baby"
+      ],
+      "accept": [
+        "pie",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U3 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. copy  B. happy  C. beast  D. pull",
+      "answer": "beast",
+      "options": [
+        "copy",
+        "happy",
+        "beast",
+        "pull"
+      ],
+      "accept": [
+        "beast",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U3 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. bed  B. job  C. pass  D. bull",
+      "answer": "pass",
+      "options": [
+        "bed",
+        "job",
+        "pass",
+        "bull"
+      ],
+      "accept": [
+        "pass",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U3 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. ban  B. pet  C. peach  D. pier",
+      "answer": "ban",
+      "options": [
+        "ban",
+        "pet",
+        "peach",
+        "pier"
+      ],
+      "accept": [
+        "ban",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U3 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. bat  B. beer  C. bye  D. prize",
+      "answer": "prize",
+      "options": [
+        "bat",
+        "beer",
+        "bye",
+        "prize"
+      ],
+      "accept": [
+        "prize",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U3 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. pig  B. chubby  C. pin  D. pole",
+      "answer": "chubby",
+      "options": [
+        "pig",
+        "chubby",
+        "pin",
+        "pole"
+      ],
+      "accept": [
+        "chubby",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U3 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. better  B. bobby  C. birthday  D. provide",
+      "answer": "provide",
+      "options": [
+        "better",
+        "bobby",
+        "birthday",
+        "provide"
+      ],
+      "accept": [
+        "provide",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U3 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. pencil  B. pocket  C. boy  D. postcard",
+      "answer": "boy",
+      "options": [
+        "pencil",
+        "pocket",
+        "boy",
+        "postcard"
+      ],
+      "accept": [
+        "boy",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U3 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. about  B. professional  C. beautiful  D. butterfly",
+      "answer": "about",
+      "options": [
+        "about",
+        "professional",
+        "beautiful",
+        "butterfly"
+      ],
+      "accept": [
+        "about",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U3 Vocabulary — Adjectives",
+      "question": "He's a little bit ________. He likes to talk a lot.",
+      "answer": "talkative",
+      "options": [],
+      "accept": [
+        "talkative"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U3 Vocabulary — Adjectives",
+      "question": "She always has a ________ smile with everyone.",
+      "answer": "friendly",
+      "options": [],
+      "accept": [
+        "friendly"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U3 Vocabulary — Adjectives",
+      "question": "Everyone is ________ to me. They often help me.",
+      "answer": "kind",
+      "options": [],
+      "accept": [
+        "kind"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U3 Vocabulary — Adjectives",
+      "question": "It is ________ to sit on the plane with nothing to read.",
+      "answer": "boring",
+      "options": [],
+      "accept": [
+        "boring"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U3 Vocabulary — Adjectives",
+      "question": "She is very ________. She writes poetry and paints.",
+      "answer": "creative",
+      "options": [],
+      "accept": [
+        "creative"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U3 Vocabulary — Adjectives",
+      "question": "It's a really ________ film; everyone laughs a lot.",
+      "answer": "funny",
+      "options": [],
+      "accept": [
+        "funny"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U3 Vocabulary — Adjectives",
+      "question": "Children are often ________ at school and he always gets good marks.",
+      "answer": "hard-working",
+      "options": [],
+      "accept": [
+        "hard-working",
+        "hardworking",
+        "clever"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U3 Vocabulary — Adjectives",
+      "question": "He is often ________ of people they don't know.",
+      "answer": "shy",
+      "options": [],
+      "accept": [
+        "shy"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U3 Vocabulary — Adjectives",
+      "question": "The teacher wants students to feel ________ about asking questions.",
+      "answer": "confident",
+      "options": [],
+      "accept": [
+        "confident"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U3 Vocabulary — Adjectives",
+      "question": "I'm not very ________ at Math.",
+      "answer": "clever",
+      "options": [],
+      "accept": [
+        "clever",
+        "good"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "It's nice meeting such a ________ person. (FRIEND)",
+      "answer": "friendly",
+      "options": [],
+      "accept": [
+        "friendly"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "Lan is very ________. She's always on the phone. (TALK)",
+      "answer": "talkative",
+      "options": [],
+      "accept": [
+        "talkative"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "Huy is very ________. (DEPEND)",
+      "answer": "independent",
+      "options": [],
+      "accept": [
+        "independent"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "I think Jane is very ________. (SENSE)",
+      "answer": "sensitive",
+      "options": [],
+      "accept": [
+        "sensitive"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "Viet is very ________. He always has new ideas. (CREATE)",
+      "answer": "creative",
+      "options": [],
+      "accept": [
+        "creative"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "You must be ________ when you open that door. (CARE)",
+      "answer": "careful",
+      "options": [],
+      "accept": [
+        "careful"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "I think you look very ________ in that hat. (FUN)",
+      "answer": "funny",
+      "options": [],
+      "accept": [
+        "funny"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "Tom is the most ________ person I've ever met. (BORE)",
+      "answer": "boring",
+      "options": [],
+      "accept": [
+        "boring"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "I'm ________ about the book she's writing. (CURIOSITY)",
+      "answer": "curious",
+      "options": [],
+      "accept": [
+        "curious"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "You can trust John. He is very ________. (RELY)",
+      "answer": "reliable",
+      "options": [],
+      "accept": [
+        "reliable"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "She takes an ________ part in school life. (ACTIVATE)",
+      "answer": "active",
+      "options": [],
+      "accept": [
+        "active"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "She's completely lacking in ________. (CONFIDE)",
+      "answer": "confidence",
+      "options": [],
+      "accept": [
+        "confidence"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U3 Word form",
+      "question": "People in my country are very warm and ________. (FRIEND)",
+      "answer": "friendly",
+      "options": [],
+      "accept": [
+        "friendly"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Paraphrase cue",
+      "skill": "reading",
+      "exercise": "U3 Reading — Dialogue",
+      "question": "Maya is incredibly kind and imaginative — which word fits the paraphrase cue (creative)?",
+      "answer": "creative",
+      "options": [
+        "creative",
+        "shy",
+        "lazy",
+        "rude"
+      ],
+      "accept": [
+        "creative",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Paraphrase cue",
+      "skill": "reading",
+      "exercise": "U3 Reading — Dialogue",
+      "question": "Lucas always gets the answers right — cue (clever).",
+      "answer": "clever",
+      "options": [
+        "clever",
+        "boring",
+        "rude",
+        "shy"
+      ],
+      "accept": [
+        "clever",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    }
+  ],
+  "grammar": [
+    {
+      "source": "eyes/ sister/ my/ is/ she/ younger/ and/ short/ has/ round.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U3 Writing — Reorder the words",
+      "answers": [
+        "She is my younger sister and has short round eyes.",
+        "She is my younger sister and she has short round eyes."
+      ]
+    },
+    {
+      "source": "hard-working/ Lam/ is/ student/ class/ intelligent/ in/ an/ my/ and.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U3 Writing — Reorder the words",
+      "answers": [
+        "Lam is an intelligent and hard-working student in my class.",
+        "Lam is a hard-working and intelligent student in my class."
+      ]
+    },
+    {
+      "source": "her/ Jane/ Paris/ is/ next/ mother/ to/ travelling/ with/ Friday.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U3 Writing — Reorder the words",
+      "answers": [
+        "Jane is travelling to Paris with her mother next Friday.",
+        "Jane is traveling to Paris with her mother next Friday."
+      ]
+    },
+    {
+      "source": "National Cinema/ we/ Saturday/ are/ to/ the/ going/ this.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U3 Writing — Reorder the words",
+      "answers": [
+        "We are going to the National Cinema this Saturday.",
+        "We are going to the National Cinema this Saturday"
+      ]
+    },
+    {
+      "source": "camping/ is/ next/ my/ class/ in/ weekend/ Cuc Phuong forest/ going.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U3 Writing — Reorder the words",
+      "answers": [
+        "My class is going camping in Cuc Phuong forest next weekend.",
+        "My class is going camping in Cuc Phuong forest next weekend"
+      ]
+    },
+    {
+      "source": "Maya is incredibly kind and has a great imagination for making new things. (creative)",
+      "prefix": "Maya is",
+      "suffix": ".",
+      "hint": "U3 Writing — Rewrite",
+      "answers": [
+        "Maya is very creative.",
+        "Maya is incredibly creative."
+      ]
+    },
+    {
+      "source": "Lucas is an exceptionally smart student who always gets the answers right. (clever)",
+      "prefix": "Lucas is",
+      "suffix": ".",
+      "hint": "U3 Writing — Rewrite",
+      "answers": [
+        "Lucas is a clever student.",
+        "Lucas is very clever."
+      ]
+    }
+  ],
+  "choose_and_circle": [
+    {
+      "title": "U3 Vocabulary — Circle the right adjective",
+      "instruction": "Circle the correct adjective.",
+      "items": [
+        {
+          "order": 1,
+          "image": "",
+          "prompt": "Donata has a lot of friends.",
+          "options": [
+            "friendly",
+            "rude"
+          ],
+          "answer": "friendly"
+        },
+        {
+          "order": 2,
+          "image": "",
+          "prompt": "Mona always has new ideas.",
+          "options": [
+            "reliable",
+            "creative"
+          ],
+          "answer": "creative"
+        },
+        {
+          "order": 3,
+          "image": "",
+          "prompt": "Ann never has anything interesting to say.",
+          "options": [
+            "interesting",
+            "boring"
+          ],
+          "answer": "boring"
+        },
+        {
+          "order": 4,
+          "image": "",
+          "prompt": "Jully likes telling jokes.",
+          "options": [
+            "funny",
+            "shy"
+          ],
+          "answer": "funny"
+        },
+        {
+          "order": 5,
+          "image": "",
+          "prompt": "Anna cries quickly when watching romance movies.",
+          "options": [
+            "serious",
+            "sensitive"
+          ],
+          "answer": "sensitive"
+        },
+        {
+          "order": 6,
+          "image": "",
+          "prompt": "Lucy likes meeting and talking to people.",
+          "options": [
+            "outgoing",
+            "generous"
+          ],
+          "answer": "outgoing"
+        },
+        {
+          "order": 7,
+          "image": "",
+          "prompt": "Joana never helps with the housework.",
+          "options": [
+            "hard-working",
+            "lazy"
+          ],
+          "answer": "lazy"
+        },
+        {
+          "order": 8,
+          "image": "",
+          "prompt": "Jane becomes annoyed if she has to wait.",
+          "options": [
+            "nervous",
+            "impatient"
+          ],
+          "answer": "impatient"
+        },
+        {
+          "order": 9,
+          "image": "",
+          "prompt": "Mathew likes to play sport.",
+          "options": [
+            "active",
+            "helpful"
+          ],
+          "answer": "active"
+        },
+        {
+          "order": 10,
+          "image": "",
+          "prompt": "Helen isn't very talkative.",
+          "options": [
+            "quiet",
+            "curious"
+          ],
+          "answer": "quiet"
+        }
+      ]
+    }
+  ],
+  "scramble": [
+    {
+      "word": "friendly",
+      "hint": "U3 Friends"
+    },
+    {
+      "word": "creative",
+      "hint": "U3 Friends"
+    },
+    {
+      "word": "talkative",
+      "hint": "U3 Friends"
+    },
+    {
+      "word": "confident",
+      "hint": "U3 Friends"
+    },
+    {
+      "word": "curious",
+      "hint": "U3 Friends"
+    },
+    {
+      "word": "reliable",
+      "hint": "U3 Friends"
+    },
+    {
+      "word": "sensitive",
+      "hint": "U3 Friends"
+    },
+    {
+      "word": "outgoing",
+      "hint": "U3 Friends"
+    },
+    {
+      "word": "impatient",
+      "hint": "U3 Friends"
+    },
+    {
+      "word": "hardworking",
+      "hint": "U3 Friends"
+    }
+  ],
+  "pronunciation": [
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /b/",
+      "exerciseKey": "B",
+      "targetText": "back",
+      "targetIpa": "",
+      "hint": "U3"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /b/",
+      "exerciseKey": "B",
+      "targetText": "big",
+      "targetIpa": "",
+      "hint": "U3"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /b/",
+      "exerciseKey": "B",
+      "targetText": "blonde",
+      "targetIpa": "",
+      "hint": "U3"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /p/",
+      "exerciseKey": "P",
+      "targetText": "pen",
+      "targetIpa": "",
+      "hint": "U3"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /p/",
+      "exerciseKey": "P",
+      "targetText": "picnic",
+      "targetIpa": "",
+      "hint": "U3"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /p/",
+      "exerciseKey": "P",
+      "targetText": "parents",
+      "targetIpa": "",
+      "hint": "U3"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /p/",
+      "exerciseKey": "P",
+      "targetText": "picture",
+      "targetIpa": "",
+      "hint": "U3"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /b/",
+      "exerciseKey": "B",
+      "targetText": "biscuit",
+      "targetIpa": "",
+      "hint": "U3"
+    }
+  ],
+  "speakingTopic": {
+    "title": "Chat about my friends",
+    "durationSeconds": 300
+  }
+}

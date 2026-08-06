@@ -70,8 +70,8 @@ describe('SpeakingHubCards', () => {
     expect(html).toContain('Đọc câu');
     expect(html).toContain('Trả lời có hướng dẫn');
     expect(html).toContain('Hội thoại Realtime');
-    expect(html).toContain('3 phút');
-    expect(html).toContain('Còn 1/2 lượt hôm nay');
+    expect(html).toContain('class="activity-card"');
+    expect(html).toContain('1/2');
     expect(html).not.toContain('1 lượt/ngày');
   });
 

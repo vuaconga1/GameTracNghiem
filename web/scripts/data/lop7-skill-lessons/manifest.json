@@ -1,0 +1,228 @@
+{
+  "generatedAt": "2026-08-06T08:01:15.760641+00:00",
+  "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+  "units": {
+    "1": {
+      "unit": 1,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-1-vocabulary.pdf",
+          "sourcePageStart": 1,
+          "sourcePageEnd": 2,
+          "pageCount": 2
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-1-writing.pdf",
+          "sourcePageStart": 3,
+          "sourcePageEnd": 3,
+          "pageCount": 1
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-1-speaking.pdf",
+          "sourcePageStart": 4,
+          "sourcePageEnd": 8,
+          "pageCount": 5
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-1-reading.pdf",
+          "sourcePageStart": 9,
+          "sourcePageEnd": 15,
+          "pageCount": 7
+        }
+      ]
+    },
+    "2": {
+      "unit": 2,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-2-vocabulary.pdf",
+          "sourcePageStart": 16,
+          "sourcePageEnd": 18,
+          "pageCount": 3
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-2-writing.pdf",
+          "sourcePageStart": 19,
+          "sourcePageEnd": 19,
+          "pageCount": 1
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-2-speaking.pdf",
+          "sourcePageStart": 20,
+          "sourcePageEnd": 22,
+          "pageCount": 3
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-2-reading.pdf",
+          "sourcePageStart": 23,
+          "sourcePageEnd": 27,
+          "pageCount": 5
+        }
+      ]
+    },
+    "3": {
+      "unit": 3,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-3-vocabulary.pdf",
+          "sourcePageStart": 28,
+          "sourcePageEnd": 29,
+          "pageCount": 2
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-3-writing.pdf",
+          "sourcePageStart": 30,
+          "sourcePageEnd": 30,
+          "pageCount": 1
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-3-speaking.pdf",
+          "sourcePageStart": 31,
+          "sourcePageEnd": 34,
+          "pageCount": 4
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-3-reading.pdf",
+          "sourcePageStart": 35,
+          "sourcePageEnd": 40,
+          "pageCount": 6
+        }
+      ]
+    },
+    "4": {
+      "unit": 4,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-4-vocabulary.pdf",
+          "sourcePageStart": 41,
+          "sourcePageEnd": 42,
+          "pageCount": 2
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-4-writing.pdf",
+          "sourcePageStart": 43,
+          "sourcePageEnd": 43,
+          "pageCount": 1
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-4-speaking.pdf",
+          "sourcePageStart": 44,
+          "sourcePageEnd": 47,
+          "pageCount": 4
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-4-reading.pdf",
+          "sourcePageStart": 48,
+          "sourcePageEnd": 53,
+          "pageCount": 6
+        }
+      ]
+    },
+    "5": {
+      "unit": 5,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-5-vocabulary.pdf",
+          "sourcePageStart": 54,
+          "sourcePageEnd": 57,
+          "pageCount": 4
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-5-writing.pdf",
+          "sourcePageStart": 58,
+          "sourcePageEnd": 58,
+          "pageCount": 1
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-5-speaking.pdf",
+          "sourcePageStart": 59,
+          "sourcePageEnd": 62,
+          "pageCount": 4
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-5-reading.pdf",
+          "sourcePageStart": 63,
+          "sourcePageEnd": 68,
+          "pageCount": 6
+        }
+      ]
+    },
+    "6": {
+      "unit": 6,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-6-vocabulary.pdf",
+          "sourcePageStart": 69,
+          "sourcePageEnd": 71,
+          "pageCount": 3
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-6-writing.pdf",
+          "sourcePageStart": 72,
+          "sourcePageEnd": 72,
+          "pageCount": 1
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-6-speaking.pdf",
+          "sourcePageStart": 73,
+          "sourcePageEnd": 76,
+          "pageCount": 4
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GRADE 7 HK1 (GS) FINAL.pdf",
+          "unitPdf": "lop7-skill-lessons/unit-pdfs/unit-6-reading.pdf",
+          "sourcePageStart": 77,
+          "sourcePageEnd": 82,
+          "pageCount": 6
+        }
+      ]
+    }
+  }
+}

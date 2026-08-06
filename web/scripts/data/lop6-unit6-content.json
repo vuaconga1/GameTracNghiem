@@ -1,0 +1,817 @@
+{
+  "unit": 6,
+  "title": "Our Tet Holiday",
+  "source": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf (pages 71–85)",
+  "skipped": [
+    {
+      "reason": "Cột /s/ /ʃ/",
+      "item": "Pronunciation Task 1"
+    },
+    {
+      "reason": "Cột Things/Places/Food/People",
+      "item": "Vocabulary Task 1"
+    },
+    {
+      "reason": "Reading table completion cần passage kỹ hơn",
+      "item": "Reading Exercise 1–2 partial"
+    },
+    {
+      "reason": "Câu hỏi mở",
+      "item": "Speaking Task 2"
+    }
+  ],
+  "quiz": [
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U6 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. tension  B. sound  C. nation  D. potential",
+      "answer": "sound",
+      "options": [
+        "tension",
+        "sound",
+        "nation",
+        "potential"
+      ],
+      "accept": [
+        "sound",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U6 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. seek  B. sand  C. sleep  D. special",
+      "answer": "special",
+      "options": [
+        "seek",
+        "sand",
+        "sleep",
+        "special"
+      ],
+      "accept": [
+        "special",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U6 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. soon  B. ambitious  C. machine  D. shake",
+      "answer": "soon",
+      "options": [
+        "soon",
+        "ambitious",
+        "machine",
+        "shake"
+      ],
+      "accept": [
+        "soon",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U6 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. center  B. social  C. soap  D. suck",
+      "answer": "center",
+      "options": [
+        "center",
+        "social",
+        "soap",
+        "suck"
+      ],
+      "accept": [
+        "center",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U6 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. price  B. shampoo  C. sharp  D. push",
+      "answer": "price",
+      "options": [
+        "price",
+        "shampoo",
+        "sharp",
+        "push"
+      ],
+      "accept": [
+        "price",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U6 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. soccer  B. sorry  C. see  D. ancient",
+      "answer": "ancient",
+      "options": [
+        "soccer",
+        "sorry",
+        "see",
+        "ancient"
+      ],
+      "accept": [
+        "ancient",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U6 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. mushroom  B. sugar  C. recycle  D. shrimp",
+      "answer": "recycle",
+      "options": [
+        "mushroom",
+        "sugar",
+        "recycle",
+        "shrimp"
+      ],
+      "accept": [
+        "recycle",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U6 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. speak  B. ensure  C. miss  D. support",
+      "answer": "ensure",
+      "options": [
+        "speak",
+        "ensure",
+        "miss",
+        "support"
+      ],
+      "accept": [
+        "ensure",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U6 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. social  B. saw  C. shop  D. city",
+      "answer": "city",
+      "options": [
+        "social",
+        "saw",
+        "shop",
+        "city"
+      ],
+      "accept": [
+        "city",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U6 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. pressure  B. precise  C. space  D. sound",
+      "answer": "pressure",
+      "options": [
+        "pressure",
+        "precise",
+        "space",
+        "sound"
+      ],
+      "accept": [
+        "pressure",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Vocabulary — Tet",
+      "question": "The Vietnamese ________ Tet in late January or early February.",
+      "answer": "celebrate",
+      "options": [],
+      "accept": [
+        "celebrate"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Vocabulary — Tet",
+      "question": "Children ________ their grandparents health and longevity.",
+      "answer": "wish",
+      "options": [],
+      "accept": [
+        "wish"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Vocabulary — Tet",
+      "question": "Tet is a time for family ________.",
+      "answer": "gatherings",
+      "options": [],
+      "accept": [
+        "gatherings",
+        "reunion",
+        "reunions"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Vocabulary — Tet",
+      "question": "Thousands of people gathered to ________ fireworks.",
+      "answer": "watch",
+      "options": [],
+      "accept": [
+        "watch",
+        "see"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Vocabulary — Tet",
+      "question": "Children receive ________ money in red envelopes.",
+      "answer": "lucky",
+      "options": [],
+      "accept": [
+        "lucky"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Vocabulary — Tet",
+      "question": "They believe that the first ________ on New Year's Day decides the family luck.",
+      "answer": "visitor",
+      "options": [],
+      "accept": [
+        "visitor",
+        "guest"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Vocabulary — Tet",
+      "question": "New Year's ________ is on December 31.",
+      "answer": "Eve",
+      "options": [],
+      "accept": [
+        "Eve",
+        "eve"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Vocabulary — Tet",
+      "question": "We ________ our house with flowers and plants.",
+      "answer": "decorate",
+      "options": [],
+      "accept": [
+        "decorate"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Vocabulary — Tet",
+      "question": "One tradition in Thai New Year is to throw ________ over people.",
+      "answer": "water",
+      "options": [],
+      "accept": [
+        "water"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Vocabulary — Tet",
+      "question": "Children ________ eat lots of sweets - it's not good for their teeth.",
+      "answer": "shouldn't",
+      "options": [],
+      "accept": [
+        "shouldn't",
+        "should not"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U6 Word form",
+      "question": "I always visit my ________ during Tet holiday. (RELATION)",
+      "answer": "relatives",
+      "options": [],
+      "accept": [
+        "relatives"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U6 Word form",
+      "question": "Tet is a special occasion for family ________. (GATHER)",
+      "answer": "gatherings",
+      "options": [],
+      "accept": [
+        "gatherings",
+        "gathering"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U6 Word form",
+      "question": "We cleaned the house to ________ Tet. (CELEBRATION)",
+      "answer": "celebrate",
+      "options": [],
+      "accept": [
+        "celebrate"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U6 Word form",
+      "question": "________, children will receive lucky money. (TRADITION)",
+      "answer": "Traditionally",
+      "options": [],
+      "accept": [
+        "Traditionally"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U6 Word form",
+      "question": "We pray for good health, ________ and wealth. (HAPPY)",
+      "answer": "happiness",
+      "options": [],
+      "accept": [
+        "happiness"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U6 Word form",
+      "question": "We can have a ________ if we eat too many sweets. (TOOTH)",
+      "answer": "toothache",
+      "options": [],
+      "accept": [
+        "toothache"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U6 Word form",
+      "question": "It's so ________ to have a spring vacation in Sa Pa. (FANTASY)",
+      "answer": "fantastic",
+      "options": [],
+      "accept": [
+        "fantastic"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Underline correct",
+      "skill": "reading",
+      "exercise": "U6 Grammar — should/shouldn't",
+      "question": "Children (should/ shouldn't) listen to their parents.",
+      "answer": "should",
+      "options": [
+        "should",
+        "shouldn't"
+      ],
+      "accept": [
+        "should",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Underline correct",
+      "skill": "reading",
+      "exercise": "U6 Grammar — should/shouldn't",
+      "question": "The students (should/ shouldn't) use their mobile phone in the exam.",
+      "answer": "shouldn't",
+      "options": [
+        "should",
+        "shouldn't"
+      ],
+      "accept": [
+        "shouldn't",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Choose modal",
+      "skill": "reading",
+      "exercise": "U6 Grammar — Modal",
+      "question": "All students ________ study hard to get good results. (shall, can, must)",
+      "answer": "must",
+      "options": [
+        "shall",
+        "can",
+        "must"
+      ],
+      "accept": [
+        "must",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Choose modal",
+      "skill": "reading",
+      "exercise": "U6 Grammar — Modal",
+      "question": "You ________ never speak to your mother like this. (should, mustn't, shouldn't)",
+      "answer": "should",
+      "options": [
+        "should",
+        "mustn't",
+        "shouldn't"
+      ],
+      "accept": [
+        "should",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    }
+  ],
+  "grammar": [
+    {
+      "source": "We ________ the house before Tet. (clean/decorate)",
+      "prefix": "We",
+      "suffix": "the house before Tet.",
+      "hint": "U6 Grammar — Verbs for Tet",
+      "answers": [
+        "clean",
+        "decorate"
+      ]
+    },
+    {
+      "source": "Children ________ lucky money. (receive/give)",
+      "prefix": "Children",
+      "suffix": "lucky money.",
+      "hint": "U6 Grammar — Verbs for Tet",
+      "answers": [
+        "receive"
+      ]
+    },
+    {
+      "source": "Families ________ Banh Chung. (make/cook)",
+      "prefix": "Families",
+      "suffix": "Banh Chung.",
+      "hint": "U6 Grammar — Verbs for Tet",
+      "answers": [
+        "make",
+        "cook"
+      ]
+    },
+    {
+      "source": "People ________ guests during Tet. (welcome/fight)",
+      "prefix": "People",
+      "suffix": "guests during Tet.",
+      "hint": "U6 Grammar — Verbs for Tet",
+      "answers": [
+        "welcome"
+      ]
+    },
+    {
+      "source": "You ________ eat too many sweets.",
+      "prefix": "You",
+      "suffix": "eat too many sweets.",
+      "hint": "U6 Grammar — should/shouldn't",
+      "answers": [
+        "shouldn't",
+        "should not"
+      ]
+    },
+    {
+      "source": "You ________ visit your grandparents.",
+      "prefix": "You",
+      "suffix": "visit your grandparents.",
+      "hint": "U6 Grammar — should/shouldn't",
+      "answers": [
+        "should"
+      ]
+    },
+    {
+      "source": "You ________ break things in the house.",
+      "prefix": "You",
+      "suffix": "break things in the house.",
+      "hint": "U6 Grammar — should/shouldn't",
+      "answers": [
+        "shouldn't",
+        "should not"
+      ]
+    },
+    {
+      "source": "You ________ behave well at Tet.",
+      "prefix": "You",
+      "suffix": "behave well at Tet.",
+      "hint": "U6 Grammar — should/shouldn't",
+      "answers": [
+        "should"
+      ]
+    },
+    {
+      "source": "lucky/ Children/ money/ receive/ envelopes/ in/ red/.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U6 Writing — Reorder the words",
+      "answers": [
+        "Children receive lucky money in red envelopes.",
+        "Children receive lucky money in red envelopes"
+      ]
+    },
+    {
+      "source": "Tet/ for/ is/ time/ a/ family/ gatherings/.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U6 Writing — Reorder the words",
+      "answers": [
+        "Tet is a time for family gatherings.",
+        "Tet is a time for family gatherings"
+      ]
+    },
+    {
+      "source": "should/ We/ the/ decorate/ house/ flowers/ with/.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U6 Writing — Reorder the words",
+      "answers": [
+        "We should decorate the house with flowers.",
+        "We should decorate the house with flowers"
+      ]
+    },
+    {
+      "source": "shouldn't/ You/ things/ break/ Tet/ during/.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U6 Writing — Reorder the words",
+      "answers": [
+        "You shouldn't break things during Tet.",
+        "You should not break things during Tet."
+      ]
+    }
+  ],
+  "read_and_complete": [
+    {
+      "title": "U6 Vocabulary — Should / shouldn't at Tet",
+      "instruction": "Complete with activities you should or shouldn't do (use the bank).",
+      "word_bank": [
+        "welcome guests",
+        "decorate the house",
+        "visit relatives",
+        "break things",
+        "fight",
+        "behave well"
+      ],
+      "items": [
+        {
+          "order": 1,
+          "sentence": "At Tet you should ___.",
+          "image": "",
+          "answer": "welcome guests"
+        },
+        {
+          "order": 2,
+          "sentence": "You should ___ with flowers.",
+          "image": "",
+          "answer": "decorate the house"
+        },
+        {
+          "order": 3,
+          "sentence": "You should ___.",
+          "image": "",
+          "answer": "visit relatives"
+        },
+        {
+          "order": 4,
+          "sentence": "You shouldn't ___.",
+          "image": "",
+          "answer": "break things"
+        },
+        {
+          "order": 5,
+          "sentence": "You shouldn't ___.",
+          "image": "",
+          "answer": "fight"
+        },
+        {
+          "order": 6,
+          "sentence": "You should ___.",
+          "image": "",
+          "answer": "behave well"
+        }
+      ]
+    }
+  ],
+  "scramble": [
+    {
+      "word": "celebrate",
+      "hint": "U6 Tet"
+    },
+    {
+      "word": "fireworks",
+      "hint": "U6 Tet"
+    },
+    {
+      "word": "relatives",
+      "hint": "U6 Tet"
+    },
+    {
+      "word": "decorate",
+      "hint": "U6 Tet"
+    },
+    {
+      "word": "blossom",
+      "hint": "U6 Tet"
+    },
+    {
+      "word": "pagoda",
+      "hint": "U6 Tet"
+    },
+    {
+      "word": "envelope",
+      "hint": "U6 Tet"
+    },
+    {
+      "word": "reunion",
+      "hint": "U6 Tet"
+    },
+    {
+      "word": "tradition",
+      "hint": "U6 Tet"
+    },
+    {
+      "word": "festival",
+      "hint": "U6 Tet"
+    }
+  ],
+  "pronunciation": [
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /s/",
+      "exerciseKey": "S",
+      "targetText": "summer",
+      "targetIpa": "",
+      "hint": "U6"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /s/",
+      "exerciseKey": "S",
+      "targetText": "celebrate",
+      "targetIpa": "",
+      "hint": "U6"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʃ/",
+      "exerciseKey": "SH",
+      "targetText": "wish",
+      "targetIpa": "",
+      "hint": "U6"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʃ/",
+      "exerciseKey": "SH",
+      "targetText": "special",
+      "targetIpa": "",
+      "hint": "U6"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʃ/",
+      "exerciseKey": "SH",
+      "targetText": "shopping",
+      "targetIpa": "",
+      "hint": "U6"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʃ/",
+      "exerciseKey": "SH",
+      "targetText": "sugar",
+      "targetIpa": "",
+      "hint": "U6"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /s/",
+      "exerciseKey": "S",
+      "targetText": "spring",
+      "targetIpa": "",
+      "hint": "U6"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ʃ/",
+      "exerciseKey": "SH",
+      "targetText": "shine",
+      "targetIpa": "",
+      "hint": "U6"
+    }
+  ],
+  "speakingTopic": {
+    "title": "Chat about Tet holiday",
+    "durationSeconds": 300
+  }
+}

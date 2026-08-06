@@ -1,0 +1,714 @@
+{
+  "unit": 4,
+  "title": "My Neighbourhood",
+  "source": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf (pages 44–56)",
+  "skipped": [
+    {
+      "reason": "Thiếu ảnh",
+      "item": "Vocabulary Task 1 pictures"
+    },
+    {
+      "reason": "Sắp xếp hội thoại khó map UI",
+      "item": "Speaking Task 2 conversation order"
+    },
+    {
+      "reason": "Reading matching features cần answer key kỹ hơn",
+      "item": "Reading Exercise 1–3 partial"
+    }
+  ],
+  "quiz": [
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Vocabulary — Places",
+      "question": "A shop that sells medicines and drugs → ________",
+      "answer": "pharmacy",
+      "options": [],
+      "accept": [
+        "pharmacy"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Vocabulary — Places",
+      "question": "A large shop divided into several parts → ________",
+      "answer": "department store",
+      "options": [],
+      "accept": [
+        "department store",
+        "departmentstore"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Vocabulary — Places",
+      "question": "A place where you can get your hair cut → ________",
+      "answer": "hairdresser's",
+      "options": [],
+      "accept": [
+        "hairdresser's",
+        "hairdresser",
+        "hairdressers"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Vocabulary — Places",
+      "question": "A building for a fire brigade → ________",
+      "answer": "fire station",
+      "options": [],
+      "accept": [
+        "fire station",
+        "firestation"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Vocabulary — Places",
+      "question": "A place where doctors see patients → ________",
+      "answer": "health centre",
+      "options": [],
+      "accept": [
+        "health centre",
+        "health center",
+        "clinic"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Vocabulary — Places",
+      "question": "A place beside the road to buy petrol → ________",
+      "answer": "petrol station",
+      "options": [],
+      "accept": [
+        "petrol station",
+        "gas station"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Vocabulary — Places",
+      "question": "An area of land for burying dead people → ________",
+      "answer": "cemetery",
+      "options": [],
+      "accept": [
+        "cemetery"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "It is a great ________ to have the school so near. (CONVENIENT)",
+      "answer": "convenience",
+      "options": [],
+      "accept": [
+        "convenience"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "In the spring the place is ________ with skiers. (CROWD)",
+      "answer": "crowded",
+      "options": [],
+      "accept": [
+        "crowded"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "I still find the job ________. (EXCITE)",
+      "answer": "exciting",
+      "options": [],
+      "accept": [
+        "exciting"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "The area is of special ________ interest. (HISTORY)",
+      "answer": "historical",
+      "options": [],
+      "accept": [
+        "historical",
+        "historic"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "________ on British beaches is a serious problem. (POLLUTE)",
+      "answer": "Pollution",
+      "options": [],
+      "accept": [
+        "Pollution"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "Ha Noi is a ________ capital. (FAME)",
+      "answer": "famous",
+      "options": [],
+      "accept": [
+        "famous"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "He bought a new car in order to move ________ in a big city. (CONVENIENT)",
+      "answer": "conveniently",
+      "options": [],
+      "accept": [
+        "conveniently"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "The environment in our city is ________. (POLLUTE)",
+      "answer": "polluted",
+      "options": [],
+      "accept": [
+        "polluted"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "I like enjoying clean air and ________ in the countryside. (PEACE)",
+      "answer": "peace",
+      "options": [],
+      "accept": [
+        "peace"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "Don't go straight ahead. It's very ________. (DANGER)",
+      "answer": "dangerous",
+      "options": [],
+      "accept": [
+        "dangerous"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "My neighborhood is ________ for good restaurants. (FAME)",
+      "answer": "famous",
+      "options": [],
+      "accept": [
+        "famous"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "She's beautiful with a ________ smile. (LOVE)",
+      "answer": "lovely",
+      "options": [],
+      "accept": [
+        "lovely"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "________, the barber cut my hair too short. (LUCK)",
+      "answer": "Unfortunately",
+      "options": [],
+      "accept": [
+        "Unfortunately",
+        "Unluckily"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U4 Word form",
+      "question": "Each of my friends has a ________ character. (DIFFER)",
+      "answer": "different",
+      "options": [],
+      "accept": [
+        "different"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Grammar — Comparative forms",
+      "question": "fast → ________",
+      "answer": "faster",
+      "options": [],
+      "accept": [
+        "faster"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Grammar — Comparative forms",
+      "question": "thin → ________",
+      "answer": "thinner",
+      "options": [],
+      "accept": [
+        "thinner"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Grammar — Comparative forms",
+      "question": "good → ________",
+      "answer": "better",
+      "options": [],
+      "accept": [
+        "better"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Grammar — Comparative forms",
+      "question": "happy → ________",
+      "answer": "happier",
+      "options": [],
+      "accept": [
+        "happier"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Grammar — Comparative forms",
+      "question": "carefully → ________",
+      "answer": "more carefully",
+      "options": [],
+      "accept": [
+        "more carefully"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Grammar — Comparative forms",
+      "question": "attractive → ________",
+      "answer": "more attractive",
+      "options": [],
+      "accept": [
+        "more attractive"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Grammar — Comparative forms",
+      "question": "noisy → ________",
+      "answer": "noisier",
+      "options": [],
+      "accept": [
+        "noisier"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Grammar — Comparative forms",
+      "question": "interesting → ________",
+      "answer": "more interesting",
+      "options": [],
+      "accept": [
+        "more interesting"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Grammar — Comparative forms",
+      "question": "polluted → ________",
+      "answer": "more polluted",
+      "options": [],
+      "accept": [
+        "more polluted"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U4 Grammar — Comparative forms",
+      "question": "cheap → ________",
+      "answer": "cheaper",
+      "options": [],
+      "accept": [
+        "cheaper"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Speaking match",
+      "skill": "reading",
+      "exercise": "U4 Speaking — Match",
+      "question": "Excuse me! Is there a grocery store near here?",
+      "answer": "Turn at the next corner. Go straight on to the traffic lights. Turn left. It's on your right",
+      "options": [
+        "Turn at the next corner. Go straight on to the traffic lights. Turn left. It's on your right",
+        "Yes, please.",
+        "I'm fine, thanks.",
+        "See you later."
+      ],
+      "accept": [
+        "Turn at the next corner. Go straight on to the traffic lights. Turn left. It's on your right",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    }
+  ],
+  "grammar": [
+    {
+      "source": "I am ________ than my sister. (tall)",
+      "prefix": "I am",
+      "suffix": "than my sister.",
+      "hint": "U4 Grammar — Comparatives",
+      "answers": [
+        "taller"
+      ]
+    },
+    {
+      "source": "My mum thinks that cats are ________ pets than dogs. (good)",
+      "prefix": "My mum thinks that cats are",
+      "suffix": "pets than dogs.",
+      "hint": "U4 Grammar — Comparatives",
+      "answers": [
+        "better"
+      ]
+    },
+    {
+      "source": "He is ________ than his brother. (intelligent)",
+      "prefix": "He is",
+      "suffix": "than his brother.",
+      "hint": "U4 Grammar — Comparatives",
+      "answers": [
+        "more intelligent"
+      ]
+    },
+    {
+      "source": "A swordfish is ________ than a jellyfish. (fast)",
+      "prefix": "A swordfish is",
+      "suffix": "than a jellyfish.",
+      "hint": "U4 Grammar — Comparatives",
+      "answers": [
+        "faster"
+      ]
+    },
+    {
+      "source": "You look ________ than last month. (thin)",
+      "prefix": "You look",
+      "suffix": "than last month.",
+      "hint": "U4 Grammar — Comparatives",
+      "answers": [
+        "thinner"
+      ]
+    },
+    {
+      "source": "A new house is ________ than an old one. (expensive)",
+      "prefix": "A new house is",
+      "suffix": "than an old one.",
+      "hint": "U4 Grammar — Comparatives",
+      "answers": [
+        "more expensive"
+      ]
+    },
+    {
+      "source": "Irene is ________ than Silvia. (clever)",
+      "prefix": "Irene is",
+      "suffix": "than Silvia.",
+      "hint": "U4 Grammar — Comparatives",
+      "answers": [
+        "cleverer",
+        "more clever"
+      ]
+    },
+    {
+      "source": "Computers are ________ than mobile phones. (cheap)",
+      "prefix": "Computers are",
+      "suffix": "than mobile phones.",
+      "hint": "U4 Grammar — Comparatives",
+      "answers": [
+        "cheaper"
+      ]
+    },
+    {
+      "source": "She looks even ________ last week. (bad)",
+      "prefix": "She looks even",
+      "suffix": "last week.",
+      "hint": "U4 Grammar — Comparatives",
+      "answers": [
+        "worse than"
+      ]
+    },
+    {
+      "source": "Her job is a lot ________ mine. (stressful)",
+      "prefix": "Her job is a lot",
+      "suffix": "mine.",
+      "hint": "U4 Grammar — Comparatives",
+      "answers": [
+        "more stressful than"
+      ]
+    },
+    {
+      "source": "I like this school because it is ________ the other one. (big)",
+      "prefix": "I like this school because it is",
+      "suffix": "the other one.",
+      "hint": "U4 Grammar — Comparatives",
+      "answers": [
+        "bigger than"
+      ]
+    },
+    {
+      "source": "A car is much ________ a bike. (expensive)",
+      "prefix": "A car is much",
+      "suffix": "a bike.",
+      "hint": "U4 Grammar — Comparatives",
+      "answers": [
+        "more expensive than"
+      ]
+    },
+    {
+      "source": "Sam is younger than Tim.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U4 Writing — Comparatives",
+      "answers": [
+        "Sam is younger than Tim.",
+        "Sam is younger than Tim"
+      ]
+    },
+    {
+      "source": "(be/ hot) Sapa / Nha Trang",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U4 Writing — Comparatives",
+      "answers": [
+        "Sapa is hotter than Nha Trang.",
+        "Nha Trang is hotter than Sapa."
+      ]
+    },
+    {
+      "source": "(be/ big) The mouse / the elephant",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U4 Writing — Comparatives",
+      "answers": [
+        "The elephant is bigger than the mouse.",
+        "The elephant is bigger than the mouse"
+      ]
+    }
+  ],
+  "scramble": [
+    {
+      "word": "pharmacy",
+      "hint": "U4 Places"
+    },
+    {
+      "word": "museum",
+      "hint": "U4 Places"
+    },
+    {
+      "word": "pagoda",
+      "hint": "U4 Places"
+    },
+    {
+      "word": "suburb",
+      "hint": "U4 Places"
+    },
+    {
+      "word": "bakery",
+      "hint": "U4 Places"
+    },
+    {
+      "word": "cinema",
+      "hint": "U4 Places"
+    },
+    {
+      "word": "bookstore",
+      "hint": "U4 Places"
+    },
+    {
+      "word": "cemetery",
+      "hint": "U4 Places"
+    },
+    {
+      "word": "restaurant",
+      "hint": "U4 Places"
+    },
+    {
+      "word": "gallery",
+      "hint": "U4 Places"
+    }
+  ],
+  "pronunciation": [
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Neighbourhood words",
+      "exerciseKey": "N4",
+      "targetText": "museum",
+      "targetIpa": "",
+      "hint": "U4"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Neighbourhood words",
+      "exerciseKey": "N4",
+      "targetText": "pagoda",
+      "targetIpa": "",
+      "hint": "U4"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Neighbourhood words",
+      "exerciseKey": "N4",
+      "targetText": "pharmacy",
+      "targetIpa": "",
+      "hint": "U4"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Neighbourhood words",
+      "exerciseKey": "N4",
+      "targetText": "suburb",
+      "targetIpa": "",
+      "hint": "U4"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Neighbourhood words",
+      "exerciseKey": "N4",
+      "targetText": "cinema",
+      "targetIpa": "",
+      "hint": "U4"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Neighbourhood words",
+      "exerciseKey": "N4",
+      "targetText": "bakery",
+      "targetIpa": "",
+      "hint": "U4"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Neighbourhood words",
+      "exerciseKey": "N4",
+      "targetText": "restaurant",
+      "targetIpa": "",
+      "hint": "U4"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Neighbourhood words",
+      "exerciseKey": "N4",
+      "targetText": "bookstore",
+      "targetIpa": "",
+      "hint": "U4"
+    }
+  ],
+  "speakingTopic": {
+    "title": "Chat about my neighbourhood",
+    "durationSeconds": 300
+  }
+}

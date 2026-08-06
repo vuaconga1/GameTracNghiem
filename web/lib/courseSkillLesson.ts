@@ -94,7 +94,7 @@ export function skillLessonsToMap(
   return map;
 }
 
-/** English for Logistics / Logictics — slide-only units open Bài học directly. */
+/** English for Logistics / Logictics — used for lesson fallbacks and filters. */
 export function isLogisticsLevelName(levelName: string | null | undefined): boolean {
   return /logi[sc]tics/i.test(String(levelName || ''));
 }

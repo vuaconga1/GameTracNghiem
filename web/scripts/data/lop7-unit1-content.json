@@ -1,0 +1,1068 @@
+{
+  "unit": 1,
+  "title": "Hobbies",
+  "source": "PDF/GRADE 7 HK1 (GS) FINAL.pdf (pages 1–15)",
+  "skipped": [
+    {
+      "reason": "Cột âm /ə/ /ɜː/",
+      "item": "Pronunciation grouping"
+    },
+    {
+      "reason": "Match go/do/collect columns cần UI riêng",
+      "item": "Match nouns with verbs columns"
+    },
+    {
+      "reason": "Câu hỏi mở",
+      "item": "Write questions for underlined parts"
+    }
+  ],
+  "quiz": [
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U1 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. pottery  B. flower  C. silent  D. service",
+      "answer": "silent",
+      "options": [
+        "pottery",
+        "flower",
+        "silent",
+        "service"
+      ],
+      "accept": [
+        "silent",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U1 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. girl  B. expert  C. open  D. burn",
+      "answer": "open",
+      "options": [
+        "girl",
+        "expert",
+        "open",
+        "burn"
+      ],
+      "accept": [
+        "open",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U1 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. sentence  B. world  C. picture  D. dangerous",
+      "answer": "world",
+      "options": [
+        "sentence",
+        "world",
+        "picture",
+        "dangerous"
+      ],
+      "accept": [
+        "world",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U1 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. surfing  B. collect  C. concert  D. melody",
+      "answer": "collect",
+      "options": [
+        "surfing",
+        "collect",
+        "concert",
+        "melody"
+      ],
+      "accept": [
+        "collect",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U1 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. worst  B. learn  C. control  D. dessert",
+      "answer": "control",
+      "options": [
+        "worst",
+        "learn",
+        "control",
+        "dessert"
+      ],
+      "accept": [
+        "control",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Hobbies MC",
+      "question": "My friend ______ football at weekends.",
+      "answer": "plays",
+      "options": [
+        "does",
+        "takes",
+        "makes",
+        "plays"
+      ],
+      "accept": [
+        "plays",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Hobbies MC",
+      "question": "Jane and Minh love collecting ______.",
+      "answer": "stamps",
+      "options": [
+        "stamps",
+        "dolls",
+        "glass bottles",
+        "bears"
+      ],
+      "accept": [
+        "stamps",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Hobbies MC",
+      "question": "My hobby is ______ photos.",
+      "answer": "taking",
+      "options": [
+        "making",
+        "doing",
+        "carving",
+        "taking"
+      ],
+      "accept": [
+        "taking",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Hobbies MC",
+      "question": "I think ______ coin is very interesting.",
+      "answer": "collecting",
+      "options": [
+        "collecting",
+        "cycling",
+        "ice-skating",
+        "doing gymnastics"
+      ],
+      "accept": [
+        "collecting",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Vocabulary — Hobbies MC",
+      "question": "When I have free time, I usually go ______.",
+      "answer": "camping",
+      "options": [
+        "surfing",
+        "swimming",
+        "fishing",
+        "camping"
+      ],
+      "accept": [
+        "camping",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Speaking — Match verbs",
+      "question": "collect →",
+      "answer": "coins",
+      "options": [
+        "television",
+        "books",
+        "coins",
+        "pop music"
+      ],
+      "accept": [
+        "coins",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Speaking — Match verbs",
+      "question": "take →",
+      "answer": "photos",
+      "options": [
+        "television",
+        "coins",
+        "photos",
+        "yoga"
+      ],
+      "accept": [
+        "photos",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Speaking — Match verbs",
+      "question": "watch →",
+      "answer": "television",
+      "options": [
+        "television",
+        "coins",
+        "photos",
+        "pottery"
+      ],
+      "accept": [
+        "television",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Speaking — Match verbs",
+      "question": "play →",
+      "answer": "the piano",
+      "options": [
+        "television",
+        "the piano",
+        "photos",
+        "sightseeing"
+      ],
+      "accept": [
+        "the piano",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Speaking — Match verbs",
+      "question": "listen to →",
+      "answer": "pop music",
+      "options": [
+        "television",
+        "pop music",
+        "photos",
+        "yoga"
+      ],
+      "accept": [
+        "pop music",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Speaking — Match verbs",
+      "question": "go →",
+      "answer": "sightseeing",
+      "options": [
+        "television",
+        "coins",
+        "photos",
+        "sightseeing"
+      ],
+      "accept": [
+        "sightseeing",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Reading — Mary's hobby",
+      "question": "When did Mary start her hobby?",
+      "answer": "at the age of 8",
+      "options": [
+        "8 years ago",
+        "at the age of 8",
+        "in grade 8",
+        "one year ago"
+      ],
+      "accept": [
+        "at the age of 8",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Reading — Mary's hobby",
+      "question": "What does Mary think about cooking?",
+      "answer": "Both B & c are correct.",
+      "options": [
+        "She thinks it's a waste of time.",
+        "She finds it interesting.",
+        "She finds it meaningful.",
+        "Both B & c are correct."
+      ],
+      "accept": [
+        "Both B & c are correct.",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Reading — Mary's hobby",
+      "question": "What does the word \"them\" refer to?",
+      "answer": "recipes",
+      "options": [
+        "Mary",
+        "Mary's mother and grandmother",
+        "recipes",
+        "Mary's dishes"
+      ],
+      "accept": [
+        "recipes",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Reading — Mary's hobby",
+      "question": "Where does Mary get recipes from?",
+      "answer": "All are correct.",
+      "options": [
+        "from her mother",
+        "from her grandmother",
+        "from the Internet",
+        "All are correct."
+      ],
+      "accept": [
+        "All are correct.",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Reading — Mary's hobby",
+      "question": "What does Mary do with the recipes?",
+      "answer": "She keeps them in a notebook.",
+      "options": [
+        "She keeps them in a notebook.",
+        "She shares them with her mother and grandmother.",
+        "She posts them on the Internet.",
+        "All are correct."
+      ],
+      "accept": [
+        "She keeps them in a notebook.",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Reading — Cloze",
+      "question": "What do you like doing best ______ your spare time?",
+      "answer": "in",
+      "options": [
+        "for",
+        "when",
+        "in",
+        "at"
+      ],
+      "accept": [
+        "in",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Reading — Cloze",
+      "question": "Henry likes going ______ in the country and taking photos.",
+      "answer": "for walks",
+      "options": [
+        "for walks",
+        "walks",
+        "a walk",
+        "to walk"
+      ],
+      "accept": [
+        "for walks",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Reading — Cloze",
+      "question": "…and ______ photos.",
+      "answer": "taking",
+      "options": [
+        "making",
+        "having",
+        "taking",
+        "doing"
+      ],
+      "accept": [
+        "taking",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Reading — Cloze",
+      "question": "Sometimes he ______ with his friends…",
+      "answer": "goes out",
+      "options": [
+        "travels",
+        "gets up",
+        "sees",
+        "goes out"
+      ],
+      "accept": [
+        "goes out",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U1 Reading — Cloze",
+      "question": "His brother Chris isn't ______ on walking.",
+      "answer": "keen",
+      "options": [
+        "interested",
+        "out",
+        "decided",
+        "keen"
+      ],
+      "accept": [
+        "keen",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "My ______ hobby is collecting stamps. (FAVOUR)",
+      "answer": "favourite",
+      "options": [],
+      "accept": [
+        "favourite",
+        "favorite"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "She is a very ______ girl. (CREATE)",
+      "answer": "creative",
+      "options": [],
+      "accept": [
+        "creative"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "Collecting coins is an ______ hobby. (INTEREST)",
+      "answer": "interesting",
+      "options": [],
+      "accept": [
+        "interesting"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "He is a stamp ______. (COLLECT)",
+      "answer": "collector",
+      "options": [],
+      "accept": [
+        "collector"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U1 Word form",
+      "question": "Photography is her greatest ______. (ENJOY)",
+      "answer": "enjoyment",
+      "options": [],
+      "accept": [
+        "enjoyment"
+      ],
+      "fillMode": true
+    }
+  ],
+  "grammar": [
+    {
+      "source": "______ the film begin at 3.30 or 4.30?",
+      "prefix": "",
+      "suffix": "the film begin at 3.30 or 4.30?",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "Does"
+      ]
+    },
+    {
+      "source": "The art exhibition ______ on 3rd May.",
+      "prefix": "The art exhibition",
+      "suffix": "on 3rd May.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "opens"
+      ]
+    },
+    {
+      "source": "The train ______ Plymouth at 11.30.",
+      "prefix": "The train",
+      "suffix": "Plymouth at 11.30.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "leaves"
+      ]
+    },
+    {
+      "source": "We ______ our work on Monday.",
+      "prefix": "We",
+      "suffix": "our work on Monday.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "start"
+      ]
+    },
+    {
+      "source": "When ______ it finish?",
+      "prefix": "When",
+      "suffix": "it finish?",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "does"
+      ]
+    },
+    {
+      "source": "What time ______ your train leave tomorrow?",
+      "prefix": "What time",
+      "suffix": "your train leave tomorrow?",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "does"
+      ]
+    },
+    {
+      "source": "Next Friday ______ the thirteenth.",
+      "prefix": "Next Friday",
+      "suffix": "the thirteenth.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "is"
+      ]
+    },
+    {
+      "source": "My train ______ at 11.30.",
+      "prefix": "My train",
+      "suffix": "at 11.30.",
+      "hint": "U1 Grammar — Present simple",
+      "answers": [
+        "leaves"
+      ]
+    },
+    {
+      "source": "Everyone likes ______ ice cream. (eat)",
+      "prefix": "Everyone likes",
+      "suffix": "ice cream.",
+      "hint": "U1 Grammar — Verbs of liking (to V / V-ing)",
+      "answers": [
+        "to eat",
+        "eating"
+      ]
+    },
+    {
+      "source": "Do you prefer ______ books in your free time? (read)",
+      "prefix": "Do you prefer",
+      "suffix": "books in your free time?",
+      "hint": "U1 Grammar — Verbs of liking (to V / V-ing)",
+      "answers": [
+        "to read",
+        "reading"
+      ]
+    },
+    {
+      "source": "I hate ______ horror movies. (watch)",
+      "prefix": "I hate",
+      "suffix": "horror movies.",
+      "hint": "U1 Grammar — Verbs of liking (to V / V-ing)",
+      "answers": [
+        "to watch",
+        "watching"
+      ]
+    },
+    {
+      "source": "My father loves ______ golf with his friends. (play)",
+      "prefix": "My father loves",
+      "suffix": "golf with his friends.",
+      "hint": "U1 Grammar — Verbs of liking (to V / V-ing)",
+      "answers": [
+        "to play",
+        "playing"
+      ]
+    },
+    {
+      "source": "Do you fancy ______ out this evening? (go)",
+      "prefix": "Do you fancy",
+      "suffix": "out this evening?",
+      "hint": "U1 Grammar — Verbs of liking (to V / V-ing)",
+      "answers": [
+        "going"
+      ]
+    },
+    {
+      "source": "I like ______ tennis at the weekend. (play)",
+      "prefix": "I like",
+      "suffix": "tennis at the weekend.",
+      "hint": "U1 Grammar — Verbs of liking (to V / V-ing)",
+      "answers": [
+        "playing"
+      ]
+    },
+    {
+      "source": "Jim enjoys ______ photos. (take)",
+      "prefix": "Jim enjoys",
+      "suffix": "photos.",
+      "hint": "U1 Grammar — Verbs of liking (to V / V-ing)",
+      "answers": [
+        "taking"
+      ]
+    },
+    {
+      "source": "My niece loves ______ adventure books. (read)",
+      "prefix": "My niece loves",
+      "suffix": "adventure books.",
+      "hint": "U1 Grammar — Verbs of liking (to V / V-ing)",
+      "answers": [
+        "reading"
+      ]
+    },
+    {
+      "source": "I can't stand ______ for buses in the rain. (wait)",
+      "prefix": "I can't stand",
+      "suffix": "for buses in the rain.",
+      "hint": "U1 Grammar — Verbs of liking (to V / V-ing)",
+      "answers": [
+        "waiting"
+      ]
+    },
+    {
+      "source": "Welcome ______ my house!",
+      "prefix": "Welcome",
+      "suffix": "my house!",
+      "hint": "U1 Grammar — Prepositions",
+      "answers": [
+        "to"
+      ]
+    },
+    {
+      "source": "Is there anything good ______ television tonight?",
+      "prefix": "Is there anything good",
+      "suffix": "television tonight?",
+      "hint": "U1 Grammar — Prepositions",
+      "answers": [
+        "on"
+      ]
+    },
+    {
+      "source": "What do you like doing ______ your free time?",
+      "prefix": "What do you like doing",
+      "suffix": "your free time?",
+      "hint": "U1 Grammar — Prepositions",
+      "answers": [
+        "in"
+      ]
+    },
+    {
+      "source": "He is interested ______ collecting toy cars.",
+      "prefix": "He is interested",
+      "suffix": "collecting toy cars.",
+      "hint": "U1 Grammar — Prepositions",
+      "answers": [
+        "in"
+      ]
+    },
+    {
+      "source": "hobbies/ you/ have/ any/ do/?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Writing — Reorder the words",
+      "answers": [
+        "Do you have any hobbies?",
+        "Do you have any hobbies"
+      ]
+    },
+    {
+      "source": "his/ do/ what/ your/ brother/ free/ does/ in/ time/?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Writing — Reorder the words",
+      "answers": [
+        "What does your brother do in his free time?",
+        "What does your brother do in his free time"
+      ]
+    },
+    {
+      "source": "he/ summer/ in/ climbing/ goes/ mountain/ the/ usually/.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Writing — Reorder the words",
+      "answers": [
+        "He usually goes mountain climbing in the summer.",
+        "He usually goes mountain climbing in the summer"
+      ]
+    },
+    {
+      "source": "you/ up/ will/ ice-skating/ future/ in/ take/ the/?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U1 Writing — Reorder the words",
+      "answers": [
+        "Will you take up ice-skating in the future?",
+        "Will you take up ice-skating in the future"
+      ]
+    },
+    {
+      "source": "What is your hobby?",
+      "prefix": "What hobby",
+      "suffix": "?",
+      "hint": "U1 Writing — Rewrite",
+      "answers": [
+        "do you have",
+        "are you interested in"
+      ]
+    },
+    {
+      "source": "His hobby is collecting toy cars.",
+      "prefix": "He collects",
+      "suffix": ".",
+      "hint": "U1 Writing — Rewrite",
+      "answers": [
+        "toy cars",
+        "toy cars as a hobby"
+      ]
+    },
+    {
+      "source": "My father likes to do gardening at the weekend.",
+      "prefix": "My father enjoys",
+      "suffix": ".",
+      "hint": "U1 Writing — Rewrite",
+      "answers": [
+        "gardening at the weekend",
+        "doing gardening at the weekend"
+      ]
+    },
+    {
+      "source": "Why don't we go swimming this afternoon?",
+      "prefix": "What about",
+      "suffix": "?",
+      "hint": "U1 Writing — Rewrite",
+      "answers": [
+        "going swimming this afternoon",
+        "going swimming this afternoon?"
+      ]
+    }
+  ],
+  "read_and_complete": [
+    {
+      "title": "U1 Reading — Collecting books",
+      "instruction": "Complete the passage with words from the box.",
+      "word_bank": [
+        "kinds",
+        "classify",
+        "books",
+        "near",
+        "name",
+        "collection",
+        "clean",
+        "immediately"
+      ],
+      "items": [
+        {
+          "order": 1,
+          "sentence": "Collecting ___ is my favourite hobby.",
+          "image": "",
+          "answer": "books"
+        },
+        {
+          "order": 2,
+          "sentence": "The first item in my ___ is a book about Doraemon.",
+          "image": "",
+          "answer": "collection"
+        },
+        {
+          "order": 3,
+          "sentence": "Now I have a lot of books of all ___.",
+          "image": "",
+          "answer": "kinds"
+        },
+        {
+          "order": 4,
+          "sentence": "Whenever I find an interesting book I buy it ___.",
+          "image": "",
+          "answer": "immediately"
+        },
+        {
+          "order": 5,
+          "sentence": "I usually buy books in the bookstores ___ my school.",
+          "image": "",
+          "answer": "near"
+        },
+        {
+          "order": 6,
+          "sentence": "I ___ my books into different categories.",
+          "image": "",
+          "answer": "classify"
+        },
+        {
+          "order": 7,
+          "sentence": "I put each category on the bookshelf with a ___ tag.",
+          "image": "",
+          "answer": "name"
+        },
+        {
+          "order": 8,
+          "sentence": "It takes time to keep everything ___ and dusted.",
+          "image": "",
+          "answer": "clean"
+        }
+      ]
+    }
+  ],
+  "scramble": [
+    {
+      "word": "hobby",
+      "hint": "U1 Hobbies"
+    },
+    {
+      "word": "collect",
+      "hint": "U1 Hobbies"
+    },
+    {
+      "word": "stamp",
+      "hint": "U1 Hobbies"
+    },
+    {
+      "word": "cycling",
+      "hint": "U1 Hobbies"
+    },
+    {
+      "word": "camping",
+      "hint": "U1 Hobbies"
+    },
+    {
+      "word": "pottery",
+      "hint": "U1 Hobbies"
+    },
+    {
+      "word": "gardening",
+      "hint": "U1 Hobbies"
+    },
+    {
+      "word": "surfing",
+      "hint": "U1 Hobbies"
+    },
+    {
+      "word": "cartoon",
+      "hint": "U1 Hobbies"
+    },
+    {
+      "word": "gymnastics",
+      "hint": "U1 Hobbies"
+    }
+  ],
+  "pronunciation": [
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ə/",
+      "exerciseKey": "SCHWA",
+      "targetText": "banana",
+      "targetIpa": "",
+      "hint": "U1"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ə/",
+      "exerciseKey": "SCHWA",
+      "targetText": "mother",
+      "targetIpa": "",
+      "hint": "U1"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ə/",
+      "exerciseKey": "SCHWA",
+      "targetText": "doctor",
+      "targetIpa": "",
+      "hint": "U1"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ɜː/",
+      "exerciseKey": "NURSE",
+      "targetText": "girl",
+      "targetIpa": "",
+      "hint": "U1"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ɜː/",
+      "exerciseKey": "NURSE",
+      "targetText": "world",
+      "targetIpa": "",
+      "hint": "U1"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ɜː/",
+      "exerciseKey": "NURSE",
+      "targetText": "learn",
+      "targetIpa": "",
+      "hint": "U1"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ɜː/",
+      "exerciseKey": "NURSE",
+      "targetText": "shirt",
+      "targetIpa": "",
+      "hint": "U1"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ɜː/",
+      "exerciseKey": "NURSE",
+      "targetText": "word",
+      "targetIpa": "",
+      "hint": "U1"
+    }
+  ],
+  "speakingTopic": {
+    "title": "Chat about hobbies",
+    "durationSeconds": 300
+  }
+}

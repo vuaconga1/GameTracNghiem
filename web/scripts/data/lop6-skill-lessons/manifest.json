@@ -1,0 +1,228 @@
+{
+  "generatedAt": "2026-08-06T08:01:15.580977+00:00",
+  "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+  "units": {
+    "1": {
+      "unit": 1,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-1-vocabulary.pdf",
+          "sourcePageStart": 3,
+          "sourcePageEnd": 9,
+          "pageCount": 7
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-1-writing.pdf",
+          "sourcePageStart": 10,
+          "sourcePageEnd": 13,
+          "pageCount": 4
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-1-speaking.pdf",
+          "sourcePageStart": 1,
+          "sourcePageEnd": 2,
+          "pageCount": 2
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-1-reading.pdf",
+          "sourcePageStart": 14,
+          "sourcePageEnd": 16,
+          "pageCount": 3
+        }
+      ]
+    },
+    "2": {
+      "unit": 2,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-2-vocabulary.pdf",
+          "sourcePageStart": 19,
+          "sourcePageEnd": 23,
+          "pageCount": 5
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-2-writing.pdf",
+          "sourcePageStart": 24,
+          "sourcePageEnd": 26,
+          "pageCount": 3
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-2-speaking.pdf",
+          "sourcePageStart": 17,
+          "sourcePageEnd": 18,
+          "pageCount": 2
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-2-reading.pdf",
+          "sourcePageStart": 27,
+          "sourcePageEnd": 30,
+          "pageCount": 4
+        }
+      ]
+    },
+    "3": {
+      "unit": 3,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-3-vocabulary.pdf",
+          "sourcePageStart": 32,
+          "sourcePageEnd": 36,
+          "pageCount": 5
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-3-writing.pdf",
+          "sourcePageStart": 37,
+          "sourcePageEnd": 40,
+          "pageCount": 4
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-3-speaking.pdf",
+          "sourcePageStart": 31,
+          "sourcePageEnd": 31,
+          "pageCount": 1
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-3-reading.pdf",
+          "sourcePageStart": 41,
+          "sourcePageEnd": 43,
+          "pageCount": 3
+        }
+      ]
+    },
+    "4": {
+      "unit": 4,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-4-vocabulary.pdf",
+          "sourcePageStart": 46,
+          "sourcePageEnd": 49,
+          "pageCount": 4
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-4-writing.pdf",
+          "sourcePageStart": 50,
+          "sourcePageEnd": 52,
+          "pageCount": 3
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-4-speaking.pdf",
+          "sourcePageStart": 44,
+          "sourcePageEnd": 45,
+          "pageCount": 2
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-4-reading.pdf",
+          "sourcePageStart": 53,
+          "sourcePageEnd": 56,
+          "pageCount": 4
+        }
+      ]
+    },
+    "5": {
+      "unit": 5,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-5-vocabulary.pdf",
+          "sourcePageStart": 58,
+          "sourcePageEnd": 62,
+          "pageCount": 5
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-5-writing.pdf",
+          "sourcePageStart": 63,
+          "sourcePageEnd": 67,
+          "pageCount": 5
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-5-speaking.pdf",
+          "sourcePageStart": 57,
+          "sourcePageEnd": 57,
+          "pageCount": 1
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-5-reading.pdf",
+          "sourcePageStart": 68,
+          "sourcePageEnd": 70,
+          "pageCount": 3
+        }
+      ]
+    },
+    "6": {
+      "unit": 6,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-6-vocabulary.pdf",
+          "sourcePageStart": 73,
+          "sourcePageEnd": 78,
+          "pageCount": 6
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-6-writing.pdf",
+          "sourcePageStart": 79,
+          "sourcePageEnd": 83,
+          "pageCount": 5
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-6-speaking.pdf",
+          "sourcePageStart": 71,
+          "sourcePageEnd": 72,
+          "pageCount": 2
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-6-reading.pdf",
+          "sourcePageStart": 84,
+          "sourcePageEnd": 85,
+          "pageCount": 2
+        }
+      ]
+    }
+  }
+}

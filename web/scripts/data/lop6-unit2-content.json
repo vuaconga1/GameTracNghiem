@@ -1,0 +1,1552 @@
+{
+  "unit": 2,
+  "title": "My Home",
+  "source": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf (pages 17–30)",
+  "skipped": [
+    {
+      "reason": "Cần UI cột âm",
+      "item": "Pronunciation Task 1"
+    },
+    {
+      "reason": "Thiếu ảnh",
+      "item": "Vocabulary Task 1 pictures"
+    },
+    {
+      "reason": "Cần UI nhóm từ",
+      "item": "Vocabulary Task 3"
+    },
+    {
+      "reason": "Câu hỏi mở",
+      "item": "Speaking Task 2"
+    }
+  ],
+  "quiz": [
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. schools  B. shops  C. pets  D. carts",
+      "answer": "schools",
+      "options": [
+        "schools",
+        "shops",
+        "pets",
+        "carts"
+      ],
+      "accept": [
+        "schools",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. pens  B. closets  C. sweets  D. lamps",
+      "answer": "pens",
+      "options": [
+        "pens",
+        "closets",
+        "sweets",
+        "lamps"
+      ],
+      "accept": [
+        "pens",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. rulers  B. pencils  C. bags  D. books",
+      "answer": "books",
+      "options": [
+        "rulers",
+        "pencils",
+        "bags",
+        "books"
+      ],
+      "accept": [
+        "books",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. matches  B. makes  C. brushes  D. peaches",
+      "answer": "makes",
+      "options": [
+        "matches",
+        "makes",
+        "brushes",
+        "peaches"
+      ],
+      "accept": [
+        "makes",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. bees  B. cupboards  C. watches  D. bedrooms",
+      "answer": "watches",
+      "options": [
+        "bees",
+        "cupboards",
+        "watches",
+        "bedrooms"
+      ],
+      "accept": [
+        "watches",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. feast  B. seat  C. bread  D. heat",
+      "answer": "bread",
+      "options": [
+        "feast",
+        "seat",
+        "bread",
+        "heat"
+      ],
+      "accept": [
+        "bread",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. peanut  B. cut  C. shut  D. put",
+      "answer": "put",
+      "options": [
+        "peanut",
+        "cut",
+        "shut",
+        "put"
+      ],
+      "accept": [
+        "put",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. what  B. flat  C. sand  D. Saturday",
+      "answer": "what",
+      "options": [
+        "what",
+        "flat",
+        "sand",
+        "Saturday"
+      ],
+      "accept": [
+        "what",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. hike  B. beside  C. hide  D. picnic",
+      "answer": "picnic",
+      "options": [
+        "hike",
+        "beside",
+        "hide",
+        "picnic"
+      ],
+      "accept": [
+        "picnic",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. washed  B. sacred  C. booked  D. hoped",
+      "answer": "sacred",
+      "options": [
+        "washed",
+        "sacred",
+        "booked",
+        "hoped"
+      ],
+      "accept": [
+        "sacred",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. forms  B. chairs  C. seats  D. keys",
+      "answer": "seats",
+      "options": [
+        "forms",
+        "chairs",
+        "seats",
+        "keys"
+      ],
+      "accept": [
+        "seats",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. papers  B. bosses  C. brushes  D. foxes",
+      "answer": "papers",
+      "options": [
+        "papers",
+        "bosses",
+        "brushes",
+        "foxes"
+      ],
+      "accept": [
+        "papers",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. cats  B. dogs  C. phones  D. drawers",
+      "answer": "cats",
+      "options": [
+        "cats",
+        "dogs",
+        "phones",
+        "drawers"
+      ],
+      "accept": [
+        "cats",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. pigs  B. plants  C. tables  D. computers",
+      "answer": "plants",
+      "options": [
+        "pigs",
+        "plants",
+        "tables",
+        "computers"
+      ],
+      "accept": [
+        "plants",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U2 Pronunciation — Odd one out",
+      "question": "Circle the word that has the underlined part pronounced differently: A. beaches  B. watches  C. sinks  D. lunches",
+      "answer": "sinks",
+      "options": [
+        "beaches",
+        "watches",
+        "sinks",
+        "lunches"
+      ],
+      "accept": [
+        "sinks",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Complete the sentences",
+      "question": "It's cold here. Are there any ________?",
+      "answer": "blankets",
+      "options": [],
+      "accept": [
+        "blankets",
+        "blanket"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Complete the sentences",
+      "question": "I'm a bit stomachache. Where is the ________?",
+      "answer": "toilet",
+      "options": [],
+      "accept": [
+        "toilet"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Complete the sentences",
+      "question": "How hot the weather is! Turn on the ________, please.",
+      "answer": "ceiling fan",
+      "options": [],
+      "accept": [
+        "ceiling fan",
+        "fan"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Complete the sentences",
+      "question": "Are there any ________ on the wall?",
+      "answer": "posters",
+      "options": [],
+      "accept": [
+        "posters",
+        "poster"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Complete the sentences",
+      "question": "I need to wash my face. Are there any ________ in the bathroom?",
+      "answer": "sinks",
+      "options": [],
+      "accept": [
+        "sinks",
+        "sink"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Complete the sentences",
+      "question": "Take a seat on the ________ over there.",
+      "answer": "sofa",
+      "options": [],
+      "accept": [
+        "sofa",
+        "Sofa"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Complete the sentences",
+      "question": "We can use the ________ to cook sticky rice.",
+      "answer": "cooker",
+      "options": [],
+      "accept": [
+        "cooker"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Complete the sentences",
+      "question": "It's so dark. Turn on the ________, please.",
+      "answer": "light",
+      "options": [],
+      "accept": [
+        "light"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Unscramble",
+      "question": "ergnad → ________",
+      "answer": "garden",
+      "options": [],
+      "accept": [
+        "garden"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Unscramble",
+      "question": "amrhoobt → ________",
+      "answer": "bathroom",
+      "options": [],
+      "accept": [
+        "bathroom"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Unscramble",
+      "question": "moordeb → ________",
+      "answer": "bedroom",
+      "options": [],
+      "accept": [
+        "bedroom"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Unscramble",
+      "question": "hcnekit → ________",
+      "answer": "kitchen",
+      "options": [],
+      "accept": [
+        "kitchen"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Unscramble",
+      "question": "nviligomor → ________",
+      "answer": "living room",
+      "options": [],
+      "accept": [
+        "living room"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Unscramble",
+      "question": "gnidinrmoo → ________",
+      "answer": "dining room",
+      "options": [],
+      "accept": [
+        "dining room"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Unscramble",
+      "question": "citta → ________",
+      "answer": "attic",
+      "options": [],
+      "accept": [
+        "attic"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U2 Vocabulary — Unscramble",
+      "question": "ragega → ________",
+      "answer": "garage",
+      "options": [],
+      "accept": [
+        "garage"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "I keep my socks in the bottom ________. (DRAW)",
+      "answer": "drawer",
+      "options": [],
+      "accept": [
+        "drawer"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "I don't attach any ________ to these rumours. (IMPORTANT)",
+      "answer": "importance",
+      "options": [],
+      "accept": [
+        "importance"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "Payment is ________ upon delivery of the goods. (CONDITION)",
+      "answer": "conditional",
+      "options": [],
+      "accept": [
+        "conditional"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "This story is apparently a complete ________. (INVENT)",
+      "answer": "invention",
+      "options": [],
+      "accept": [
+        "invention"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "What a ________ thing to say! (BEAUTY)",
+      "answer": "beautiful",
+      "options": [],
+      "accept": [
+        "beautiful"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "There's no ________ in the results. (DIFFERENT)",
+      "answer": "difference",
+      "options": [],
+      "accept": [
+        "difference"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "Do you get many ________? (VISIT)",
+      "answer": "visitors",
+      "options": [],
+      "accept": [
+        "visitors",
+        "visitor"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "You're the ________ one. (CREATE)",
+      "answer": "creative",
+      "options": [],
+      "accept": [
+        "creative"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "The road gradually ________ out. (WIDE)",
+      "answer": "widens",
+      "options": [],
+      "accept": [
+        "widens",
+        "widen"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "This room is twice the ________ of the kitchen. (LONG)",
+      "answer": "length",
+      "options": [],
+      "accept": [
+        "length"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "There are four ________ in my house. (BOOKSHELF)",
+      "answer": "bookshelves",
+      "options": [],
+      "accept": [
+        "bookshelves"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "My mother goes ________ twice a week. (SHOP)",
+      "answer": "shopping",
+      "options": [],
+      "accept": [
+        "shopping"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "He greets me in a ________ way. (FRIEND)",
+      "answer": "friendly",
+      "options": [],
+      "accept": [
+        "friendly"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "What's Maco's ________? - She's British. (NATION)",
+      "answer": "nationality",
+      "options": [],
+      "accept": [
+        "nationality"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "Yoko is from Japan. She is ________. (JAPAN)",
+      "answer": "Japanese",
+      "options": [],
+      "accept": [
+        "Japanese"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "These children like ________ weather. (SUN)",
+      "answer": "sunny",
+      "options": [],
+      "accept": [
+        "sunny"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U2 Word form",
+      "question": "Lan's classroom is on the ________ floor. (TWO)",
+      "answer": "second",
+      "options": [],
+      "accept": [
+        "second"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Speaking match",
+      "skill": "reading",
+      "exercise": "U2 Speaking — Match",
+      "question": "Where do you live?",
+      "answer": "I live in a town",
+      "options": [
+        "There are five.",
+        "Between the study and the stairs.",
+        "I live in a town",
+        "My bedroom."
+      ],
+      "accept": [
+        "I live in a town",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Speaking match",
+      "skill": "reading",
+      "exercise": "U2 Speaking — Match",
+      "question": "Who do you live with?",
+      "answer": "I live with my parents and sister.",
+      "options": [
+        "I live with my parents and sister.",
+        "My bedroom.",
+        "A sofa set, a television and a lamp.",
+        "There are five."
+      ],
+      "accept": [
+        "I live with my parents and sister.",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Speaking match",
+      "skill": "reading",
+      "exercise": "U2 Speaking — Match",
+      "question": "How many rooms are there?",
+      "answer": "There are five.",
+      "options": [
+        "There are five.",
+        "I live in a town",
+        "My bedroom.",
+        "Yes. There's a big one on the wall"
+      ],
+      "accept": [
+        "There are five.",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Speaking match",
+      "skill": "reading",
+      "exercise": "U2 Speaking — Match",
+      "question": "What's in the living room?",
+      "answer": "A sofa set, a television and a lamp.",
+      "options": [
+        "A sofa set, a television and a lamp.",
+        "My bedroom.",
+        "I live in a town",
+        "There are five."
+      ],
+      "accept": [
+        "A sofa set, a television and a lamp.",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Speaking match",
+      "skill": "reading",
+      "exercise": "U2 Speaking — Match",
+      "question": "What is your favourite room?",
+      "answer": "My bedroom.",
+      "options": [
+        "My bedroom.",
+        "There are five.",
+        "I live in a town",
+        "Between the study and the stairs."
+      ],
+      "accept": [
+        "My bedroom.",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Matching headings",
+      "skill": "reading",
+      "exercise": "U2 Reading — Matching headings",
+      "question": "Paragraph A best title:",
+      "answer": "Choosing between the countryside and the city",
+      "options": [
+        "How to set up your room to make it cozy",
+        "Why city houses cost too much money",
+        "Great storage furniture for bedrooms",
+        "Choosing between the countryside and the city"
+      ],
+      "accept": [
+        "Choosing between the countryside and the city",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Matching headings",
+      "skill": "reading",
+      "exercise": "U2 Reading — Matching headings",
+      "question": "Paragraph B best title:",
+      "answer": "The best appliances and cupboards for a kitchen",
+      "options": [
+        "How to set up your room to make it cozy",
+        "Great storage furniture for bedrooms",
+        "The best appliances and cupboards for a kitchen",
+        "Choosing between the countryside and the city"
+      ],
+      "accept": [
+        "The best appliances and cupboards for a kitchen",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Matching headings",
+      "skill": "reading",
+      "exercise": "U2 Reading — Matching headings",
+      "question": "Paragraph C best title:",
+      "answer": "Great storage furniture for bedrooms",
+      "options": [
+        "How to set up your room to make it cozy",
+        "Great storage furniture for bedrooms",
+        "The best appliances and cupboards for a kitchen",
+        "Why city houses cost too much money"
+      ],
+      "accept": [
+        "Great storage furniture for bedrooms",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Matching headings",
+      "skill": "reading",
+      "exercise": "U2 Reading — Matching headings",
+      "question": "Paragraph D best title:",
+      "answer": "How to set up your room to make it cozy",
+      "options": [
+        "How to set up your room to make it cozy",
+        "Why city houses cost too much money",
+        "Great storage furniture for bedrooms",
+        "Choosing between the countryside and the city"
+      ],
+      "accept": [
+        "How to set up your room to make it cozy",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Matching information",
+      "skill": "reading",
+      "exercise": "U2 Reading — Matching information",
+      "question": "Natural light helps you get ready in the morning.",
+      "answer": "C",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "accept": [
+        "C",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Matching information",
+      "skill": "reading",
+      "exercise": "U2 Reading — Matching information",
+      "question": "Fun places you can visit quickly in the city.",
+      "answer": "A",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "accept": [
+        "A",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Matching information",
+      "skill": "reading",
+      "exercise": "U2 Reading — Matching information",
+      "question": "A kitchen appliance that saves time on chores.",
+      "answer": "B",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "accept": [
+        "B",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Matching information",
+      "skill": "reading",
+      "exercise": "U2 Reading — Matching information",
+      "question": "Placing furniture creatively creates a quiet spot.",
+      "answer": "D",
+      "options": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "accept": [
+        "D",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Reading T/F/NG",
+      "skill": "reading",
+      "exercise": "U2 Reading — Dialogue T/F/NG",
+      "question": "Amy lives in a spacious country house.",
+      "answer": "FALSE",
+      "options": [
+        "TRUE",
+        "FALSE",
+        "NOT GIVEN"
+      ],
+      "accept": [
+        "FALSE",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Reading T/F/NG",
+      "skill": "reading",
+      "exercise": "U2 Reading — Dialogue T/F/NG",
+      "question": "Ben lives in a flat on the fourth floor.",
+      "answer": "TRUE",
+      "options": [
+        "TRUE",
+        "FALSE",
+        "NOT GIVEN"
+      ],
+      "accept": [
+        "TRUE",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Reading T/F/NG",
+      "skill": "reading",
+      "exercise": "U2 Reading — Dialogue T/F/NG",
+      "question": "Amy's flat has a balcony with plants.",
+      "answer": "NOT GIVEN",
+      "options": [
+        "TRUE",
+        "FALSE",
+        "NOT GIVEN"
+      ],
+      "accept": [
+        "NOT GIVEN",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Reading T/F/NG",
+      "skill": "reading",
+      "exercise": "U2 Reading — Dialogue T/F/NG",
+      "question": "Amy uses a dishwasher to avoid washing plates by hand.",
+      "answer": "TRUE",
+      "options": [
+        "TRUE",
+        "FALSE",
+        "NOT GIVEN"
+      ],
+      "accept": [
+        "TRUE",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Reading T/F/NG",
+      "skill": "reading",
+      "exercise": "U2 Reading — Dialogue T/F/NG",
+      "question": "Amy's chest of drawers is painted white.",
+      "answer": "NOT GIVEN",
+      "options": [
+        "TRUE",
+        "FALSE",
+        "NOT GIVEN"
+      ],
+      "accept": [
+        "NOT GIVEN",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Reading T/F/NG",
+      "skill": "reading",
+      "exercise": "U2 Reading — Dialogue T/F/NG",
+      "question": "The bathroom is across the hall from Amy's bedroom.",
+      "answer": "TRUE",
+      "options": [
+        "TRUE",
+        "FALSE",
+        "NOT GIVEN"
+      ],
+      "accept": [
+        "TRUE",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    }
+  ],
+  "grammar": [
+    {
+      "source": "There ______ 25 students in the class.",
+      "prefix": "There",
+      "suffix": "25 students in the class.",
+      "hint": "U2 Grammar — There is/There are",
+      "answers": [
+        "are"
+      ]
+    },
+    {
+      "source": "There ______ a big wardrobe in my sister's room.",
+      "prefix": "There",
+      "suffix": "a big wardrobe in my sister's room.",
+      "hint": "U2 Grammar — There is/There are",
+      "answers": [
+        "is"
+      ]
+    },
+    {
+      "source": "There ______ a computer and a TV in my room.",
+      "prefix": "There",
+      "suffix": "a computer and a TV in my room.",
+      "hint": "U2 Grammar — There is/There are",
+      "answers": [
+        "is"
+      ]
+    },
+    {
+      "source": "There ______ good programs on television.",
+      "prefix": "There",
+      "suffix": "good programs on television.",
+      "hint": "U2 Grammar — There is/There are",
+      "answers": [
+        "are"
+      ]
+    },
+    {
+      "source": "There ______ some furniture in my bedroom.",
+      "prefix": "There",
+      "suffix": "some furniture in my bedroom.",
+      "hint": "U2 Grammar — There is/There are",
+      "answers": [
+        "is"
+      ]
+    },
+    {
+      "source": "There ______ four eggs in the fridge.",
+      "prefix": "There",
+      "suffix": "four eggs in the fridge.",
+      "hint": "U2 Grammar — There is/There are",
+      "answers": [
+        "are"
+      ]
+    },
+    {
+      "source": "There ______ a lot of water in the bottle.",
+      "prefix": "There",
+      "suffix": "a lot of water in the bottle.",
+      "hint": "U2 Grammar — There is/There are",
+      "answers": [
+        "is"
+      ]
+    },
+    {
+      "source": "There ______ no paper in the printer.",
+      "prefix": "There",
+      "suffix": "no paper in the printer.",
+      "hint": "U2 Grammar — There is/There are",
+      "answers": [
+        "is"
+      ]
+    },
+    {
+      "source": "Is there a bath in the bathroom?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Grammar — There is/There are",
+      "answers": [
+        "Is there a bath in the bathroom?",
+        "Is there a bath in the bathroom"
+      ]
+    },
+    {
+      "source": "There are some shops near our new house.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Grammar — There is/There are",
+      "answers": [
+        "There are some shops near our new house.",
+        "There are some shops near our new house"
+      ]
+    },
+    {
+      "source": "There isn't a television in my bedroom.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Grammar — There is/There are",
+      "answers": [
+        "There isn't a television in my bedroom.",
+        "There is not a television in my bedroom."
+      ]
+    },
+    {
+      "source": "Are there any cupboards in the dining room?",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Grammar — There is/There are",
+      "answers": [
+        "Are there any cupboards in the dining room?",
+        "Are there any cupboards in the dining room"
+      ]
+    },
+    {
+      "source": "The dining room is ______ the living room and the kitchen.",
+      "prefix": "The dining room is",
+      "suffix": "the living room and the kitchen.",
+      "hint": "U2 Grammar — Prepositions",
+      "answers": [
+        "between"
+      ]
+    },
+    {
+      "source": "The bath is ______ the bathroom.",
+      "prefix": "The bath is",
+      "suffix": "the bathroom.",
+      "hint": "U2 Grammar — Prepositions",
+      "answers": [
+        "in"
+      ]
+    },
+    {
+      "source": "The flower vase is ______ the chest of drawers.",
+      "prefix": "The flower vase is",
+      "suffix": "the chest of drawers.",
+      "hint": "U2 Grammar — Prepositions",
+      "answers": [
+        "on"
+      ]
+    },
+    {
+      "source": "The fridge is ______ the cooker.",
+      "prefix": "The fridge is",
+      "suffix": "the cooker.",
+      "hint": "U2 Grammar — Prepositions",
+      "answers": [
+        "next to",
+        "beside"
+      ]
+    },
+    {
+      "source": "The mirror is ______ the bathroom sink.",
+      "prefix": "The mirror is",
+      "suffix": "the bathroom sink.",
+      "hint": "U2 Grammar — Prepositions",
+      "answers": [
+        "above",
+        "over"
+      ]
+    },
+    {
+      "source": "There/ book/ on/ the table.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Writing — Make complete sentences",
+      "answers": [
+        "There is a book on the table.",
+        "There is a book on the table"
+      ]
+    },
+    {
+      "source": "There/ shoes/ under/ the chair.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Writing — Make complete sentences",
+      "answers": [
+        "There are shoes under the chair.",
+        "There are some shoes under the chair."
+      ]
+    },
+    {
+      "source": "There/ not/ TV/ in/ his room.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Writing — Make complete sentences",
+      "answers": [
+        "There isn't a TV in his room.",
+        "There is not a TV in his room."
+      ]
+    },
+    {
+      "source": "house/ a/ Minh/ lake/ a/ lives/ in/ near.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Writing — Reorder the words",
+      "answers": [
+        "Minh lives in a house near a lake.",
+        "Minh lives in a house near a lake"
+      ]
+    },
+    {
+      "source": "yard/ front/ school/ There/ big/ of/ is/ our/ in/ a.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Writing — Reorder the words",
+      "answers": [
+        "There is a big yard in front of our school.",
+        "There is a big yard in front of our school"
+      ]
+    },
+    {
+      "source": "Minh's/ six/ There/ in/ rooms/ house/ are.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Writing — Reorder the words",
+      "answers": [
+        "There are six rooms in Minh's house.",
+        "There are six rooms in Minh's house"
+      ]
+    },
+    {
+      "source": "on/ floor/ classroom/ the/ is/ Our/ first.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U2 Writing — Reorder the words",
+      "answers": [
+        "Our classroom is on the first floor.",
+        "Our classroom is on the first floor"
+      ]
+    }
+  ],
+  "scramble": [
+    {
+      "word": "bedroom",
+      "hint": "U2 Home"
+    },
+    {
+      "word": "kitchen",
+      "hint": "U2 Home"
+    },
+    {
+      "word": "bathroom",
+      "hint": "U2 Home"
+    },
+    {
+      "word": "wardrobe",
+      "hint": "U2 Home"
+    },
+    {
+      "word": "fridge",
+      "hint": "U2 Home"
+    },
+    {
+      "word": "dishwasher",
+      "hint": "U2 Home"
+    },
+    {
+      "word": "apartment",
+      "hint": "U2 Home"
+    },
+    {
+      "word": "cupboard",
+      "hint": "U2 Home"
+    },
+    {
+      "word": "microwave",
+      "hint": "U2 Home"
+    },
+    {
+      "word": "garage",
+      "hint": "U2 Home"
+    }
+  ],
+  "pronunciation": [
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /s/",
+      "exerciseKey": "S",
+      "targetText": "shops",
+      "targetIpa": "/ʃɒps/",
+      "hint": "U2"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /s/",
+      "exerciseKey": "S",
+      "targetText": "books",
+      "targetIpa": "/bʊks/",
+      "hint": "U2"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /z/",
+      "exerciseKey": "Z",
+      "targetText": "schools",
+      "targetIpa": "/skuːlz/",
+      "hint": "U2"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /z/",
+      "exerciseKey": "Z",
+      "targetText": "dogs",
+      "targetIpa": "/dɒɡz/",
+      "hint": "U2"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ɪz/",
+      "exerciseKey": "IZ",
+      "targetText": "watches",
+      "targetIpa": "/ˈwɒtʃɪz/",
+      "hint": "U2"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ɪz/",
+      "exerciseKey": "IZ",
+      "targetText": "beaches",
+      "targetIpa": "/ˈbiːtʃɪz/",
+      "hint": "U2"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /ɪz/",
+      "exerciseKey": "IZ",
+      "targetText": "boxes",
+      "targetIpa": "/ˈbɒksɪz/",
+      "hint": "U2"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /z/",
+      "exerciseKey": "Z",
+      "targetText": "chairs",
+      "targetIpa": "/tʃeəz/",
+      "hint": "U2"
+    }
+  ],
+  "read_and_complete": [
+    {
+      "title": "U2 Vocabulary — Parts of the house passage",
+      "instruction": "Complete the sentences with words from the box.",
+      "word_bank": [
+        "bedrooms",
+        "bathroom",
+        "kitchen",
+        "dining room",
+        "living room",
+        "garage",
+        "garden",
+        "attic"
+      ],
+      "items": [
+        {
+          "order": 1,
+          "sentence": "It has got two ___ upstairs, my parents' one and mine.",
+          "image": "",
+          "answer": "bedrooms"
+        },
+        {
+          "order": 2,
+          "sentence": "Upstairs also there is a ___ where I wash and brush my teeth.",
+          "image": "",
+          "answer": "bathroom"
+        },
+        {
+          "order": 3,
+          "sentence": "Downstairs there is a ___ where my mother cooks.",
+          "image": "",
+          "answer": "kitchen"
+        },
+        {
+          "order": 4,
+          "sentence": "There is a ___ to eat altogether.",
+          "image": "",
+          "answer": "dining room"
+        },
+        {
+          "order": 5,
+          "sentence": "There is a ___ where we watch TV or sit and relax.",
+          "image": "",
+          "answer": "living room"
+        },
+        {
+          "order": 6,
+          "sentence": "My parents park their cars in the ___.",
+          "image": "",
+          "answer": "garage"
+        },
+        {
+          "order": 7,
+          "sentence": "We have a beautiful ___ with flowers and trees.",
+          "image": "",
+          "answer": "garden"
+        },
+        {
+          "order": 8,
+          "sentence": "My house also has an ___ where we store old things.",
+          "image": "",
+          "answer": "attic"
+        }
+      ]
+    }
+  ],
+  "speakingTopic": {
+    "title": "Chat about my home",
+    "durationSeconds": 300
+  }
+}

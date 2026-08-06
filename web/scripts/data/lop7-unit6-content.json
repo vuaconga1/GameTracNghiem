@@ -1,0 +1,649 @@
+{
+  "unit": 6,
+  "title": "A Visit To A School",
+  "source": "PDF/GRADE 7 HK1 (GS) FINAL.pdf (pages 69–82)",
+  "skipped": [
+    {
+      "reason": "Thiếu ảnh",
+      "item": "Put words under pictures"
+    },
+    {
+      "reason": "Câu hỏi mở",
+      "item": "Write questions for underlined words"
+    },
+    {
+      "reason": "Reading flow-chart dense",
+      "item": "Reading Exercise 2–3 partial"
+    }
+  ],
+  "quiz": [
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U6 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. children  B. chicken  C. century  D. child",
+      "answer": "century",
+      "options": [
+        "children",
+        "chicken",
+        "century",
+        "child"
+      ],
+      "accept": [
+        "century",
+        "C",
+        "c"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U6 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. culture  B. chapter  C. feature  D. literature",
+      "answer": "literature",
+      "options": [
+        "culture",
+        "chapter",
+        "feature",
+        "literature"
+      ],
+      "accept": [
+        "literature",
+        "D",
+        "d"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U6 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. chair  B. architect  C. cheese  D. child",
+      "answer": "architect",
+      "options": [
+        "chair",
+        "architect",
+        "cheese",
+        "child"
+      ],
+      "accept": [
+        "architect",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U6 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. message  B. guarantee  C. storage  D. advantage",
+      "answer": "guarantee",
+      "options": [
+        "message",
+        "guarantee",
+        "storage",
+        "advantage"
+      ],
+      "accept": [
+        "guarantee",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Odd one out",
+      "skill": "reading",
+      "exercise": "U6 Pronunciation — Odd one out",
+      "question": "Choose the word that has the underlined part pronounced differently: A. gradual  B. soldier  C. educate  D. grade",
+      "answer": "soldier",
+      "options": [
+        "gradual",
+        "soldier",
+        "educate",
+        "grade"
+      ],
+      "accept": [
+        "soldier",
+        "B",
+        "b"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Vocabulary — School",
+      "question": "Students have ______ at 10 a.m.",
+      "answer": "a break",
+      "options": [],
+      "accept": [
+        "a break",
+        "break",
+        "recess"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Vocabulary — School",
+      "question": "The ______ teaches Mathematics.",
+      "answer": "teacher",
+      "options": [],
+      "accept": [
+        "teacher"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Vocabulary — School",
+      "question": "We study in the ______.",
+      "answer": "classroom",
+      "options": [],
+      "accept": [
+        "classroom",
+        "class"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Vocabulary — School",
+      "question": "The school ______ is big and green.",
+      "answer": "yard",
+      "options": [],
+      "accept": [
+        "yard",
+        "playground"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Vocabulary — School",
+      "question": "She is in ______ 7A.",
+      "answer": "class",
+      "options": [],
+      "accept": [
+        "class",
+        "grade"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Grammar — Prepositions",
+      "question": "The meeting is ______ Monday.",
+      "answer": "on",
+      "options": [],
+      "accept": [
+        "on"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Grammar — Prepositions",
+      "question": "School starts ______ 7 a.m.",
+      "answer": "at",
+      "options": [],
+      "accept": [
+        "at"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Grammar — Prepositions",
+      "question": "We have a test ______ the morning.",
+      "answer": "in",
+      "options": [],
+      "accept": [
+        "in"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Grammar — Prepositions",
+      "question": "He goes ______ school by bus.",
+      "answer": "to",
+      "options": [],
+      "accept": [
+        "to"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Grammar — Prepositions",
+      "question": "My birthday is ______ May.",
+      "answer": "in",
+      "options": [],
+      "accept": [
+        "in"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "fill_blank",
+      "typeLabel": "Fill blank",
+      "skill": "reading",
+      "exercise": "U6 Grammar — Prepositions",
+      "question": "See you ______ the weekend.",
+      "answer": "at",
+      "options": [],
+      "accept": [
+        "at",
+        "on"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U6 Word form",
+      "question": "She is a hard-working ______. (STUDY)",
+      "answer": "student",
+      "options": [],
+      "accept": [
+        "student"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U6 Word form",
+      "question": "This is an ______ school. (INTERNATION)",
+      "answer": "international",
+      "options": [],
+      "accept": [
+        "international"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U6 Word form",
+      "question": "Teachers need a lot of ______. (PATIENT)",
+      "answer": "patience",
+      "options": [],
+      "accept": [
+        "patience"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "word_form",
+      "typeLabel": "Word form",
+      "skill": "writing",
+      "exercise": "U6 Word form",
+      "question": "His ______ results are excellent. (EDUCATE)",
+      "answer": "education",
+      "options": [],
+      "accept": [
+        "education",
+        "educational"
+      ],
+      "fillMode": true
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U6 Speaking — Match",
+      "question": "What subjects do you like?",
+      "answer": "I like English and Maths.",
+      "options": [
+        "I like English and Maths.",
+        "At 7 o'clock.",
+        "By bike.",
+        "In grade 7."
+      ],
+      "accept": [
+        "I like English and Maths.",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    },
+    {
+      "type": "multiple_choice",
+      "typeLabel": "Multiple choice",
+      "skill": "reading",
+      "exercise": "U6 Speaking — Match",
+      "question": "How do you go to school?",
+      "answer": "I go to school by bike.",
+      "options": [
+        "I go to school by bike.",
+        "Maths.",
+        "Yes, I do.",
+        "On Monday."
+      ],
+      "accept": [
+        "I go to school by bike.",
+        "A",
+        "a"
+      ],
+      "fillMode": false
+    }
+  ],
+  "grammar": [
+    {
+      "source": "We have English ______ Tuesday.",
+      "prefix": "We have English",
+      "suffix": "Tuesday.",
+      "hint": "U6 Grammar — Prepositions of time/place",
+      "answers": [
+        "on"
+      ]
+    },
+    {
+      "source": "The film starts ______ 8 p.m.",
+      "prefix": "The film starts",
+      "suffix": "8 p.m.",
+      "hint": "U6 Grammar — Prepositions of time/place",
+      "answers": [
+        "at"
+      ]
+    },
+    {
+      "source": "She was born ______ 2012.",
+      "prefix": "She was born",
+      "suffix": "2012.",
+      "hint": "U6 Grammar — Prepositions of time/place",
+      "answers": [
+        "in"
+      ]
+    },
+    {
+      "source": "They arrived ______ night.",
+      "prefix": "They arrived",
+      "suffix": "night.",
+      "hint": "U6 Grammar — Prepositions of time/place",
+      "answers": [
+        "at"
+      ]
+    },
+    {
+      "source": "I will see you ______ Christmas.",
+      "prefix": "I will see you",
+      "suffix": "Christmas.",
+      "hint": "U6 Grammar — Prepositions of time/place",
+      "answers": [
+        "at"
+      ]
+    },
+    {
+      "source": "The books are ______ the table.",
+      "prefix": "The books are",
+      "suffix": "the table.",
+      "hint": "U6 Grammar — Prepositions of time/place",
+      "answers": [
+        "on"
+      ]
+    },
+    {
+      "source": "He is sitting ______ the classroom.",
+      "prefix": "He is sitting",
+      "suffix": "the classroom.",
+      "hint": "U6 Grammar — Prepositions of time/place",
+      "answers": [
+        "in"
+      ]
+    },
+    {
+      "source": "Come ______ my office, please.",
+      "prefix": "Come",
+      "suffix": "my office, please.",
+      "hint": "U6 Grammar — Prepositions of time/place",
+      "answers": [
+        "to"
+      ]
+    },
+    {
+      "source": "school/ to/ goes/ She/ bike/ by/.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U6 Writing — Reorder the words",
+      "answers": [
+        "She goes to school by bike.",
+        "She goes to school by bike"
+      ]
+    },
+    {
+      "source": "have/ We/ English/ Mondays/ on/.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U6 Writing — Reorder the words",
+      "answers": [
+        "We have English on Mondays.",
+        "We have English on Mondays"
+      ]
+    },
+    {
+      "source": "School starts at seven o'clock.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U6 Writing — Rewrite",
+      "answers": [
+        "What time does school start?",
+        "What time does school start"
+      ]
+    },
+    {
+      "source": "She goes to school by bus.",
+      "prefix": "",
+      "suffix": "",
+      "hint": "U6 Writing — Rewrite",
+      "answers": [
+        "How does she go to school?",
+        "How does she go to school"
+      ]
+    }
+  ],
+  "read_and_complete": [
+    {
+      "title": "U6 Reading — School visit summary",
+      "instruction": "Complete the sentences with words from the box.",
+      "word_bank": [
+        "classroom",
+        "library",
+        "playground",
+        "uniform",
+        "break",
+        "teachers"
+      ],
+      "items": [
+        {
+          "order": 1,
+          "sentence": "Students study in the ___.",
+          "image": "",
+          "answer": "classroom"
+        },
+        {
+          "order": 2,
+          "sentence": "You can borrow books from the ___.",
+          "image": "",
+          "answer": "library"
+        },
+        {
+          "order": 3,
+          "sentence": "Children play football in the ___.",
+          "image": "",
+          "answer": "playground"
+        },
+        {
+          "order": 4,
+          "sentence": "Students wear a school ___.",
+          "image": "",
+          "answer": "uniform"
+        },
+        {
+          "order": 5,
+          "sentence": "There is a short ___ between lessons.",
+          "image": "",
+          "answer": "break"
+        },
+        {
+          "order": 6,
+          "sentence": "___ help students learn new things.",
+          "image": "",
+          "answer": "teachers"
+        }
+      ]
+    }
+  ],
+  "scramble": [
+    {
+      "word": "classroom",
+      "hint": "U6 School"
+    },
+    {
+      "word": "library",
+      "hint": "U6 School"
+    },
+    {
+      "word": "uniform",
+      "hint": "U6 School"
+    },
+    {
+      "word": "playground",
+      "hint": "U6 School"
+    },
+    {
+      "word": "teacher",
+      "hint": "U6 School"
+    },
+    {
+      "word": "subject",
+      "hint": "U6 School"
+    },
+    {
+      "word": "timetable",
+      "hint": "U6 School"
+    },
+    {
+      "word": "break",
+      "hint": "U6 School"
+    },
+    {
+      "word": "principal",
+      "hint": "U6 School"
+    },
+    {
+      "word": "laboratory",
+      "hint": "U6 School"
+    }
+  ],
+  "pronunciation": [
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /tʃ/",
+      "exerciseKey": "CH",
+      "targetText": "children",
+      "targetIpa": "",
+      "hint": "U6"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /tʃ/",
+      "exerciseKey": "CH",
+      "targetText": "teacher",
+      "targetIpa": "",
+      "hint": "U6"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /tʃ/",
+      "exerciseKey": "CH",
+      "targetText": "chair",
+      "targetIpa": "",
+      "hint": "U6"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /dʒ/",
+      "exerciseKey": "J",
+      "targetText": "job",
+      "targetIpa": "",
+      "hint": "U6"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /dʒ/",
+      "exerciseKey": "J",
+      "targetText": "age",
+      "targetIpa": "",
+      "hint": "U6"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /dʒ/",
+      "exerciseKey": "J",
+      "targetText": "subject",
+      "targetIpa": "",
+      "hint": "U6"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /tʃ/",
+      "exerciseKey": "CH",
+      "targetText": "lunch",
+      "targetIpa": "",
+      "hint": "U6"
+    },
+    {
+      "mode": "word",
+      "modeLabel": "Luyện từ",
+      "exercise": "Âm /dʒ/",
+      "exerciseKey": "J",
+      "targetText": "graduation",
+      "targetIpa": "",
+      "hint": "U6"
+    }
+  ],
+  "speakingTopic": {
+    "title": "Chat about a visit to a school",
+    "durationSeconds": 300
+  }
+}
