@@ -809,7 +809,9 @@
 }
 
 .question-text u.quiz-error-opt,
-.quiz-stem u.quiz-error-opt {
+.quiz-stem u.quiz-error-opt,
+.option-btn u.quiz-error-opt,
+.option-btn u {
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 3px;

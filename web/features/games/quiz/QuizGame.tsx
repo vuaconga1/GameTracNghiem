@@ -34,6 +34,7 @@ import {
   normalizeQuizQuestionHtml,
   quizExerciseInstructionVi,
   repairErrorOptions,
+  sanitizeQuizHtml,
   splitQuizPassageAndStem,
   underlineErrorOptionsInSentence,
 } from '@/features/games/exerciseDisplay';
@@ -132,11 +133,13 @@ function QuizQuestionBody({
 }) {
   const { passage, stem } = splitQuizPassageAndStem(html);
   const stemSource = passage ? stem : html;
-  const stemHtml = underlineErrors
-    ? underlineErrorOptionsInSentence(stemSource, options)
-    : stemSource.includes('<')
-      ? stemSource
-      : stemSource.replace(/\n/g, '<br />');
+  const stemHtml = sanitizeQuizHtml(
+    underlineErrors
+      ? underlineErrorOptionsInSentence(stemSource, options)
+      : stemSource.includes('<')
+        ? stemSource
+        : stemSource.replace(/\n/g, '<br />'),
+  );
 
   if (!passage) {
     return (
@@ -147,7 +150,9 @@ function QuizQuestionBody({
     );
   }
 
-  const passageHtml = passage.includes('<') ? passage : passage.replace(/\n/g, '<br />');
+  const passageHtml = sanitizeQuizHtml(
+    passage.includes('<') ? passage : passage.replace(/\n/g, '<br />'),
+  );
 
   return (
     <div className="question-text has-passage">
@@ -935,7 +940,9 @@ export function QuizGame({ courseId }: Props) {
                       <>
                         {t('gameUi.feedbackWrongAnswer')}{' '}
                         <strong
-                          dangerouslySetInnerHTML={{ __html: currentQuestion.answer }}
+                          dangerouslySetInnerHTML={{
+                            __html: sanitizeQuizHtml(currentQuestion.answer),
+                          }}
                         />
                       </>
                     )}
@@ -982,7 +989,9 @@ export function QuizGame({ courseId }: Props) {
                         onClick={() => void handleOptionClick(option)}
                       >
                         <span className="opt-letter">{OPT_LETTERS[optIndex] || optIndex + 1}</span>
-                        <span dangerouslySetInnerHTML={{ __html: option }} />
+                        <span
+                          dangerouslySetInnerHTML={{ __html: sanitizeQuizHtml(option) }}
+                        />
                       </button>
                     );
                   })}

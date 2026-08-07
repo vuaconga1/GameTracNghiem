@@ -8,6 +8,7 @@ import {
   quizExerciseDisplayTitle,
   quizExerciseInstructionVi,
   repairErrorOptions,
+  sanitizeQuizHtml,
   splitQuizPassageAndStem,
   stripExerciseAnnotation,
   underlinePronunciationOptionsInQuestion,
@@ -78,6 +79,27 @@ describe('exerciseDisplay', () => {
     expect(quizExerciseInstructionVi('Tìm lỗi sai', 'multiple_choice', 'Phát âm khác')).toBe(
       'Chọn từ có phần phát âm khác các từ còn lại.'
     );
+  });
+
+  it('does not escape pre-tagged pronunciation options into literal <u> text', () => {
+    const html = underlinePronunciationOptionsInQuestion(
+      'Chọn từ có phần nguyên âm / âm khác: m<u>ou</u>se / h<u>ou</u>se / w<u>ou</u>ld / <u>ou</u>tdoors',
+      ['m<u>ou</u>se', 'h<u>ou</u>se', 'w<u>ou</u>ld', '<u>ou</u>tdoors']
+    );
+    expect(html).not.toContain('&lt;u&gt;');
+    expect(html).not.toContain('m<u>ou</u>se');
+    expect(html).toContain('m<u class="quiz-error-opt">ou</u>se');
+    expect(html).toContain('h<u class="quiz-error-opt">ou</u>se');
+    expect(html).toContain('w<u class="quiz-error-opt">ou</u>ld');
+    expect(html).toContain('<u class="quiz-error-opt">ou</u>tdoors');
+  });
+
+  it('sanitizes quiz HTML to an allowlist of formatting tags', () => {
+    expect(sanitizeQuizHtml('m<u>ou</u>se<script>alert(1)</script>')).toBe('m<u>ou</u>se');
+    expect(sanitizeQuizHtml('<u class="quiz-error-opt" onclick="x">ou</u>')).toBe(
+      '<u class="quiz-error-opt">ou</u>',
+    );
+    expect(sanitizeQuizHtml('a<br>b')).toBe('a<br />b');
   });
 
   it('infers the shared sound segment for pronunciation-difference options', () => {

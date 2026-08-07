@@ -138,6 +138,46 @@ function escapeHtml(value: string): string {
     .replace(/"/g, '&quot;');
 }
 
+/** Strip every HTML tag (keep text only). */
+export function stripHtmlTags(value: string | null | undefined): string {
+  return String(value || '').replace(/<[^>]+>/g, '');
+}
+
+const QUIZ_ALLOWED_TAGS = new Set(['u', 'b', 'i', 'em', 'strong', 'br']);
+const QUIZ_ALLOWED_CLASSES = new Set(['quiz-error-opt']);
+
+/**
+ * Allowlist safe formatting tags used in quiz/grammar content.
+ * Rebuilds tags so scripts / on* / href cannot sneak through.
+ */
+export function sanitizeQuizHtml(html: string | null | undefined): string {
+  const raw = String(html || '');
+  if (!raw) return '';
+
+  // Drop dangerous elements and their contents entirely.
+  const withoutBlocked = raw.replace(
+    /<\/?(?:script|style|iframe|object|embed|link|meta|svg)\b[^>]*>[\s\S]*?<\/(?:script|style|iframe|object|embed|svg)>/gi,
+    '',
+  ).replace(/<\/?(?:script|style|iframe|object|embed|link|meta|svg)\b[^>]*>/gi, '');
+
+  return withoutBlocked.replace(/<\/?([a-zA-Z][a-zA-Z0-9]*)\b([^>]*)>/g, (full, tagName, attrs) => {
+    const tag = String(tagName).toLowerCase();
+    if (!QUIZ_ALLOWED_TAGS.has(tag)) return '';
+    if (full.startsWith('</')) return `</${tag}>`;
+    if (tag === 'br') return '<br />';
+
+    const classMatch = /\bclass\s*=\s*(["'])(.*?)\1/i.exec(String(attrs || ''));
+    const classes = (classMatch?.[2] || '')
+      .split(/\s+/)
+      .map((part) => part.trim())
+      .filter((part) => QUIZ_ALLOWED_CLASSES.has(part));
+    if (classes.length > 0) {
+      return `<${tag} class="${classes.join(' ')}">`;
+    }
+    return `<${tag}>`;
+  });
+}
+
 const KNOWN_ERROR_OPTION_FIXES: Record<string, string> = {
   rêpating: 'repeating',
   repating: 'repeating',
@@ -231,14 +271,15 @@ function inferPronunciationSegment(options: string[]): string {
 }
 
 function underlinePronunciationOption(option: string, segment: string): string {
-  if (!segment) return escapeHtml(option);
-  const lower = option.toLowerCase();
+  const plain = stripHtmlTags(option).trim();
+  if (!segment) return escapeHtml(plain);
+  const lower = plain.toLowerCase();
   const index = lower.indexOf(segment.toLowerCase());
-  if (index < 0) return escapeHtml(option);
+  if (index < 0) return escapeHtml(plain);
   return [
-    escapeHtml(option.slice(0, index)),
-    `<u class="quiz-error-opt">${escapeHtml(option.slice(index, index + segment.length))}</u>`,
-    escapeHtml(option.slice(index + segment.length)),
+    escapeHtml(plain.slice(0, index)),
+    `<u class="quiz-error-opt">${escapeHtml(plain.slice(index, index + segment.length))}</u>`,
+    escapeHtml(plain.slice(index + segment.length)),
   ].join('');
 }
 
@@ -246,8 +287,12 @@ export function underlinePronunciationOptionsInQuestion(
   question: string | null | undefined,
   options: string[] | null | undefined
 ): string {
-  const plain = String(question || '').replace(/<[^>]+>/g, '').trim();
-  const opts = (options || []).map((item) => String(item || '').trim()).filter(Boolean);
+  const plain = stripHtmlTags(question).trim();
+  // Options in seed data may already contain <u>…</u>; strip before rebuild
+  // so escapeHtml does not turn them into literal "&lt;u&gt;".
+  const opts = (options || [])
+    .map((item) => stripHtmlTags(item).trim())
+    .filter(Boolean);
   if (!plain) return '';
   if (opts.length === 0) return escapeHtml(plain).replace(/\n/g, '<br />');
 
@@ -256,7 +301,7 @@ export function underlinePronunciationOptionsInQuestion(
   const colonIndex = plain.indexOf(':');
   const prefix = colonIndex >= 0 ? plain.slice(0, colonIndex + 1).trim() : '';
   const rendered = prefix ? `${escapeHtml(prefix)} ${renderedOptions.join(' / ')}` : renderedOptions.join(' / ');
-  return rendered.replace(/\n/g, '<br />');
+  return sanitizeQuizHtml(rendered.replace(/\n/g, '<br />'));
 }
 
 export function normalizeQuizQuestionHtml(
@@ -269,7 +314,7 @@ export function normalizeQuizQuestionHtml(
   const raw = String(html || '');
   if (!raw) return '';
   if (!isPronunciationDifferenceQuiz(typeLabel, exercise, question || raw)) {
-    return raw;
+    return sanitizeQuizHtml(raw.includes('<') ? raw : raw.replace(/\n/g, '<br />'));
   }
   const plain = raw.replace(QUIZ_ERROR_UNDERLINE_TAG_RE, '$2');
   return underlinePronunciationOptionsInQuestion(plain, options);
@@ -286,8 +331,8 @@ export function underlineErrorOptionsInSentence(
   const raw = String(sentence || '');
   if (!raw.trim()) return '';
 
-  const plain = raw.replace(/<[^>]+>/g, '');
-  const opts = (options || []).map((item) => String(item || '').trim()).filter(Boolean);
+  const plain = stripHtmlTags(sentence);
+  const opts = (options || []).map((item) => stripHtmlTags(item).trim()).filter(Boolean);
   if (opts.length === 0) return escapeHtml(plain);
 
   let cursor = 0;
@@ -300,5 +345,5 @@ export function underlineErrorOptionsInSentence(
     cursor = repaired.index + repaired.text.length;
   }
   out += escapeHtml(plain.slice(cursor));
-  return out;
+  return sanitizeQuizHtml(out);
 }
