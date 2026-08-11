@@ -9,6 +9,7 @@ import { useI18n } from '@/components/i18n/I18nProvider';
 import { usePlayer } from '@/components/player/PlayerContext';
 import { CourseFilters } from '@/features/courses/CourseFilters';
 import { CourseList, type CourseListItem } from '@/features/courses/CourseList';
+import { isLogisticsLevel } from '@/lib/logisticsUnits';
 import {
   buildHomeCoursesHref,
   currentBrowserHref,
@@ -101,9 +102,18 @@ export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
     const storedLevelName = normalizeHomeCoursesLevelName(
       window.localStorage.getItem(HOME_COURSES_LEVEL_STORAGE_KEY)
     );
+
+    if (isLogisticsLevel(urlLevelName) || isLogisticsLevel(storedLevelName)) {
+      window.localStorage.removeItem(HOME_COURSES_LEVEL_STORAGE_KEY);
+      if (isLogisticsLevel(urlLevelName) || !urlLevelName) {
+        window.location.replace('/logistics');
+        return;
+      }
+    }
+
     const resolvedLevelName = resolveClientHomeCoursesLevel({
       urlLevelName,
-      storedLevelName,
+      storedLevelName: isLogisticsLevel(storedLevelName) ? '' : storedLevelName,
       serverLevelName: initialSelectedLevelName,
     });
 

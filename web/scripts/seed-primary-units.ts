@@ -93,6 +93,16 @@ async function seedGrade(grade: PrimaryGradeId) {
     });
 
     if (ebookFileId) {
+      await prisma.courseSkillLesson.upsert({
+        where: { courseId_skillId: { courseId: course.id, skillId: 'vocabulary' } },
+        update: { pageStart: n, pageEnd: n },
+        create: {
+          courseId: course.id,
+          skillId: 'vocabulary',
+          pageStart: n,
+          pageEnd: n,
+        },
+      });
       for (const gameKey of PRIMARY_VOCAB_GAME_KEYS) {
         await prisma.courseGameLesson.upsert({
           where: { courseId_gameKey: { courseId: course.id, gameKey } },

@@ -5,7 +5,7 @@ import { courseBackgroundSrc } from '@/lib/courseBackground';
 import { progressCourseKey } from '@/lib/courseKey';
 import { courseCompletionPercent } from '@/lib/courseProgress';
 import { prisma } from '@/lib/db';
-import { resolveHomeCoursesLevel } from '@/lib/homeCourseLevel';
+import { resolveSelectedHomeLevel, gradeLevelsOnly } from '@/lib/homeCourseLevel';
 import { resolveVisibleGameKeys } from '@/lib/skillCatalog';
 import { sortCoursesByLevelAndName } from '@/lib/sortCourses';
 
@@ -58,7 +58,7 @@ export async function loadHomeCourses(levelName = ''): Promise<HomeCoursesData> 
     ...classLevels.map((item) => item.levelName),
     ...activeCoursesForFilters.map((item) => item.levelName),
   ]);
-  const selectedLevelName = resolveHomeCoursesLevel(levelName, availableLevels);
+  const selectedLevelName = resolveSelectedHomeLevel(levelName, availableLevels);
   const courses = await prisma.course.findMany({
     where: {
       active: true,
@@ -146,7 +146,7 @@ export async function loadHomeCourses(levelName = ''): Promise<HomeCoursesData> 
       };
     }),
     filters: {
-      levels: availableLevels,
+      levels: gradeLevelsOnly(availableLevels),
     },
     selectedLevelName,
     playerKind: session ? 'authenticated' : 'guest',

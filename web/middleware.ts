@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
 
+import { isLogisticsLevel } from '@/lib/logisticsUnits';
+
 const SESSION_COOKIE = 'wewin_session';
 
 async function hasValidSession(req: NextRequest): Promise<boolean> {
@@ -20,6 +22,8 @@ async function hasValidSession(req: NextRequest): Promise<boolean> {
 export function isPublicPlayerPage(pathname: string): boolean {
   return (
     pathname === '/' ||
+    pathname === '/logistics' ||
+    pathname.startsWith('/logistics/') ||
     pathname === '/courses' ||
     pathname.startsWith('/courses/') ||
     pathname === '/games' ||
@@ -28,15 +32,31 @@ export function isPublicPlayerPage(pathname: string): boolean {
   );
 }
 
+/** Static files from `/public` must stay reachable for guest players (course thumbs, logo, game art). */
+export function isPublicStaticAsset(pathname: string): boolean {
+  if (pathname.startsWith('/images/')) return true;
+  if (pathname.startsWith('/fonts/')) return true;
+  return /\.(?:png|jpe?g|gif|svg|webp|ico|woff2?|ttf|otf|mp3|wav)$/i.test(pathname);
+}
+
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+
+  if (pathname === '/' && isLogisticsLevel(req.nextUrl.searchParams.get('levelName'))) {
+    const url = req.nextUrl.clone();
+    url.pathname = '/logistics';
+    url.search = '';
+    return NextResponse.redirect(url);
+  }
+
   if (
     pathname.startsWith('/login') ||
     pathname.startsWith('/api/auth/login') ||
     pathname.startsWith('/api/auth/logout') ||
     pathname.startsWith('/api/auth/portal-sso') ||
     pathname.startsWith('/_next') ||
-    pathname.startsWith('/favicon')
+    pathname.startsWith('/favicon') ||
+    isPublicStaticAsset(pathname)
   ) {
     return NextResponse.next();
   }
@@ -60,5 +80,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next/static|_next/image).*)'],
+  matcher: ['/((?!_next/static|_next/image|images/).*)'],
 };

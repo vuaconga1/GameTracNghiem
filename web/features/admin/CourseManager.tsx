@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { AdminShell } from '@/components/admin/AdminShell';
 import { DataLoading } from '@/components/DataLoading';
+import { AdminHelp, SheetKeysHint } from '@/features/admin/AdminHelp';
 import { CourseBackgroundEditor } from '@/features/admin/CourseBackgroundEditor';
 import {
   SheetSelectCell,
@@ -15,6 +16,7 @@ import {
   SheetEditSaveButton,
   useSheetEditMode,
 } from '@/features/admin/useSheetEditMode';
+import { sheetNav, useSheetKeyboard } from '@/features/admin/useSheetKeyboard';
 import { courseBackgroundSrc } from '@/lib/courseBackground';
 
 type Course = {
@@ -94,6 +96,7 @@ export function CourseManager({ displayName }: { displayName: string }) {
 
   const dirtyCount = rows?.filter((row) => row.dirty).length ?? 0;
   const editMode = useSheetEditMode(dirtyCount > 0);
+  const sheetKeys = useSheetKeyboard(editMode.editing);
   const rowKeys = useMemo(() => (rows || []).map((r) => r.key), [rows]);
   const selection = useRowSelection(rowKeys);
 
@@ -316,7 +319,20 @@ export function CourseManager({ displayName }: { displayName: string }) {
   }
 
   return (
-    <AdminShell displayName={displayName} title="Khóa học">
+    <AdminShell
+      displayName={displayName}
+      title="Khóa học (Unit)"
+      subtitle="Mỗi dòng = một unit. Bấm “Nội dung” để gắn PDF và câu hỏi."
+    >
+      <AdminHelp
+        title="Trang này để làm gì?"
+        steps={[
+          'Bấm Sửa nội dung → Thêm dòng → điền Tên khóa (vd. Unit 1: Hello) và Cấp (vd. Lớp 4).',
+          'Dùng Tab / Enter / mũi tên để điền nhanh như Excel, rồi bấm Lưu thay đổi.',
+          'Bấm nút Nội dung trên dòng để mở chi tiết unit (PDF + game).',
+        ]}
+      />
+
       <div className="admin-toolbar">
         <div className="admin-toolbar-actions">
           <select value={filterLevel} onChange={(e) => setFilterLevel(e.target.value)}>
@@ -334,11 +350,6 @@ export function CourseManager({ displayName }: { displayName: string }) {
             className="sheet-input"
             style={{ minWidth: 160, border: '1px solid var(--admin-border)', background: '#fff' }}
           />
-          <span className="sheet-hint">
-            {editMode.editing
-              ? 'Đang sửa · Tick dòng để ẩn hàng loạt'
-              : 'Chỉ xem · Bấm Sửa nội dung để chỉnh bảng'}
-          </span>
         </div>
         <div className="admin-toolbar-actions">
           <button
@@ -370,6 +381,8 @@ export function CourseManager({ displayName }: { displayName: string }) {
         </div>
       </div>
 
+      <SheetKeysHint editing={editMode.editing} />
+
       {message ? <div className="admin-alert ok">{message}</div> : null}
       {error ? <div className="admin-alert error">{error}</div> : null}
 
@@ -377,7 +390,11 @@ export function CourseManager({ displayName }: { displayName: string }) {
         {!rows ? (
           <DataLoading />
         ) : (
-          <div className="sheet-wrap">
+          <div
+            className="sheet-wrap"
+            data-sheet-grid
+            onKeyDown={sheetKeys.onKeyDown}
+          >
             <table className="sheet-table">
               <thead>
                 <tr>
@@ -387,11 +404,11 @@ export function CourseManager({ displayName }: { displayName: string }) {
                     disabled={!editMode.editing || rows.length === 0}
                     onToggleAll={selection.toggleAll}
                   />
-                  <th>Tên khóa</th>
-                  <th>Cấp</th>
+                  <th>Tên khóa (Unit)</th>
+                  <th>Cấp / Lớp</th>
                   <th style={{ width: '340px' }}>Ảnh nền</th>
-                  <th style={{ width: '88px' }}>Câu hỏi</th>
-                  <th style={{ width: '72px' }}>Dùng</th>
+                  <th style={{ width: '88px' }}>Số câu</th>
+                  <th style={{ width: '72px' }}>Hiện</th>
                   <th style={{ width: '220px' }}>Thao tác</th>
                 </tr>
               </thead>
@@ -406,7 +423,7 @@ export function CourseManager({ displayName }: { displayName: string }) {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  rows.map((row, rowIndex) => (
                     <tr
                       key={row.key}
                       className={[
@@ -426,8 +443,9 @@ export function CourseManager({ displayName }: { displayName: string }) {
                         <input
                           className="sheet-input"
                           value={row.name}
-                          placeholder="Unit 1"
+                          placeholder="Unit 1: Hello"
                           readOnly={!editMode.editing}
+                          {...sheetNav(rowIndex, 0)}
                           onChange={(e) => setField(row.key, 'name', e.target.value)}
                         />
                       </td>
@@ -436,8 +454,9 @@ export function CourseManager({ displayName }: { displayName: string }) {
                           className="sheet-input"
                           list="course-level-options"
                           value={row.levelName}
-                          placeholder="Starters"
+                          placeholder="Lớp 4"
                           readOnly={!editMode.editing}
+                          {...sheetNav(rowIndex, 1)}
                           onChange={(e) => setField(row.key, 'levelName', e.target.value)}
                         />
                       </td>
@@ -457,6 +476,7 @@ export function CourseManager({ displayName }: { displayName: string }) {
                           className="sheet-check"
                           checked={row.active}
                           disabled={!editMode.editing}
+                          {...sheetNav(rowIndex, 2)}
                           onChange={(e) => setField(row.key, 'active', e.target.checked)}
                         />
                       </td>

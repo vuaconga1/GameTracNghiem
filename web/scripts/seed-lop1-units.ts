@@ -90,18 +90,29 @@ async function main() {
       },
     });
 
-    for (const gameKey of LOP1_VOCAB_GAME_KEYS) {
-      if (!ebookFileId) continue;
-      await prisma.courseGameLesson.upsert({
-        where: { courseId_gameKey: { courseId: course.id, gameKey } },
+    if (ebookFileId) {
+      await prisma.courseSkillLesson.upsert({
+        where: { courseId_skillId: { courseId: course.id, skillId: 'vocabulary' } },
         update: { pageStart: n, pageEnd: n },
         create: {
           courseId: course.id,
-          gameKey,
+          skillId: 'vocabulary',
           pageStart: n,
           pageEnd: n,
         },
       });
+      for (const gameKey of LOP1_VOCAB_GAME_KEYS) {
+        await prisma.courseGameLesson.upsert({
+          where: { courseId_gameKey: { courseId: course.id, gameKey } },
+          update: { pageStart: n, pageEnd: n },
+          create: {
+            courseId: course.id,
+            gameKey,
+            pageStart: n,
+            pageEnd: n,
+          },
+        });
+      }
     }
 
     results.push({ unit: n, action, courseId: course.id });

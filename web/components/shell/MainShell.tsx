@@ -41,6 +41,8 @@ export function MainShell({
   const activeGame = findGameByPathname(pathname);
   const isGamePage = Boolean(activeGame);
   const isHome = pathname === '/';
+  const isLogistics = pathname === '/logistics' || pathname.startsWith('/logistics/');
+  const isLogisticsWeek2 = pathname === '/logistics/week2' || pathname.startsWith('/logistics/week2/');
   const isCoursePage = pathname === '/courses' || pathname.startsWith('/courses/');
   const isLeaderboard = pathname === '/leaderboard' || pathname.startsWith('/leaderboard/');
 
@@ -78,6 +80,37 @@ export function MainShell({
     );
   } else if (isHome) {
     sidebar = <Sidebar mode="home" {...userProps} filtersSlot={<div id="sidebar-filters-root" />} />;
+  } else if (isLogistics) {
+    sidebar = (
+      <Sidebar
+        mode="game"
+        {...userProps}
+        gameNav={
+          <>
+            <Link className="nav-item" href="/" onClick={() => setOpen(false)}>
+              <i className="fas fa-home" />
+              <span>{t('common.home')}</span>
+            </Link>
+            <Link
+              className={`nav-item${!isLogisticsWeek2 ? ' active' : ''}`}
+              href="/logistics"
+              onClick={() => setOpen(false)}
+            >
+              <i className="fas fa-truck" />
+              <span>{t('logistics.week1')}</span>
+            </Link>
+            <Link
+              className={`nav-item${isLogisticsWeek2 ? ' active' : ''}`}
+              href="/logistics/week2"
+              onClick={() => setOpen(false)}
+            >
+              <i className="fas fa-calendar-week" />
+              <span>{t('logistics.week2')}</span>
+            </Link>
+          </>
+        }
+      />
+    );
   } else if (isCoursePage) {
     sidebar = (
       <Sidebar
@@ -121,7 +154,9 @@ export function MainShell({
   return (
     <PlayerProvider kind={isAuthenticated ? 'authenticated' : 'guest'}>
       <AppShell
-        layout={isCoursePage ? 'course' : isGamePage || isLeaderboard ? 'game' : 'index'}
+        layout={
+          isCoursePage ? 'course' : isGamePage || isLeaderboard || isLogistics ? 'game' : 'index'
+        }
         sidebar={sidebar}
         header={
           <AppHeader

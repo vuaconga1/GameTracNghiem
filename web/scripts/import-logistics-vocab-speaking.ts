@@ -21,7 +21,7 @@ import {
   type PdfTextBox,
 } from '../lib/ebook/vocabHotspots';
 import { openEbookFile } from '../lib/ebookStorage';
-import { LOGISTICS_COURSES, LOGISTICS_LEVEL } from '../lib/logisticsUnits';
+import { LOGISTICS_COURSES, LOGISTICS_LEVEL, LOGISTICS_WEEK2_COURSES } from '../lib/logisticsUnits';
 import {
   deriveEnabledGamesFromSkills,
   normalizeGameSkillsMap,
@@ -33,6 +33,13 @@ const SCRAMBLE = 'scramble';
 const PRON = 'pronunciation';
 const EXTERNAL_PREFIX = 'LOG-VOCAB';
 const dryRun = process.argv.includes('--dry-run');
+const week2Only = process.argv.includes('--week2');
+const week1Only = process.argv.includes('--week1');
+const SEEDS = week2Only
+  ? LOGISTICS_WEEK2_COURSES
+  : week1Only
+    ? LOGISTICS_COURSES
+    : [...LOGISTICS_COURSES, ...LOGISTICS_WEEK2_COURSES];
 
 type VocabItem = { word: string; hint: string };
 
@@ -304,7 +311,7 @@ async function upsertSpeakingTopic(courseId: string, title: string, levelName: s
   return 'created';
 }
 
-async function processCourse(seed: (typeof LOGISTICS_COURSES)[number]) {
+async function processCourse(seed: (typeof SEEDS)[number]) {
   const course = await prisma.course.findFirst({
     where: {
       OR: [{ id: seed.id }, { name: seed.name, levelName: LOGISTICS_LEVEL }],
@@ -407,7 +414,8 @@ async function processCourse(seed: (typeof LOGISTICS_COURSES)[number]) {
 
 async function main() {
   const reports = [];
-  for (const seed of LOGISTICS_COURSES) {
+  console.log(`Importing ${SEEDS.length} logistics course(s)${dryRun ? ' (dry-run)' : ''}…`);
+  for (const seed of SEEDS) {
     reports.push(await processCourse(seed));
   }
   console.log('\nDone.', dryRun ? '(dry-run)' : '');

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 import { AdminShell } from '@/components/admin/AdminShell';
 import { DataLoading } from '@/components/DataLoading';
+import { AdminHelp } from '@/features/admin/AdminHelp';
 import { GAME_CATALOG } from '@/lib/gameCatalog';
 
 type Stats = {
@@ -41,12 +42,45 @@ export function AdminDashboard({ displayName }: { displayName: string }) {
   const labelByKey = Object.fromEntries(GAME_CATALOG.map((g) => [g.key, g.label]));
 
   return (
-    <AdminShell displayName={displayName} title="Tổng quan">
+    <AdminShell
+      displayName={displayName}
+      title="Tổng quan"
+      subtitle="Không cần biết code — làm theo 4 ô bên dưới là đủ"
+    >
+      <AdminHelp title="Admin dùng để làm gì?">
+        Quản lý lớp học, unit, sách PDF bài học, câu hỏi game và tài khoản học sinh. Các bảng
+        nhập liệu hoạt động gần giống Excel: bấm <strong>Sửa nội dung</strong>, điền ô, rồi{' '}
+        <strong>Lưu thay đổi</strong>.
+      </AdminHelp>
+
       {error ? <div className="admin-alert error">{error}</div> : null}
       {!stats ? (
         <DataLoading />
       ) : (
         <>
+          <div className="admin-start-grid">
+            <Link className="admin-start-card" href="/admin/class-levels">
+              <span className="step">Bước 1</span>
+              <strong>Cấp độ / Lớp</strong>
+              <span>Tạo Lớp 1, Lớp 2… để phân nhóm khóa học.</span>
+            </Link>
+            <Link className="admin-start-card" href="/admin/courses">
+              <span className="step">Bước 2</span>
+              <strong>Khóa học (Unit)</strong>
+              <span>Thêm unit → bấm Nội dung để gắn PDF và câu hỏi.</span>
+            </Link>
+            <Link className="admin-start-card" href="/admin/ebooks">
+              <span className="step">Bước 3</span>
+              <strong>Sách PDF</strong>
+              <span>Upload file “Từ Vựng + Grammar” rồi gắn vào unit.</span>
+            </Link>
+            <Link className="admin-start-card" href="/admin/users">
+              <span className="step">Bước 4</span>
+              <strong>Tài khoản</strong>
+              <span>Tạo username / mật khẩu cho học sinh và giáo viên.</span>
+            </Link>
+          </div>
+
           <div className="admin-stats">
             <div className="admin-stat">
               <div className="label">Khóa học đang bật</div>
@@ -66,19 +100,11 @@ export function AdminDashboard({ displayName }: { displayName: string }) {
             </div>
           </div>
 
-          <div className="admin-toolbar">
-            <div className="admin-toolbar-actions">
-              <Link className="admin-btn primary" href="/admin/courses">
-                <i className="fas fa-plus" aria-hidden="true" /> Quản lý khóa học
-              </Link>
-              <Link className="admin-btn" href="/admin/class-levels">
-                Cấp độ
-              </Link>
-            </div>
-          </div>
-
           <div className="admin-panel">
-            <h2 style={{ marginTop: 0, fontSize: '1.05rem' }}>Số lượng theo game</h2>
+            <h3 style={{ marginTop: 0 }}>Số câu hỏi theo game</h3>
+            <p className="help" style={{ color: 'var(--admin-muted)', marginTop: 0 }}>
+              Chỉ để xem nhanh — muốn sửa thì vào Khóa học → Nội dung → chọn game.
+            </p>
             <div className="admin-table-wrap">
               <table className="admin-table">
                 <thead>
@@ -90,7 +116,9 @@ export function AdminDashboard({ displayName }: { displayName: string }) {
                 <tbody>
                   {stats.byGame.length === 0 ? (
                     <tr>
-                      <td colSpan={2}>Chưa có nội dung</td>
+                      <td colSpan={2}>
+                        <div className="admin-empty">Chưa có câu hỏi</div>
+                      </td>
                     </tr>
                   ) : (
                     stats.byGame.map((row) => (

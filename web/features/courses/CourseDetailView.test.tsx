@@ -267,6 +267,104 @@ describe('CourseDetailContent', () => {
     expect(html).not.toContain('class="ebook-flip-root"');
   });
 
+  it('shows Từ vựng tab for Logistics Level 1 with vertical vocab cards', () => {
+    const skill: SkillId = 'vocabulary';
+    const data: CourseDetailData = {
+      ...sampleData,
+      course: {
+        ...sampleData.course,
+        id: 'cms9s0qua0004asx5au4ku2sj',
+        name: 'Level 1: English for Logistics & Supply Chain',
+        levelName: 'English For Logictics',
+        enabledSkills: ['vocabulary', 'speaking'],
+        enabledGames: ['scramble', 'pronunciation'],
+        ebook: {
+          id: 'ebook-logistics',
+          title: 'Logistics',
+          pageStart: 1,
+          pageEnd: 6,
+        },
+        skillLessons: {
+          vocabulary: { pageStart: 3, pageEnd: 6 },
+        },
+      },
+      games: {
+        scramble: { questionCount: 8, statuses: Array(8).fill('empty') },
+      },
+      skillStats: {
+        vocabulary: {
+          totalQuestions: 8,
+          completedQuestions: 0,
+          byGame: { scramble: { questionCount: 8, completedCount: 0 } },
+        },
+      },
+    };
+    const html = renderContent(
+      createElement(CourseDetailContent, {
+        data,
+        initialSkill: skill,
+        initialTab: 'vocab',
+      }),
+    );
+
+    expect(html).toContain('data-detail-tab="vocab"');
+    expect(html).toContain('Từ vựng');
+    expect(html).toContain('Key Vocabulary');
+    expect(html).toContain('Documentation');
+    expect(html).toContain('Meaning:');
+    expect(html).toContain('Example:');
+    expect(html).toContain('course-vocab-list');
+  });
+
+  it('shows Từ vựng tab for Lớp 1 with primary flashcards', () => {
+    const skill: SkillId = 'vocabulary';
+    const data: CourseDetailData = {
+      ...sampleData,
+      course: {
+        ...sampleData.course,
+        id: 'lop1-unit-1',
+        name: 'Unit 1: In The School Playground',
+        levelName: 'Lớp 1',
+        enabledSkills: ['vocabulary', 'speaking'],
+        enabledGames: ['scramble', 'pronunciation'],
+        ebook: {
+          id: 'ebook-lop1',
+          title: 'GS1',
+          pageStart: 1,
+          pageEnd: 1,
+        },
+        skillLessons: {
+          vocabulary: { pageStart: 1, pageEnd: 1 },
+        },
+      },
+      games: {
+        scramble: { questionCount: 4, statuses: Array(4).fill('empty') },
+      },
+      skillStats: {
+        vocabulary: {
+          totalQuestions: 4,
+          completedQuestions: 0,
+          byGame: { scramble: { questionCount: 4, completedCount: 0 } },
+        },
+      },
+    };
+    const html = renderContent(
+      createElement(CourseDetailContent, {
+        data,
+        initialSkill: skill,
+        initialTab: 'vocab',
+      }),
+    );
+
+    expect(html).toContain('data-detail-tab="vocab"');
+    expect(html).toContain('Từ vựng');
+    expect(html).toContain('course-vocab-flashcard');
+    expect(html).toContain('ball');
+    expect(html).toContain('/bɔːl/');
+    expect(html).toContain('quả bóng');
+    expect(html).toContain('/images/games/lop1-vocab/unit-01/ball.png');
+  });
+
   it('hides game cards with zero question content', () => {
     const skill: SkillId = 'vocabulary';
     const data: CourseDetailData = {

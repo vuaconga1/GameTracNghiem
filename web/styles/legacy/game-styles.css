@@ -1377,35 +1377,46 @@ a.btn-secondary:hover {
     pointer-events: auto;
   }
 
+  .app.sidebar-open {
+    overflow: hidden;
+  }
+
   .header {
     padding: 10px 16px;
     flex-wrap: wrap;
     gap: 10px;
   }
 
-  .header-left {
-    flex: 1;
+  .header-left,
+  .header-actions {
     min-width: 0;
   }
 
   .pronunciation-page,
   .game-page {
     padding: 16px;
+    max-width: 100%;
+    overflow-x: clip;
   }
 
   .game-top {
     padding: 12px 14px;
     margin-bottom: 18px;
+    min-width: 0;
+    max-width: 100%;
   }
 
   .game-card {
     padding: 20px;
     border-radius: 14px;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: clip;
   }
 
   .progress-bar-wrap {
-    min-width: 100%;
-    flex-basis: 100%;
+    min-width: 0;
+    flex: 1 1 100%;
     height: 14px;
   }
 
@@ -1436,9 +1447,72 @@ a.btn-secondary:hover {
 }
 
 @media (max-width: 600px) {
+  /* Compact question-list dashboard: number + icon only */
   .list-stats {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .stat-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 10px 4px 8px;
+    border-radius: 12px;
+    box-shadow: none;
+  }
+
+  .stat-item:hover {
+    transform: none;
+  }
+
+  .stat-item::before {
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 13px;
+    line-height: 1;
+    color: #94a3b8;
+  }
+
+  /* total — list */
+  .stat-item:not(.correct):not(.wrong):not(.pending)::before {
+    content: '\f03a';
+  }
+
+  .stat-item.correct::before {
+    content: '\f00c';
+    color: #0f7646;
+  }
+
+  .stat-item.wrong::before {
+    content: '\f00d';
+    color: #b93030;
+  }
+
+  .stat-item.pending::before {
+    content: '\f017';
+    color: #64748b;
+  }
+
+  .stat-item .stat-num {
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .stat-item .stat-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   .game-title-wrap h1 {
@@ -1456,16 +1530,46 @@ a.btn-secondary:hover {
     -webkit-box-orient: vertical;
   }
 
-  .stat-item {
-    padding: 12px 6px;
-  }
-
-  .stat-item .stat-num {
-    font-size: 22px;
-  }
-
   .game-score-hero-value {
     font-size: 26px;
+  }
+
+  /* Quiz / shared meta: avoid horizontal spill of score pills & long titles */
+  .meta-score-pill {
+    flex-shrink: 1;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.3;
+  }
+
+  .meta-pill,
+  .type-badge {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .list-title {
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .option-btn {
+    min-width: 0;
+    align-items: flex-start;
+  }
+
+  .option-btn > span:last-child {
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow-wrap: anywhere;
+  }
+
+  .feedback.show {
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 }
 
@@ -1666,11 +1770,33 @@ a.btn-secondary:hover {
   .rewrite-row {
     font-size: 16px;
     padding: 12px 14px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .rewrite-prefix,
+  .rewrite-suffix {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    max-width: 100%;
   }
 
   .rewrite-input {
-    min-width: 100%;
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
     font-size: 16px;
+  }
+
+  .hint-box {
+    align-items: flex-start;
+  }
+
+  .hint-box span {
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 }
 
@@ -1924,23 +2050,70 @@ a.btn-secondary:hover {
 @media (max-width: 900px) {
   .law-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px 10px;
+  }
+
+  .law-worksheet {
+    padding: 16px 12px 18px;
+  }
+
+  .law-banner {
+    padding: 12px 14px;
+    margin-bottom: 12px;
+  }
+
+  .law-banner h2 {
+    font-size: 16px;
+  }
+
+  .law-banner p {
+    font-size: 12px;
+  }
+
+  .law-item-img-wrap {
+    width: 100%;
+    max-width: 120px;
+    aspect-ratio: 1;
+  }
+
+  .law-drop-zone {
+    min-height: 40px;
+    padding: 4px;
+  }
+
+  .law-chip {
+    padding: 6px 12px;
+    font-size: 13px;
   }
 }
 
 @media (max-width: 520px) {
   .law-grid {
-    grid-template-columns: 1fr;
-    max-width: 280px;
-    margin: 0 auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 100%;
+    margin: 0;
+    gap: 10px 8px;
   }
 
   .law-worksheet {
-    padding: 18px 14px 22px;
-    border-radius: 16px;
+    padding: 14px 10px 16px;
+    border-radius: 14px;
   }
 
   .law-title {
-    font-size: 19px;
+    font-size: 17px;
+  }
+
+  .law-instruction {
+    font-size: 13px;
+  }
+
+  .law-item-img-wrap {
+    max-width: 100%;
+  }
+
+  .law-touch-hint {
+    font-size: 11px;
   }
 }
 
@@ -2211,12 +2384,12 @@ a.btn-secondary:hover {
 
 @media (max-width: 560px) {
   .cc-row {
-    grid-template-columns: 24px 72px 1fr;
-    gap: 10px;
+    grid-template-columns: 22px 64px 1fr;
+    gap: 8px;
   }
 
   .cc-row.has-prompt {
-    grid-template-columns: 24px 1fr;
+    grid-template-columns: 22px 1fr;
   }
 
   .cc-row.has-prompt .cc-options {
@@ -2225,19 +2398,49 @@ a.btn-secondary:hover {
 
   .cc-options {
     flex-direction: column;
+    gap: 6px;
   }
 
   .cc-worksheet {
-    padding: 18px 14px 22px;
-    border-radius: 16px;
+    padding: 14px 10px 16px;
+    border-radius: 14px;
   }
 
   .cc-ws-title {
-    font-size: 22px;
+    font-size: 18px;
+  }
+
+  .cc-ws-instruction {
+    font-size: 13px;
   }
 
   .cc-banner {
-    padding: 14px 16px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+  }
+
+  .cc-banner h2 {
+    font-size: 15px;
+  }
+
+  .cc-banner p {
+    font-size: 12px;
+  }
+
+  .cc-star-badge {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .cc-deco {
+    display: none;
+  }
+
+  .cc-opt-wrap {
+    padding: 8px 10px;
+    font-size: 14px;
+    min-height: 40px;
   }
 }
 
@@ -2553,17 +2756,58 @@ a.btn-secondary:hover {
 }
 
 @media (max-width: 900px) {
+  /* Keep words | images side-by-side; shrink rows instead of stacking */
   .wm-board {
-    grid-template-columns: 1fr;
-    column-gap: 0;
-    row-gap: 20px;
-    padding: 16px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 10px;
+    row-gap: 8px;
+    padding: 12px;
     max-width: 100%;
+    --wm-row-h: 64px;
+  }
+
+  .wm-col-title {
+    font-size: 11px;
+    margin-bottom: 8px;
+    gap: 4px;
+    letter-spacing: 0.04em;
+    padding-bottom: 6px;
+  }
+
+  .wm-list {
+    gap: 6px;
+  }
+
+  .wm-item {
+    border-width: 1.5px;
+    border-radius: 10px;
+  }
+
+  .wm-word-btn {
+    font-size: 12px;
+    padding: 4px 6px;
+    letter-spacing: 0.02em;
+  }
+
+  .wm-img-btn {
+    padding: 4px;
   }
 
   #wordList .wm-item::after,
   #imageList .wm-item::before {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .wm-board {
+    column-gap: 8px;
+    padding: 8px;
+    --wm-row-h: 56px;
+  }
+
+  .wm-word-btn {
+    font-size: 11px;
   }
 }
 
@@ -2716,26 +2960,65 @@ a.btn-secondary:hover {
 }
 
 @media (max-width: 700px) {
+  .vc-banner {
+    padding: 10px 12px;
+    margin-bottom: 12px;
+  }
+
+  .vc-banner h2 {
+    font-size: 15px;
+  }
+
+  .vc-banner p {
+    font-size: 12px;
+  }
+
   .vc-row {
-    grid-template-columns: 64px 1fr;
+    grid-template-columns: 56px 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .vc-row img,
+  .vc-img-placeholder {
+    width: 56px;
+    height: 56px;
   }
 
   .vc-word {
     grid-column: 2;
+    font-size: 15px;
   }
 
   .vc-sentence {
     grid-column: 1 / -1;
+    font-size: 13px;
   }
 
   .vc-actions {
     grid-column: 1 / -1;
-    justify-content: center;
+    justify-content: stretch;
+    gap: 8px;
+  }
+
+  .vc-actions .btn,
+  .vc-actions button {
+    flex: 1;
+    min-height: 40px;
+    font-size: 13px;
   }
 
   .vc-worksheet {
-    padding: 18px 14px;
-    border-radius: 16px;
+    padding: 12px 10px;
+    border-radius: 14px;
+  }
+
+  .vc-title {
+    font-size: 17px;
+  }
+
+  .vc-instruction {
+    font-size: 13px;
   }
 }
 
@@ -2914,17 +3197,37 @@ a.btn-secondary:hover {
 
 @media (max-width: 600px) {
   .rc-worksheet {
-    padding: 18px 14px;
-    border-radius: 16px;
+    padding: 12px 10px 14px;
+    border-radius: 14px;
+  }
+
+  .rc-banner {
+    padding: 10px 12px;
+    margin-bottom: 12px;
+  }
+
+  .rc-banner h2 {
+    font-size: 15px;
+  }
+
+  .rc-banner p {
+    font-size: 12px;
   }
 
   .rc-sentence {
-    font-size: 15px;
-    min-width: 100%;
+    font-size: 14px;
+    min-width: 0;
+    max-width: 100%;
+    line-height: 1.45;
   }
 
   .rc-row {
-    gap: 10px;
+    gap: 8px;
+  }
+
+  .rc-blank {
+    min-width: 64px;
+    font-size: 14px;
   }
 }
 
@@ -3203,13 +3506,67 @@ a.btn-secondary:hover {
 
 @media (max-width: 768px) {
   .rm-board {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 8px;
+    --rm-row-h: 64px;
+    --rm-thumb-h: 44px;
   }
 
   .rm-worksheet {
-    padding: 18px 14px;
-    border-radius: 16px;
+    padding: 12px 10px 14px;
+    border-radius: 14px;
+  }
+
+  .rm-banner {
+    padding: 10px 12px;
+    margin-bottom: 12px;
+  }
+
+  .rm-banner h2 {
+    font-size: 15px;
+  }
+
+  .rm-banner p {
+    font-size: 12px;
+  }
+
+  .rm-ws-title {
+    font-size: 17px;
+  }
+
+  .rm-ws-instruction {
+    font-size: 13px;
+  }
+
+  .rm-col h3 {
+    font-size: 11px;
+  }
+
+  .rm-sentence {
+    font-size: 12px;
+    padding: 6px 8px;
+  }
+
+  .rm-image-card {
+    padding: 4px 6px;
+    gap: 6px;
+  }
+
+  .rm-sentence::after,
+  .rm-image-card::before {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .rm-board {
+    --rm-row-h: 56px;
+    --rm-thumb-h: 40px;
+    gap: 6px;
+  }
+
+  .rm-sentence {
+    font-size: 11px;
   }
 }
 
@@ -3275,6 +3632,194 @@ a.btn-secondary:hover {
 
   .game-lesson-panel--lesson {
     padding: 12px 0 24px;
+  }
+}
+
+/* ===== Mobile polish: starters boards (desktop >900 unchanged) ===== */
+@media (max-width: 600px) {
+  .law-worksheet,
+  .cc-worksheet,
+  .rc-worksheet,
+  .rm-worksheet,
+  .vc-worksheet {
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: clip;
+  }
+
+  .law-word-bank,
+  .law-meta-row,
+  .cc-meta-row,
+  .rc-meta-row,
+  .rm-meta-row,
+  .vc-meta-row {
+    min-width: 0;
+    max-width: 100%;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .law-chip,
+  .cc-opt-wrap,
+  .wm-word-btn,
+  .wm-item,
+  .rm-sentence,
+  .rm-image-card,
+  .vc-sentence,
+  .rc-sentence {
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .law-banner,
+  .cc-banner,
+  .wm-hint,
+  .vc-banner,
+  .rc-banner,
+  .rm-banner {
+    max-width: 100%;
+  }
+
+  .law-banner h2,
+  .cc-banner h2,
+  .vc-banner h2,
+  .rc-banner h2,
+  .rm-banner h2,
+  .law-title,
+  .cc-ws-title,
+  .rm-ws-title,
+  .vc-title {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .wm-board {
+    padding: 10px;
+    column-gap: 8px;
+    --wm-row-h: 58px;
+  }
+
+  .wm-item {
+    width: 100%;
+  }
+
+  .wm-img,
+  .wm-img-placeholder {
+    max-width: 100%;
+  }
+
+  .cc-picture,
+  .cc-stem,
+  .cc-prompt {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .cc-picture img,
+  .cc-stem img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .rc-blank {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .vc-row {
+    max-width: 100%;
+  }
+
+  .vc-row img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .rm-sentence,
+  .rm-image-card {
+    width: 100%;
+  }
+
+  .rm-image-card img {
+    max-width: 100%;
+  }
+
+  /* Compact question list rows */
+  .question-list {
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .q-list-item {
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+  }
+
+  .q-num {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .list-title {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .list-stats + .game-actions {
+    margin-top: 10px;
+  }
+
+  .game-actions {
+    margin-top: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .law-word-bank {
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .law-chip {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .cc-options {
+    width: 100%;
+  }
+
+  .cc-opt-wrap {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .wm-col-title,
+  .rm-col h3 {
+    font-size: 10px;
+  }
+
+  .vc-actions {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .vc-actions .btn,
+  .vc-actions button {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .q-list-item {
+    padding: 8px 10px;
+  }
+
+  .q-preview {
+    font-size: 13px;
   }
 }
 

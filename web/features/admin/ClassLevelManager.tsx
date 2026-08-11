@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { AdminShell } from '@/components/admin/AdminShell';
 import { DataLoading } from '@/components/DataLoading';
+import { AdminHelp, SheetKeysHint } from '@/features/admin/AdminHelp';
 import {
   SheetSelectCell,
   SheetSelectHeader,
@@ -13,6 +14,7 @@ import {
   SheetEditSaveButton,
   useSheetEditMode,
 } from '@/features/admin/useSheetEditMode';
+import { sheetNav, useSheetKeyboard } from '@/features/admin/useSheetKeyboard';
 
 type ClassLevel = {
   id: string;
@@ -63,6 +65,7 @@ export function ClassLevelManager({ displayName }: { displayName: string }) {
 
   const dirtyCount = rows?.filter((row) => row.dirty).length ?? 0;
   const editMode = useSheetEditMode(dirtyCount > 0);
+  const sheetKeys = useSheetKeyboard(editMode.editing);
   const rowKeys = useMemo(() => (rows || []).map((row) => row.key), [rows]);
   const selection = useRowSelection(rowKeys);
 
@@ -235,13 +238,21 @@ export function ClassLevelManager({ displayName }: { displayName: string }) {
   }
 
   return (
-    <AdminShell displayName={displayName} title="Cấp độ">
+    <AdminShell
+      displayName={displayName}
+      title="Cấp độ / Lớp"
+      subtitle="Ví dụ: Lớp 1, Lớp 2… dùng để lọc khóa học."
+    >
+      <AdminHelp
+        title="Cấp độ là gì?"
+        steps={[
+          'Mỗi dòng là một lớp/cấp (vd. “Lớp 4”). Học sinh chọn cấp này trên trang khóa học.',
+          'Bấm Sửa nội dung → Thêm dòng → gõ tên → Enter xuống dòng kế → Lưu thay đổi.',
+          'Không xóa cấp đang có unit — hãy tắt cột “Hiện” nếu tạm không dùng.',
+        ]}
+      />
+
       <div className="admin-toolbar">
-        <span className="sheet-hint">
-          {editMode.editing
-            ? 'Đang sửa · Tick dòng để ẩn hàng loạt'
-            : 'Chỉ xem · Bấm Sửa nội dung để chỉnh bảng'}
-        </span>
         <div className="admin-toolbar-actions">
           <button
             type="button"
@@ -272,6 +283,8 @@ export function ClassLevelManager({ displayName }: { displayName: string }) {
         </div>
       </div>
 
+      <SheetKeysHint editing={editMode.editing} />
+
       {message ? <div className="admin-alert ok">{message}</div> : null}
       {error ? <div className="admin-alert error">{error}</div> : null}
 
@@ -279,7 +292,11 @@ export function ClassLevelManager({ displayName }: { displayName: string }) {
         {!rows ? (
           <DataLoading />
         ) : (
-          <div className="sheet-wrap">
+          <div
+            className="sheet-wrap"
+            data-sheet-grid
+            onKeyDown={sheetKeys.onKeyDown}
+          >
             <table className="sheet-table" style={{ minWidth: 520 }}>
               <thead>
                 <tr>
@@ -289,8 +306,8 @@ export function ClassLevelManager({ displayName }: { displayName: string }) {
                     disabled={!editMode.editing || rows.length === 0}
                     onToggleAll={selection.toggleAll}
                   />
-                  <th>Cấp</th>
-                  <th style={{ width: '72px' }}>Dùng</th>
+                  <th>Tên cấp / lớp</th>
+                  <th style={{ width: '72px' }}>Hiện</th>
                   <th style={{ width: '168px' }}>Thao tác</th>
                 </tr>
               </thead>
@@ -305,7 +322,7 @@ export function ClassLevelManager({ displayName }: { displayName: string }) {
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  rows.map((row, rowIndex) => (
                     <tr
                       key={row.key}
                       className={[
@@ -325,8 +342,9 @@ export function ClassLevelManager({ displayName }: { displayName: string }) {
                         <input
                           className="sheet-input"
                           value={row.levelName}
-                          placeholder="Starters"
+                          placeholder="Lớp 4"
                           readOnly={!editMode.editing}
+                          {...sheetNav(rowIndex, 0)}
                           onChange={(e) => setField(row.key, 'levelName', e.target.value)}
                         />
                       </td>
@@ -336,6 +354,7 @@ export function ClassLevelManager({ displayName }: { displayName: string }) {
                           className="sheet-check"
                           checked={row.active}
                           disabled={!editMode.editing}
+                          {...sheetNav(rowIndex, 1)}
                           onChange={(e) => setField(row.key, 'active', e.target.checked)}
                         />
                       </td>

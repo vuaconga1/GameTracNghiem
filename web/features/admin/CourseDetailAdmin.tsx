@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { AdminShell } from '@/components/admin/AdminShell';
 import { DataLoading } from '@/components/DataLoading';
+import { AdminHelp, AdminStep } from '@/features/admin/AdminHelp';
 import { parseCourseGameLessonRange } from '@/lib/courseGameLesson';
 import {
   buildRemoveGameLessonRequest,
@@ -522,16 +523,31 @@ export function CourseDetailAdmin({
   return (
     <AdminShell
       displayName={displayName}
-      title={course ? `Khóa: ${course.name}` : 'Chi tiết khóa học'}
+      title={course ? course.name : 'Chi tiết khóa học'}
+      subtitle={
+        course
+          ? `${course.levelName} · thiết lập PDF bài học và game cho unit này`
+          : 'Thiết lập PDF và game'
+      }
     >
       <div className="admin-toolbar">
         <Link className="admin-btn" href="/admin/courses">
           ← Danh sách khóa học
         </Link>
         <Link className="admin-btn" href="/admin/ebooks">
-          Quản lý sách PDF
+          Upload sách PDF
         </Link>
       </div>
+
+      <AdminHelp
+        title="Làm lần lượt 4 bước bên dưới"
+        steps={[
+          'Bật kỹ năng học sinh thấy (Từ vựng, Nghe…).',
+          'Chọn sách PDF và trang mặc định của unit (thường Unit N = trang N).',
+          'Gán trang Bài học theo từng kỹ năng (vd. Từ vựng = trang N).',
+          'Mở từng game để nhập câu hỏi.',
+        ]}
+      />
 
       {message ? <div className="admin-alert ok">{message}</div> : null}
       {error ? <div className="admin-alert error">{error}</div> : null}
@@ -548,8 +564,7 @@ export function CourseDetailAdmin({
                   <span className="course-detail-level"> · {course.levelName}</span>
                 </h2>
                 <p className="course-detail-meta">
-                  {visibleCount}/{games.length} game hiện với học sinh · Gắn sách PDF cho tab Bài
-                  học bên dưới.
+                  {visibleCount}/{games.length} game hiện với học sinh
                 </p>
               </div>
               <span className={`admin-badge ${course.active ? 'on' : 'off'}`}>
@@ -558,13 +573,12 @@ export function CourseDetailAdmin({
             </div>
           </div>
 
-          <div className="admin-panel" style={{ marginBottom: '0.75rem' }}>
-            <h3 style={{ margin: '0 0 0.5rem', fontSize: '0.95rem' }}>Kỹ năng hiện với học sinh</h3>
-            <p className="help" style={{ color: 'var(--admin-muted)', marginTop: 0 }}>
-              Tắt kỹ năng = ẩn thẻ kỹ năng đó trên tab Bài tập. Game vẫn có thể gán kỹ năng để
-              bật lại sau.
-            </p>
-            <div className="admin-toolbar" style={{ justifyContent: 'flex-start', flexWrap: 'wrap' }}>
+          <AdminStep
+            step={1}
+            title="Kỹ năng hiện với học sinh"
+            help="Tắt kỹ năng = ẩn thẻ đó trên trang học. Thường giữ bật các kỹ năng đang dạy."
+          >
+            <div className="admin-toolbar" style={{ justifyContent: 'flex-start', flexWrap: 'wrap', marginBottom: 0 }}>
               {SKILL_CATALOG.map((skill) => {
                 const on = enabledSkills.includes(skill.id);
                 return (
@@ -585,21 +599,20 @@ export function CourseDetailAdmin({
                 );
               })}
             </div>
-          </div>
+          </AdminStep>
 
-          <div className="admin-panel" style={{ marginBottom: '0.75rem' }}>
-            <h3 style={{ margin: '0 0 0.5rem', fontSize: '0.95rem' }}>Bài học (PDF)</h3>
-            <p className="help" style={{ color: 'var(--admin-muted)', marginTop: 0 }}>
-              Chọn sách và khoảng trang mặc định của unit. Học sinh thấy khoảng này khi mở Bài học
-              từ root unit (chưa chọn kỹ năng). Khoảng theo kỹ năng cấu hình bên dưới.
-            </p>
-            <div className="admin-toolbar" style={{ justifyContent: 'flex-start', flexWrap: 'wrap' }}>
+          <AdminStep
+            step={2}
+            title="Gắn sách PDF cho unit"
+            help="Chọn file PDF đã upload. “Trang từ – đến” là khoảng mặc định (1 trang thì hai số giống nhau, vd. 5 và 5)."
+          >
+            <div className="admin-toolbar" style={{ justifyContent: 'flex-start', flexWrap: 'wrap', marginBottom: 0 }}>
               <select
                 value={ebookId}
                 onChange={(e) => setEbookId(e.target.value)}
                 style={{ minWidth: 220 }}
               >
-                <option value="">— Không gắn sách —</option>
+                <option value="">— Chưa gắn sách —</option>
                 {ebooks.map((book) => (
                   <option key={book.id} value={book.id}>
                     {book.title}
@@ -631,25 +644,21 @@ export function CourseDetailAdmin({
                 disabled={savingLesson}
                 onClick={() => void saveLessonLink()}
               >
-                {savingLesson ? 'Đang lưu...' : 'Lưu bài học'}
+                {savingLesson ? 'Đang lưu...' : 'Lưu sách PDF'}
               </button>
             </div>
             {ebooks.length === 0 ? (
-              <p className="help" style={{ color: 'var(--admin-muted)', marginBottom: 0 }}>
-                Chưa có sách. Vào <Link href="/admin/ebooks">Sách bài tập</Link> để upload PDF.
+              <p className="help" style={{ color: 'var(--admin-muted)', marginBottom: 0, marginTop: '0.75rem' }}>
+                Chưa có sách. Vào <Link href="/admin/ebooks">Sách PDF</Link> để upload file.
               </p>
             ) : null}
-          </div>
+          </AdminStep>
 
-          <div className="admin-panel" style={{ marginBottom: '0.75rem' }}>
-            <h3 style={{ margin: '0 0 0.5rem', fontSize: '0.95rem' }}>
-              Trang bài học theo kỹ năng
-            </h3>
-            <p className="help" style={{ color: 'var(--admin-muted)', marginTop: 0 }}>
-              Gán khoảng trang (hoặc 1 trang) trong PDF trên cho từng kỹ năng. Học sinh mở Bài học
-              khi đã chọn kỹ năng (`?skill=`) chỉ thấy khoảng này — chưa gán thì hiện thông báo
-              trống, không hiện cả unit.
-            </p>
+          <AdminStep
+            step={3}
+            title="Trang bài học theo kỹ năng"
+            help="Khi học sinh chọn kỹ năng (vd. Từ vựng), họ chỉ thấy khoảng trang này. Chưa gán = báo trống."
+          >
             <div
               className="course-game-list course-skill-lesson-list"
               role="table"
@@ -657,7 +666,7 @@ export function CourseDetailAdmin({
             >
               <div className="course-game-list-head" role="row">
                 <span role="columnheader">Kỹ năng</span>
-                <span role="columnheader">Bài học PDF</span>
+                <span role="columnheader">Trang PDF (từ – đến)</span>
               </div>
               {SKILL_CATALOG.map((skill) => {
                 const savedLesson = course.skillLessons?.find(
@@ -700,16 +709,13 @@ export function CourseDetailAdmin({
                 );
               })}
             </div>
-          </div>
+          </AdminStep>
 
-          <div className="admin-panel course-game-panel">
-            <div className="course-game-panel-head">
-              <h3>Danh sách game</h3>
-            </div>
-            <p className="help" style={{ color: 'var(--admin-muted)', margin: '0 0 0.75rem' }}>
-              Hầu hết game thuộc tối đa một kỹ năng (hoặc Ẩn). Trắc nghiệm có thể gán nhiều kỹ năng.
-              Học sinh thấy game khi ít nhất một kỹ năng được gán đang bật.
-            </p>
+          <AdminStep
+            step={4}
+            title="Danh sách game — nhập câu hỏi"
+            help="Chọn kỹ năng cho từng game, rồi bấm Mở để nhập liệu kiểu bảng Excel."
+          >
 
             <div className="course-game-list" role="table" aria-label="Danh sách game của khóa">
               <div className="course-game-list-head" role="row">
@@ -832,14 +838,14 @@ export function CourseDetailAdmin({
                         className="admin-btn"
                         href={`/admin/courses/${courseId}/games/${game.key}`}
                       >
-                        Sửa nội dung
+                        Sửa câu hỏi
                       </Link>
                     </div>
                   </div>
                 );
               })}
             </div>
-          </div>
+          </AdminStep>
         </>
       )}
     </AdminShell>

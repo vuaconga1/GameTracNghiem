@@ -75,16 +75,27 @@
 }
 
 .pron-word-card {
-  border-radius: 20px;
-  padding: 20px 16px;
+  border-radius: 16px;
+  padding: 14px 14px;
   text-align: center;
   border: 2px solid transparent;
   background-clip: padding-box;
   box-shadow: 0 4px 16px rgba(13, 43, 110, 0.06);
 }
 
+.pron-word-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .pron-btn-audio {
-  padding: 12px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 16px;
   border-radius: 14px;
   font-size: 14px;
   font-weight: 800;
@@ -105,20 +116,9 @@
   box-shadow: 0 6px 18px rgba(13, 43, 110, 0.35);
 }
 
-.pron-btn-audio-secondary {
-  color: #0d2b6e;
-  background: linear-gradient(135deg, #ffffff 0%, #eef2fa 100%);
-  border: 2px solid rgba(13, 43, 110, 0.15);
-}
-
-.pron-btn-audio-secondary:hover {
-  background: #e8eef8;
-  border-color: rgba(13, 43, 110, 0.28);
-}
-
 .pron-mic-panel {
-  border-radius: 20px;
-  padding: 20px 16px;
+  border-radius: 16px;
+  padding: 14px 12px;
   border: 2px solid rgba(13, 43, 110, 0.08);
   background: linear-gradient(180deg, #f8faff 0%, #ffffff 100%);
 }
@@ -151,15 +151,15 @@
 }
 
 .pron-page-stack > * + * {
-  margin-top: 1.25rem;
+  margin-top: 0.85rem;
 }
 
 .pron-main-inner {
-  padding: 1.5rem 2rem;
+  padding: 1rem 1.25rem 1.15rem;
 }
 
 .pron-main-stack > * + * {
-  margin-top: 1.5rem;
+  margin-top: 0.85rem;
 }
 
 .pron-mode-tabs {
@@ -232,36 +232,34 @@
 }
 
 .pron-game-content {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 1rem 0;
+  justify-content: flex-start;
+  padding: 0.15rem 0 0.35rem;
 }
 
 .pron-content-stack > * + * {
-  margin-top: 1rem;
+  margin-top: 0.65rem;
 }
 
 .pron-prompt-label {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   text-align: center;
+  margin: 0;
 }
 
 .pron-prompt-text {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   color: #64748b;
-  margin-top: 0.25rem;
+  margin-top: 0.15rem;
   text-align: center;
 }
 
 .pron-audio-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.5rem;
+  display: block;
 }
 
 .pron-mic-btn {
@@ -278,13 +276,14 @@
 .pron-mic-center {
   display: flex;
   justify-content: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.45rem;
 }
 
 .pron-mic-status {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   text-align: center;
   color: #64748b;
+  margin: 0;
 }
 
 .pron-mic-ping {
@@ -379,13 +378,13 @@
 
 .pron-main-shell {
   background: #fff;
-  border-radius: 1.5rem;
+  border-radius: 1.25rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(13, 43, 110, 0.2);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   position: relative;
 }
 
@@ -402,10 +401,11 @@
 }
 
 .pron-target-lg {
-  font-size: 1.5rem;
+  font-size: 1.65rem;
   font-weight: 900;
   color: #1e293b;
   letter-spacing: 0.025em;
+  margin: 0;
 }
 
 .pron-target-md {
@@ -417,13 +417,15 @@
 .pron-ipa {
   font-size: 0.875rem;
   font-weight: 600;
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0;
 }
 
 .pron-hint {
   font-size: 0.75rem;
   color: #64748b;
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
+  margin-bottom: 0;
 }
 
 .pron-stress-row {
@@ -805,18 +807,60 @@
 @media (max-width: 600px) {
   .pronunciation-page {
     padding: 10px 10px 14px;
+    max-width: 100%;
+    overflow-x: clip;
   }
 
   .pron-page-header {
     gap: 6px;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .pron-hero-label {
     display: none;
   }
 
+  .pron-hero-title {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .pron-game-meta {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .pron-game-meta .meta-score-pill {
+    white-space: normal;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
   .pron-mic-panel {
     padding: 10px 8px;
+  }
+
+  .pron-action-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pron-action-row button {
+    width: 100%;
+  }
+
+  .eval-rings {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .eval-feedback,
+  .pron-word-card,
+  .pron-target-lg {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 }
 

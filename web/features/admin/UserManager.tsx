@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { AdminShell } from '@/components/admin/AdminShell';
 import { DataLoading } from '@/components/DataLoading';
+import { AdminHelp, SheetKeysHint } from '@/features/admin/AdminHelp';
 import {
   SheetSelectCell,
   SheetSelectHeader,
@@ -13,6 +14,7 @@ import {
   SheetEditSaveButton,
   useSheetEditMode,
 } from '@/features/admin/useSheetEditMode';
+import { sheetNav, useSheetKeyboard } from '@/features/admin/useSheetKeyboard';
 
 type UserItem = {
   id: string;
@@ -77,6 +79,7 @@ export function UserManager({
 
   const dirtyCount = rows?.filter((row) => row.dirty).length ?? 0;
   const editMode = useSheetEditMode(dirtyCount > 0);
+  const sheetKeys = useSheetKeyboard(editMode.editing);
   const rowKeys = useMemo(() => (rows || []).map((r) => r.key), [rows]);
   const selection = useRowSelection(rowKeys);
 
@@ -316,13 +319,21 @@ export function UserManager({
   }
 
   return (
-    <AdminShell displayName={displayName} title="Tài khoản">
+    <AdminShell
+      displayName={displayName}
+      title="Tài khoản"
+      subtitle="Tạo tài khoản học sinh / quản trị. Mật khẩu để trống = giữ nguyên."
+    >
+      <AdminHelp
+        title="Cách tạo tài khoản"
+        steps={[
+          'Bấm Sửa nội dung → Thêm dòng → điền username, mật khẩu, tên hiển thị.',
+          'Chọn vai trò: Học sinh (chơi game) hoặc Quản trị (vào trang này).',
+          'Tab / Enter để điền nhanh · Lưu thay đổi. Không xóa được chính tài khoản đang đăng nhập.',
+        ]}
+      />
+
       <div className="admin-toolbar">
-        <span className="sheet-hint">
-          {editMode.editing
-            ? 'Đang sửa · Mật khẩu để trống = giữ nguyên · Tick dòng để ẩn hàng loạt'
-            : 'Chỉ xem · Bấm Sửa nội dung để chỉnh bảng'}
-        </span>
         <div className="admin-toolbar-actions">
           <button
             type="button"
@@ -353,6 +364,8 @@ export function UserManager({
         </div>
       </div>
 
+      <SheetKeysHint editing={editMode.editing} />
+
       {message ? <div className="admin-alert ok">{message}</div> : null}
       {error ? <div className="admin-alert error">{error}</div> : null}
 
@@ -360,7 +373,11 @@ export function UserManager({
         {!rows ? (
           <DataLoading />
         ) : (
-          <div className="sheet-wrap">
+          <div
+            className="sheet-wrap"
+            data-sheet-grid
+            onKeyDown={sheetKeys.onKeyDown}
+          >
             <table className="sheet-table" style={{ minWidth: 820 }}>
               <thead>
                 <tr>
@@ -370,7 +387,7 @@ export function UserManager({
                     disabled={!editMode.editing || rows.length === 0}
                     onToggleAll={selection.toggleAll}
                   />
-                  <th>Username</th>
+                  <th>Username (đăng nhập)</th>
                   <th>Mật khẩu</th>
                   <th>Tên hiển thị</th>
                   <th style={{ width: '130px' }}>Vai trò</th>
@@ -388,7 +405,7 @@ export function UserManager({
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => {
+                  rows.map((row, rowIndex) => {
                     const isSelf = Boolean(row.id && row.id === currentUserId);
                     return (
                       <tr
@@ -413,6 +430,7 @@ export function UserManager({
                             disabled={Boolean(row.id) || !editMode.editing}
                             readOnly={!editMode.editing}
                             placeholder="username"
+                            {...sheetNav(rowIndex, 0)}
                             onChange={(e) => setField(row.key, 'username', e.target.value)}
                           />
                         </td>
@@ -423,6 +441,7 @@ export function UserManager({
                             value={row.password}
                             readOnly={!editMode.editing}
                             placeholder={row.id ? '(giữ nguyên)' : 'mật khẩu'}
+                            {...sheetNav(rowIndex, 1)}
                             onChange={(e) => setField(row.key, 'password', e.target.value)}
                           />
                         </td>
@@ -432,6 +451,7 @@ export function UserManager({
                             value={row.displayName}
                             readOnly={!editMode.editing}
                             placeholder="Tên hiển thị"
+                            {...sheetNav(rowIndex, 2)}
                             onChange={(e) => setField(row.key, 'displayName', e.target.value)}
                           />
                         </td>
@@ -440,6 +460,7 @@ export function UserManager({
                             className="sheet-input"
                             value={row.role}
                             disabled={!editMode.editing}
+                            {...sheetNav(rowIndex, 3)}
                             onChange={(e) =>
                               setField(
                                 row.key,

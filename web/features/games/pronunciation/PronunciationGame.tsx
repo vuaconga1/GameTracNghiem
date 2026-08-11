@@ -267,7 +267,7 @@ function WordCard({ question, mode }: { question: PronunciationQuestion; mode: P
   const isWord = mode === 'phoneme' || mode === 'word';
 
   return (
-    <div className="pron-content-stack">
+    <div className="pron-word-block">
       <div className="text-center">
         <p className="pron-prompt-label" style={{ color: cfg.color }}>
           {t('pronunciation.contentLabel')}
@@ -304,7 +304,7 @@ function WordCard({ question, mode }: { question: PronunciationQuestion; mode: P
         </div>
       ) : null}
 
-      {!['phoneme', 'word', 'sentence', 'stress'].includes(String(mode)) ? (
+      {!isWord && mode !== 'sentence' && mode !== 'stress' ? (
         <div className="pron-word-card" style={cardStyle}>
           <p className="pron-target-xl">{question.targetText}</p>
         </div>
@@ -355,7 +355,6 @@ export type PronunciationGameContentProps = {
   onModeChange: (mode: PronunciationMode) => void;
   onResetQuestion: () => void;
   onPlayReference: () => void;
-  onPlaySlow: () => void;
   onMicClick: () => void;
   onNext: () => void;
 };
@@ -390,7 +389,6 @@ export function PronunciationGameContent({
   onModeChange,
   onResetQuestion,
   onPlayReference,
-  onPlaySlow,
   onMicClick,
   onNext,
 }: PronunciationGameContentProps) {
@@ -600,24 +598,15 @@ export function PronunciationGameContent({
               <div className="pron-content-stack">
                 <WordCard question={question} mode={currentMode} />
 
-                <div className="pron-audio-grid">
-                  <button
-                    id="btnAudioRef"
-                    type="button"
-                    className="pron-btn-audio pron-btn-audio-primary"
-                    onClick={onPlayReference}
-                  >
-                    {t('pronunciation.listenModel')}
-                  </button>
-                  <button
-                    id="btnAudioSlow"
-                    type="button"
-                    className="pron-btn-audio pron-btn-audio-secondary"
-                    onClick={onPlaySlow}
-                  >
-                    {t('pronunciation.listenSlow')}
-                  </button>
-                </div>
+                <button
+                  id="btnAudioRef"
+                  type="button"
+                  className="pron-btn-audio pron-btn-audio-primary"
+                  onClick={onPlayReference}
+                >
+                  <i className="fas fa-volume-high" aria-hidden="true" />
+                  {t('pronunciation.listenModel')}
+                </button>
 
                 <div className="pron-mic-panel">
                   <div className="pron-mic-center">
@@ -1398,7 +1387,6 @@ export function PronunciationGame({ courseId }: Props) {
       onModeChange={handleModeChange}
       onResetQuestion={() => resetQuestionState(currentIndex, currentMode)}
       onPlayReference={() => handlePlay(1.0)}
-      onPlaySlow={() => handlePlay(0.7)}
       onMicClick={() => void handleMicClick()}
       onNext={goNext}
     />

@@ -1229,6 +1229,237 @@
       gap: 8px;
     }
 
+    .course-vocab-panel {
+      background: #faf6f1;
+      border-radius: 20px;
+      padding: clamp(16px, 2.5vw, 28px);
+      box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06);
+    }
+
+    .course-vocab-heading {
+      margin: 0 0 18px;
+      font-size: clamp(1.35rem, 2.4vw, 1.75rem);
+      font-weight: 800;
+      color: #e85a6b;
+      letter-spacing: -0.02em;
+    }
+
+    .course-vocab-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .course-vocab-card {
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px 18px;
+      border: 1.5px solid #f0c4b0;
+      font-family: inherit;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .course-vocab-card:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+    }
+
+    .course-vocab-card.is-speaking {
+      box-shadow: 0 0 0 3px rgba(232, 90, 107, 0.22);
+    }
+
+    .course-vocab-card--coral {
+      border-color: #f0c4b0;
+    }
+
+    .course-vocab-card--coral .course-vocab-card-title {
+      color: #e85a6b;
+    }
+
+    .course-vocab-card--coral .course-vocab-card-title > i:first-child {
+      color: #e85a6b;
+    }
+
+    .course-vocab-card--green {
+      border-color: #b7d9b0;
+      background: #f4faf2;
+    }
+
+    .course-vocab-card--green .course-vocab-card-title {
+      color: #5a9a4a;
+    }
+
+    .course-vocab-card--green .course-vocab-card-title > i:first-child {
+      color: #e85a6b;
+    }
+
+    .course-vocab-card--amber {
+      border-color: #f0c4b0;
+    }
+
+    .course-vocab-card--amber .course-vocab-card-title {
+      color: #d97706;
+    }
+
+    .course-vocab-card--amber .course-vocab-card-title > i:first-child {
+      color: #e85a6b;
+    }
+
+    .course-vocab-card-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .course-vocab-card-title > span {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .course-vocab-speak-icon {
+      font-size: 0.85rem;
+      opacity: 0.55;
+      color: inherit;
+    }
+
+    .course-vocab-line {
+      margin: 0 0 6px;
+      font-size: 0.95rem;
+      line-height: 1.45;
+      color: #1e293b;
+    }
+
+    .course-vocab-line:last-child {
+      margin-bottom: 0;
+    }
+
+    .course-vocab-line strong {
+      font-weight: 700;
+    }
+
+    .course-vocab-panel--primary {
+      background: #f3f7ff;
+    }
+
+    .course-vocab-list--primary {
+      gap: 16px;
+    }
+
+    .course-vocab-flashcard {
+      position: relative;
+      width: 100%;
+      display: block;
+      text-align: left;
+      cursor: pointer;
+      background: #ffffff;
+      border: 2px dashed #7eb6ff;
+      border-radius: 18px;
+      padding: 16px 18px;
+      font-family: inherit;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .course-vocab-flashcard:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.12);
+      border-color: #3b82f6;
+    }
+
+    .course-vocab-flashcard.is-speaking {
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.22);
+      border-color: #2563eb;
+    }
+
+    .course-vocab-flashcard-pin {
+      position: absolute;
+      top: -10px;
+      right: 18px;
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: #3b82f6;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+    }
+
+    .course-vocab-flashcard-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(120px, 0.9fr);
+      gap: 14px;
+      align-items: center;
+    }
+
+    .course-vocab-flashcard-text {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .course-vocab-flashcard-word {
+      font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+      font-weight: 800;
+      color: #1d4ed8;
+      line-height: 1.15;
+    }
+
+    .course-vocab-flashcard-ipa {
+      font-size: 1rem;
+      color: #334155;
+      font-weight: 500;
+    }
+
+    .course-vocab-flashcard-meaning {
+      font-size: 1.05rem;
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    .course-vocab-flashcard-media {
+      min-height: 110px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #eff6ff, #dbeafe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .course-vocab-flashcard-media img {
+      width: 100%;
+      height: 140px;
+      object-fit: contain;
+      display: block;
+    }
+
+    .course-vocab-flashcard-media > i {
+      color: #93c5fd;
+      font-size: 2rem;
+    }
+
+    @media (max-width: 640px) {
+      .course-vocab-flashcard-body {
+        grid-template-columns: 1fr;
+      }
+
+      .course-vocab-flashcard-media img {
+        height: 160px;
+      }
+    }
+
     .detail-panel {
       flex: 1;
       min-width: 0;
@@ -2915,6 +3146,10 @@
         pointer-events: auto;
       }
 
+      .app.sidebar-open {
+        overflow: hidden;
+      }
+
       .header {
         height: auto;
         min-height: 76px;
@@ -2924,8 +3159,18 @@
         gap: 8px;
       }
 
+      .header-left,
+      .header-actions {
+        min-width: 0;
+      }
+
       .content {
         padding: 0 16px 20px;
+        overflow-x: clip;
+      }
+
+      .content-inner {
+        max-width: 100%;
       }
 
       .view-detail {
@@ -3005,6 +3250,46 @@
       .period-toggle {
         flex-wrap: wrap;
         justify-content: center;
+        width: 100%;
+        gap: 8px;
+      }
+
+      .lb-top,
+      .lb-title-row,
+      .lb-list,
+      .lb-row,
+      .lb-sticky-wrap,
+      .lb-sticky {
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .lb-row {
+        flex-wrap: wrap;
+        gap: 8px 10px;
+        padding: 12px;
+      }
+
+      .lb-name {
+        flex: 1 1 140px;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .lb-score {
+        margin-left: auto;
+      }
+
+      .lb-sticky {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 10px 12px;
+      }
+
+      .course-grid {
+        gap: 12px;
       }
     }
 
@@ -3516,6 +3801,25 @@
   .speaking-shell {
     padding: 12px;
     border-radius: 12px;
+    overflow-x: clip;
+  }
+
+  .speaking-header,
+  .speaking-header-main,
+  .speaking-header-text {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .speaking-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .speaking-header-badges {
+    justify-content: flex-start;
+    flex-wrap: wrap;
   }
 
   .speaking-chat-frame {
@@ -3528,8 +3832,15 @@
     align-items: stretch;
   }
 
-  .speaking-btn {
+  .speaking-btn,
+  .speaking-ptt-btn {
     width: 100%;
+  }
+
+  .speaking-field select,
+  .speaking-field input,
+  .speaking-field textarea {
+    max-width: 100%;
   }
 }
 

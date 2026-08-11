@@ -8,6 +8,7 @@ import { DataLoading } from '@/components/DataLoading';
 import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
 import { usePlayer } from '@/components/player/PlayerContext';
+import { CourseVocabTab } from '@/features/courses/CourseVocabTab';
 import { EbookViewer } from '@/features/courses/EbookViewer';
 import { localizeExerciseTitle } from '@/features/games/localizeExerciseTitle';
 import {
@@ -20,6 +21,11 @@ import type {
   CourseGames,
   GameDetail,
 } from '@/lib/loadCourseDetail';
+import { resolveCourseVocabDeck } from '@/lib/courseVocabDeck';
+import {
+  logisticsCourseIdsForWeek,
+  isLogisticsLevel,
+} from '@/lib/logisticsUnits';
 import {
   guestCourseScore,
   readGuestGameState,
@@ -57,7 +63,7 @@ type CourseDetailViewProps = {
   initialSkill?: SkillId | null;
 };
 
-type DetailTab = 'lesson' | 'exercises';
+type DetailTab = 'lesson' | 'exercises' | 'vocab';
 
 function completedStatusCount(statuses: string[] | undefined) {
   return (statuses || []).filter((status) => status !== 'empty').length;
@@ -189,14 +195,28 @@ export function CourseDetailContent({
     liveActivityKeys
   );
   const totalScore = data.totalScore ?? 0;
+  const vocabDeck = resolveCourseVocabDeck({
+    id: data.course.id,
+    name: data.course.name,
+    levelName: data.course.levelName,
+  });
   const showSkillTabs = Boolean(selectedSkill);
-  const effectiveTab: DetailTab = showSkillTabs ? activeTab : 'exercises';
+  const showVocabTab = showSkillTabs && Boolean(vocabDeck?.length);
+  const effectiveTab: DetailTab = !showSkillTabs
+    ? 'exercises'
+    : activeTab === 'vocab' && !showVocabTab
+      ? 'exercises'
+      : activeTab;
   const showBookCard = effectiveTab === 'exercises';
   const showSkillCards = effectiveTab === 'exercises' && !selectedSkill;
   const showGameGrid = effectiveTab === 'exercises' && Boolean(selectedSkill);
   const selectedSkillMeta = skillCards.find((skill) => skill.id === selectedSkill);
-  const backHref = selectedSkill ? `/courses/${data.course.id}` : '/';
-  const unitEbook = data.course.ebook
+  const logisticsHomeHref = isLogisticsLevel(data.course.levelName)
+    ? logisticsCourseIdsForWeek(2).has(data.course.id)
+      ? '/logistics/week2'
+      : '/logistics'
+    : '/';
+  const backHref = selectedSkill ? `/courses/${data.course.id}` : logisticsHomeHref;  const unitEbook = data.course.ebook
     ? { pageStart: data.course.ebook.pageStart, pageEnd: data.course.ebook.pageEnd }
     : null;
   const lessonPages = resolveCourseEbookPagesForSkill({
@@ -205,13 +225,20 @@ export function CourseDetailContent({
     skillLessons: data.course.skillLessons,
   });
   const showLessonViewer = showSkillTabs && effectiveTab === 'lesson';
+  const showVocabViewer = showVocabTab && effectiveTab === 'vocab';
   const comingSoonLabel = t('course.comingSoon');
 
   return (
     <section id="view-detail" className="view-detail">
       <PageBackButton href={backHref} />
 
-      <div className={effectiveTab === 'lesson' ? 'detail-body detail-body--lesson-full' : 'detail-body'}>
+      <div
+        className={
+          effectiveTab === 'lesson' || effectiveTab === 'vocab'
+            ? 'detail-body detail-body--lesson-full'
+            : 'detail-body'
+        }
+      >
         {showBookCard ? (
           <div className="book-card">
             <div className="book-card-top">
@@ -259,6 +286,16 @@ export function CourseDetailContent({
               >
                 <i className="fas fa-book-open" aria-hidden="true" /> {t('course.tabLessons')}
               </button>
+              {showVocabTab ? (
+                <button
+                  type="button"
+                  className={effectiveTab === 'vocab' ? 'tab-secondary active' : 'tab-secondary'}
+                  data-detail-tab="vocab"
+                  onClick={() => setActiveTab('vocab')}
+                >
+                  <i className="fas fa-spell-check" aria-hidden="true" /> {t('course.tabVocab')}
+                </button>
+              ) : null}
             </div>
           ) : null}
 
@@ -279,6 +316,12 @@ export function CourseDetailContent({
                   </div>
                 </div>
               )}
+            </div>
+          ) : null}
+
+          {showVocabViewer && vocabDeck ? (
+            <div className="detail-panel">
+              <CourseVocabTab cards={vocabDeck} />
             </div>
           ) : null}
 

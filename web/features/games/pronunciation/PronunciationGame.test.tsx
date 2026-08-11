@@ -85,7 +85,6 @@ describe('PronunciationGameContent', () => {
     onModeChange: vi.fn(),
     onResetQuestion: vi.fn(),
     onPlayReference: vi.fn(),
-    onPlaySlow: vi.fn(),
     onMicClick: vi.fn(),
     onNext: vi.fn(),
   };

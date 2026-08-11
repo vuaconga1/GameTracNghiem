@@ -5,6 +5,7 @@ import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { AdminShell } from '@/components/admin/AdminShell';
 import { DataLoading } from '@/components/DataLoading';
+import { AdminHelp, SheetKeysHint } from '@/features/admin/AdminHelp';
 import { FolderMediaAttach } from '@/features/admin/FolderMediaAttach';
 import {
   SheetSelectCell,
@@ -15,6 +16,7 @@ import {
   SheetEditSaveButton,
   useSheetEditMode,
 } from '@/features/admin/useSheetEditMode';
+import { sheetNav, useSheetKeyboard, type SheetNavAttrs } from '@/features/admin/useSheetKeyboard';
 import {
   defaultItemForGame,
   emptySheetRow,
@@ -44,11 +46,13 @@ function SheetCell({
   value,
   onChange,
   editable,
+  nav,
 }: {
   col: SheetColumn;
   value: string | boolean;
   onChange: (next: string | boolean) => void;
   editable: boolean;
+  nav?: SheetNavAttrs;
 }) {
   if (col.kind === 'checkbox') {
     return (
@@ -59,6 +63,7 @@ function SheetCell({
         disabled={!editable}
         onChange={(e) => onChange(e.target.checked)}
         aria-label={col.label}
+        {...nav}
       />
     );
   }
@@ -70,6 +75,7 @@ function SheetCell({
         value={String(value)}
         disabled={!editable}
         onChange={(e) => onChange(e.target.value)}
+        {...nav}
       >
         {col.options.map((opt) => (
           <option key={opt.value} value={opt.value}>
@@ -89,6 +95,7 @@ function SheetCell({
         placeholder={col.placeholder}
         readOnly={!editable}
         onChange={(e) => onChange(e.target.value)}
+        {...nav}
       />
     );
   }
@@ -100,6 +107,7 @@ function SheetCell({
       placeholder={col.placeholder}
       readOnly={!editable}
       onChange={(e) => onChange(e.target.value)}
+      {...nav}
     />
   );
 }
@@ -127,6 +135,7 @@ export function QuestionListAdmin({
 
   const dirtyCount = rows?.filter((row) => row.dirty).length ?? 0;
   const editMode = useSheetEditMode(dirtyCount > 0);
+  const sheetKeys = useSheetKeyboard(editMode.editing);
   const rowKeys = useMemo(() => (rows || []).map((r) => r.key), [rows]);
   const selection = useRowSelection(rowKeys);
 
@@ -428,7 +437,20 @@ export function QuestionListAdmin({
   }
 
   return (
-    <AdminShell displayName={displayName} title={meta ? meta.label : 'Nội dung game'}>
+    <AdminShell
+      displayName={displayName}
+      title={meta ? meta.label : 'Nội dung game'}
+      subtitle={`${courseName || 'Khóa học'} · mỗi dòng = một câu / bài`}
+    >
+      <AdminHelp
+        title="Nhập câu hỏi như Excel"
+        steps={[
+          'Bấm Sửa nội dung → Thêm dòng → điền các cột theo tiêu đề (ô trống có gợi ý chữ mờ).',
+          'Tab chuyển ô · Enter xuống dòng · mũi tên đổi ô. Ô vàng = chưa lưu.',
+          'Bấm Lưu thay đổi khi xong. Cột có dấu | nghĩa là nhiều đáp án cách nhau bằng dấu |.',
+        ]}
+      />
+
       <div className="admin-toolbar">
         <div className="admin-toolbar-actions">
           <Link
@@ -440,11 +462,6 @@ export function QuestionListAdmin({
           >
             ← {courseName || 'Khóa học'}
           </Link>
-          <span className="sheet-hint">
-            {editMode.editing
-              ? 'Đang sửa · Tab để chuyển ô · Tick dòng để ẩn hàng loạt'
-              : 'Chỉ xem · Bấm Sửa nội dung để chỉnh bảng'}
-          </span>
         </div>
         <div className="admin-toolbar-actions">
           <button
@@ -506,6 +523,8 @@ export function QuestionListAdmin({
         </div>
       </div>
 
+      <SheetKeysHint editing={editMode.editing} />
+
       {message ? <div className="admin-alert ok">{message}</div> : null}
       {error ? <div className="admin-alert error">{error}</div> : null}
 
@@ -513,7 +532,11 @@ export function QuestionListAdmin({
         {!rows ? (
           <DataLoading />
         ) : (
-          <div className="sheet-wrap">
+          <div
+            className="sheet-wrap"
+            data-sheet-grid
+            onKeyDown={sheetKeys.onKeyDown}
+          >
             <table className="sheet-table">
               <thead>
                 <tr>
@@ -543,7 +566,7 @@ export function QuestionListAdmin({
                     </td>
                   </tr>
                 ) : (
-                  rows.map((row) => (
+                  rows.map((row, rowIndex) => (
                     <Fragment key={row.key}>
                       <tr
                         className={[
@@ -559,12 +582,13 @@ export function QuestionListAdmin({
                           disabled={!editMode.editing}
                           onChange={() => selection.toggle(row.key)}
                         />
-                        {columns.map((col) => (
+                        {columns.map((col, colIndex) => (
                           <td key={col.key}>
                             <SheetCell
                               col={col}
                               value={cellValue(row, col)}
                               editable={editMode.editing}
+                              nav={sheetNav(rowIndex, colIndex)}
                               onChange={(next) => setCell(row.key, col, next)}
                             />
                           </td>

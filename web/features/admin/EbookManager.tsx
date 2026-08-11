@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import { AdminShell } from '@/components/admin/AdminShell';
 import { DataLoading } from '@/components/DataLoading';
+import { AdminHelp } from '@/features/admin/AdminHelp';
 
 type EbookItem = {
   id: string;
@@ -112,12 +113,24 @@ export function EbookManager({ displayName }: { displayName: string }) {
   }
 
   return (
-    <AdminShell displayName={displayName} title="Sách bài tập">
+    <AdminShell
+      displayName={displayName}
+      title="Sách PDF"
+      subtitle="Upload file PDF bài học — chưa cần cắt trang"
+    >
+      <AdminHelp
+        title="Sách PDF dùng ở đâu?"
+        steps={[
+          'Chọn file PDF (vd. Global success 4 Từ Vựng + Grammar) → đặt tên dễ nhớ → Thêm sách.',
+          'Vào Khóa học → Nội dung unit → chọn sách này và điền trang (Unit 5 = trang 5–5).',
+          'Học sinh sẽ thấy tab Bài học đúng những trang bạn gán.',
+        ]}
+      />
+
       <div className="admin-panel" style={{ marginBottom: '0.75rem' }}>
         <h2 style={{ margin: '0 0 0.5rem', fontSize: '1.05rem' }}>Thêm sách PDF</h2>
         <p className="help" style={{ color: 'var(--admin-muted)', marginTop: 0 }}>
-          Upload một file PDF nguyên (không cần cắt trang). Sau đó gắn khoảng trang cho từng unit ở
-          chi tiết khóa học.
+          Upload một file PDF nguyên. Khoảng trang gắn sau ở chi tiết từng unit.
         </p>
         <form className="admin-toolbar" onSubmit={(e) => void handleCreate(e)}>
           <input

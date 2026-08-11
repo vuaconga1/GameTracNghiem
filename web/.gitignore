@@ -60,3 +60,15 @@ yarn-error.log*
 scripts/data/*.sql
 scripts/data/*.clean.sql
 scripts/data/local-to-neon*
+
+# ===== Scratch / extract temp (never commit) =====
+/tmp/
+/tmp_*/
+tmp/
+tmp_*/
+**/tmp_*.py
+**/tmp_*.png
+**/tmp_*.log
+_archives/*
+!_archives/README.md
+archives/

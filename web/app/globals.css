@@ -5,6 +5,186 @@
 html,
 body {
   max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Responsive foundation — keep desktop layouts; prevent mobile overflow */
+img,
+video,
+canvas,
+svg:not(.sidebar-logo svg) {
+  max-width: 100%;
+}
+
+.page-shell,
+.app,
+.main,
+.content,
+.content-inner,
+.game-page,
+.game-card,
+.view-detail,
+.speaking-shell,
+.speaking-layout,
+.speaking-live,
+.speaking-prepare,
+.lb-page,
+.courses-area {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.question-text,
+.quiz-passage,
+.quiz-stem,
+.option-btn,
+.activity-card,
+.book-card,
+.speaking-bubble-text,
+.game-subtitle,
+.fill-input,
+.q-list-item {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+table {
+  max-width: 100%;
+}
+
+.table-scroll,
+.admin-table-wrap,
+.sheet-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.law-worksheet,
+.cc-worksheet,
+.rc-worksheet,
+.rm-worksheet,
+.vc-worksheet,
+.wm-board,
+.pronunciation-page,
+.login-overlay,
+.login-modal {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .tabs-primary {
+    gap: 20px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .tabs-primary::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-primary {
+    flex-shrink: 0;
+  }
+
+  .game-meta,
+  .game-top {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .progress-bar-wrap {
+    min-width: 0;
+    flex: 1 1 100%;
+  }
+
+  .speaking-ptt-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .game-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .game-actions .btn,
+  .game-actions .admin-btn,
+  .game-actions a.btn {
+    width: 100%;
+  }
+
+  .header-actions .action-item span {
+    display: none;
+  }
+
+  .header-actions .action-item {
+    padding: 8px 12px;
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+  }
+
+  .page-back {
+    padding: 8px 14px;
+    font-size: 13px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .page-back-bar {
+    margin-bottom: 12px;
+  }
+
+  /* Login full page */
+  .login-overlay {
+    align-items: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: max(12px, env(safe-area-inset-top, 0px)) 12px
+      max(12px, env(safe-area-inset-bottom, 0px));
+  }
+
+  .login-modal {
+    width: 100%;
+    max-width: 400px;
+    margin: 12px auto;
+  }
+
+  .login-modal-body {
+    padding: 18px 16px 20px;
+  }
+
+  .login-field input {
+    font-size: 16px; /* avoid iOS input zoom */
+  }
+
+  .login-error {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .login-modal-header .action-item {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+}
+
+@media (max-width: 480px) {
+  .login-modal-header {
+    padding: 16px 48px;
+  }
+
+  .login-modal-header img {
+    max-width: 120px;
+  }
 }
 
 /* game-styles .main { align-items: center } shrinks home content — stretch for index layout */
@@ -131,13 +311,3 @@ a.page-back:hover {
   padding-top: clamp(12px, 2vw, 16px);
 }
 
-@media (max-width: 600px) {
-  .page-back {
-    padding: 8px 14px;
-    font-size: 13px;
-  }
-
-  .page-back-bar {
-    margin-bottom: 12px;
-  }
-}
