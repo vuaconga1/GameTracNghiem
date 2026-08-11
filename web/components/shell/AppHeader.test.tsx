@@ -35,8 +35,8 @@ describe('AppHeader', () => {
     expect(html).not.toContain('Quản trị viên');
     expect(html).toContain('Quản trị');
     expect(html).toContain('Xếp hạng');
-    expect(html).toContain('Đổi mật khẩu');
     expect(html).toContain('Đăng xuất');
+    expect(html).not.toContain('Đổi mật khẩu');
     expect(html).not.toContain('class="badge-rank"');
     expect(html).not.toContain('/icons/rank/');
   });
@@ -47,7 +47,6 @@ describe('AppHeader', () => {
     expect(html).toContain('href="/login"');
     expect(html).toContain('Đăng nhập');
     expect(html).not.toContain('href="/leaderboard"');
-    expect(html).not.toContain('Đổi mật khẩu');
     expect(html).not.toContain('Đăng xuất');
   });
 });
