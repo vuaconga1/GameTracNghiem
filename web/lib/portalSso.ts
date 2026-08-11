@@ -57,7 +57,9 @@ export async function verifyPortalSsoToken(token: string): Promise<PortalSsoClai
 
 /**
  * Find or create student by portal SID (= username).
- * Syncs displayName + password to match portal access code.
+ * First SSO: create account with portal access code as password.
+ * Later SSO: refresh displayName + portalLinkedAt only — keep game password
+ * so students can change it and still log in from the web.
  * Refuses to touch admin accounts.
  */
 export async function upsertPortalStudent(claims: PortalSsoClaims): Promise<SessionPayload> {
@@ -78,19 +80,18 @@ export async function upsertPortalStudent(claims: PortalSsoClaims): Promise<Sess
     throw Object.assign(new Error('Tài khoản đã bị vô hiệu hóa'), { status: 403 });
   }
 
-  const passwordHash = await hashPassword(password);
   const portalLinkedAt = new Date();
 
   const user = existing
     ? await prisma.user.update({
         where: { id: existing.id },
-        data: { displayName, passwordHash, portalLinkedAt },
+        data: { displayName, portalLinkedAt },
       })
     : await prisma.user.create({
         data: {
           username,
           displayName,
-          passwordHash,
+          passwordHash: await hashPassword(password),
           role: 'student',
           portalLinkedAt,
         },

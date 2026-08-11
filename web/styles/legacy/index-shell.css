@@ -2860,6 +2860,29 @@
       display: block;
     }
 
+    .login-success {
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      display: none;
+    }
+
+    .login-success.show {
+      display: block;
+    }
+
+    .login-hint {
+      margin: 0 0 14px;
+      color: #64748b;
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 500;
+    }
+
     .login-submit {
       width: 100%;
       padding: 12px;

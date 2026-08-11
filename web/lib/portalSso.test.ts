@@ -82,7 +82,7 @@ describe('portalSso', () => {
     });
   });
 
-  it('updates existing student name/password', async () => {
+  it('updates existing student name but keeps password', async () => {
     findUnique.mockResolvedValue({
       id: 'u1',
       username: 'WeWIN01-HV-1602',
@@ -107,13 +107,13 @@ describe('portalSso', () => {
     expect(update).toHaveBeenCalledWith(
       expect.objectContaining({
         where: { id: 'u1' },
-        data: expect.objectContaining({
+        data: {
           displayName: 'Lê Quang Khôi',
-          passwordHash: 'hash:123',
           portalLinkedAt: expect.any(Date),
-        }),
+        },
       })
     );
+    expect(update.mock.calls[0][0].data.passwordHash).toBeUndefined();
   });
 
   it('refuses SSO into admin username', async () => {

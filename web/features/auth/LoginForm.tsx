@@ -53,6 +53,7 @@ export function LoginForm({ next, initialError }: LoginFormProps) {
   return (
     <>
       <h2 id="loginTitle">{t('auth.loginTitle')}</h2>
+      <p className="login-hint">{t('auth.loginHint')}</p>
       <div
         id="loginError"
         className={error ? 'login-error show' : 'login-error'}
