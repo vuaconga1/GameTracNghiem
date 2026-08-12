@@ -4,10 +4,10 @@ import { useCallback, useEffect, useState, type FormEvent } from 'react';
 
 import { useI18n } from '@/components/i18n/I18nProvider';
 import {
+  ensureGuestFormGateSchedule,
   getGuestFormGateScheduleDelayMs,
   markGuestFormGateCompleted,
   markGuestFormGateDismissed,
-  markGuestFormGateStarted,
   readGuestFormGateState,
 } from '@/lib/guestFormGate';
 import {
@@ -48,14 +48,13 @@ export function GuestFormGateModal({ isGuest }: Props) {
       return undefined;
     }
 
-    const state = readGuestFormGateState();
+    const state = ensureGuestFormGateSchedule();
     if (state.completed) {
       setVisible(false);
       return undefined;
     }
 
-    markGuestFormGateStarted();
-    const delay = getGuestFormGateScheduleDelayMs(readGuestFormGateState());
+    const delay = getGuestFormGateScheduleDelayMs(state);
     if (delay === null) {
       setVisible(false);
       return undefined;

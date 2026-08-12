@@ -4,10 +4,10 @@ import {
   GUEST_FORM_GATE_DELAY_MS,
   GUEST_FORM_GATE_REMIND_MS,
   GUEST_FORM_GATE_STORAGE_KEY,
+  ensureGuestFormGateSchedule,
   getGuestFormGateScheduleDelayMs,
   markGuestFormGateCompleted,
   markGuestFormGateDismissed,
-  markGuestFormGateStarted,
   readGuestFormGateState,
   shouldShowGuestFormGateNow,
 } from './guestFormGate';
@@ -37,49 +37,55 @@ function createMemoryStorage(): Storage {
 }
 
 describe('guestFormGate', () => {
-  it('shows the first gate after the initial delay', () => {
+  it('schedules the first popup 15 minutes after the first visit', () => {
     const storage = createMemoryStorage();
-    const startedAt = markGuestFormGateStarted(storage, 1_000);
+    const now = 1_000;
+    const state = ensureGuestFormGateSchedule(storage, now);
 
-    expect(getGuestFormGateScheduleDelayMs(readGuestFormGateState(storage), startedAt)).toBe(
-      GUEST_FORM_GATE_DELAY_MS,
+    expect(state.nextShowAt).toBe(now + GUEST_FORM_GATE_DELAY_MS);
+    expect(getGuestFormGateScheduleDelayMs(state, now)).toBe(GUEST_FORM_GATE_DELAY_MS);
+    expect(shouldShowGuestFormGateNow(true, storage, now)).toBe(false);
+    expect(shouldShowGuestFormGateNow(true, storage, now + GUEST_FORM_GATE_DELAY_MS - 1)).toBe(
+      false,
     );
-    expect(
-      shouldShowGuestFormGateNow(true, storage, startedAt + GUEST_FORM_GATE_DELAY_MS - 1),
-    ).toBe(false);
-    expect(shouldShowGuestFormGateNow(true, storage, startedAt + GUEST_FORM_GATE_DELAY_MS)).toBe(
-      true,
-    );
+    expect(shouldShowGuestFormGateNow(true, storage, now + GUEST_FORM_GATE_DELAY_MS)).toBe(true);
+  });
+
+  it('does not reset the first schedule on later visits', () => {
+    const storage = createMemoryStorage();
+    const first = ensureGuestFormGateSchedule(storage, 1_000);
+    const second = ensureGuestFormGateSchedule(storage, 60_000);
+
+    expect(second.nextShowAt).toBe(first.nextShowAt);
   });
 
   it('re-schedules every 10 minutes after dismiss until completed', () => {
     const storage = createMemoryStorage();
+    ensureGuestFormGateSchedule(storage, 1_000);
     const dismissedAt = 50_000;
-    markGuestFormGateStarted(storage, 10_000);
     markGuestFormGateDismissed(storage, dismissedAt);
 
-    expect(getGuestFormGateScheduleDelayMs(readGuestFormGateState(storage), dismissedAt)).toBe(
-      GUEST_FORM_GATE_REMIND_MS,
-    );
+    const state = readGuestFormGateState(storage);
+    expect(state.nextShowAt).toBe(dismissedAt + GUEST_FORM_GATE_REMIND_MS);
+    expect(shouldShowGuestFormGateNow(true, storage, dismissedAt)).toBe(false);
     expect(
       shouldShowGuestFormGateNow(true, storage, dismissedAt + GUEST_FORM_GATE_REMIND_MS),
     ).toBe(true);
 
     markGuestFormGateCompleted(storage);
     expect(getGuestFormGateScheduleDelayMs(readGuestFormGateState(storage), dismissedAt)).toBeNull();
-    expect(shouldShowGuestFormGateNow(true, storage, dismissedAt + GUEST_FORM_GATE_REMIND_MS)).toBe(
-      false,
-    );
+    expect(
+      shouldShowGuestFormGateNow(true, storage, dismissedAt + GUEST_FORM_GATE_REMIND_MS),
+    ).toBe(false);
   });
 
-  it('persists dismissedAt in storage', () => {
+  it('persists nextShowAt under the v3 storage key', () => {
     const storage = createMemoryStorage();
-    markGuestFormGateStarted(storage, 1_000);
-    markGuestFormGateDismissed(storage, 5_000);
+    ensureGuestFormGateSchedule(storage, 1_000);
 
     const raw = JSON.parse(storage.getItem(GUEST_FORM_GATE_STORAGE_KEY) || '{}') as {
-      dismissedAt?: number;
+      nextShowAt?: number;
     };
-    expect(raw.dismissedAt).toBe(5_000);
+    expect(raw.nextShowAt).toBe(1_000 + GUEST_FORM_GATE_DELAY_MS);
   });
 });
