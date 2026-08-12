@@ -9,6 +9,7 @@ import { findGameByPathname } from '@/lib/gameCatalog';
 
 import { AppHeader } from './AppHeader';
 import { AppShell } from './AppShell';
+import { GuestFormGateModal } from './GuestFormGateModal';
 import { Sidebar } from './Sidebar';
 import { useSidebar } from './SidebarContext';
 
@@ -16,6 +17,7 @@ type MainShellProps = {
   displayName?: string;
   isAuthenticated?: boolean;
   isAdmin?: boolean;
+  homeHref?: string;
   level?: number;
   tier?: number;
   expInLevel?: number;
@@ -28,6 +30,7 @@ export function MainShell({
   displayName,
   isAuthenticated = false,
   isAdmin = false,
+  homeHref = '/',
   level,
   tier,
   expInLevel,
@@ -40,7 +43,7 @@ export function MainShell({
   const { t } = useI18n();
   const activeGame = findGameByPathname(pathname);
   const isGamePage = Boolean(activeGame);
-  const isHome = pathname === '/';
+  const isHome = pathname === homeHref;
   const isLogistics = pathname === '/logistics' || pathname.startsWith('/logistics/');
   const isLogisticsWeek2 = pathname === '/logistics/week2' || pathname.startsWith('/logistics/week2/');
   const isCoursePage = pathname === '/courses' || pathname.startsWith('/courses/');
@@ -66,7 +69,7 @@ export function MainShell({
         {...userProps}
         gameNav={
           <>
-            <Link className="nav-item" href="/" onClick={() => setOpen(false)}>
+            <Link className="nav-item" href={homeHref} onClick={() => setOpen(false)}>
               <i className="fas fa-home" />
               <span>{t('common.home')}</span>
             </Link>
@@ -78,8 +81,6 @@ export function MainShell({
         }
       />
     );
-  } else if (isHome) {
-    sidebar = <Sidebar mode="home" {...userProps} filtersSlot={<div id="sidebar-filters-root" />} />;
   } else if (isLogistics) {
     sidebar = (
       <Sidebar
@@ -87,7 +88,7 @@ export function MainShell({
         {...userProps}
         gameNav={
           <>
-            <Link className="nav-item" href="/" onClick={() => setOpen(false)}>
+            <Link className="nav-item" href={homeHref} onClick={() => setOpen(false)}>
               <i className="fas fa-home" />
               <span>{t('common.home')}</span>
             </Link>
@@ -111,6 +112,8 @@ export function MainShell({
         }
       />
     );
+  } else if (isHome) {
+    sidebar = <Sidebar mode="home" {...userProps} filtersSlot={<div id="sidebar-filters-root" />} />;
   } else if (isCoursePage) {
     sidebar = (
       <Sidebar
@@ -118,7 +121,7 @@ export function MainShell({
         {...userProps}
         gameNav={
           <>
-            <Link className="nav-item" href="/" onClick={() => setOpen(false)}>
+            <Link className="nav-item" href={homeHref} onClick={() => setOpen(false)}>
               <i className="fas fa-home" />
               <span>{t('common.home')}</span>
             </Link>
@@ -137,7 +140,7 @@ export function MainShell({
         {...userProps}
         gameNav={
           <>
-            <Link className="nav-item" href="/" onClick={() => setOpen(false)}>
+            <Link className="nav-item" href={homeHref} onClick={() => setOpen(false)}>
               <i className="fas fa-home" />
               <span>{t('common.home')}</span>
             </Link>
@@ -168,6 +171,7 @@ export function MainShell({
       >
         {children}
       </AppShell>
+      <GuestFormGateModal isGuest={!isAuthenticated} />
     </PlayerProvider>
   );
 }
