@@ -9,6 +9,7 @@ import { findGameByPathname } from '@/lib/gameCatalog';
 
 import { AppHeader } from './AppHeader';
 import { AppShell } from './AppShell';
+import { GuestFormGateModal } from './GuestFormGateModal';
 import { Sidebar } from './Sidebar';
 import { useSidebar } from './SidebarContext';
 
@@ -170,6 +171,7 @@ export function MainShell({
       >
         {children}
       </AppShell>
+      <GuestFormGateModal isGuest={!isAuthenticated} />
     </PlayerProvider>
   );
 }

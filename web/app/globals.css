@@ -187,6 +187,131 @@ table {
   }
 }
 
+.guest-form-gate-overlay {
+  z-index: 1200;
+}
+
+.guest-form-gate-modal {
+  max-width: min(720px, 100%);
+}
+
+.guest-form-gate-header {
+  position: relative;
+}
+
+.guest-form-gate-header h2 {
+  margin: 0;
+  padding-right: 28px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.guest-form-gate-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.guest-form-gate-close:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.guest-form-gate-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: min(78vh, 760px);
+  overflow: auto;
+}
+
+.guest-form-gate-hint {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-muted, #64748b);
+}
+
+.guest-form-gate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.guest-form-gate-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+  border: none;
+  padding: 0;
+}
+
+.guest-form-gate-field > span,
+.guest-form-gate-field > legend {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.guest-form-gate-field input[type='text'],
+.guest-form-gate-field input[type='tel'] {
+  width: 100%;
+  padding: 11px 14px;
+  border: 2px solid var(--border, #e2e8f0);
+  border-radius: 10px;
+  font: inherit;
+  font-size: 14px;
+}
+
+.guest-form-gate-options {
+  display: grid;
+  gap: 8px;
+}
+
+.guest-form-gate-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.guest-form-gate-option input {
+  margin-top: 3px;
+}
+
+.guest-form-gate-error {
+  color: #dc2626;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.guest-form-gate-submit-error {
+  margin: 0;
+}
+
+.guest-form-gate-submit {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .guest-form-gate-modal {
+    margin: 0;
+    max-width: 100%;
+    border-radius: 16px;
+  }
+}
+
 /* game-styles .main { align-items: center } shrinks home content — stretch for index layout */
 .main.layout-index,
 .main.layout-course {
