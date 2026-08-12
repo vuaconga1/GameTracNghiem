@@ -1,14 +1,14 @@
-export const GUEST_FORM_GATE_STORAGE_KEY = 'wewin:guest-form-gate:v2';
+export const GUEST_FORM_GATE_STORAGE_KEY = 'wewin:guest-form-gate:v3';
 
-/** First show after guest lands on the site. */
+/** First popup after guest lands on the site. */
 export const GUEST_FORM_GATE_DELAY_MS = 15 * 60 * 1000;
 
-/** Re-show interval after guest dismisses without submitting. */
+/** Re-show interval after the guest dismisses (or the due popup was closed) without submitting. */
 export const GUEST_FORM_GATE_REMIND_MS = 10 * 60 * 1000;
 
 type GuestFormGateState = {
-  startedAt: number | null;
-  dismissedAt: number | null;
+  /** Absolute time when the popup should next appear. */
+  nextShowAt: number | null;
   completed: boolean;
 };
 
@@ -21,7 +21,7 @@ function browserStorage(): Storage | null {
 }
 
 function emptyState(): GuestFormGateState {
-  return { startedAt: null, dismissedAt: null, completed: false };
+  return { nextShowAt: null, completed: false };
 }
 
 export function readGuestFormGateState(
@@ -36,8 +36,7 @@ export function readGuestFormGateState(
     if (!raw || typeof raw !== 'object') return emptyState();
 
     return {
-      startedAt: Number.isFinite(Number(raw.startedAt)) ? Number(raw.startedAt) : null,
-      dismissedAt: Number.isFinite(Number(raw.dismissedAt)) ? Number(raw.dismissedAt) : null,
+      nextShowAt: Number.isFinite(Number(raw.nextShowAt)) ? Number(raw.nextShowAt) : null,
       completed: raw.completed === true,
     };
   } catch {
@@ -57,27 +56,34 @@ function writeGuestFormGateState(
   }
 }
 
-export function markGuestFormGateStarted(
+/** Ensure first-visit schedule exists: show after 15 minutes. */
+export function ensureGuestFormGateSchedule(
   storage: Storage | null = browserStorage(),
   now = Date.now(),
-): number {
+): GuestFormGateState {
   const current = readGuestFormGateState(storage);
-  if (current.startedAt != null) return current.startedAt;
+  if (current.completed || current.nextShowAt != null) return current;
 
-  writeGuestFormGateState({ ...current, startedAt: now }, storage);
-  return now;
+  const next: GuestFormGateState = {
+    nextShowAt: now + GUEST_FORM_GATE_DELAY_MS,
+    completed: false,
+  };
+  writeGuestFormGateState(next, storage);
+  return next;
 }
 
+/** After dismiss (X): show again in 10 minutes. */
 export function markGuestFormGateDismissed(
   storage: Storage | null = browserStorage(),
   now = Date.now(),
 ): void {
   const current = readGuestFormGateState(storage);
+  if (current.completed) return;
+
   writeGuestFormGateState(
     {
-      ...current,
-      startedAt: current.startedAt ?? now,
-      dismissedAt: now,
+      nextShowAt: now + GUEST_FORM_GATE_REMIND_MS,
+      completed: false,
     },
     storage,
   );
@@ -85,13 +91,11 @@ export function markGuestFormGateDismissed(
 
 export function markGuestFormGateCompleted(
   storage: Storage | null = browserStorage(),
-  now = Date.now(),
 ): void {
   const current = readGuestFormGateState(storage);
   writeGuestFormGateState(
     {
-      startedAt: current.startedAt ?? now,
-      dismissedAt: current.dismissedAt,
+      nextShowAt: current.nextShowAt,
       completed: true,
     },
     storage,
@@ -104,13 +108,8 @@ export function getGuestFormGateScheduleDelayMs(
   now = Date.now(),
 ): number | null {
   if (state.completed) return null;
-
-  if (state.dismissedAt != null) {
-    return Math.max(0, GUEST_FORM_GATE_REMIND_MS - (now - state.dismissedAt));
-  }
-
-  const startedAt = state.startedAt ?? now;
-  return Math.max(0, GUEST_FORM_GATE_DELAY_MS - (now - startedAt));
+  if (state.nextShowAt == null) return GUEST_FORM_GATE_DELAY_MS;
+  return Math.max(0, state.nextShowAt - now);
 }
 
 export function shouldShowGuestFormGateNow(
@@ -119,5 +118,6 @@ export function shouldShowGuestFormGateNow(
   now = Date.now(),
 ): boolean {
   if (!isGuest) return false;
-  return getGuestFormGateScheduleDelayMs(readGuestFormGateState(storage), now) === 0;
+  const state = ensureGuestFormGateSchedule(storage, now);
+  return getGuestFormGateScheduleDelayMs(state, now) === 0;
 }
