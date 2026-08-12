@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 
-import { requireSession } from '@/lib/auth';
 import { transcribeWithGroq } from '@/features/games/pronunciation/groqTranscribe';
 
 function errorResponse(err: unknown) {
@@ -14,8 +13,6 @@ function errorResponse(err: unknown) {
 
 export async function POST(req: Request) {
   try {
-    await requireSession();
-
     const form = await req.formData();
     const audio = form.get('audio');
     const targetText = String(form.get('targetText') || '').trim();

@@ -1191,25 +1191,6 @@ export function PronunciationGame({ courseId }: Props) {
     setShowActions(false);
     setAnswerResult(null);
     setSubmitMessage('');
-    if (player.kind === 'guest') {
-      setRecordState('assessing');
-      try {
-        const transcript = await recognizeWithWebSpeech();
-        const score = scoreTranscript(
-          question.targetText,
-          transcript,
-          String(question.mode || 'phoneme'),
-        );
-        await finishWithScore(score, 'webspeech');
-      } catch (err) {
-        setRecordState('idle');
-        setSubmitMessage(
-          err instanceof Error ? err.message : t('pronunciation.assessFailed'),
-        );
-      }
-      return;
-    }
-
     setRecordState('recording');
 
     try {
