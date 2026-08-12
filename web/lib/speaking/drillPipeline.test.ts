@@ -12,7 +12,7 @@ const authSession = {
   userId: 'student-1',
   username: 'student',
   displayName: 'Student',
-  role: 'student' as const,
+  role: 'WewinStudent' as const,
 };
 
 function bytes() {

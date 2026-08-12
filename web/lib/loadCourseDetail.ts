@@ -1,6 +1,7 @@
 import 'server-only';
 
 import { optionalSession } from '@/lib/auth';
+import { canAccessCourseLevel, normalizeUserRole } from '@/lib/userRoles';
 import { notArchived } from '@/lib/admin/notArchived';
 import { progressCourseKey, scoreLookupCourseKeys } from '@/lib/courseKey';
 import { prisma } from '@/lib/db';
@@ -102,6 +103,10 @@ export async function loadCourseDetail(courseId: string): Promise<CourseDetailDa
   });
 
   if (!course) return null;
+
+  if (session && !canAccessCourseLevel(normalizeUserRole(session.role), course.levelName)) {
+    return null;
+  }
 
   let ebook: { id: string; title: string; pageCount: number | null } | null = null;
   if (course.ebookFileId) {

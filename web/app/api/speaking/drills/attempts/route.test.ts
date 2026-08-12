@@ -54,7 +54,7 @@ describe('POST /api/speaking/drills/attempts', () => {
       userId: 'student-1',
       username: 'student',
       displayName: 'Student',
-      role: 'student',
+      role: 'WewinStudent',
     });
   });
 

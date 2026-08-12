@@ -17,7 +17,6 @@ import type {
   SpeakingAccessResult,
 } from '@/lib/speaking/access';
 import {
-  SPEAKING_ACTIVITY_TYPES,
   type SpeakingActivityType,
 } from '@/lib/speaking/config';
 import {
@@ -37,36 +36,6 @@ type ActivityDefinition = {
 };
 
 export const SPEAKING_HUB_ACTIVITIES: readonly ActivityDefinition[] = [
-  {
-    activityType: 'WORD_PRONUNCIATION',
-    icon: 'fas fa-volume-high',
-    iconClass: 'pronunciation',
-    dataActivity: 'speaking-word',
-    titleKey: 'speaking.hub.activities.word.title',
-    descriptionKey: 'speaking.hub.activities.word.description',
-    difficultyKey: 'speaking.hub.difficulty.beginner',
-    durationKey: 'speaking.hub.duration.oneMinute',
-  },
-  {
-    activityType: 'SENTENCE_READING',
-    icon: 'fas fa-book-open-reader',
-    iconClass: 'read-complete',
-    dataActivity: 'speaking-sentence',
-    titleKey: 'speaking.hub.activities.sentence.title',
-    descriptionKey: 'speaking.hub.activities.sentence.description',
-    difficultyKey: 'speaking.hub.difficulty.easy',
-    durationKey: 'speaking.hub.duration.twoMinutes',
-  },
-  {
-    activityType: 'GUIDED_ANSWER',
-    icon: 'fas fa-message',
-    iconClass: 'look-write',
-    dataActivity: 'speaking-guided',
-    titleKey: 'speaking.hub.activities.guided.title',
-    descriptionKey: 'speaking.hub.activities.guided.description',
-    difficultyKey: 'speaking.hub.difficulty.medium',
-    durationKey: 'speaking.hub.duration.threeMinutes',
-  },
   {
     activityType: 'REALTIME_CONVERSATION',
     icon: 'fas fa-comments',
@@ -127,7 +96,7 @@ export function SpeakingHub({
       setLoadError('');
 
       const entries = await Promise.all(
-        SPEAKING_ACTIVITY_TYPES.map(async (activityType) => {
+        SPEAKING_HUB_ACTIVITIES.map(async ({ activityType }) => {
           try {
             const response = await fetch(
               `/api/speaking/access?courseId=${encodeURIComponent(courseId)}&activityType=${activityType}`,

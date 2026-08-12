@@ -1,6 +1,7 @@
 import type { SessionPayload } from '@/lib/session';
 import { prisma } from '@/lib/db';
 import { resolveEnabledSkillIds } from '@/lib/skillCatalog';
+import { isWewinStudentRole, normalizeUserRole } from '@/lib/userRoles';
 import {
   SPEAKING_ACCOUNT_STATUS,
   SPEAKING_ACTIVITY_TYPES,
@@ -110,6 +111,22 @@ function hasExpiredEntitlement(rows: EntitlementRow[], now: Date): boolean {
   );
 }
 
+function canAccessSpeakingActivity(
+  role: unknown,
+  activityType: SpeakingActivityType,
+): boolean {
+  if (activityType === 'REALTIME_CONVERSATION') {
+    if (role === 'admin') return true;
+    const normalized = normalizeUserRole(role);
+    return normalized === 'WewinStudent' || normalized === 'LogisticsStudent';
+  }
+  return isWewinStudentRole(role);
+}
+
+function skipsRealtimeEntitlement(role: string): boolean {
+  return role === 'admin' || role === 'LogisticsStudent';
+}
+
 /**
  * Resolve student access from local PostgreSQL only.
  *
@@ -125,7 +142,7 @@ export async function evaluateSpeakingAccess(
   if (!input.session) {
     return result(input, SPEAKING_ACCESS_REASON.LOGIN_REQUIRED);
   }
-  if (input.session.role !== 'student') {
+  if (!canAccessSpeakingActivity(input.session.role, input.activityType)) {
     return result(input, SPEAKING_ACCESS_REASON.NOT_WEWIN_STUDENT);
   }
   if (isSpeakingEmergencyDisabled()) {
@@ -192,7 +209,11 @@ export async function evaluateSpeakingAccess(
   if (!user || user.archivedAt) {
     return result(input, SPEAKING_ACCESS_REASON.LOGIN_REQUIRED);
   }
-  if (user.role !== 'student' || !user.portalLinkedAt) {
+  if (!canAccessSpeakingActivity(user.role, input.activityType)) {
+    return result(input, SPEAKING_ACCESS_REASON.NOT_WEWIN_STUDENT);
+  }
+  const requiresPortalLink = input.activityType !== 'REALTIME_CONVERSATION';
+  if (requiresPortalLink && !user.portalLinkedAt) {
     return result(input, SPEAKING_ACCESS_REASON.NOT_WEWIN_STUDENT);
   }
   if (user.speakingAccountStatus !== SPEAKING_ACCOUNT_STATUS.ACTIVE) {
@@ -223,7 +244,9 @@ export async function evaluateSpeakingAccess(
     promptVersion: activityConfig.promptVersion,
   };
   const activeEntitlement = entitlements.find((row) => hasActiveEntitlement(row, now));
-  if (!activeEntitlement) {
+  const entitlementOptional =
+    input.activityType === 'REALTIME_CONVERSATION' && skipsRealtimeEntitlement(user.role);
+  if (!activeEntitlement && !entitlementOptional) {
     return result(
       input,
       hasExpiredEntitlement(entitlements, now)
@@ -240,7 +263,7 @@ export async function evaluateSpeakingAccess(
       input,
       SPEAKING_ACCESS_REASON.DAILY_LIMIT_REACHED,
       config,
-      activeEntitlement.expiresAt,
+      activeEntitlement?.expiresAt ?? null,
       quota,
     );
   }
@@ -249,7 +272,7 @@ export async function evaluateSpeakingAccess(
     input,
     SPEAKING_ACCESS_REASON.ALLOWED,
     config,
-    activeEntitlement.expiresAt,
+    activeEntitlement?.expiresAt ?? null,
     quota,
   );
 }

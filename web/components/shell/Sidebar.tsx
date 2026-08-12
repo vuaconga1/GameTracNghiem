@@ -6,6 +6,7 @@ import Link from 'next/link';
 
 import { useI18n } from '@/components/i18n/I18nProvider';
 
+import { useHomeHref } from './HomeNavContext';
 import { RankBadge } from './RankBadge';
 
 type SidebarProps = {
@@ -41,10 +42,11 @@ export function Sidebar({
   gameNav,
 }: SidebarProps) {
   const { t } = useI18n();
+  const homeHref = useHomeHref();
 
   return (
     <aside className="sidebar">
-      <Link href="/" className="sidebar-logo" aria-label={t('common.home')}>
+      <Link href={homeHref} className="sidebar-logo" aria-label={t('common.home')}>
         <img src="/wewinlogo.png" alt="WeWIN Logo" />
       </Link>
 

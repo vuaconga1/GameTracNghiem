@@ -70,7 +70,9 @@ describe('GrammarGameContent', () => {
     expect(listHtml).not.toContain('Tổng điểm cao nhất');
     expect(listHtml).toContain('class="q-list-item status-correct"');
     expect(listHtml).toContain('class="q-list-item status-pending"');
-    expect(listHtml).toContain('Bắt đầu làm bài');
+    expect(listHtml).toContain('Làm tiếp');
+    expect(listHtml).toContain('Làm lại từ đầu');
+    expect(listHtml).not.toContain('Bắt đầu làm bài');
 
     const questionHtml = renderToStaticMarkup(
       createElement(I18nProvider, { initialLocale: 'vi' }, createElement(GrammarGameContent, {

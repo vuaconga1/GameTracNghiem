@@ -62,7 +62,7 @@ async function createStudent(label: string, input?: { startsAt?: Date; expiresAt
       username: id,
       passwordHash: 'integration-only',
       displayName: `Integration ${label}`,
-      role: 'student',
+      role: 'WewinStudent',
       portalLinkedAt: new Date('2026-08-01T00:00:00.000Z'),
       speakingAccountStatus: 'ACTIVE',
     },
@@ -85,7 +85,7 @@ async function createStudent(label: string, input?: { startsAt?: Date; expiresAt
       userId: user.id,
       username: user.username,
       displayName: user.displayName,
-      role: 'student' as const,
+      role: 'WewinStudent' as const,
     },
   };
 }

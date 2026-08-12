@@ -3,6 +3,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { clearSessionCookie, getSession } from '@/lib/session';
 import { isStaleSessionUser } from '@/lib/sessionUser';
+import { homeHrefForRole, normalizeUserRole } from '@/lib/userRoles';
 
 export async function GET() {
   const session = await getSession();
@@ -29,10 +30,13 @@ export async function GET() {
     );
   }
 
+  const role = normalizeUserRole(user!.role);
+
   return NextResponse.json({
     loggedIn: true,
     username: user!.username,
     name: user!.displayName,
-    role: user!.role === 'admin' ? 'admin' : 'student',
+    role,
+    homePath: homeHrefForRole(role),
   });
 }

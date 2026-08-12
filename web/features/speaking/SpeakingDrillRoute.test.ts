@@ -36,7 +36,7 @@ describe('SpeakingDrillRoute access boundary', () => {
       userId: 'student-1',
       username: 'student-1',
       displayName: 'Student',
-      role: 'student',
+      role: 'WewinStudent',
     };
     requireSession.mockResolvedValue(session);
     evaluateSpeakingAccess.mockResolvedValue({

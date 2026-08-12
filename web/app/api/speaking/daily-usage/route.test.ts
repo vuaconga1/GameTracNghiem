@@ -40,7 +40,7 @@ describe('GET /api/speaking/daily-usage', () => {
       userId: 'student-1',
       username: 'student',
       displayName: 'Student',
-      role: 'student',
+      role: 'WewinStudent',
     });
     evaluateSpeakingAccess.mockResolvedValue({
       allowed: true,

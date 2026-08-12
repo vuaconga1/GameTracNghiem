@@ -182,7 +182,7 @@ const harness = vi.hoisted(() => {
   const client = {
     user: {
       findUnique: vi.fn(async () => ({
-        role: 'student',
+        role: 'WewinStudent',
         archivedAt: null,
         portalLinkedAt: new Date('2026-08-01T00:00:00.000Z'),
         speakingAccountStatus: 'ACTIVE',
@@ -417,7 +417,7 @@ const authSession = {
   userId: 'student-1',
   username: 'student',
   displayName: 'Student',
-  role: 'student' as const,
+  role: 'WewinStudent' as const,
 };
 const now = new Date('2026-08-06T03:00:00.000Z');
 

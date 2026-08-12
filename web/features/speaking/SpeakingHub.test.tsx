@@ -41,19 +41,12 @@ function allowedAccess(
 }
 
 describe('SpeakingHubCards', () => {
-  it('defines and renders exactly four independently gated activities', () => {
+  it('renders only the realtime conversation activity', () => {
     const html = renderToStaticMarkup(
       <I18nProvider initialLocale="vi">
         <SpeakingHubCards
           courseId="course-1"
           accessByActivity={{
-            WORD_PRONUNCIATION: allowedAccess(
-              'WORD_PRONUNCIATION',
-              2,
-              30,
-            ),
-            SENTENCE_READING: allowedAccess('SENTENCE_READING', 1, 20),
-            GUIDED_ANSWER: allowedAccess('GUIDED_ANSWER', 0, 15),
             REALTIME_CONVERSATION: allowedAccess(
               'REALTIME_CONVERSATION',
               1,
@@ -64,18 +57,18 @@ describe('SpeakingHubCards', () => {
       </I18nProvider>,
     );
 
-    expect(SPEAKING_HUB_ACTIVITIES).toHaveLength(4);
-    expect(html.match(/data-speaking-activity=/g)).toHaveLength(4);
-    expect(html).toContain('Phát âm từ');
-    expect(html).toContain('Đọc câu');
-    expect(html).toContain('Trả lời có hướng dẫn');
+    expect(SPEAKING_HUB_ACTIVITIES).toHaveLength(1);
+    expect(html.match(/data-speaking-activity=/g)).toHaveLength(1);
+    expect(html).not.toContain('Phát âm từ');
+    expect(html).not.toContain('Đọc câu');
+    expect(html).not.toContain('Trả lời có hướng dẫn');
     expect(html).toContain('Hội thoại Realtime');
     expect(html).toContain('class="activity-card"');
     expect(html).toContain('1/2');
     expect(html).not.toContain('1 lượt/ngày');
   });
 
-  it('locks only the activity whose own daily quota is exhausted', () => {
+  it('locks the activity when its daily quota is exhausted', () => {
     const realtime = allowedAccess('REALTIME_CONVERSATION', 2, 2);
     realtime.allowed = false;
     realtime.reason = 'DAILY_LIMIT_REACHED';
@@ -86,25 +79,14 @@ describe('SpeakingHubCards', () => {
         <SpeakingHubCards
           courseId="course-1"
           accessByActivity={{
-            WORD_PRONUNCIATION: allowedAccess(
-              'WORD_PRONUNCIATION',
-              0,
-              30,
-            ),
-            SENTENCE_READING: allowedAccess('SENTENCE_READING', 0, 20),
-            GUIDED_ANSWER: allowedAccess('GUIDED_ANSWER', 0, 15),
             REALTIME_CONVERSATION: realtime,
           }}
         />
       </I18nProvider>,
     );
 
-    expect(
-      html.match(/href="\/speaking\/course-1\/(word-pronunciation|sentence-reading|guided-answer)"/g),
-    ).toHaveLength(3);
-    expect(html).not.toContain(
-      'href="/speaking/course-1/conversation"',
-    );
+    expect(html).not.toContain('href="/speaking/course-1/conversation"');
+    expect(html).toContain('activity-card--locked');
   });
 });
 

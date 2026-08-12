@@ -3,6 +3,7 @@ import { SignJWT, jwtVerify } from 'jose';
 import { prisma } from './db';
 import { hashPassword } from './auth';
 import type { SessionPayload } from './session';
+import { normalizeUserRole } from './userRoles';
 
 export const PORTAL_SSO_MAX_AGE_SEC = 180;
 
@@ -92,7 +93,7 @@ export async function upsertPortalStudent(claims: PortalSsoClaims): Promise<Sess
           username,
           displayName,
           passwordHash: await hashPassword(password),
-          role: 'student',
+          role: 'WewinStudent',
           portalLinkedAt,
         },
       });
@@ -101,6 +102,6 @@ export async function upsertPortalStudent(claims: PortalSsoClaims): Promise<Sess
     userId: user.id,
     username: user.username,
     displayName: user.displayName,
-    role: 'student',
+    role: normalizeUserRole(user.role),
   };
 }

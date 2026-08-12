@@ -3,9 +3,9 @@ import type { NextRequest } from 'next/server';
 import { jwtVerify } from 'jose';
 
 import { isLogisticsLevel } from '@/lib/logisticsUnits';
+import { readSessionRoleFromRequest } from '@/lib/sessionEdge';
 
 const SESSION_COOKIE = 'wewin_session';
-
 async function hasValidSession(req: NextRequest): Promise<boolean> {
   const token = req.cookies.get(SESSION_COOKIE)?.value;
   if (!token) return false;
@@ -67,9 +67,18 @@ export async function middleware(req: NextRequest) {
   }
 
   if (isPublicPlayerPage(pathname)) {
+    const role = await readSessionRoleFromRequest(req);
+    if (role === 'LogisticsStudent' && pathname === '/') {
+      return NextResponse.redirect(new URL('/logistics', req.url));
+    }
+    if (
+      role === 'WewinStudent' &&
+      (pathname === '/logistics' || pathname.startsWith('/logistics/'))
+    ) {
+      return NextResponse.redirect(new URL('/', req.url));
+    }
     return NextResponse.next();
   }
-
   if (!(await hasValidSession(req))) {
     const url = req.nextUrl.clone();
     url.pathname = '/login';

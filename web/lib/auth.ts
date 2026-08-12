@@ -2,7 +2,8 @@ import bcrypt from 'bcryptjs';
 import { cache } from 'react';
 
 import { prisma } from './db';
-import { clearSessionCookie, getSession, type SessionPayload, type UserRole } from './session';
+import { clearSessionCookie, getSession, type SessionPayload } from './session';
+import { isAdminUserRole, normalizeUserRole, type UserRole } from './userRoles';
 import { isStaleSessionUser } from './sessionUser';
 
 export { publicApiErrorMessage } from './apiErrors';
@@ -53,7 +54,7 @@ const lookupSession = cache(async (): Promise<SessionLookup> => {
       userId: user!.id,
       username: user!.username,
       displayName: user!.displayName,
-      role: user!.role === 'admin' ? 'admin' : 'student',
+      role: normalizeUserRole(user!.role),
     },
     stale: false,
   };
@@ -92,6 +93,8 @@ export async function requireAdmin(): Promise<SessionPayload> {
   return session;
 }
 
-export function isAdminRole(role: string | null | undefined): role is UserRole {
-  return role === 'admin';
+export function isAdminRole(role: string | null | undefined): role is 'admin' {
+  return isAdminUserRole(role);
 }
+
+export { normalizeUserRole, type UserRole } from './userRoles';

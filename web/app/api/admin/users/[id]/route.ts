@@ -2,6 +2,7 @@ import { hashPassword, requireAdmin } from '@/lib/auth';
 import { adminErrorResponse } from '@/lib/admin/http';
 import { notArchived } from '@/lib/admin/notArchived';
 import { prisma } from '@/lib/db';
+import { parseUserRoleInput } from '@/lib/userRoles';
 
 type Ctx = { params: Promise<{ id: string }> };
 
@@ -15,9 +16,13 @@ export async function PATCH(req: Request, { params }: Ctx) {
       return Response.json({ success: false, message: 'Không tìm thấy tài khoản' }, { status: 404 });
     }
 
-    const nextRole = body.role !== undefined ? (body.role === 'admin' ? 'admin' : 'student') : undefined;
+    const nextRole =
+      body.role !== undefined ? (parseUserRoleInput(body.role) ?? undefined) : undefined;
+    if (body.role !== undefined && !nextRole) {
+      return Response.json({ success: false, message: 'Vai trò không hợp lệ' }, { status: 400 });
+    }
 
-    if (nextRole === 'student' && existing.role === 'admin') {
+    if (nextRole && nextRole !== 'admin' && existing.role === 'admin') {
       const adminCount = await prisma.user.count({
         where: { role: 'admin', ...notArchived },
       });

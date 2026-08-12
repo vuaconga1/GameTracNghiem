@@ -19,6 +19,7 @@ import { usePlayer } from '@/components/player/PlayerContext';
 import { finalizePlaySessionIfComplete } from '@/features/scoring/completeSession';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
+import { GameListActions } from '@/features/games/GameListActions';
 import {
   createPlaySessionId,
   persistGameProgress,
@@ -520,7 +521,6 @@ export function ChooseAndCircleGame({ courseId }: Props) {
 
   const firstPending = statuses.findIndex((status) => status === 'empty');
   const allAnswered = firstPending === -1;
-  const startLabel = allAnswered ? t('common.restartFromStart') : t('common.startExercise');
   const subtitle = `${course.name}${course.levelName ? ` · ${course.levelName}` : ''}`;
 
   return (
@@ -585,21 +585,14 @@ export function ChooseAndCircleGame({ courseId }: Props) {
               <span className="stat-label">{t('gameUi.pending')}</span>
             </div>
           </div>
-          <div className="game-actions">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={allAnswered ? () => void resetProgress(true) : startOrContinue}
-              disabled={isResetting}
-            >
-              {isResetting ? t('common.redoing') : startLabel}
-            </button>
-            {allAnswered ? (
-              <button type="button" className="btn btn-secondary" onClick={() => setPanel('result')}>
-                {t('gameUi.seeResults')}
-              </button>
-            ) : null}
-          </div>
+          <GameListActions
+            stats={stats}
+            allAnswered={allAnswered}
+            isResetting={isResetting}
+            onContinue={startOrContinue}
+            onRestartFromStart={() => void resetProgress(true)}
+            onViewResult={() => setPanel('result')}
+          />
           <div className="question-list">
             {exercises.map((exercise, index) => {
               const status = statuses[index] || 'empty';

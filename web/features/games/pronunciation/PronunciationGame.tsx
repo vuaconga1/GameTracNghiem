@@ -16,6 +16,7 @@ import {
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
 import { isGradedStatus } from '@/features/games/gradedLock';
+import { GameListActions } from '@/features/games/GameListActions';
 import { localizeExerciseTitle } from '@/features/games/localizeExerciseTitle';
 import {
   createPlaySessionId,
@@ -174,6 +175,20 @@ function StressSyllables({ word, accentColor }: { word: string; accentColor: str
   );
 }
 
+function TranscriptHeard({ transcript }: { transcript: string }) {
+  const { t } = useI18n();
+  const text = transcript.trim();
+
+  return (
+    <div className="eval-transcript" aria-live="polite">
+      <p className="eval-transcript-label">{t('pronunciation.heardTranscript')}</p>
+      <p className="eval-transcript-text">
+        {text ? `“${text}”` : t('pronunciation.heardTranscriptEmpty')}
+      </p>
+    </div>
+  );
+}
+
 function EvaluationResult({
   question,
   result,
@@ -214,6 +229,7 @@ function EvaluationResult({
             <span>{feedbackMessage(score, t)}</span>
           </p>
         </div>
+        <TranscriptHeard transcript={score.transcript} />
         <div className="eval-word-breakdown">
           <p className="eval-word-breakdown-title">{t('pronunciation.wordBreakdown')}</p>
           <div className="eval-word-row">
@@ -253,6 +269,7 @@ function EvaluationResult({
           <span>{feedbackMessage(score, t)}</span>
         </p>
       </div>
+      <TranscriptHeard transcript={score.transcript} />
       {typeof points === 'number' ? <div className="eval-points">{formatPoints(points)}</div> : null}
     </div>
   );
@@ -427,7 +444,6 @@ export function PronunciationGameContent({
   const currentPlayablePos = playableEntries.findIndex(({ index }) => index === currentIndex);
   const hasNextPlayable =
     currentPlayablePos >= 0 ? currentPlayablePos < playableEntries.length - 1 : false;
-  const startLabel = allAnswered ? t('common.restartFromStart') : t('common.startExercise');
   const micColor = recordState === 'recording' ? '#ef4444' : modeCfg.color;
   const listTitle = localizedActiveExercise
     ? t('pronunciation.wordListWithGroup', { group: localizedActiveExercise })
@@ -503,21 +519,14 @@ export function PronunciationGameContent({
               <span className="stat-label">{t('gameUi.pending')}</span>
             </div>
           </div>
-          <div className="game-actions">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={allAnswered ? onRetryFromStart : onStartContinue}
-              disabled={isResetting}
-            >
-              {isResetting ? t('common.redoing') : startLabel}
-            </button>
-            {allAnswered ? (
-              <button type="button" className="btn btn-secondary" onClick={onViewResult}>
-                {t('gameUi.seeResults')}
-              </button>
-            ) : null}
-          </div>
+          <GameListActions
+            stats={stats}
+            allAnswered={allAnswered}
+            isResetting={isResetting}
+            onContinue={onStartContinue}
+            onRestartFromStart={onRetryFromStart}
+            onViewResult={onViewResult}
+          />
           <div className="question-list">
             {playableEntries.map(({ question: item, index }, ordinal) => {
               const status = statuses[index] || 'empty';

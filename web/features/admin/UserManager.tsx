@@ -15,6 +15,7 @@ import {
   useSheetEditMode,
 } from '@/features/admin/useSheetEditMode';
 import { sheetNav, useSheetKeyboard } from '@/features/admin/useSheetKeyboard';
+import { normalizeUserRole, type UserRole } from '@/lib/userRoles';
 
 type UserItem = {
   id: string;
@@ -30,7 +31,7 @@ type SheetRow = {
   username: string;
   password: string;
   displayName: string;
-  role: 'student' | 'admin';
+  role: UserRole;
   dirty: boolean;
   saving: boolean;
   error: string;
@@ -43,7 +44,7 @@ function toRow(item: UserItem): SheetRow {
     username: item.username,
     password: '',
     displayName: item.displayName,
-    role: item.role === 'admin' ? 'admin' : 'student',
+    role: normalizeUserRole(item.role),
     dirty: false,
     saving: false,
     error: '',
@@ -57,7 +58,7 @@ function emptyRow(): SheetRow {
     username: '',
     password: '',
     displayName: '',
-    role: 'student',
+    role: 'WewinStudent',
     dirty: true,
     saving: false,
     error: '',
@@ -462,14 +463,11 @@ export function UserManager({
                             disabled={!editMode.editing}
                             {...sheetNav(rowIndex, 3)}
                             onChange={(e) =>
-                              setField(
-                                row.key,
-                                'role',
-                                e.target.value === 'admin' ? 'admin' : 'student'
-                              )
+                              setField(row.key, 'role', e.target.value as UserRole)
                             }
                           >
-                            <option value="student">Học sinh</option>
+                            <option value="WewinStudent">Học sinh WeWIN (L1–9)</option>
+                            <option value="LogisticsStudent">Học sinh Logistics</option>
                             <option value="admin">Quản trị</option>
                           </select>
                         </td>

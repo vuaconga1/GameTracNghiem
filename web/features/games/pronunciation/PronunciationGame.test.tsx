@@ -101,7 +101,9 @@ describe('PronunciationGameContent', () => {
 
     expect(html).toContain('id="listPanel"');
     expect(html).toContain('Danh sách câu hỏi');
-    expect(html).toContain('Bắt đầu làm bài');
+    expect(html).toContain('Làm tiếp');
+    expect(html).toContain('Làm lại từ đầu');
+    expect(html).not.toContain('Bắt đầu làm bài');
     expect(html).not.toContain('Tổng điểm cao nhất');
     expect(html).toContain('world');
     expect(html).toContain('Nice to meet you');
@@ -160,6 +162,8 @@ describe('PronunciationGameContent', () => {
     expect(html).toContain('id="btnNextAction"');
     expect(html).not.toContain('id="btnRetry"');
     expect(html).toContain('Độ chính xác');
+    expect(html).toContain('Máy nghe được');
+    expect(html).toContain('“world”');
     expect(html).toContain('Phát âm rất chuẩn');
     expect(html).toContain('+150 điểm');
     expect(html).not.toContain('Phân tích từng âm');
