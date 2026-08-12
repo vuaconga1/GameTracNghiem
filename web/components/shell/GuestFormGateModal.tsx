@@ -8,7 +8,6 @@ import {
   getGuestFormGateScheduleDelayMs,
   markGuestFormGateCompleted,
   markGuestFormGateDismissed,
-  readGuestFormGateState,
 } from '@/lib/guestFormGate';
 import {
   GUEST_REGISTRATION_GRADES,
