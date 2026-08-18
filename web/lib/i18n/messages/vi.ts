@@ -443,6 +443,8 @@ const vi: Messages = {
     prepareTitle: 'Chuẩn bị phiên',
     prepareHint:
       'Lượt bị trừ khi AI bắt đầu phát câu mở đầu. Trong phiên, giữ nút mic để nói — thả tay để AI trả lời.',
+    prepareHintSentenceCorrection:
+      'AI sẽ hỏi 5 câu. Em trả lời từng câu, AI chấm điểm và sửa phát âm. Lượt bị trừ khi AI bắt đầu nói. Giữ nút mic để nói — thả tay để gửi.',
     topicLabel: 'Chủ đề',
     noTopics: 'Chưa có topic Speaking',
     micReady: 'Sẵn sàng',
@@ -527,8 +529,13 @@ const vi: Messages = {
           description: 'Nhìn gợi ý và tự tin trả lời bằng tiếng Anh.',
         },
         conversation: {
-          title: 'Hội thoại Realtime',
-          description: 'Trò chuyện trực tiếp với trợ lý AI của WeWIN.',
+          title: 'Nói tự do',
+          description: 'Hội thoại và trả lời tự do với trợ lý AI của WeWIN.',
+        },
+        sentenceCorrection: {
+          title: 'Sửa phát âm câu',
+          description:
+            '5 câu hỏi — bé trả lời, AI chấm điểm và sửa lỗi phát âm.',
         },
       },
     },

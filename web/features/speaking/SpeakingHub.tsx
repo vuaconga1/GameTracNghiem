@@ -19,6 +19,7 @@ import type {
 import {
   type SpeakingActivityType,
 } from '@/lib/speaking/config';
+import { isSentenceCorrectionSpeakingGrade } from '@/lib/speaking/gradeBand';
 import {
   speakingActivityPath,
   speakingLoginHref,
@@ -35,18 +36,39 @@ type ActivityDefinition = {
   durationKey: string;
 };
 
-export const SPEAKING_HUB_ACTIVITIES: readonly ActivityDefinition[] = [
-  {
-    activityType: 'REALTIME_CONVERSATION',
-    icon: 'fas fa-comments',
-    iconClass: 'skill-speaking',
-    dataActivity: 'speaking-conversation',
-    titleKey: 'speaking.hub.activities.conversation.title',
-    descriptionKey: 'speaking.hub.activities.conversation.description',
-    difficultyKey: 'speaking.hub.difficulty.challenge',
-    durationKey: 'speaking.hub.duration.threeMinutes',
-  },
-] as const;
+const SPEAKING_FREE_CONVERSATION_ACTIVITY: ActivityDefinition = {
+  activityType: 'REALTIME_CONVERSATION',
+  icon: 'fas fa-comments',
+  iconClass: 'skill-speaking',
+  dataActivity: 'speaking-conversation',
+  titleKey: 'speaking.hub.activities.conversation.title',
+  descriptionKey: 'speaking.hub.activities.conversation.description',
+  difficultyKey: 'speaking.hub.difficulty.challenge',
+  durationKey: 'speaking.hub.duration.threeMinutes',
+};
+
+const SPEAKING_SENTENCE_CORRECTION_ACTIVITY: ActivityDefinition = {
+  activityType: 'REALTIME_CONVERSATION',
+  icon: 'fas fa-comment-dots',
+  iconClass: 'skill-speaking',
+  dataActivity: 'speaking-conversation',
+  titleKey: 'speaking.hub.activities.sentenceCorrection.title',
+  descriptionKey: 'speaking.hub.activities.sentenceCorrection.description',
+  difficultyKey: 'speaking.hub.difficulty.easy',
+  durationKey: 'speaking.hub.duration.threeMinutes',
+};
+
+export function speakingHubActivitiesForGrade(
+  grade?: number | null,
+  levelName?: string | null,
+): readonly ActivityDefinition[] {
+  return isSentenceCorrectionSpeakingGrade({ grade, levelName })
+    ? [SPEAKING_SENTENCE_CORRECTION_ACTIVITY]
+    : [SPEAKING_FREE_CONVERSATION_ACTIVITY];
+}
+
+/** Default hub list (grades 6–9 free conversation). Prefer speakingHubActivitiesForGrade. */
+export const SPEAKING_HUB_ACTIVITIES = speakingHubActivitiesForGrade(8);
 
 type AccessByActivity = Partial<
   Record<SpeakingActivityType, SpeakingAccessResult | null>
@@ -78,9 +100,11 @@ function activityProgressLabel(
 export function SpeakingHub({
   courseId,
   courseName,
+  levelName,
 }: {
   courseId: string;
   courseName?: string;
+  levelName?: string | null;
 }) {
   const { t } = useI18n();
   const [accessByActivity, setAccessByActivity] = useState<AccessByActivity>({});
@@ -90,13 +114,17 @@ export function SpeakingHub({
 
   useEffect(() => {
     const controller = new AbortController();
+    const activitiesForCourse = speakingHubActivitiesForGrade(
+      undefined,
+      levelName,
+    );
 
     async function loadAccess() {
       setLoading(true);
       setLoadError('');
 
       const entries = await Promise.all(
-        SPEAKING_HUB_ACTIVITIES.map(async ({ activityType }) => {
+        activitiesForCourse.map(async ({ activityType }) => {
           try {
             const response = await fetch(
               `/api/speaking/access?courseId=${encodeURIComponent(courseId)}&activityType=${activityType}`,
@@ -128,7 +156,7 @@ export function SpeakingHub({
 
     void loadAccess();
     return () => controller.abort();
-  }, [courseId, retryCount, t]);
+  }, [courseId, levelName, retryCount, t]);
 
   return (
     <section className="view-detail speaking-hub">
@@ -178,6 +206,7 @@ export function SpeakingHub({
 
                   <SpeakingHubCards
                     courseId={courseId}
+                    levelName={levelName}
                     accessByActivity={accessByActivity}
                   />
                 </>
@@ -192,12 +221,15 @@ export function SpeakingHub({
 
 export function SpeakingHubCards({
   courseId,
+  levelName,
   accessByActivity,
 }: {
   courseId: string;
+  levelName?: string | null;
   accessByActivity: AccessByActivity;
 }) {
   const { t } = useI18n();
+  const activities = speakingHubActivitiesForGrade(undefined, levelName);
   const [blockedActivity, setBlockedActivity] =
     useState<ActivityDefinition | null>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
@@ -228,7 +260,7 @@ export function SpeakingHubCards({
         <div className="skill-games-heading" style={{ gridColumn: '1 / -1' }}>
           {t('speaking.hub.title')}
         </div>
-        {SPEAKING_HUB_ACTIVITIES.map((activity) => {
+        {activities.map((activity) => {
           const access = accessByActivity[activity.activityType];
           const href = speakingActivityPath(courseId, activity.activityType);
           const title = t(activity.titleKey);

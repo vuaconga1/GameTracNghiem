@@ -442,6 +442,8 @@ const en: Messages = {
     prepareTitle: 'Session setup',
     prepareHint:
       'Your turn is deducted when AI starts the opening line. During the session, hold the mic button to speak — release to let AI reply.',
+    prepareHintSentenceCorrection:
+      'AI will ask 5 questions. Answer each one; AI scores and corrects pronunciation. Your turn is deducted when AI starts speaking. Hold the mic button to speak — release to send.',
     topicLabel: 'Topic',
     noTopics: 'No Speaking topics yet',
     micReady: 'Ready',
@@ -526,8 +528,13 @@ const en: Messages = {
           description: 'Use friendly prompts to answer confidently in English.',
         },
         conversation: {
-          title: 'Realtime conversation',
-          description: 'Talk live with WeWIN’s AI assistant.',
+          title: 'Free speaking',
+          description: 'Chat and answer freely with WeWIN’s AI assistant.',
+        },
+        sentenceCorrection: {
+          title: 'Sentence pronunciation',
+          description:
+            '5 questions — the student answers, then AI scores and corrects pronunciation.',
         },
       },
     },

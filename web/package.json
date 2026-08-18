@@ -23,6 +23,8 @@
     "db:push:local": "node scripts/run-with-env.mjs local -- prisma db push",
     "db:seed": "node scripts/run-with-env.mjs neon -- tsx scripts/seed-dev.ts",
     "db:seed:local": "node scripts/run-with-env.mjs local -- tsx scripts/seed-dev.ts",
+    "db:seed-speaking": "node scripts/run-with-env.mjs neon -- tsx scripts/seed-speaking-all-units.ts",
+    "db:seed-speaking:local": "node scripts/run-with-env.mjs local -- tsx scripts/seed-speaking-all-units.ts",
     "db:push-data:neon": "tsx scripts/push-local-data-to-neon.ts",
     "db:sync-ebooks:blob": "tsx scripts/sync-ebooks-to-blob.ts",
     "db:import-excel": "node scripts/run-with-env.mjs neon -- tsx scripts/import-from-excel.ts"

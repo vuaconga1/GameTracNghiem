@@ -29,8 +29,14 @@ export default async function SpeakingHubPage({
 
   const course = await prisma.course.findFirst({
     where: { id: courseId, active: true, archivedAt: null },
-    select: { id: true, name: true },
+    select: { id: true, name: true, levelName: true },
   });
 
-  return <SpeakingHub courseId={courseId} courseName={course?.name} />;
+  return (
+    <SpeakingHub
+      courseId={courseId}
+      courseName={course?.name}
+      levelName={course?.levelName}
+    />
+  );
 }

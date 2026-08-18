@@ -15,7 +15,8 @@ import {
   appendTranscriptLine,
   type TranscriptLine,
 } from '@/lib/speaking/appendTranscriptLine';
-import { SPEAKING_OPENING_INSTRUCTIONS } from '@/lib/speaking/prompts';
+import { getSpeakingOpeningInstructions } from '@/lib/speaking/prompts';
+import { isSentenceCorrectionSpeakingGrade } from '@/lib/speaking/gradeBand';
 import type { SpeakingAccessReason } from '@/lib/speaking/access';
 import { speakingHubPath } from '@/lib/speaking/hubRoutes';
 import {
@@ -124,13 +125,17 @@ export function SpeakingPracticeView({
   courseId,
   courseName,
   topicId,
+  levelName,
 }: {
   courseId: string;
   courseName?: string;
   topicId?: string;
+  levelName?: string | null;
 }) {
   const { t, locale } = useI18n();
   const numberLocale = locale === 'en' ? 'en-US' : 'vi-VN';
+  const sentenceCorrection = isSentenceCorrectionSpeakingGrade({ levelName });
+  const openingInstructions = getSpeakingOpeningInstructions({ levelName });
 
   const searchParams = useSearchParams();
   const previewSessionId = searchParams.get('previewSession');
@@ -828,7 +833,7 @@ export function SpeakingPracticeView({
         sendRealtimeEvent({
           type: 'response.create',
           response: {
-            instructions: SPEAKING_OPENING_INSTRUCTIONS,
+            instructions: openingInstructions,
           },
         });
       });
@@ -939,10 +944,20 @@ export function SpeakingPracticeView({
         <header className="speaking-header">
           <div className="speaking-header-main">
             <div className="speaking-header-icon" aria-hidden="true">
-              <i className="fas fa-comments" />
+              <i
+                className={
+                  sentenceCorrection ? 'fas fa-comment-dots' : 'fas fa-comments'
+                }
+              />
             </div>
             <div className="speaking-header-text">
-              <h1>{t('speaking.title')}</h1>
+              <h1>
+                {t(
+                  sentenceCorrection
+                    ? 'speaking.hub.activities.sentenceCorrection.title'
+                    : 'speaking.hub.activities.conversation.title',
+                )}
+              </h1>
               <p>{headerSubtitle}</p>
             </div>
           </div>
@@ -989,7 +1004,11 @@ export function SpeakingPracticeView({
               <div className="speaking-panel">
                 <h2 className="speaking-panel-title">{t('speaking.prepareTitle')}</h2>
                 <p className="speaking-panel-note">
-                  {t('speaking.prepareHint')}
+                  {t(
+                    sentenceCorrection
+                      ? 'speaking.prepareHintSentenceCorrection'
+                      : 'speaking.prepareHint',
+                  )}
                 </p>
 
                 <label className="speaking-field">
