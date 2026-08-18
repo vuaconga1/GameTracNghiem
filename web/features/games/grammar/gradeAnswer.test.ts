@@ -14,4 +14,12 @@ describe('gradeGrammarAnswer', () => {
   it('rejects an answer that does not match any accepted answer', () => {
     expect(gradeGrammarAnswer('go', ['goes', 'went'])).toBe(false);
   });
+
+  it('ignores trailing punctuation on the expected answer', () => {
+    expect(gradeGrammarAnswer('visiting museums', ['visiting museums.'])).toBe(true);
+  });
+
+  it('treats curly and straight apostrophes as the same', () => {
+    expect(gradeGrammarAnswer("I'm waiting", ["I’m waiting"])).toBe(true);
+  });
 });

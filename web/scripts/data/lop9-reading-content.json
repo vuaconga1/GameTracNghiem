@@ -344,7 +344,7 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Hoàn thành câu",
-        "question": "Mr. and Mrs. Smiths still don't know ______________ to invite to theừ wedding next month.",
+        "question": "Mr. and Mrs. Smiths still don't know ______________ to invite to their wedding next month.",
         "options": [
           "where",
           "who",
@@ -743,16 +743,16 @@
         "typeLabel": "Tìm lỗi sai",
         "skill": "reading",
         "exercise": "Tìm lỗi sai",
-        "question": "<u class=\"quiz-error-opt\">There</u> is a community center <u class=\"quiz-error-opt\">in</u> our neighbour that offers different classes and activities for all ages.",
+        "question": "<u class=\"quiz-error-opt\">There</u> is a community center <u class=\"quiz-error-opt\">in</u> our <u class=\"quiz-error-opt\">neighbour</u> that offers <u class=\"quiz-error-opt\">different</u> classes and activities for all ages.",
         "options": [
           "There",
           "in",
-          "neighbor",
-          "diffirent"
+          "neighbour",
+          "different"
         ],
-        "answer": "neighbor",
+        "answer": "neighbour",
         "accept": [
-          "neighbor",
+          "neighbour",
           "C",
           "c"
         ],
@@ -827,58 +827,16 @@
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
         "exercise": "Đọc hiểu điền khuyết",
-        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (1).",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8) the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (1).",
         "options": [
           "neighbor",
           "helper",
           "tourist",
           "adult"
         ],
-        "answer": "adult",
+        "answer": "helper",
         "accept": [
-          "adult",
-          "D",
-          "d"
-        ],
-        "fillMode": false
-      },
-      {
-        "game": "quiz",
-        "type": "multiple_choice",
-        "typeLabel": "Đọc hiểu",
-        "skill": "reading",
-        "exercise": "Đọc hiểu điền khuyết",
-        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (2).",
-        "options": [
-          "environment",
-          "relationship",
-          "production",
-          "facility"
-        ],
-        "answer": "production",
-        "accept": [
-          "production",
-          "C",
-          "c"
-        ],
-        "fillMode": false
-      },
-      {
-        "game": "quiz",
-        "type": "multiple_choice",
-        "typeLabel": "Đọc hiểu",
-        "skill": "reading",
-        "exercise": "Đọc hiểu điền khuyết",
-        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (3).",
-        "options": [
-          "collecting",
-          "collected",
-          "to collect",
-          "collect"
-        ],
-        "answer": "collected",
-        "accept": [
-          "collected",
+          "helper",
           "B",
           "b"
         ],
@@ -890,7 +848,49 @@
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
         "exercise": "Đọc hiểu điền khuyết",
-        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (4).",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8) the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (2).",
+        "options": [
+          "environment",
+          "relationship",
+          "production",
+          "facility"
+        ],
+        "answer": "environment",
+        "accept": [
+          "environment",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu điền khuyết",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8) the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (3).",
+        "options": [
+          "collecting",
+          "collected",
+          "to collect",
+          "collect"
+        ],
+        "answer": "collecting",
+        "accept": [
+          "collecting",
+          "A",
+          "a"
+        ],
+        "fillMode": false
+      },
+      {
+        "game": "quiz",
+        "type": "multiple_choice",
+        "typeLabel": "Đọc hiểu",
+        "skill": "reading",
+        "exercise": "Đọc hiểu điền khuyết",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8) the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (4).",
         "options": [
           "ground",
           "floor",
@@ -911,7 +911,7 @@
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
         "exercise": "Đọc hiểu điền khuyết",
-        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (5).",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8) the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (5).",
         "options": [
           "decisions",
           "creations",
@@ -932,7 +932,7 @@
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
         "exercise": "Đọc hiểu điền khuyết",
-        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (6).",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8) the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (6).",
         "options": [
           "raise",
           "remain",
@@ -953,18 +953,18 @@
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
         "exercise": "Đọc hiểu điền khuyết",
-        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (7).",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8) the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (7).",
         "options": [
           "physics",
           "physically",
           "physic",
           "physical"
         ],
-        "answer": "physic",
+        "answer": "physically",
         "accept": [
-          "physic",
-          "C",
-          "c"
+          "physically",
+          "B",
+          "b"
         ],
         "fillMode": false
       },
@@ -974,18 +974,18 @@
         "typeLabel": "Đọc hiểu",
         "skill": "reading",
         "exercise": "Đọc hiểu điền khuyết",
-        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8)the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (8).",
+        "question": "A local garbage collector is an important community (1) _______________. They work to clean up our neighborhoods and pick up waste that could harm our (2) _______________. You can often see garbage collectors drive large trucks and stop at each house or building to pick up the trash. They use special equipment to lift and empty the garbage cans into the truck.\nAfter (3) _______________ waste from homes and businesses, they take it to a landfill or recycling center, where the garbage is properly treated. At the landfill, the garbage is buried in the (4) _______________ so that it doesn't smell or attract pests. At the recycling center, the garbage is processed so that it can be reused to make new (5) _______________. This helps (6) _______________ the amount of waste that goes into landfills and helps preserve natural resources.\nWithout a doubt, being a garbage collector can be (7) _______________ demanding work. They have to lift heavy garbage cans and work outside in all kinds of weather. Their work plays a crucial role in (8) the natural beauty of the community.\n\nChọn đáp án đúng cho chỗ trống (8).",
         "options": [
           "preventing",
           "creating",
           "destroying",
           "preserving"
         ],
-        "answer": "preventing",
+        "answer": "preserving",
         "accept": [
-          "preventing",
-          "A",
-          "a"
+          "preserving",
+          "D",
+          "d"
         ],
         "fillMode": false
       }

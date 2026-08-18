@@ -20,6 +20,10 @@ describe('gradeVocabularyTestItem', () => {
   it('rejects a non-matching word', () => {
     expect(gradeVocabularyTestItem('banana', 'apple')).toBe(false);
   });
+
+  it('ignores trailing punctuation via look-and-write normalize', () => {
+    expect(gradeVocabularyTestItem('apple', 'apple.')).toBe(true);
+  });
 });
 
 describe('gradeVocabularyTestExercise', () => {

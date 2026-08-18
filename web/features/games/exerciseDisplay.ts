@@ -187,6 +187,63 @@ function foldAscii(value: string): string {
   return value.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
 }
 
+/**
+ * Collapse common British/American endings so neighbour/neighbor and
+ * centre/center compare equal. Only applied at the end of a token with a
+ * long-enough stem so short words like "for"/"are"/"there" stay distinct.
+ */
+function foldUkUs(value: string): string {
+  let s = foldAscii(value);
+  if (s.endsWith('our') && s.length - 3 >= 3) {
+    s = `${s.slice(0, -3)}or`;
+  }
+  if (
+    s.length - 2 >= 3 &&
+    s.endsWith('re') &&
+    !s.endsWith('are') &&
+    !s.endsWith('ere') &&
+    !s.endsWith('ore') &&
+    !s.endsWith('ure')
+  ) {
+    s = `${s.slice(0, -2)}er`;
+  }
+  return s;
+}
+
+function levenshtein(a: string, b: string): number {
+  if (a === b) return 0;
+  if (!a.length) return b.length;
+  if (!b.length) return a.length;
+
+  const prev = new Array<number>(b.length + 1);
+  const curr = new Array<number>(b.length + 1);
+  for (let j = 0; j <= b.length; j += 1) prev[j] = j;
+
+  for (let i = 1; i <= a.length; i += 1) {
+    curr[0] = i;
+    for (let j = 1; j <= b.length; j += 1) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      curr[j] = Math.min(prev[j] + 1, curr[j - 1] + 1, prev[j - 1] + cost);
+    }
+    for (let j = 0; j <= b.length; j += 1) prev[j] = curr[j]!;
+  }
+  return prev[b.length]!;
+}
+
+function fuzzyEditThreshold(aLen: number, bLen: number): number {
+  if (aLen >= 8 && bLen >= 8) return 2;
+  return 1;
+}
+
+function sliceFromWord(
+  plain: string,
+  cursor: number,
+  word: { start: number; end: number; word: string }
+): { text: string; index: number } {
+  const abs = cursor + word.start;
+  return { text: plain.slice(abs, cursor + word.end), index: abs };
+}
+
 /** Align a corrupted option (Telex / truncation) to the span in the sentence. */
 export function repairErrorOption(
   sentence: string,
@@ -209,6 +266,7 @@ export function repairErrorOption(
   }
 
   const foldedOpt = foldAscii(opt);
+  const ukUsOpt = foldUkUs(opt);
   const search = plain.slice(cursor);
   const wordRe = /[A-Za-z']+/g;
   const words: Array<{ start: number; end: number; word: string }> = [];
@@ -229,9 +287,34 @@ export function repairErrorOption(
 
   for (const word of words) {
     if (word.word.toLowerCase().startsWith(opt.toLowerCase()) && word.word.length > opt.length) {
-      const abs = cursor + word.start;
-      return { text: word.word, index: abs };
+      return sliceFromWord(plain, cursor, word);
     }
+  }
+
+  for (let startI = 0; startI < words.length; startI += 1) {
+    for (let endI = startI; endI < Math.min(startI + 4, words.length); endI += 1) {
+      const span = search.slice(words[startI].start, words[endI].end);
+      if (foldUkUs(span) === ukUsOpt) {
+        const abs = cursor + words[startI].start;
+        return { text: plain.slice(abs, cursor + words[endI].end), index: abs };
+      }
+    }
+  }
+
+  // 1-letter typos (diffirent/different); keep short tokens like "th" on the prefix rule.
+  if (foldedOpt.length >= 4) {
+    let best: { word: (typeof words)[number]; dist: number } | null = null;
+    for (const word of words) {
+      const foldedWord = foldAscii(word.word);
+      if (foldedWord.length < 4) continue;
+      if (foldedWord[0] !== foldedOpt[0]) continue;
+      const maxDist = fuzzyEditThreshold(foldedOpt.length, foldedWord.length);
+      if (Math.abs(foldedWord.length - foldedOpt.length) > maxDist) continue;
+      const dist = levenshtein(foldedOpt, foldedWord);
+      if (dist < 1 || dist > maxDist) continue;
+      if (!best || dist < best.dist) best = { word, dist };
+    }
+    if (best) return sliceFromWord(plain, cursor, best.word);
   }
 
   return { text: option, index: -1 };
