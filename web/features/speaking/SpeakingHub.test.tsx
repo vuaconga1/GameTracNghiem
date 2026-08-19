@@ -123,6 +123,28 @@ describe('SpeakingHubCards', () => {
     expect(html).not.toContain('href="/speaking/course-1/conversation"');
     expect(html).toContain('activity-card--locked');
   });
+
+  it('keeps the activity open for admin unlimited quota', () => {
+    const realtime = allowedAccess('REALTIME_CONVERSATION', 2, 2);
+    realtime.quota!.unlimited = true;
+    realtime.quota!.remaining = 2;
+
+    const html = renderToStaticMarkup(
+      <I18nProvider initialLocale="vi">
+        <SpeakingHubCards
+          courseId="course-1"
+          levelName="Lớp 8"
+          accessByActivity={{
+            REALTIME_CONVERSATION: realtime,
+          }}
+        />
+      </I18nProvider>,
+    );
+
+    expect(html).toContain('href="/speaking/course-1/conversation"');
+    expect(html).toContain('Không giới hạn');
+    expect(html).not.toContain('activity-card--locked');
+  });
 });
 
 describe('SpeakingLockedModal', () => {

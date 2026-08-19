@@ -1,7 +1,7 @@
 import type { SessionPayload } from '@/lib/session';
 import { prisma } from '@/lib/db';
 import { resolveEnabledSkillIds } from '@/lib/skillCatalog';
-import { isWewinStudentRole, normalizeUserRole } from '@/lib/userRoles';
+import { isAdminUserRole, isWewinStudentRole, normalizeUserRole } from '@/lib/userRoles';
 import {
   SPEAKING_ACCOUNT_STATUS,
   SPEAKING_ACTIVITY_TYPES,
@@ -38,6 +38,7 @@ export type SpeakingQuotaSnapshot = {
   reserved: number;
   limit: number;
   remaining: number;
+  unlimited?: boolean;
 };
 
 export type SpeakingAccessResult = {
@@ -125,6 +126,10 @@ function canAccessSpeakingActivity(
 
 function skipsRealtimeEntitlement(role: string): boolean {
   return role === 'admin' || role === 'LogisticsStudent';
+}
+
+export function skipsSpeakingDailyQuota(role: unknown): boolean {
+  return isAdminUserRole(role);
 }
 
 /**
@@ -229,13 +234,16 @@ export async function evaluateSpeakingAccess(
     return result(input, SPEAKING_ACCESS_REASON.FEATURE_DISABLED);
   }
 
+  const unlimited = skipsSpeakingDailyQuota(user.role);
   const limit = Math.max(1, usage?.limitSnapshot ?? activityConfig.dailyLimit);
+  const used = Math.max(0, usage?.usedCount ?? 0);
   const quota: SpeakingQuotaSnapshot = {
     activityType: input.activityType,
-    used: Math.max(0, usage?.usedCount ?? 0),
+    used,
     reserved: Math.max(0, usage?.reservedCount ?? 0),
     limit,
-    remaining: Math.max(0, limit - (usage?.usedCount ?? 0)),
+    remaining: unlimited ? limit : Math.max(0, limit - used),
+    ...(unlimited ? { unlimited: true } : {}),
   };
   const config: SpeakingAccessConfig = {
     dailyLimit: limit,
@@ -258,7 +266,7 @@ export async function evaluateSpeakingAccess(
     );
   }
 
-  if (quota.used >= quota.limit) {
+  if (!unlimited && quota.used >= quota.limit) {
     return result(
       input,
       SPEAKING_ACCESS_REASON.DAILY_LIMIT_REACHED,

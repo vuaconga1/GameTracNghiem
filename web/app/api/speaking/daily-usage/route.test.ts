@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+vi.mock('server-only', () => ({}));
+
 const requireSession = vi.fn();
 const evaluateSpeakingAccess = vi.fn();
 const configFindMany = vi.fn();
@@ -90,6 +92,48 @@ describe('GET /api/speaking/daily-usage', () => {
         REALTIME_CONVERSATION: { used: 1, limit: 2, remaining: 1 },
         WORD_PRONUNCIATION: { used: 0, limit: 30, remaining: 30 },
       },
+    });
+  });
+
+  it('lets admin start again after the daily limit', async () => {
+    requireSession.mockResolvedValue({
+      userId: 'admin-1',
+      username: 'admin',
+      displayName: 'Admin',
+      role: 'admin',
+    });
+    usageFindMany.mockResolvedValue([
+      {
+        activityType: 'REALTIME_CONVERSATION',
+        usedCount: 2,
+        reservedCount: 0,
+        limitSnapshot: 2,
+        reservedUntil: null,
+        sessionId: 'session-1',
+        session: {
+          id: 'session-1',
+          status: 'SUBMITTED',
+          recordingUrl: null,
+          recordingKey: null,
+        },
+      },
+    ]);
+
+    const response = await GET(
+      new Request(
+        'http://localhost/api/speaking/daily-usage?courseId=course-1',
+      ),
+    );
+    const json = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(json).toMatchObject({
+      unlimited: true,
+      canStart: true,
+      status: 'AVAILABLE',
+      used: 2,
+      remainingToday: 2,
+      nextAvailableAt: null,
     });
   });
 });

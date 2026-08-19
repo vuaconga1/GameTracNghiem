@@ -440,6 +440,7 @@ const vi: Messages = {
     waitingAiHello: 'Đang chờ AI chào… Lượt chỉ bị trừ khi AI bắt đầu nói',
     startSessionFailed: 'Không bắt đầu được phiên',
     turnsRemaining: '{remaining}/{limit} lượt',
+    turnsUnlimited: 'Không giới hạn lượt',
     prepareTitle: 'Chuẩn bị phiên',
     prepareHint:
       'Lượt bị trừ khi AI bắt đầu phát câu mở đầu. Trong phiên, giữ nút mic để nói — thả tay để AI trả lời.',
@@ -509,6 +510,7 @@ const vi: Messages = {
         threeMinutes: '3 phút',
       },
       quotaRemaining: 'Còn {remaining}/{limit} lượt hôm nay',
+      unlimitedTurns: 'Không giới hạn',
       quotaUsed: 'Đã dùng {used}/{limit}',
       entitlementExpiry: 'Quyền đến {date}',
       openActivityAria: 'Mở hoạt động {activity}',

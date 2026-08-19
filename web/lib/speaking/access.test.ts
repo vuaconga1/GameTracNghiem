@@ -132,7 +132,38 @@ describe('evaluateSpeakingAccess', () => {
     expect(access).toMatchObject({
       allowed: true,
       reason: SPEAKING_ACCESS_REASON.ALLOWED,
-      quota: { limit: 2, remaining: 2 },
+      quota: { limit: 2, remaining: 2, unlimited: true },
+    });
+  });
+
+  it('lets admin keep playing after the daily quota is exhausted', async () => {
+    userFindUnique.mockResolvedValue({
+      role: 'admin',
+      archivedAt: null,
+      portalLinkedAt: null,
+      speakingAccountStatus: 'ACTIVE',
+    });
+    entitlementFindMany.mockResolvedValue([]);
+    usageFindUnique.mockResolvedValue({
+      usedCount: 2,
+      reservedCount: 0,
+      limitSnapshot: 2,
+    });
+    const access = await evaluateSpeakingAccess({
+      session: {
+        userId: 'admin-1',
+        username: 'admin',
+        displayName: 'Admin',
+        role: 'admin',
+      },
+      courseId: 'course-1',
+      activityType: 'REALTIME_CONVERSATION',
+      now,
+    });
+    expect(access).toMatchObject({
+      allowed: true,
+      reason: SPEAKING_ACCESS_REASON.ALLOWED,
+      quota: { used: 2, limit: 2, remaining: 2, unlimited: true },
     });
   });
 

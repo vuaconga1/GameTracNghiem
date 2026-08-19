@@ -91,6 +91,9 @@ function activityProgressLabel(
   if (!access.allowed) {
     return t('speaking.hub.locked');
   }
+  if (access.quota?.unlimited) {
+    return t('speaking.hub.unlimitedTurns');
+  }
   if (access.quota) {
     return `${access.quota.remaining}/${access.quota.limit}`;
   }

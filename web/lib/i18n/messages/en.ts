@@ -439,6 +439,7 @@ const en: Messages = {
     waitingAiHello: 'Waiting for AI to greet you… The turn is only deducted when AI starts speaking',
     startSessionFailed: 'Could not start the session',
     turnsRemaining: '{remaining}/{limit} turns',
+    turnsUnlimited: 'Unlimited turns',
     prepareTitle: 'Session setup',
     prepareHint:
       'Your turn is deducted when AI starts the opening line. During the session, hold the mic button to speak — release to let AI reply.',
@@ -508,6 +509,7 @@ const en: Messages = {
         threeMinutes: '3 minutes',
       },
       quotaRemaining: '{remaining}/{limit} turns left today',
+      unlimitedTurns: 'Unlimited',
       quotaUsed: 'Used {used}/{limit}',
       entitlementExpiry: 'Access until {date}',
       openActivityAria: 'Open {activity}',

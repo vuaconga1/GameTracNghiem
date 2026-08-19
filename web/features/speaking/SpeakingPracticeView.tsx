@@ -38,6 +38,7 @@ type DailyUsage = {
   status: string;
   remainingToday: number;
   dailyLimit: number;
+  unlimited?: boolean;
   nextAvailableAt: string | null;
   reservedUntil: string | null;
   reservationActive: boolean;
@@ -969,10 +970,15 @@ export function SpeakingPracticeView({
               </div>
             ) : usage ? (
               <div
-                className={`speaking-quota ${usage.remainingToday > 0 ? 'is-available' : 'is-used'}`}
+                className={`speaking-quota ${usage.unlimited || usage.remainingToday > 0 ? 'is-available' : 'is-used'}`}
               >
                 <i className="fas fa-ticket" aria-hidden="true" />
-                {t('speaking.turnsRemaining', { remaining: usage.remainingToday, limit: usage.dailyLimit })}
+                {usage.unlimited
+                  ? t('speaking.turnsUnlimited')
+                  : t('speaking.turnsRemaining', {
+                      remaining: usage.remainingToday,
+                      limit: usage.dailyLimit,
+                    })}
               </div>
             ) : null}
           </div>
