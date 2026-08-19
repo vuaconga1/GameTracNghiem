@@ -750,7 +750,7 @@ async function assessClip(
       throw new Error(t('pronunciation.quotaFallback'));
     }
     onFallback?.();
-    const transcript = await recognizeWithWebSpeech();
+    const transcript = await recognizeWithWebSpeech(8000, question.targetText);
     return { transcript, engine: 'webspeech' };
   }
 

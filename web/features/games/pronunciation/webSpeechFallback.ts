@@ -1,3 +1,5 @@
+import { pickHeardText } from './scoreTranscript';
+
 type SpeechRecognitionLike = {
   lang: string;
   interimResults: boolean;
@@ -25,9 +27,9 @@ export function isWebSpeechAvailable(): boolean {
 }
 
 /**
- * One-shot English speech recognition (browser). Used when Groq is unavailable.
+ * One-shot American English speech recognition (browser). Used when Groq is unavailable.
  */
-export function recognizeWithWebSpeech(timeoutMs = 8000): Promise<string> {
+export function recognizeWithWebSpeech(timeoutMs = 8000, targetText = ''): Promise<string> {
   const Ctor = getSpeechRecognitionCtor();
   if (!Ctor) {
     return Promise.reject(new Error('Trình duyệt không hỗ trợ nhận dạng giọng nói'));
@@ -37,7 +39,7 @@ export function recognizeWithWebSpeech(timeoutMs = 8000): Promise<string> {
     const recognition = new Ctor();
     recognition.lang = 'en-US';
     recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
+    recognition.maxAlternatives = 5;
     recognition.continuous = false;
 
     let settled = false;
@@ -56,8 +58,15 @@ export function recognizeWithWebSpeech(timeoutMs = 8000): Promise<string> {
       if (settled) return;
       settled = true;
       clearTimeout(timer);
-      const transcript = event.results?.[0]?.[0]?.transcript || '';
-      resolve(String(transcript).trim());
+      const row = event.results?.[0];
+      const alternatives: string[] = [];
+      if (row) {
+        for (let i = 0; i < row.length; i += 1) {
+          const text = String(row[i]?.transcript || '').trim();
+          if (text) alternatives.push(text);
+        }
+      }
+      resolve(pickHeardText(targetText, alternatives.length ? alternatives : ['']));
     };
 
     recognition.onerror = (event) => {

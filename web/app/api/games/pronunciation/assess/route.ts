@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 
-import { transcribeWithGroq } from '@/features/games/pronunciation/groqTranscribe';
+import {
+  buildWhisperPrompt,
+  isGenericWhisperHallucination,
+  transcribeWithGroq,
+} from '@/features/games/pronunciation/groqTranscribe';
 
 function errorResponse(err: unknown) {
   const status =
@@ -33,13 +37,18 @@ export async function POST(req: Request) {
 
     const mime = audio.type || 'audio/webm';
     const ext = mime.includes('mp4') ? 'mp4' : mime.includes('ogg') ? 'ogg' : 'webm';
-    const result = await transcribeWithGroq(audio, `recording.${ext}`);
+    const result = await transcribeWithGroq(
+      audio,
+      `recording.${ext}`,
+      undefined,
+      buildWhisperPrompt(targetText)
+    );
 
-    if (!result.ok) {
+    if (!result.ok || isGenericWhisperHallucination(result.transcript, targetText)) {
       return NextResponse.json({
         success: true,
         fallback: 'webspeech' as const,
-        reason: result.reason,
+        reason: result.ok ? 'generic_hallucination' : result.reason,
         mode,
         targetText,
       });

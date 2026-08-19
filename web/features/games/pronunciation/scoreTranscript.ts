@@ -60,6 +60,80 @@ export function normalizeSpeechText(value: string): string {
     .trim();
 }
 
+/** Hesitation noises Whisper/Web Speech prepend to short clips. */
+const FILLER_WORDS = new Set(['um', 'uh', 'er', 'ah', 'hmm', 'mm', 'mmm', 'huh', 'erm']);
+
+function tokenizeWords(value: string): string[] {
+  return normalizeSpeechText(value).split(' ').filter(Boolean);
+}
+
+function stripEdgeFillers(tokens: string[]): string[] {
+  let start = 0;
+  let end = tokens.length;
+  while (start < end && FILLER_WORDS.has(tokens[start])) start += 1;
+  while (end > start && FILLER_WORDS.has(tokens[end - 1])) end -= 1;
+  return tokens.slice(start, end);
+}
+
+/** Extra words Whisper often tacks onto a single-word clip. */
+const TRAILING_JUNK = new Set(['it', 'a', 'the', 'to', 'of', 'in', 'and', 'yeah', 'yes']);
+
+/**
+ * Isolated-word STT often appends a junk token ("fart it") or fillers ("um heart").
+ * Keep the token closest to the target when that is clearly better than the whole string.
+ */
+export function alignHeardText(targetText: string, transcript: string): string {
+  const targetTokens = tokenizeWords(targetText);
+  let heardTokens = stripEdgeFillers(tokenizeWords(transcript));
+  if (!heardTokens.length) return '';
+
+  if (targetTokens.length === 1) {
+    const target = targetTokens[0];
+    while (
+      heardTokens.length > 1 &&
+      TRAILING_JUNK.has(heardTokens[heardTokens.length - 1]) &&
+      heardTokens[heardTokens.length - 1] !== target
+    ) {
+      heardTokens = heardTokens.slice(0, -1);
+    }
+  }
+
+  const joined = heardTokens.join(' ');
+  if (targetTokens.length !== 1 || heardTokens.length === 1) return joined;
+
+  const target = targetTokens[0];
+  let best = heardTokens[0];
+  let bestScore = similarityPercent(target, heardTokens[0]);
+  for (const token of heardTokens.slice(1)) {
+    const score = similarityPercent(target, token);
+    if (score > bestScore) {
+      best = token;
+      bestScore = score;
+    }
+  }
+
+  const fullScore = similarityPercent(target, joined);
+  return bestScore > fullScore ? best : joined;
+}
+
+export function pickHeardText(targetText: string, alternatives: string[]): string {
+  const options = alternatives
+    .map((item) => alignHeardText(targetText, item))
+    .filter(Boolean);
+  if (!options.length) return '';
+
+  let best = options[0];
+  let bestScore = similarityPercent(targetText, options[0]);
+  for (const item of options.slice(1)) {
+    const score = similarityPercent(targetText, item);
+    if (score > bestScore) {
+      best = item;
+      bestScore = score;
+    }
+  }
+  return best;
+}
+
 function tokenizeDisplay(targetText: string): string[] {
   return String(targetText || '')
     .replace(/[.,/#!$%^&*;:{}=\-_`~()?!"'`[\]\\]/g, ' ')
@@ -77,7 +151,10 @@ export function scoreTranscript(
   mode: string
 ): TranscriptScoreResult {
   const normalizedTarget = normalizeSpeechText(targetText);
-  const normalizedTranscript = normalizeSpeechText(transcript);
+  const normalizedTranscript =
+    mode === 'sentence'
+      ? stripEdgeFillers(tokenizeWords(transcript)).join(' ')
+      : normalizeSpeechText(alignHeardText(targetText, transcript));
 
   if (mode === 'sentence') {
     const displayWords = tokenizeDisplay(targetText);
