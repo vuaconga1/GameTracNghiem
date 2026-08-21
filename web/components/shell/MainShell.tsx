@@ -46,6 +46,8 @@ export function MainShell({
   const isHome = pathname === homeHref;
   const isLogistics = pathname === '/logistics' || pathname.startsWith('/logistics/');
   const isLogisticsWeek2 = pathname === '/logistics/week2' || pathname.startsWith('/logistics/week2/');
+  const isLogisticsWeek3 = pathname === '/logistics/week3' || pathname.startsWith('/logistics/week3/');
+  const isLogisticsWeek1 = isLogistics && !isLogisticsWeek2 && !isLogisticsWeek3;
   const isCoursePage = pathname === '/courses' || pathname.startsWith('/courses/');
   const isLeaderboard = pathname === '/leaderboard' || pathname.startsWith('/leaderboard/');
 
@@ -93,7 +95,7 @@ export function MainShell({
               <span>{t('common.home')}</span>
             </Link>
             <Link
-              className={`nav-item${!isLogisticsWeek2 ? ' active' : ''}`}
+              className={`nav-item${isLogisticsWeek1 ? ' active' : ''}`}
               href="/logistics"
               onClick={() => setOpen(false)}
             >
@@ -107,6 +109,14 @@ export function MainShell({
             >
               <i className="fas fa-calendar-week" />
               <span>{t('logistics.week2')}</span>
+            </Link>
+            <Link
+              className={`nav-item${isLogisticsWeek3 ? ' active' : ''}`}
+              href="/logistics/week3"
+              onClick={() => setOpen(false)}
+            >
+              <i className="fas fa-calendar-alt" />
+              <span>{t('logistics.week3')}</span>
             </Link>
           </>
         }

@@ -1,0 +1,233 @@
+/**
+ * Seed Logistics Week 3 courses + attach PDF ebooks.
+ *
+ * PDF order (4→1 as requested): Freight Rates → Invoices → Extra Fees → Free Days.
+ * If local PDFs are missing, reuses existing Neon ebooks matched by title/originalName.
+ *
+ * Usage:
+ *   node scripts/run-with-env.mjs local -- npx tsx scripts/seed-logistics-week3.ts
+ *   node scripts/run-with-env.mjs neon -- npx tsx scripts/seed-logistics-week3.ts
+ */
+import '../lib/loadEnv';
+
+import { existsSync, readFileSync } from 'node:fs';
+import { basename, resolve } from 'node:path';
+
+import { PDFDocument } from 'pdf-lib';
+import type { Prisma } from '@prisma/client';
+
+import { prisma } from '../lib/db';
+import { makeEbookStorageKey, saveEbookFile } from '../lib/ebookStorage';
+import {
+  LOGISTICS_LEVEL,
+  LOGISTICS_WEEK3_COURSES,
+  type LogisticsCourseSeed,
+} from '../lib/logisticsUnits';
+import {
+  deriveEnabledGamesFromSkills,
+  normalizeGameSkillsMap,
+  SKILL_IDS,
+} from '../lib/skillCatalog';
+
+const PDF_DIR =
+  process.env.LOGISTICS_WEEK3_PDF_DIR ||
+  resolve(process.cwd(), '../audio');
+
+type Week3Seed = LogisticsCourseSeed & { pdfFileName: string };
+
+const WEEK3_SEEDS: Week3Seed[] = [
+  {
+    ...LOGISTICS_WEEK3_COURSES[0],
+    pdfFileName: 'Unit 5 Freight Rates & Basic Quotation Structure -Session 5- L 1.pdf',
+  },
+  {
+    ...LOGISTICS_WEEK3_COURSES[1],
+    pdfFileName: 'Understanding Invoices & Payment Terms.pdf',
+  },
+  {
+    ...LOGISTICS_WEEK3_COURSES[2],
+    pdfFileName:
+      'Logistics English - Extra Fees & Price Increases- Session 5 - Level 2.pdf',
+  },
+  {
+    ...LOGISTICS_WEEK3_COURSES[3],
+    pdfFileName: 'Topic 6 - Free Days & Late Container Fees - Sesssion 6- Level 2.pdf',
+  },
+];
+
+async function countPdfPages(bytes: Buffer): Promise<number> {
+  const doc = await PDFDocument.load(bytes, { ignoreEncryption: true });
+  return doc.getPageCount();
+}
+
+async function findExistingEbook(title: string, originalName: string) {
+  return prisma.ebook.findFirst({
+    where: {
+      archivedAt: null,
+      OR: [
+        { title: { equals: title, mode: 'insensitive' } },
+        { originalName: { equals: originalName, mode: 'insensitive' } },
+      ],
+    },
+    orderBy: { createdAt: 'desc' },
+  });
+}
+
+async function upsertEbookFromPdf(title: string, pdfPath: string) {
+  const originalName = basename(pdfPath);
+  const bytes = readFileSync(pdfPath);
+  const pageCount = await countPdfPages(bytes);
+
+  const existing = await findExistingEbook(title, originalName);
+
+  if (existing) {
+    const storageKey = await saveEbookFile(makeEbookStorageKey(existing.id), bytes);
+    await prisma.ebook.update({
+      where: { id: existing.id },
+      data: {
+        title,
+        originalName,
+        storageKey,
+        pageCount,
+        active: true,
+        archivedAt: null,
+      },
+    });
+    console.log(`Ebook update: ${title} (${existing.id}) — ${pageCount} pages`);
+    return { id: existing.id, pageCount };
+  }
+
+  const created = await prisma.ebook.create({
+    data: {
+      title,
+      originalName,
+      storageKey: 'pending.pdf',
+      pageCount,
+      active: true,
+    },
+  });
+  const storageKey = await saveEbookFile(makeEbookStorageKey(created.id), bytes);
+  await prisma.ebook.update({
+    where: { id: created.id },
+    data: { storageKey },
+  });
+  console.log(`Ebook create: ${title} (${created.id}) — ${pageCount} pages`);
+  return { id: created.id, pageCount };
+}
+
+async function reuseExistingEbook(title: string, originalName: string) {
+  const existing = await findExistingEbook(title, originalName);
+  if (!existing) {
+    throw new Error(
+      `Missing PDF and no existing ebook for "${title}" / "${originalName}"`
+    );
+  }
+  await prisma.ebook.update({
+    where: { id: existing.id },
+    data: {
+      title,
+      originalName,
+      active: true,
+      archivedAt: null,
+    },
+  });
+  console.log(
+    `Ebook reuse: ${title} (${existing.id}) — ${existing.pageCount} pages (no local PDF)`
+  );
+  return { id: existing.id, pageCount: existing.pageCount };
+}
+
+function logisticsGameSkills(): Prisma.InputJsonValue {
+  const map = normalizeGameSkillsMap(null);
+  map.scramble = 'vocabulary';
+  map.pronunciation = 'speaking';
+  if (map.quiz === 'vocabulary') map.quiz = null;
+  return map as Prisma.InputJsonValue;
+}
+
+async function ensureCourse(seed: Week3Seed, ebookId: string, pageCount: number) {
+  const enabledSkills = SKILL_IDS.filter((id) => id === 'vocabulary' || id === 'speaking');
+  const gameSkills = logisticsGameSkills();
+  const enabledGames = deriveEnabledGamesFromSkills(
+    normalizeGameSkillsMap(gameSkills),
+    enabledSkills,
+    []
+  );
+
+  const existing = await prisma.course.findFirst({
+    where: {
+      OR: [{ id: seed.id }, { name: seed.name, levelName: LOGISTICS_LEVEL }],
+    },
+    select: { id: true },
+  });
+
+  const data = {
+    name: seed.name,
+    levelName: LOGISTICS_LEVEL,
+    active: true,
+    archivedAt: null,
+    ebookFileId: ebookId,
+    ebookPageStart: 1,
+    ebookPageEnd: pageCount,
+    enabledSkills,
+    enabledGames,
+    gameSkills,
+  };
+
+  const course =
+    existing != null
+      ? await prisma.course.update({ where: { id: existing.id }, data })
+      : await prisma.course.create({
+          data: {
+            id: seed.id,
+            ...data,
+          },
+        });
+
+  for (const skillId of enabledSkills) {
+    await prisma.courseSkillLesson.upsert({
+      where: { courseId_skillId: { courseId: course.id, skillId } },
+      update: { pageStart: 1, pageEnd: pageCount },
+      create: {
+        courseId: course.id,
+        skillId,
+        pageStart: 1,
+        pageEnd: pageCount,
+      },
+    });
+  }
+
+  console.log(`Course ready: ${course.name} (${course.id})`);
+  return course;
+}
+
+async function main() {
+  const pdfDir = resolve(PDF_DIR);
+  console.log(`PDF dir: ${pdfDir}`);
+
+  await prisma.classLevel.upsert({
+    where: { levelName: LOGISTICS_LEVEL },
+    update: { active: true, archivedAt: null },
+    create: { levelName: LOGISTICS_LEVEL, active: true },
+  });
+
+  for (const seed of WEEK3_SEEDS) {
+    const pdfPath = resolve(pdfDir, seed.pdfFileName);
+    console.log(`\n=== ${seed.key}`);
+    const ebook = existsSync(pdfPath)
+      ? await upsertEbookFromPdf(seed.name, pdfPath)
+      : await reuseExistingEbook(seed.name, seed.pdfFileName);
+    await ensureCourse(seed, ebook.id, ebook.pageCount);
+  }
+
+  console.log('\nDone — Logistics week 3 seeded.');
+}
+
+main()
+  .catch((err) => {
+    console.error(err);
+    process.exitCode = 1;
+  })
+  .finally(async () => {
+    await prisma.$disconnect();
+  });

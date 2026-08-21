@@ -111,6 +111,7 @@ const vi: Messages = {
     title: 'English For Logistics',
     week1: 'week1',
     week2: 'week 2',
+    week3: 'week 3',
   },
   course: {
     back: 'Quay lại',

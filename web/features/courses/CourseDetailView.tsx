@@ -23,10 +23,7 @@ import type {
   GameDetail,
 } from '@/lib/loadCourseDetail';
 import { resolveCourseVocabDeck } from '@/lib/courseVocabDeck';
-import {
-  logisticsCourseIdsForWeek,
-  isLogisticsLevel,
-} from '@/lib/logisticsUnits';
+import { isLogisticsLevel, logisticsWeekHomeHref } from '@/lib/logisticsUnits';
 import {
   guestCourseScore,
   readGuestGameState,
@@ -214,9 +211,7 @@ export function CourseDetailContent({
   const showGameGrid = effectiveTab === 'exercises' && Boolean(selectedSkill);
   const selectedSkillMeta = skillCards.find((skill) => skill.id === selectedSkill);
   const logisticsHomeHref = isLogisticsLevel(data.course.levelName)
-    ? logisticsCourseIdsForWeek(2).has(data.course.id)
-      ? '/logistics/week2'
-      : '/logistics'
+    ? logisticsWeekHomeHref(data.course.id)
     : homeHref;
   const backHref = selectedSkill ? `/courses/${data.course.id}` : logisticsHomeHref;
   const unitEbook = data.course.ebook

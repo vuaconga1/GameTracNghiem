@@ -60,17 +60,57 @@ export const LOGISTICS_WEEK2_COURSES: LogisticsCourseSeed[] = [
   },
 ];
 
+/**
+ * Week 3 — Freight rates → Invoices → Extra fees → Free days
+ * (PDF order: Unit 5 Freight Rates, Invoices, Extra Fees, Free Days).
+ */
+export const LOGISTICS_WEEK3_COURSES: LogisticsCourseSeed[] = [
+  {
+    id: 'cmlgw3frt0001asx5a0000001',
+    name: 'Level 1: Freight Rates & Basic Quotation Structure',
+    key: 'W3-FREIGHT',
+    speakingTitle: 'Practice freight rates and quotation emails',
+  },
+  {
+    id: 'cmlgw3inv0002asx5a0000002',
+    name: 'Level 1: Understanding Invoices & Payment Terms',
+    key: 'W3-INVOICE',
+    speakingTitle: 'Discuss invoices and payment terms',
+  },
+  {
+    id: 'cmlgw3fee0003asx5a0000003',
+    name: 'Level 2: Extra Fees & Price Increases',
+    key: 'W3-FEES',
+    speakingTitle: 'Explain extra fees and price increases',
+  },
+  {
+    id: 'cmlgw3free0004asx5a0000004',
+    name: 'Level 2: Free Days & Late Container Fees',
+    key: 'W3-FREEDAYS',
+    speakingTitle: 'Negotiate free days and late container fees',
+  },
+];
+
 /** @deprecated Prefer LOGISTICS_WEEK1_COURSES — kept for existing import scripts. */
 export const LOGISTICS_COURSES = LOGISTICS_WEEK1_COURSES;
 
-export type LogisticsWeek = 1 | 2;
+export type LogisticsWeek = 1 | 2 | 3;
 
 export function logisticsCoursesForWeek(week: LogisticsWeek): LogisticsCourseSeed[] {
-  return week === 2 ? LOGISTICS_WEEK2_COURSES : LOGISTICS_WEEK1_COURSES;
+  if (week === 3) return LOGISTICS_WEEK3_COURSES;
+  if (week === 2) return LOGISTICS_WEEK2_COURSES;
+  return LOGISTICS_WEEK1_COURSES;
 }
 
 export function logisticsCourseIdsForWeek(week: LogisticsWeek): Set<string> {
   return new Set(logisticsCoursesForWeek(week).map((course) => course.id));
+}
+
+/** Home path for a logistics course (week1 stays at `/logistics`). */
+export function logisticsWeekHomeHref(courseId: string): string {
+  if (logisticsCourseIdsForWeek(3).has(courseId)) return '/logistics/week3';
+  if (logisticsCourseIdsForWeek(2).has(courseId)) return '/logistics/week2';
+  return '/logistics';
 }
 
 export function isLogisticsLevel(levelName: string | null | undefined): boolean {

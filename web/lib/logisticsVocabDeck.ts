@@ -1,4 +1,8 @@
-import { LOGISTICS_WEEK1_COURSES, LOGISTICS_WEEK2_COURSES } from '@/lib/logisticsUnits';
+import {
+  LOGISTICS_WEEK1_COURSES,
+  LOGISTICS_WEEK2_COURSES,
+  LOGISTICS_WEEK3_COURSES,
+} from '@/lib/logisticsUnits';
 
 export type LogisticsVocabCard = {
   word: string;
@@ -311,6 +315,225 @@ export const W2_DG_VOCAB: LogisticsVocabCard[] = [
   ),
 ];
 
+/** Week 3 — Freight Rates & Basic Quotation Structure */
+export const W3_FREIGHT_VOCAB: LogisticsVocabCard[] = [
+  card(
+    'Ocean Freight (O/F)',
+    'Base maritime carrier fee for transporting containerized cargo across the sea.',
+    'Our ocean freight rate from Cat Lai to Singapore is $350 per 20ft container.',
+    'fa-ship',
+    0
+  ),
+  card(
+    'Air Freight (A/F)',
+    'Core charge for shipping cargo rapidly via aircraft.',
+    'Air freight is faster but more expensive than ocean freight.',
+    'fa-plane',
+    1
+  ),
+  card(
+    'Local Charges',
+    'Port handling and administrative documentation expenses at origin or destination.',
+    'Please note that local charges at POD are excluded from this quote.',
+    'fa-map-marker-alt',
+    2
+  ),
+  card(
+    'THC (Terminal Handling)',
+    'Port fee for lifting, moving, and stacking containers on and off vessels.',
+    'THC is a standard local charge at Vietnam export ports.',
+    'fa-dolly',
+    3
+  ),
+  card(
+    'Seal Fee',
+    'Cost for applying high-security numbered metal seals onto container doors.',
+    'The seal fee is charged once per container.',
+    'fa-lock',
+    4
+  ),
+  card(
+    'Doc Fee',
+    'Administrative processing fee for drafting shipping documents.',
+    'Doc Fee is billed per Bill of Lading.',
+    'fa-file-alt',
+    5
+  ),
+  card(
+    'Per Container Rate',
+    'Fixed unit price charged per individual box for FCL shipments.',
+    'The per container rate is $350 per 20ft DC.',
+    'fa-box',
+    6
+  ),
+  card(
+    'Per CBM Rate',
+    'Unit price multiplied by total cargo volume in cubic meters for LCL.',
+    'LCL cargo is charged at $45 per CBM.',
+    'fa-ruler-combined',
+    7
+  ),
+];
+
+/** Week 3 — Understanding Invoices & Payment Terms */
+export const W3_INVOICE_VOCAB: LogisticsVocabCard[] = [
+  card(
+    'Freight Prepaid',
+    'Shipping charges paid by the exporter before dispatch.',
+    'As per our agreement, freight is Prepaid at origin prior to B/L release.',
+    'fa-file-invoice-dollar',
+    0
+  ),
+  card(
+    'Freight Collect',
+    'Charges paid by the receiver upon cargo arrival.',
+    'Freight Collect requires trusted standing with the consignee.',
+    'fa-hand-holding-usd',
+    1
+  ),
+  card(
+    'Debit Note',
+    'Document notifying a client about extra fees or price rises owed.',
+    'Attached is Debit Note #1042 for local charges.',
+    'fa-file-invoice',
+    2
+  ),
+  card(
+    'Credit Note',
+    'Document reducing what a client owes for refunds or returns.',
+    'We issued a Credit Note for the damaged goods discount.',
+    'fa-receipt',
+    3
+  ),
+  card(
+    'Due Date',
+    'The precise deadline for invoice settlement to avoid penalties.',
+    'Payment is due within 7 days of the invoice date.',
+    'fa-calendar-check',
+    4
+  ),
+  card(
+    'Bank Wire Remittance',
+    'Secure electronic funds transfer with an advice slip.',
+    'Please confirm the bank wire remittance reference number.',
+    'fa-university',
+    5
+  ),
+];
+
+/** Week 3 — Extra Fees & Price Increases */
+export const W3_FEES_VOCAB: LogisticsVocabCard[] = [
+  card(
+    'Price Increase',
+    'When the cost becomes higher than before.',
+    'There is a price increase this month because of high fuel costs.',
+    'fa-chart-line',
+    0
+  ),
+  card(
+    'Price Quote',
+    'A document showing estimated freight rates.',
+    'I will send you the updated price quote today.',
+    'fa-file-invoice',
+    1
+  ),
+  card(
+    'Extra Fee / Charge',
+    'An additional cost added to the standard shipping rate.',
+    'We charge an extra fee for heavy cargo.',
+    'fa-plus-circle',
+    2
+  ),
+  card(
+    'Fuel Fee (BAF)',
+    'Bunker Adjustment Factor added when fuel prices rise.',
+    'The fuel fee went up by $50 this week.',
+    'fa-gas-pump',
+    3
+  ),
+  card(
+    'Peak Season Fee',
+    'Surcharge applied during high-demand shipping months.',
+    'Carriers add a peak season fee in December.',
+    'fa-calendar-alt',
+    4
+  ),
+  card(
+    'Charge',
+    'To ask someone to pay an amount of money.',
+    'We need to charge an extra fee for this service.',
+    'fa-money-bill-wave',
+    5
+  ),
+  card(
+    'Accept',
+    'To agree to pay or receive the rate.',
+    'Did the customer accept the new rate?',
+    'fa-check',
+    6
+  ),
+  card(
+    'Reason',
+    'The cause or explanation for something.',
+    'High fuel cost is the main reason for the fee.',
+    'fa-comment-dots',
+    7
+  ),
+];
+
+/** Week 3 — Free Days & Late Container Fees */
+export const W3_FREEDAYS_VOCAB: LogisticsVocabCard[] = [
+  card(
+    'Free Days',
+    'Days you can use a container without paying extra charges.',
+    'We need 14 free days for this shipment.',
+    'fa-calendar-day',
+    0
+  ),
+  card(
+    'Free Time',
+    'The period given by the carrier to use a container without late fees.',
+    'Standard free time is usually 7 days.',
+    'fa-clock',
+    1
+  ),
+  card(
+    'Demurrage',
+    'Fee when a full container stays inside the port longer than free days.',
+    'You pay demurrage if the box stays at the port over 7 days.',
+    'fa-anchor',
+    2
+  ),
+  card(
+    'Detention',
+    'Fee when you keep a container outside the port and return it late.',
+    'Detention applies after you pick up the container to your warehouse.',
+    'fa-warehouse',
+    3
+  ),
+  card(
+    'Late Fee',
+    'Extra money paid for late container return.',
+    'If we are late, we must pay a late fee.',
+    'fa-exclamation-triangle',
+    4
+  ),
+  card(
+    'Port Storage',
+    'Fee for keeping a container at the port yard after free time.',
+    'Port storage fees start after 7 days.',
+    'fa-building',
+    5
+  ),
+  card(
+    'Discount',
+    'A lower price or reduced late-fee amount.',
+    'Could you please give us a discount on the demurrage fee?',
+    'fa-percent',
+    6
+  ),
+];
+
 const DECKS_BY_COURSE_ID: Record<string, LogisticsVocabCard[]> = {
   [LOGISTICS_WEEK1_COURSES[0].id]: L1_SUPPLY_VOCAB,
   [LOGISTICS_WEEK1_COURSES[1].id]: L1_SCM_VOCAB,
@@ -319,6 +542,10 @@ const DECKS_BY_COURSE_ID: Record<string, LogisticsVocabCard[]> = {
   [LOGISTICS_WEEK2_COURSES[0].id]: W2_PHONE_VOCAB,
   [LOGISTICS_WEEK2_COURSES[1].id]: W2_CONTAINER_VOCAB,
   [LOGISTICS_WEEK2_COURSES[2].id]: W2_DG_VOCAB,
+  [LOGISTICS_WEEK3_COURSES[0].id]: W3_FREIGHT_VOCAB,
+  [LOGISTICS_WEEK3_COURSES[1].id]: W3_INVOICE_VOCAB,
+  [LOGISTICS_WEEK3_COURSES[2].id]: W3_FEES_VOCAB,
+  [LOGISTICS_WEEK3_COURSES[3].id]: W3_FREEDAYS_VOCAB,
 };
 
 export function getCourseVocabDeck(courseId: string): LogisticsVocabCard[] | null {
