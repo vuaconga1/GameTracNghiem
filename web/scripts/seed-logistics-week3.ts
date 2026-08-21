@@ -122,19 +122,21 @@ async function reuseExistingEbook(title: string, originalName: string) {
       `Missing PDF and no existing ebook for "${title}" / "${originalName}"`
     );
   }
+  const pageCount = existing.pageCount ?? 1;
   await prisma.ebook.update({
     where: { id: existing.id },
     data: {
       title,
       originalName,
+      pageCount,
       active: true,
       archivedAt: null,
     },
   });
   console.log(
-    `Ebook reuse: ${title} (${existing.id}) — ${existing.pageCount} pages (no local PDF)`
+    `Ebook reuse: ${title} (${existing.id}) — ${pageCount} pages (no local PDF)`
   );
-  return { id: existing.id, pageCount: existing.pageCount };
+  return { id: existing.id, pageCount };
 }
 
 function logisticsGameSkills(): Prisma.InputJsonValue {
