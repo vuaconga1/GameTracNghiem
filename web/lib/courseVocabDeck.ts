@@ -10,6 +10,7 @@ import { getCourseVocabDeck as getLogisticsVocabDeck } from '@/lib/logisticsVoca
 import { parseUnitNumber } from '@/lib/primaryGradeConfig';
 import { PRIMARY_GRADE_SPECS, type PrimaryGradeId } from '@/lib/primaryGradeSpecs';
 import { resolvePrimaryVocabAudioUrl } from '@/lib/primaryVocabAudio';
+import { resolveVocabAudioUrl } from '@/lib/vocabAudio';
 
 export type CourseVocabCard = {
   word: string;
@@ -88,6 +89,7 @@ export function resolveCourseVocabDeck(input: {
       example: card.example,
       icon: card.icon,
       accent: card.accent,
+      audioUrl: resolveVocabAudioUrl(card.word) || undefined,
       layout: 'logistics' as const,
     }));
   }

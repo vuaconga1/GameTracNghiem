@@ -25,7 +25,14 @@
     "db:seed:local": "node scripts/run-with-env.mjs local -- tsx scripts/seed-dev.ts",
     "db:push-data:neon": "tsx scripts/push-local-data-to-neon.ts",
     "db:sync-ebooks:blob": "tsx scripts/sync-ebooks-to-blob.ts",
-    "db:import-excel": "node scripts/run-with-env.mjs neon -- tsx scripts/import-from-excel.ts"
+    "db:import-excel": "node scripts/run-with-env.mjs neon -- tsx scripts/import-from-excel.ts",
+    "audio:ipa:dry": "tsx scripts/generate-elevenlabs-ipa-audio.ts --dry-run",
+    "audio:ipa": "tsx scripts/generate-elevenlabs-ipa-audio.ts",
+    "audio:ipa:ui:login": "playwright codegen --channel=msedge https://elevenlabs.io/app/speech-synthesis/text-to-speech --save-storage=playwright/.auth/elevenlabs.json",
+    "audio:ipa:ui": "tsx scripts/elevenlabs-ui-ipa.ts",
+    "audio:vocab:sync": "node scripts/sync-vocab-audio-public.mjs",
+    "audio:vocab:audit:local": "node scripts/run-with-env.mjs local -- npx tsx scripts/audit-vocab-audio-coverage.ts",
+    "audio:vocab:audit:neon": "node scripts/run-with-env.mjs neon -- npx tsx scripts/audit-vocab-audio-coverage.ts"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.8.0",

@@ -1,4 +1,5 @@
 import { normalizeMediaKey } from '@/lib/media/normalizeMediaKey';
+import { resolveVocabAudioUrl } from '@/lib/vocabAudio';
 
 import audioMap from '@/lib/data/primaryVocabAudioMap.json';
 
@@ -20,6 +21,10 @@ export function resolvePrimaryVocabAudioUrl(input: {
   unit: number;
   word: string;
 }): string | null {
+  // Prefer static ElevenLabs / renamed vocab files (works on Vercel).
+  const staticUrl = resolveVocabAudioUrl(input.word);
+  if (staticUrl) return staticUrl;
+
   const wordKey = normalizeMediaKey(input.word);
   if (!wordKey) return null;
   const specific = map.byGradeUnitWord[`${input.levelName}|${input.unit}|${wordKey}`];

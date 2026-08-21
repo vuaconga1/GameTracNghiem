@@ -1,0 +1,27 @@
+WEWIN vocab audio audit (local)
+Generated: 2026-08-21T04:54:37.648Z
+
+Unique DB words: 1390
+With public mp3: 1019
+Still missing:   371
+Coverage:        73%
+
+Note: "missing" = no file under public/audio/vocab (production static).
+Primary grades may still have legacy hierarchical mp3 via /api/wewin-audio
+when WEWIN_AUDIO_ROOT is set (local only; not on Vercel by default).
+
+By level (unique words counted per level they appear in):
+  Cấp Lớp 8: 2/4 (50%) · missing 2
+  Chung: 0/2 (0%) · missing 2
+  English For Logictics: 29/79 (37%) · missing 50
+  Lớp 1: 16/64 (25%) · missing 48
+  Lớp 2: 17/49 (35%) · missing 32
+  Lớp 3: 80/175 (46%) · missing 95
+  Lớp 4: 169/259 (65%) · missing 90
+  Lớp 5: 131/167 (78%) · missing 36
+  Lớp 6: 59/95 (62%) · missing 36
+  Lớp 7: 72/104 (69%) · missing 32
+  Lớp 8: 135/139 (97%) · missing 4
+  Lớp 9: 388/459 (85%) · missing 71
+
+Missing report: E:\Wewin\Game Trắc Nghiệm\.worktrees\nextjs-migration\audio\_still-missing-after-map.local.txt

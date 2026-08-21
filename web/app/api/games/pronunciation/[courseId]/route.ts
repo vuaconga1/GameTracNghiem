@@ -4,6 +4,7 @@ import { optionalSession } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { findPlayableCourseGame } from '@/lib/findPlayableCourseGame';
 import { loadGamePlayerState } from '@/lib/loadGamePlayerState';
+import { resolveVocabAudioUrl } from '@/lib/vocabAudio';
 
 type PronunciationPayload = {
   mode?: unknown;
@@ -88,7 +89,11 @@ export async function GET(
           prompt: String(payload.prompt || ''),
           targetText: String(payload.targetText || ''),
           targetIpa: String(payload.targetIpa || ''),
-          referenceAudioUrl: String(payload.referenceAudioUrl || '').trim(),
+          referenceAudioUrl: (() => {
+            const stored = String(payload.referenceAudioUrl || '').trim();
+            if (stored) return stored;
+            return resolveVocabAudioUrl(String(payload.targetText || '')) || '';
+          })(),
           hint: String(payload.hint || '').trim(),
         };
       }),

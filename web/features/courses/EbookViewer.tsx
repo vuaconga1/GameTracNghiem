@@ -17,7 +17,8 @@ import {
   textItemToViewportBox,
   type VocabHotspot,
 } from '@/lib/ebook/vocabHotspots';
-import { speakEnglish } from '@/lib/tts/speakEnglish';
+import { playReferenceAudio } from '@/features/games/pronunciation/audio';
+import { resolveVocabAudioUrl } from '@/lib/vocabAudio';
 
 type EbookViewerProps = {
   ebookId: string;
@@ -198,6 +199,7 @@ function computeRenderScale(pageWidthAt1x: number, displayCssWidth: number): num
 export function EbookViewer({ ebookId, pageStart, pageEnd }: EbookViewerProps) {
   const stageRef = useRef<HTMLDivElement | null>(null);
   const flipRef = useRef<FlipApi | null>(null);
+  const activeSpeakAudio = useRef<HTMLAudioElement | null>(null);
   const [doc, setDoc] = useState<PdfDoc | null>(null);
   const [pages, setPages] = useState<PageRender[]>([]);
   const [pageSize, setPageSize] = useState({ width: 600, height: 850 });
@@ -339,7 +341,15 @@ export function EbookViewer({ ebookId, pageStart, pageEnd }: EbookViewerProps) {
 
   const onSpeakWord = useCallback((word: string) => {
     setActiveWord(word);
-    speakEnglish(word);
+    playReferenceAudio(
+      word,
+      resolveVocabAudioUrl(word) || undefined,
+      0.95,
+      activeSpeakAudio.current,
+      (audio) => {
+        activeSpeakAudio.current = audio;
+      },
+    );
     window.setTimeout(() => {
       setActiveWord((current) => (current === word ? null : current));
     }, 1400);
