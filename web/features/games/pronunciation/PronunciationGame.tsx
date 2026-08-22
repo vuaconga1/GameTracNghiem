@@ -14,7 +14,6 @@ import {
   finalizePlaySessionIfComplete,
 } from '@/features/scoring/completeSession';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
-import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
 import { isGradedStatus } from '@/features/games/gradedLock';
 import { GameListActions } from '@/features/games/GameListActions';
 import { localizeExerciseTitle } from '@/features/games/localizeExerciseTitle';
@@ -56,6 +55,7 @@ import {
   modeLabel,
 } from './modes';
 import { startMicRecording, type RecordedClip } from './recordAudio';
+import { compareLetters } from './compareLetters';
 import { scoreTranscript, type TranscriptScoreResult } from './scoreTranscript';
 import type {
   PronunciationGameResponse,
@@ -118,13 +118,13 @@ function questionPreview(
 }
 
 function ScoreRing({ value, label, color }: { value: number; label: string; color: string }) {
-  const radius = 28;
+  const radius = 24;
   const circumference = 2 * Math.PI * radius;
   const dash = (value / 100) * circumference;
 
   return (
     <div className="eval-ring">
-      <svg width="72" height="72" viewBox="0 0 64 64" aria-hidden="true">
+      <svg width="60" height="60" viewBox="0 0 64 64" aria-hidden="true">
         <circle cx="32" cy="32" r={radius} fill="none" stroke="#e2e8f0" strokeWidth="5" />
         <circle
           cx="32"
@@ -175,16 +175,70 @@ function StressSyllables({ word, accentColor }: { word: string; accentColor: str
   );
 }
 
-function TranscriptHeard({ transcript }: { transcript: string }) {
+function displaySoundChar(value: string): string {
+  if (value === ' ') return '·';
+  return value || '—';
+}
+
+function SoundDiffRow({
+  targetText,
+  transcript,
+}: {
+  targetText: string;
+  transcript: string;
+}) {
   const { t } = useI18n();
-  const text = transcript.trim();
+  const diffs = compareLetters(targetText, transcript);
+
+  if (diffs.length === 0) {
+    return (
+      <div className="eval-sound-diff" aria-live="polite">
+        <p className="eval-sound-diff-empty">{t('pronunciation.heardTranscriptEmpty')}</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="eval-transcript" aria-live="polite">
-      <p className="eval-transcript-label">{t('pronunciation.heardTranscript')}</p>
-      <p className="eval-transcript-text">
-        {text ? `“${text}”` : t('pronunciation.heardTranscriptEmpty')}
-      </p>
+    <div className="eval-sound-diff" aria-live="polite">
+      <div className="eval-sound-block">
+        <p className="eval-sound-caption">{t('pronunciation.soundColumn')}</p>
+        <div className="eval-sound-chars" role="list" aria-label={t('pronunciation.soundColumn')}>
+          {diffs.map((item, index) => {
+            const ok = item.status === 'match';
+            return (
+              <span
+                key={`result-${item.sound}-${index}`}
+                className={`eval-sound-letter ${ok ? 'ok' : 'bad'}${item.sound === ' ' ? ' space' : ''}`}
+                role="listitem"
+              >
+                <span className="eval-sound-char">{displaySoundChar(item.sound)}</span>
+              </span>
+            );
+          })}
+        </div>
+      </div>
+      <div className="eval-sound-block">
+        <p className="eval-sound-caption">{t('pronunciation.heardColumn')}</p>
+        <div className="eval-sound-chars" role="list" aria-label={t('pronunciation.heardColumn')}>
+          {diffs.map((item, index) => {
+            const ok = item.status === 'match';
+            const heardChar = ok
+              ? displaySoundChar(item.sound)
+              : item.heard != null && item.heard !== ''
+                ? displaySoundChar(item.heard)
+                : '—';
+            return (
+              <span
+                key={`heard-${item.heard ?? ''}-${index}`}
+                className={`eval-sound-letter ${ok ? 'ok' : 'bad'}${item.sound === ' ' ? ' space' : ''}`}
+                role="listitem"
+              >
+                <span className="eval-sound-char">{heardChar}</span>
+              </span>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
@@ -206,17 +260,18 @@ function EvaluationResult({
 
   const mode = resolveFeedbackMode(question.mode);
   const { score, points, engine } = result;
+  const rings =
+    mode === 'sentence' ? sentenceScoreRingsFromResult(score, t) : wordScoreRings(score, t);
 
-  if (mode === 'sentence') {
-    const rings = sentenceScoreRingsFromResult(score, t);
-    const words = score.wordScores || [];
-    return (
-      <div className="evaluation-result pron-content-stack">
+  return (
+    <div className="evaluation-result">
+      <div className={`eval-result-card ${score.isCorrect ? 'correct' : 'wrong'}`}>
         <div className="eval-rings">
           {rings.map((ring) => (
             <ScoreRing key={ring.label} {...ring} />
           ))}
         </div>
+        <SoundDiffRow targetText={question.targetText} transcript={score.transcript} />
         {engine === 'webspeech' ? (
           <p className="pron-engine-badge">{t('pronunciation.browserScoring')}</p>
         ) : null}
@@ -229,48 +284,8 @@ function EvaluationResult({
             <span>{feedbackMessage(score, t)}</span>
           </p>
         </div>
-        <TranscriptHeard transcript={score.transcript} />
-        <div className="eval-word-breakdown">
-          <p className="eval-word-breakdown-title">{t('pronunciation.wordBreakdown')}</p>
-          <div className="eval-word-row">
-            {words.map((item) => {
-              const colorClass = item.score >= 80 ? 'good' : item.score >= 60 ? 'mid' : 'bad';
-              return (
-                <div key={`${item.word}-${item.score}`} className="eval-word-chip">
-                  <span className="eval-word-text">{item.word}</span>
-                  <span className={`eval-word-score ${colorClass}`}>{item.score}</span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
         {typeof points === 'number' ? <div className="eval-points">{formatPoints(points)}</div> : null}
       </div>
-    );
-  }
-
-  const rings = wordScoreRings(score, t);
-  return (
-    <div className="evaluation-result pron-content-stack">
-      <div className="eval-rings">
-        {rings.map((ring) => (
-          <ScoreRing key={ring.label} {...ring} />
-        ))}
-      </div>
-      {engine === 'webspeech' ? (
-        <p className="pron-engine-badge">{t('pronunciation.browserScoring')}</p>
-      ) : null}
-      <div className={`eval-feedback ${score.isCorrect ? 'correct' : 'wrong'}`}>
-        <p className="eval-feedback-title">
-          <i
-            className={`fa-solid ${score.isCorrect ? 'fa-circle-check text-green-500' : 'fa-circle-xmark text-red-500'}`}
-            aria-hidden="true"
-          />
-          <span>{feedbackMessage(score, t)}</span>
-        </p>
-      </div>
-      <TranscriptHeard transcript={score.transcript} />
-      {typeof points === 'number' ? <div className="eval-points">{formatPoints(points)}</div> : null}
     </div>
   );
 }
@@ -300,14 +315,12 @@ function WordCard({ question, mode }: { question: PronunciationQuestion; mode: P
               {question.targetIpa}
             </p>
           ) : null}
-          {question.hint ? <p className="pron-hint">{question.hint}</p> : null}
         </div>
       ) : null}
 
       {mode === 'sentence' ? (
         <div className="pron-word-card" style={cardStyle}>
           <p className="pron-target-xl">{question.targetText}</p>
-          {question.hint ? <p className="pron-hint">{question.hint}</p> : null}
         </div>
       ) : null}
 
@@ -458,10 +471,14 @@ export function PronunciationGameContent({
 
       <div className="pron-page-header">
         <div className="pron-hero">
-          <p className="pron-hero-label">{t('pronunciation.heroLabel')}</p>
-          <h1 className="pron-hero-title">{course.name}</h1>
+          {panel !== 'question' ? (
+            <>
+              <p className="pron-hero-label">{t('pronunciation.heroLabel')}</p>
+              <h1 className="pron-hero-title">{course.name}</h1>
+            </>
+          ) : null}
           {localizedActiveExercise ? (
-            <p className="game-subtitle" style={{ marginTop: 6 }}>
+            <p className="game-subtitle" style={{ marginTop: panel === 'question' ? 0 : 6 }}>
               {localizedActiveExercise}
             </p>
           ) : null}
@@ -782,7 +799,6 @@ export function PronunciationGame({ courseId }: Props) {
   const [errorMessage, setErrorMessage] = useState('');
   const [submitMessage, setSubmitMessage] = useState('');
   const questionStartTime = useRef(Date.now());
-  const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const activeAudio = useRef<HTMLAudioElement | null>(null);
   const micSession = useRef<MicSession | null>(null);
   const exerciseSessionKeyRef = useRef<string | null>(null);
@@ -868,7 +884,6 @@ export function PronunciationGame({ courseId }: Props) {
 
     return () => {
       controller.abort();
-      if (advanceTimer.current) clearTimeout(advanceTimer.current);
       micSession.current?.cancel();
       micSession.current = null;
       if (activeAudio.current) {
@@ -945,7 +960,6 @@ export function PronunciationGame({ courseId }: Props) {
       setSubmitMessage('');
       micSession.current?.cancel();
       micSession.current = null;
-      clearAutoAdvance(advanceTimer);
 
       const prevStatus = statuses[index];
       if (isGradedStatus(prevStatus)) {
@@ -1020,13 +1034,8 @@ export function PronunciationGame({ courseId }: Props) {
     return saved || nextId;
   }
 
-  function scheduleAdvance() {
-    scheduleAutoAdvance(advanceTimer, goNext);
-  }
-
   function goNext() {
     if (!questions.length) return;
-    clearAutoAdvance(advanceTimer);
     const pos = scopedEntries.findIndex(({ index }) => index === currentIndex);
     const next = pos >= 0 ? scopedEntries[pos + 1] : undefined;
     if (!next) {
@@ -1162,7 +1171,6 @@ export function PronunciationGame({ courseId }: Props) {
       } else {
         await persistProgress(nextStatuses);
       }
-      scheduleAdvance();
     } catch (err) {
       const message = err instanceof Error ? err.message : t('gameUi.submitFailed');
       setSubmitMessage(message);
@@ -1360,7 +1368,6 @@ export function PronunciationGame({ courseId }: Props) {
         window.location.href = `/courses/${course.id}?skill=speaking`;
       }}
       onBackToList={() => {
-        clearAutoAdvance(advanceTimer);
         micSession.current?.cancel();
         micSession.current = null;
         setPanel('list');

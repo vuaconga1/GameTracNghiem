@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 
-import { upsertPortalStudent, verifyPortalSsoToken } from '@/lib/portalSso';
+import { upsertPortalStudent, verifyPortalSsoTokenDetailed } from '@/lib/portalSso';
 import { setSessionCookie } from '@/lib/session';
+import { homeHrefForRole, normalizeUserRole } from '@/lib/userRoles';
 
 function redirectTo(req: Request, pathname: string, error?: string) {
   const url = new URL(pathname, req.url);
@@ -12,14 +13,20 @@ function redirectTo(req: Request, pathname: string, error?: string) {
 export async function GET(req: Request) {
   try {
     const token = new URL(req.url).searchParams.get('token') || '';
-    const claims = await verifyPortalSsoToken(token);
-    if (!claims) {
-      return redirectTo(req, '/login', 'invalid_token');
+    const verified = await verifyPortalSsoTokenDetailed(token);
+    if (!verified.ok) {
+      const error =
+        verified.reason === 'expired'
+          ? 'token_expired'
+          : verified.reason === 'missing'
+            ? 'invalid_token'
+            : 'invalid_token';
+      return redirectTo(req, '/login', error);
     }
 
-    const session = await upsertPortalStudent(claims);
+    const session = await upsertPortalStudent(verified.claims);
     await setSessionCookie(session);
-    return redirectTo(req, '/');
+    return redirectTo(req, homeHrefForRole(normalizeUserRole(session.role)));
   } catch (err) {
     const status = err && typeof err === 'object' && 'status' in err ? Number(err.status) : 500;
     if (status === 403) {

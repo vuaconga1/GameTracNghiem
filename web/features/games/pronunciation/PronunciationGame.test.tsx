@@ -101,7 +101,9 @@ describe('PronunciationGameContent', () => {
 
     expect(html).toContain('id="listPanel"');
     expect(html).toContain('Danh sách câu hỏi');
-    expect(html).toContain('Bắt đầu làm bài');
+    expect(html).toContain('Làm tiếp');
+    expect(html).toContain('Làm lại từ đầu');
+    expect(html).not.toContain('Bắt đầu làm bài');
     expect(html).not.toContain('Tổng điểm cao nhất');
     expect(html).toContain('world');
     expect(html).toContain('Nice to meet you');
@@ -139,17 +141,26 @@ describe('PronunciationGameContent', () => {
     expect(html).not.toContain('id="selfEvalPanel"');
   });
 
-  it('shows auto-scored word result without phoneme chips or self-eval', () => {
-    const score = scoreTranscript('world', 'world', 'phoneme');
+  it('shows letter sound/heard table for word result instead of full transcript', () => {
+    const score = scoreTranscript('cup', 'kup', 'phoneme');
     const html = renderToStaticMarkup(
       createElement(I18nProvider, { initialLocale: 'vi' }, createElement(PronunciationGameContent, {
         ...baseProps,
-        statuses: ['correct', 'empty', 'empty'],
+        questions: [
+          {
+            ...baseProps.questions[0],
+            targetText: 'cup',
+            targetIpa: '/kʌp/',
+          },
+          baseProps.questions[1],
+          baseProps.questions[2],
+        ],
+        statuses: ['wrong', 'empty', 'empty'],
         recordState: 'done',
         showActions: true,
         answerResult: {
-          isCorrect: true,
-          points: 150,
+          isCorrect: false,
+          points: 40,
           score,
           engine: 'groq',
         },
@@ -160,34 +171,48 @@ describe('PronunciationGameContent', () => {
     expect(html).toContain('id="btnNextAction"');
     expect(html).not.toContain('id="btnRetry"');
     expect(html).toContain('Độ chính xác');
-    expect(html).toContain('Phát âm rất chuẩn');
-    expect(html).toContain('+150 điểm');
-    expect(html).not.toContain('Phân tích từng âm');
+    expect(html).not.toContain('Máy nghe được');
+    expect(html).not.toContain('“kup”');
+    expect(html).toContain('eval-sound-block');
+    expect(html).toContain('eval-sound-chars');
+    expect(html).toContain('eval-sound-letter bad');
+    expect(html).toContain('eval-sound-letter ok');
+    expect(html).toContain('Kết quả');
+    expect(html).toContain('Bạn phát âm');
+    expect(html).not.toContain('Xanh = đúng');
+    expect(html).toContain('>k</span>');
+    expect(html).toContain('Chưa chuẩn');
+    expect(html).toContain('+40 điểm');
     expect(html).not.toContain('id="selfEvalPanel"');
   });
 
-  it('shows per-word scores for sentence mode', () => {
-    const score = scoreTranscript('Nice to meet you', 'Nice to meet you', 'sentence');
+  it('shows horizontal letter row for sentence mode instead of word chips', () => {
+    const score = scoreTranscript('Nice to meet you', 'Nice to see them', 'sentence');
     const html = renderToStaticMarkup(
       createElement(I18nProvider, { initialLocale: 'vi' }, createElement(PronunciationGameContent, {
         ...baseProps,
         currentIndex: 1,
         currentMode: 'sentence',
-        statuses: ['empty', 'correct', 'empty'],
+        statuses: ['empty', 'wrong', 'empty'],
         recordState: 'done',
         showActions: true,
         answerResult: {
-          isCorrect: true,
-          points: 120,
+          isCorrect: false,
+          points: 60,
           score,
           engine: 'webspeech',
         },
       }))
     );
 
-    expect(html).toContain('Từng từ một');
+    expect(html).not.toContain('Từng từ một');
+    expect(html).not.toContain('Máy nghe được');
     expect(html).toContain('Chấm bằng nhận dạng trình duyệt');
-    expect(html).toContain('Nice');
+    expect(html).toContain('eval-result-card');
+    expect(html).toContain('eval-sound-chars');
+    expect(html).toContain('eval-sound-letter');
+    expect(html).toContain('Kết quả');
+    expect(html).toContain('Bạn phát âm');
   });
 
   it('treats the scoped exercise as complete on its last question', () => {

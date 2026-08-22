@@ -21,6 +21,9 @@ function ssoErrorMessage(value: string | string[] | undefined) {
   if (code === 'invalid_token') {
     return 'Liên kết đăng nhập từ Parent Portal không hợp lệ hoặc đã hết hạn. Vui lòng mở lại từ trang báo bài.';
   }
+  if (code === 'token_expired') {
+    return 'Liên kết đăng nhập đã hết hạn (khoảng 3 phút). Vui lòng mở lại game từ trang báo bài.';
+  }
   if (code === 'forbidden') {
     return 'Không thể đăng nhập SSO với tài khoản này.';
   }

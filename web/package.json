@@ -41,6 +41,7 @@
     "@vercel/blob": "^2.6.1",
     "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
+    "driver.js": "^1.8.0",
     "googleapis": "^173.0.0",
     "jose": "^6.2.3",
     "music-metadata": "^11.14.0",

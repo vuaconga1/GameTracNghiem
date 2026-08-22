@@ -221,7 +221,7 @@ export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
     <>
       {filtersRoot ? createPortal(filtersNode, filtersRoot) : null}
 
-      <section id="view-courses" className="courses-area">
+      <section id="view-courses" className="courses-area" data-tour="courses-area">
         <div className="courses-header">
           <div className="courses-header-icon">
             <i className="fas fa-graduation-cap" aria-hidden="true" />

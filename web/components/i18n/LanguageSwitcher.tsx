@@ -15,6 +15,7 @@ export function LanguageSwitcher() {
     <button
       type="button"
       className="action-item action-item-lang"
+      data-tour="language"
       onClick={toggle}
       title={t('common.language')}
       aria-label={t('common.language')}

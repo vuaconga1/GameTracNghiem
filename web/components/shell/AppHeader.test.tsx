@@ -10,6 +10,11 @@ vi.mock('next/navigation', () => ({
   }),
 }));
 
+vi.mock('@/features/tour/TourProvider', () => ({
+  useTour: () => ({ startHomeTourGuide: vi.fn() }),
+  TourProvider: ({ children }: { children: React.ReactNode }) => children,
+}));
+
 import { AppHeader } from './AppHeader';
 import { SidebarProvider } from './SidebarContext';
 
@@ -33,6 +38,7 @@ describe('AppHeader', () => {
 
     expect(html).not.toContain('header-title');
     expect(html).not.toContain('Quản trị viên');
+    expect(html).toContain('Hiện hướng dẫn');
     expect(html).toContain('Quản trị');
     expect(html).toContain('Xếp hạng');
     expect(html).toContain('Đăng xuất');

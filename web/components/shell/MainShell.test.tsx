@@ -11,6 +11,11 @@ vi.mock('next/navigation', () => ({
   useRouter: () => ({ push: vi.fn(), refresh: vi.fn() }),
 }));
 
+vi.mock('@/features/tour/TourProvider', () => ({
+  useTour: () => ({ startHomeTourGuide: vi.fn() }),
+  TourProvider: ({ children }: { children: React.ReactNode }) => children,
+}));
+
 import { MainShell } from './MainShell';
 import { SidebarProvider } from './SidebarContext';
 

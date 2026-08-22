@@ -36,7 +36,7 @@ export function CourseFilters({
   return (
     <div className="filter-section">
       <h3 className="filter-title">{t('home.filterLevel')}</h3>
-      <div className="filter-grid" id="filterGrid">
+      <div className="filter-grid" id="filterGrid" data-tour="level-filters">
         {levelOptions.map((value) => (
           <button
             key={`level-${value}`}

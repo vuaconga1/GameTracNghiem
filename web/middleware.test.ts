@@ -34,5 +34,6 @@ describe('Logistics public route', () => {
   it('allows guests to open logistics week routes', () => {
     expect(isPublicPlayerPage('/logistics')).toBe(true);
     expect(isPublicPlayerPage('/logistics/week2')).toBe(true);
+    expect(isPublicPlayerPage('/logistics/week3')).toBe(true);
   });
 });

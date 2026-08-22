@@ -3,6 +3,7 @@ import { SignJWT, jwtVerify } from 'jose';
 import { prisma } from './db';
 import { hashPassword } from './auth';
 import type { SessionPayload } from './session';
+import { normalizeUserRole } from './userRoles';
 
 export const PORTAL_SSO_MAX_AGE_SEC = 180;
 
@@ -40,18 +41,34 @@ export async function sealPortalSsoToken(
 }
 
 export async function verifyPortalSsoToken(token: string): Promise<PortalSsoClaims | null> {
+  const result = await verifyPortalSsoTokenDetailed(token);
+  return result.ok ? result.claims : null;
+}
+
+export type PortalSsoVerifyFailure = 'missing' | 'expired' | 'invalid';
+
+/** Like verifyPortalSsoToken but returns why verification failed (for redirects). */
+export async function verifyPortalSsoTokenDetailed(
+  token: string
+): Promise<{ ok: true; claims: PortalSsoClaims } | { ok: false; reason: PortalSsoVerifyFailure }> {
   const raw = String(token || '').trim();
-  if (!raw) return null;
+  if (!raw) return { ok: false, reason: 'missing' };
 
   try {
-    const { payload } = await jwtVerify(raw, portalSsoSecretKey());
+    const { payload } = await jwtVerify(raw, portalSsoSecretKey(), {
+      algorithms: ['HS256'],
+      clockTolerance: 60,
+    });
     const sid = typeof payload.sid === 'string' ? payload.sid.trim() : '';
     const pwd = typeof payload.pwd === 'string' ? payload.pwd.trim() : '';
     const nameRaw = typeof payload.name === 'string' ? payload.name.trim() : '';
-    if (!sid || !pwd) return null;
-    return { sid, name: nameRaw || sid, pwd };
-  } catch {
-    return null;
+    if (!sid || !pwd) return { ok: false, reason: 'invalid' };
+    return { ok: true, claims: { sid, name: nameRaw || sid, pwd } };
+  } catch (err) {
+    const code =
+      err && typeof err === 'object' && 'code' in err ? String((err as { code: string }).code) : '';
+    if (code === 'ERR_JWT_EXPIRED') return { ok: false, reason: 'expired' };
+    return { ok: false, reason: 'invalid' };
   }
 }
 
@@ -92,7 +109,7 @@ export async function upsertPortalStudent(claims: PortalSsoClaims): Promise<Sess
           username,
           displayName,
           passwordHash: await hashPassword(password),
-          role: 'student',
+          role: 'WewinStudent',
           portalLinkedAt,
         },
       });
@@ -101,6 +118,6 @@ export async function upsertPortalStudent(claims: PortalSsoClaims): Promise<Sess
     userId: user.id,
     username: user.username,
     displayName: user.displayName,
-    role: 'student',
+    role: normalizeUserRole(user.role),
   };
 }

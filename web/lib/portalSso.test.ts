@@ -57,7 +57,7 @@ describe('portalSso', () => {
       id: 'u1',
       username: 'WeWIN01-HV-1602',
       displayName: 'Lê Quang Khôi',
-      role: 'student',
+      role: 'WewinStudent',
     });
 
     const { upsertPortalStudent } = await import('./portalSso');
@@ -70,6 +70,7 @@ describe('portalSso', () => {
     expect(create).toHaveBeenCalledWith(
       expect.objectContaining({
         data: expect.objectContaining({
+          role: 'WewinStudent',
           portalLinkedAt: expect.any(Date),
         }),
       })
@@ -78,7 +79,7 @@ describe('portalSso', () => {
       userId: 'u1',
       username: 'WeWIN01-HV-1602',
       displayName: 'Lê Quang Khôi',
-      role: 'student',
+      role: 'WewinStudent',
     });
   });
 
@@ -87,14 +88,14 @@ describe('portalSso', () => {
       id: 'u1',
       username: 'WeWIN01-HV-1602',
       displayName: 'Old',
-      role: 'student',
+      role: 'WewinStudent',
       archivedAt: null,
     });
     update.mockResolvedValue({
       id: 'u1',
       username: 'WeWIN01-HV-1602',
       displayName: 'Lê Quang Khôi',
-      role: 'student',
+      role: 'WewinStudent',
     });
 
     const { upsertPortalStudent } = await import('./portalSso');

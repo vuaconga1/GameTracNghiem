@@ -39,7 +39,7 @@ export function CourseList({ courses }: CourseListProps) {
   }
 
   return (
-    <div className="course-grid" id="courseGrid">
+    <div className="course-grid" id="courseGrid" data-tour="course-grid">
       {courses.map((course, index) => {
         const completionPercent = Math.min(
           100,

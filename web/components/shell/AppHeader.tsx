@@ -6,6 +6,7 @@ import { useState } from 'react';
 
 import { LanguageSwitcher } from '@/components/i18n/LanguageSwitcher';
 import { useI18n } from '@/components/i18n/I18nProvider';
+import { useTour } from '@/features/tour/TourProvider';
 
 import { useSidebar } from './SidebarContext';
 
@@ -23,6 +24,7 @@ export function AppHeader({
   const router = useRouter();
   const { open, toggle } = useSidebar();
   const { t } = useI18n();
+  const { startHomeTourGuide } = useTour();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   async function handleLogout() {
@@ -44,6 +46,7 @@ export function AppHeader({
           <button
             type="button"
             className="mobile-menu-btn"
+            data-tour="open-menu"
             aria-label={t('common.openMenu')}
             aria-expanded={open}
             onClick={toggle}
@@ -54,6 +57,17 @@ export function AppHeader({
       </div>
 
       <div className="header-actions">
+        <button
+          type="button"
+          className="action-item action-item-tour"
+          data-tour="tour-replay"
+          title={t('tour.showGuide')}
+          aria-label={t('tour.showGuide')}
+          onClick={startHomeTourGuide}
+        >
+          <i className="fas fa-circle-question" aria-hidden="true" />
+          <span>{t('tour.showGuide')}</span>
+        </button>
         <LanguageSwitcher />
         {isAdmin ? (
           <Link className="action-item" href="/admin">
@@ -70,6 +84,7 @@ export function AppHeader({
             <button
               type="button"
               className="action-item action-item-logout"
+              data-tour="auth-logout"
               title={t('common.logout')}
               onClick={handleLogout}
               disabled={isLoggingOut}
@@ -79,7 +94,7 @@ export function AppHeader({
             </button>
           </>
         ) : (
-          <Link className="action-item action-item-login" href="/login">
+          <Link className="action-item action-item-login" data-tour="auth-login" href="/login">
             <i className="fas fa-right-to-bracket" />
             <span>{t('common.login')}</span>
           </Link>

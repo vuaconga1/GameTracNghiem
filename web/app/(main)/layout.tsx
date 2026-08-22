@@ -1,8 +1,9 @@
 import { MainShell } from '@/components/shell/MainShell';
+import { HomeNavProvider } from '@/components/shell/HomeNavContext';
 import { SidebarProvider } from '@/components/shell/SidebarContext';
 import { lookupSessionForPage } from '@/lib/auth';
 import { loadHeaderExperience } from '@/lib/loadHeaderExperience';
-
+import { homeHrefForRole, normalizeUserRole } from '@/lib/userRoles';
 export default async function MainLayout({
   children,
 }: Readonly<{
@@ -10,21 +11,24 @@ export default async function MainLayout({
 }>) {
   const { session } = await lookupSessionForPage();
   const experience = session ? await loadHeaderExperience(session.userId) : null;
+  const homeHref = session ? homeHrefForRole(normalizeUserRole(session.role)) : '/';
 
   return (
     <SidebarProvider>
-      <MainShell
-        displayName={session?.displayName}
-        isAuthenticated={Boolean(session)}
-        isAdmin={session?.role === 'admin'}
-        level={experience?.level}
-        tier={experience?.tier}
-        expInLevel={experience?.expInLevel}
-        expToNextLevel={experience?.expToNextLevel}
-        progressPercent={experience?.progressPercent}
-      >
-        {children}
-      </MainShell>
+      <HomeNavProvider homeHref={homeHref}>
+        <MainShell
+          displayName={session?.displayName}
+          isAuthenticated={Boolean(session)}
+          isAdmin={session?.role === 'admin'}
+          homeHref={homeHref}
+          level={experience?.level}
+          tier={experience?.tier}
+          expInLevel={experience?.expInLevel}
+          expToNextLevel={experience?.expToNextLevel}
+          progressPercent={experience?.progressPercent}
+        >
+          {children}
+        </MainShell>
+      </HomeNavProvider>
     </SidebarProvider>
-  );
-}
+  );}
