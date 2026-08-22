@@ -190,6 +190,24 @@ describe('evaluateSpeakingAccess', () => {
     expect(access.quota?.limit).toBe(2);
   });
 
+  it('allows WewinStudent for realtime without entitlement', async () => {
+    userFindUnique.mockResolvedValue({
+      role: 'WewinStudent',
+      archivedAt: null,
+      portalLinkedAt: null,
+      speakingAccountStatus: 'ACTIVE',
+    });
+    entitlementFindMany.mockResolvedValue([]);
+    const access = await evaluateSpeakingAccess({
+      session: studentSession,
+      courseId: 'course-1',
+      activityType: 'REALTIME_CONVERSATION',
+      now,
+    });
+    expect(access.reason).toBe(SPEAKING_ACCESS_REASON.ALLOWED);
+    expect(access.quota?.limit).toBe(2);
+  });
+
   it('blocks admin and LogisticsStudent from drill activities', async () => {
     userFindUnique.mockResolvedValue({
       role: 'admin',
@@ -274,7 +292,7 @@ describe('evaluateSpeakingAccess', () => {
     expect(access.reason).toBe(SPEAKING_ACCESS_REASON.FEATURE_DISABLED);
   });
 
-  it('treats expiresAt as an exclusive Asia/Ho_Chi_Minh boundary', async () => {
+  it('treats expiresAt as an exclusive Asia/Ho_Chi_Minh boundary for drills', async () => {
     entitlementFindMany.mockResolvedValue([
       {
         status: 'ACTIVE',
@@ -286,10 +304,21 @@ describe('evaluateSpeakingAccess', () => {
     const access = await evaluateSpeakingAccess({
       session: studentSession,
       courseId: 'course-1',
-      activityType: 'REALTIME_CONVERSATION',
+      activityType: 'WORD_PRONUNCIATION',
       now: new Date('2026-08-05T17:00:00.000Z'),
     });
     expect(access.reason).toBe(SPEAKING_ACCESS_REASON.COURSE_EXPIRED);
+  });
+
+  it('still requires entitlement for drill activities', async () => {
+    entitlementFindMany.mockResolvedValue([]);
+    const access = await evaluateSpeakingAccess({
+      session: studentSession,
+      courseId: 'course-1',
+      activityType: 'WORD_PRONUNCIATION',
+      now,
+    });
+    expect(access.reason).toBe(SPEAKING_ACCESS_REASON.NO_ACTIVE_COURSE);
   });
 
   it('allows a linked, entitled student and exposes only safe config', async () => {

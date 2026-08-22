@@ -124,10 +124,6 @@ function canAccessSpeakingActivity(
   return isWewinStudentRole(role);
 }
 
-function skipsRealtimeEntitlement(role: string): boolean {
-  return role === 'admin' || role === 'LogisticsStudent';
-}
-
 export function skipsSpeakingDailyQuota(role: unknown): boolean {
   return isAdminUserRole(role);
 }
@@ -135,9 +131,13 @@ export function skipsSpeakingDailyQuota(role: unknown): boolean {
 /**
  * Resolve student access from local PostgreSQL only.
  *
- * Entitlement intervals are [startsAt, expiresAt). Admin date-only values are
- * converted from Asia/Ho_Chi_Minh midnight before storage, so comparing their
- * instants here preserves the local-calendar boundary without server-TZ drift.
+ * Realtime AI Speaking is allowed by role (WewinStudent / LogisticsStudent /
+ * admin) without per-user SpeakingEntitlement rows. Drill activities still
+ * require an ACTIVE entitlement in [startsAt, expiresAt).
+ *
+ * Admin date-only entitlement values are converted from Asia/Ho_Chi_Minh
+ * midnight before storage, so comparing their instants here preserves the
+ * local-calendar boundary without server-TZ drift.
  */
 export async function evaluateSpeakingAccess(
   input: AccessInput,
@@ -252,8 +252,9 @@ export async function evaluateSpeakingAccess(
     promptVersion: activityConfig.promptVersion,
   };
   const activeEntitlement = entitlements.find((row) => hasActiveEntitlement(row, now));
-  const entitlementOptional =
-    input.activityType === 'REALTIME_CONVERSATION' && skipsRealtimeEntitlement(user.role);
+  // Realtime AI Speaking is role-gated (WeWIN / Logistics / admin), not per-user grants.
+  // Drill activities still require an ACTIVE SpeakingEntitlement.
+  const entitlementOptional = input.activityType === 'REALTIME_CONVERSATION';
   if (!activeEntitlement && !entitlementOptional) {
     return result(
       input,
