@@ -13,6 +13,7 @@ type LoginFormProps = {
 type LoginResponse = {
   success?: boolean;
   message?: string;
+  homePath?: string;
 };
 
 export function LoginForm({ next, initialError }: LoginFormProps) {
@@ -41,7 +42,7 @@ export function LoginForm({ next, initialError }: LoginFormProps) {
         return;
       }
 
-      router.push(next || '/');
+      router.push(next || data.homePath || '/');
       router.refresh();
     } catch {
       setError(t('auth.connectionFailed'));

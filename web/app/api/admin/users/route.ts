@@ -2,6 +2,7 @@ import { hashPassword, requireAdmin } from '@/lib/auth';
 import { adminErrorResponse } from '@/lib/admin/http';
 import { notArchived } from '@/lib/admin/notArchived';
 import { prisma } from '@/lib/db';
+import { parseUserRoleInput } from '@/lib/userRoles';
 
 export async function GET() {
   try {
@@ -30,7 +31,7 @@ export async function POST(req: Request) {
     const username = String(body.username || '').trim();
     const password = String(body.password || '').trim();
     const displayName = String(body.displayName || '').trim();
-    const role = body.role === 'admin' ? 'admin' : 'student';
+    const role = parseUserRoleInput(body.role) ?? 'WewinStudent';
 
     if (!username || !password || !displayName) {
       return Response.json(

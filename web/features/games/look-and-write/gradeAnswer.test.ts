@@ -20,6 +20,10 @@ describe('gradeLookAndWriteItem', () => {
   it('rejects a non-matching word', () => {
     expect(gradeLookAndWriteItem('banana', 'apple')).toBe(false);
   });
+
+  it('ignores trailing punctuation and curly quotes', () => {
+    expect(gradeLookAndWriteItem("I'm", "I’m.")).toBe(true);
+  });
 });
 
 describe('gradeLookAndWriteExercise', () => {

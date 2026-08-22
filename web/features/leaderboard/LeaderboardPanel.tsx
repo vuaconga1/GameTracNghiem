@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
 import { useI18n } from '@/components/i18n/I18nProvider';
+import { useHomeHref } from '@/components/shell/HomeNavContext';
 import { PageBackButton } from '@/components/PageBackButton';
 import type { LeaderboardPeriod, LeaderboardPlayer } from '@/lib/leaderboard';
 
@@ -185,6 +186,7 @@ export function LeaderboardContent({
   onOffsetChange,
 }: LeaderboardContentProps) {
   const { t } = useI18n();
+  const homeHref = useHomeHref();
   const rankedPlayers = rankPlayers(players);
   const top3 = rankedPlayers.slice(0, 3);
   const podiumPlayers = [top3[1], top3[0], top3[2]].filter(
@@ -200,7 +202,7 @@ export function LeaderboardContent({
   return (
     <div className="view-leaderboard">
       <div className="lb-page">
-        <PageBackButton href="/" />
+        <PageBackButton href={homeHref} />
         <div className="lb-top">
           <div className="lb-title-row">
             <h1 className="lb-title">{t('leaderboard.title')}</h1>

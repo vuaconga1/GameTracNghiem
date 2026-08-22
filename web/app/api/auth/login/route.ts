@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/db';
 import { verifyPassword } from '@/lib/auth';
+import { prisma } from '@/lib/db';
 import { setSessionCookie } from '@/lib/session';
+import { homeHrefForRole, normalizeUserRole } from '@/lib/userRoles';
 
 export async function POST(req: Request) {
   try {
@@ -27,7 +28,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const role = user.role === 'admin' ? 'admin' : 'student';
+    const role = normalizeUserRole(user.role);
 
     await setSessionCookie({
       userId: user.id,
@@ -41,6 +42,7 @@ export async function POST(req: Request) {
       username: user.username,
       name: user.displayName,
       role,
+      homePath: homeHrefForRole(role),
     });
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Lỗi hệ thống';

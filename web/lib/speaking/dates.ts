@@ -78,6 +78,7 @@ export function buildDailyUsageResponse(input: {
   sessionId?: string | null;
   activityType?: string;
   now?: Date;
+  unlimited?: boolean;
 }) {
   const now = input.now ?? new Date();
   const dailyLimit = Math.max(1, input.limitSnapshot ?? DAILY_SPEAKING_LIMIT);
@@ -92,8 +93,12 @@ export function buildDailyUsageResponse(input: {
   const remainingToday = Math.max(0, dailyLimit - usedToday);
   const reservationActive =
     reservedToday > 0 && isReservationActive(input.reservedUntil, now);
-  const status =
-    remainingToday === 0
+  const unlimited = Boolean(input.unlimited);
+  const status = unlimited
+    ? reservationActive
+      ? 'RESERVED'
+      : 'AVAILABLE'
+    : remainingToday === 0
       ? 'CONSUMED'
       : reservationActive
         ? 'RESERVED'
@@ -101,19 +106,22 @@ export function buildDailyUsageResponse(input: {
 
   return {
     activityType: input.activityType ?? 'REALTIME_CONVERSATION',
-    canStart: remainingToday > 0 && !reservationActive,
+    unlimited,
+    canStart: unlimited
+      ? !reservationActive
+      : remainingToday > 0 && !reservationActive,
     status,
     used: usedToday,
     reserved: reservedToday,
     limit: dailyLimit,
-    remaining: remainingToday,
+    remaining: unlimited ? dailyLimit : remainingToday,
     dailyLimit,
     usedToday,
     reservedToday,
-    remainingToday,
+    remainingToday: unlimited ? dailyLimit : remainingToday,
     timezone: SPEAKING_TIMEZONE,
     nextAvailableAt:
-      remainingToday === 0 ? nextAvailableAt(now).toISOString() : null,
+      unlimited || remainingToday > 0 ? null : nextAvailableAt(now).toISOString(),
     sessionId: input.sessionId ?? null,
     reservedUntil: input.reservedUntil?.toISOString() ?? null,
     reservationActive,

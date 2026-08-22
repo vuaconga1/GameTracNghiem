@@ -1,8 +1,7 @@
+import { normalizeTypedAnswer } from '../normalizeTypedAnswer';
+
 export function normalizeWord(str: string): string {
-  return String(str || '')
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, ' ');
+  return normalizeTypedAnswer(str);
 }
 
 export type LookAndWriteGradeItem = {

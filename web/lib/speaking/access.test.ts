@@ -31,7 +31,7 @@ const studentSession = {
   userId: 'student-1',
   username: 'WeWIN01-HV-1602',
   displayName: 'Học sinh',
-  role: 'student' as const,
+  role: 'WewinStudent' as const,
 };
 const now = new Date('2026-08-06T03:00:00.000Z'); // 10:00 Asia/Ho_Chi_Minh
 
@@ -40,7 +40,7 @@ describe('evaluateSpeakingAccess', () => {
     vi.clearAllMocks();
     delete process.env.SPEAKING_EMERGENCY_DISABLED;
     userFindUnique.mockResolvedValue({
-      role: 'student',
+      role: 'WewinStudent',
       archivedAt: null,
       portalLinkedAt: new Date('2026-08-01T00:00:00.000Z'),
       speakingAccountStatus: 'ACTIVE',
@@ -110,9 +110,110 @@ describe('evaluateSpeakingAccess', () => {
     expect(access.reason).toBe(SPEAKING_ACCESS_REASON.FEATURE_DISABLED);
   });
 
-  it('requires successful Parent Portal linkage', async () => {
+  it('allows admin for realtime without entitlement', async () => {
     userFindUnique.mockResolvedValue({
-      role: 'student',
+      role: 'admin',
+      archivedAt: null,
+      portalLinkedAt: null,
+      speakingAccountStatus: 'ACTIVE',
+    });
+    entitlementFindMany.mockResolvedValue([]);
+    const access = await evaluateSpeakingAccess({
+      session: {
+        userId: 'admin-1',
+        username: 'admin',
+        displayName: 'Admin',
+        role: 'admin',
+      },
+      courseId: 'course-1',
+      activityType: 'REALTIME_CONVERSATION',
+      now,
+    });
+    expect(access).toMatchObject({
+      allowed: true,
+      reason: SPEAKING_ACCESS_REASON.ALLOWED,
+      quota: { limit: 2, remaining: 2, unlimited: true },
+    });
+  });
+
+  it('lets admin keep playing after the daily quota is exhausted', async () => {
+    userFindUnique.mockResolvedValue({
+      role: 'admin',
+      archivedAt: null,
+      portalLinkedAt: null,
+      speakingAccountStatus: 'ACTIVE',
+    });
+    entitlementFindMany.mockResolvedValue([]);
+    usageFindUnique.mockResolvedValue({
+      usedCount: 2,
+      reservedCount: 0,
+      limitSnapshot: 2,
+    });
+    const access = await evaluateSpeakingAccess({
+      session: {
+        userId: 'admin-1',
+        username: 'admin',
+        displayName: 'Admin',
+        role: 'admin',
+      },
+      courseId: 'course-1',
+      activityType: 'REALTIME_CONVERSATION',
+      now,
+    });
+    expect(access).toMatchObject({
+      allowed: true,
+      reason: SPEAKING_ACCESS_REASON.ALLOWED,
+      quota: { used: 2, limit: 2, remaining: 2, unlimited: true },
+    });
+  });
+
+  it('allows LogisticsStudent for realtime without entitlement', async () => {
+    userFindUnique.mockResolvedValue({
+      role: 'LogisticsStudent',
+      archivedAt: null,
+      portalLinkedAt: null,
+      speakingAccountStatus: 'ACTIVE',
+    });
+    entitlementFindMany.mockResolvedValue([]);
+    const access = await evaluateSpeakingAccess({
+      session: {
+        userId: 'logistics-1',
+        username: 'logistics-user',
+        displayName: 'Logistics',
+        role: 'LogisticsStudent',
+      },
+      courseId: 'course-1',
+      activityType: 'REALTIME_CONVERSATION',
+      now,
+    });
+    expect(access.reason).toBe(SPEAKING_ACCESS_REASON.ALLOWED);
+    expect(access.quota?.limit).toBe(2);
+  });
+
+  it('blocks admin and LogisticsStudent from drill activities', async () => {
+    userFindUnique.mockResolvedValue({
+      role: 'admin',
+      archivedAt: null,
+      portalLinkedAt: null,
+      speakingAccountStatus: 'ACTIVE',
+    });
+    const adminAccess = await evaluateSpeakingAccess({
+      session: {
+        userId: 'admin-1',
+        username: 'admin',
+        displayName: 'Admin',
+        role: 'admin',
+      },
+      courseId: 'course-1',
+      activityType: 'WORD_PRONUNCIATION',
+      now,
+    });
+    expect(adminAccess.reason).toBe(SPEAKING_ACCESS_REASON.NOT_WEWIN_STUDENT);
+  });
+
+  it('allows web-only WewinStudent for realtime without Parent Portal linkage', async () => {
+    userFindUnique.mockResolvedValue({
+      role: 'WewinStudent',
       archivedAt: null,
       portalLinkedAt: null,
       speakingAccountStatus: 'ACTIVE',
@@ -123,12 +224,28 @@ describe('evaluateSpeakingAccess', () => {
       activityType: 'REALTIME_CONVERSATION',
       now,
     });
+    expect(access.reason).toBe(SPEAKING_ACCESS_REASON.ALLOWED);
+  });
+
+  it('still requires Parent Portal linkage for drill activities', async () => {
+    userFindUnique.mockResolvedValue({
+      role: 'WewinStudent',
+      archivedAt: null,
+      portalLinkedAt: null,
+      speakingAccountStatus: 'ACTIVE',
+    });
+    const access = await evaluateSpeakingAccess({
+      session: studentSession,
+      courseId: 'course-1',
+      activityType: 'WORD_PRONUNCIATION',
+      now,
+    });
     expect(access.reason).toBe(SPEAKING_ACCESS_REASON.NOT_WEWIN_STUDENT);
   });
 
   it('blocks suspended Speaking accounts', async () => {
     userFindUnique.mockResolvedValue({
-      role: 'student',
+      role: 'WewinStudent',
       archivedAt: null,
       portalLinkedAt: new Date(),
       speakingAccountStatus: 'SUSPENDED',

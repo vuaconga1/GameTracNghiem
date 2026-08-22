@@ -7,6 +7,7 @@ vi.mock('next/navigation', () => ({
 }));
 
 import { I18nProvider } from '@/components/i18n/I18nProvider';
+import { HomeNavProvider } from '@/components/shell/HomeNavContext';
 import type { CourseDetailData } from '@/lib/loadCourseDetail';
 import type { GameSkillsMap, SkillId } from '@/lib/skillCatalog';
 
@@ -14,7 +15,11 @@ import { CourseDetailContent } from './CourseDetailView';
 
 function renderContent(node: ReactNode) {
   return renderToStaticMarkup(
-    createElement(I18nProvider, { initialLocale: 'vi' }, node),
+    createElement(
+      I18nProvider,
+      { initialLocale: 'vi' },
+      createElement(HomeNavProvider, { homeHref: '/' }, node),
+    ),
   );
 }
 

@@ -20,4 +20,8 @@ describe('gradeScrambleAnswer', () => {
   it('rejects a wrong answer', () => {
     expect(gradeScrambleAnswer('pencel', 'pencil')).toBe(false);
   });
+
+  it('ignores trailing punctuation on the expected word', () => {
+    expect(gradeScrambleAnswer('pencil', 'pencil.')).toBe(true);
+  });
 });

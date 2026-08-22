@@ -6,6 +6,11 @@ import { progressCourseKey } from '@/lib/courseKey';
 import { courseCompletionPercent } from '@/lib/courseProgress';
 import { prisma } from '@/lib/db';
 import { resolveSelectedHomeLevel, gradeLevelsOnly } from '@/lib/homeCourseLevel';
+import {
+  canAccessCourseLevel,
+  filterLevelsForRole,
+  normalizeUserRole,
+} from '@/lib/userRoles';
 import { resolveVisibleGameKeys } from '@/lib/skillCatalog';
 import { sortCoursesByLevelAndName } from '@/lib/sortCourses';
 
@@ -58,7 +63,9 @@ export async function loadHomeCourses(levelName = ''): Promise<HomeCoursesData> 
     ...classLevels.map((item) => item.levelName),
     ...activeCoursesForFilters.map((item) => item.levelName),
   ]);
-  const selectedLevelName = resolveSelectedHomeLevel(levelName, availableLevels);
+  const role = session ? normalizeUserRole(session.role) : null;
+  const roleLevels = role ? filterLevelsForRole(role, availableLevels) : availableLevels;
+  const selectedLevelName = resolveSelectedHomeLevel(levelName, roleLevels);
   const courses = await prisma.course.findMany({
     where: {
       active: true,
@@ -78,7 +85,9 @@ export async function loadHomeCourses(levelName = ''): Promise<HomeCoursesData> 
     orderBy: [{ levelName: 'asc' }, { name: 'asc' }],
   });
 
-  const sortedCourses = sortCoursesByLevelAndName(courses);
+  const sortedCourses = sortCoursesByLevelAndName(courses).filter((course) =>
+    role ? canAccessCourseLevel(role, course.levelName) : true
+  );
   const courseIds = sortedCourses.map((course) => course.id);
   const courseKeys = sortedCourses.map((course) => progressCourseKey(course.name, course.levelName));
   const [questionGroups, progressRows] = await Promise.all([
@@ -146,7 +155,7 @@ export async function loadHomeCourses(levelName = ''): Promise<HomeCoursesData> 
       };
     }),
     filters: {
-      levels: gradeLevelsOnly(availableLevels),
+      levels: gradeLevelsOnly(roleLevels),
     },
     selectedLevelName,
     playerKind: session ? 'authenticated' : 'guest',

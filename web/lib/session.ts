@@ -1,9 +1,11 @@
 import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
 
+import { normalizeUserRole, type UserRole } from '@/lib/userRoles';
+
 export const SESSION_COOKIE = 'wewin_session';
 
-export type UserRole = 'student' | 'admin';
+export type { UserRole };
 
 export type SessionPayload = {
   userId: string;
@@ -18,10 +20,6 @@ function secretKey() {
     throw new Error('SESSION_SECRET is missing or too short');
   }
   return new TextEncoder().encode(secret);
-}
-
-function normalizeRole(value: unknown): UserRole {
-  return value === 'admin' ? 'admin' : 'student';
 }
 
 export async function sealSession(payload: SessionPayload): Promise<string> {
@@ -51,7 +49,7 @@ export async function unsealSession(token: string): Promise<SessionPayload | nul
       userId: payload.userId,
       username: payload.username,
       displayName: payload.displayName,
-      role: normalizeRole(payload.role),
+      role: normalizeUserRole(payload.role),
     };
   } catch {
     return null;

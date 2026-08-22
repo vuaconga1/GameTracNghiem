@@ -1,10 +1,12 @@
 import 'server-only';
 
+import { optionalSession } from '@/lib/auth';
 import {
   resolveCourseGameLessonDescriptor,
   type CourseGameLessonDescriptor,
 } from '@/lib/courseGameLesson';
 import { prisma } from '@/lib/db';
+import { canAccessCourseLevel, normalizeUserRole } from '@/lib/userRoles';
 import { isGameVisibleForCourse } from '@/lib/skillCatalog';
 
 export type { CourseGameLessonDescriptor };
@@ -13,9 +15,11 @@ export async function loadCourseGameLesson(
   courseId: string,
   gameKey: string,
 ): Promise<CourseGameLessonDescriptor | null> {
+  const session = await optionalSession();
   const course = await prisma.course.findFirst({
     where: { id: courseId, active: true, archivedAt: null },
     select: {
+      levelName: true,
       enabledGames: true,
       gameSkills: true,
       enabledSkills: true,
@@ -30,6 +34,8 @@ export async function loadCourseGameLesson(
 
   if (
     !course ||
+    (session &&
+      !canAccessCourseLevel(normalizeUserRole(session.role), course.levelName)) ||
     !isGameVisibleForCourse(
       course.gameSkills,
       course.enabledSkills,

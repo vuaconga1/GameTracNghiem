@@ -15,6 +15,7 @@ import {
 } from '@/features/scoring/completeSession';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
+import { GameListActions } from '@/features/games/GameListActions';
 import { gradedIsCorrect, isGradedStatus } from '@/features/games/gradedLock';
 import {
   createPlaySessionId,
@@ -672,7 +673,6 @@ export function QuizGame({ courseId }: Props) {
 
   const firstPending = nextEmptyInSubset(playQuestions, statuses);
   const allAnswered = playQuestions.length > 0 && firstPending === -1;
-  const startLabel = allAnswered ? t('common.restartFromStart') : t('common.startExercise');
   const typeLabel = selectedType ? t(`quiz.types.${selectedType}`) : '';
   const selectedExerciseTitle = selectedExercise
     ? localizeExerciseTitle(
@@ -844,25 +844,14 @@ export function QuizGame({ courseId }: Props) {
                   <span className="stat-label">{t('gameUi.pending')}</span>
                 </div>
               </div>
-              <div className="game-actions">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={allAnswered ? () => void resetProgress(true) : startOrContinue}
-                  disabled={isResetting}
-                >
-                  {isResetting ? t('common.redoing') : startLabel}
-                </button>
-                {allAnswered ? (
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={() => setPanel('result')}
-                  >
-                    {t('gameUi.seeResults')}
-                  </button>
-                ) : null}
-              </div>
+              <GameListActions
+                stats={stats}
+                allAnswered={allAnswered}
+                isResetting={isResetting}
+                onContinue={startOrContinue}
+                onRestartFromStart={() => void resetProgress(true)}
+                onViewResult={() => setPanel('result')}
+              />
               <div className="question-list">
                 {playQuestions.map((question, listIndex) => {
                   const status = statuses[question.index] || 'empty';

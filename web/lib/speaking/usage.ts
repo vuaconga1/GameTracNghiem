@@ -2,6 +2,7 @@ import type { SessionPayload } from '@/lib/session';
 import { prisma } from '@/lib/db';
 import {
   evaluateSpeakingAccess,
+  skipsSpeakingDailyQuota,
   SpeakingAccessError,
   type SpeakingAccessConfig,
 } from '@/lib/speaking/access';
@@ -344,7 +345,15 @@ export async function reserveActivityAttempt(
       activityType: input.activityType,
       limit: config.dailyLimit,
     });
-    if (quota.usedCount >= quota.limitSnapshot) {
+    const skipDailyQuota = skipsSpeakingDailyQuota(
+      (
+        await tx.user.findUnique({
+          where: { id: input.userId },
+          select: { role: true },
+        })
+      )?.role,
+    );
+    if (!skipDailyQuota && quota.usedCount >= quota.limitSnapshot) {
       throw new SpeakingLimitError('Bạn đã dùng hết lượt Speaking hôm nay', {
         usageId: quota.id,
         activityType: input.activityType,
@@ -352,7 +361,10 @@ export async function reserveActivityAttempt(
         limit: quota.limitSnapshot,
       });
     }
-    if (quota.usedCount + quota.reservedCount >= quota.limitSnapshot) {
+    if (
+      !skipDailyQuota &&
+      quota.usedCount + quota.reservedCount >= quota.limitSnapshot
+    ) {
       throw new SpeakingConflictError(
         'SPEAKING_RESERVATION_ACTIVE',
         'Các lượt Speaking còn lại đang được giữ chỗ',
@@ -673,7 +685,7 @@ export async function finalizeActivityAttempt(
       activityType,
       limit: access.config.dailyLimit,
     });
-    if (quota.usedCount >= quota.limitSnapshot) {
+    if (!access.quota?.unlimited && quota.usedCount >= quota.limitSnapshot) {
       await releaseReservationTx(
         tx,
         session,

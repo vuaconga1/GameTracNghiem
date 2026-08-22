@@ -113,7 +113,7 @@ export async function POST(req: Request) {
 
     const users = await prisma.user.findMany({
       where: {
-        role: 'student',
+        role: { in: ['WewinStudent', 'student'] },
         archivedAt: null,
         OR: [
           ...(usernames.length ? [{ username: { in: usernames } }] : []),

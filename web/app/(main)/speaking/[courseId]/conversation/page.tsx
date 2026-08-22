@@ -21,7 +21,7 @@ export default async function SpeakingConversationPage({
 
   const course = await prisma.course.findFirst({
     where: { id: courseId, archivedAt: null },
-    select: { id: true, name: true },
+    select: { id: true, name: true, levelName: true },
   });
 
   return (
@@ -30,6 +30,7 @@ export default async function SpeakingConversationPage({
         courseId={courseId}
         courseName={course?.name}
         topicId={topicId}
+        levelName={course?.levelName}
       />
     </Suspense>
   );

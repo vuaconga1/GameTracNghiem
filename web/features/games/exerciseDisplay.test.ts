@@ -132,6 +132,38 @@ describe('exerciseDisplay', () => {
     expect(html).toContain('<u class="quiz-error-opt">the</u>');
   });
 
+  it('repairs US/UK spelling and 1-letter typos to the sentence word', () => {
+    const sentence =
+      'There is a community center in our neighbour that offers different classes and activities for all ages.';
+    expect(repairErrorOptions(sentence, ['There', 'in', 'neighbor', 'diffirent'])).toEqual([
+      'There',
+      'in',
+      'neighbour',
+      'different',
+    ]);
+    const html = underlineErrorOptionsInSentence(sentence, [
+      'There',
+      'in',
+      'neighbor',
+      'diffirent',
+    ]);
+    expect(html).toContain('<u class="quiz-error-opt">neighbour</u>');
+    expect(html).toContain('<u class="quiz-error-opt">different</u>');
+  });
+
+  it('repairs British -re/-er and -our/-or pairs to the sentence word', () => {
+    const sentence = 'The colour of the centre is bright.';
+    expect(repairErrorOptions(sentence, ['The', 'color', 'of', 'center'])).toEqual([
+      'The',
+      'colour',
+      'of',
+      'centre',
+    ]);
+    const html = underlineErrorOptionsInSentence(sentence, ['The', 'color', 'of', 'center']);
+    expect(html).toContain('<u class="quiz-error-opt">colour</u>');
+    expect(html).toContain('<u class="quiz-error-opt">centre</u>');
+  });
+
   it('maps Vietnamese instructions from typeLabel with type fallback', () => {
     expect(quizExerciseInstructionVi('Find the mistake', 'fill_blank')).toBe(
       'Gạch lỗi sai trong câu và viết lại câu đúng.'

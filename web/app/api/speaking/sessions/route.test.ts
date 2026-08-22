@@ -57,7 +57,7 @@ const authSession = {
   userId: 'student-1',
   username: 'student',
   displayName: 'Student',
-  role: 'student',
+  role: 'WewinStudent',
 };
 
 function request(body: unknown = { topicId: 'topic-1' }) {

@@ -7,6 +7,7 @@ import type { SpeakingActivityType } from '@/lib/speaking/config';
 
 import {
   SPEAKING_HUB_ACTIVITIES,
+  speakingHubActivitiesForGrade,
   SpeakingHubCards,
   SpeakingLockedModal,
 } from './SpeakingHub';
@@ -41,19 +42,13 @@ function allowedAccess(
 }
 
 describe('SpeakingHubCards', () => {
-  it('defines and renders exactly four independently gated activities', () => {
+  it('renders only the realtime conversation activity for grades 6–9', () => {
     const html = renderToStaticMarkup(
       <I18nProvider initialLocale="vi">
         <SpeakingHubCards
           courseId="course-1"
+          levelName="Lớp 8"
           accessByActivity={{
-            WORD_PRONUNCIATION: allowedAccess(
-              'WORD_PRONUNCIATION',
-              2,
-              30,
-            ),
-            SENTENCE_READING: allowedAccess('SENTENCE_READING', 1, 20),
-            GUIDED_ANSWER: allowedAccess('GUIDED_ANSWER', 0, 15),
             REALTIME_CONVERSATION: allowedAccess(
               'REALTIME_CONVERSATION',
               1,
@@ -64,18 +59,50 @@ describe('SpeakingHubCards', () => {
       </I18nProvider>,
     );
 
-    expect(SPEAKING_HUB_ACTIVITIES).toHaveLength(4);
-    expect(html.match(/data-speaking-activity=/g)).toHaveLength(4);
-    expect(html).toContain('Phát âm từ');
-    expect(html).toContain('Đọc câu');
-    expect(html).toContain('Trả lời có hướng dẫn');
-    expect(html).toContain('Hội thoại Realtime');
+    expect(SPEAKING_HUB_ACTIVITIES).toHaveLength(1);
+    expect(html.match(/data-speaking-activity=/g)).toHaveLength(1);
+    expect(html).not.toContain('Phát âm từ');
+    expect(html).not.toContain('Đọc câu');
+    expect(html).not.toContain('Trả lời có hướng dẫn');
+    expect(html).toContain('Nói tự do');
     expect(html).toContain('class="activity-card"');
     expect(html).toContain('1/2');
     expect(html).not.toContain('1 lượt/ngày');
   });
 
-  it('locks only the activity whose own daily quota is exhausted', () => {
+  it('switches hub copy by grade band', () => {
+    expect(
+      speakingHubActivitiesForGrade(undefined, 'Lớp 4')[0].titleKey,
+    ).toBe('speaking.hub.activities.sentenceCorrection.title');
+    expect(speakingHubActivitiesForGrade(8)[0].titleKey).toBe(
+      'speaking.hub.activities.conversation.title',
+    );
+  });
+
+  it('renders sentence-pronunciation practice for grades 1–5', () => {
+    const html = renderToStaticMarkup(
+      <I18nProvider initialLocale="vi">
+        <SpeakingHubCards
+          courseId="course-1"
+          levelName="Lớp 3"
+          accessByActivity={{
+            REALTIME_CONVERSATION: allowedAccess(
+              'REALTIME_CONVERSATION',
+              0,
+              2,
+            ),
+          }}
+        />
+      </I18nProvider>,
+    );
+
+    expect(html.match(/data-speaking-activity=/g)).toHaveLength(1);
+    expect(html).toContain('Sửa phát âm câu');
+    expect(html).not.toContain('Nói tự do');
+    expect(html).not.toContain('Hội thoại Realtime');
+  });
+
+  it('locks the activity when its daily quota is exhausted', () => {
     const realtime = allowedAccess('REALTIME_CONVERSATION', 2, 2);
     realtime.allowed = false;
     realtime.reason = 'DAILY_LIMIT_REACHED';
@@ -85,26 +112,38 @@ describe('SpeakingHubCards', () => {
       <I18nProvider initialLocale="en">
         <SpeakingHubCards
           courseId="course-1"
+          levelName="Lớp 8"
           accessByActivity={{
-            WORD_PRONUNCIATION: allowedAccess(
-              'WORD_PRONUNCIATION',
-              0,
-              30,
-            ),
-            SENTENCE_READING: allowedAccess('SENTENCE_READING', 0, 20),
-            GUIDED_ANSWER: allowedAccess('GUIDED_ANSWER', 0, 15),
             REALTIME_CONVERSATION: realtime,
           }}
         />
       </I18nProvider>,
     );
 
-    expect(
-      html.match(/href="\/speaking\/course-1\/(word-pronunciation|sentence-reading|guided-answer)"/g),
-    ).toHaveLength(3);
-    expect(html).not.toContain(
-      'href="/speaking/course-1/conversation"',
+    expect(html).not.toContain('href="/speaking/course-1/conversation"');
+    expect(html).toContain('activity-card--locked');
+  });
+
+  it('keeps the activity open for admin unlimited quota', () => {
+    const realtime = allowedAccess('REALTIME_CONVERSATION', 2, 2);
+    realtime.quota!.unlimited = true;
+    realtime.quota!.remaining = 2;
+
+    const html = renderToStaticMarkup(
+      <I18nProvider initialLocale="vi">
+        <SpeakingHubCards
+          courseId="course-1"
+          levelName="Lớp 8"
+          accessByActivity={{
+            REALTIME_CONVERSATION: realtime,
+          }}
+        />
+      </I18nProvider>,
     );
+
+    expect(html).toContain('href="/speaking/course-1/conversation"');
+    expect(html).toContain('Không giới hạn');
+    expect(html).not.toContain('activity-card--locked');
   });
 });
 
@@ -113,7 +152,7 @@ describe('SpeakingLockedModal', () => {
     const html = renderToStaticMarkup(
       <I18nProvider initialLocale="vi">
         <SpeakingLockedModal
-          activityTitle="Hội thoại Realtime"
+          activityTitle="Nói tự do"
           destination="/speaking/course-1/conversation"
           courseId="course-1"
           reason="LOGIN_REQUIRED"
@@ -138,7 +177,7 @@ describe('SpeakingLockedModal', () => {
     const html = renderToStaticMarkup(
       <I18nProvider initialLocale="vi">
         <SpeakingLockedModal
-          activityTitle="Hội thoại Realtime"
+          activityTitle="Nói tự do"
           destination="/speaking/course-1/conversation"
           courseId="course-1"
           reason="DAILY_LIMIT_REACHED"

@@ -182,7 +182,7 @@ const harness = vi.hoisted(() => {
   const client = {
     user: {
       findUnique: vi.fn(async () => ({
-        role: 'student',
+        role: 'WewinStudent',
         archivedAt: null,
         portalLinkedAt: new Date('2026-08-01T00:00:00.000Z'),
         speakingAccountStatus: 'ACTIVE',
@@ -417,7 +417,7 @@ const authSession = {
   userId: 'student-1',
   username: 'student',
   displayName: 'Student',
-  role: 'student' as const,
+  role: 'WewinStudent' as const,
 };
 const now = new Date('2026-08-06T03:00:00.000Z');
 
@@ -452,6 +452,12 @@ describe('Speaking quota V2', () => {
   beforeEach(() => {
     harness.reset();
     vi.clearAllMocks();
+    harness.client.user.findUnique.mockResolvedValue({
+      role: 'WewinStudent',
+      archivedAt: null,
+      portalLinkedAt: new Date('2026-08-01T00:00:00.000Z'),
+      speakingAccountStatus: 'ACTIVE',
+    });
   });
 
   it('allows the first and second starts, then rejects the third', async () => {
@@ -483,6 +489,51 @@ describe('Speaking quota V2', () => {
     submit(second.session.id);
 
     await expect(reserve()).rejects.toBeInstanceOf(SpeakingLimitError);
+  });
+
+  it('lets admin reserve after the daily student limit', async () => {
+    const adminAuth = {
+      ...authSession,
+      username: 'admin',
+      displayName: 'Admin',
+      role: 'admin' as const,
+    };
+    harness.client.user.findUnique.mockResolvedValue({
+      role: 'admin',
+      archivedAt: null,
+      portalLinkedAt: null,
+      speakingAccountStatus: 'ACTIVE',
+    });
+
+    const first = await reserve();
+    await finalizeActivityAttempt({
+      sessionId: first.session.id,
+      userId: adminAuth.userId,
+      authSession: adminAuth,
+      idempotencyKey: 'admin-1',
+      now,
+    });
+    submit(first.session.id);
+
+    const second = await reserve();
+    await finalizeActivityAttempt({
+      sessionId: second.session.id,
+      userId: adminAuth.userId,
+      authSession: adminAuth,
+      idempotencyKey: 'admin-2',
+      now,
+    });
+    submit(second.session.id);
+
+    const third = await reserve();
+    await finalizeActivityAttempt({
+      sessionId: third.session.id,
+      userId: adminAuth.userId,
+      authSession: adminAuth,
+      idempotencyKey: 'admin-3',
+      now,
+    });
+    expect(harness.state.quotas[0].usedCount).toBe(3);
   });
 
   it('returns the same result for a duplicate started request', async () => {

@@ -92,5 +92,22 @@ describe('canStartNewSession', () => {
     expect(free.canStart).toBe(true);
     expect(free.remainingToday).toBe(1);
     expect(free.nextAvailableAt).toBeNull();
+    expect(free.unlimited).toBe(false);
+  });
+
+  it('keeps canStart true for unlimited admin quota after the daily limit', () => {
+    const now = new Date('2026-07-24T05:00:00.000Z');
+    const admin = buildDailyUsageResponse({
+      usedCount: 8,
+      reservedCount: 0,
+      limitSnapshot: 2,
+      now,
+      unlimited: true,
+    });
+    expect(admin.canStart).toBe(true);
+    expect(admin.status).toBe('AVAILABLE');
+    expect(admin.unlimited).toBe(true);
+    expect(admin.nextAvailableAt).toBeNull();
+    expect(admin.remainingToday).toBe(2);
   });
 });

@@ -8,6 +8,7 @@ import { DataLoading } from '@/components/DataLoading';
 import { SpeakingAccessAdmin } from '@/features/admin/SpeakingAccessAdmin';
 import { SpeakingOperationsAdmin } from '@/features/admin/SpeakingOperationsAdmin';
 import { sheetNav, useSheetKeyboard } from '@/features/admin/useSheetKeyboard';
+import { isSentenceCorrectionSpeakingGrade } from '@/lib/speaking/gradeBand';
 
 type Topic = {
   id: string;
@@ -19,6 +20,21 @@ type Topic = {
   sortOrder: number;
   course?: { id: string; name: string; levelName: string };
 };
+
+function topicInstructionsHelp(levelName?: string) {
+  if (isSentenceCorrectionSpeakingGrade({ levelName })) {
+    return {
+      label:
+        'Lớp 1–5: ghi 5 câu hỏi (mỗi dòng một câu). AI hỏi lần lượt, chấm và sửa phát âm — không nói tự do.',
+      placeholder:
+        '1. What is your name?\n2. How old are you?\n3. What colour do you like?\n4. Do you like school?\n5. What do you like to play?',
+    };
+  }
+  return {
+    label: 'Lớp 6–9: mô tả chủ đề để AI hội thoại và trả lời tự do.',
+    placeholder: 'Talk about leisure activities with the student…',
+  };
+}
 
 type CourseOption = { id: string; name: string; levelName: string };
 
@@ -541,11 +557,25 @@ export function SpeakingAdmin({ displayName }: { displayName: string }) {
                           <tr className="sheet-nested-row">
                             <td colSpan={6}>
                               <label className="admin-field">
-                                <span>Hướng dẫn cho AI (không cần viết rule kỹ thuật)</span>
+                                <span>
+                                  {
+                                    topicInstructionsHelp(
+                                      courses.find(
+                                        (course) => course.id === row.courseId,
+                                      )?.levelName,
+                                    ).label
+                                  }
+                                </span>
                                 <textarea
                                   rows={4}
                                   value={row.instructions}
-                                  placeholder="Talk about leisure activities with the student…"
+                                  placeholder={
+                                    topicInstructionsHelp(
+                                      courses.find(
+                                        (course) => course.id === row.courseId,
+                                      )?.levelName,
+                                    ).placeholder
+                                  }
                                   onChange={(e) =>
                                     patchRow(row.key, { instructions: e.target.value })
                                   }

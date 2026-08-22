@@ -4,29 +4,25 @@ vi.mock('server-only', () => ({}));
 
 const mocks = vi.hoisted(() => ({
   optionalSession: vi.fn(),
-  courseFindFirst: vi.fn(),
-  ebookFindFirst: vi.fn(),
-  questionGroupBy: vi.fn(),
-  questionFindMany: vi.fn(),
+  getCourseDetailPublicCached: vi.fn(),
   progressFindMany: vi.fn(),
   scoreAggregate: vi.fn(),
+  resolveCanonicalLop9CourseId: vi.fn(),
 }));
 
 vi.mock('@/lib/auth', () => ({
   optionalSession: (...args: unknown[]) => mocks.optionalSession(...args),
 }));
 vi.mock('@/lib/lop9Units', () => ({
-  resolveCanonicalLop9CourseId: (_db: unknown, courseId: string) =>
-    Promise.resolve(courseId),
+  resolveCanonicalLop9CourseId: (...args: unknown[]) =>
+    mocks.resolveCanonicalLop9CourseId(...args),
+}));
+vi.mock('@/lib/loadCourseDetailPublic', () => ({
+  getCourseDetailPublicCached: (...args: unknown[]) =>
+    mocks.getCourseDetailPublicCached(...args),
 }));
 vi.mock('@/lib/db', () => ({
   prisma: {
-    course: { findFirst: mocks.courseFindFirst },
-    ebook: { findFirst: mocks.ebookFindFirst },
-    question: {
-      groupBy: mocks.questionGroupBy,
-      findMany: mocks.questionFindMany,
-    },
     gameProgress: { findMany: mocks.progressFindMany },
     scoreLog: { aggregate: mocks.scoreAggregate },
   },
@@ -38,20 +34,33 @@ describe('course detail official score total', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     mocks.optionalSession.mockResolvedValue({ userId: 'student-1' });
-    mocks.courseFindFirst.mockResolvedValue({
-      id: 'course-1',
-      name: 'Unit 1',
-      levelName: 'Lớp 8',
-      enabledGames: ['quiz'],
-      gameSkills: null,
-      enabledSkills: [],
-      ebookFileId: null,
-      ebookPageStart: null,
-      ebookPageEnd: null,
-      skillLessons: [],
+    mocks.resolveCanonicalLop9CourseId.mockImplementation(
+      (_db: unknown, courseId: string) => Promise.resolve(courseId),
+    );
+    mocks.getCourseDetailPublicCached.mockResolvedValue({
+      course: {
+        id: 'course-1',
+        name: 'Unit 1',
+        levelName: 'Lớp 8',
+        courseKey: 'Unit 1|Lớp 8',
+        enabledGames: ['quiz'],
+        gameSkills: { quiz: ['writing'] },
+        enabledSkills: ['writing'],
+        ebook: null,
+        skillLessons: {},
+      },
+      games: {
+        quiz: { questionCount: 10, statuses: [] },
+      },
+      skillScopedQuestions: { quiz: [{ skill: 'writing' }] },
+      skillStats: {
+        writing: {
+          totalQuestions: 10,
+          completedQuestions: 0,
+          byGame: { quiz: { questionCount: 10, completedCount: 0 } },
+        },
+      },
     });
-    mocks.questionGroupBy.mockResolvedValue([]);
-    mocks.questionFindMany.mockResolvedValue([]);
     mocks.progressFindMany.mockResolvedValue([]);
     mocks.scoreAggregate.mockResolvedValue({ _sum: { points: 120 } });
   });
@@ -60,6 +69,7 @@ describe('course detail official score total', () => {
     const result = await loadCourseDetail('course-1');
 
     expect(result?.totalScore).toBe(120);
+    expect(mocks.getCourseDetailPublicCached).toHaveBeenCalledWith('course-1');
     expect(mocks.scoreAggregate).toHaveBeenCalledWith({
       where: {
         userId: 'student-1',

@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest';
 
 import {
+  alignHeardText,
   normalizeSpeechText,
+  pickHeardText,
   scoreTranscript,
   PASS_THRESHOLD,
 } from './scoreTranscript';
@@ -9,6 +11,26 @@ import {
 describe('normalizeSpeechText', () => {
   it('lowercases, strips punctuation, and collapses spaces', () => {
     expect(normalizeSpeechText('  Nice, to meet you!  ')).toBe('nice to meet you');
+  });
+});
+
+describe('alignHeardText', () => {
+  it('strips hesitation fillers around a word', () => {
+    expect(alignHeardText('heart', 'um heart')).toBe('heart');
+  });
+
+  it('keeps the closer token when Whisper appends junk', () => {
+    expect(alignHeardText('father', 'fart it')).toBe('fart');
+  });
+
+  it('does not rewrite a single unrelated word', () => {
+    expect(alignHeardText('heart', 'alright')).toBe('alright');
+  });
+});
+
+describe('pickHeardText', () => {
+  it('prefers the alternative closest to the target word', () => {
+    expect(pickHeardText('heart', ['alright', 'heart', 'art'])).toBe('heart');
   });
 });
 
@@ -33,9 +55,9 @@ describe('scoreTranscript — word mode', () => {
     expect(result.isCorrect).toBe(false);
   });
 
-  it('passes near-match above threshold', () => {
-    const result = scoreTranscript('leisure', 'leisur', 'phoneme');
-    expect(result.accuracy).toBeGreaterThanOrEqual(PASS_THRESHOLD);
+  it('passes after stripping a filler before the target word', () => {
+    const result = scoreTranscript('heart', 'um heart', 'phoneme');
+    expect(result.transcript).toBe('heart');
     expect(result.isCorrect).toBe(true);
   });
 });

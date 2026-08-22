@@ -721,6 +721,30 @@
   color: #b91c1c;
 }
 
+.eval-transcript {
+  border-radius: 0.875rem;
+  padding: 0.75rem 1rem;
+  background: #f8fafc;
+  border: 1px solid rgba(13, 43, 110, 0.12);
+}
+
+.eval-transcript-label {
+  margin: 0 0 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.eval-transcript-text {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--pron-primary);
+  word-break: break-word;
+}
+
 .eval-chip-row {
   display: flex;
   gap: 0.5rem;

@@ -6,6 +6,7 @@ import { Suspense, useEffect, useRef, useState } from 'react';
 
 import { DataLoading } from '@/components/DataLoading';
 import { useI18n } from '@/components/i18n/I18nProvider';
+import { useHomeHref } from '@/components/shell/HomeNavContext';
 import { PageBackButton } from '@/components/PageBackButton';
 import { usePlayer } from '@/components/player/PlayerContext';
 import { CourseVocabTab } from '@/features/courses/CourseVocabTab';
@@ -22,10 +23,7 @@ import type {
   GameDetail,
 } from '@/lib/loadCourseDetail';
 import { resolveCourseVocabDeck } from '@/lib/courseVocabDeck';
-import {
-  logisticsCourseIdsForWeek,
-  isLogisticsLevel,
-} from '@/lib/logisticsUnits';
+import { isLogisticsLevel, logisticsWeekHomeHref } from '@/lib/logisticsUnits';
 import {
   guestCourseScore,
   readGuestGameState,
@@ -170,6 +168,7 @@ export function CourseDetailContent({
   initialSkill = null,
 }: CourseDetailContentProps) {
   const { t, formatClassLevel, locale } = useI18n();
+  const homeHref = useHomeHref();
   const searchParams = useSearchParams();
   const skillFromUrl = parseSkillQuery(searchParams.get('skill')) ?? initialSkill;
   const [activeTab, setActiveTab] = useState<DetailTab>(initialTab);
@@ -212,11 +211,10 @@ export function CourseDetailContent({
   const showGameGrid = effectiveTab === 'exercises' && Boolean(selectedSkill);
   const selectedSkillMeta = skillCards.find((skill) => skill.id === selectedSkill);
   const logisticsHomeHref = isLogisticsLevel(data.course.levelName)
-    ? logisticsCourseIdsForWeek(2).has(data.course.id)
-      ? '/logistics/week2'
-      : '/logistics'
-    : '/';
-  const backHref = selectedSkill ? `/courses/${data.course.id}` : logisticsHomeHref;  const unitEbook = data.course.ebook
+    ? logisticsWeekHomeHref(data.course.id)
+    : homeHref;
+  const backHref = selectedSkill ? `/courses/${data.course.id}` : logisticsHomeHref;
+  const unitEbook = data.course.ebook
     ? { pageStart: data.course.ebook.pageStart, pageEnd: data.course.ebook.pageEnd }
     : null;
   const lessonPages = resolveCourseEbookPagesForSkill({

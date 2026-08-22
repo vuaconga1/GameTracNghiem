@@ -15,6 +15,7 @@ import {
 } from '@/features/scoring/completeSession';
 import { submitAnswerScore } from '@/features/scoring/submitScore';
 import { clearAutoAdvance, scheduleAutoAdvance } from '@/features/games/autoAdvance';
+import { GameListActions } from '@/features/games/GameListActions';
 import { gradedIsCorrect, isGradedStatus } from '@/features/games/gradedLock';
 import {
   createPlaySessionId,
@@ -210,7 +211,6 @@ export function GrammarGameContent({
   const currentQuestion = questions[currentIndex];
   const firstPending = nextEmptyInSubset(questions, [...statuses]);
   const allAnswered = firstPending === -1;
-  const startLabel = allAnswered ? t('common.restartFromStart') : t('common.startExercise');
   const subtitle = [course.name, formatClassLevel(course.levelName), exerciseTitle]
     .filter(Boolean)
     .join(' · ');
@@ -273,21 +273,14 @@ export function GrammarGameContent({
               <span className="stat-label">{t('gameUi.pending')}</span>
             </div>
           </div>
-          <div className="game-actions">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={allAnswered ? onRetryFromStart : onStartContinue}
-              disabled={isResetting}
-            >
-              {isResetting ? t('common.redoing') : startLabel}
-            </button>
-            {allAnswered ? (
-              <button type="button" className="btn btn-secondary" onClick={onViewResult}>
-                {t('gameUi.seeResults')}
-              </button>
-            ) : null}
-          </div>
+          <GameListActions
+            stats={stats}
+            allAnswered={allAnswered}
+            isResetting={isResetting}
+            onContinue={onStartContinue}
+            onRestartFromStart={onRetryFromStart}
+            onViewResult={onViewResult}
+          />
           <div className="question-list">
             {questions.map((question, index) => {
               const status = statuses[question.index] || 'empty';

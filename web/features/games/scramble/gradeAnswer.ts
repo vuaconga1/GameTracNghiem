@@ -1,8 +1,7 @@
+import { normalizeTypedAnswer } from '../normalizeTypedAnswer';
+
 export function normalizeScrambleAnswer(value: string): string {
-  return String(value || '')
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, '');
+  return normalizeTypedAnswer(value).replace(/\s+/g, '');
 }
 
 export function gradeScrambleAnswer(userAnswer: string, word: string): boolean {

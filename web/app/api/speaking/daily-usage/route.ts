@@ -5,6 +5,7 @@ import {
   SPEAKING_ACCESS_REASON,
   SpeakingAccessError,
 } from '@/lib/speaking/access';
+import { isAdminUserRole } from '@/lib/userRoles';
 import {
   isSpeakingActivityType,
   type SpeakingActivityType,
@@ -73,6 +74,7 @@ export async function GET(req: Request) {
         },
       }),
     ]);
+    const unlimited = isAdminUserRole(session.role);
     const usageByActivity = new Map(
       usages.map((usage) => [usage.activityType, usage]),
     );
@@ -92,6 +94,7 @@ export async function GET(req: Request) {
               reservedUntil: usage?.reservedUntil,
               sessionId: usage?.sessionId,
               now,
+              unlimited,
             }),
           ];
         }),
@@ -104,6 +107,7 @@ export async function GET(req: Request) {
         activityType: requestedActivity,
         limitSnapshot: 1,
         now,
+        unlimited,
       });
     const speakingSession = selectedUsage?.session
       ? {
