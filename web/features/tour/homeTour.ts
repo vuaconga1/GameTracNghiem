@@ -1,15 +1,9 @@
-import { driver, type DriveStep, type Driver } from 'driver.js';
+import { type DriveStep, type Driver } from 'driver.js';
 
-import { markHomeTourDone } from './storage';
+import { elementExists, filterExistingSteps, startTour, stopActiveTour, type TourTranslate } from './runTour';
+import { TOUR_KEYS } from './storage';
 
-export type TourTranslate = (key: string, params?: Record<string, string | number>) => string;
-
-let activeTour: Driver | null = null;
-
-function elementExists(selector: string): boolean {
-  if (typeof document === 'undefined') return false;
-  return Boolean(document.querySelector(selector));
-}
+export type { TourTranslate };
 
 export function buildHomeTourSteps(t: TourTranslate): DriveStep[] {
   const candidates: DriveStep[] = [
@@ -92,46 +86,13 @@ export function buildHomeTourSteps(t: TourTranslate): DriveStep[] {
     },
   });
 
-  return candidates.filter((step) => {
-    if (!step.element || typeof step.element !== 'string') return true;
-    return elementExists(step.element);
-  });
+  return filterExistingSteps(candidates);
 }
 
 export function startHomeTour(t: TourTranslate): Driver | null {
-  if (typeof window === 'undefined') return null;
-
-  stopHomeTour();
-
-  const steps = buildHomeTourSteps(t);
-  if (steps.length === 0) return null;
-
-  const instance = driver({
-    showProgress: true,
-    animate: true,
-    overlayOpacity: 0.55,
-    stagePadding: 8,
-    stageRadius: 12,
-    allowClose: true,
-    nextBtnText: t('tour.next'),
-    prevBtnText: t('tour.prev'),
-    doneBtnText: t('tour.done'),
-    progressText: '{{current}} / {{total}}',
-    steps,
-    onDestroyed: () => {
-      markHomeTourDone();
-      if (activeTour === instance) activeTour = null;
-    },
-  });
-
-  activeTour = instance;
-  instance.drive();
-  return instance;
+  return startTour({ steps: buildHomeTourSteps(t), t, doneKey: TOUR_KEYS.home });
 }
 
 export function stopHomeTour(): void {
-  if (!activeTour) return;
-  const current = activeTour;
-  activeTour = null;
-  current.destroy();
+  stopActiveTour();
 }

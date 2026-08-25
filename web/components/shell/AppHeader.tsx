@@ -24,7 +24,7 @@ export function AppHeader({
   const router = useRouter();
   const { open, toggle } = useSidebar();
   const { t } = useI18n();
-  const { startHomeTourGuide } = useTour();
+  const { startTourGuide, hasTour } = useTour();
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   async function handleLogout() {
@@ -57,17 +57,19 @@ export function AppHeader({
       </div>
 
       <div className="header-actions">
-        <button
-          type="button"
-          className="action-item action-item-tour"
-          data-tour="tour-replay"
-          title={t('tour.showGuide')}
-          aria-label={t('tour.showGuide')}
-          onClick={startHomeTourGuide}
-        >
-          <i className="fas fa-circle-question" aria-hidden="true" />
-          <span>{t('tour.showGuide')}</span>
-        </button>
+        {hasTour ? (
+          <button
+            type="button"
+            className="action-item action-item-tour"
+            data-tour="tour-replay"
+            title={t('tour.showGuide')}
+            aria-label={t('tour.showGuide')}
+            onClick={startTourGuide}
+          >
+            <i className="fas fa-circle-question" aria-hidden="true" />
+            <span>{t('tour.showGuide')}</span>
+          </button>
+        ) : null}
         <LanguageSwitcher />
         {isAdmin ? (
           <Link className="action-item" href="/admin">

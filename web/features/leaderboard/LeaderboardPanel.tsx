@@ -91,6 +91,26 @@ function rankPlayers(players: LeaderboardPlayer[]): RankedPlayer[] {
   return players.map((player, index) => ({ ...player, rank: index + 1 }));
 }
 
+function PlayerAvatar({
+  name,
+  avatarUrl,
+  className,
+}: {
+  name: string;
+  avatarUrl?: string | null;
+  className: string;
+}) {
+  if (avatarUrl) {
+    return (
+      <div className={className}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={avatarUrl} alt={name} />
+      </div>
+    );
+  }
+  return <div className={className}>{getInitials(name)}</div>;
+}
+
 function PodiumPlayer({ player }: { player: RankedPlayer }) {
   const { locale } = useI18n();
   const meta = PODIUM_META[player.rank];
@@ -106,7 +126,7 @@ function PodiumPlayer({ player }: { player: RankedPlayer }) {
         <div className="podium-crown">
           <i className={meta.iconClassName} aria-hidden="true" />
         </div>
-        <div className="podium-avatar">{getInitials(name)}</div>
+        <PlayerAvatar name={name} avatarUrl={player.avatarUrl} className="podium-avatar" />
         <div className="podium-name">{name}</div>
         <div className="podium-meta">
           <span className="lb-badge">#{player.rank}</span>
@@ -127,7 +147,7 @@ function LeaderboardRow({ player }: { player: RankedPlayer }) {
   return (
     <div className="lb-row">
       <span className="lb-rank-num">{player.rank}</span>
-      <div className="lb-avatar">{getInitials(name)}</div>
+      <PlayerAvatar name={name} avatarUrl={player.avatarUrl} className="lb-avatar" />
       <span className="lb-name">{name}</span>
       <span className="lb-badge">#{player.rank}</span>
       <span className="lb-score">
@@ -145,7 +165,7 @@ function StickyLeaderboard({ player }: { player: RankedPlayer }) {
     <div className="lb-sticky-wrap">
       <div className="lb-sticky">
         <span className="lb-sticky-rank">{t('leaderboard.yourRank', { rank: player.rank })}</span>
-        <div className="lb-avatar">{getInitials(name)}</div>
+        <PlayerAvatar name={name} avatarUrl={player.avatarUrl} className="lb-avatar" />
         <span className="lb-name">{name}</span>
         <div className="lb-sticky-medals" aria-hidden="true" />
         <span className="lb-score">{formatScore(player.points, locale)}</span>

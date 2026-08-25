@@ -17,6 +17,7 @@ export async function GET() {
       id: true,
       username: true,
       displayName: true,
+      avatarUrl: true,
       role: true,
       archivedAt: true,
     },
@@ -36,6 +37,7 @@ export async function GET() {
     loggedIn: true,
     username: user!.username,
     name: user!.displayName,
+    avatarUrl: user!.avatarUrl,
     role,
     homePath: homeHrefForRole(role),
   });

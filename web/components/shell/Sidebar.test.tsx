@@ -60,7 +60,7 @@ describe('Sidebar', () => {
     });
 
     expect(html).toContain('class="sidebar-user"');
-    expect(html).toContain('class="sidebar-user-avatar"');
+    expect(html).toContain('sidebar-user-avatar');
     expect(html).toContain('Bé Chi');
     expect(html).toContain('class="badge-rank badge-rank--sidebar"');
     expect(html).toContain('class="badge-rank-head"');

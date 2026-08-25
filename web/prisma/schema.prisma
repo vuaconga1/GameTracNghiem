@@ -11,6 +11,7 @@ model User {
   username              String                      @unique
   passwordHash          String
   displayName           String
+  avatarUrl             String?
   role                  String                      @default("student")
   portalLinkedAt        DateTime?
   speakingAccountStatus String                      @default("ACTIVE")

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Graduation cap avatar">
+  <defs>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fb923c"/>
+      <stop offset="1" stop-color="#ea580c"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" fill="url(#g3)"/>
+  <path d="M128 92 L206 124 L128 156 L50 124 Z" fill="#1f2937"/>
+  <path d="M84 138 L84 172 Q128 196 172 172 L172 138" fill="none" stroke="#1f2937" stroke-width="12"/>
+  <line x1="206" y1="124" x2="206" y2="170" stroke="#facc15" stroke-width="6"/>
+  <circle cx="206" cy="176" r="9" fill="#facc15"/>
+</svg>

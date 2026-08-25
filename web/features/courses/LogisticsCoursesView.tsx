@@ -50,7 +50,7 @@ export function LogisticsCoursesView({ week, initialData }: LogisticsCoursesView
   }, [player.kind]);
 
   return (
-    <section id="view-courses" className="courses-area">
+    <section id="view-courses" className="courses-area" data-tour="logistics-courses">
       <div className="courses-header">
         <div className="courses-header-icon">
           <i className="fas fa-truck" aria-hidden="true" />

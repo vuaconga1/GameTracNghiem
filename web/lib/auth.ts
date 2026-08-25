@@ -40,6 +40,7 @@ const lookupSession = cache(async (): Promise<SessionLookup> => {
       id: true,
       username: true,
       displayName: true,
+      avatarUrl: true,
       role: true,
       archivedAt: true,
     },
@@ -55,6 +56,7 @@ const lookupSession = cache(async (): Promise<SessionLookup> => {
       username: user!.username,
       displayName: user!.displayName,
       role: normalizeUserRole(user!.role),
+      avatarUrl: user!.avatarUrl,
     },
     stale: false,
   };

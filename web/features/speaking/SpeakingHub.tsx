@@ -168,7 +168,7 @@ export function SpeakingHub({
       />
 
       <div className="detail-body">
-        <div className="book-card">
+        <div className="book-card" data-tour="speaking-hub-info">
           <div className="book-card-top">
             <div className="book-thumb">
               <i className="fas fa-microphone-lines" aria-hidden="true" />

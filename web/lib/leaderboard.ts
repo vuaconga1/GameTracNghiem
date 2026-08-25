@@ -20,6 +20,7 @@ export type LeaderboardPlayer = {
   username: string;
   displayName: string;
   points: number;
+  avatarUrl?: string | null;
 };
 
 export type LeaderboardResult = {
@@ -64,6 +65,7 @@ export async function getLeaderboard(
       id: true,
       username: true,
       displayName: true,
+      avatarUrl: true,
     },
   });
   const userById = new Map(users.map((user) => [user.id, user]));
@@ -75,6 +77,7 @@ export async function getLeaderboard(
         username: user?.username ?? '',
         displayName: user?.displayName ?? '',
         points: row._sum.points ?? 0,
+        avatarUrl: user?.avatarUrl ?? null,
       };
     })
     .filter((player) => player.username)

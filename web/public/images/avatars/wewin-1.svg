@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="WeWIN logo avatar">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1e40af"/>
+      <stop offset="1" stop-color="#0d2b6e"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" fill="url(#g1)"/>
+  <circle cx="128" cy="128" r="92" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="6"/>
+  <text x="128" y="128" text-anchor="middle" dominant-baseline="central" font-family="Arial, sans-serif" font-size="110" font-weight="800" fill="#ffffff">W</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Happy face avatar">
+  <defs>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#0891b2"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" fill="url(#g2)"/>
+  <circle cx="98" cy="112" r="14" fill="#0f172a"/>
+  <circle cx="158" cy="112" r="14" fill="#0f172a"/>
+  <path d="M92 156 Q128 190 164 156" fill="none" stroke="#0f172a" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="80" cy="150" r="12" fill="#fb7185" fill-opacity="0.7"/>
+  <circle cx="176" cy="150" r="12" fill="#fb7185" fill-opacity="0.7"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Book avatar">
+  <defs>
+    <linearGradient id="g5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d399"/>
+      <stop offset="1" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" fill="url(#g5)"/>
+  <path d="M128 88 Q98 74 66 82 L66 174 Q98 166 128 180 Z" fill="#ffffff"/>
+  <path d="M128 88 Q158 74 190 82 L190 174 Q158 166 128 180 Z" fill="#ecfdf5"/>
+  <line x1="128" y1="88" x2="128" y2="180" stroke="#059669" stroke-width="6"/>
+  <path d="M80 104 H114 M80 124 H114 M142 104 H176 M142 124 H176" stroke="#10b981" stroke-width="6" stroke-linecap="round"/>
+</svg>

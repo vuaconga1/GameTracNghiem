@@ -35,6 +35,7 @@ export function GameListActions({
         <button
           type="button"
           className="btn btn-primary"
+          data-tour="game-start"
           onClick={onContinue}
           disabled={isResetting}
         >
@@ -57,6 +58,7 @@ export function GameListActions({
       <button
         type="button"
         className="btn btn-primary"
+        data-tour="game-start"
         onClick={allAnswered ? onRestartFromStart : onContinue}
         disabled={isResetting}
       >

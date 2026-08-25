@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Owl mascot avatar">
+  <defs>
+    <linearGradient id="g10" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#818cf8"/>
+      <stop offset="1" stop-color="#4f46e5"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" fill="url(#g10)"/>
+  <path d="M80 96 Q128 70 176 96 L176 150 Q128 196 80 150 Z" fill="#c7d2fe"/>
+  <circle cx="104" cy="120" r="24" fill="#ffffff"/>
+  <circle cx="152" cy="120" r="24" fill="#ffffff"/>
+  <circle cx="104" cy="120" r="10" fill="#1f2937"/>
+  <circle cx="152" cy="120" r="10" fill="#1f2937"/>
+  <path d="M128 132 L118 146 L138 146 Z" fill="#f59e0b"/>
+  <path d="M84 92 L74 74 L98 84 Z" fill="#4f46e5"/>
+  <path d="M172 92 L182 74 L158 84 Z" fill="#4f46e5"/>
+</svg>

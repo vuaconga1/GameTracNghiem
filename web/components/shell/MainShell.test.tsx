@@ -12,7 +12,11 @@ vi.mock('next/navigation', () => ({
 }));
 
 vi.mock('@/features/tour/TourProvider', () => ({
-  useTour: () => ({ startHomeTourGuide: vi.fn() }),
+  useTour: () => ({
+    startTourGuide: vi.fn(),
+    startHomeTourGuide: vi.fn(),
+    hasTour: true,
+  }),
   TourProvider: ({ children }: { children: React.ReactNode }) => children,
 }));
 

@@ -238,7 +238,7 @@ export function CourseDetailContent({
         }
       >
         {showBookCard ? (
-          <div className="book-card">
+          <div className="book-card" data-tour="course-info">
             <div className="book-card-top">
               <div className="book-thumb">
                 <i className="fas fa-book" aria-hidden="true" />
@@ -326,7 +326,7 @@ export function CourseDetailContent({
           <div className={effectiveTab === 'exercises' ? 'detail-panel' : 'detail-panel is-hidden'}>
             <div className="activity-area">
               {showSkillCards ? (
-                <div className="activity-grid skill-grid" data-skill-step="skills">
+                <div className="activity-grid skill-grid" data-skill-step="skills" data-tour="course-skills">
                   {(() => {
                     const visibleSkillCards = skillCards.filter((skill) => {
                       const skillGames = gamesForSkillOnCourse(

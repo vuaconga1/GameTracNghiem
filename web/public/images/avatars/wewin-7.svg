@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="Lightbulb idea avatar">
+  <defs>
+    <linearGradient id="g7" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" fill="url(#g7)"/>
+  <circle cx="128" cy="116" r="48" fill="#fde047"/>
+  <path d="M110 158 h36 v16 h-36 z" fill="#e5e7eb"/>
+  <path d="M114 178 h28 v10 h-28 z" fill="#9ca3af"/>
+  <path d="M128 88 v20 M112 100 l10 8 M144 100 l-10 8" stroke="#f59e0b" stroke-width="6" stroke-linecap="round"/>
+</svg>

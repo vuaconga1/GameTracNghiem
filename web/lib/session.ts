@@ -12,6 +12,11 @@ export type SessionPayload = {
   username: string;
   displayName: string;
   role: UserRole;
+  /**
+   * Populated from the DB when reading the session for a page/request. Not part
+   * of the sealed JWT, so avatar changes take effect without re-login.
+   */
+  avatarUrl?: string | null;
 };
 
 function secretKey() {

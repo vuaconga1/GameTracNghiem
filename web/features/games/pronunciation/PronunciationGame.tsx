@@ -474,7 +474,7 @@ export function PronunciationGameContent({
           {panel !== 'question' ? (
             <>
               <p className="pron-hero-label">{t('pronunciation.heroLabel')}</p>
-              <h1 className="pron-hero-title">{course.name}</h1>
+              <h1 className="pron-hero-title" data-tour="game-intro">{course.name}</h1>
             </>
           ) : null}
           {localizedActiveExercise ? (
@@ -485,7 +485,7 @@ export function PronunciationGameContent({
         </div>
 
         {panel === 'question' ? (
-          <div className="game-meta pron-game-meta">
+          <div className="game-meta pron-game-meta" data-tour="game-score">
             <span className="meta-pill meta-score-pill">
               {t('gameUi.sessionScore', { earned: sessionPoints.toLocaleString(numberLocale), max: maxScore.toLocaleString(numberLocale) })}
             </span>
@@ -518,7 +518,7 @@ export function PronunciationGameContent({
               {theoryText}
             </div>
           ) : null}
-          <div className="list-stats">
+          <div className="list-stats" data-tour="game-progress">
             <div className="stat-item">
               <span className="stat-num">{stats.total}</span>
               <span className="stat-label">{t('gameUi.totalQuestions')}</span>
@@ -1311,7 +1311,7 @@ export function PronunciationGame({ courseId }: Props) {
         <div className="pron-page-header">
           <div className="pron-hero">
             <p className="pron-hero-label">{t('pronunciation.gameLabel')}</p>
-            <h1 className="pron-hero-title">{course.name}</h1>
+            <h1 className="pron-hero-title" data-tour="game-intro">{course.name}</h1>
           </div>
         </div>
         <div className="activity-grid" data-testid="exercise-group-grid">

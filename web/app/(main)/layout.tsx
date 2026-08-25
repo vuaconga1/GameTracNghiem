@@ -18,6 +18,7 @@ export default async function MainLayout({
       <HomeNavProvider homeHref={homeHref}>
         <MainShell
           displayName={session?.displayName}
+          avatarUrl={session?.avatarUrl ?? null}
           isAuthenticated={Boolean(session)}
           isAdmin={session?.role === 'admin'}
           homeHref={homeHref}

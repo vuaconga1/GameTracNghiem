@@ -39,22 +39,24 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   const ssoError = ssoErrorMessage(params?.sso_error);
 
   return (
-    <div className="login-overlay" id="loginOverlay" style={{ display: 'flex' }}>
-      <div
-        className="login-modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="loginTitle"
-      >
-        <div className="login-modal-header" style={{ position: 'relative' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img id="modalLogo" src="/wewinlogo.png" alt="WeWIN" />
-          <div style={{ position: 'absolute', top: 12, right: 12 }}>
-            <LanguageSwitcher />
+    <div className="login-page">
+      <div className="login-overlay" id="loginOverlay">
+        <div
+          className="login-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="loginTitle"
+        >
+          <div className="login-modal-header">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img id="modalLogo" src="/wewinlogo.png" alt="WeWIN" />
+            <div className="login-modal-lang">
+              <LanguageSwitcher />
+            </div>
           </div>
-        </div>
-        <div className="login-modal-body">
-          <LoginForm next={next} initialError={ssoError} />
+          <div className="login-modal-body">
+            <LoginForm next={next} initialError={ssoError} />
+          </div>
         </div>
       </div>
     </div>

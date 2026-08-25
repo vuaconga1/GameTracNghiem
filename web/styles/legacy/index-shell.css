@@ -2497,15 +2497,17 @@
       font-weight: 800;
       color: #0f172a;
       margin-top: 8px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 110px;
+      max-width: 120px;
+      line-height: 1.2;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      text-align: center;
     }
 
     .gold .podium-name {
       font-size: 16px;
-      max-width: 130px;
+      max-width: 140px;
     }
 
     .podium-meta {

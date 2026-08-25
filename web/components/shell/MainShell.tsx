@@ -16,6 +16,7 @@ import { TourProvider } from '@/features/tour/TourProvider';
 
 type MainShellProps = {
   displayName?: string;
+  avatarUrl?: string | null;
   isAuthenticated?: boolean;
   isAdmin?: boolean;
   homeHref?: string;
@@ -29,6 +30,7 @@ type MainShellProps = {
 
 export function MainShell({
   displayName,
+  avatarUrl = null,
   isAuthenticated = false,
   isAdmin = false,
   homeHref = '/',
@@ -54,6 +56,7 @@ export function MainShell({
 
   const userProps = {
     displayName: displayName || t('shell.guest'),
+    avatarUrl,
     isGuest: !isAuthenticated,
     level,
     tier,
