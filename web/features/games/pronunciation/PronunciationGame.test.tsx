@@ -26,6 +26,7 @@ describe('PronunciationGameContent', () => {
         targetText: 'world',
         targetIpa: '/wɜːrld/',
         referenceAudioUrl: 'https://example.com/world.mp3',
+        image: '',
         hint: '',
       },
       {
@@ -40,6 +41,7 @@ describe('PronunciationGameContent', () => {
         targetText: 'Nice to meet you',
         targetIpa: '',
         referenceAudioUrl: '',
+        image: '',
         hint: '',
       },
       {
@@ -54,6 +56,7 @@ describe('PronunciationGameContent', () => {
         targetText: 'computer',
         targetIpa: '/kəmˈpjuːtər/',
         referenceAudioUrl: '',
+        image: '',
         hint: '',
       },
     ],

@@ -5,6 +5,7 @@ import { prisma } from '@/lib/db';
 import { findPlayableCourseGame } from '@/lib/findPlayableCourseGame';
 import { loadGamePlayerState } from '@/lib/loadGamePlayerState';
 import { resolveVocabAudioUrl } from '@/lib/vocabAudio';
+import { resolveCourseVocabImagePath } from '@/lib/vocabImagePath';
 
 type PronunciationPayload = {
   mode?: unknown;
@@ -16,6 +17,7 @@ type PronunciationPayload = {
   targetText?: unknown;
   targetIpa?: unknown;
   referenceAudioUrl?: unknown;
+  image?: unknown;
   hint?: unknown;
 };
 
@@ -78,6 +80,7 @@ export async function GET(
       questions: questions.map((question, index) => {
         const payload = asPronunciationPayload(question.payload);
         const mode = String(payload.mode || 'phoneme').trim() || 'phoneme';
+        const targetText = String(payload.targetText || '');
         return {
           id: question.id,
           index,
@@ -87,12 +90,28 @@ export async function GET(
           exerciseKey: String(payload.exerciseKey || '').trim(),
           theoryText: String(payload.theoryText || '').trim(),
           prompt: String(payload.prompt || ''),
-          targetText: String(payload.targetText || ''),
+          targetText,
           targetIpa: String(payload.targetIpa || ''),
           referenceAudioUrl: (() => {
             const stored = String(payload.referenceAudioUrl || '').trim();
             if (stored) return stored;
-            return resolveVocabAudioUrl(String(payload.targetText || '')) || '';
+            return resolveVocabAudioUrl(targetText) || '';
+          })(),
+          // Convention-based clipart for single-word targets. Sentences (which
+          // contain whitespace) are skipped. Client hides on load error, so a
+          // missing file (e.g. a grade still being generated) degrades cleanly.
+          image: (() => {
+            const stored = String(payload.image || '').trim();
+            if (stored) return stored;
+            const word = targetText.trim();
+            if (!word || /\s/.test(word)) return '';
+            return (
+              resolveCourseVocabImagePath({
+                levelName: course.levelName,
+                courseName: course.name,
+                word,
+              }) || ''
+            );
           })(),
           hint: String(payload.hint || '').trim(),
         };

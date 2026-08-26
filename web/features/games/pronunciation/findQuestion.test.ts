@@ -23,6 +23,7 @@ const sampleQuestions: PronunciationQuestion[] = [
     targetText: 'world',
     targetIpa: '/wɜːrld/',
     referenceAudioUrl: 'https://example.com/world.mp3',
+    image: '',
     hint: '',
   },
   {
@@ -37,6 +38,7 @@ const sampleQuestions: PronunciationQuestion[] = [
     targetText: 'Nice to meet you',
     targetIpa: '',
     referenceAudioUrl: '',
+    image: '',
     hint: '',
   },
   {
@@ -51,6 +53,7 @@ const sampleQuestions: PronunciationQuestion[] = [
     targetText: 'computer',
     targetIpa: '/kəmˈpjuːtər/',
     referenceAudioUrl: '',
+    image: '',
     hint: '',
   },
   {
@@ -65,6 +68,7 @@ const sampleQuestions: PronunciationQuestion[] = [
     targetText: 'river',
     targetIpa: '/ˈrɪvər/',
     referenceAudioUrl: '',
+    image: '',
     hint: '',
   },
 ];

@@ -12,6 +12,7 @@ export type PronunciationQuestion = {
   targetText: string;
   targetIpa: string;
   referenceAudioUrl: string;
+  image: string;
   hint: string;
 };
 

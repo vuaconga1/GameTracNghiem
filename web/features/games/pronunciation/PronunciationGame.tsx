@@ -290,6 +290,30 @@ function EvaluationResult({
   );
 }
 
+function WordImage({ src, alt }: { src: string; alt: string }) {
+  const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    setFailed(false);
+  }, [src]);
+
+  if (!src || failed) return null;
+
+  return (
+    <div className="pron-word-image-wrap">
+      {/* eslint-disable-next-line @next/next/no-img-element -- convention path, hide gracefully on 404 */}
+      <img
+        className="pron-word-image"
+        src={src}
+        alt={alt}
+        loading="lazy"
+        draggable={false}
+        onError={() => setFailed(true)}
+      />
+    </div>
+  );
+}
+
 function WordCard({ question, mode }: { question: PronunciationQuestion; mode: PronunciationMode }) {
   const { t } = useI18n();
 
@@ -297,9 +321,12 @@ function WordCard({ question, mode }: { question: PronunciationQuestion; mode: P
   const cardStyle = getModeWordCardStyle(mode);
   const prompt = question.prompt || t('pronunciation.defaultPrompt');
   const isWord = mode === 'phoneme' || mode === 'word';
+  const showImage = mode !== 'sentence' && Boolean(question.image);
 
   return (
     <div className="pron-word-block">
+      {showImage ? <WordImage src={question.image} alt={question.targetText} /> : null}
+
       <div className="text-center">
         <p className="pron-prompt-label" style={{ color: cfg.color }}>
           {t('pronunciation.contentLabel')}
