@@ -7,8 +7,10 @@ import { createPortal } from 'react-dom';
 import { DataLoading } from '@/components/DataLoading';
 import { useI18n } from '@/components/i18n/I18nProvider';
 import { usePlayer } from '@/components/player/PlayerContext';
+import { AlphabetGrid } from '@/features/alphabet/AlphabetGrid';
 import { CourseFilters } from '@/features/courses/CourseFilters';
 import { CourseList, type CourseListItem } from '@/features/courses/CourseList';
+import { isAlphabetLevel } from '@/lib/alphabetLevel';
 import { isLogisticsLevel } from '@/lib/logisticsUnits';
 import {
   buildHomeCoursesHref,
@@ -217,23 +219,44 @@ export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
     />
   );
 
+  const showAlphabet = isAlphabetLevel(levelName);
+  const alphabetBackLevel =
+    filters.levels.find((level) => !isAlphabetLevel(level)) || filters.levels[0] || '';
+
   return (
     <>
       {filtersRoot ? createPortal(filtersNode, filtersRoot) : null}
 
       <section id="view-courses" className="courses-area" data-tour="courses-area">
-        <div className="courses-header">
-          <div className="courses-header-icon">
-            <i className="fas fa-graduation-cap" aria-hidden="true" />
+        {showAlphabet ? (
+          <div className="courses-header courses-header--alphabet">
+            <button
+              type="button"
+              className="alphabet-header-back"
+              onClick={() => setLevelName(alphabetBackLevel)}
+              title={t('common.back')}
+              aria-label={t('common.back')}
+            >
+              <i className="fas fa-arrow-left" aria-hidden="true" />
+            </button>
+            <span className="courses-header-text">{t('alphabet.title')}</span>
           </div>
-          <span className="courses-header-text">{t('home.title')}</span>
-          <i className="fas fa-chevron-down" aria-hidden="true" />
-        </div>
+        ) : (
+          <div className="courses-header">
+            <div className="courses-header-icon">
+              <i className="fas fa-graduation-cap" aria-hidden="true" />
+            </div>
+            <span className="courses-header-text">{t('home.title')}</span>
+            <i className="fas fa-chevron-down" aria-hidden="true" />
+          </div>
+        )}
 
         {isLoading ? (
           <DataLoading />
         ) : errorMessage ? (
           <DataLoading variant="message" message={errorMessage} />
+        ) : showAlphabet ? (
+          <AlphabetGrid courses={courses} />
         ) : (
           <CourseList courses={courses} />
         )}

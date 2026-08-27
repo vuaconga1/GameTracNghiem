@@ -25,7 +25,13 @@ import {
   pttEndEvents,
   shouldCommitPushToTalk,
 } from '@/lib/speaking/pushToTalk';
+import { useSpeakingCharacter } from '@/lib/speaking/useSpeakingCharacter';
+import {
+  getSpeakingCharacter,
+  type SpeakingVoiceCharacterId,
+} from '@/lib/speaking/voiceCharacters';
 import { SpeakingAccessNotice } from '@/features/speaking/SpeakingAccessNotice';
+import { SpeakingCharacterPicker } from '@/features/speaking/SpeakingCharacterPicker';
 
 type Topic = {
   id: string;
@@ -157,6 +163,13 @@ export function SpeakingPracticeView({
   const [accessReason, setAccessReason] = useState<SpeakingAccessReason | null>(null);
   const [pttHeld, setPttHeld] = useState(false);
   const [aiTalking, setAiTalking] = useState(false);
+
+  const { characterId, chooseCharacter, hydrated: characterHydrated } =
+    useSpeakingCharacter();
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const activeCharacter = characterId ? getSpeakingCharacter(characterId) : null;
+  const characterIdRef = useRef<SpeakingVoiceCharacterId | null>(null);
+  characterIdRef.current = characterId;
 
   const pcRef = useRef<RTCPeerConnection | null>(null);
   const dcRef = useRef<RTCDataChannel | null>(null);
@@ -381,6 +394,13 @@ export function SpeakingPracticeView({
     if (!el) return;
     el.scrollTop = el.scrollHeight;
   }, [transcript, phase]);
+
+  // First visit (no stored character): open the Netflix-style picker before
+  // practice can start. Return visits remember the choice and skip it.
+  useEffect(() => {
+    if (!characterHydrated || previewSessionId) return;
+    if (!characterId) setPickerOpen(true);
+  }, [characterHydrated, characterId, previewSessionId]);
 
   function cleanupMedia() {
     if (timerRef.current) {
@@ -710,6 +730,11 @@ export function SpeakingPracticeView({
 
   async function startPractice() {
     if (!selectedTopic) return;
+    if (!characterIdRef.current) {
+      setPickerOpen(true);
+      setError(t('speaking.characters.pickFirst'));
+      return;
+    }
     if (micOk !== true) {
       setError(t('speaking.checkMicFirst'));
       return;
@@ -827,6 +852,10 @@ export function SpeakingPracticeView({
         }
       };
 
+      const characterName = t(
+        getSpeakingCharacter(characterIdRef.current).nameKey,
+      );
+      const openingWithPersona = `${openingInstructions} Your friendly name is ${characterName}; use it warmly when you say hello.`;
       const dc = pc.createDataChannel('oai-events');
       dcRef.current = dc;
       dc.addEventListener('open', () => {
@@ -834,7 +863,7 @@ export function SpeakingPracticeView({
         sendRealtimeEvent({
           type: 'response.create',
           response: {
-            instructions: openingInstructions,
+            instructions: openingWithPersona,
           },
         });
       });
@@ -853,9 +882,12 @@ export function SpeakingPracticeView({
 
       // Default: backend performs the unified SDP exchange and retains the
       // OpenAI Location call ID for the durable hard stop.
-      const realtimeUrl = `/api/speaking/sessions/${createdId}/realtime${
-        useLegacyClientSecret ? '?legacyClientSecret=1' : ''
-      }`;
+      const realtimeQuery = new URLSearchParams();
+      if (useLegacyClientSecret) realtimeQuery.set('legacyClientSecret', '1');
+      // Voice is locked at session start: the chosen character is sent once
+      // when the OpenAI call is created and validated server-side.
+      realtimeQuery.set('voice', characterIdRef.current);
+      const realtimeUrl = `/api/speaking/sessions/${createdId}/realtime?${realtimeQuery.toString()}`;
       const realtimeRes = await fetch(realtimeUrl, {
         method: 'POST',
         headers: {
@@ -1017,6 +1049,45 @@ export function SpeakingPracticeView({
                   )}
                 </p>
 
+                <div className="speaking-character-row">
+                  {activeCharacter ? (
+                    <>
+                      <span className="speaking-character-row-avatar">
+                        <img
+                          src={activeCharacter.avatar}
+                          alt=""
+                          draggable={false}
+                        />
+                      </span>
+                      <div className="speaking-character-row-text">
+                        <span className="speaking-character-row-label">
+                          {t('speaking.characters.currentLabel')}
+                        </span>
+                        <strong>{t(activeCharacter.nameKey)}</strong>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="speaking-character-row-text">
+                      <span className="speaking-character-row-label">
+                        {t('speaking.characters.currentLabel')}
+                      </span>
+                      <strong>{t('speaking.characters.pickFirst')}</strong>
+                    </div>
+                  )}
+                  <button
+                    type="button"
+                    className="speaking-character-change"
+                    onClick={() => setPickerOpen(true)}
+                  >
+                    <i className="fas fa-user-group" aria-hidden="true" />
+                    {t(
+                      activeCharacter
+                        ? 'speaking.characters.changeCta'
+                        : 'speaking.characters.title',
+                    )}
+                  </button>
+                </div>
+
                 <label className="speaking-field">
                   <span>{t('speaking.topicLabel')}</span>
                   <select
@@ -1062,6 +1133,7 @@ export function SpeakingPracticeView({
                   className="admin-btn primary speaking-btn"
                   disabled={
                     !selectedTopic ||
+                    !characterId ||
                     (!previewSessionId &&
                       !usage.canStart &&
                       !isRealtimeSessionReusable(usage.session))
@@ -1242,6 +1314,18 @@ export function SpeakingPracticeView({
           ) : null}
         </div>
       </div>
+
+      {pickerOpen ? (
+        <SpeakingCharacterPicker
+          selectedId={characterId}
+          dismissable={Boolean(characterId)}
+          onClose={() => setPickerOpen(false)}
+          onSelect={(id) => {
+            chooseCharacter(id);
+            setPickerOpen(false);
+          }}
+        />
+      ) : null}
     </section>
   );
 }

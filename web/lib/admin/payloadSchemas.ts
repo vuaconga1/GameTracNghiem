@@ -42,6 +42,8 @@ export const pronunciationPayloadSchema = z.object({
   targetText: nonEmpty,
   targetIpa: z.string().optional().default(''),
   referenceAudioUrl: z.string().optional().default(''),
+  /** Optional clipart path; falls back to convention resolution when empty. */
+  image: z.string().optional().default(''),
   hint: z.string().optional().default(''),
 });
 

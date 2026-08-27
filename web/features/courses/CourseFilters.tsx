@@ -2,6 +2,7 @@
 
 import { useI18n } from '@/components/i18n/I18nProvider';
 import { useSidebar } from '@/components/shell/SidebarContext';
+import { isAlphabetLevel } from '@/lib/alphabetLevel';
 
 type CourseFiltersProps = {
   levels: string[];
@@ -41,13 +42,18 @@ export function CourseFilters({
           <button
             key={`level-${value}`}
             type="button"
-            className={`filter-item${levelName === value ? ' active' : ''}`}
+            className={`filter-item${levelName === value ? ' active' : ''}${
+              isAlphabetLevel(value) ? ' filter-item--alphabet' : ''
+            }`}
             data-filter-type="level"
             data-level={value}
             disabled={disabled}
             onClick={() => handleSelectLevel(value)}
           >
-            <i className="fas fa-graduation-cap" aria-hidden="true" />
+            <i
+              className={`fas ${isAlphabetLevel(value) ? 'fa-font' : 'fa-graduation-cap'}`}
+              aria-hidden="true"
+            />
             <span>{formatClassLevel(value)}</span>
           </button>
         ))}

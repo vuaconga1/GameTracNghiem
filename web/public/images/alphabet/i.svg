@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 360" width="320" height="360" role="img" aria-label="Letter I">
+  <defs>
+    <linearGradient id="giBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eed8c0"/>
+      <stop offset="0.45" stop-color="#c47a2e"/>
+      <stop offset="1" stop-color="#9a5f1a"/>
+    </linearGradient>
+    <linearGradient id="giShine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="0.55" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="giGlow" cx="30%" cy="25%" r="65%">
+      <stop offset="0" stop-color="#ffc078" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#9a5f1a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="giSoft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#9a5f1a" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="320" height="360" rx="28" fill="url(#giBg)"/>
+  <rect width="320" height="360" rx="28" fill="url(#giGlow)"/>
+  <rect width="320" height="360" rx="28" fill="url(#giShine)"/>
+  <!-- decorative dots -->
+  <circle cx="48" cy="56" r="10" fill="#fff" opacity="0.18"/>
+  <circle cx="278" cy="72" r="7" fill="#fff" opacity="0.14"/>
+  <circle cx="42" cy="300" r="14" fill="#fff" opacity="0.1"/>
+  <circle cx="290" cy="310" r="18" fill="#000" opacity="0.08"/>
+  <!-- big letter (graphic center) -->
+  <text x="148" y="155" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="150" font-weight="800" fill="#ffffff" filter="url(#giSoft)" letter-spacing="-4">I</text>
+  <text x="148" y="155" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="150" font-weight="800" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="3" letter-spacing="-4">I</text>
+  <!-- motif -->
+  <g opacity="0.96">
+        <path d="M224 268h24l-5 40h-14z" fill="#e8b060"/>
+        <circle cx="236" cy="250" r="22" fill="#ff8fab"/>
+        <circle cx="226" cy="242" r="7" fill="#fff" opacity="0.45"/>
+  </g>
+  <!-- bottom accent bar -->
+  <rect x="0" y="348" width="320" height="12" fill="#9a5f1a" opacity="0.85"/>
+</svg>

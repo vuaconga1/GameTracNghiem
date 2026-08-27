@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="Leo">
+  <defs>
+    <linearGradient id="leoBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2fc48a"/>
+      <stop offset="1" stop-color="#1f9d6b"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" rx="40" fill="url(#leoBg)"/>
+  <circle cx="120" cy="118" r="70" fill="#f4d0b0"/>
+  <!-- short curly hair -->
+  <path d="M54 106c0-40 30-64 66-64s66 24 66 64c-6-4-12-4-18-2-4-10-12-16-20-16 2 6 0 12-6 14-6-8-16-12-22-12-8 0-16 4-22 12-6-2-8-8-6-14-8 0-16 6-20 16-6-2-12-2-18 2z" fill="#2a1c10"/>
+  <circle cx="98" cy="116" r="8" fill="#2b2118"/>
+  <circle cx="142" cy="116" r="8" fill="#2b2118"/>
+  <circle cx="101" cy="113" r="2.6" fill="#fff"/>
+  <circle cx="145" cy="113" r="2.6" fill="#fff"/>
+  <path d="M104 147c9 7 23 7 32 0" fill="none" stroke="#a85a38" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="86" cy="135" r="9" fill="#e79a72" opacity="0.55"/>
+  <circle cx="154" cy="135" r="9" fill="#e79a72" opacity="0.55"/>
+  <!-- headset -->
+  <path d="M64 118a56 56 0 0 1 112 0" fill="none" stroke="#0f1c3f" stroke-width="9" stroke-linecap="round"/>
+  <rect x="52" y="112" width="18" height="30" rx="8" fill="#f5b301"/>
+  <rect x="170" y="112" width="18" height="30" rx="8" fill="#f5b301"/>
+  <path d="M170 130c-16 8-16 30-40 34" fill="none" stroke="#0f1c3f" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="128" cy="166" r="7" fill="#f5b301"/>
+</svg>

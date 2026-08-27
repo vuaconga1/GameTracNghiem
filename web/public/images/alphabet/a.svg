@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 360" width="320" height="360" role="img" aria-label="Letter A">
+  <defs>
+    <linearGradient id="gaBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c5d4ef"/>
+      <stop offset="0.45" stop-color="#1e4a9a"/>
+      <stop offset="1" stop-color="#0d2b6e"/>
+    </linearGradient>
+    <linearGradient id="gaShine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="0.55" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="gaGlow" cx="30%" cy="25%" r="65%">
+      <stop offset="0" stop-color="#7eb0ff" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#0d2b6e" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="gaSoft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#0d2b6e" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="320" height="360" rx="28" fill="url(#gaBg)"/>
+  <rect width="320" height="360" rx="28" fill="url(#gaGlow)"/>
+  <rect width="320" height="360" rx="28" fill="url(#gaShine)"/>
+  <!-- decorative dots -->
+  <circle cx="48" cy="56" r="10" fill="#fff" opacity="0.18"/>
+  <circle cx="278" cy="72" r="7" fill="#fff" opacity="0.14"/>
+  <circle cx="42" cy="300" r="14" fill="#fff" opacity="0.1"/>
+  <circle cx="290" cy="310" r="18" fill="#000" opacity="0.08"/>
+  <!-- big letter (graphic center) -->
+  <text x="148" y="155" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="150" font-weight="800" fill="#ffffff" filter="url(#gaSoft)" letter-spacing="-4">A</text>
+  <text x="148" y="155" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="150" font-weight="800" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="3" letter-spacing="-4">A</text>
+  <!-- motif -->
+  <g opacity="0.96">
+        <circle cx="236" cy="268" r="28" fill="#e85d4c"/>
+        <ellipse cx="226" cy="254" rx="7" ry="4" fill="#ffb0a0" opacity="0.55"/>
+        <path d="M236 240c0-8 6-14 11-16" fill="none" stroke="#5a3a1a" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="248" cy="234" rx="10" ry="6" fill="#3d8f50" transform="rotate(25 248 234)"/>
+  </g>
+  <!-- bottom accent bar -->
+  <rect x="0" y="348" width="320" height="12" fill="#0d2b6e" opacity="0.85"/>
+</svg>

@@ -1,3 +1,4 @@
+import { isAlphabetLevel } from '@/lib/alphabetLevel';
 import { isLogisticsLevel, LOGISTICS_LEVEL } from '@/lib/logisticsUnits';
 
 export function resolveHomeCoursesLevel(
@@ -21,5 +22,10 @@ export function resolveSelectedHomeLevel(
   if (isLogisticsLevel(normalized)) {
     return availableLevels.find((level) => isLogisticsLevel(level)) || LOGISTICS_LEVEL;
   }
-  return resolveHomeCoursesLevel(normalized, gradeLevelsOnly(availableLevels));
+  // Alphabet is a real, explicitly-selectable level but must never be the
+  // default landing level, so it is excluded from the default-pick list.
+  const defaultableLevels = gradeLevelsOnly(availableLevels).filter(
+    (level) => !isAlphabetLevel(level)
+  );
+  return resolveHomeCoursesLevel(normalized, defaultableLevels);
 }

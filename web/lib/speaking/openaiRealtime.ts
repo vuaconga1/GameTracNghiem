@@ -19,6 +19,7 @@ export async function createRealtimeClientSecret(input: {
   safetyIdentifier: string;
   model?: string;
   voice?: string;
+  personaFlavor?: string;
   grade?: number | null;
   levelName?: string | null;
   topicTitle?: string | null;
@@ -39,6 +40,7 @@ export async function createRealtimeClientSecret(input: {
         topicTitle: input.topicTitle,
         grade: input.grade,
         levelName: input.levelName,
+        personaFlavor: input.personaFlavor,
       }),
       audio: speakingRealtimeAudioInput(input.voice),
     },
@@ -106,6 +108,7 @@ export async function createRealtimeCall(input: {
   safetyIdentifier: string;
   model?: string;
   voice?: string;
+  personaFlavor?: string;
   grade?: number | null;
   levelName?: string | null;
   topicTitle?: string | null;
@@ -124,6 +127,7 @@ export async function createRealtimeCall(input: {
       topicTitle: input.topicTitle,
       grade: input.grade,
       levelName: input.levelName,
+      personaFlavor: input.personaFlavor,
     }),
     audio: speakingRealtimeAudioInput(input.voice),
   });

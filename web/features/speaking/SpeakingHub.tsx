@@ -24,6 +24,9 @@ import {
   speakingActivityPath,
   speakingLoginHref,
 } from '@/lib/speaking/hubRoutes';
+import { useSpeakingCharacter } from '@/lib/speaking/useSpeakingCharacter';
+import { getSpeakingCharacter } from '@/lib/speaking/voiceCharacters';
+import { SpeakingCharacterPicker } from '@/features/speaking/SpeakingCharacterPicker';
 
 type ActivityDefinition = {
   activityType: SpeakingActivityType;
@@ -114,6 +117,15 @@ export function SpeakingHub({
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
   const [retryCount, setRetryCount] = useState(0);
+  const { characterId, chooseCharacter, hydrated: characterHydrated } =
+    useSpeakingCharacter();
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const activeCharacter = characterId ? getSpeakingCharacter(characterId) : null;
+
+  useEffect(() => {
+    if (!characterHydrated) return;
+    if (!characterId) setPickerOpen(true);
+  }, [characterHydrated, characterId]);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -182,7 +194,7 @@ export function SpeakingHub({
 
         <div className="detail-main-panel">
           <div className="detail-panel">
-            <div className="activity-area">
+            <div className="activity-area speaking-hub-stack">
               {loading ? (
                 <DataLoading />
               ) : (
@@ -218,6 +230,56 @@ export function SpeakingHub({
           </div>
         </div>
       </div>
+
+      {activeCharacter ? (
+        <div className="speaking-hub-companion">
+          <div
+            className="activity-card speaking-hub-companion-card"
+            role="group"
+            aria-label={`${t('speaking.characters.currentLabel')}: ${t(activeCharacter.nameKey)}`}
+          >
+            <div className="activity-left">
+              <div
+                className="activity-icon skill-speaking speaking-hub-companion-avatar"
+                style={{
+                  ['--character-color' as string]: activeCharacter.color,
+                }}
+                aria-hidden="true"
+              >
+                <img src={activeCharacter.avatar} alt="" draggable={false} />
+              </div>
+              <div className="speaking-hub-card-copy">
+                <span className="activity-label">
+                  {t(activeCharacter.nameKey)}
+                </span>
+                <span className="speaking-hub-card-sub speaking-hub-companion-intro">
+                  {t(activeCharacter.introKey)}
+                </span>
+              </div>
+            </div>
+            <button
+              type="button"
+              className="activity-progress speaking-hub-companion-change"
+              onClick={() => setPickerOpen(true)}
+              aria-label={t('speaking.characters.changeCta')}
+            >
+              {t('speaking.characters.changeCtaShort')}
+            </button>
+          </div>
+        </div>
+      ) : null}
+
+      {pickerOpen ? (
+        <SpeakingCharacterPicker
+          selectedId={characterId}
+          dismissable={Boolean(characterId)}
+          onClose={() => setPickerOpen(false)}
+          onSelect={(id) => {
+            chooseCharacter(id);
+            setPickerOpen(false);
+          }}
+        />
+      ) : null}
     </section>
   );
 }

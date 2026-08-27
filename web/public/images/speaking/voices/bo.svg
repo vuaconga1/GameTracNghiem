@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="Bo">
+  <defs>
+    <linearGradient id="boBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#4f7ff0"/>
+      <stop offset="1" stop-color="#2f5bd0"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" rx="40" fill="url(#boBg)"/>
+  <circle cx="120" cy="118" r="70" fill="#ffe0c2"/>
+  <path d="M56 104c0-38 28-62 64-62s64 24 64 62c0-6-10-10-24-12-8-14-24-22-40-22s-32 8-40 22c-14 2-24 6-24 12z" fill="#3a2a1a"/>
+  <circle cx="98" cy="116" r="8" fill="#2b2118"/>
+  <circle cx="142" cy="116" r="8" fill="#2b2118"/>
+  <circle cx="101" cy="113" r="2.6" fill="#fff"/>
+  <circle cx="145" cy="113" r="2.6" fill="#fff"/>
+  <path d="M104 146c8 9 24 9 32 0" fill="none" stroke="#b5643a" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="86" cy="134" r="9" fill="#ffb38a" opacity="0.55"/>
+  <circle cx="154" cy="134" r="9" fill="#ffb38a" opacity="0.55"/>
+  <!-- headset -->
+  <path d="M64 118a56 56 0 0 1 112 0" fill="none" stroke="#0f1c3f" stroke-width="9" stroke-linecap="round"/>
+  <rect x="52" y="112" width="18" height="30" rx="8" fill="#f5b301"/>
+  <rect x="170" y="112" width="18" height="30" rx="8" fill="#f5b301"/>
+  <path d="M170 130c-16 8-16 30-40 34" fill="none" stroke="#0f1c3f" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="128" cy="166" r="7" fill="#f5b301"/>
+</svg>

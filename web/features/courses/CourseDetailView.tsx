@@ -12,6 +12,7 @@ import { usePlayer } from '@/components/player/PlayerContext';
 import { CourseVocabTab } from '@/features/courses/CourseVocabTab';
 import { EbookViewer } from '@/features/courses/EbookViewer';
 import { localizeExerciseTitle } from '@/features/games/localizeExerciseTitle';
+import { isAlphabetCourse } from '@/lib/alphabetLevel';
 import {
   resolveCourseEbookPagesForSkill,
 } from '@/lib/courseSkillLesson';
@@ -210,6 +211,8 @@ export function CourseDetailContent({
   const showSkillCards = effectiveTab === 'exercises' && !selectedSkill;
   const showGameGrid = effectiveTab === 'exercises' && Boolean(selectedSkill);
   const selectedSkillMeta = skillCards.find((skill) => skill.id === selectedSkill);
+  const isAlphabet = isAlphabetCourse(data.course.id, data.course.levelName);
+  const showAiSpeakingHub = selectedSkill === 'speaking' && !isAlphabet;
   const logisticsHomeHref = isLogisticsLevel(data.course.levelName)
     ? logisticsWeekHomeHref(data.course.id)
     : homeHref;
@@ -341,8 +344,8 @@ export function CourseDetailContent({
                       const stats =
                         data.skillStats?.[skill.id] ??
                         aggregateActivityStats(data.games, liveKeys);
-                      // Speaking stays visible: AI Speaking hub is available without question rows.
-                      if (skill.id === 'speaking') return true;
+                      // Speaking stays visible for normal courses: AI hub needs no question rows.
+                      if (skill.id === 'speaking' && !isAlphabet) return true;
                       return stats.totalQuestions > 0;
                     });
 
@@ -401,7 +404,7 @@ export function CourseDetailContent({
                       {t(`skills.${selectedSkillMeta.id}`)}
                     </div>
                   ) : null}
-                  {selectedSkill === 'speaking' ? (
+                  {showAiSpeakingHub ? (
                     <Link
                       href={`/speaking/${data.course.id}`}
                       className="activity-card"
@@ -504,7 +507,7 @@ export function CourseDetailContent({
                       ];
                     });
 
-                    if (gameCards.length === 0 && selectedSkill !== 'speaking') {
+                    if (gameCards.length === 0 && !showAiSpeakingHub) {
                       return (
                         <div className="ebook-empty" style={{ gridColumn: '1 / -1' }}>
                           {t('course.noGamesForSkill')}

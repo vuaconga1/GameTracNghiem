@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 360" width="320" height="360" role="img" aria-label="Letter X">
+  <defs>
+    <linearGradient id="gxBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e6d4c8"/>
+      <stop offset="0.45" stop-color="#8f523a"/>
+      <stop offset="1" stop-color="#6b3a2a"/>
+    </linearGradient>
+    <linearGradient id="gxShine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="0.55" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="gxGlow" cx="30%" cy="25%" r="65%">
+      <stop offset="0" stop-color="#d09878" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#6b3a2a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="gxSoft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#6b3a2a" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="320" height="360" rx="28" fill="url(#gxBg)"/>
+  <rect width="320" height="360" rx="28" fill="url(#gxGlow)"/>
+  <rect width="320" height="360" rx="28" fill="url(#gxShine)"/>
+  <!-- decorative dots -->
+  <circle cx="48" cy="56" r="10" fill="#fff" opacity="0.18"/>
+  <circle cx="278" cy="72" r="7" fill="#fff" opacity="0.14"/>
+  <circle cx="42" cy="300" r="14" fill="#fff" opacity="0.1"/>
+  <circle cx="290" cy="310" r="18" fill="#000" opacity="0.08"/>
+  <!-- big letter (graphic center) -->
+  <text x="148" y="155" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="150" font-weight="800" fill="#ffffff" filter="url(#gxSoft)" letter-spacing="-4">X</text>
+  <text x="148" y="155" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="150" font-weight="800" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="3" letter-spacing="-4">X</text>
+  <!-- motif -->
+  <g opacity="0.96">
+        <rect x="198" y="248" width="72" height="11" rx="3" fill="#ff6b6b"/>
+        <rect x="202" y="264" width="64" height="11" rx="3" fill="#f0c040"/>
+        <rect x="206" y="280" width="56" height="11" rx="3" fill="#4caf6a"/>
+        <rect x="210" y="296" width="48" height="11" rx="3" fill="#5b8fd9"/>
+        <path d="M194 244l7 7M274 244l-7 7" fill="none" stroke="#8a6238" stroke-width="3.5" stroke-linecap="round"/>
+  </g>
+  <!-- bottom accent bar -->
+  <rect x="0" y="348" width="320" height="12" fill="#6b3a2a" opacity="0.85"/>
+</svg>

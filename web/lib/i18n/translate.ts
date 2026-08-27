@@ -26,9 +26,14 @@ export function translate(
   return text;
 }
 
+import { isAlphabetLevel } from '@/lib/alphabetLevel';
+
 /** Display class level DB values like "Lớp 4" without mutating stored data. */
 export function formatClassLevelName(levelName: string, locale: 'en' | 'vi'): string {
   const trimmed = levelName.trim();
+  if (isAlphabetLevel(trimmed)) {
+    return locale === 'en' ? 'Alphabet' : 'Bảng chữ cái';
+  }
   const m = /^Lớp\s+(\d+)$/i.exec(trimmed);
   if (m) {
     return locale === 'en' ? `Grade ${m[1]}` : `Lớp ${m[1]}`;

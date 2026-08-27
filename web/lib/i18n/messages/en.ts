@@ -200,6 +200,15 @@ const en: Messages = {
     questionsDone: '{done}/{total} questions done',
     totalScore: 'Total score',
   },
+  alphabet: {
+    title: 'Alphabet',
+    letterTitle: 'Letter {letter}',
+    lesson: 'Lesson',
+    phonicsDesc: 'Learn phonics sound {letter}: {words}',
+    phonicsDescEmpty: 'Learn phonics sound {letter}',
+    progressPercent: '{percent}% complete',
+    empty: 'No letters have vocabulary yet',
+  },
   logistics: {
     title: 'English For Logistics',
     week1: 'week1',
@@ -580,6 +589,32 @@ const en: Messages = {
     turnCount: '{count} turns',
     audioStartFailed: 'The browser did not start AI audio. Check audio playback permission.',
     backToSpeakingHub: 'Back to Speaking hub',
+    characters: {
+      eyebrow: 'CHOOSE YOUR WEWIN BUDDY',
+      title: 'Who’s speaking with you?',
+      subtitle: 'Pick a friend to practise speaking with. You can change them anytime.',
+      currentLabel: 'Speaking buddy',
+      changeCta: 'Change buddy',
+      changeCtaShort: 'Change',
+      chooseAria: 'Choose {name} as your speaking buddy',
+      pickFirst: 'Choose a buddy before you start',
+      bo: {
+        name: 'Bo',
+        intro: 'A calm, patient guide who speaks slowly and cheers you on.',
+      },
+      mia: {
+        name: 'Mia',
+        intro: 'A bright, playful friend who makes speaking practice fun.',
+      },
+      leo: {
+        name: 'Leo',
+        intro: 'A thoughtful, steady buddy who helps you feel confident.',
+      },
+      suki: {
+        name: 'Suki',
+        intro: 'A lively, energetic pal who keeps the chat upbeat.',
+      },
+    },
     hub: {
       eyebrow: 'PRACTISE SPEAKING WITH WEWIN',
       title: 'AI Speaking hub',

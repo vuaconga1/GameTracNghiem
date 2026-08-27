@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 360" width="320" height="360" role="img" aria-label="Letter S">
+  <defs>
+    <linearGradient id="gsBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d0d8e0"/>
+      <stop offset="0.45" stop-color="#526878"/>
+      <stop offset="1" stop-color="#3a4a5a"/>
+    </linearGradient>
+    <linearGradient id="gsShine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="0.55" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="gsGlow" cx="30%" cy="25%" r="65%">
+      <stop offset="0" stop-color="#98a8b8" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#3a4a5a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="gsSoft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#3a4a5a" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="320" height="360" rx="28" fill="url(#gsBg)"/>
+  <rect width="320" height="360" rx="28" fill="url(#gsGlow)"/>
+  <rect width="320" height="360" rx="28" fill="url(#gsShine)"/>
+  <!-- decorative dots -->
+  <circle cx="48" cy="56" r="10" fill="#fff" opacity="0.18"/>
+  <circle cx="278" cy="72" r="7" fill="#fff" opacity="0.14"/>
+  <circle cx="42" cy="300" r="14" fill="#fff" opacity="0.1"/>
+  <circle cx="290" cy="310" r="18" fill="#000" opacity="0.08"/>
+  <!-- big letter (graphic center) -->
+  <text x="148" y="155" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="150" font-weight="800" fill="#ffffff" filter="url(#gsSoft)" letter-spacing="-4">S</text>
+  <text x="148" y="155" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="150" font-weight="800" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="3" letter-spacing="-4">S</text>
+  <!-- motif -->
+  <g opacity="0.96">
+        <circle cx="236" cy="268" r="24" fill="#ffcf4d"/>
+        <g stroke="#ffcf4d" stroke-width="5" stroke-linecap="round">
+          <path d="M236 230v-12M236 318v-12M204 268h-12M280 268h-12M208 240l-8-8M272 304l-8-8M264 240l8-8M208 304l-8 8"/>
+        </g>
+  </g>
+  <!-- bottom accent bar -->
+  <rect x="0" y="348" width="320" height="12" fill="#3a4a5a" opacity="0.85"/>
+</svg>

@@ -553,4 +553,62 @@ describe('CourseDetailContent', () => {
     expect(html).not.toContain('Âm /æ/');
     expect(html).not.toContain('Âm /ɑː/');
   });
+
+  it('shows AI Speaking hub for normal courses under speaking skill', () => {
+    const skill: SkillId = 'speaking';
+    const data: CourseDetailData = {
+      ...sampleData,
+      games: {
+        pronunciation: {
+          questionCount: 5,
+          statuses: ['correct', 'empty', 'wrong', 'empty', 'empty'],
+        },
+      },
+    };
+    const html = renderContent(
+      createElement(CourseDetailContent, { data, initialSkill: skill }),
+    );
+
+    expect(html).toContain('data-activity="ai-speaking"');
+    expect(html).toContain('href="/speaking/course-1"');
+    expect(html).toContain('Trung tâm AI Speaking');
+    expect(html).toContain('href="/games/pronunciation/course-1"');
+  });
+
+  it('hides AI Speaking hub for alphabet courses and keeps pronunciation only', () => {
+    const skill: SkillId = 'speaking';
+    const data: CourseDetailData = {
+      ...sampleData,
+      course: {
+        ...sampleData.course,
+        id: 'alphabet-a',
+        name: 'Aa',
+        levelName: 'Bảng chữ cái',
+        enabledSkills: ['speaking'],
+        enabledGames: ['pronunciation'],
+      },
+      games: {
+        pronunciation: {
+          questionCount: 12,
+          statuses: Array(12).fill('empty'),
+        },
+      },
+      skillStats: {
+        speaking: {
+          totalQuestions: 12,
+          completedQuestions: 0,
+          byGame: { pronunciation: { questionCount: 12, completedCount: 0 } },
+        },
+      },
+    };
+    const html = renderContent(
+      createElement(CourseDetailContent, { data, initialSkill: skill }),
+    );
+
+    expect(html).not.toContain('data-activity="ai-speaking"');
+    expect(html).not.toContain('href="/speaking/alphabet-a"');
+    expect(html).not.toContain('Trung tâm AI Speaking');
+    expect(html).toContain('href="/games/pronunciation/alphabet-a"');
+    expect(html).toContain('Phát âm');
+  });
 });

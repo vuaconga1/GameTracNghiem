@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240" role="img" aria-label="Mia">
+  <defs>
+    <linearGradient id="miaBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffcf4d"/>
+      <stop offset="1" stop-color="#e6a700"/>
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" rx="40" fill="url(#miaBg)"/>
+  <!-- pigtails -->
+  <circle cx="62" cy="120" r="22" fill="#7a3b12"/>
+  <circle cx="178" cy="120" r="22" fill="#7a3b12"/>
+  <circle cx="120" cy="118" r="70" fill="#ffe0c2"/>
+  <path d="M58 108c0-40 30-64 62-64s62 24 62 64c0-8-8-14-20-16-6-16-24-24-42-24s-36 8-42 24c-12 2-20 8-20 16z" fill="#8a4416"/>
+  <circle cx="98" cy="116" r="8" fill="#2b2118"/>
+  <circle cx="142" cy="116" r="8" fill="#2b2118"/>
+  <circle cx="101" cy="113" r="2.6" fill="#fff"/>
+  <circle cx="145" cy="113" r="2.6" fill="#fff"/>
+  <path d="M106 148c7 8 21 8 28 0" fill="none" stroke="#c65a5a" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="86" cy="136" r="10" fill="#ff9aa2" opacity="0.6"/>
+  <circle cx="154" cy="136" r="10" fill="#ff9aa2" opacity="0.6"/>
+  <!-- headset -->
+  <path d="M64 118a56 56 0 0 1 112 0" fill="none" stroke="#0f1c3f" stroke-width="9" stroke-linecap="round"/>
+  <rect x="52" y="112" width="18" height="30" rx="8" fill="#ff6f91"/>
+  <rect x="170" y="112" width="18" height="30" rx="8" fill="#ff6f91"/>
+  <path d="M170 130c-16 8-16 30-40 34" fill="none" stroke="#0f1c3f" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="128" cy="166" r="7" fill="#ff6f91"/>
+</svg>

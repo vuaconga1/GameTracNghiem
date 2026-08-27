@@ -25,6 +25,7 @@ import {
   enforceSpeakingBurstLimit,
 } from '@/lib/speaking/security';
 import { releaseReservationOnFailure } from '@/lib/speaking/usage';
+import { getSpeakingCharacter } from '@/lib/speaking/voiceCharacters';
 
 type Ctx = { params: Promise<{ id: string }> };
 
@@ -50,6 +51,9 @@ export async function POST(req: Request, { params }: Ctx) {
     const requestUrl = new URL(req.url);
     const wantsLegacyClientSecret =
       requestUrl.searchParams.get('legacyClientSecret') === '1';
+    // Chosen speaking character -> validated OpenAI voice + light persona.
+    // Unknown/missing ids fall back to the recommended default character.
+    const character = getSpeakingCharacter(requestUrl.searchParams.get('voice'));
     const localSdp = await req.text();
 
     const session = await prisma.speakingSession.findUnique({
@@ -190,6 +194,8 @@ export async function POST(req: Request, { params }: Ctx) {
         safetyIdentifier,
         levelName: session.topic.course?.levelName,
         topicTitle: session.topic.title,
+        voice: character.voice,
+        personaFlavor: character.promptFlavor,
       };
 
       if (wantsLegacyClientSecret) {

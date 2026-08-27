@@ -200,6 +200,15 @@ const vi: Messages = {
     questionsDone: '{done}/{total} Câu đã làm',
     totalScore: 'Tổng điểm',
   },
+  alphabet: {
+    title: 'Bảng chữ cái',
+    letterTitle: 'Chữ {letter}',
+    lesson: 'Bài học',
+    phonicsDesc: 'Học phát âm chữ {letter}: {words}',
+    phonicsDescEmpty: 'Học phát âm chữ {letter}',
+    progressPercent: '{percent}% hoàn thành',
+    empty: 'Chưa có chữ cái nào có từ vựng',
+  },
   logistics: {
     title: 'English For Logistics',
     week1: 'week1',
@@ -581,6 +590,33 @@ const vi: Messages = {
     turnCount: '{count} lượt',
     audioStartFailed: 'Trình duyệt chưa phát âm thanh AI. Hãy kiểm tra quyền phát âm thanh.',
     backToSpeakingHub: 'Về trung tâm Speaking',
+    characters: {
+      eyebrow: 'CHỌN BẠN ĐỒNG HÀNH WEWIN',
+      title: 'Ai sẽ nói chuyện cùng em?',
+      subtitle:
+        'Chọn một bạn để luyện nói. Em có thể đổi bạn bất cứ lúc nào.',
+      currentLabel: 'Bạn đồng hành',
+      changeCta: 'Đổi nhân vật',
+      changeCtaShort: 'Đổi',
+      chooseAria: 'Chọn {name} làm bạn đồng hành luyện nói',
+      pickFirst: 'Hãy chọn bạn đồng hành trước khi bắt đầu',
+      bo: {
+        name: 'Bo',
+        intro: 'Bạn hướng dẫn nhẹ nhàng, kiên nhẫn — nói chậm và luôn cổ vũ em.',
+      },
+      mia: {
+        name: 'Mia',
+        intro: 'Bạn vui vẻ, sáng sủa — luyện nói thật vui và thoải mái.',
+      },
+      leo: {
+        name: 'Leo',
+        intro: 'Bạn điềm đạm, đáng tin — giúp em tự tin từng câu một.',
+      },
+      suki: {
+        name: 'Suki',
+        intro: 'Bạn năng động, hào hứng — giữ cuộc trò chuyện luôn sôi nổi.',
+      },
+    },
     hub: {
       eyebrow: 'LUYỆN NÓI CÙNG WEWIN',
       title: 'Trung tâm AI Speaking',

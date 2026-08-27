@@ -16,6 +16,9 @@ export type CourseListItem = {
   courseKey?: string;
   enabledGames?: string[];
   questionCounts?: Record<string, number>;
+  letter?: string;
+  sampleWords?: string[];
+  wordCount?: number;
 };
 
 type CourseListProps = {
