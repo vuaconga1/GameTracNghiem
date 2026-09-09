@@ -12,12 +12,16 @@ import {
 import {
   GUEST_REGISTRATION_GRADES,
   GUEST_REGISTRATION_GOALS,
+  GUEST_REGISTRATION_STUDENT_OPTIONS,
+  GUEST_REGISTRATION_VIP_OPTIONS,
   hasGuestRegistrationErrors,
   submitGuestRegistrationForm,
   type GuestRegistrationGoal,
   type GuestRegistrationGrade,
   type GuestRegistrationPayload,
   type GuestRegistrationValidation,
+  type GuestRegistrationVipInterest,
+  type GuestRegistrationWewinStudent,
   validateGuestRegistrationPayload,
 } from '@/lib/guestRegistrationForm';
 
@@ -29,8 +33,11 @@ const EMPTY_FORM: GuestRegistrationPayload = {
   phone: '',
   grade: '' as GuestRegistrationGrade,
   goal: '' as GuestRegistrationGoal,
+  vipInterest: '' as GuestRegistrationVipInterest,
+  age: '',
   parentName: '',
   location: '',
+  wewinStudent: '',
 };
 
 export function GuestFormGateModal({ isGuest }: Props) {
@@ -155,6 +162,7 @@ export function GuestFormGateModal({ isGuest }: Props) {
                 placeholder={t('shell.guestFormGatePhonePlaceholder')}
                 onChange={(event) => setForm((current) => ({ ...current, phone: event.target.value }))}
               />
+              <span className="guest-form-gate-help">{t('shell.guestFormGatePhoneHelp')}</span>
               {fieldErrorMessage('phone') ? (
                 <span className="guest-form-gate-error">{fieldErrorMessage('phone')}</span>
               ) : null}
@@ -180,6 +188,17 @@ export function GuestFormGateModal({ isGuest }: Props) {
                 <span className="guest-form-gate-error">{fieldErrorMessage('grade')}</span>
               ) : null}
             </fieldset>
+
+            <label className="guest-form-gate-field">
+              <span>{t('shell.guestFormGateAgeLabel')}</span>
+              <input
+                type="text"
+                inputMode="numeric"
+                value={form.age || ''}
+                placeholder={t('shell.guestFormGateAgePlaceholder')}
+                onChange={(event) => setForm((current) => ({ ...current, age: event.target.value }))}
+              />
+            </label>
 
             <fieldset className="guest-form-gate-field">
               <legend>{t('shell.guestFormGateGoalLabel')}</legend>
@@ -210,6 +229,7 @@ export function GuestFormGateModal({ isGuest }: Props) {
                 value={form.parentName || ''}
                 onChange={(event) => setForm((current) => ({ ...current, parentName: event.target.value }))}
               />
+              <span className="guest-form-gate-help">{t('shell.guestFormGateParentHelp')}</span>
             </label>
 
             <label className="guest-form-gate-field">
@@ -221,6 +241,55 @@ export function GuestFormGateModal({ isGuest }: Props) {
                 onChange={(event) => setForm((current) => ({ ...current, location: event.target.value }))}
               />
             </label>
+
+            <fieldset className="guest-form-gate-field">
+              <legend>{t('shell.guestFormGateVipLabel')}</legend>
+              <div className="guest-form-gate-options">
+                {GUEST_REGISTRATION_VIP_OPTIONS.map((option) => (
+                  <label key={option} className="guest-form-gate-option">
+                    <input
+                      type="radio"
+                      name="guest-vip"
+                      value={option}
+                      checked={form.vipInterest === option}
+                      onChange={() =>
+                        setForm((current) => ({
+                          ...current,
+                          vipInterest: option as GuestRegistrationVipInterest,
+                        }))
+                      }
+                    />
+                    <span>{option}</span>
+                  </label>
+                ))}
+              </div>
+              {fieldErrorMessage('vipInterest') ? (
+                <span className="guest-form-gate-error">{fieldErrorMessage('vipInterest')}</span>
+              ) : null}
+            </fieldset>
+
+            <fieldset className="guest-form-gate-field">
+              <legend>{t('shell.guestFormGateStudentLabel')}</legend>
+              <div className="guest-form-gate-options">
+                {GUEST_REGISTRATION_STUDENT_OPTIONS.map((option) => (
+                  <label key={option} className="guest-form-gate-option">
+                    <input
+                      type="radio"
+                      name="guest-student"
+                      value={option}
+                      checked={form.wewinStudent === option}
+                      onChange={() =>
+                        setForm((current) => ({
+                          ...current,
+                          wewinStudent: option as GuestRegistrationWewinStudent,
+                        }))
+                      }
+                    />
+                    <span>{option}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
 
             {submitError ? <p className="guest-form-gate-error guest-form-gate-submit-error">{submitError}</p> : null}
 

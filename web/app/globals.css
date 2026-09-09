@@ -363,10 +363,17 @@ table {
   padding: 0;
 }
 
-.guest-form-gate-field > span,
+.guest-form-gate-field > span:not(.guest-form-gate-help):not(.guest-form-gate-error),
 .guest-form-gate-field > legend {
   font-size: 13px;
   font-weight: 700;
+}
+
+.guest-form-gate-help {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-muted, #64748b);
 }
 
 .guest-form-gate-field input[type='text'],
