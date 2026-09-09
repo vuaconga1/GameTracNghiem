@@ -126,7 +126,7 @@ const vi: Messages = {
       coursesTitle: 'English for Logistics',
       coursesBody: 'Các bài học theo tuần hiện ở đây. Bấm một khóa để bắt đầu học.',
       weeksTitle: 'Chọn tuần học',
-      weeksBody: 'Dùng menu bên trái để chuyển giữa Tuần 1, Tuần 2 và Tuần 3.',
+      weeksBody: 'Dùng menu bên trái để chuyển giữa Tuần 1, Tuần 2, Tuần 3 và Tuần 4.',
       replayTitle: 'Xem lại hướng dẫn',
       replayBody: 'Bấm “Hiện hướng dẫn” bất cứ lúc nào để xem lại các bước này.',
     },
@@ -220,6 +220,7 @@ const vi: Messages = {
     week1: 'week1',
     week2: 'week 2',
     week3: 'week 3',
+    week4: 'week 4',
   },
   course: {
     back: 'Quay lại',

@@ -42,7 +42,13 @@ export function LogisticsCoursesView({ week, initialData }: LogisticsCoursesView
   const player = usePlayer();
   const [courses, setCourses] = useState<CourseListItem[]>(initialData.courses);
   const titleKey =
-    week === 3 ? 'logistics.week3' : week === 2 ? 'logistics.week2' : 'logistics.week1';
+    week === 4
+      ? 'logistics.week4'
+      : week === 3
+        ? 'logistics.week3'
+        : week === 2
+          ? 'logistics.week2'
+          : 'logistics.week1';
 
   useLayoutEffect(() => {
     if (player.kind !== 'guest') return;

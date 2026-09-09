@@ -50,7 +50,9 @@ export function MainShell({
   const isLogistics = pathname === '/logistics' || pathname.startsWith('/logistics/');
   const isLogisticsWeek2 = pathname === '/logistics/week2' || pathname.startsWith('/logistics/week2/');
   const isLogisticsWeek3 = pathname === '/logistics/week3' || pathname.startsWith('/logistics/week3/');
-  const isLogisticsWeek1 = isLogistics && !isLogisticsWeek2 && !isLogisticsWeek3;
+  const isLogisticsWeek4 = pathname === '/logistics/week4' || pathname.startsWith('/logistics/week4/');
+  const isLogisticsWeek1 =
+    isLogistics && !isLogisticsWeek2 && !isLogisticsWeek3 && !isLogisticsWeek4;
   const isCoursePage = pathname === '/courses' || pathname.startsWith('/courses/');
   const isLeaderboard = pathname === '/leaderboard' || pathname.startsWith('/leaderboard/');
 
@@ -121,6 +123,14 @@ export function MainShell({
             >
               <i className="fas fa-calendar-alt" />
               <span>{t('logistics.week3')}</span>
+            </Link>
+            <Link
+              className={`nav-item${isLogisticsWeek4 ? ' active' : ''}`}
+              href="/logistics/week4"
+              onClick={() => setOpen(false)}
+            >
+              <i className="fas fa-calendar-check" />
+              <span>{t('logistics.week4')}</span>
             </Link>
           </>
         }

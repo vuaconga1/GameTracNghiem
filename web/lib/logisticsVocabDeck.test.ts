@@ -4,6 +4,7 @@ import {
   LOGISTICS_WEEK1_COURSES,
   LOGISTICS_WEEK2_COURSES,
   LOGISTICS_WEEK3_COURSES,
+  LOGISTICS_WEEK4_COURSES,
 } from './logisticsUnits';
 import {
   getCourseVocabDeck,
@@ -19,6 +20,10 @@ import {
   W3_FREEDAYS_VOCAB,
   W3_FREIGHT_VOCAB,
   W3_INVOICE_VOCAB,
+  W4_COMMUTE_VOCAB,
+  W4_DIRECTIONS_VOCAB,
+  W4_NAV_VOCAB,
+  W4_TRANSPORT_VOCAB,
 } from './logisticsVocabDeck';
 
 describe('getCourseVocabDeck', () => {
@@ -42,6 +47,13 @@ describe('getCourseVocabDeck', () => {
     expect(getCourseVocabDeck(LOGISTICS_WEEK3_COURSES[3].id)).toEqual(W3_FREEDAYS_VOCAB);
   });
 
+  it('returns a deck for every Logistics week 4 unit', () => {
+    expect(getCourseVocabDeck(LOGISTICS_WEEK4_COURSES[0].id)).toEqual(W4_COMMUTE_VOCAB);
+    expect(getCourseVocabDeck(LOGISTICS_WEEK4_COURSES[1].id)).toEqual(W4_DIRECTIONS_VOCAB);
+    expect(getCourseVocabDeck(LOGISTICS_WEEK4_COURSES[2].id)).toEqual(W4_NAV_VOCAB);
+    expect(getCourseVocabDeck(LOGISTICS_WEEK4_COURSES[3].id)).toEqual(W4_TRANSPORT_VOCAB);
+  });
+
   it('returns null for unknown courses', () => {
     expect(getCourseVocabDeck('unknown')).toBeNull();
   });
@@ -59,6 +71,13 @@ describe('getCourseVocabDeck', () => {
     expect(W3_INVOICE_VOCAB.map((c) => c.word)).toContain('Debit Note');
     expect(W3_FEES_VOCAB.map((c) => c.word)).toContain('Fuel Fee (BAF)');
     expect(W3_FREEDAYS_VOCAB.map((c) => c.word)).toContain('Demurrage');
+    expect(W4_COMMUTE_VOCAB.map((c) => c.word)).toContain('Traffic Congestion');
+    expect(W4_DIRECTIONS_VOCAB.map((c) => c.word)).toContain('Point of reference');
+    expect(W4_DIRECTIONS_VOCAB).toHaveLength(7);
+    expect(W4_NAV_VOCAB.map((c) => c.word)).toContain('Opposite');
+    expect(W4_NAV_VOCAB).toHaveLength(8);
+    expect(W4_TRANSPORT_VOCAB.map((c) => c.word)).toContain('Traffic light');
+    expect(W4_TRANSPORT_VOCAB).toHaveLength(8);
   });
 });
 

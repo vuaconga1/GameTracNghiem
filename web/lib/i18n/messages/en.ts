@@ -126,7 +126,7 @@ const en: Messages = {
       coursesTitle: 'English for Logistics',
       coursesBody: 'Weekly lessons appear here. Tap a course to start learning.',
       weeksTitle: 'Choose a week',
-      weeksBody: 'Use the left menu to switch between Week 1, Week 2, and Week 3.',
+      weeksBody: 'Use the left menu to switch between Week 1, Week 2, Week 3, and Week 4.',
       replayTitle: 'Replay this guide',
       replayBody: 'Tap “Show guide” anytime to walk through these steps again.',
     },
@@ -220,6 +220,7 @@ const en: Messages = {
     week1: 'week1',
     week2: 'week 2',
     week3: 'week 3',
+    week4: 'week 4',
   },
   course: {
     back: 'Back',

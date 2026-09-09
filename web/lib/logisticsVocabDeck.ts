@@ -2,6 +2,7 @@ import {
   LOGISTICS_WEEK1_COURSES,
   LOGISTICS_WEEK2_COURSES,
   LOGISTICS_WEEK3_COURSES,
+  LOGISTICS_WEEK4_COURSES,
 } from '@/lib/logisticsUnits';
 
 export type LogisticsVocabCard = {
@@ -534,6 +535,225 @@ export const W3_FREEDAYS_VOCAB: LogisticsVocabCard[] = [
   ),
 ];
 
+/** Week 4 — Transportation & Daily Commute (Level 1) */
+export const W4_COMMUTE_VOCAB: LogisticsVocabCard[] = [
+  card(
+    'Commute',
+    'The regular journey of travelling between home and work or study.',
+    'I usually commute to work by motorbike.',
+    'fa-route',
+    0
+  ),
+  card(
+    'Fare',
+    'The money paid for a journey on public transport (bus, taxi, train).',
+    'How much is the bus fare to the city center?',
+    'fa-ticket-alt',
+    1
+  ),
+  card(
+    'Traffic Congestion',
+    'Heavy traffic that slows down or completely blocks movement on roads.',
+    'Traffic congestion makes peak-hour travel slower.',
+    'fa-car',
+    2
+  ),
+  card(
+    'Grab Ride / Service',
+    'Booking private transport via digital ride-hailing platforms like Grab.',
+    'I take a Grab ride when it rains.',
+    'fa-mobile-alt',
+    3
+  ),
+  card(
+    'Pick-up point',
+    'The designated location where the journey starts.',
+    'Please wait at the pick-up point near the lobby.',
+    'fa-map-marker-alt',
+    4
+  ),
+  card(
+    'Drop-off',
+    'The designated location where the journey finishes.',
+    'Please drop me off right in front of the building entrance.',
+    'fa-flag-checkered',
+    5
+  ),
+];
+
+/** Week 4 — Asking and Giving Directions (Level 1) */
+export const W4_DIRECTIONS_VOCAB: LogisticsVocabCard[] = [
+  card(
+    'Intersection',
+    'A point where two or more streets meet or cross.',
+    'Turn left at the main intersection.',
+    'fa-plus',
+    0
+  ),
+  card(
+    'Pedestrian crossing',
+    'A marked part of a road where people can cross safely.',
+    'Walk past the pedestrian crossing to reach the park.',
+    'fa-walking',
+    1
+  ),
+  card(
+    'Turn left / right',
+    'To change direction to the left or right side.',
+    'Go straight for two blocks, then turn left.',
+    'fa-directions',
+    2
+  ),
+  card(
+    'Go straight',
+    'To continue moving in the same direction without turning.',
+    'Go straight until you see the tall hotel.',
+    'fa-arrow-up',
+    3
+  ),
+  card(
+    'Point of reference',
+    'A landmark used to help someone find their way.',
+    'Use the tall hotel as your point of reference.',
+    'fa-map-signs',
+    4
+  ),
+  card(
+    'Across from',
+    'On the opposite side of a street or area.',
+    "It's right across from the blue building.",
+    'fa-exchange-alt',
+    5
+  ),
+  card(
+    'Distance',
+    'The amount of space between two places.',
+    "No, it's a short distance from here.",
+    'fa-ruler',
+    6
+  ),
+];
+
+/** Week 4 — Asking & Giving Directions (Level 2 / Session 7) */
+export const W4_NAV_VOCAB: LogisticsVocabCard[] = [
+  card(
+    'Turn left',
+    'To move towards the left-hand side of your path.',
+    'Turn left at the corner.',
+    'fa-arrow-left',
+    0
+  ),
+  card(
+    'Turn right',
+    'To move towards the right-hand side of your path.',
+    'Turn right after the bank.',
+    'fa-arrow-right',
+    1
+  ),
+  card(
+    'Go straight',
+    'To move ahead without making any turns.',
+    'Go straight on this street.',
+    'fa-arrow-up',
+    2
+  ),
+  card(
+    'Near / Far',
+    'Distance indicators used to describe how close or distant a location is.',
+    'Is the supermarket near or far?',
+    'fa-expand-arrows-alt',
+    3
+  ),
+  card(
+    'Street / Map',
+    'Public roads and visual guides used to find places.',
+    'Look at the map on your phone.',
+    'fa-map',
+    4
+  ),
+  card(
+    'Where is',
+    'The primary question phrase to ask for a destination.',
+    'Excuse me, where is the bus station?',
+    'fa-question',
+    5
+  ),
+  card(
+    'Next to',
+    'Located beside or immediately adjacent to something.',
+    "It's next to the bank.",
+    'fa-th-large',
+    6
+  ),
+  card(
+    'Opposite',
+    'Located across from something; on the other side.',
+    'It is opposite the park.',
+    'fa-arrows-alt-h',
+    7
+  ),
+];
+
+/** Week 4 — Transportation & Daily Commute (Level 2 / Session 8) */
+export const W4_TRANSPORT_VOCAB: LogisticsVocabCard[] = [
+  card(
+    'Taxi',
+    'A vehicle driven by a professional to take passengers to a destination.',
+    'I took a taxi to the airport.',
+    'fa-taxi',
+    0
+  ),
+  card(
+    'Bus',
+    'A large vehicle that carries passengers along a fixed road route.',
+    'The bus arrives every 10 minutes.',
+    'fa-bus',
+    1
+  ),
+  card(
+    'Driver',
+    'The person who drives the taxi, bus, or ride-hailing car.',
+    'Tell the driver your address.',
+    'fa-id-badge',
+    2
+  ),
+  card(
+    'Traffic light',
+    'Red, yellow, and green lights that control road traffic.',
+    'Stop at the red traffic light.',
+    'fa-traffic-light',
+    3
+  ),
+  card(
+    'Traffic',
+    'The cars and motorbikes moving along streets and highways.',
+    'The traffic is very heavy today.',
+    'fa-road',
+    4
+  ),
+  card(
+    'Drop off',
+    'To bring the vehicle to a halt or let a passenger exit.',
+    'Please drop me off at the entrance.',
+    'fa-flag',
+    5
+  ),
+  card(
+    'Fare',
+    'The money charged for a taxi, bus, or ride-hailing trip.',
+    'How much is the fare?',
+    'fa-money-bill-wave',
+    6
+  ),
+  card(
+    'Ride-hailing',
+    'Booking a private car or bike through an app such as Grab.',
+    'I book a ride-hailing app when I have luggage.',
+    'fa-mobile-alt',
+    7
+  ),
+];
+
 const DECKS_BY_COURSE_ID: Record<string, LogisticsVocabCard[]> = {
   [LOGISTICS_WEEK1_COURSES[0].id]: L1_SUPPLY_VOCAB,
   [LOGISTICS_WEEK1_COURSES[1].id]: L1_SCM_VOCAB,
@@ -546,6 +766,10 @@ const DECKS_BY_COURSE_ID: Record<string, LogisticsVocabCard[]> = {
   [LOGISTICS_WEEK3_COURSES[1].id]: W3_INVOICE_VOCAB,
   [LOGISTICS_WEEK3_COURSES[2].id]: W3_FEES_VOCAB,
   [LOGISTICS_WEEK3_COURSES[3].id]: W3_FREEDAYS_VOCAB,
+  [LOGISTICS_WEEK4_COURSES[0].id]: W4_COMMUTE_VOCAB,
+  [LOGISTICS_WEEK4_COURSES[1].id]: W4_DIRECTIONS_VOCAB,
+  [LOGISTICS_WEEK4_COURSES[2].id]: W4_NAV_VOCAB,
+  [LOGISTICS_WEEK4_COURSES[3].id]: W4_TRANSPORT_VOCAB,
 };
 
 export function getCourseVocabDeck(courseId: string): LogisticsVocabCard[] | null {

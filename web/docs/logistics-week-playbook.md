@@ -9,7 +9,8 @@ Hướng dẫn làm **tuần mới** cho English for Logistics giống week 1–
 | 1 | `/logistics` | 4 units (IDs cuid sẵn có) |
 | 2 | `/logistics/week2` | 3 units (`cmlgw2…`) |
 | 3 | `/logistics/week3` | 4 units (`cmlgw3…`) |
-| N | `/logistics/weekN` | Mirror week3 |
+| 4 | `/logistics/week4` | 4 units (`cmlgw4…`) |
+| N | `/logistics/weekN` | Mirror week4 |
 
 Mỗi unit:
 
@@ -88,6 +89,19 @@ Thứ tự import **PDF 4 → 1** theo request:
 | 2 | `W3-INVOICE` | `Understanding Invoices & Payment Terms.pdf` |
 | 3 | `W3-FEES` | `Logistics English - Extra Fees & Price Increases- Session 5 - Level 2.pdf` |
 | 4 | `W3-FREEDAYS` | `Topic 6 - Free Days & Late Container Fees - Sesssion 6- Level 2.pdf` |
+
+## Week 4 — PDF mapping (đã làm)
+
+Thứ tự Level 1 trước, Level 2 sau (Daily Life / Transportation Session 7–8):
+
+| # | Course key | PDF |
+|---|------------|-----|
+| 1 | `W4-COMMUTE` | `Level 1 Transportation & Daily Commute.pdf` |
+| 2 | `W4-DIRECTIONS` | `Daily Life - Asking and Giving Directions.pdf` |
+| 3 | `W4-NAV` | `Daily Life Directions Level 2- SESSION 7.pdf` |
+| 4 | `W4-TRANSPORT` | `Daily Life - Transportation & Commute - Level 2 - Sesson 8.pdf` |
+
+PDF dir mặc định: `E:/Wewin/Wewin-Education-main/anh_wewin/flyer/unit 7/Castle & Environment`
 
 ## Ghi chú
 

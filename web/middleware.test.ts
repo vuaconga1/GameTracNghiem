@@ -35,5 +35,6 @@ describe('Logistics public route', () => {
     expect(isPublicPlayerPage('/logistics')).toBe(true);
     expect(isPublicPlayerPage('/logistics/week2')).toBe(true);
     expect(isPublicPlayerPage('/logistics/week3')).toBe(true);
+    expect(isPublicPlayerPage('/logistics/week4')).toBe(true);
   });
 });

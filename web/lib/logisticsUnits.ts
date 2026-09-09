@@ -91,12 +91,44 @@ export const LOGISTICS_WEEK3_COURSES: LogisticsCourseSeed[] = [
   },
 ];
 
+/**
+ * Week 4 — Daily commute → Directions → L2 Directions → L2 Transport
+ * (PDF order: Level 1 commute, L1 directions, Session 7, Session 8).
+ */
+export const LOGISTICS_WEEK4_COURSES: LogisticsCourseSeed[] = [
+  {
+    id: 'cmlgw4com0001asx5a0000001',
+    name: 'Level 1: Transportation & Daily Commute',
+    key: 'W4-COMMUTE',
+    speakingTitle: 'Talk about your daily commute and traffic',
+  },
+  {
+    id: 'cmlgw4dir0002asx5a0000002',
+    name: 'Level 1: Asking and Giving Directions',
+    key: 'W4-DIRECTIONS',
+    speakingTitle: 'Ask for and give street directions politely',
+  },
+  {
+    id: 'cmlgw4nav0003asx5a0000003',
+    name: 'Level 2: Asking & Giving Directions',
+    key: 'W4-NAV',
+    speakingTitle: 'Navigate the city and give clear directions',
+  },
+  {
+    id: 'cmlgw4trp0004asx5a0000004',
+    name: 'Level 2: Transportation & Daily Commute',
+    key: 'W4-TRANSPORT',
+    speakingTitle: 'Book rides and discuss buses, taxis, and traffic',
+  },
+];
+
 /** @deprecated Prefer LOGISTICS_WEEK1_COURSES — kept for existing import scripts. */
 export const LOGISTICS_COURSES = LOGISTICS_WEEK1_COURSES;
 
-export type LogisticsWeek = 1 | 2 | 3;
+export type LogisticsWeek = 1 | 2 | 3 | 4;
 
 export function logisticsCoursesForWeek(week: LogisticsWeek): LogisticsCourseSeed[] {
+  if (week === 4) return LOGISTICS_WEEK4_COURSES;
   if (week === 3) return LOGISTICS_WEEK3_COURSES;
   if (week === 2) return LOGISTICS_WEEK2_COURSES;
   return LOGISTICS_WEEK1_COURSES;
@@ -108,6 +140,7 @@ export function logisticsCourseIdsForWeek(week: LogisticsWeek): Set<string> {
 
 /** Home path for a logistics course (week1 stays at `/logistics`). */
 export function logisticsWeekHomeHref(courseId: string): string {
+  if (logisticsCourseIdsForWeek(4).has(courseId)) return '/logistics/week4';
   if (logisticsCourseIdsForWeek(3).has(courseId)) return '/logistics/week3';
   if (logisticsCourseIdsForWeek(2).has(courseId)) return '/logistics/week2';
   return '/logistics';
