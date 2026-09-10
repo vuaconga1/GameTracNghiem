@@ -49,6 +49,87 @@ export function getIsoWeekNumber(year: number, month: number, day: number): numb
   return Math.ceil(((date.getTime() - yearStart.getTime()) / 86400000 + 1) / 7);
 }
 
+/** ISO week-year (the year of that week's Thursday). */
+export function getIsoWeekYear(year: number, month: number, day: number): number {
+  const date = new Date(Date.UTC(year, month - 1, day));
+  const dayNum = date.getUTCDay() || 7;
+  date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+  return date.getUTCFullYear();
+}
+
+export function getIsoWeekKeyFromParts(year: number, month: number, day: number): string {
+  return `${getIsoWeekYear(year, month, day)}-W${pad2(getIsoWeekNumber(year, month, day))}`;
+}
+
+export function parseIsoWeekKey(
+  value: string | null | undefined
+): { weekYear: number; isoWeek: number } | null {
+  const match = String(value || '')
+    .trim()
+    .match(/^(\d{4})-W(\d{1,2})$/i);
+  if (!match) return null;
+  const weekYear = Number(match[1]);
+  const isoWeek = Number(match[2]);
+  if (!Number.isInteger(weekYear) || !Number.isInteger(isoWeek) || isoWeek < 1 || isoWeek > 53) {
+    return null;
+  }
+  return { weekYear, isoWeek };
+}
+
+/**
+ * Monday 00:00–next Monday 00:00 in Asia/Ho_Chi_Minh for an ISO week.
+ * Returns null when the week does not exist in that ISO year (e.g. W53).
+ */
+export function getIsoWeekBoundsFromKey(
+  weekYear: number,
+  isoWeek: number
+): { start: Date; end: Date } | null {
+  if (!Number.isInteger(weekYear) || !Number.isInteger(isoWeek) || isoWeek < 1 || isoWeek > 53) {
+    return null;
+  }
+
+  const jan4Dow = getIsoDayOfWeek(weekYear, 1, 4);
+  const week1Monday = new Date(Date.UTC(weekYear, 0, 4 - (jan4Dow - 1)));
+  const monday = new Date(
+    Date.UTC(
+      week1Monday.getUTCFullYear(),
+      week1Monday.getUTCMonth(),
+      week1Monday.getUTCDate() + (isoWeek - 1) * 7
+    )
+  );
+  const thursday = new Date(
+    Date.UTC(monday.getUTCFullYear(), monday.getUTCMonth(), monday.getUTCDate() + 3)
+  );
+  if (thursday.getUTCFullYear() !== weekYear) {
+    return null;
+  }
+
+  const nextMonday = new Date(
+    Date.UTC(monday.getUTCFullYear(), monday.getUTCMonth(), monday.getUTCDate() + 7)
+  );
+
+  return {
+    start: hoChiMinhLocalToUtc(
+      monday.getUTCFullYear(),
+      monday.getUTCMonth() + 1,
+      monday.getUTCDate()
+    ),
+    end: hoChiMinhLocalToUtc(
+      nextMonday.getUTCFullYear(),
+      nextMonday.getUTCMonth() + 1,
+      nextMonday.getUTCDate()
+    ),
+  };
+}
+
+export function formatIsoWeekRangeLabel(weekYear: number, isoWeek: number): string {
+  const bounds = getIsoWeekBoundsFromKey(weekYear, isoWeek);
+  if (!bounds) return '';
+  const start = getZonedParts(bounds.start);
+  const end = getZonedParts(new Date(bounds.end.getTime() - 1));
+  return `${pad2(start.day)}/${pad2(start.month)} – ${pad2(end.day)}/${pad2(end.month)}/${end.year}`;
+}
+
 function getIsoDayOfWeek(year: number, month: number, day: number): number {
   const date = new Date(Date.UTC(year, month - 1, day));
   const dayOfWeek = date.getUTCDay();
