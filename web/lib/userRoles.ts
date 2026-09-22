@@ -1,12 +1,13 @@
 import { isLogisticsLevel } from '@/lib/logisticsUnits';
 
 /** Stored in DB / JWT after normalization. Legacy `student` maps to WewinStudent. */
-export type UserRole = 'admin' | 'WewinStudent' | 'LogisticsStudent';
+export type UserRole = 'admin' | 'teacher' | 'WewinStudent' | 'LogisticsStudent';
 
-export const USER_ROLES: UserRole[] = ['admin', 'WewinStudent', 'LogisticsStudent'];
+export const USER_ROLES: UserRole[] = ['admin', 'teacher', 'WewinStudent', 'LogisticsStudent'];
 
 export function normalizeUserRole(value: unknown): UserRole {
   if (value === 'admin') return 'admin';
+  if (value === 'teacher') return 'teacher';
   if (value === 'LogisticsStudent') return 'LogisticsStudent';
   if (value === 'WewinStudent') return 'WewinStudent';
   return 'WewinStudent';
@@ -15,6 +16,7 @@ export function normalizeUserRole(value: unknown): UserRole {
 export function parseUserRoleInput(value: unknown): UserRole | null {
   const raw = String(value || '').trim();
   if (raw === 'admin') return 'admin';
+  if (raw === 'teacher') return 'teacher';
   if (raw === 'LogisticsStudent') return 'LogisticsStudent';
   if (raw === 'WewinStudent' || raw === 'student') return 'WewinStudent';
   return null;
@@ -26,13 +28,13 @@ export function homeHrefForRole(role: UserRole): string {
 }
 
 export function canAccessCourseLevel(role: UserRole, levelName: string): boolean {
-  if (role === 'admin') return true;
+  if (role === 'admin' || role === 'teacher') return true;
   if (isLogisticsLevel(levelName)) return role === 'LogisticsStudent';
   return role === 'WewinStudent';
 }
 
 export function filterLevelsForRole(role: UserRole, levels: string[]): string[] {
-  if (role === 'admin') return levels;
+  if (role === 'admin' || role === 'teacher') return levels;
   if (role === 'LogisticsStudent') return levels.filter((level) => isLogisticsLevel(level));
   return levels.filter((level) => !isLogisticsLevel(level));
 }
@@ -43,4 +45,18 @@ export function isWewinStudentRole(role: unknown): boolean {
 
 export function isAdminUserRole(role: unknown): boolean {
   return role === 'admin';
+}
+
+export function isTeacherUserRole(role: unknown): boolean {
+  return role === 'teacher';
+}
+
+/** Admin or teacher — may manage school classes / homework. */
+export function canManageClasses(role: unknown): boolean {
+  return role === 'admin' || role === 'teacher';
+}
+
+export function isStudentAccountRole(role: unknown): boolean {
+  const normalized = normalizeUserRole(role);
+  return normalized === 'WewinStudent' || normalized === 'LogisticsStudent';
 }

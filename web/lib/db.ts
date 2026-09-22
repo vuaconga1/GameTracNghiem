@@ -38,14 +38,30 @@ export function buildPgPoolConfig(connectionString: string): PoolConfig {
   };
 }
 
+function fieldNames(
+  fields: Record<string, unknown> | Array<string | { name?: string }> | undefined
+): string[] {
+  if (!fields) return [];
+  // Prisma 7 runtimeDataModel uses an array of field descriptors; older
+  // shapes (and our unit fixtures) use a name→meta object map.
+  if (Array.isArray(fields)) {
+    return fields.map((f) => (typeof f === 'string' ? f : String(f?.name ?? '')));
+  }
+  return Object.keys(fields);
+}
+
 function hasModelField(client: unknown, model: string, field: string): boolean {
   const models = (
     client as {
-      _runtimeDataModel?: { models?: Record<string, { fields?: Record<string, unknown> }> };
+      _runtimeDataModel?: {
+        models?: Record<
+          string,
+          { fields?: Record<string, unknown> | Array<string | { name?: string }> }
+        >;
+      };
     }
   )._runtimeDataModel?.models;
-  const fields = models?.[model]?.fields;
-  return Boolean(fields && field in fields);
+  return fieldNames(models?.[model]?.fields).includes(field);
 }
 
 /** Dev-only: drop a stale HMR Prisma client without ending the shared pg pool. */
@@ -58,7 +74,10 @@ export function shouldRecycleDevClient(client: unknown): boolean {
     !hasModelField(client, 'DailySpeakingUsage', 'usedCount') ||
     !hasModelField(client, 'SpeakingSession', 'mustEndAt') ||
     !hasModelField(client, 'SpeakingSessionEndJob', 'dueAt') ||
-    !hasModelField(client, 'SpeakingAttempt', 'idempotencyKey')
+    !hasModelField(client, 'SpeakingAttempt', 'idempotencyKey') ||
+    !hasModelField(client, 'SchoolClass', 'createdByUserId') ||
+    !hasModelField(client, 'ClassMember', 'classId') ||
+    !hasModelField(client, 'ClassAssignment', 'deadlineAt')
   );
 }
 
@@ -72,6 +91,11 @@ function createPrismaClient(): PrismaClient {
     globalForPrisma.pgPool ?? new Pool(buildPgPoolConfig(connectionString));
 
   // Keep one pool for the whole Node process (dev HMR + serverless warm instances).
+  // PrismaPg registers an `error` listener per client; without a stable client
+  // (see shouldRecycleDevClient) those stack up and trip MaxListenersExceeded.
+  if (!globalForPrisma.pgPool && typeof pool.setMaxListeners === 'function') {
+    pool.setMaxListeners(20);
+  }
   globalForPrisma.pgPool = pool;
 
   const adapter = new PrismaPg(pool);

@@ -1,9 +1,8 @@
-import '@/styles/legacy/admin.css';
-
 import { redirect } from 'next/navigation';
 
 import { AdminProviders } from '@/components/admin/AdminProviders';
-import { lookupSessionForPage } from '@/lib/auth';
+import { canManageClasses, lookupSessionForPage } from '@/lib/auth';
+import '@/styles/legacy/admin.css';
 
 export default async function AdminLayout({
   children,
@@ -17,7 +16,7 @@ export default async function AdminLayout({
     }
     redirect('/login?next=/admin');
   }
-  if (session.role !== 'admin') {
+  if (!canManageClasses(session.role)) {
     redirect('/?error=forbidden');
   }
 

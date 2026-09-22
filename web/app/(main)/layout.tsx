@@ -3,7 +3,13 @@ import { HomeNavProvider } from '@/components/shell/HomeNavContext';
 import { SidebarProvider } from '@/components/shell/SidebarContext';
 import { lookupSessionForPage } from '@/lib/auth';
 import { loadHeaderExperience } from '@/lib/loadHeaderExperience';
-import { homeHrefForRole, normalizeUserRole } from '@/lib/userRoles';
+import {
+  canManageClasses,
+  homeHrefForRole,
+  isStudentAccountRole,
+  normalizeUserRole,
+} from '@/lib/userRoles';
+
 export default async function MainLayout({
   children,
 }: Readonly<{
@@ -11,7 +17,8 @@ export default async function MainLayout({
 }>) {
   const { session } = await lookupSessionForPage();
   const experience = session ? await loadHeaderExperience(session.userId) : null;
-  const homeHref = session ? homeHrefForRole(normalizeUserRole(session.role)) : '/';
+  const role = session ? normalizeUserRole(session.role) : null;
+  const homeHref = role ? homeHrefForRole(role) : '/';
 
   return (
     <SidebarProvider>
@@ -20,7 +27,8 @@ export default async function MainLayout({
           displayName={session?.displayName}
           avatarUrl={session?.avatarUrl ?? null}
           isAuthenticated={Boolean(session)}
-          isAdmin={session?.role === 'admin'}
+          isAdmin={role ? canManageClasses(role) : false}
+          showHomeworkPopup={role ? isStudentAccountRole(role) : false}
           homeHref={homeHref}
           level={experience?.level}
           tier={experience?.tier}
@@ -32,4 +40,5 @@ export default async function MainLayout({
         </MainShell>
       </HomeNavProvider>
     </SidebarProvider>
-  );}
+  );
+}

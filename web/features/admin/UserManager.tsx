@@ -468,6 +468,7 @@ export function UserManager({
                           >
                             <option value="WewinStudent">Học sinh WeWIN (L1–9)</option>
                             <option value="LogisticsStudent">Học sinh Logistics</option>
+                            <option value="teacher">Giáo viên</option>
                             <option value="admin">Quản trị</option>
                           </select>
                         </td>

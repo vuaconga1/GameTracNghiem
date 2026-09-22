@@ -13,12 +13,14 @@ import { GuestFormGateModal } from './GuestFormGateModal';
 import { Sidebar } from './Sidebar';
 import { useSidebar } from './SidebarContext';
 import { TourProvider } from '@/features/tour/TourProvider';
+import { HomeworkPopup } from '@/features/homework/HomeworkPopup';
 
 type MainShellProps = {
   displayName?: string;
   avatarUrl?: string | null;
   isAuthenticated?: boolean;
   isAdmin?: boolean;
+  showHomeworkPopup?: boolean;
   homeHref?: string;
   level?: number;
   tier?: number;
@@ -33,6 +35,7 @@ export function MainShell({
   avatarUrl = null,
   isAuthenticated = false,
   isAdmin = false,
+  showHomeworkPopup = false,
   homeHref = '/',
   level,
   tier,
@@ -197,6 +200,7 @@ export function MainShell({
           {children}
         </AppShell>
         <GuestFormGateModal isGuest={!isAuthenticated} />
+        <HomeworkPopup enabled={showHomeworkPopup && isAuthenticated} />
       </TourProvider>
     </PlayerProvider>
   );

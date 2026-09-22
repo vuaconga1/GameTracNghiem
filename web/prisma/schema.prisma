@@ -30,6 +30,9 @@ model User {
   speakingGrantsRevoked SpeakingEntitlement[]       @relation("SpeakingEntitlementRevoker")
   speakingAttempts      SpeakingAttempt[]
   speakingRecordingAudits SpeakingRecordingAccessAudit[]
+  schoolClassesCreated  SchoolClass[]               @relation("SchoolClassCreator")
+  classMemberships      ClassMember[]
+  classAssignmentsCreated ClassAssignment[]         @relation("ClassAssignmentCreator")
 }
 
 model ClassLevel {
@@ -37,6 +40,62 @@ model ClassLevel {
   levelName  String    @unique
   active     Boolean   @default(true)
   archivedAt DateTime?
+}
+
+/**
+ * Teacher/admin-managed class roster (học viên có thể thuộc nhiều lớp).
+ */
+model SchoolClass {
+  id              String            @id @default(cuid())
+  name            String
+  createdByUserId String
+  createdBy       User              @relation("SchoolClassCreator", fields: [createdByUserId], references: [id], onDelete: Restrict)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  members         ClassMember[]
+  assignments     ClassAssignment[]
+
+  @@index([createdByUserId, createdAt])
+  @@index([name])
+}
+
+model ClassMember {
+  id        String      @id @default(cuid())
+  classId   String
+  class     SchoolClass @relation(fields: [classId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime    @default(now())
+
+  @@unique([classId, userId])
+  @@index([userId])
+}
+
+/**
+ * Homework pointing at an existing course unit + game.
+ * Progress is derived from ExperienceGrant / ScoreLog for that user+course+game.
+ * deadlineAt is stored as an absolute instant; admin inputs use Asia/Ho_Chi_Minh.
+ */
+model ClassAssignment {
+  id              String      @id @default(cuid())
+  classId         String
+  class           SchoolClass @relation(fields: [classId], references: [id], onDelete: Cascade)
+  courseId        String
+  course          Course      @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  gameKey         String
+  skillId         String?
+  levelName       String
+  courseName      String
+  gameLabel       String
+  skillLabel      String?
+  deadlineAt      DateTime
+  createdByUserId String
+  createdBy       User        @relation("ClassAssignmentCreator", fields: [createdByUserId], references: [id], onDelete: Restrict)
+  createdAt       DateTime    @default(now())
+
+  @@index([classId, deadlineAt])
+  @@index([courseId, gameKey])
+  @@index([createdByUserId, createdAt])
 }
 
 model Ebook {
@@ -88,6 +147,7 @@ model Course {
   speakingSessions     SpeakingSession[]
   speakingEntitlements SpeakingEntitlement[]
   speakingAttempts     SpeakingAttempt[]
+  classAssignments     ClassAssignment[]
 
   @@index([levelName])
   @@index([name])

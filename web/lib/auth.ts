@@ -3,7 +3,11 @@ import { cache } from 'react';
 
 import { prisma } from './db';
 import { clearSessionCookie, getSession, type SessionPayload } from './session';
-import { isAdminUserRole, normalizeUserRole, type UserRole } from './userRoles';
+import {
+  canManageClasses,
+  isAdminUserRole,
+  normalizeUserRole,
+} from './userRoles';
 import { isStaleSessionUser } from './sessionUser';
 
 export { publicApiErrorMessage } from './apiErrors';
@@ -95,8 +99,19 @@ export async function requireAdmin(): Promise<SessionPayload> {
   return session;
 }
 
+/** Admin or teacher — class / homework management. */
+export async function requireAdminOrTeacher(): Promise<SessionPayload> {
+  const session = await requireSession();
+  if (!canManageClasses(session.role)) {
+    const err = new Error('Không có quyền truy cập') as Error & { status: number };
+    err.status = 403;
+    throw err;
+  }
+  return session;
+}
+
 export function isAdminRole(role: string | null | undefined): role is 'admin' {
   return isAdminUserRole(role);
 }
 
-export { normalizeUserRole, type UserRole } from './userRoles';
+export { normalizeUserRole, canManageClasses, type UserRole } from './userRoles';

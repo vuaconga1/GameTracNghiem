@@ -938,7 +938,7 @@
       color: var(--primary);
     }
 
-    /* In-content green bar (reference-style) — keeps WeWIN page chrome/background */
+    /* In-content blue bar — WeWIN primary navy (keeps page chrome/background) */
     .courses-header--alphabet {
       display: flex;
       align-items: center;
@@ -947,8 +947,8 @@
       margin: 0 0 18px;
       padding: 10px 16px;
       border-radius: 18px;
-      background: linear-gradient(90deg, #2e9b4f 0%, #1f8f6a 55%, #178a7a 100%);
-      box-shadow: 0 6px 16px rgba(23, 138, 122, 0.22);
+      background: linear-gradient(90deg, var(--primary) 0%, #1a449c 55%, #1e5a96 100%);
+      box-shadow: 0 6px 16px rgba(13, 43, 110, 0.22);
       color: #ffffff;
     }
 
@@ -5093,5 +5093,121 @@ button.speaking-hub-companion-change.activity-progress {
   .speaking-character-card:hover .speaking-character-avatar,
   .speaking-character-card:focus-visible .speaking-character-avatar {
     transform: none;
+  }
+}
+/* Homework incomplete popup (student) */
+.homework-popup-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1250;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 48px 16px 24px;
+  background: rgba(10, 20, 53, 0.45);
+}
+
+.homework-popup {
+  position: relative;
+  width: min(100%, 560px);
+  max-height: min(80vh, 640px);
+  overflow: auto;
+  padding: 28px 24px 22px;
+  border-radius: 18px;
+  background: #ffffff;
+  color: #17213b;
+  box-shadow: 0 20px 60px rgba(10, 20, 53, 0.28);
+}
+
+.homework-popup-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #dce3ef;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #42506c;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.homework-popup h2 {
+  margin: 0 36px 16px 0;
+  color: #0f1c3f;
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.homework-popup-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.homework-popup-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid #e4eaf3;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+
+.homework-popup-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.homework-popup-item-text strong {
+  color: #0f1c3f;
+  font-size: 15px;
+}
+
+.homework-popup-item-text span {
+  color: #5f6980;
+  font-size: 13px;
+}
+
+.homework-popup-action {
+  flex-shrink: 0;
+  min-height: 42px;
+  padding: 8px 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: #1f4fd6;
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.homework-popup-action:hover {
+  background: #183fb0;
+}
+
+@media (max-width: 560px) {
+  .homework-popup-backdrop {
+    padding-top: 24px;
+  }
+
+  .homework-popup-list li {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .homework-popup-action {
+    width: 100%;
   }
 }
