@@ -34,6 +34,12 @@ const NAV: Array<{
     icon: 'fas fa-chalkboard-user',
   },
   {
+    href: '/admin/account',
+    label: { vi: 'Thông tin tài khoản', en: 'My account' },
+    hint: { vi: 'Đổi username / mật khẩu', en: 'Change username / password' },
+    icon: 'fas fa-user-gear',
+  },
+  {
     href: '/admin/class-levels',
     label: { vi: 'Cấp / Lớp', en: 'Levels' },
     hint: { vi: 'Lớp 1, Lớp 2…', en: 'Grade 1, 2…' },
