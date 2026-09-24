@@ -6,6 +6,15 @@ vi.mock('next/navigation', () => ({
   useSearchParams: () => new URLSearchParams(),
 }));
 
+// next/dynamic stays async under renderToStaticMarkup; resolve EbookViewer eagerly in tests.
+vi.mock('next/dynamic', () => ({
+  __esModule: true,
+  default: () =>
+    function MockEbookViewer() {
+      return createElement('div', { className: 'ebook-flip-root' });
+    },
+}));
+
 import { I18nProvider } from '@/components/i18n/I18nProvider';
 import { HomeNavProvider } from '@/components/shell/HomeNavContext';
 import type { CourseDetailData } from '@/lib/loadCourseDetail';

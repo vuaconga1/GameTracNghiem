@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { AdminShell } from '@/components/admin/AdminShell';
 import { DataLoading } from '@/components/DataLoading';
@@ -15,6 +15,12 @@ type ClassItem = {
   createdBy: { id: string; displayName: string; username: string };
 };
 
+const PAGE_SIZE = 20;
+
+function normalizeSearch(value: string) {
+  return value.trim().toLowerCase();
+}
+
 export function ClassManager({
   displayName,
   isAdmin,
@@ -26,6 +32,8 @@ export function ClassManager({
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const [name, setName] = useState('');
+  const [filter, setFilter] = useState('');
+  const [page, setPage] = useState(1);
   const [creating, setCreating] = useState(false);
 
   const load = useCallback(async () => {
@@ -52,6 +60,31 @@ export function ClassManager({
   useEffect(() => {
     void load();
   }, [load]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [filter]);
+
+  const filteredItems = useMemo(() => {
+    if (!items) return null;
+    const q = normalizeSearch(filter);
+    if (!q) return items;
+    return items.filter((item) => normalizeSearch(item.name).includes(q));
+  }, [filter, items]);
+
+  const totalPages = filteredItems
+    ? Math.max(1, Math.ceil(filteredItems.length / PAGE_SIZE))
+    : 1;
+
+  useEffect(() => {
+    if (page > totalPages) setPage(totalPages);
+  }, [page, totalPages]);
+
+  const pageItems = useMemo(() => {
+    if (!filteredItems) return null;
+    const start = (page - 1) * PAGE_SIZE;
+    return filteredItems.slice(start, start + PAGE_SIZE);
+  }, [filteredItems, page]);
 
   async function createClass(event: React.FormEvent) {
     event.preventDefault();
@@ -91,7 +124,6 @@ export function ClassManager({
     } finally {
       setCreating(false);
     }
-    // Refresh list after unlocking the button so a slow load cannot stick "Đang tạo…"
     if (created) {
       await load();
     }
@@ -111,6 +143,11 @@ export function ClassManager({
     await load();
   }
 
+  const rangeLabel =
+    filteredItems && filteredItems.length > 0
+      ? `${(page - 1) * PAGE_SIZE + 1}–${Math.min(page * PAGE_SIZE, filteredItems.length)} / ${filteredItems.length} lớp`
+      : null;
+
   return (
     <AdminShell
       displayName={displayName}
@@ -122,7 +159,7 @@ export function ClassManager({
         <div className="admin-toolbar-actions" style={{ flexWrap: 'wrap', gap: 10 }}>
           <input
             className="admin-toolbar-input"
-            placeholder="Tên lớp (vd: Lớp 9A — cô Mai)"
+            placeholder="Tên lớp (vd: WW00016 — IELTS INTENSIVE)"
             value={name}
             onChange={(e) => {
               setName(e.target.value);
@@ -137,56 +174,113 @@ export function ClassManager({
         </div>
       </form>
 
+      <div className="admin-toolbar" style={{ marginTop: 8 }}>
+        <div className="admin-toolbar-actions" style={{ flexWrap: 'wrap', gap: 10, width: '100%' }}>
+          <input
+            className="admin-toolbar-input"
+            style={{ flex: '1 1 240px', minWidth: 200 }}
+            placeholder="Tìm theo tên lớp (vd: WW00016, IELTS…)"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            aria-label="Tìm kiếm theo tên lớp"
+          />
+          {filter ? (
+            <button type="button" className="admin-btn" onClick={() => setFilter('')}>
+              Xóa lọc
+            </button>
+          ) : null}
+        </div>
+      </div>
+
       {message ? <div className="admin-alert ok">{message}</div> : null}
       {error ? <div className="admin-alert error">{error}</div> : null}
 
       <div className="admin-panel">
-        {items === null ? (
+        {items === null || filteredItems === null || pageItems === null ? (
           <DataLoading />
         ) : items.length === 0 ? (
           <div className="admin-empty">Chưa có lớp nào. Hãy tạo lớp đầu tiên ở trên.</div>
-        ) : (
-          <div className="admin-table-wrap">
-            <table className="admin-table">
-              <thead>
-                <tr>
-                  <th>Tên lớp</th>
-                  <th>Học viên</th>
-                  <th>Bài tập</th>
-                  {isAdmin ? <th>Người tạo</th> : null}
-                  <th />
-                </tr>
-              </thead>
-              <tbody>
-                {items.map((item) => (
-                  <tr key={item.id}>
-                    <td>
-                      <Link href={`/admin/classes/${item.id}`} className="admin-link">
-                        <strong>{item.name}</strong>
-                      </Link>
-                    </td>
-                    <td>{item.memberCount}</td>
-                    <td>{item.assignmentCount}</td>
-                    {isAdmin ? <td>{item.createdBy.displayName}</td> : null}
-                    <td>
-                      <div className="admin-toolbar-actions">
-                        <Link className="admin-btn" href={`/admin/classes/${item.id}`}>
-                          Mở
-                        </Link>
-                        <button
-                          type="button"
-                          className="admin-btn danger"
-                          onClick={() => void deleteClass(item)}
-                        >
-                          Xóa
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+        ) : filteredItems.length === 0 ? (
+          <div className="admin-empty">
+            Không có lớp khớp “{filter.trim()}”. Thử từ khóa khác hoặc xóa lọc.
           </div>
+        ) : (
+          <>
+            <div className="admin-table-wrap">
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Tên lớp</th>
+                    <th>Học viên</th>
+                    <th>Bài tập</th>
+                    {isAdmin ? <th>Người tạo</th> : null}
+                    <th />
+                  </tr>
+                </thead>
+                <tbody>
+                  {pageItems.map((item) => (
+                    <tr key={item.id}>
+                      <td>
+                        <Link href={`/admin/classes/${item.id}`} className="admin-link">
+                          <strong>{item.name}</strong>
+                        </Link>
+                      </td>
+                      <td>{item.memberCount}</td>
+                      <td>{item.assignmentCount}</td>
+                      {isAdmin ? <td>{item.createdBy.displayName}</td> : null}
+                      <td>
+                        <div className="admin-toolbar-actions">
+                          <Link className="admin-btn" href={`/admin/classes/${item.id}`}>
+                            Mở
+                          </Link>
+                          <button
+                            type="button"
+                            className="admin-btn danger"
+                            onClick={() => void deleteClass(item)}
+                          >
+                            Xóa
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div
+              className="admin-toolbar-actions"
+              style={{
+                marginTop: 14,
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: 10,
+              }}
+            >
+              <span style={{ opacity: 0.8, fontSize: 14 }}>{rangeLabel}</span>
+              <div className="admin-toolbar-actions" style={{ gap: 8 }}>
+                <button
+                  type="button"
+                  className="admin-btn"
+                  disabled={page <= 1}
+                  onClick={() => setPage((p) => Math.max(1, p - 1))}
+                >
+                  Trước
+                </button>
+                <span style={{ alignSelf: 'center', fontSize: 14 }}>
+                  Trang {page}/{totalPages}
+                </span>
+                <button
+                  type="button"
+                  className="admin-btn"
+                  disabled={page >= totalPages}
+                  onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                >
+                  Sau
+                </button>
+              </div>
+            </div>
+          </>
         )}
       </div>
     </AdminShell>

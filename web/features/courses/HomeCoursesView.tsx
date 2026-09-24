@@ -17,9 +17,11 @@ import {
   currentBrowserHref,
   HOME_COURSES_LEVEL_STORAGE_KEY,
   normalizeHomeCoursesLevelName,
+  persistHomeCoursesLevelPreference,
   readHomeCoursesLevelFromSearch,
   resolveClientHomeCoursesLevel,
 } from '@/lib/homeCoursesFilterState';
+import { cachedJsonFetch, seedClientFetchCache } from '@/lib/clientFetchCache';
 import type { HomeCoursesData } from '@/lib/loadHomeCourses';
 import { courseCompletionPercent } from '@/lib/courseProgress';
 import { readGuestGameState } from '@/lib/player/guestPlayerAdapter';
@@ -88,6 +90,17 @@ export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
   const didInitializeLevel = useRef(false);
 
   useLayoutEffect(() => {
+    if (!initialData) return;
+    seedClientFetchCache(coursesUrl(initialSelectedLevelName), {
+      success: true,
+      courses: initialData.courses,
+      filters: initialData.filters,
+      selectedLevelName: initialData.selectedLevelName,
+      playerKind: initialData.playerKind,
+    });
+  }, [initialData, initialSelectedLevelName]);
+
+  useLayoutEffect(() => {
     if (player.kind !== 'guest') return;
     setCourses((current) => hydrateGuestCourses(current, true));
   }, [player.kind]);
@@ -120,9 +133,9 @@ export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
     });
 
     if (urlLevelName) {
-      window.localStorage.setItem(HOME_COURSES_LEVEL_STORAGE_KEY, urlLevelName);
+      persistHomeCoursesLevelPreference(urlLevelName);
     } else if (resolvedLevelName) {
-      window.localStorage.setItem(HOME_COURSES_LEVEL_STORAGE_KEY, resolvedLevelName);
+      persistHomeCoursesLevelPreference(resolvedLevelName);
     }
 
     if (resolvedLevelName !== initialSelectedLevelName) {
@@ -152,12 +165,7 @@ export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
   useEffect(() => {
     if (!didInitializeLevel.current) return;
 
-    const normalizedLevelName = normalizeHomeCoursesLevelName(levelName);
-    if (normalizedLevelName) {
-      window.localStorage.setItem(HOME_COURSES_LEVEL_STORAGE_KEY, normalizedLevelName);
-    } else {
-      window.localStorage.removeItem(HOME_COURSES_LEVEL_STORAGE_KEY);
-    }
+    persistHomeCoursesLevelPreference(levelName);
   }, [levelName]);
 
   useEffect(() => {
@@ -181,11 +189,12 @@ export function HomeCoursesView({ initialData }: HomeCoursesViewProps) {
       setErrorMessage('');
 
       try {
-        const res = await fetch(coursesUrl(levelName), {
+        const url = coursesUrl(levelName);
+        const data = await cachedJsonFetch<CoursesResponse>(url, {
           signal: controller.signal,
+          ttlMs: 60_000,
         });
-        const data = (await res.json()) as CoursesResponse;
-        if (!res.ok || !data.success) {
+        if (!data.success) {
           throw new Error(data.message || t('home.loadFailed'));
         }
 

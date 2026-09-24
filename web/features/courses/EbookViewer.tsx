@@ -230,7 +230,7 @@ export function EbookViewer({ ebookId, pageStart, pageEnd }: EbookViewerProps) {
       setDoc(null);
       try {
         const pdfjs = await import('pdfjs-dist');
-        pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+        pdfjs.GlobalWorkerOptions.workerSrc = '/pdfjs/pdf.worker.min.mjs';
         const pdf = await pdfjs.getDocument({
           url: `/api/ebooks/${ebookId}/file`,
           withCredentials: true,

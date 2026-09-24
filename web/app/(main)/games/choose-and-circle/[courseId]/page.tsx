@@ -1,5 +1,5 @@
 import { GameLessonTabs } from '@/features/games/GameLessonTabs';
-import { ChooseAndCircleGame } from '@/features/games/choose-and-circle/ChooseAndCircleGame';
+import { LazyChooseAndCircleGame } from '@/features/games/lazyGames';
 import { loadCourseGameLesson } from '@/lib/loadCourseGameLesson';
 
 export default async function ChooseAndCircleGamePage({
@@ -11,7 +11,7 @@ export default async function ChooseAndCircleGamePage({
   const lesson = await loadCourseGameLesson(courseId, 'choose_and_circle');
   return (
     <GameLessonTabs lesson={lesson}>
-      <ChooseAndCircleGame courseId={courseId} />
+      <LazyChooseAndCircleGame courseId={courseId} />
     </GameLessonTabs>
   );
 }

@@ -1,5 +1,5 @@
 import { GameLessonTabs } from '@/features/games/GameLessonTabs';
-import { VocabularyTestGame } from '@/features/games/vocabulary-test/VocabularyTestGame';
+import { LazyVocabularyTestGame } from '@/features/games/lazyGames';
 import { optionalSession } from '@/lib/auth';
 import { loadCourseGameLesson } from '@/lib/loadCourseGameLesson';
 import { loadVocabularyTestGame } from '@/lib/loadVocabularyTestGame';
@@ -17,7 +17,7 @@ export default async function VocabularyTestGamePage({
   ]);
   return (
     <GameLessonTabs lesson={lesson}>
-      <VocabularyTestGame courseId={courseId} initialData={initialData} />
+      <LazyVocabularyTestGame courseId={courseId} initialData={initialData} />
     </GameLessonTabs>
   );
 }

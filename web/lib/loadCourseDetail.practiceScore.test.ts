@@ -70,6 +70,7 @@ describe('course detail official score total', () => {
 
     expect(result?.totalScore).toBe(120);
     expect(mocks.getCourseDetailPublicCached).toHaveBeenCalledWith('course-1');
+    expect(mocks.resolveCanonicalLop9CourseId).not.toHaveBeenCalled();
     expect(mocks.scoreAggregate).toHaveBeenCalledWith({
       where: {
         userId: 'student-1',

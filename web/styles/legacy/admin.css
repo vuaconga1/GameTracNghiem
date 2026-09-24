@@ -455,22 +455,49 @@
 .admin-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .admin-table th,
 .admin-table td {
   text-align: left;
-  padding: 0.7rem 0.6rem;
+  padding: 0.35rem 0.5rem;
   border-bottom: 1px solid var(--admin-border);
   vertical-align: middle;
+  color: var(--admin-text);
 }
 
 .admin-table th {
   color: var(--admin-muted);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.03em;
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+}
+
+.admin-table a,
+.admin-link {
+  color: var(--admin-text);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.admin-table a:hover,
+.admin-link:hover {
+  color: var(--admin-primary);
+  text-decoration: underline;
+}
+
+.admin-table .admin-btn {
+  padding: 0.28rem 0.65rem;
+  font-size: 0.82rem;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.admin-table.class-members-table td {
+  color: #0f172a;
 }
 
 .admin-badge {

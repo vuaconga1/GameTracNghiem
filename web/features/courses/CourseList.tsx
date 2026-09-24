@@ -5,6 +5,7 @@
 import Link from 'next/link';
 
 import { DataLoading } from '@/components/DataLoading';
+import { OptimizedImg } from '@/components/OptimizedImg';
 import { useI18n } from '@/components/i18n/I18nProvider';
 
 export type CourseListItem = {
@@ -48,6 +49,8 @@ export function CourseList({ courses }: CourseListProps) {
           100,
           Math.max(0, Math.round(course.completionPercent || 0))
         );
+        // Avoid prefetching every course RSC payload from the home grid.
+        const prefetch = index < 4;
 
         return (
           <Link
@@ -56,9 +59,17 @@ export function CourseList({ courses }: CourseListProps) {
             className="course-card"
             data-course={course.name}
             data-level={course.levelName}
+            prefetch={prefetch}
           >
             {course.backgroundImageUrl ? (
-              <img className="course-thumb" src={course.backgroundImageUrl} alt="" />
+              <OptimizedImg
+                className="course-thumb"
+                src={course.backgroundImageUrl}
+                alt=""
+                loading={index < 6 ? 'eager' : 'lazy'}
+                decoding="async"
+                fetchPriority={index < 2 ? 'high' : 'auto'}
+              />
             ) : (
               <div
                 className="course-thumb-placeholder"

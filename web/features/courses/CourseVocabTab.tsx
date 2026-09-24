@@ -5,6 +5,7 @@
 import { useCallback, useRef, useState } from 'react';
 
 import { useI18n } from '@/components/i18n/I18nProvider';
+import { OptimizedImg } from '@/components/OptimizedImg';
 import type { CourseVocabCard } from '@/lib/courseVocabDeck';
 import { playReferenceAudio } from '@/features/games/pronunciation/audio';
 
@@ -61,7 +62,7 @@ export function CourseVocabTab({ cards }: CourseVocabTabProps) {
                     </div>
                     <div className="course-vocab-flashcard-media">
                       {card.imageUrl ? (
-                        <img src={card.imageUrl} alt="" loading="lazy" />
+                        <OptimizedImg src={card.imageUrl} alt="" loading="lazy" />
                       ) : (
                         <i className="fas fa-image" aria-hidden="true" />
                       )}

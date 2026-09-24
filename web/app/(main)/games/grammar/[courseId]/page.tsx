@@ -1,5 +1,5 @@
 import { GameLessonTabs } from '@/features/games/GameLessonTabs';
-import { GrammarGame } from '@/features/games/grammar/GrammarGame';
+import { LazyGrammarGame } from '@/features/games/lazyGames';
 import { loadCourseGameLesson } from '@/lib/loadCourseGameLesson';
 
 export default async function GrammarGamePage({
@@ -11,7 +11,7 @@ export default async function GrammarGamePage({
   const lesson = await loadCourseGameLesson(courseId, 'grammar');
   return (
     <GameLessonTabs lesson={lesson}>
-      <GrammarGame courseId={courseId} />
+      <LazyGrammarGame courseId={courseId} />
     </GameLessonTabs>
   );
 }

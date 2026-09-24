@@ -1,5 +1,5 @@
 import { GameLessonTabs } from '@/features/games/GameLessonTabs';
-import { LookAndWriteGame } from '@/features/games/look-and-write/LookAndWriteGame';
+import { LazyLookAndWriteGame } from '@/features/games/lazyGames';
 import { loadCourseGameLesson } from '@/lib/loadCourseGameLesson';
 
 export default async function LookAndWriteGamePage({
@@ -11,7 +11,7 @@ export default async function LookAndWriteGamePage({
   const lesson = await loadCourseGameLesson(courseId, 'look_and_write');
   return (
     <GameLessonTabs lesson={lesson}>
-      <LookAndWriteGame courseId={courseId} />
+      <LazyLookAndWriteGame courseId={courseId} />
     </GameLessonTabs>
   );
 }

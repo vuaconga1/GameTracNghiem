@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useRef, useState } from 'react';
 
@@ -10,7 +11,6 @@ import { useHomeHref } from '@/components/shell/HomeNavContext';
 import { PageBackButton } from '@/components/PageBackButton';
 import { usePlayer } from '@/components/player/PlayerContext';
 import { CourseVocabTab } from '@/features/courses/CourseVocabTab';
-import { EbookViewer } from '@/features/courses/EbookViewer';
 import { localizeExerciseTitle } from '@/features/games/localizeExerciseTitle';
 import { isAlphabetCourse } from '@/lib/alphabetLevel';
 import {
@@ -23,6 +23,7 @@ import type {
   CourseGames,
   GameDetail,
 } from '@/lib/loadCourseDetail';
+import { cachedJsonFetch, seedClientFetchCache } from '@/lib/clientFetchCache';
 import { resolveCourseVocabDeck } from '@/lib/courseVocabDeck';
 import { isLogisticsLevel, logisticsWeekHomeHref } from '@/lib/logisticsUnits';
 import {
@@ -38,6 +39,11 @@ import {
   visibleSkillsForCourse,
   type SkillId,
 } from '@/lib/skillCatalog';
+
+const EbookViewer = dynamic(
+  () => import('@/features/courses/EbookViewer').then((m) => m.EbookViewer),
+  { loading: () => <DataLoading /> },
+);
 
 type CourseDetailResponse = {
   success: boolean;
@@ -539,6 +545,19 @@ export function CourseDetailView({
   const didUseInitialData = useRef(Boolean(initialData));
 
   useEffect(() => {
+    if (!initialData) return;
+    seedClientFetchCache(`/api/courses/${initialData.course.id}`, {
+      success: true,
+      course: initialData.course,
+      games: initialData.games,
+      gameExercises: initialData.gameExercises,
+      skillStats: initialData.skillStats,
+      totalScore: initialData.totalScore,
+      playerKind: initialData.playerKind,
+    });
+  }, [initialData]);
+
+  useEffect(() => {
     if (player.kind !== 'guest' || !initialData) return;
     setData(hydrateGuestCourseDetail(initialData));
   }, [initialData, player.kind]);
@@ -556,11 +575,11 @@ export function CourseDetailView({
       setErrorMessage('');
 
       try {
-        const res = await fetch(`/api/courses/${courseId}`, {
+        const json = await cachedJsonFetch<CourseDetailResponse>(`/api/courses/${courseId}`, {
           signal: controller.signal,
+          ttlMs: 45_000,
         });
-        const json = (await res.json()) as CourseDetailResponse;
-        if (!res.ok || !json.success || !json.course) {
+        if (!json.success || !json.course) {
           throw new Error(json.message || t('course.loadFailed'));
         }
         const nextData: CourseDetailData = {

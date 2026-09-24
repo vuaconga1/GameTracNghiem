@@ -12,6 +12,7 @@ import {
 import { DataLoading } from '@/components/DataLoading';
 import { useI18n } from '@/components/i18n/I18nProvider';
 import { PageBackButton } from '@/components/PageBackButton';
+import { cachedJsonFetch } from '@/lib/clientFetchCache';
 import type {
   SpeakingAccessReason,
   SpeakingAccessResult,
@@ -141,12 +142,12 @@ export function SpeakingHub({
       const entries = await Promise.all(
         activitiesForCourse.map(async ({ activityType }) => {
           try {
-            const response = await fetch(
-              `/api/speaking/access?courseId=${encodeURIComponent(courseId)}&activityType=${activityType}`,
-              { signal: controller.signal },
-            );
-            const body = (await response.json()) as AccessResponse;
-            if (!response.ok || !body.success || !body.access) {
+            const url = `/api/speaking/access?courseId=${encodeURIComponent(courseId)}&activityType=${activityType}`;
+            const body = await cachedJsonFetch<AccessResponse>(url, {
+              signal: controller.signal,
+              ttlMs: 30_000,
+            });
+            if (!body.success || !body.access) {
               throw new Error(body.message || t('speaking.hub.loadFailed'));
             }
             return [activityType, body.access] as const;

@@ -1,5 +1,5 @@
 import { GameLessonTabs } from '@/features/games/GameLessonTabs';
-import { ReadAndCompleteGame } from '@/features/games/read-and-complete/ReadAndCompleteGame';
+import { LazyReadAndCompleteGame } from '@/features/games/lazyGames';
 import { loadCourseGameLesson } from '@/lib/loadCourseGameLesson';
 
 export default async function ReadAndCompleteGamePage({
@@ -11,7 +11,7 @@ export default async function ReadAndCompleteGamePage({
   const lesson = await loadCourseGameLesson(courseId, 'read_and_complete');
   return (
     <GameLessonTabs lesson={lesson}>
-      <ReadAndCompleteGame courseId={courseId} />
+      <LazyReadAndCompleteGame courseId={courseId} />
     </GameLessonTabs>
   );
 }

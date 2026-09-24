@@ -291,13 +291,25 @@ export function SpeakingPracticeView({
     setAccessReason(null);
     try {
       if (!previewSessionId) {
-        const accessRes = await fetch(
-          `/api/speaking/access?courseId=${encodeURIComponent(courseId)}&activityType=REALTIME_CONVERSATION`,
-        );
-        const accessJson = (await accessRes.json()) as AccessResponse;
+        const accessUrl = `/api/speaking/access?courseId=${encodeURIComponent(courseId)}&activityType=REALTIME_CONVERSATION`;
+        const topicsUrl = `/api/speaking/topics?courseId=${encodeURIComponent(courseId)}`;
+        const usageUrl = `/api/speaking/daily-usage?courseId=${encodeURIComponent(courseId)}`;
+
+        const [accessRes, topicsRes, usageRes] = await Promise.all([
+          fetch(accessUrl),
+          fetch(topicsUrl),
+          fetch(usageUrl),
+        ]);
+        const [accessJson, topicsJson, usageJson] = await Promise.all([
+          accessRes.json() as Promise<AccessResponse>,
+          topicsRes.json(),
+          usageRes.json(),
+        ]);
+
         if (!accessRes.ok || !accessJson.success || !accessJson.access) {
           throw new Error(accessJson.message || t('speaking.loadFailed'));
         }
+
         if (!accessJson.access.allowed) {
           setAccessReason(accessJson.access.reason);
           setTopics([]);
@@ -307,10 +319,6 @@ export function SpeakingPracticeView({
             return;
           }
 
-          const usageRes = await fetch(
-            `/api/speaking/daily-usage?courseId=${encodeURIComponent(courseId)}`,
-          );
-          const usageJson = await usageRes.json();
           if (!usageRes.ok || !usageJson.success) {
             throw new Error(usageJson.message || t('speaking.loadUsageFailed'));
           }
@@ -331,6 +339,44 @@ export function SpeakingPracticeView({
             return;
           }
         }
+
+        if (!topicsRes.ok || !topicsJson.success) {
+          throw new Error(topicsJson.message || t('speaking.loadTopicsFailed'));
+        }
+        if (!usageRes.ok || !usageJson.success) {
+          throw new Error(usageJson.message || t('speaking.loadUsageFailed'));
+        }
+
+        const list = (topicsJson.topics || []) as Topic[];
+        setTopics(list);
+        setUsage(usageJson as DailyUsage);
+
+        const initial =
+          topicId && list.some((t) => t.id === topicId)
+            ? topicId
+            : usageJson.session?.topic?.id &&
+                list.some((t) => t.id === usageJson.session.topic.id)
+              ? usageJson.session.topic.id
+            : list[0]?.id || '';
+        setSelectedTopicId((prev) => prev || initial);
+
+        if (
+          !usageJson.canStart &&
+          usageJson.status === 'CONSUMED' &&
+          !isRealtimeSessionReusable(usageJson.session)
+        ) {
+          setPhase('blocked');
+          if (usageJson.session?.transcript) {
+            const lines = normalizeTranscript(usageJson.session.transcript);
+            setTranscript(lines);
+            transcriptRef.current = lines;
+          }
+        } else if (!opts?.silent) {
+          setPhase('prepare');
+        } else {
+          setPhase((p) => (p === 'loading' || p === 'connecting' || p === 'error' ? 'prepare' : p));
+        }
+        return;
       }
 
       const [topicsRes, usageRes] = await Promise.all([
@@ -380,7 +426,7 @@ export function SpeakingPracticeView({
       setError(err instanceof Error ? err.message : t('speaking.loadFailed'));
       setPhase('error');
     }
-  }, [courseId, topicId, previewSessionId]);
+  }, [courseId, topicId, previewSessionId, t]);
 
   useEffect(() => {
     void load();

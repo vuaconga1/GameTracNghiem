@@ -1,5 +1,5 @@
 import { GameLessonTabs } from '@/features/games/GameLessonTabs';
-import { VocabularyCheckGame } from '@/features/games/vocabulary-check/VocabularyCheckGame';
+import { LazyVocabularyCheckGame } from '@/features/games/lazyGames';
 import { loadCourseGameLesson } from '@/lib/loadCourseGameLesson';
 
 export default async function VocabularyCheckGamePage({
@@ -11,7 +11,7 @@ export default async function VocabularyCheckGamePage({
   const lesson = await loadCourseGameLesson(courseId, 'vocabulary_check');
   return (
     <GameLessonTabs lesson={lesson}>
-      <VocabularyCheckGame courseId={courseId} />
+      <LazyVocabularyCheckGame courseId={courseId} />
     </GameLessonTabs>
   );
 }

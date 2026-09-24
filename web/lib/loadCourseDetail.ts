@@ -132,8 +132,16 @@ function mergeUserProgress(
 
 export async function loadCourseDetail(courseId: string): Promise<CourseDetailData | null> {
   const session = await optionalSession();
-  const resolvedCourseId = await resolveCanonicalLop9CourseId(prisma, courseId);
-  const shell = await getCourseDetailPublicCached(resolvedCourseId);
+  // Prefer the cached public shell for the requested id (common path = 0 extra findUnique).
+  // Only resolve archived Lớp 9 aliases when the active row is missing.
+  let resolvedCourseId = courseId;
+  let shell = await getCourseDetailPublicCached(courseId);
+  if (!shell) {
+    resolvedCourseId = await resolveCanonicalLop9CourseId(prisma, courseId);
+    if (resolvedCourseId !== courseId) {
+      shell = await getCourseDetailPublicCached(resolvedCourseId);
+    }
+  }
 
   if (!shell) return null;
 

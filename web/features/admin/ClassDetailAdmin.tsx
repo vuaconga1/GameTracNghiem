@@ -117,6 +117,9 @@ export function ClassDetailAdmin({
 
   const [drafts, setDrafts] = useState<DraftAssignment[]>([emptyDraft()]);
   const [assigning, setAssigning] = useState(false);
+  const [membersExpanded, setMembersExpanded] = useState(false);
+
+  const COLLAPSED_MEMBER_COUNT = 3;
 
   const load = useCallback(async () => {
     const res = await fetch(`/api/admin/classes/${classId}`);
@@ -351,6 +354,14 @@ export function ClassDetailAdmin({
 
   const loading = members === null || assignments === null;
 
+  const visibleMembers = useMemo(() => {
+    if (!members) return [];
+    if (membersExpanded || members.length <= COLLAPSED_MEMBER_COUNT) return members;
+    return members.slice(0, COLLAPSED_MEMBER_COUNT);
+  }, [members, membersExpanded]);
+
+  const canToggleMembers = (members?.length || 0) > COLLAPSED_MEMBER_COUNT;
+
   return (
     <AdminShell
       displayName={displayName}
@@ -466,34 +477,65 @@ export function ClassDetailAdmin({
             {members.length === 0 ? (
               <div className="admin-empty">Chưa có học viên trong lớp.</div>
             ) : (
-              <div className="admin-table-wrap">
-                <table className="admin-table">
-                  <thead>
-                    <tr>
-                      <th>Họ tên</th>
-                      <th>Username</th>
-                      <th />
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {members.map((m) => (
-                      <tr key={m.userId || m.id}>
-                        <td>{m.displayName}</td>
-                        <td>{m.username}</td>
-                        <td>
-                          <button
-                            type="button"
-                            className="admin-btn danger"
-                            onClick={() => void removeMember(m)}
-                          >
-                            Gỡ
-                          </button>
-                        </td>
+              <>
+                <div className="admin-table-wrap">
+                  <table className="admin-table class-members-table">
+                    <thead>
+                      <tr>
+                        <th>Họ tên</th>
+                        <th>Username</th>
+                        <th />
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {visibleMembers.map((m) => (
+                        <tr key={m.userId || m.id}>
+                          <td>{m.displayName}</td>
+                          <td>{m.username}</td>
+                          <td>
+                            <button
+                              type="button"
+                              className="admin-btn danger"
+                              onClick={() => void removeMember(m)}
+                            >
+                              Gỡ
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {canToggleMembers ? (
+                  <div
+                    className="admin-toolbar-actions"
+                    style={{ marginTop: 10, gap: 8, flexWrap: 'wrap' }}
+                  >
+                    {membersExpanded ? (
+                      <button
+                        type="button"
+                        className="admin-btn"
+                        onClick={() => setMembersExpanded(false)}
+                      >
+                        Thu gọn
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        className="admin-btn"
+                        onClick={() => setMembersExpanded(true)}
+                      >
+                        Xem danh sách học viên ({members.length})
+                      </button>
+                    )}
+                    {!membersExpanded ? (
+                      <span style={{ alignSelf: 'center', fontSize: 13, color: 'var(--admin-muted)' }}>
+                        Đang hiện {COLLAPSED_MEMBER_COUNT}/{members.length} học viên
+                      </span>
+                    ) : null}
+                  </div>
+                ) : null}
+              </>
             )}
           </section>
 

@@ -1,5 +1,5 @@
 import { GameLessonTabs } from '@/features/games/GameLessonTabs';
-import { ScrambleGame } from '@/features/games/scramble/ScrambleGame';
+import { LazyScrambleGame } from '@/features/games/lazyGames';
 import { loadCourseGameLesson } from '@/lib/loadCourseGameLesson';
 
 export default async function ScrambleGamePage({
@@ -11,7 +11,7 @@ export default async function ScrambleGamePage({
   const lesson = await loadCourseGameLesson(courseId, 'scramble');
   return (
     <GameLessonTabs lesson={lesson}>
-      <ScrambleGame courseId={courseId} />
+      <LazyScrambleGame courseId={courseId} />
     </GameLessonTabs>
   );
 }

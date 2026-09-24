@@ -1,5 +1,5 @@
 import { GameLessonTabs } from '@/features/games/GameLessonTabs';
-import { WordMatchGame } from '@/features/games/word-match/WordMatchGame';
+import { LazyWordMatchGame } from '@/features/games/lazyGames';
 import { optionalSession } from '@/lib/auth';
 import { loadCourseGameLesson } from '@/lib/loadCourseGameLesson';
 import { loadWordMatchGame } from '@/lib/loadWordMatchGame';
@@ -17,7 +17,7 @@ export default async function WordMatchGamePage({
   ]);
   return (
     <GameLessonTabs lesson={lesson}>
-      <WordMatchGame courseId={courseId} initialData={initialData} />
+      <LazyWordMatchGame courseId={courseId} initialData={initialData} />
     </GameLessonTabs>
   );
 }
