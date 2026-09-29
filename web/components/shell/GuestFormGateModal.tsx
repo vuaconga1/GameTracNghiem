@@ -7,7 +7,6 @@ import {
   ensureGuestFormGateSchedule,
   getGuestFormGateScheduleDelayMs,
   markGuestFormGateCompleted,
-  markGuestFormGateDismissed,
 } from '@/lib/guestFormGate';
 import {
   GUEST_REGISTRATION_GRADES,
@@ -88,14 +87,6 @@ export function GuestFormGateModal({ isGuest }: Props) {
 
   if (!isGuest || !visible) return null;
 
-  function handleDismiss() {
-    markGuestFormGateDismissed();
-    setVisible(false);
-    setFieldErrors({});
-    setSubmitError('');
-    window.setTimeout(() => scheduleNextShow(), 0);
-  }
-
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setSubmitError('');
@@ -139,14 +130,6 @@ export function GuestFormGateModal({ isGuest }: Props) {
       >
         <div className="login-modal-header guest-form-gate-header">
           <h2 id="guest-form-gate-title">{t('shell.guestFormGateTitle')}</h2>
-          <button
-            type="button"
-            className="guest-form-gate-close"
-            aria-label={t('shell.guestFormGateDismiss')}
-            onClick={handleDismiss}
-          >
-            ×
-          </button>
         </div>
         <div className="login-modal-body guest-form-gate-body">
           <p className="guest-form-gate-hint">{t('shell.guestFormGateHint')}</p>

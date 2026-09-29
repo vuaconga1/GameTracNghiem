@@ -1204,9 +1204,9 @@
           "hate",
           "detest"
         ],
-        "answer": "dislike",
+        "answer": "like",
         "accept": [
-          "dislike"
+          "like"
         ],
         "fillMode": false
       },
@@ -1862,9 +1862,9 @@
           "warm",
           "dry"
         ],
-        "answer": "damp",
+        "answer": "dry",
         "accept": [
-          "damp"
+          "dry"
         ],
         "fillMode": false
       },
@@ -1881,9 +1881,9 @@
           "loaded",
           "milked"
         ],
-        "answer": "built",
+        "answer": "loaded",
         "accept": [
-          "built"
+          "loaded"
         ],
         "fillMode": false
       },
@@ -1900,9 +1900,9 @@
           "explosion",
           "cattle"
         ],
-        "answer": "accident",
+        "answer": "harvest",
         "accept": [
-          "accident"
+          "harvest"
         ],
         "fillMode": false
       },
@@ -1919,9 +1919,9 @@
           "interested",
           "bored"
         ],
-        "answer": "fond",
+        "answer": "keen",
         "accept": [
-          "fond"
+          "keen"
         ],
         "fillMode": false
       },
@@ -1976,9 +1976,9 @@
           "countryside",
           "crop"
         ],
-        "answer": "lighthouse",
+        "answer": "crop",
         "accept": [
-          "lighthouse"
+          "crop"
         ],
         "fillMode": false
       },
@@ -2014,9 +2014,9 @@
           "Daylight",
           "Travelling time"
         ],
-        "answer": "Tet holiday",
+        "answer": "Harvest time",
         "accept": [
-          "Tet holiday"
+          "Harvest time"
         ],
         "fillMode": false
       },
@@ -2030,12 +2030,12 @@
         "options": [
           "noisily",
           "more noisier",
-          "noisier 17. The English test was _______ than I thought it would be.",
+          "noisier",
           "noisy"
         ],
-        "answer": "noisily",
+        "answer": "noisier",
         "accept": [
-          "noisily"
+          "noisier"
         ],
         "fillMode": false
       },
@@ -2052,9 +2052,9 @@
           "more carefully",
           "more carelessly"
         ],
-        "answer": "more careful",
+        "answer": "more carefully",
         "accept": [
-          "more careful"
+          "more carefully"
         ],
         "fillMode": false
       },
@@ -2071,9 +2071,9 @@
           "more cheap than",
           "cheaper than"
         ],
-        "answer": "cheap than",
+        "answer": "cheaper than",
         "accept": [
-          "cheap than"
+          "cheaper than"
         ],
         "fillMode": false
       },
@@ -2086,11 +2086,13 @@
         "question": "Tom is _______ than David.",
         "options": [
           "handsome",
-          "the more handsome"
+          "the more handsome",
+          "more handsome",
+          "the most handsome"
         ],
-        "answer": "handsome",
+        "answer": "more handsome",
         "accept": [
-          "handsome"
+          "more handsome"
         ],
         "fillMode": false
       },
@@ -2107,9 +2109,9 @@
           "more badly than",
           "worse than"
         ],
-        "answer": "as bad as",
+        "answer": "worse than",
         "accept": [
-          "as bad as"
+          "worse than"
         ],
         "fillMode": false
       },
@@ -2162,9 +2164,9 @@
           "better",
           "more good"
         ],
-        "answer": "gooder",
+        "answer": "better",
         "accept": [
-          "gooder"
+          "better"
         ],
         "fillMode": false
       },
@@ -2196,11 +2198,13 @@
         "question": "He drives _______ his brother.",
         "options": [
           "more careful than",
-          "more carefully"
+          "more carefully",
+          "more carefully than",
+          "as careful as"
         ],
-        "answer": "more careful than",
+        "answer": "more carefully than",
         "accept": [
-          "more careful than"
+          "more carefully than"
         ],
         "fillMode": false
       },
@@ -2217,9 +2221,9 @@
           "modern",
           "more modern"
         ],
-        "answer": "moderner",
+        "answer": "more modern",
         "accept": [
-          "moderner"
+          "more modern"
         ],
         "fillMode": false
       },
@@ -2236,9 +2240,9 @@
           "cave",
           "yatch"
         ],
-        "answer": "house",
+        "answer": "circular tent",
         "accept": [
-          "house"
+          "circular tent"
         ],
         "fillMode": false
       },
@@ -2255,9 +2259,9 @@
           "grasslands",
           "lifestyles"
         ],
-        "answer": "food",
+        "answer": "grasslands",
         "accept": [
-          "food"
+          "grasslands"
         ],
         "fillMode": false
       },
@@ -2274,9 +2278,9 @@
           "convenient",
           "beautiful"
         ],
-        "answer": "boring",
+        "answer": "interesting",
         "accept": [
-          "boring"
+          "interesting"
         ],
         "fillMode": false
       },
@@ -2293,9 +2297,9 @@
           "boring",
           "skillful"
         ],
-        "answer": "noisy",
+        "answer": "quiet",
         "accept": [
-          "noisy"
+          "quiet"
         ],
         "fillMode": false
       },
@@ -2350,9 +2354,9 @@
           "slowly",
           "fast"
         ],
-        "answer": "noisy",
+        "answer": "slowly",
         "accept": [
-          "noisy"
+          "slowly"
         ],
         "fillMode": false
       },
@@ -2369,9 +2373,9 @@
           "badly",
           "worse"
         ],
-        "answer": "well",
+        "answer": "worse",
         "accept": [
-          "well"
+          "worse"
         ],
         "fillMode": false
       },
@@ -2407,9 +2411,9 @@
           "slow",
           "A and B are correct"
         ],
-        "answer": "inconvenient",
+        "answer": "more inconvenient",
         "accept": [
-          "inconvenient"
+          "more inconvenient"
         ],
         "fillMode": false
       }
@@ -2623,9 +2627,9 @@
           "connect",
           "coach"
         ],
-        "answer": "advise",
+        "answer": "focus",
         "accept": [
-          "advise"
+          "focus"
         ],
         "fillMode": false
       },
@@ -2661,9 +2665,9 @@
           "website",
           "pressure"
         ],
-        "answer": "media",
+        "answer": "pressure",
         "accept": [
-          "media"
+          "pressure"
         ],
         "fillMode": false
       },
@@ -2718,9 +2722,9 @@
           "competition",
           "notification"
         ],
-        "answer": "bully",
+        "answer": "forum",
         "accept": [
-          "bully"
+          "forum"
         ],
         "fillMode": false
       },
@@ -2737,9 +2741,9 @@
           "calm",
           "user-friendly"
         ],
-        "answer": "enjoyable",
+        "answer": "calm",
         "accept": [
-          "enjoyable"
+          "calm"
         ],
         "fillMode": false
       },
@@ -2756,9 +2760,9 @@
           "social",
           "bad"
         ],
-        "answer": "economic",
+        "answer": "midterm",
         "accept": [
-          "economic"
+          "midterm"
         ],
         "fillMode": false
       },
@@ -2794,9 +2798,9 @@
           "but",
           "so"
         ],
-        "answer": "and",
+        "answer": "so",
         "accept": [
-          "and"
+          "so"
         ],
         "fillMode": false
       },
@@ -2813,9 +2817,9 @@
           "however",
           "so"
         ],
-        "answer": "but",
+        "answer": "therefore",
         "accept": [
-          "but"
+          "therefore"
         ],
         "fillMode": false
       },
@@ -2870,9 +2874,9 @@
           "join",
           "log"
         ],
-        "answer": "cook",
+        "answer": "join",
         "accept": [
-          "cook"
+          "join"
         ],
         "fillMode": false
       },
@@ -2889,9 +2893,9 @@
           "deny",
           "browse"
         ],
-        "answer": "focus",
+        "answer": "browse",
         "accept": [
-          "focus"
+          "browse"
         ],
         "fillMode": false
       },
@@ -2908,9 +2912,9 @@
           "but",
           "so"
         ],
-        "answer": "and",
+        "answer": "so",
         "accept": [
-          "and"
+          "so"
         ],
         "fillMode": false
       },
@@ -2946,9 +2950,9 @@
           "but",
           "so"
         ],
-        "answer": "and",
+        "answer": "but",
         "accept": [
-          "and"
+          "but"
         ],
         "fillMode": false
       },
@@ -2965,9 +2969,9 @@
           "but",
           "so"
         ],
-        "answer": "and",
+        "answer": "but",
         "accept": [
-          "and"
+          "but"
         ],
         "fillMode": false
       },
@@ -2984,9 +2988,9 @@
           "so",
           "therefore"
         ],
-        "answer": "but",
+        "answer": "because",
         "accept": [
-          "but"
+          "because"
         ],
         "fillMode": false
       },
@@ -3003,9 +3007,9 @@
           "but",
           "so"
         ],
-        "answer": "and",
+        "answer": "or",
         "accept": [
-          "and"
+          "or"
         ],
         "fillMode": false
       },
@@ -3022,9 +3026,9 @@
           "but",
           "so"
         ],
-        "answer": "and",
+        "answer": "but",
         "accept": [
-          "and"
+          "but"
         ],
         "fillMode": false
       },
@@ -3041,9 +3045,9 @@
           "but",
           "so"
         ],
-        "answer": "and",
+        "answer": "so",
         "accept": [
-          "and"
+          "so"
         ],
         "fillMode": false
       },
@@ -3060,9 +3064,9 @@
           "but",
           "so"
         ],
-        "answer": "and",
+        "answer": "but",
         "accept": [
-          "and"
+          "but"
         ],
         "fillMode": false
       },
@@ -3076,11 +3080,12 @@
         "options": [
           "and",
           "or",
-          "but D.so"
+          "but",
+          "so"
         ],
-        "answer": "and",
+        "answer": "or",
         "accept": [
-          "and"
+          "or"
         ],
         "fillMode": false
       },
@@ -3230,9 +3235,9 @@
           "famous for",
           "not take part in"
         ],
-        "answer": "good at",
+        "answer": "not take part in",
         "accept": [
-          "good at"
+          "not take part in"
         ],
         "fillMode": false
       },
@@ -3249,9 +3254,9 @@
           "uncommon",
           "user-friendly"
         ],
-        "answer": "collective",
+        "answer": "uncommon",
         "accept": [
-          "collective"
+          "uncommon"
         ],
         "fillMode": false
       },
@@ -3268,9 +3273,9 @@
           "attractively",
           "nearly"
         ],
-        "answer": "impressively",
+        "answer": "positively",
         "accept": [
-          "impressively"
+          "positively"
         ],
         "fillMode": false
       }
@@ -3780,9 +3785,9 @@
           "heritage site",
           "terraced field"
         ],
-        "answer": "ethnic minorities",
+        "answer": "heritage site",
         "accept": [
-          "ethnic minorities"
+          "heritage site"
         ],
         "fillMode": false
       },
@@ -3818,9 +3823,9 @@
           "fried rice/ beef noodle soup",
           "fried rices / beef noodle soups"
         ],
-        "answer": "fried rices / beef noodle soup",
+        "answer": "fried rice/ beef noodle soup",
         "accept": [
-          "fried rices / beef noodle soup"
+          "fried rice/ beef noodle soup"
         ],
         "fillMode": false
       },
@@ -3837,9 +3842,9 @@
           "What",
           "How"
         ],
-        "answer": "Which",
+        "answer": "Who",
         "accept": [
-          "Which"
+          "Who"
         ],
         "fillMode": false
       },
@@ -3875,9 +3880,9 @@
           "lion dances",
           "folk dances"
         ],
-        "answer": "modern dances",
+        "answer": "folk dances",
         "accept": [
-          "modern dances"
+          "folk dances"
         ],
         "fillMode": false
       },
@@ -3894,9 +3899,9 @@
           "communal",
           "awesome"
         ],
-        "answer": "terraced",
+        "answer": "communal",
         "accept": [
-          "terraced"
+          "communal"
         ],
         "fillMode": false
       },
@@ -3913,9 +3918,9 @@
           "musical",
           "traditional"
         ],
-        "answer": "peaceful",
+        "answer": "traditional",
         "accept": [
-          "peaceful"
+          "traditional"
         ],
         "fillMode": false
       },
@@ -3929,12 +3934,12 @@
         "options": [
           "special",
           "different",
-          "communal 7. Some _______ farmers keep ducks and geese in their farms.",
+          "communal",
           "festival"
         ],
-        "answer": "special",
+        "answer": "festival",
         "accept": [
-          "special"
+          "festival"
         ],
         "fillMode": false
       },
@@ -3951,9 +3956,9 @@
           "enrich",
           "weave"
         ],
-        "answer": "raise",
+        "answer": "overlook",
         "accept": [
-          "raise"
+          "overlook"
         ],
         "fillMode": false
       },
@@ -3989,9 +3994,9 @@
           "stilt houses",
           "travel brochure"
         ],
-        "answer": "bamboo flute",
+        "answer": "stilt houses",
         "accept": [
-          "bamboo flute"
+          "stilt houses"
         ],
         "fillMode": false
       },
@@ -4027,9 +4032,9 @@
           "terraced fields",
           "wooden statue"
         ],
-        "answer": "stilt houses",
+        "answer": "terraced fields",
         "accept": [
-          "stilt houses"
+          "terraced fields"
         ],
         "fillMode": false
       },
@@ -4046,9 +4051,9 @@
           "awesome",
           "natural"
         ],
-        "answer": "traditional",
+        "answer": "ethnic",
         "accept": [
-          "traditional"
+          "ethnic"
         ],
         "fillMode": false
       },
@@ -4084,9 +4089,9 @@
           "Mekong Delta",
           "Red River Delta"
         ],
-        "answer": "Lowlands",
+        "answer": "Mekong Delta",
         "accept": [
-          "Lowlands"
+          "Mekong Delta"
         ],
         "fillMode": false
       },
@@ -4103,9 +4108,9 @@
           "much",
           "many"
         ],
-        "answer": "a little",
+        "answer": "a few",
         "accept": [
-          "a little"
+          "a few"
         ],
         "fillMode": false
       },
@@ -4121,9 +4126,9 @@
           "sandwichs",
           "sandwich"
         ],
-        "answer": "sandwiches",
+        "answer": "sandwich",
         "accept": [
-          "sandwiches"
+          "sandwich"
         ],
         "fillMode": false
       },
@@ -4140,9 +4145,9 @@
           "ehopstickes",
           "chopstiekces"
         ],
-        "answer": "ehopstick",
+        "answer": "chopsticks",
         "accept": [
-          "ehopstick"
+          "chopsticks"
         ],
         "fillMode": false
       },
@@ -4178,9 +4183,9 @@
           "many",
           "tall"
         ],
-        "answer": "much",
+        "answer": "many",
         "accept": [
-          "much"
+          "many"
         ],
         "fillMode": false
       },
@@ -4216,9 +4221,9 @@
           "it is",
           "there is"
         ],
-        "answer": "there are",
+        "answer": "there is",
         "accept": [
-          "there are"
+          "there is"
         ],
         "fillMode": false
       },
@@ -4235,9 +4240,9 @@
           "a lot of",
           "few"
         ],
-        "answer": "many",
+        "answer": "much",
         "accept": [
-          "many"
+          "much"
         ],
         "fillMode": false
       },
@@ -4254,9 +4259,9 @@
           "any books",
           "any book"
         ],
-        "answer": "a few books",
+        "answer": "any books",
         "accept": [
-          "a few books"
+          "any books"
         ],
         "fillMode": false
       },
@@ -4273,9 +4278,9 @@
           "Does – music",
           "Is – music"
         ],
-        "answer": "Do-music",
+        "answer": "Does – music",
         "accept": [
-          "Do-music"
+          "Does – music"
         ],
         "fillMode": false
       },
@@ -4311,9 +4316,9 @@
           "Does – leaf",
           "Do – leaves"
         ],
-        "answer": "Do-leaf",
+        "answer": "Do – leaves",
         "accept": [
-          "Do-leaf"
+          "Do – leaves"
         ],
         "fillMode": false
       },
@@ -4330,9 +4335,9 @@
           "What",
           "How"
         ],
-        "answer": "Which",
+        "answer": "When",
         "accept": [
-          "Which"
+          "When"
         ],
         "fillMode": false
       },
@@ -4349,9 +4354,9 @@
           "What",
           "How often"
         ],
-        "answer": "Which",
+        "answer": "How often",
         "accept": [
-          "Which"
+          "How often"
         ],
         "fillMode": false
       },
@@ -4387,9 +4392,9 @@
           "What",
           "How"
         ],
-        "answer": "Which",
+        "answer": "Who",
         "accept": [
-          "Which"
+          "Who"
         ],
         "fillMode": false
       },
@@ -4406,9 +4411,9 @@
           "What",
           "How"
         ],
-        "answer": "Which",
+        "answer": "What",
         "accept": [
-          "Which"
+          "What"
         ],
         "fillMode": false
       },
@@ -4424,9 +4429,9 @@
           "Who",
           "Why"
         ],
-        "answer": "Which",
+        "answer": "Why",
         "accept": [
-          "Which"
+          "Why"
         ],
         "fillMode": false
       },
@@ -4436,16 +4441,16 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Chọn đáp án đúng",
-        "question": "______ is it from the centre to the Museum of Ethnology? ~ It’s about senven kimoleters.",
+        "question": "______ is it from the centre to the Museum of Ethnology? ~ It’s about seven kilometers.",
         "options": [
           "How long",
           "How far",
           "How often",
           "How much"
         ],
-        "answer": "How long",
+        "answer": "How far",
         "accept": [
-          "How long"
+          "How far"
         ],
         "fillMode": false
       },
@@ -4462,9 +4467,9 @@
           "Where",
           "How"
         ],
-        "answer": "Which",
+        "answer": "Where",
         "accept": [
-          "Which"
+          "Where"
         ],
         "fillMode": false
       },
@@ -4481,9 +4486,9 @@
           "What",
           "How"
         ],
-        "answer": "Which",
+        "answer": "How",
         "accept": [
-          "Which"
+          "How"
         ],
         "fillMode": false
       },
@@ -4500,9 +4505,9 @@
           "What",
           "How"
         ],
-        "answer": "Which",
+        "answer": "Whose",
         "accept": [
-          "Which"
+          "Whose"
         ],
         "fillMode": false
       },
@@ -4519,9 +4524,9 @@
           "What",
           "How"
         ],
-        "answer": "Which",
+        "answer": "How",
         "accept": [
-          "Which"
+          "How"
         ],
         "fillMode": false
       },
@@ -4557,9 +4562,9 @@
           "When",
           "How"
         ],
-        "answer": "Which",
+        "answer": "Who",
         "accept": [
-          "Which"
+          "Who"
         ],
         "fillMode": false
       },
@@ -4576,9 +4581,9 @@
           "what",
           "how"
         ],
-        "answer": "which",
+        "answer": "what",
         "accept": [
-          "which"
+          "what"
         ],
         "fillMode": false
       },
@@ -4595,9 +4600,9 @@
           "What",
           "How"
         ],
-        "answer": "Which",
+        "answer": "What",
         "accept": [
-          "Which"
+          "What"
         ],
         "fillMode": false
       },
@@ -4614,9 +4619,9 @@
           "Why",
           "How"
         ],
-        "answer": "Which",
+        "answer": "Why",
         "accept": [
-          "Which"
+          "Why"
         ],
         "fillMode": false
       },
@@ -4652,9 +4657,9 @@
           "What",
           "How"
         ],
-        "answer": "Which",
+        "answer": "How",
         "accept": [
-          "Which"
+          "How"
         ],
         "fillMode": false
       },
@@ -4671,9 +4676,9 @@
           "What",
           "How"
         ],
-        "answer": "Which",
+        "answer": "What",
         "accept": [
-          "Which"
+          "What"
         ],
         "fillMode": false
       },
@@ -4690,9 +4695,9 @@
           "How often",
           "How"
         ],
-        "answer": "How many",
+        "answer": "How much",
         "accept": [
-          "How many"
+          "How much"
         ],
         "fillMode": false
       }
@@ -5190,9 +5195,9 @@
           "longevities",
           "customs"
         ],
-        "answer": "lanterns",
+        "answer": "offerings",
         "accept": [
-          "lanterns"
+          "offerings"
         ],
         "fillMode": false
       },
@@ -5209,9 +5214,9 @@
           "celebratory",
           "celebration"
         ],
-        "answer": "celebrate",
+        "answer": "celebration",
         "accept": [
-          "celebrate"
+          "celebration"
         ],
         "fillMode": false
       },
@@ -5240,16 +5245,16 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Chọn đáp án đúng",
-        "question": "As ________ dress of Vienamese, Ao dai is worn by men and women.",
+        "question": "As ________ dress of Vietnamese, Ao dai is worn by men and women.",
         "options": [
           "tradition",
           "traditional",
           "traditionally",
           "traditionalist"
         ],
-        "answer": "tradition",
+        "answer": "traditional",
         "accept": [
-          "tradition"
+          "traditional"
         ],
         "fillMode": false
       },
@@ -5266,9 +5271,9 @@
           "performing",
           "performance"
         ],
-        "answer": "perform",
+        "answer": "performance",
         "accept": [
-          "perform"
+          "performance"
         ],
         "fillMode": false
       },
@@ -5304,9 +5309,9 @@
           "at",
           "off"
         ],
-        "answer": "in",
+        "answer": "off",
         "accept": [
-          "in"
+          "off"
         ],
         "fillMode": false
       },
@@ -5323,9 +5328,9 @@
           "against",
           "at"
         ],
-        "answer": "to",
+        "answer": "of",
         "accept": [
-          "to"
+          "of"
         ],
         "fillMode": false
       },
@@ -5342,9 +5347,9 @@
           "at",
           "up"
         ],
-        "answer": "on",
+        "answer": "for",
         "accept": [
-          "on"
+          "for"
         ],
         "fillMode": false
       },
@@ -5361,9 +5366,9 @@
           "union",
           "reunion"
         ],
-        "answer": "unit",
+        "answer": "reunion",
         "accept": [
-          "unit"
+          "reunion"
         ],
         "fillMode": false
       },
@@ -5380,9 +5385,9 @@
           "boost",
           "improve"
         ],
-        "answer": "rise",
+        "answer": "raise",
         "accept": [
-          "rise"
+          "raise"
         ],
         "fillMode": false
       },
@@ -5399,9 +5404,9 @@
           "tradition",
           "custom"
         ],
-        "answer": "culture",
+        "answer": "tradition",
         "accept": [
-          "culture"
+          "tradition"
         ],
         "fillMode": false
       },
@@ -5418,9 +5423,9 @@
           "hold",
           "take place"
         ],
-        "answer": "happen",
+        "answer": "hold",
         "accept": [
-          "happen"
+          "hold"
         ],
         "fillMode": false
       },
@@ -5456,9 +5461,9 @@
           "custom",
           "costume"
         ],
-        "answer": "hobby",
+        "answer": "custom",
         "accept": [
-          "hobby"
+          "custom"
         ],
         "fillMode": false
       },
@@ -5475,9 +5480,9 @@
           "traditionally",
           "traditionalism"
         ],
-        "answer": "tradition",
+        "answer": "traditionally",
         "accept": [
-          "tradition"
+          "traditionally"
         ],
         "fillMode": false
       },
@@ -5532,9 +5537,9 @@
           "decorate",
           "hang"
         ],
-        "answer": "maintain",
+        "answer": "decorate",
         "accept": [
-          "maintain"
+          "decorate"
         ],
         "fillMode": false
       },
@@ -5589,9 +5594,9 @@
           "release carps",
           "bad spirit"
         ],
-        "answer": "release lanterns",
+        "answer": "release carps",
         "accept": [
-          "release lanterns"
+          "release carps"
         ],
         "fillMode": false
       },
@@ -5608,9 +5613,9 @@
           "ornamental tree",
           "kumquat tree"
         ],
-        "answer": "Buddhist temples",
+        "answer": "flower villages",
         "accept": [
-          "Buddhist temples"
+          "flower villages"
         ],
         "fillMode": false
       },
@@ -5646,9 +5651,9 @@
           "ceremony",
           "decorative items"
         ],
-        "answer": "monk",
+        "answer": "ceremony",
         "accept": [
-          "monk"
+          "ceremony"
         ],
         "fillMode": false
       },
@@ -5665,9 +5670,9 @@
           "bamboo dance",
           "festival goer"
         ],
-        "answer": "flower village",
+        "answer": "festival goer",
         "accept": [
-          "flower village"
+          "festival goer"
         ],
         "fillMode": false
       },
@@ -5703,9 +5708,9 @@
           "take off",
           "take place"
         ],
-        "answer": "take up",
+        "answer": "take place",
         "accept": [
-          "take up"
+          "take place"
         ],
         "fillMode": false
       },
@@ -5722,9 +5727,9 @@
           "place",
           "release"
         ],
-        "answer": "pray",
+        "answer": "place",
         "accept": [
-          "pray"
+          "place"
         ],
         "fillMode": false
       },
@@ -5741,9 +5746,9 @@
           "admire",
           "chase"
         ],
-        "answer": "give",
+        "answer": "chase",
         "accept": [
-          "give"
+          "chase"
         ],
         "fillMode": false
       },
@@ -5760,9 +5765,9 @@
           "Release",
           "pray"
         ],
-        "answer": "break",
+        "answer": "maintain",
         "accept": [
-          "break"
+          "maintain"
         ],
         "fillMode": false
       },
@@ -5779,9 +5784,9 @@
           "flower village",
           "lion dance"
         ],
-        "answer": "table manners",
+        "answer": "martial arts",
         "accept": [
-          "table manners"
+          "martial arts"
         ],
         "fillMode": false
       },
@@ -5798,9 +5803,9 @@
           "obey",
           "take"
         ],
-        "answer": "try",
+        "answer": "follow",
         "accept": [
-          "try"
+          "follow"
         ],
         "fillMode": false
       },
@@ -5817,9 +5822,9 @@
           "obligatory",
           "obligation"
         ],
-        "answer": "oblige",
+        "answer": "obligation",
         "accept": [
-          "oblige"
+          "obligation"
         ],
         "fillMode": false
       },
@@ -5836,9 +5841,9 @@
           "aspects",
           "manners"
         ],
-        "answer": "ways",
+        "answer": "manners",
         "accept": [
-          "ways"
+          "manners"
         ],
         "fillMode": false
       },
@@ -5855,9 +5860,9 @@
           "a",
           "Ø"
         ],
-        "answer": "an",
+        "answer": "a",
         "accept": [
-          "an"
+          "a"
         ],
         "fillMode": false
       },
@@ -5874,9 +5879,9 @@
           "a",
           "an"
         ],
-        "answer": "the",
+        "answer": "an",
         "accept": [
-          "the"
+          "an"
         ],
         "fillMode": false
       },
@@ -5912,9 +5917,9 @@
           "an",
           "a"
         ],
-        "answer": "the",
+        "answer": "an",
         "accept": [
-          "the"
+          "an"
         ],
         "fillMode": false
       },
@@ -5931,9 +5936,9 @@
           "Ø",
           "An"
         ],
-        "answer": "A",
+        "answer": "The",
         "accept": [
-          "A"
+          "The"
         ],
         "fillMode": false
       },
@@ -5969,9 +5974,9 @@
           "the",
           "Ø"
         ],
-        "answer": "an",
+        "answer": "Ø",
         "accept": [
-          "an"
+          "Ø"
         ],
         "fillMode": false
       },
@@ -5988,9 +5993,9 @@
           "the",
           "x"
         ],
-        "answer": "a",
+        "answer": "the",
         "accept": [
-          "a"
+          "the"
         ],
         "fillMode": false
       },
@@ -6007,9 +6012,9 @@
           "An",
           "X"
         ],
-        "answer": "The",
+        "answer": "A",
         "accept": [
-          "The"
+          "A"
         ],
         "fillMode": false
       },
@@ -6045,9 +6050,9 @@
           "an",
           "x"
         ],
-        "answer": "the",
+        "answer": "an",
         "accept": [
-          "the"
+          "an"
         ],
         "fillMode": false
       },
@@ -6083,9 +6088,9 @@
           "a",
           "x"
         ],
-        "answer": "the",
+        "answer": "a",
         "accept": [
-          "the"
+          "a"
         ],
         "fillMode": false
       },
@@ -6102,9 +6107,9 @@
           "a - the",
           "the - a"
         ],
-        "answer": "Ø – Ø",
+        "answer": "a - the",
         "accept": [
-          "Ø – Ø"
+          "a - the"
         ],
         "fillMode": false
       },
@@ -6121,9 +6126,9 @@
           "the -an",
           "the – a"
         ],
-        "answer": "a – an",
+        "answer": "a – the",
         "accept": [
-          "a – an"
+          "a – the"
         ],
         "fillMode": false
       },
@@ -6140,9 +6145,9 @@
           "A – an",
           "A - Ø"
         ],
-        "answer": "The – a",
+        "answer": "The – an",
         "accept": [
-          "The – a"
+          "The – an"
         ],
         "fillMode": false
       },
@@ -6178,9 +6183,9 @@
           "the",
           "x"
         ],
-        "answer": "a",
+        "answer": "x",
         "accept": [
-          "a"
+          "x"
         ],
         "fillMode": false
       },
@@ -6197,9 +6202,9 @@
           "x",
           "the"
         ],
-        "answer": "a",
+        "answer": "x",
         "accept": [
-          "a"
+          "x"
         ],
         "fillMode": false
       },
@@ -6235,9 +6240,9 @@
           "an",
           "x"
         ],
-        "answer": "the",
+        "answer": "x",
         "accept": [
-          "the"
+          "x"
         ],
         "fillMode": false
       },
@@ -6273,9 +6278,9 @@
           "x",
           "the"
         ],
-        "answer": "a",
+        "answer": "x",
         "accept": [
-          "a"
+          "x"
         ],
         "fillMode": false
       },
@@ -6330,9 +6335,9 @@
           "an",
           "x"
         ],
-        "answer": "the",
+        "answer": "x",
         "accept": [
-          "the"
+          "x"
         ],
         "fillMode": false
       },
@@ -6349,9 +6354,9 @@
           "an",
           "x"
         ],
-        "answer": "the",
+        "answer": "x",
         "accept": [
-          "the"
+          "x"
         ],
         "fillMode": false
       },
@@ -6368,9 +6373,9 @@
           "the",
           "x"
         ],
-        "answer": "a",
+        "answer": "x",
         "accept": [
-          "a"
+          "x"
         ],
         "fillMode": false
       },
@@ -6406,9 +6411,9 @@
           "the",
           "x"
         ],
-        "answer": "a",
+        "answer": "x",
         "accept": [
-          "a"
+          "x"
         ],
         "fillMode": false
       },
@@ -6520,9 +6525,9 @@
           "ancestor",
           "neighbor"
         ],
-        "answer": "partner",
+        "answer": "ancestor",
         "accept": [
-          "partner"
+          "ancestor"
         ],
         "fillMode": false
       },
@@ -6539,9 +6544,9 @@
           "connected",
           "joined"
         ],
-        "answer": "united",
+        "answer": "followed",
         "accept": [
-          "united"
+          "followed"
         ],
         "fillMode": false
       },
@@ -6577,9 +6582,9 @@
           "common",
           "exceptional"
         ],
-        "answer": "unusual",
+        "answer": "common",
         "accept": [
-          "unusual"
+          "common"
         ],
         "fillMode": false
       },
@@ -6596,9 +6601,9 @@
           "closed",
           "started"
         ],
-        "answer": "ended",
+        "answer": "started",
         "accept": [
-          "ended"
+          "started"
         ],
         "fillMode": false
       },
@@ -6708,9 +6713,9 @@
         "exercise": "Sửa mạo từ",
         "question": "Sửa mạo từ: We are travelling to Spain in a summer. The boat race takes place in a morning. Rich are always true.",
         "options": [],
-        "answer": "We are travelling to Spain in the summer. The boat race takes place in the morning. Rich are always true.",
+        "answer": "We are travelling to Spain in the summer. The boat race takes place in the morning. The rich are always true.",
         "accept": [
-          "We are travelling to Spain in the summer. The boat race takes place in the morning. Rich are always true."
+          "We are travelling to Spain in the summer. The boat race takes place in the morning. The rich are always true."
         ],
         "fillMode": true
       }
@@ -7157,9 +7162,9 @@
           "dish",
           "title"
         ],
-        "answer": "waiter",
+        "answer": "dish",
         "accept": [
-          "waiter"
+          "dish"
         ],
         "fillMode": false
       },
@@ -7176,9 +7181,9 @@
           "musher",
           "dogsled"
         ],
-        "answer": "craft",
+        "answer": "cuisine",
         "accept": [
-          "craft"
+          "cuisine"
         ],
         "fillMode": false
       },
@@ -7233,9 +7238,9 @@
           "title",
           "price"
         ],
-        "answer": "prince",
+        "answer": "title",
         "accept": [
-          "prince"
+          "title"
         ],
         "fillMode": false
       },
@@ -7252,9 +7257,9 @@
           "mouth",
           "tongue"
         ],
-        "answer": "lips",
+        "answer": "tongue",
         "accept": [
-          "lips"
+          "tongue"
         ],
         "fillMode": false
       },
@@ -7289,9 +7294,9 @@
           "are going to love",
           "will love"
         ],
-        "answer": "are loving",
+        "answer": "will love",
         "accept": [
-          "are loving"
+          "will love"
         ],
         "fillMode": false
       },
@@ -7308,9 +7313,9 @@
           "will take",
           "took"
         ],
-        "answer": "take",
+        "answer": "will take",
         "accept": [
-          "take"
+          "will take"
         ],
         "fillMode": false
       },
@@ -7324,7 +7329,8 @@
         "options": [
           "lands",
           "will land",
-          "is landing d. landed"
+          "is landing",
+          "landed"
         ],
         "answer": "lands",
         "accept": [
@@ -7345,9 +7351,9 @@
           "are going to climb",
           "will climb"
         ],
-        "answer": "climb",
+        "answer": "are going to climb",
         "accept": [
-          "climb"
+          "are going to climb"
         ],
         "fillMode": false
       },
@@ -7364,9 +7370,9 @@
           "will go",
           "went"
         ],
-        "answer": "go",
+        "answer": "will go",
         "accept": [
-          "go"
+          "will go"
         ],
         "fillMode": false
       },
@@ -7379,7 +7385,9 @@
         "question": "I'm sorry but I cannot come to the meal tonight. I _____________ work at 8 p.m. tonight, so I _____________ arrive at the restaurant on time!",
         "options": [
           "finish – will not be able to",
-          "will finish – will be"
+          "will finish – will be",
+          "finishes – will can",
+          "finished – will be can"
         ],
         "answer": "finish – will not be able to",
         "accept": [
@@ -7395,12 +7403,14 @@
         "exercise": "Chọn đáp án đúng",
         "question": "___________ hands is probably the most common way of greeting around the world.",
         "options": [
-          "finishes – will can",
-          "finished – will be can"
+          "Shook",
+          "Shakes",
+          "Shaking",
+          "Shake"
         ],
-        "answer": "finishes – will can",
+        "answer": "Shaking",
         "accept": [
-          "finishes – will can"
+          "Shaking"
         ],
         "fillMode": false
       },
@@ -7417,9 +7427,9 @@
           "won't tell",
           "am telling"
         ],
-        "answer": "am not telling",
+        "answer": "won't tell",
         "accept": [
-          "am not telling"
+          "won't tell"
         ],
         "fillMode": false
       },
@@ -7436,9 +7446,9 @@
           "waiters",
           "cuisines"
         ],
-        "answer": "tribes",
+        "answer": "mushers",
         "accept": [
-          "tribes"
+          "mushers"
         ],
         "fillMode": false
       },
@@ -7474,9 +7484,9 @@
           "leisurely",
           "unique"
         ],
-        "answer": "different",
+        "answer": "leisurely",
         "accept": [
-          "different"
+          "leisurely"
         ],
         "fillMode": false
       },
@@ -7512,9 +7522,9 @@
           "traditional",
           "native"
         ],
-        "answer": "unusual",
+        "answer": "native",
         "accept": [
-          "unusual"
+          "native"
         ],
         "fillMode": false
       },
@@ -7531,9 +7541,9 @@
           "lifestyle",
           "title"
         ],
-        "answer": "practice",
+        "answer": "lifestyle",
         "accept": [
-          "practice"
+          "lifestyle"
         ],
         "fillMode": false
       },
@@ -7569,9 +7579,9 @@
           "dogsled",
           "leisure"
         ],
-        "answer": "hurry",
+        "answer": "leisure",
         "accept": [
-          "hurry"
+          "leisure"
         ],
         "fillMode": false
       },
@@ -7588,9 +7598,9 @@
           "practice",
           "mean"
         ],
-        "answer": "cuisine",
+        "answer": "practice",
         "accept": [
-          "cuisine"
+          "practice"
         ],
         "fillMode": false
       },
@@ -7607,9 +7617,9 @@
           "craft",
           "tribe"
         ],
-        "answer": "waiter",
+        "answer": "craft",
         "accept": [
-          "waiter"
+          "craft"
         ],
         "fillMode": false
       },
@@ -7645,9 +7655,9 @@
           "unique",
           "light"
         ],
-        "answer": "alive",
+        "answer": "unique",
         "accept": [
-          "alive"
+          "unique"
         ],
         "fillMode": false
       },
@@ -7664,9 +7674,9 @@
           "leisurely",
           "unique"
         ],
-        "answer": "balanced",
+        "answer": "best-known",
         "accept": [
-          "balanced"
+          "best-known"
         ],
         "fillMode": false
       },
@@ -7683,9 +7693,9 @@
           "light",
           "different"
         ],
-        "answer": "common",
+        "answer": "balanced",
         "accept": [
-          "common"
+          "balanced"
         ],
         "fillMode": false
       },
@@ -7702,9 +7712,9 @@
           "Society",
           "Sore"
         ],
-        "answer": "Face-to-face",
+        "answer": "Online",
         "accept": [
-          "Face-to-face"
+          "Online"
         ],
         "fillMode": false
       },
@@ -7778,9 +7788,9 @@
           "against",
           "at"
         ],
-        "answer": "to",
+        "answer": "of",
         "accept": [
-          "to"
+          "of"
         ],
         "fillMode": false
       },
@@ -7797,9 +7807,9 @@
           "at",
           "up"
         ],
-        "answer": "on",
+        "answer": "for",
         "accept": [
-          "on"
+          "for"
         ],
         "fillMode": false
       },
@@ -7809,16 +7819,16 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Chọn đáp án đúng",
-        "question": "Why don 't you come _______ to Nha Trang in the summer?",
+        "question": "Why don't you come _______ to Nha Trang in the summer?",
         "options": [
           "form",
           "to",
           "over",
           "at"
         ],
-        "answer": "form",
+        "answer": "over",
         "accept": [
-          "form"
+          "over"
         ],
         "fillMode": false
       },
@@ -7854,9 +7864,9 @@
           "would need",
           "needed"
         ],
-        "answer": "will need",
+        "answer": "need",
         "accept": [
-          "will need"
+          "need"
         ],
         "fillMode": false
       },
@@ -7873,9 +7883,9 @@
           "undergoes",
           "was undergoing"
         ],
-        "answer": "had undergone",
+        "answer": "undergoes",
         "accept": [
-          "had undergone"
+          "undergoes"
         ],
         "fillMode": false
       },
@@ -7892,9 +7902,9 @@
           "was",
           "were"
         ],
-        "answer": "be",
+        "answer": "is",
         "accept": [
-          "be"
+          "is"
         ],
         "fillMode": false
       },
@@ -7911,9 +7921,9 @@
           "will have",
           "had"
         ],
-        "answer": "have",
+        "answer": "will have",
         "accept": [
-          "have"
+          "will have"
         ],
         "fillMode": false
       },
@@ -7930,9 +7940,9 @@
           "concentrate",
           "to concentrate"
         ],
-        "answer": "concentrated",
+        "answer": "to concentrate",
         "accept": [
-          "concentrated"
+          "to concentrate"
         ],
         "fillMode": false
       },
@@ -7949,9 +7959,9 @@
           "idea",
           "ideal"
         ],
-        "answer": "problem",
+        "answer": "ideas",
         "accept": [
-          "problem"
+          "ideas"
         ],
         "fillMode": false
       },
@@ -7987,9 +7997,9 @@
           "practicing",
           "telling"
         ],
-        "answer": "bowing",
+        "answer": "saying",
         "accept": [
-          "bowing"
+          "saying"
         ],
         "fillMode": false
       },
@@ -8006,9 +8016,9 @@
           "staple",
           "key"
         ],
-        "answer": "core",
+        "answer": "staple",
         "accept": [
-          "core"
+          "staple"
         ],
         "fillMode": false
       },
@@ -8025,9 +8035,9 @@
           "convenient",
           "time-consuming"
         ],
-        "answer": "harmful",
+        "answer": "convenient",
         "accept": [
-          "harmful"
+          "convenient"
         ],
         "fillMode": false
       },
@@ -8044,9 +8054,9 @@
           "big",
           "vast"
         ],
-        "answer": "deep",
+        "answer": "vast",
         "accept": [
-          "deep"
+          "vast"
         ],
         "fillMode": false
       },
@@ -8063,9 +8073,9 @@
           "Viet Nam",
           "Australia"
         ],
-        "answer": "The U.S.",
+        "answer": "Japan",
         "accept": [
-          "The U.S."
+          "Japan"
         ],
         "fillMode": false
       },
@@ -8082,9 +8092,9 @@
           "means",
           "method"
         ],
-        "answer": "mean",
+        "answer": "means",
         "accept": [
-          "mean"
+          "means"
         ],
         "fillMode": false
       },
@@ -8120,9 +8130,9 @@
           "mode",
           "type"
         ],
-        "answer": "kind",
+        "answer": "practice",
         "accept": [
-          "kind"
+          "practice"
         ],
         "fillMode": false
       },
@@ -8132,16 +8142,16 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Chọn đáp án đúng",
-        "question": "48 Are there any ___________ of modem technology on lifestyles?",
+        "question": "Are there any ___________ of modern technology on lifestyles?",
         "options": [
           "ways",
           "sides",
           "impact",
           "impacts"
         ],
-        "answer": "ways",
+        "answer": "impacts",
         "accept": [
-          "ways"
+          "impacts"
         ],
         "fillMode": false
       },
@@ -8189,16 +8199,16 @@
         "typeLabel": "Trắc nghiệm",
         "skill": "reading",
         "exercise": "Chọn đáp án đúng",
-        "question": "I ____________ the patty tomorrow.",
+        "question": "I ____________ the party tomorrow.",
         "options": [
           "attend",
           "attends",
           "will attend",
           "attending"
         ],
-        "answer": "attend",
+        "answer": "will attend",
         "accept": [
-          "attend"
+          "will attend"
         ],
         "fillMode": false
       },
@@ -8215,9 +8225,9 @@
           "went",
           "won't go"
         ],
-        "answer": "goes",
+        "answer": "won't go",
         "accept": [
-          "goes"
+          "won't go"
         ],
         "fillMode": false
       },
@@ -8234,9 +8244,9 @@
           "stayed",
           "will stay"
         ],
-        "answer": "stay",
+        "answer": "will stay",
         "accept": [
-          "stay"
+          "will stay"
         ],
         "fillMode": false
       },
@@ -8272,9 +8282,9 @@
           "switch on",
           "carry on"
         ],
-        "answer": "put on",
+        "answer": "switch on",
         "accept": [
-          "put on"
+          "switch on"
         ],
         "fillMode": false
       },
@@ -8291,9 +8301,9 @@
           "Virtual",
           "Good"
         ],
-        "answer": "Officine",
+        "answer": "Virtual",
         "accept": [
-          "Officine"
+          "Virtual"
         ],
         "fillMode": false
       },
@@ -8310,9 +8320,9 @@
           "extremely well",
           "extremely angry"
         ],
-        "answer": "extremely sad",
+        "answer": "extremely angry",
         "accept": [
-          "extremely sad"
+          "extremely angry"
         ],
         "fillMode": false
       },
@@ -8348,9 +8358,9 @@
           "bored with",
           "a fan of"
         ],
-        "answer": "keen on",
+        "answer": "bored with",
         "accept": [
-          "keen on"
+          "bored with"
         ],
         "fillMode": false
       },
@@ -8367,9 +8377,9 @@
           "unable",
           "unusual"
         ],
-        "answer": "unhealthy",
+        "answer": "unusual",
         "accept": [
-          "unhealthy"
+          "unusual"
         ],
         "fillMode": false
       },
@@ -8386,9 +8396,9 @@
           "normal",
           "big"
         ],
-        "answer": "small",
+        "answer": "big",
         "accept": [
-          "small"
+          "big"
         ],
         "fillMode": false
       },
@@ -8405,9 +8415,9 @@
           "by",
           "after"
         ],
-        "answer": "face-to-face",
+        "answer": "online",
         "accept": [
-          "face-to-face"
+          "online"
         ],
         "fillMode": false
       },
@@ -8424,9 +8434,9 @@
           "wide",
           "limited"
         ],
-        "answer": "infinite",
+        "answer": "limited",
         "accept": [
-          "infinite"
+          "limited"
         ],
         "fillMode": false
       }

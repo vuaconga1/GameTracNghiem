@@ -151,7 +151,6 @@ const en: Messages = {
     guestFormGateTitle: 'Please complete the form to keep playing',
     guestFormGateHint:
       'Please leave a few short details so we can share learning results and suggest a suitable English program for your child. It only takes about 20–30 seconds.',
-    guestFormGateDismiss: 'Close for now',
     guestFormGatePhoneLabel: 'Parent phone number',
     guestFormGatePhonePlaceholder: 'Example: 0912345678',
     guestFormGatePhoneHelp: 'Used to receive results and advice on a suitable learning program for your child.',

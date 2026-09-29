@@ -1,14 +1,12 @@
-export const GUEST_FORM_GATE_STORAGE_KEY = 'wewin:guest-form-gate:v3';
+export const GUEST_FORM_GATE_STORAGE_KEY = 'wewin:guest-form-gate:v4';
+export const GUEST_FORM_GATE_SESSION_KEY = 'wewin:guest-form-gate:entered-at';
 
-/** First popup after guest lands on the site. */
-export const GUEST_FORM_GATE_DELAY_MS = 15 * 60 * 1000;
-
-/** Re-show interval after the guest dismisses (or the due popup was closed) without submitting. */
-export const GUEST_FORM_GATE_REMIND_MS = 10 * 60 * 1000;
+/** Show only after the guest has been on the site for 20 minutes this visit. */
+export const GUEST_FORM_GATE_DELAY_MS = 20 * 60 * 1000;
 
 type GuestFormGateState = {
-  /** Absolute time when the popup should next appear. */
-  nextShowAt: number | null;
+  /** When this browser tab session started. Null until the visit is recorded. */
+  enteredAt: number | null;
   completed: boolean;
 };
 
@@ -20,86 +18,74 @@ function browserStorage(): Storage | null {
   }
 }
 
-function emptyState(): GuestFormGateState {
-  return { nextShowAt: null, completed: false };
+function browserSession(): Storage | null {
+  try {
+    return typeof window === 'undefined' ? null : window.sessionStorage;
+  } catch {
+    return null;
+  }
+}
+
+function readEnteredAt(session: Storage | null): number | null {
+  if (!session) return null;
+  const value = Number(session.getItem(GUEST_FORM_GATE_SESSION_KEY));
+  return Number.isFinite(value) && value > 0 ? value : null;
 }
 
 export function readGuestFormGateState(
   storage: Storage | null = browserStorage(),
+  session: Storage | null = browserSession(),
 ): GuestFormGateState {
-  if (!storage) return emptyState();
+  const enteredAt = readEnteredAt(session);
+  if (!storage) return { enteredAt, completed: false };
 
   try {
     const raw = JSON.parse(storage.getItem(GUEST_FORM_GATE_STORAGE_KEY) || 'null') as
-      | Partial<GuestFormGateState>
+      | { completed?: unknown }
       | null;
-    if (!raw || typeof raw !== 'object') return emptyState();
-
     return {
-      nextShowAt: Number.isFinite(Number(raw.nextShowAt)) ? Number(raw.nextShowAt) : null,
-      completed: raw.completed === true,
+      enteredAt,
+      completed: raw?.completed === true,
     };
   } catch {
-    return emptyState();
+    return { enteredAt, completed: false };
   }
 }
 
-function writeGuestFormGateState(
-  state: GuestFormGateState,
-  storage: Storage | null = browserStorage(),
-): void {
+function writeCompleted(storage: Storage | null, completed: boolean): void {
   if (!storage) return;
   try {
-    storage.setItem(GUEST_FORM_GATE_STORAGE_KEY, JSON.stringify(state));
+    storage.setItem(GUEST_FORM_GATE_STORAGE_KEY, JSON.stringify({ completed }));
   } catch {
     // Ignore quota / privacy mode failures.
   }
 }
 
-/** Ensure first-visit schedule exists: show after 15 minutes. */
+/**
+ * Start the 20-minute clock when the guest enters the site.
+ * A new tab session always waits the full delay, so the form never appears on open.
+ */
 export function ensureGuestFormGateSchedule(
   storage: Storage | null = browserStorage(),
   now = Date.now(),
+  session: Storage | null = browserSession(),
 ): GuestFormGateState {
-  const current = readGuestFormGateState(storage);
-  if (current.completed || current.nextShowAt != null) return current;
+  const current = readGuestFormGateState(storage, session);
+  if (current.completed || current.enteredAt != null) return current;
 
-  const next: GuestFormGateState = {
-    nextShowAt: now + GUEST_FORM_GATE_DELAY_MS,
-    completed: false,
-  };
-  writeGuestFormGateState(next, storage);
-  return next;
-}
+  try {
+    session?.setItem(GUEST_FORM_GATE_SESSION_KEY, String(now));
+  } catch {
+    // Ignore quota / privacy mode failures.
+  }
 
-/** After dismiss (X): show again in 10 minutes. */
-export function markGuestFormGateDismissed(
-  storage: Storage | null = browserStorage(),
-  now = Date.now(),
-): void {
-  const current = readGuestFormGateState(storage);
-  if (current.completed) return;
-
-  writeGuestFormGateState(
-    {
-      nextShowAt: now + GUEST_FORM_GATE_REMIND_MS,
-      completed: false,
-    },
-    storage,
-  );
+  return { enteredAt: now, completed: false };
 }
 
 export function markGuestFormGateCompleted(
   storage: Storage | null = browserStorage(),
 ): void {
-  const current = readGuestFormGateState(storage);
-  writeGuestFormGateState(
-    {
-      nextShowAt: current.nextShowAt,
-      completed: true,
-    },
-    storage,
-  );
+  writeCompleted(storage, true);
 }
 
 /** Milliseconds until the gate should appear; `0` means show now; `null` means never. */
@@ -108,16 +94,17 @@ export function getGuestFormGateScheduleDelayMs(
   now = Date.now(),
 ): number | null {
   if (state.completed) return null;
-  if (state.nextShowAt == null) return GUEST_FORM_GATE_DELAY_MS;
-  return Math.max(0, state.nextShowAt - now);
+  if (state.enteredAt == null) return GUEST_FORM_GATE_DELAY_MS;
+  return Math.max(0, state.enteredAt + GUEST_FORM_GATE_DELAY_MS - now);
 }
 
 export function shouldShowGuestFormGateNow(
   isGuest: boolean,
   storage: Storage | null = browserStorage(),
   now = Date.now(),
+  session: Storage | null = browserSession(),
 ): boolean {
   if (!isGuest) return false;
-  const state = ensureGuestFormGateSchedule(storage, now);
+  const state = ensureGuestFormGateSchedule(storage, now, session);
   return getGuestFormGateScheduleDelayMs(state, now) === 0;
 }

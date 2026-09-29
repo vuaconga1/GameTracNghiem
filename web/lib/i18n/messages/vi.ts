@@ -151,7 +151,6 @@ const vi: Messages = {
     guestFormGateTitle: 'Vui lòng nhập form để tiếp tục chơi',
     guestFormGateHint:
       'Phụ huynh vui lòng để lại một vài thông tin ngắn để nhận kết quả và gợi ý chương trình học tiếng Anh phù hợp cho bé. Chỉ mất khoảng 20–30 giây.',
-    guestFormGateDismiss: 'Đóng tạm thời',
     guestFormGatePhoneLabel: 'Số điện thoại phụ huynh',
     guestFormGatePhonePlaceholder: 'Ví dụ: 0912345678',
     guestFormGatePhoneHelp: 'Dùng để nhận kết quả và tư vấn chương trình học phù hợp cho bé.',
