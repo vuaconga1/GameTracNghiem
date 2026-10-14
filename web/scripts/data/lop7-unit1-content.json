@@ -23,17 +23,18 @@
       "skill": "reading",
       "exercise": "U1 Pronunciation — Odd one out",
       "question": "Choose the word that has the underlined part pronounced differently: A. pottery  B. flower  C. silent  D. service",
-      "answer": "silent",
+      "answer": "s<u>e</u>rvice",
       "options": [
-        "pottery",
-        "flower",
-        "silent",
-        "service"
+        "pott<u>e</u>ry",
+        "flow<u>e</u>r",
+        "sil<u>e</u>nt",
+        "s<u>e</u>rvice"
       ],
       "accept": [
-        "silent",
-        "C",
-        "c"
+        "s<u>e</u>rvice",
+        "service",
+        "D",
+        "d"
       ],
       "fillMode": false
     },
@@ -43,14 +44,15 @@
       "skill": "reading",
       "exercise": "U1 Pronunciation — Odd one out",
       "question": "Choose the word that has the underlined part pronounced differently: A. girl  B. expert  C. open  D. burn",
-      "answer": "open",
+      "answer": "op<u>e</u>n",
       "options": [
-        "girl",
-        "expert",
-        "open",
-        "burn"
+        "g<u>ir</u>l",
+        "exp<u>er</u>t",
+        "op<u>e</u>n",
+        "b<u>ur</u>n"
       ],
       "accept": [
+        "op<u>e</u>n",
         "open",
         "C",
         "c"
@@ -63,14 +65,15 @@
       "skill": "reading",
       "exercise": "U1 Pronunciation — Odd one out",
       "question": "Choose the word that has the underlined part pronounced differently: A. sentence  B. world  C. picture  D. dangerous",
-      "answer": "world",
+      "answer": "w<u>or</u>ld",
       "options": [
-        "sentence",
-        "world",
-        "picture",
-        "dangerous"
+        "sent<u>e</u>nce",
+        "w<u>or</u>ld",
+        "pict<u>u</u>re",
+        "danger<u>ou</u>s"
       ],
       "accept": [
+        "w<u>or</u>ld",
         "world",
         "B",
         "b"
@@ -83,17 +86,18 @@
       "skill": "reading",
       "exercise": "U1 Pronunciation — Odd one out",
       "question": "Choose the word that has the underlined part pronounced differently: A. surfing  B. collect  C. concert  D. melody",
-      "answer": "collect",
+      "answer": "s<u>ur</u>fing",
       "options": [
-        "surfing",
-        "collect",
-        "concert",
-        "melody"
+        "s<u>ur</u>fing",
+        "c<u>o</u>llect",
+        "conc<u>er</u>t",
+        "mel<u>o</u>dy"
       ],
       "accept": [
-        "collect",
-        "B",
-        "b"
+        "s<u>ur</u>fing",
+        "surfing",
+        "A",
+        "a"
       ],
       "fillMode": false
     },
@@ -103,14 +107,15 @@
       "skill": "reading",
       "exercise": "U1 Pronunciation — Odd one out",
       "question": "Choose the word that has the underlined part pronounced differently: A. worst  B. learn  C. control  D. dessert",
-      "answer": "control",
+      "answer": "c<u>o</u>ntrol",
       "options": [
-        "worst",
-        "learn",
-        "control",
-        "dessert"
+        "w<u>or</u>st",
+        "l<u>ear</u>n",
+        "c<u>o</u>ntrol",
+        "dess<u>er</u>t"
       ],
       "accept": [
+        "c<u>o</u>ntrol",
         "control",
         "C",
         "c"

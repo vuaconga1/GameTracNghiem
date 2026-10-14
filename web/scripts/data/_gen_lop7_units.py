@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 OUT = Path(__file__).resolve().parent
@@ -11,6 +12,9 @@ OUT = Path(__file__).resolve().parent
 
 def mc(exercise, question, answer, options, type_label="Multiple choice"):
     accept = [answer]
+    plain_answer = re.sub(r"<[^>]+>", "", answer)
+    if plain_answer and plain_answer != answer:
+        accept.append(plain_answer)
     for i, opt in enumerate(options):
         if opt == answer:
             accept.extend([chr(65 + i), chr(97 + i)])
@@ -28,8 +32,12 @@ def mc(exercise, question, answer, options, type_label="Multiple choice"):
     }
 
 
+def plain(text: str) -> str:
+    return re.sub(r"<[^>]+>", "", text)
+
+
 def odd(exercise, options, answer):
-    labeled = "  ".join(f"{chr(65 + i)}. {o}" for i, o in enumerate(options))
+    labeled = "  ".join(f"{chr(65 + i)}. {plain(o)}" for i, o in enumerate(options))
     return mc(
         exercise,
         f"Choose the word that has the underlined part pronounced differently: {labeled}",
@@ -88,11 +96,13 @@ def unit1():
     cloze = "U1 Reading — Cloze"
     ew = "U1 Word form"
     quiz = [
-        odd(eo, ["pottery", "flower", "silent", "service"], "silent"),
-        odd(eo, ["girl", "expert", "open", "burn"], "open"),
-        odd(eo, ["sentence", "world", "picture", "dangerous"], "world"),
-        odd(eo, ["surfing", "collect", "concert", "melody"], "collect"),
-        odd(eo, ["worst", "learn", "control", "dessert"], "control"),
+        # PDF page 5 lost the underline strokes. Letters follow the /ə/ vs /ɜː/
+        # chart on page 4 (and the published key for item 1: service).
+        odd(eo, ["pott<u>e</u>ry", "flow<u>e</u>r", "sil<u>e</u>nt", "s<u>e</u>rvice"], "s<u>e</u>rvice"),
+        odd(eo, ["g<u>ir</u>l", "exp<u>er</u>t", "op<u>e</u>n", "b<u>ur</u>n"], "op<u>e</u>n"),
+        odd(eo, ["sent<u>e</u>nce", "w<u>or</u>ld", "pict<u>u</u>re", "danger<u>ou</u>s"], "w<u>or</u>ld"),
+        odd(eo, ["s<u>ur</u>fing", "c<u>o</u>llect", "conc<u>er</u>t", "mel<u>o</u>dy"], "s<u>ur</u>fing"),
+        odd(eo, ["w<u>or</u>st", "l<u>ear</u>n", "c<u>o</u>ntrol", "dess<u>er</u>t"], "c<u>o</u>ntrol"),
         mc(ev, "My friend ______ football at weekends.", "plays", ["does", "takes", "makes", "plays"]),
         mc(ev, "Jane and Minh love collecting ______.", "stamps", ["stamps", "dolls", "glass bottles", "bears"]),
         mc(ev, "My hobby is ______ photos.", "taking", ["making", "doing", "carving", "taking"]),

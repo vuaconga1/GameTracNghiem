@@ -102,6 +102,27 @@ describe('exerciseDisplay', () => {
     expect(sanitizeQuizHtml('a<br>b')).toBe('a<br />b');
   });
 
+  it('keeps different underlined letters on each odd-one-out option', () => {
+    const html = underlinePronunciationOptionsInQuestion(
+      'Choose the word that has the underlined part pronounced differently: pottery / flower / silent / service',
+      ['pott<u>e</u>ry', 'flow<u>e</u>r', 'sil<u>e</u>nt', 's<u>e</u>rvice']
+    );
+    expect(html).toContain('pott<u class="quiz-error-opt">e</u>ry');
+    expect(html).toContain('flow<u class="quiz-error-opt">e</u>r');
+    expect(html).toContain('sil<u class="quiz-error-opt">e</u>nt');
+    expect(html).toContain('s<u class="quiz-error-opt">e</u>rvice');
+    expect(html).not.toContain('&lt;u&gt;');
+
+    const mixed = underlinePronunciationOptionsInQuestion(
+      'Choose the word that has the underlined part pronounced differently: girl / expert / open / burn',
+      ['g<u>ir</u>l', 'exp<u>er</u>t', 'op<u>e</u>n', 'b<u>ur</u>n']
+    );
+    expect(mixed).toContain('g<u class="quiz-error-opt">ir</u>l');
+    expect(mixed).toContain('exp<u class="quiz-error-opt">er</u>t');
+    expect(mixed).toContain('op<u class="quiz-error-opt">e</u>n');
+    expect(mixed).toContain('b<u class="quiz-error-opt">ur</u>n');
+  });
+
   it('infers the shared sound segment for pronunciation-difference options', () => {
     const html = underlinePronunciationOptionsInQuestion(
       'Chọn từ có phần nguyên âm / âm khác: pleasure / weather / speaker / feather',

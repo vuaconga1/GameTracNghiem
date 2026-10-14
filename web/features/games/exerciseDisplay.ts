@@ -366,21 +366,42 @@ function underlinePronunciationOption(option: string, segment: string): string {
   ].join('');
 }
 
+const EXPLICIT_UNDERLINE_RE = /<u\b[^>]*>([\s\S]*?)<\/u>/gi;
+
+/** Keep author-marked letters when each option already has its own <u>. */
+function renderExplicitPronunciationOption(option: string): string {
+  const parts: string[] = [];
+  const re = new RegExp(EXPLICIT_UNDERLINE_RE.source, 'gi');
+  let last = 0;
+  let match: RegExpExecArray | null;
+  while ((match = re.exec(option))) {
+    parts.push(escapeHtml(stripHtmlTags(option.slice(last, match.index))));
+    parts.push(`<u class="quiz-error-opt">${escapeHtml(stripHtmlTags(match[1]))}</u>`);
+    last = match.index + match[0].length;
+  }
+  parts.push(escapeHtml(stripHtmlTags(option.slice(last))));
+  return parts.join('');
+}
+
 export function underlinePronunciationOptionsInQuestion(
   question: string | null | undefined,
   options: string[] | null | undefined
 ): string {
   const plain = stripHtmlTags(question).trim();
-  // Options in seed data may already contain <u>…</u>; strip before rebuild
-  // so escapeHtml does not turn them into literal "&lt;u&gt;".
-  const opts = (options || [])
-    .map((item) => stripHtmlTags(item).trim())
-    .filter(Boolean);
+  const rawOpts = (options || []).map((item) => String(item || '').trim()).filter(Boolean);
   if (!plain) return '';
-  if (opts.length === 0) return escapeHtml(plain).replace(/\n/g, '<br />');
+  if (rawOpts.length === 0) return escapeHtml(plain).replace(/\n/g, '<br />');
 
-  const segment = inferPronunciationSegment(opts);
-  const renderedOptions = opts.map((option) => underlinePronunciationOption(option, segment));
+  // Different odd-one-out items underline different letters (ir / er / e / ur).
+  // A shared-segment guess cannot see those, so keep explicit <u> marks.
+  const explicit = rawOpts.every((option) => /<u\b/i.test(option));
+  const renderedOptions = explicit
+    ? rawOpts.map((option) => renderExplicitPronunciationOption(option))
+    : (() => {
+        const opts = rawOpts.map((item) => stripHtmlTags(item).trim()).filter(Boolean);
+        const segment = inferPronunciationSegment(opts);
+        return opts.map((option) => underlinePronunciationOption(option, segment));
+      })();
   const colonIndex = plain.indexOf(':');
   const prefix = colonIndex >= 0 ? plain.slice(0, colonIndex + 1).trim() : '';
   const rendered = prefix ? `${escapeHtml(prefix)} ${renderedOptions.join(' / ')}` : renderedOptions.join(' / ');
