@@ -8,6 +8,7 @@ import {
   orderHomeCourseLevels,
 } from '@/lib/alphabetLevel';
 import { optionalSession } from '@/lib/auth';
+import { recordGuestGradeVisit } from '@/lib/recordGuestGradeVisit';
 import { courseBackgroundSrc } from '@/lib/courseBackground';
 import { progressCourseKey } from '@/lib/courseKey';
 import { courseCompletionPercent } from '@/lib/courseProgress';
@@ -202,7 +203,7 @@ function getHomeCoursesPublicCatalogCached(selectedLevelName: string) {
   )();
 }
 
-export async function loadHomeCourses(levelName = ''): Promise<HomeCoursesData> {
+async function loadHomeCoursesData(levelName = ''): Promise<HomeCoursesData> {
   const session = await optionalSession();
   const availableLevels = await getAvailableHomeLevelsCached();
   const role = session ? normalizeUserRole(session.role) : null;
@@ -271,6 +272,14 @@ export async function loadHomeCourses(levelName = ''): Promise<HomeCoursesData> 
     selectedLevelName,
     playerKind: session ? 'authenticated' : 'guest',
   };
+}
+
+export async function loadHomeCourses(levelName = ''): Promise<HomeCoursesData> {
+  const data = await loadHomeCoursesData(levelName);
+  if (data.playerKind === 'guest') {
+    await recordGuestGradeVisit(data.selectedLevelName);
+  }
+  return data;
 }
 
 // Keep type export available for callers that may reference the public shell shape.

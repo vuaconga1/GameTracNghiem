@@ -8,6 +8,7 @@ import {
 } from '@/lib/classHomework';
 import { ALL_GAME_KEYS } from '@/lib/gameCatalog';
 import { isSkillId } from '@/lib/skillCatalog';
+import { recordTeacherHomeworkAssigned } from '@/lib/teacherAudit';
 import { parseHoChiMinhDateTime } from '@/lib/vnDateTime';
 import { prisma } from '@/lib/db';
 
@@ -24,7 +25,7 @@ export async function POST(req: Request, { params }: Params) {
   try {
     const session = await requireAdminOrTeacher();
     const { id } = await params;
-    await requireClassAccess(session, id);
+    const schoolClass = await requireClassAccess(session, id);
     const body = await req.json();
 
     const rawItems: AssignmentInput[] = Array.isArray(body.assignments)
@@ -112,6 +113,25 @@ export async function POST(req: Request, { params }: Params) {
           },
         })
       )
+    );
+
+    await recordTeacherHomeworkAssigned(
+      {
+        userId: session.userId,
+        username: session.username,
+        displayName: session.displayName,
+        role: session.role,
+      },
+      created.map((a) => ({
+        assignmentId: a.id,
+        classId: schoolClass.id,
+        className: schoolClass.name,
+        levelName: a.levelName,
+        courseName: a.courseName,
+        skillLabel: a.skillLabel,
+        gameLabel: a.gameLabel,
+        deadlineAt: a.deadlineAt,
+      })),
     );
 
     return Response.json({

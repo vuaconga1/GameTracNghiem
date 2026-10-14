@@ -33,6 +33,7 @@ model User {
   schoolClassesCreated  SchoolClass[]               @relation("SchoolClassCreator")
   classMemberships      ClassMember[]
   classAssignmentsCreated ClassAssignment[]         @relation("ClassAssignmentCreator")
+  teacherAuditLogs      TeacherAuditLog[]           @relation("TeacherAuditActor")
 }
 
 model ClassLevel {
@@ -96,6 +97,45 @@ model ClassAssignment {
   @@index([classId, deadlineAt])
   @@index([courseId, gameKey])
   @@index([createdByUserId, createdAt])
+}
+
+/**
+ * Admin-facing history of teacher actions: login and successful homework assignment.
+ */
+model TeacherAuditLog {
+  id               String    @id @default(cuid())
+  action           String
+  actorUserId      String
+  actor            User      @relation("TeacherAuditActor", fields: [actorUserId], references: [id], onDelete: Restrict)
+  actorUsername    String
+  actorDisplayName String
+  classId          String?
+  className        String?
+  assignmentId     String?
+  levelName        String?
+  courseName       String?
+  skillLabel       String?
+  gameLabel        String?
+  deadlineAt       DateTime?
+  createdAt        DateTime  @default(now())
+
+  @@index([createdAt])
+  @@index([action, createdAt])
+  @@index([actorUserId, createdAt])
+}
+
+/**
+ * One row per guest browser, Global Success grade (6–9), and Vietnam week (Monday).
+ */
+model GuestGradeVisit {
+  id         String   @id @default(cuid())
+  visitorKey String
+  grade      Int
+  weekStart  String
+  createdAt  DateTime @default(now())
+
+  @@unique([visitorKey, grade, weekStart])
+  @@index([weekStart, grade])
 }
 
 model Ebook {

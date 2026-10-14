@@ -1,6 +1,7 @@
 import 'server-only';
 
 import { optionalSession } from '@/lib/auth';
+import { recordGuestGradeVisit } from '@/lib/recordGuestGradeVisit';
 import { canAccessCourseLevel, normalizeUserRole } from '@/lib/userRoles';
 import { progressCourseKey, scoreLookupCourseKeys } from '@/lib/courseKey';
 import { prisma } from '@/lib/db';
@@ -130,7 +131,7 @@ function mergeUserProgress(
   };
 }
 
-export async function loadCourseDetail(courseId: string): Promise<CourseDetailData | null> {
+async function loadCourseDetailData(courseId: string): Promise<CourseDetailData | null> {
   const session = await optionalSession();
   // Prefer the cached public shell for the requested id (common path = 0 extra findUnique).
   // Only resolve archived Lớp 9 aliases when the active row is missing.
@@ -194,4 +195,12 @@ export async function loadCourseDetail(courseId: string): Promise<CourseDetailDa
     totalScore: scoreAggregate._sum.points ?? 0,
     playerKind: session ? 'authenticated' : 'guest',
   };
+}
+
+export async function loadCourseDetail(courseId: string): Promise<CourseDetailData | null> {
+  const detail = await loadCourseDetailData(courseId);
+  if (detail?.playerKind === 'guest') {
+    await recordGuestGradeVisit(detail.course.levelName);
+  }
+  return detail;
 }

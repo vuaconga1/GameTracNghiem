@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { verifyPassword } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { setSessionCookie } from '@/lib/session';
+import { recordTeacherLogin } from '@/lib/teacherAudit';
 import { homeHrefForRole, normalizeUserRole } from '@/lib/userRoles';
 
 export async function POST(req: Request) {
@@ -31,6 +32,13 @@ export async function POST(req: Request) {
     const role = normalizeUserRole(user.role);
 
     await setSessionCookie({
+      userId: user.id,
+      username: user.username,
+      displayName: user.displayName,
+      role,
+    });
+
+    await recordTeacherLogin({
       userId: user.id,
       username: user.username,
       displayName: user.displayName,

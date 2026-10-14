@@ -4,6 +4,12 @@ import { jwtVerify } from 'jose';
 
 import { isLogisticsLevel } from '@/lib/logisticsUnits';
 import { readSessionRoleFromRequest } from '@/lib/sessionEdge';
+import {
+  GUEST_VISITOR_COOKIE,
+  GUEST_VISITOR_HEADER,
+  guestVisitorCookieOptions,
+  isGuestVisitorId,
+} from '@/lib/guestVisitor';
 
 const SESSION_COOKIE = 'wewin_session';
 async function hasValidSession(req: NextRequest): Promise<boolean> {
@@ -77,7 +83,15 @@ export async function middleware(req: NextRequest) {
     ) {
       return NextResponse.redirect(new URL('/', req.url));
     }
-    return NextResponse.next();
+    if (role) return NextResponse.next();
+
+    const existing = req.cookies.get(GUEST_VISITOR_COOKIE)?.value;
+    const visitorId = isGuestVisitorId(existing) ? existing : crypto.randomUUID();
+    const requestHeaders = new Headers(req.headers);
+    requestHeaders.set(GUEST_VISITOR_HEADER, visitorId);
+    const response = NextResponse.next({ request: { headers: requestHeaders } });
+    response.cookies.set(GUEST_VISITOR_COOKIE, visitorId, guestVisitorCookieOptions());
+    return response;
   }
   if (!(await hasValidSession(req))) {
     const url = req.nextUrl.clone();

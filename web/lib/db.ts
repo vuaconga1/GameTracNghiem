@@ -77,7 +77,9 @@ export function shouldRecycleDevClient(client: unknown): boolean {
     !hasModelField(client, 'SpeakingAttempt', 'idempotencyKey') ||
     !hasModelField(client, 'SchoolClass', 'createdByUserId') ||
     !hasModelField(client, 'ClassMember', 'classId') ||
-    !hasModelField(client, 'ClassAssignment', 'deadlineAt')
+    !hasModelField(client, 'ClassAssignment', 'deadlineAt') ||
+    !hasModelField(client, 'TeacherAuditLog', 'action') ||
+    !hasModelField(client, 'GuestGradeVisit', 'weekStart')
   );
 }
 

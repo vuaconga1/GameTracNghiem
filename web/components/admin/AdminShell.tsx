@@ -74,6 +74,13 @@ const NAV: Array<{
     icon: 'fas fa-users',
     adminOnly: true,
   },
+  {
+    href: '/admin/audit',
+    label: { vi: 'Nhật ký giáo viên', en: 'Teacher log' },
+    hint: { vi: 'Đăng nhập & giao bài', en: 'Logins & homework' },
+    icon: 'fas fa-clipboard-list',
+    adminOnly: true,
+  },
 ];
 
 type AdminShellProps = {
