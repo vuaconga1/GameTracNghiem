@@ -115,7 +115,7 @@ function parseInlineOptions(line) {
   let raw = String(line || "").trim();
   if (!raw) return null;
   // Drop leading item numbers: "1. A. mouse" / "10. A. ..."
-  raw = raw.replace(/^\d+[\.\)]\s+/, "");
+  raw = raw.replace(/^\d+[\.\)]?\s+/, "");
   // Must look like options
   if (!/(?:^|\s)B\.\s/.test(raw) && !/^[A-D]\.\s/.test(raw)) return null;
 
@@ -479,6 +479,20 @@ function correctArticleSentence(s) {
   return { answer: out, accept: [out], uncertain: !changed };
 }
 
+const EXCLUDED_AMBIGUOUS_PHONETICS = new Set([
+  "create|peaceful|increase|easily",
+  "complicated|costume|majority|recognize",
+  "custom|correct|clockwise|opinion",
+  "balance|base|artisan|practice",
+  "costume|diverse|feature|market",
+  "online|offline|musher|igloo",
+  "healthy|hurry|online|modern",
+]);
+
+function phoneticsOptionKey(options) {
+  return options.map((option) => stripHtml(option).toLowerCase()).join("|");
+}
+
 // ---------- Answer heuristics ----------
 
 const STRESS_ULTIMATE = new Set([
@@ -516,6 +530,36 @@ function derivePhoneticsSoundByWord(options) {
   const words = options.map((o) => stripHtml(o).toLowerCase());
   // Very small curated odd-one maps for common textbook sets
   const sets = [
+    [["normal", "visitors", "transport", "chore"], "visitors"],
+    [["basic", "major", "craft", "racing"], "craft"],
+    [["camel", "cattle", "paddy", "buffalo"], "buffalo"],
+    [["entertain", "rain", "air", "strain"], "air"],
+    [["traffic", "relative", "tragedy", "jam"], "relative"],
+    [["apartment", "offer", "prefer", "another"], "prefer"],
+    [["accessible", "pressure", "illness", "success"], "pressure"],
+    [["queen", "square", "queue", "quick"], "queue"],
+    [["carrot", "city", "cake", "class"], "city"],
+    [["chopstick", "chicken", "cheek", "character"], "character"],
+    [["ancester", "gather", "basic", "animal"], "basic"],
+    [["showed", "called", "lived", "discriminated"], "discriminated"],
+    [["basic", "minority", "curious", "complicated"], "minority"],
+    [["connect", "cook", "dance", "control"], "dance"],
+    [["pass", "palm", "sharp", "man"], "man"],
+    [["design", "preserve", "basic", "physical"], "basic"],
+    [["cousin", "interesting", "link", "fond"], "link"],
+    [["lantern", "important", "money", "thank"], "thank"],
+    [["occupation", "occasion", "shake", "miraculous"], "miraculous"],
+    [["breakfast", "brief", "bright", "climb"], "climb"],
+    [["practice", "cupboard", "pray", "plan"], "cupboard"],
+    [["greet", "weave", "each", "head"], "head"],
+    [["simple", "practice", "tribal", "bridge"], "tribal"],
+    [["adult", "artisan", "avoid", "alive"], "artisan"],
+    [["hold", "improve", "nomad", "notice"], "improve"],
+    [["precious", "serve", "technology", "resident"], "serve"],
+    [["club", "upload", "discuss", "focus"], "focus"],
+    [["connect", "concentrate", "calm", "competition"], "concentrate"],
+    [["paddy", "teenager", "camel", "cattle"], "teenager"],
+    [["illness", "success", "accessible", "pressure"], "pressure"],
     [["mouse", "house", "would", "outdoors"], "would"],
     [["ear", "clear", "hear", "bear"], "bear"],
     [["leisure", "eight", "celebrate", "penalty"], "leisure"],
@@ -540,6 +584,34 @@ function derivePhoneticsStress(options) {
   const words = options.map((o) => stripHtml(o).toLowerCase());
   // Prefer option whose stress pattern differs — heuristic: words with stress on 2nd syllable among 1st-stress peers
   const curated = [
+    [["balance", "common", "cuisine", "diet"], "cuisine"],
+    [["charade", "transport", "expect", "paddy"], "paddy"],
+    [["opportunity", "inconvenient", "facility", "optimistic"], "facility"],
+    [["activity", "traditional", "majority", "population"], "population"],
+    [["leisure", "beehive", "unique", "ethnic"], "unique"],
+    [["festival", "nomadic", "ornament", "turmeric"], "nomadic"],
+    [["custom", "livestock", "highland", "bamboo"], "bamboo"],
+    [["diversity", "pharmacy", "establish", "religious"], "pharmacy"],
+    [["overlook", "plantation", "religion", "minority"], "overlook"],
+    [["peoples", "poultry", "preserve", "worship"], "preserve"],
+    [["southern", "highland", "clothing", "experience"], "experience"],
+    [["following", "including", "poultry", "worship"], "including"],
+    [["communal", "festivity", "exhibition", "museum"], "exhibition"],
+    [["mountainous", "product", "literature", "unforgetable"], "unforgetable"],
+    [["pagoda", "complement", "society", "tradition"], "complement"],
+    [["laughter", "prepare", "chopstick", "heaven"], "prepare"],
+    [["festival", "contestant", "atmosphere", "family"], "contestant"],
+    [["custom", "worship", "maintain", "midnight"], "maintain"],
+    [["respect", "mention", "expert", "worship"], "respect"],
+    [["custom", "explain", "chopstick", "manner"], "explain"],
+    [["experience", "enhance", "maintain", "general"], "general"],
+    [["occasion", "disagree", "tradition", "expensive"], "disagree"],
+    [["harmful", "maintain", "lifestyle", "freedom"], "maintain"],
+    [["independent", "interaction", "technology", "dedication"], "technology"],
+    [["hurry", "improve", "lifestyle", "mealtime"], "improve"],
+    [["teenager", "enjoyment", "concentrate", "countryside"], "enjoyment"],
+    [["connect", "advise", "focus", "discuss"], "focus"],
+    [["stressful", "success", "pressure", "leader"], "success"],
     [["relaxing", "traveling", "visiting", "listening"], "relaxing"],
     [["dislike", "detest", "fancy", "prefer"], "fancy"],
     [["library", "museum", "melody", "favourite"], "museum"],
@@ -852,6 +924,7 @@ function processBlock(block, uncertainLog) {
         ? "Chọn từ có phần gạch chân phát âm khác."
         : "Chọn từ có trọng âm khác.";
     for (const row of raw) {
+      if (EXCLUDED_AMBIGUOUS_PHONETICS.has(phoneticsOptionKey(row.options))) continue;
       const derived =
         block.kind === "phonetics_sound"
           ? derivePhoneticsSound(row.options)

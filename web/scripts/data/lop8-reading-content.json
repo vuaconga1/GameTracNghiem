@@ -1358,10 +1358,10 @@
           "transp<u>o</u>rt",
           "ch<u>o</u>re"
         ],
-        "answer": "n<u>o</u>rmal",
+        "answer": "visit<u>o</u>rs",
         "accept": [
-          "n<u>o</u>rmal",
-          "normal"
+          "visit<u>o</u>rs",
+          "visitors"
         ],
         "fillMode": false
       },
@@ -1378,10 +1378,10 @@
           "cr<u>a</u>ft",
           "r<u>a</u>cing"
         ],
-        "answer": "b<u>a</u>sic",
+        "answer": "cr<u>a</u>ft",
         "accept": [
-          "b<u>a</u>sic",
-          "basic"
+          "cr<u>a</u>ft",
+          "craft"
         ],
         "fillMode": false
       },
@@ -1438,10 +1438,10 @@
           "p<u>a</u>ddy",
           "buff<u>a</u>lo"
         ],
-        "answer": "c<u>a</u>mel",
+        "answer": "buff<u>a</u>lo",
         "accept": [
-          "c<u>a</u>mel",
-          "camel"
+          "buff<u>a</u>lo",
+          "buffalo"
         ],
         "fillMode": false
       },
@@ -1458,10 +1458,10 @@
           "<u>ai</u>r",
           "str<u>ai</u>n"
         ],
-        "answer": "entert<u>ai</u>n",
+        "answer": "<u>ai</u>r",
         "accept": [
-          "entert<u>ai</u>n",
-          "entertain"
+          "<u>ai</u>r",
+          "air"
         ],
         "fillMode": false
       },
@@ -1478,10 +1478,10 @@
           "tr<u>a</u>gedy",
           "j<u>a</u>m"
         ],
-        "answer": "tr<u>a</u>ffic",
+        "answer": "rel<u>a</u>tive",
         "accept": [
-          "tr<u>a</u>ffic",
-          "traffic"
+          "rel<u>a</u>tive",
+          "relative"
         ],
         "fillMode": false
       },
@@ -1498,30 +1498,10 @@
           "pref<u>e</u>r",
           "anoth<u>e</u>r"
         ],
-        "answer": "apartm<u>e</u>nt",
+        "answer": "pref<u>e</u>r",
         "accept": [
-          "apartm<u>e</u>nt",
-          "apartment"
-        ],
-        "fillMode": false
-      },
-      {
-        "game": "quiz",
-        "type": "multiple_choice",
-        "typeLabel": "Trắc nghiệm",
-        "skill": "reading",
-        "exercise": "Phát âm khác",
-        "question": "Chọn từ có phần gạch chân phát âm khác.",
-        "options": [
-          "cr<u>ea</u>te",
-          "p<u>ea</u>ceful",
-          "incr<u>ea</u>se",
-          "<u>ea</u>sily"
-        ],
-        "answer": "cr<u>ea</u>te",
-        "accept": [
-          "cr<u>ea</u>te",
-          "create"
+          "pref<u>e</u>r",
+          "prefer"
         ],
         "fillMode": false
       },
@@ -1538,10 +1518,10 @@
           "illne<u>ss</u>",
           "succe<u>ss</u>"
         ],
-        "answer": "acce<u>ss</u>ible",
+        "answer": "pre<u>ss</u>ure",
         "accept": [
-          "acce<u>ss</u>ible",
-          "accessible"
+          "pre<u>ss</u>ure",
+          "pressure"
         ],
         "fillMode": false
       },
@@ -1558,9 +1538,9 @@
           "expect",
           "paddy"
         ],
-        "answer": "expect",
+        "answer": "paddy",
         "accept": [
-          "expect"
+          "paddy"
         ],
         "fillMode": false
       },
@@ -1615,9 +1595,9 @@
           "facility",
           "optimistic"
         ],
-        "answer": "optimistic",
+        "answer": "facility",
         "accept": [
-          "optimistic"
+          "facility"
         ],
         "fillMode": false
       },
@@ -1634,9 +1614,9 @@
           "majority",
           "population"
         ],
-        "answer": "majority",
+        "answer": "population",
         "accept": [
-          "majority"
+          "population"
         ],
         "fillMode": false
       },
@@ -1672,9 +1652,9 @@
           "unique",
           "ethnic"
         ],
-        "answer": "leisure",
+        "answer": "unique",
         "accept": [
-          "leisure"
+          "unique"
         ],
         "fillMode": false
       },
@@ -1710,9 +1690,9 @@
           "ornament",
           "turmeric"
         ],
-        "answer": "festival",
+        "answer": "nomadic",
         "accept": [
-          "festival"
+          "nomadic"
         ],
         "fillMode": false
       },
@@ -2432,10 +2412,10 @@
           "disc<u>u</u>ss",
           "foc<u>u</u>s"
         ],
-        "answer": "cl<u>u</u>b",
+        "answer": "foc<u>u</u>s",
         "accept": [
-          "cl<u>u</u>b",
-          "club"
+          "foc<u>u</u>s",
+          "focus"
         ],
         "fillMode": false
       },
@@ -2472,10 +2452,10 @@
           "<u>c</u>alm",
           "<u>c</u>ompetition"
         ],
-        "answer": "conne<u>c</u>t",
+        "answer": "con<u>c</u>entrate",
         "accept": [
-          "conne<u>c</u>t",
-          "connect"
+          "con<u>c</u>entrate",
+          "concentrate"
         ],
         "fillMode": false
       },
@@ -2492,10 +2472,10 @@
           "c<u>a</u>mel",
           "c<u>a</u>ttle"
         ],
-        "answer": "p<u>a</u>ddy",
+        "answer": "teen<u>a</u>ger",
         "accept": [
-          "p<u>a</u>ddy",
-          "paddy"
+          "teen<u>a</u>ger",
+          "teenager"
         ],
         "fillMode": false
       },
@@ -2512,10 +2492,10 @@
           "acce<u>ss</u>ible",
           "pre<u>ss</u>ure"
         ],
-        "answer": "illne<u>ss</u>",
+        "answer": "pre<u>ss</u>ure",
         "accept": [
-          "illne<u>ss</u>",
-          "illness"
+          "pre<u>ss</u>ure",
+          "pressure"
         ],
         "fillMode": false
       },
@@ -2532,9 +2512,9 @@
           "concentrate",
           "countryside"
         ],
-        "answer": "teenager",
+        "answer": "enjoyment",
         "accept": [
-          "teenager"
+          "enjoyment"
         ],
         "fillMode": false
       },
@@ -2551,9 +2531,9 @@
           "focus",
           "discuss"
         ],
-        "answer": "connect",
+        "answer": "focus",
         "accept": [
-          "connect"
+          "focus"
         ],
         "fillMode": false
       },
@@ -2570,9 +2550,9 @@
           "pressure",
           "leader"
         ],
-        "answer": "stressful",
+        "answer": "success",
         "accept": [
-          "stressful"
+          "success"
         ],
         "fillMode": false
       },
@@ -3314,10 +3294,10 @@
           "<u>qu</u>eue",
           "<u>qu</u>ick"
         ],
-        "answer": "<u>qu</u>een",
+        "answer": "<u>qu</u>eue",
         "accept": [
-          "<u>qu</u>een",
-          "queen"
+          "<u>qu</u>eue",
+          "queue"
         ],
         "fillMode": false
       },
@@ -3334,10 +3314,10 @@
           "<u>c</u>ake",
           "<u>c</u>lass"
         ],
-        "answer": "<u>c</u>arrot",
+        "answer": "<u>c</u>ity",
         "accept": [
-          "<u>c</u>arrot",
-          "carrot"
+          "<u>c</u>ity",
+          "city"
         ],
         "fillMode": false
       },
@@ -3354,10 +3334,10 @@
           "<u>ch</u>eek",
           "<u>ch</u>aracter"
         ],
-        "answer": "<u>ch</u>opstick",
+        "answer": "<u>ch</u>aracter",
         "accept": [
-          "<u>ch</u>opstick",
-          "chopstick"
+          "<u>ch</u>aracter",
+          "character"
         ],
         "fillMode": false
       },
@@ -3394,10 +3374,10 @@
           "b<u>a</u>sic",
           "<u>a</u>nimal"
         ],
-        "answer": "<u>a</u>ncester",
+        "answer": "b<u>a</u>sic",
         "accept": [
-          "<u>a</u>ncester",
-          "ancester"
+          "b<u>a</u>sic",
+          "basic"
         ],
         "fillMode": false
       },
@@ -3434,10 +3414,10 @@
           "liv<u>ed</u>",
           "discriminat<u>ed</u>"
         ],
-        "answer": "show<u>ed</u>",
+        "answer": "discriminat<u>ed</u>",
         "accept": [
-          "show<u>ed</u>",
-          "showed"
+          "discriminat<u>ed</u>",
+          "discriminated"
         ],
         "fillMode": false
       },
@@ -3454,48 +3434,10 @@
           "curious",
           "compl<u>i</u>cated"
         ],
-        "answer": "curious",
+        "answer": "m<u>i</u>nority",
         "accept": [
-          "curious"
-        ],
-        "fillMode": false
-      },
-      {
-        "game": "quiz",
-        "type": "multiple_choice",
-        "typeLabel": "Trắc nghiệm",
-        "skill": "reading",
-        "exercise": "Phát âm khác",
-        "question": "Chọn từ có phần gạch chân phát âm khác.",
-        "options": [
-          "c<u>o</u>mplicated",
-          "c<u>o</u>stume",
-          "maj<u>o</u>rity",
-          "rec<u>o</u>gnize"
-        ],
-        "answer": "c<u>o</u>mplicated",
-        "accept": [
-          "c<u>o</u>mplicated",
-          "complicated"
-        ],
-        "fillMode": false
-      },
-      {
-        "game": "quiz",
-        "type": "multiple_choice",
-        "typeLabel": "Trắc nghiệm",
-        "skill": "reading",
-        "exercise": "Trọng âm khác",
-        "question": "Chọn từ có trọng âm khác.",
-        "options": [
-          "costume",
-          "diverse",
-          "feature",
-          "market"
-        ],
-        "answer": "costume",
-        "accept": [
-          "costume"
+          "m<u>i</u>nority",
+          "minority"
         ],
         "fillMode": false
       },
@@ -3512,9 +3454,9 @@
           "highland",
           "bamboo"
         ],
-        "answer": "custom",
+        "answer": "bamboo",
         "accept": [
-          "custom"
+          "bamboo"
         ],
         "fillMode": false
       },
@@ -3531,9 +3473,9 @@
           "establish",
           "religious"
         ],
-        "answer": "diversity",
+        "answer": "pharmacy",
         "accept": [
-          "diversity"
+          "pharmacy"
         ],
         "fillMode": false
       },
@@ -3550,9 +3492,9 @@
           "religion",
           "minority"
         ],
-        "answer": "plantation",
+        "answer": "overlook",
         "accept": [
-          "plantation"
+          "overlook"
         ],
         "fillMode": false
       },
@@ -3569,9 +3511,9 @@
           "preserve",
           "worship"
         ],
-        "answer": "peoples",
+        "answer": "preserve",
         "accept": [
-          "peoples"
+          "preserve"
         ],
         "fillMode": false
       },
@@ -3588,9 +3530,9 @@
           "literature",
           "unforgetable"
         ],
-        "answer": "mountainous",
+        "answer": "unforgetable",
         "accept": [
-          "mountainous"
+          "unforgetable"
         ],
         "fillMode": false
       },
@@ -3607,9 +3549,9 @@
           "clothing",
           "experience"
         ],
-        "answer": "southern",
+        "answer": "experience",
         "accept": [
-          "southern"
+          "experience"
         ],
         "fillMode": false
       },
@@ -3626,9 +3568,9 @@
           "poultry",
           "worship"
         ],
-        "answer": "following",
+        "answer": "including",
         "accept": [
-          "following"
+          "including"
         ],
         "fillMode": false
       },
@@ -3664,9 +3606,9 @@
           "exhibition",
           "museum"
         ],
-        "answer": "communal",
+        "answer": "exhibition",
         "accept": [
-          "communal"
+          "exhibition"
         ],
         "fillMode": false
       },
@@ -4736,9 +4678,10 @@
           "dan<u>c</u>e",
           "<u>c</u>ontrol"
         ],
-        "answer": "cook",
+        "answer": "dan<u>c</u>e",
         "accept": [
-          "cook"
+          "dan<u>c</u>e",
+          "dance"
         ],
         "fillMode": false
       },
@@ -4755,30 +4698,10 @@
           "sh<u>ar</u>p",
           "m<u>a</u>n"
         ],
-        "answer": "sh<u>ar</u>p",
+        "answer": "m<u>a</u>n",
         "accept": [
-          "sh<u>ar</u>p",
-          "sharp"
-        ],
-        "fillMode": false
-      },
-      {
-        "game": "quiz",
-        "type": "multiple_choice",
-        "typeLabel": "Trắc nghiệm",
-        "skill": "reading",
-        "exercise": "Phát âm khác",
-        "question": "Chọn từ có phần gạch chân phát âm khác.",
-        "options": [
-          "cust<u>o</u>m",
-          "c<u>o</u>rrect",
-          "cl<u>o</u>ckwise",
-          "<u>o</u>pinion"
-        ],
-        "answer": "cust<u>o</u>m",
-        "accept": [
-          "cust<u>o</u>m",
-          "custom"
+          "m<u>a</u>n",
+          "man"
         ],
         "fillMode": false
       },
@@ -4815,10 +4738,10 @@
           "ba<u>s</u>ic",
           "phy<u>s</u>ical"
         ],
-        "answer": "de<u>s</u>ign",
+        "answer": "ba<u>s</u>ic",
         "accept": [
-          "de<u>s</u>ign",
-          "design"
+          "ba<u>s</u>ic",
+          "basic"
         ],
         "fillMode": false
       },
@@ -4835,10 +4758,10 @@
           "li<u>n</u>k",
           "fo<u>n</u>d"
         ],
-        "answer": "cousi<u>n</u>",
+        "answer": "li<u>n</u>k",
         "accept": [
-          "cousi<u>n</u>",
-          "cousin"
+          "li<u>n</u>k",
+          "link"
         ],
         "fillMode": false
       },
@@ -4855,10 +4778,10 @@
           "mo<u>n</u>ey",
           "tha<u>n</u>k"
         ],
-        "answer": "la<u>n</u>tern",
+        "answer": "tha<u>n</u>k",
         "accept": [
-          "la<u>n</u>tern",
-          "lantern"
+          "tha<u>n</u>k",
+          "thank"
         ],
         "fillMode": false
       },
@@ -4895,10 +4818,10 @@
           "sh<u>a</u>ke",
           "mir<u>a</u>culous"
         ],
-        "answer": "occup<u>a</u>tion",
+        "answer": "mir<u>a</u>culous",
         "accept": [
-          "occup<u>a</u>tion",
-          "occupation"
+          "mir<u>a</u>culous",
+          "miraculous"
         ],
         "fillMode": false
       },
@@ -4934,9 +4857,9 @@
           "chopstick",
           "heaven"
         ],
-        "answer": "laughter",
+        "answer": "prepare",
         "accept": [
-          "laughter"
+          "prepare"
         ],
         "fillMode": false
       },
@@ -4991,9 +4914,9 @@
           "atmosphere",
           "family"
         ],
-        "answer": "festival",
+        "answer": "contestant",
         "accept": [
-          "festival"
+          "contestant"
         ],
         "fillMode": false
       },
@@ -5029,9 +4952,9 @@
           "maintain",
           "midnight"
         ],
-        "answer": "custom",
+        "answer": "maintain",
         "accept": [
-          "custom"
+          "maintain"
         ],
         "fillMode": false
       },
@@ -5048,9 +4971,9 @@
           "expert",
           "worship"
         ],
-        "answer": "mention",
+        "answer": "respect",
         "accept": [
-          "mention"
+          "respect"
         ],
         "fillMode": false
       },
@@ -5067,9 +4990,9 @@
           "society",
           "tradition"
         ],
-        "answer": "tradition",
+        "answer": "complement",
         "accept": [
-          "tradition"
+          "complement"
         ],
         "fillMode": false
       },
@@ -5086,9 +5009,9 @@
           "chopstick",
           "manner"
         ],
-        "answer": "custom",
+        "answer": "explain",
         "accept": [
-          "custom"
+          "explain"
         ],
         "fillMode": false
       },
@@ -6734,10 +6657,10 @@
           "<u>b</u>right",
           "clim<u>b</u>"
         ],
-        "answer": "<u>b</u>reakfast",
+        "answer": "clim<u>b</u>",
         "accept": [
-          "<u>b</u>reakfast",
-          "breakfast"
+          "clim<u>b</u>",
+          "climb"
         ],
         "fillMode": false
       },
@@ -6754,10 +6677,10 @@
           "<u>p</u>ray",
           "<u>p</u>lan"
         ],
-        "answer": "<u>p</u>ractice",
+        "answer": "cu<u>p</u>board",
         "accept": [
-          "<u>p</u>ractice",
-          "practice"
+          "cu<u>p</u>board",
+          "cupboard"
         ],
         "fillMode": false
       },
@@ -6794,10 +6717,10 @@
           "<u>ea</u>ch",
           "h<u>ea</u>d"
         ],
-        "answer": "gr<u>ee</u>t",
+        "answer": "h<u>ea</u>d",
         "accept": [
-          "gr<u>ee</u>t",
-          "greet"
+          "h<u>ea</u>d",
+          "head"
         ],
         "fillMode": false
       },
@@ -6814,10 +6737,10 @@
           "tr<u>i</u>bal",
           "br<u>i</u>dge"
         ],
-        "answer": "s<u>i</u>mple",
+        "answer": "tr<u>i</u>bal",
         "accept": [
-          "s<u>i</u>mple",
-          "simple"
+          "tr<u>i</u>bal",
+          "tribal"
         ],
         "fillMode": false
       },
@@ -6834,30 +6757,10 @@
           "<u>a</u>void",
           "<u>a</u>live"
         ],
-        "answer": "<u>a</u>dult",
+        "answer": "<u>a</u>rtisan",
         "accept": [
-          "<u>a</u>dult",
-          "adult"
-        ],
-        "fillMode": false
-      },
-      {
-        "game": "quiz",
-        "type": "multiple_choice",
-        "typeLabel": "Trắc nghiệm",
-        "skill": "reading",
-        "exercise": "Phát âm khác",
-        "question": "Chọn từ có phần gạch chân phát âm khác.",
-        "options": [
-          "b<u>a</u>lance",
-          "b<u>a</u>se",
-          "artis<u>a</u>n",
-          "pr<u>a</u>ctice"
-        ],
-        "answer": "b<u>a</u>lance",
-        "accept": [
-          "b<u>a</u>lance",
-          "balance"
+          "<u>a</u>rtisan",
+          "artisan"
         ],
         "fillMode": false
       },
@@ -6874,10 +6777,10 @@
           "n<u>o</u>mad",
           "n<u>o</u>tice"
         ],
-        "answer": "h<u>o</u>ld",
+        "answer": "impr<u>o</u>ve",
         "accept": [
-          "h<u>o</u>ld",
-          "hold"
+          "impr<u>o</u>ve",
+          "improve"
         ],
         "fillMode": false
       },
@@ -6894,10 +6797,10 @@
           "t<u>e</u>chnology",
           "r<u>e</u>sident"
         ],
-        "answer": "pr<u>e</u>cious",
+        "answer": "s<u>e</u>rve",
         "accept": [
-          "pr<u>e</u>cious",
-          "precious"
+          "s<u>e</u>rve",
+          "serve"
         ],
         "fillMode": false
       },
@@ -6929,14 +6832,14 @@
         "exercise": "Trọng âm khác",
         "question": "Chọn từ có trọng âm khác.",
         "options": [
-          "1",
           "famous",
           "common",
-          "staple"
+          "staple",
+          "avoid"
         ],
-        "answer": "1",
+        "answer": "avoid",
         "accept": [
-          "1"
+          "avoid"
         ],
         "fillMode": false
       },
@@ -6953,9 +6856,9 @@
           "tradition",
           "expensive"
         ],
-        "answer": "occasion",
+        "answer": "disagree",
         "accept": [
-          "occasion"
+          "disagree"
         ],
         "fillMode": false
       },
@@ -6972,28 +6875,9 @@
           "lifestyle",
           "freedom"
         ],
-        "answer": "harmful",
+        "answer": "maintain",
         "accept": [
-          "harmful"
-        ],
-        "fillMode": false
-      },
-      {
-        "game": "quiz",
-        "type": "multiple_choice",
-        "typeLabel": "Trắc nghiệm",
-        "skill": "reading",
-        "exercise": "Trọng âm khác",
-        "question": "Chọn từ có trọng âm khác.",
-        "options": [
-          "healthy",
-          "hurry",
-          "online",
-          "modern"
-        ],
-        "answer": "healthy",
-        "accept": [
-          "healthy"
+          "maintain"
         ],
         "fillMode": false
       },
@@ -7029,28 +6913,9 @@
           "cuisine",
           "diet"
         ],
-        "answer": "balance",
+        "answer": "cuisine",
         "accept": [
-          "balance"
-        ],
-        "fillMode": false
-      },
-      {
-        "game": "quiz",
-        "type": "multiple_choice",
-        "typeLabel": "Trắc nghiệm",
-        "skill": "reading",
-        "exercise": "Trọng âm khác",
-        "question": "Chọn từ có trọng âm khác.",
-        "options": [
-          "online",
-          "offline",
-          "musher",
-          "igloo"
-        ],
-        "answer": "online",
-        "accept": [
-          "online"
+          "cuisine"
         ],
         "fillMode": false
       },
@@ -7067,9 +6932,9 @@
           "maintain",
           "general"
         ],
-        "answer": "experience",
+        "answer": "general",
         "accept": [
-          "experience"
+          "general"
         ],
         "fillMode": false
       },
@@ -7086,9 +6951,9 @@
           "technology",
           "dedication"
         ],
-        "answer": "independent",
+        "answer": "technology",
         "accept": [
-          "independent"
+          "technology"
         ],
         "fillMode": false
       },
@@ -7105,9 +6970,9 @@
           "lifestyle",
           "mealtime"
         ],
-        "answer": "hurry",
+        "answer": "improve",
         "accept": [
-          "hurry"
+          "improve"
         ],
         "fillMode": false
       },
