@@ -36,6 +36,7 @@ describe('leaderboard practice score inclusion', () => {
       {
         username: 'student',
         displayName: 'Student',
+        avatarUrl: null,
         points: 130,
       },
     ]);

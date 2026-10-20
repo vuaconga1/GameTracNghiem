@@ -32,7 +32,8 @@ vi.mock('@/lib/speaking/access', () => ({
     mocks.evaluateSpeakingAccess(...args),
   SPEAKING_ACCESS_REASON: { DAILY_LIMIT_REACHED: 'DAILY_LIMIT_REACHED' },
 }));
-vi.mock('@/lib/speaking/sessionEndScheduler', () => ({
+vi.mock('@/lib/speaking/sessionEndScheduler', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/speaking/sessionEndScheduler')>()),
   assertSessionEndSchedulerReady: (...args: unknown[]) =>
     mocks.assertScheduler(...args),
 }));

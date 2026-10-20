@@ -58,6 +58,7 @@ export function MainShell({
     isLogistics && !isLogisticsWeek2 && !isLogisticsWeek3 && !isLogisticsWeek4;
   const isCoursePage = pathname === '/courses' || pathname.startsWith('/courses/');
   const isLeaderboard = pathname === '/leaderboard' || pathname.startsWith('/leaderboard/');
+  const isSpeaking = pathname === '/speaking' || pathname.startsWith('/speaking/');
 
   const userProps = {
     displayName: displayName || t('shell.guest'),
@@ -179,6 +180,25 @@ export function MainShell({
         }
       />
     );
+  } else if (isSpeaking) {
+    sidebar = (
+      <Sidebar
+        mode="game"
+        {...userProps}
+        gameNav={
+          <>
+            <Link className="nav-item" href={homeHref} onClick={() => setOpen(false)}>
+              <i className="fas fa-home" />
+              <span>{t('common.home')}</span>
+            </Link>
+            <Link className="nav-item active" href={pathname} onClick={() => setOpen(false)}>
+              <i className="fas fa-microphone" />
+              <span>{t('speaking.title')}</span>
+            </Link>
+          </>
+        }
+      />
+    );
   }
 
   return (
@@ -186,7 +206,11 @@ export function MainShell({
       <TourProvider>
         <AppShell
           layout={
-            isCoursePage ? 'course' : isGamePage || isLeaderboard || isLogistics ? 'game' : 'index'
+            isCoursePage
+              ? 'course'
+              : isGamePage || isLeaderboard || isLogistics || isSpeaking
+                ? 'game'
+                : 'index'
           }
           sidebar={sidebar}
           header={
