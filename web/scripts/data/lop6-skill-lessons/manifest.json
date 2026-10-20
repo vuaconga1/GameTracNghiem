@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-06T08:01:15.580977+00:00",
+  "generatedAt": "2026-10-18T08:33:00.455Z",
   "sourcePdf": "PDF/GRADE 6 GLOBAL SUCCESS FINAL.pdf",
   "units": {
     "1": {
@@ -221,6 +221,220 @@
           "sourcePageStart": 84,
           "sourcePageEnd": 85,
           "pageCount": 2
+        }
+      ]
+    },
+    "7": {
+      "unit": 7,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-7-vocabulary.pdf",
+          "sourcePageStart": 1,
+          "sourcePageEnd": 4,
+          "pageCount": 4
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-7-writing.pdf",
+          "sourcePageStart": 5,
+          "sourcePageEnd": 7,
+          "pageCount": 3
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-7-speaking.pdf",
+          "sourcePageStart": 7,
+          "sourcePageEnd": 7,
+          "pageCount": 1
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-7-reading.pdf",
+          "sourcePageStart": 8,
+          "sourcePageEnd": 9,
+          "pageCount": 2
+        }
+      ]
+    },
+    "8": {
+      "unit": 8,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-8-vocabulary.pdf",
+          "sourcePageStart": 10,
+          "sourcePageEnd": 16,
+          "pageCount": 7
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-8-writing.pdf",
+          "sourcePageStart": 17,
+          "sourcePageEnd": 20,
+          "pageCount": 4
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-8-speaking.pdf",
+          "sourcePageStart": 21,
+          "sourcePageEnd": 21,
+          "pageCount": 1
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-8-reading.pdf",
+          "sourcePageStart": 21,
+          "sourcePageEnd": 25,
+          "pageCount": 5
+        }
+      ]
+    },
+    "9": {
+      "unit": 9,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-9-vocabulary.pdf",
+          "sourcePageStart": 26,
+          "sourcePageEnd": 33,
+          "pageCount": 8
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-9-writing.pdf",
+          "sourcePageStart": 34,
+          "sourcePageEnd": 35,
+          "pageCount": 2
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-9-speaking.pdf",
+          "sourcePageStart": 36,
+          "sourcePageEnd": 36,
+          "pageCount": 1
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-9-reading.pdf",
+          "sourcePageStart": 37,
+          "sourcePageEnd": 40,
+          "pageCount": 4
+        }
+      ]
+    },
+    "10": {
+      "unit": 10,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-10-vocabulary.pdf",
+          "sourcePageStart": 41,
+          "sourcePageEnd": 47,
+          "pageCount": 7
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-10-writing.pdf",
+          "sourcePageStart": 48,
+          "sourcePageEnd": 51,
+          "pageCount": 4
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-10-speaking.pdf",
+          "sourcePageStart": 52,
+          "sourcePageEnd": 52,
+          "pageCount": 1
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-10-reading.pdf",
+          "sourcePageStart": 53,
+          "sourcePageEnd": 55,
+          "pageCount": 3
+        }
+      ]
+    },
+    "11": {
+      "unit": 11,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-11-vocabulary.pdf",
+          "sourcePageStart": 56,
+          "sourcePageEnd": 63,
+          "pageCount": 8
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-11-writing.pdf",
+          "sourcePageStart": 64,
+          "sourcePageEnd": 66,
+          "pageCount": 3
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-11-speaking.pdf",
+          "sourcePageStart": 67,
+          "sourcePageEnd": 67,
+          "pageCount": 1
+        }
+      ]
+    },
+    "12": {
+      "unit": 12,
+      "skills": [
+        {
+          "skillId": "vocabulary",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-12-vocabulary.pdf",
+          "sourcePageStart": 69,
+          "sourcePageEnd": 76,
+          "pageCount": 8
+        },
+        {
+          "skillId": "writing",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-12-writing.pdf",
+          "sourcePageStart": 77,
+          "sourcePageEnd": 79,
+          "pageCount": 3
+        },
+        {
+          "skillId": "speaking",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-12-speaking.pdf",
+          "sourcePageStart": 80,
+          "sourcePageEnd": 80,
+          "pageCount": 1
+        },
+        {
+          "skillId": "reading",
+          "sourcePdf": "docs/GRADE 6 HK2.pdf",
+          "unitPdf": "lop6-skill-lessons/unit-pdfs/unit-12-reading.pdf",
+          "sourcePageStart": 81,
+          "sourcePageEnd": 84,
+          "pageCount": 4
         }
       ]
     }

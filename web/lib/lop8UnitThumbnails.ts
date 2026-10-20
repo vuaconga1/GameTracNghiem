@@ -17,6 +17,10 @@ const BADGE_COLORS: Record<number, string> = {
 };
 
 export function lop8UnitImageFileName(unit: number): string {
+  return `unit-${String(unit).padStart(2, '0')}.webp`;
+}
+
+export function lop8UnitSvgFileName(unit: number): string {
   return `unit-${String(unit).padStart(2, '0')}.svg`;
 }
 

@@ -6,7 +6,6 @@ import {
   useContext,
   useEffect,
   useMemo,
-  useRef,
 } from 'react';
 import { usePathname } from 'next/navigation';
 import 'driver.js/dist/driver.css';
@@ -17,7 +16,6 @@ import { useHomeHref } from '@/components/shell/HomeNavContext';
 import { useSidebar } from '@/components/shell/SidebarContext';
 
 import { startTour, stopActiveTour } from './runTour';
-import { isTourDone } from './storage';
 import { resolveTour, type TourDefinition } from './tours';
 
 type TourContextValue = {
@@ -31,34 +29,11 @@ type TourContextValue = {
 
 const TourContext = createContext<TourContextValue | null>(null);
 
-function waitForSelector(selector: string, timeoutMs = 8000): Promise<boolean> {
-  return new Promise((resolve) => {
-    if (typeof document === 'undefined') {
-      resolve(false);
-      return;
-    }
-    const started = Date.now();
-    const tick = () => {
-      if (document.querySelector(selector)) {
-        resolve(true);
-        return;
-      }
-      if (Date.now() - started >= timeoutMs) {
-        resolve(false);
-        return;
-      }
-      window.setTimeout(tick, 120);
-    };
-    tick();
-  });
-}
-
 export function TourProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const homeHref = useHomeHref();
   const { t } = useI18n();
   const { setOpen } = useSidebar();
-  const autoStartedRef = useRef<Set<string>>(new Set());
 
   const isHome = pathname === homeHref || pathname === '/';
   const currentTour = useMemo<TourDefinition | null>(
@@ -89,27 +64,8 @@ export function TourProvider({ children }: { children: React.ReactNode }) {
   }, [currentTour, runTourGuide]);
 
   useEffect(() => {
-    if (!currentTour) {
-      stopActiveTour();
-      return;
-    }
-
-    const tour = currentTour;
-    if (autoStartedRef.current.has(tour.id) || isTourDone(tour.doneKey)) return;
-
-    let cancelled = false;
-    void (async () => {
-      const ready = await waitForSelector(tour.readySelector);
-      if (cancelled || !ready || isTourDone(tour.doneKey)) return;
-      autoStartedRef.current.add(tour.id);
-      runTourGuide(tour);
-    })();
-
-    return () => {
-      cancelled = true;
-      stopActiveTour();
-    };
-  }, [currentTour, runTourGuide]);
+    return () => stopActiveTour();
+  }, [pathname]);
 
   useEffect(() => {
     return () => stopActiveTour();

@@ -15,7 +15,7 @@ describe('lop9Units', () => {
     expect(parseLop9UnitNumber('Lớp 9 Unit 1')).toBeNull();
   });
 
-  it('exposes continuous unit page ranges for units 1-6', () => {
+  it('exposes page ranges for units 1-12', () => {
     const ranges = Array.from({ length: LOP9_UNIT_COUNT }, (_, index) =>
       lop9UnitPageRange(index + 1)
     );
@@ -27,6 +27,12 @@ describe('lop9Units', () => {
       { pageStart: 19, pageEnd: 24 },
       { pageStart: 25, pageEnd: 29 },
       { pageStart: 30, pageEnd: 35 },
+      { pageStart: 1, pageEnd: 22 },
+      { pageStart: 23, pageEnd: 42 },
+      { pageStart: 43, pageEnd: 64 },
+      { pageStart: 65, pageEnd: 85 },
+      { pageStart: 86, pageEnd: 107 },
+      { pageStart: 108, pageEnd: 123 },
     ]);
 
     expect(LOP9_UNIT_PAGE_RANGES[6]).toEqual({ pageStart: 30, pageEnd: 35 });
@@ -35,5 +41,6 @@ describe('lop9Units', () => {
   it('builds canonical course names', () => {
     expect(lop9UnitCourseName(1)).toBe('Unit 1: Local Environment');
     expect(lop9UnitCourseName(6)).toBe('Unit 6: Vietnamese Lifestyles: Then And Now');
+    expect(lop9UnitCourseName(12)).toBe('Unit 12: Career Choices');
   });
 });

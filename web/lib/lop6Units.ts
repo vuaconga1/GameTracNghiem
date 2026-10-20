@@ -2,7 +2,7 @@ import type { PrismaClient } from '@prisma/client';
 
 export const LOP6_LEVEL = 'Lớp 6';
 
-/** Global Success 6 — first semester units 1–6 (HK1). */
+/** Global Success 6 — full-year units 1–12. */
 export const LOP6_UNIT_TITLES: Record<number, string> = {
   1: 'My New School',
   2: 'My Home',
@@ -10,9 +10,15 @@ export const LOP6_UNIT_TITLES: Record<number, string> = {
   4: 'My Neighbourhood',
   5: 'Natural Wonders Of Viet Nam',
   6: 'Our Tet Holiday',
+  7: 'Television',
+  8: 'Sports and Games',
+  9: 'Cities of the World',
+  10: 'Our House in the Future',
+  11: 'Our Greener World',
+  12: 'Robots',
 };
 
-export const LOP6_UNIT_COUNT = 6;
+export const LOP6_UNIT_COUNT = 12;
 
 export function lop6UnitCourseName(unit: number): string {
   const title = LOP6_UNIT_TITLES[unit];

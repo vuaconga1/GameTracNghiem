@@ -12,7 +12,7 @@ import {
   LOP8_THUMB_HEIGHT,
   LOP8_THUMB_WIDTH,
   buildLop8UnitSvg,
-  lop8UnitImageFileName,
+  lop8UnitSvgFileName,
 } from '../lib/lop8UnitThumbnails';
 
 async function main() {
@@ -20,7 +20,7 @@ async function main() {
   await mkdir(outDir, { recursive: true });
 
   for (let unit = 1; unit <= LOP8_UNIT_COUNT; unit += 1) {
-    const fileName = lop8UnitImageFileName(unit);
+    const fileName = lop8UnitSvgFileName(unit);
     const svg = buildLop8UnitSvg(unit);
     const filePath = resolve(outDir, fileName);
     await writeFile(filePath, svg, 'utf8');

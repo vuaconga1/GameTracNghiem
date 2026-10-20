@@ -34,9 +34,10 @@ describe('guestAccessReport', () => {
   });
 
   it('requires the full SMTP settings before a report can be sent', () => {
-    expect(readReportSmtpConfig({})).toBeNull();
+    expect(readReportSmtpConfig({ NODE_ENV: 'test' })).toBeNull();
     expect(
       readReportSmtpConfig({
+        NODE_ENV: 'test',
         REPORT_SMTP_HOST: 'smtp.example.com',
         REPORT_SMTP_PORT: '587',
         REPORT_SMTP_USER: 'mailer@wewin.edu.vn',

@@ -719,6 +719,48 @@ const SECONDARY_QUESTIONS: Record<string, Record<number, string[]>> = {
       'What is your favourite Tet tradition?',
       'How is Tet different from a normal holiday?',
     ],
+    7: [
+      'What television programmes do you like watching?',
+      'How often do you watch television?',
+      'Who is your favourite television character or presenter?',
+      'What can children learn from television?',
+      'How can we balance television and other activities?',
+    ],
+    8: [
+      'What is your favourite sport or game?',
+      'How often do you play it?',
+      'Who do you usually play with?',
+      'Who is your favourite sportsperson?',
+      'Why are sports and games good for us?',
+    ],
+    9: [
+      'Which city in the world would you like to visit?',
+      'What famous landmarks can visitors see there?',
+      'What is the weather like in that city?',
+      'What local food would you like to try?',
+      'How is that city different from your hometown?',
+    ],
+    10: [
+      'What will your future house look like?',
+      'Where will your future house be?',
+      'What rooms and appliances will it have?',
+      'How will robots help in your house?',
+      'How will your future house save energy?',
+    ],
+    11: [
+      'What environmental problems do you see around you?',
+      'How can your family reduce rubbish?',
+      'What things can you reuse or recycle?',
+      'How can students make their school greener?',
+      'What will happen if people do not protect the environment?',
+    ],
+    12: [
+      'What kinds of robots do you know?',
+      'What can robots do at home?',
+      'How can robots help at school or in hospitals?',
+      'What would you ask a personal robot to do?',
+      'Do you think robots will replace people? Why or why not?',
+    ],
   },
   'Lớp 7': {
     1: [

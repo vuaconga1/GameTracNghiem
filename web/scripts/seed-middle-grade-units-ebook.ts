@@ -8,6 +8,7 @@
  *   node scripts/run-with-env.mjs neon -- npx tsx scripts/seed-middle-grade-units-ebook.ts --grade 6
  *   node scripts/run-with-env.mjs local -- npx tsx scripts/seed-middle-grade-units-ebook.ts --all
  *   node scripts/run-with-env.mjs neon -- npx tsx scripts/seed-middle-grade-units-ebook.ts --grade 7 --dry-run
+ *   node scripts/run-with-env.mjs local -- npx tsx scripts/seed-middle-grade-units-ebook.ts --grade 6 --from-unit 7
  */
 import '../lib/loadEnv';
 
@@ -62,6 +63,16 @@ function parseGrades(): number[] {
   const n = Number(process.argv[idx + 1]);
   if (n !== 6 && n !== 7) throw new Error('Use --grade 6|7 or --all');
   return [n];
+}
+
+function parseFromUnit(maxUnit: number): number {
+  const idx = process.argv.indexOf('--from-unit');
+  if (idx < 0) return 1;
+  const unit = Number(process.argv[idx + 1]);
+  if (!Number.isInteger(unit) || unit < 1 || unit > maxUnit) {
+    throw new Error(`Use --from-unit between 1 and ${maxUnit}`);
+  }
+  return unit;
 }
 
 function gradeConfig(grade: number) {
@@ -198,7 +209,8 @@ async function seedGrade(grade: number, dryRun: boolean) {
 
   console.log(`\n=== Seed ${cfg.level} lesson ebooks ===`);
 
-  for (let unit = 1; unit <= cfg.unitCount; unit++) {
+  const fromUnit = parseFromUnit(cfg.unitCount);
+  for (let unit = fromUnit; unit <= cfg.unitCount; unit++) {
     const name = cfg.courseName(unit);
     const manifestUnit = manifest.units[String(unit)];
     if (!manifestUnit?.skills?.length) {
@@ -265,7 +277,7 @@ async function seedGrade(grade: number, dryRun: boolean) {
     }
   }
 
-  console.log(`Done${dryRun ? ' (dry-run)' : ''}: ${cfg.level} Units 1-${cfg.unitCount}`);
+  console.log(`Done${dryRun ? ' (dry-run)' : ''}: ${cfg.level} Units ${fromUnit}-${cfg.unitCount}`);
 }
 
 async function main() {

@@ -10,9 +10,15 @@ export const LOP9_UNIT_TITLES: Record<number, string> = {
   4: 'Remembering The Past',
   5: 'Our Experiences',
   6: 'Vietnamese Lifestyles: Then And Now',
+  7: 'Natural Wonders of the World',
+  8: 'Tourism',
+  9: 'World Englishes',
+  10: 'Planet Earth',
+  11: 'Electronic Devices',
+  12: 'Career Choices',
 };
 
-export const LOP9_UNIT_COUNT = 6;
+export const LOP9_UNIT_COUNT = 12;
 
 export type Lop9UnitPageRange = {
   pageStart: number;
@@ -38,6 +44,12 @@ export const LOP9_UNIT_PAGE_RANGES: Record<number, Lop9UnitPageRange> = {
   4: { pageStart: 19, pageEnd: 24 },
   5: { pageStart: 25, pageEnd: 29 },
   6: { pageStart: 30, pageEnd: 35 },
+  7: { pageStart: 1, pageEnd: 22 },
+  8: { pageStart: 23, pageEnd: 42 },
+  9: { pageStart: 43, pageEnd: 64 },
+  10: { pageStart: 65, pageEnd: 85 },
+  11: { pageStart: 86, pageEnd: 107 },
+  12: { pageStart: 108, pageEnd: 123 },
 };
 
 export function lop9UnitCourseName(unit: number): string {

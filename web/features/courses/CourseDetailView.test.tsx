@@ -27,7 +27,7 @@ function renderContent(node: ReactNode) {
     createElement(
       I18nProvider,
       { initialLocale: 'vi' },
-      createElement(HomeNavProvider, { homeHref: '/' }, node),
+      createElement(HomeNavProvider, { homeHref: '/', children: node }),
     ),
   );
 }

@@ -10,9 +10,15 @@ export const LOP7_UNIT_TITLES: Record<number, string> = {
   4: 'Music And Arts',
   5: 'Food And Drink',
   6: 'A Visit To A School',
+  7: 'Traffic',
+  8: 'Films',
+  9: 'Festivals Around the World',
+  10: 'Energy Sources',
+  11: 'Travelling in the Future',
+  12: 'English-Speaking Countries',
 };
 
-export const LOP7_UNIT_COUNT = 6;
+export const LOP7_UNIT_COUNT = 12;
 
 export function lop7UnitCourseName(unit: number): string {
   const title = LOP7_UNIT_TITLES[unit];

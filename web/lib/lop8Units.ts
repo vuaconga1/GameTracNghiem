@@ -10,9 +10,15 @@ export const LOP8_UNIT_TITLES: Record<number, string> = {
   4: 'Ethnic Groups Of Viet Nam',
   5: 'Our Customs And Traditions',
   6: 'Lifestyles',
+  7: 'Environmental Protection',
+  8: 'Shopping',
+  9: 'Natural Disasters',
+  10: 'Communication in the Future',
+  11: 'Science and Technology',
+  12: 'Life on Other Planets',
 };
 
-export const LOP8_UNIT_COUNT = 6;
+export const LOP8_UNIT_COUNT = 12;
 
 export function lop8UnitCourseName(unit: number): string {
   const title = LOP8_UNIT_TITLES[unit];

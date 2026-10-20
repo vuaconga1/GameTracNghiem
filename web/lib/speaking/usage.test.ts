@@ -501,7 +501,7 @@ describe('Speaking quota V2', () => {
     harness.client.user.findUnique.mockResolvedValue({
       role: 'admin',
       archivedAt: null,
-      portalLinkedAt: null,
+      portalLinkedAt: new Date('2026-08-01T00:00:00.000Z'),
       speakingAccountStatus: 'ACTIVE',
     });
 
