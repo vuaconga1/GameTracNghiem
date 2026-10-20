@@ -1,7 +1,7 @@
 import 'server-only';
 
 import { optionalSession } from '@/lib/auth';
-import { recordGuestGradeVisit } from '@/lib/recordGuestGradeVisit';
+import { recordGradeAccessVisit } from '@/lib/recordGradeAccessVisit';
 import { canAccessCourseLevel, normalizeUserRole } from '@/lib/userRoles';
 import { progressCourseKey, scoreLookupCourseKeys } from '@/lib/courseKey';
 import { prisma } from '@/lib/db';
@@ -199,8 +199,8 @@ async function loadCourseDetailData(courseId: string): Promise<CourseDetailData 
 
 export async function loadCourseDetail(courseId: string): Promise<CourseDetailData | null> {
   const detail = await loadCourseDetailData(courseId);
-  if (detail?.playerKind === 'guest') {
-    await recordGuestGradeVisit(detail.course.levelName);
+  if (detail) {
+    await recordGradeAccessVisit(detail.course.levelName);
   }
   return detail;
 }

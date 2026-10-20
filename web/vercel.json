@@ -14,7 +14,7 @@
       "schedule": "17 2 * * *"
     },
     {
-      "path": "/api/cron/guest-access-report",
+      "path": "/api/cron/access-report",
       "schedule": "0 2 * * 2"
     }
   ]

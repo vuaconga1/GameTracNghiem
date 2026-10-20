@@ -8,7 +8,7 @@ import {
   orderHomeCourseLevels,
 } from '@/lib/alphabetLevel';
 import { optionalSession } from '@/lib/auth';
-import { recordGuestGradeVisit } from '@/lib/recordGuestGradeVisit';
+import { recordGradeAccessVisit } from '@/lib/recordGradeAccessVisit';
 import { courseBackgroundSrc } from '@/lib/courseBackground';
 import { progressCourseKey } from '@/lib/courseKey';
 import { courseCompletionPercent } from '@/lib/courseProgress';
@@ -276,9 +276,7 @@ async function loadHomeCoursesData(levelName = ''): Promise<HomeCoursesData> {
 
 export async function loadHomeCourses(levelName = ''): Promise<HomeCoursesData> {
   const data = await loadHomeCoursesData(levelName);
-  if (data.playerKind === 'guest') {
-    await recordGuestGradeVisit(data.selectedLevelName);
-  }
+  await recordGradeAccessVisit(data.selectedLevelName);
   return data;
 }
 

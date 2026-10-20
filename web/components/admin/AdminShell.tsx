@@ -81,6 +81,13 @@ const NAV: Array<{
     icon: 'fas fa-clipboard-list',
     adminOnly: true,
   },
+  {
+    href: '/admin/access-report',
+    label: { vi: 'Báo cáo truy cập', en: 'Access report' },
+    hint: { vi: 'Global Success 6–9 theo tuần', en: 'Global Success 6–9 weekly' },
+    icon: 'fas fa-chart-column',
+    adminOnly: true,
+  },
 ];
 
 type AdminShellProps = {

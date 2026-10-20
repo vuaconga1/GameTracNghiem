@@ -125,17 +125,19 @@ model TeacherAuditLog {
 }
 
 /**
- * One row per guest browser, Global Success grade (6–9), and Vietnam week (Monday).
+ * One row per visitor, Global Success grade (6–9), and Vietnam week (Monday).
+ * audience: guest | student | teacher. visitorKey is the guest cookie id or User.id.
  */
-model GuestGradeVisit {
+model GradeAccessVisit {
   id         String   @id @default(cuid())
+  audience   String
   visitorKey String
   grade      Int
   weekStart  String
   createdAt  DateTime @default(now())
 
-  @@unique([visitorKey, grade, weekStart])
-  @@index([weekStart, grade])
+  @@unique([audience, visitorKey, grade, weekStart])
+  @@index([weekStart, audience, grade])
 }
 
 model Ebook {

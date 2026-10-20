@@ -79,7 +79,7 @@ export function shouldRecycleDevClient(client: unknown): boolean {
     !hasModelField(client, 'ClassMember', 'classId') ||
     !hasModelField(client, 'ClassAssignment', 'deadlineAt') ||
     !hasModelField(client, 'TeacherAuditLog', 'action') ||
-    !hasModelField(client, 'GuestGradeVisit', 'weekStart')
+    !hasModelField(client, 'GradeAccessVisit', 'audience')
   );
 }
 

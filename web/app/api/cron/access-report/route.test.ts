@@ -8,21 +8,21 @@ const mocks = vi.hoisted(() => ({
 vi.mock('@/lib/speaking/sessionEndScheduler', () => ({
   isCronRequestAuthorized: (...args: unknown[]) => mocks.authorized(...args),
 }));
-vi.mock('@/lib/sendGuestAccessReport', () => ({
-  sendGuestAccessReport: (...args: unknown[]) => mocks.send(...args),
+vi.mock('@/lib/sendGradeAccessReport', () => ({
+  sendGradeAccessReport: (...args: unknown[]) => mocks.send(...args),
 }));
 
-import { GET } from '@/app/api/cron/guest-access-report/route';
+import { GET } from '@/app/api/cron/access-report/route';
 
-describe('GET /api/cron/guest-access-report', () => {
+describe('GET /api/cron/access-report', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    mocks.send.mockResolvedValue({ uniqueGuests: 0 });
+    mocks.send.mockResolvedValue({ weekStart: '2026-10-12' });
   });
 
   it('rejects requests without the cron secret', async () => {
     mocks.authorized.mockReturnValue(false);
-    const response = await GET(new Request('https://app.example/api/cron/guest-access-report'));
+    const response = await GET(new Request('https://app.example/api/cron/access-report'));
     expect(response.status).toBe(401);
     expect(mocks.send).not.toHaveBeenCalled();
   });
@@ -30,7 +30,7 @@ describe('GET /api/cron/guest-access-report', () => {
   it('sends the report when the cron secret matches', async () => {
     mocks.authorized.mockReturnValue(true);
     const response = await GET(
-      new Request('https://app.example/api/cron/guest-access-report', {
+      new Request('https://app.example/api/cron/access-report', {
         headers: { authorization: 'Bearer cron-secret' },
       }),
     );

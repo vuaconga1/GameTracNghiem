@@ -29,7 +29,7 @@ describe('shouldRecycleDevClient', () => {
             ClassMember: { fields: { classId: {} } },
             ClassAssignment: { fields: { deadlineAt: {} } },
             TeacherAuditLog: { fields: { action: {} } },
-            GuestGradeVisit: { fields: { weekStart: {} } },
+            GradeAccessVisit: { fields: { audience: {} } },
           },
         },
       })
@@ -58,7 +58,7 @@ describe('shouldRecycleDevClient', () => {
             ClassMember: { fields: [{ name: 'classId' }] },
             ClassAssignment: { fields: [{ name: 'deadlineAt' }] },
             TeacherAuditLog: { fields: [{ name: 'action' }] },
-            GuestGradeVisit: { fields: [{ name: 'weekStart' }] },
+            GradeAccessVisit: { fields: [{ name: 'audience' }] },
           },
         },
       })

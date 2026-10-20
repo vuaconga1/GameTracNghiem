@@ -2,6 +2,7 @@ import 'server-only';
 
 import { cookies, headers } from 'next/headers';
 
+import { accessAudienceForRole } from '@/lib/gradeAccessReport';
 import { globalSuccessGrade, vnWeekStartDate } from '@/lib/guestAccessWeek';
 import { GUEST_VISITOR_COOKIE, GUEST_VISITOR_HEADER, isGuestVisitorId } from '@/lib/guestVisitor';
 import { optionalSession } from '@/lib/auth';
@@ -26,18 +27,30 @@ function isUniqueConstraint(err: unknown): boolean {
   );
 }
 
-/** Count one guest browser once per Global Success grade per Vietnam week. */
-export async function recordGuestGradeVisit(levelName: string): Promise<void> {
+/**
+ * Count one visitor once per Global Success grade per Vietnam week:
+ * guests by browser cookie, students and teachers by account. Admins are skipped.
+ */
+export async function recordGradeAccessVisit(levelName: string): Promise<void> {
   try {
     const grade = globalSuccessGrade(levelName);
     if (!grade) return;
-    if (await optionalSession()) return;
 
-    const visitorKey = await readGuestVisitorKey();
-    if (!visitorKey) return;
+    const session = await optionalSession();
+    let audience;
+    let visitorKey: string | null;
+    if (session) {
+      audience = accessAudienceForRole(session.role);
+      visitorKey = session.userId;
+    } else {
+      audience = 'guest' as const;
+      visitorKey = await readGuestVisitorKey();
+    }
+    if (!audience || !visitorKey) return;
 
-    await prisma.guestGradeVisit.create({
+    await prisma.gradeAccessVisit.create({
       data: {
+        audience,
         visitorKey,
         grade,
         weekStart: vnWeekStartDate(),
@@ -45,6 +58,6 @@ export async function recordGuestGradeVisit(levelName: string): Promise<void> {
     });
   } catch (err) {
     if (isUniqueConstraint(err)) return;
-    console.error('guest grade visit', err);
+    console.error('grade access visit', err);
   }
 }

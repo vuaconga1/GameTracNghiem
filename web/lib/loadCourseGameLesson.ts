@@ -1,7 +1,7 @@
 import 'server-only';
 
 import { optionalSession } from '@/lib/auth';
-import { recordGuestGradeVisit } from '@/lib/recordGuestGradeVisit';
+import { recordGradeAccessVisit } from '@/lib/recordGradeAccessVisit';
 import {
   resolveCourseGameLessonDescriptor,
   type CourseGameLessonDescriptor,
@@ -40,9 +40,7 @@ export async function loadCourseGameLesson(
   ) {
     return null;
   }
-  if (!session) {
-    await recordGuestGradeVisit(course.levelName);
-  }
+  await recordGradeAccessVisit(course.levelName);
 
   if (
     !isGameVisibleForCourse(
