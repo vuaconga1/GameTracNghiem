@@ -2,7 +2,13 @@ import { requireAdmin } from '@/lib/auth';
 import { adminErrorResponse } from '@/lib/admin/http';
 import { notArchived } from '@/lib/admin/notArchived';
 import { prisma } from '@/lib/db';
-import { makeEbookStorageKey, saveEbookFile } from '@/lib/ebookStorage';
+import {
+  EBOOK_MAX_BYTES,
+  makeEbookStorageKey,
+  saveEbookFile,
+  usesBlobStorage,
+  verifyUploadedEbookBlob,
+} from '@/lib/ebookStorage';
 
 export const runtime = 'nodejs';
 
@@ -13,7 +19,7 @@ export async function GET() {
       where: notArchived,
       orderBy: [{ title: 'asc' }],
     });
-    return Response.json({ success: true, items });
+    return Response.json({ success: true, items, directUpload: usesBlobStorage() });
   } catch (err) {
     return adminErrorResponse(err);
   }
@@ -22,6 +28,21 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     await requireAdmin();
+
+    if ((req.headers.get('content-type') || '').includes('application/json')) {
+      const body = (await req.json()) as { title?: unknown; originalName?: unknown; blobUrl?: unknown };
+      const title = String(body.title || '').trim();
+      const originalName = String(body.originalName || '').trim() || 'ebook.pdf';
+      if (!title) {
+        return Response.json({ success: false, message: 'Vui lòng nhập tên sách' }, { status: 400 });
+      }
+      const storageKey = await verifyUploadedEbookBlob(String(body.blobUrl || ''));
+      const item = await prisma.ebook.create({
+        data: { title, originalName, storageKey },
+      });
+      return Response.json({ success: true, item });
+    }
+
     const form = await req.formData();
     const title = String(form.get('title') || '').trim();
     const file = form.get('file');
@@ -35,7 +56,7 @@ export async function POST(req: Request) {
     if (!file.name.toLowerCase().endsWith('.pdf') && file.type !== 'application/pdf') {
       return Response.json({ success: false, message: 'Chỉ chấp nhận file PDF' }, { status: 400 });
     }
-    if (file.size > 80 * 1024 * 1024) {
+    if (file.size > EBOOK_MAX_BYTES) {
       return Response.json({ success: false, message: 'File tối đa 80MB' }, { status: 400 });
     }
 

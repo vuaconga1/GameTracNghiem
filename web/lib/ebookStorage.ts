@@ -1,8 +1,9 @@
 import { mkdir, unlink, writeFile, readFile, stat } from 'fs/promises';
 import path from 'path';
-import { del, get, put } from '@vercel/blob';
+import { del, get, head, put } from '@vercel/blob';
 
 export const EBOOK_STORAGE_DIR = path.join(process.cwd(), 'storage', 'ebooks');
+export const EBOOK_MAX_BYTES = 80 * 1024 * 1024;
 
 export function usesBlobStorage() {
   return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
@@ -93,6 +94,18 @@ export async function openEbookFile(storageKey: string): Promise<{
   } catch {
     return null;
   }
+}
+
+/** Confirms a client-uploaded blob exists in our store under `ebooks/`; returns its URL. */
+export async function verifyUploadedEbookBlob(url: string): Promise<string> {
+  if (!usesBlobStorage() || !isRemoteEbookKey(url)) {
+    throw Object.assign(new Error('File upload không hợp lệ'), { status: 400 });
+  }
+  const blob = await head(url, { token: process.env.BLOB_READ_WRITE_TOKEN }).catch(() => null);
+  if (!blob || !blob.pathname.startsWith('ebooks/')) {
+    throw Object.assign(new Error('Không tìm thấy file vừa upload'), { status: 400 });
+  }
+  return blob.url;
 }
 
 export function makeEbookStorageKey(id: string) {

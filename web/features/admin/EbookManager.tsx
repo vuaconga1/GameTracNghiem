@@ -1,10 +1,13 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import { upload } from '@vercel/blob/client';
 
 import { AdminShell } from '@/components/admin/AdminShell';
 import { DataLoading } from '@/components/DataLoading';
 import { AdminHelp } from '@/features/admin/AdminHelp';
+
+const MAX_BYTES = 80 * 1024 * 1024;
 
 type EbookItem = {
   id: string;
@@ -22,6 +25,8 @@ export function EbookManager({ displayName }: { displayName: string }) {
   const [title, setTitle] = useState('');
   const [file, setFile] = useState<File | null>(null);
   const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState<number | null>(null);
+  const [directUpload, setDirectUpload] = useState(false);
   const [savingId, setSavingId] = useState<string | null>(null);
 
   const load = useCallback(async () => {
@@ -32,6 +37,7 @@ export function EbookManager({ displayName }: { displayName: string }) {
       return;
     }
     setItems(data.items as EbookItem[]);
+    setDirectUpload(Boolean(data.directUpload));
     setError('');
   }, []);
 
@@ -45,15 +51,50 @@ export function EbookManager({ displayName }: { displayName: string }) {
       setError('Vui lòng chọn file PDF');
       return;
     }
+    if (file.size > MAX_BYTES) {
+      setError('File tối đa 80MB');
+      return;
+    }
     setUploading(true);
+    setProgress(null);
     setError('');
     setMessage('');
+    const bookTitle = title.trim() || file.name.replace(/\.pdf$/i, '');
     try {
-      const form = new FormData();
-      form.set('title', title.trim() || file.name.replace(/\.pdf$/i, ''));
-      form.set('file', file);
-      const res = await fetch('/api/admin/ebooks', { method: 'POST', body: form });
-      const data = await res.json();
+      let res: Response;
+      if (directUpload) {
+        const safeName = file.name
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/[^a-zA-Z0-9._-]+/g, '_')
+          .replace(/\.pdf$/i, '');
+        const blob = await upload(`ebooks/${safeName || 'ebook'}.pdf`, file, {
+          access: 'private',
+          handleUploadUrl: '/api/admin/ebooks/upload',
+          contentType: 'application/pdf',
+          multipart: file.size > 5 * 1024 * 1024,
+          onUploadProgress: ({ percentage }) => setProgress(Math.round(percentage)),
+        });
+        res = await fetch('/api/admin/ebooks', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title: bookTitle, originalName: file.name, blobUrl: blob.url }),
+        });
+      } else {
+        const form = new FormData();
+        form.set('title', bookTitle);
+        form.set('file', file);
+        res = await fetch('/api/admin/ebooks', { method: 'POST', body: form });
+      }
+      const data = await res.json().catch(() => null);
+      if (!data) {
+        setError(
+          res.status === 413
+            ? 'File quá lớn so với giới hạn máy chủ'
+            : `Upload thất bại (mã ${res.status})`,
+        );
+        return;
+      }
       if (!data.success) {
         setError(data.message || 'Upload thất bại');
         return;
@@ -62,10 +103,11 @@ export function EbookManager({ displayName }: { displayName: string }) {
       setFile(null);
       setMessage(`Đã thêm sách “${data.item.title}”`);
       await load();
-    } catch {
-      setError('Lỗi mạng khi upload');
+    } catch (err) {
+      setError(err instanceof Error && err.message ? `Upload thất bại: ${err.message}` : 'Lỗi mạng khi upload');
     } finally {
       setUploading(false);
+      setProgress(null);
     }
   }
 
@@ -146,7 +188,7 @@ export function EbookManager({ displayName }: { displayName: string }) {
             onChange={(e) => setFile(e.target.files?.[0] || null)}
           />
           <button type="submit" className="admin-btn primary" disabled={uploading || !file}>
-            {uploading ? 'Đang tải lên...' : 'Thêm sách'}
+            {uploading ? `Đang tải lên${progress !== null ? ` ${progress}%` : '...'}` : 'Thêm sách'}
           </button>
         </form>
       </div>
